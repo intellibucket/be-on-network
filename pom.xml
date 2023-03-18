@@ -16,6 +16,8 @@
         <module>user-service</module>
         <module>job-seeker-service</module>
         <module>employer-service</module>
+        <module>stream-service</module>
+        <module>library</module>
         <module>vacancy-command-service</module>
         <module>vacancy-query-service</module>
         <module>vacancy-sync-service</module>
