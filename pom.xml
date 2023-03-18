@@ -19,6 +19,10 @@
         <module>vacancy-command-service</module>
         <module>vacancy-query-service</module>
         <module>vacancy-sync-service</module>
+        <module>library</module>
+        <module>payment-service</module>
+        <module>notification-service</module>
+        <module>library/spring-ms</module>
     </modules>
 
     <properties>
