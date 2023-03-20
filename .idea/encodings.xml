@@ -3,6 +3,11 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
@@ -13,6 +18,8 @@
     <file url="file://$PROJECT_DIR$/employer-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/spring-ms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/spring-ms/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/java" charset="UTF-8" />
