@@ -1,0 +1,95 @@
+version: "3.5"
+
+services:
+  discovery-service:
+    build:
+      context: ../discovery-service
+      dockerfile: ./Dockerfile
+    env_file: env/local/discovery.env.local
+    container_name: flyjob_discovery_service
+    restart: always
+    ports:
+      - "8761:8761"
+    networks:
+      - config-network
+
+  config-service:
+    env_file: env/local/config.env.local
+    build:
+      context: ../config-service
+      dockerfile: ./Dockerfile
+    container_name: flyjob_config_service
+    depends_on:
+      - discovery-service
+    ports:
+      - "8012:8012"
+    expose:
+      - "8012"
+    networks:
+      - config-network
+    restart: on-failure
+    links:
+      - discovery-service
+
+
+  api-gateway:
+    build:
+      context: ../api-gateway
+      dockerfile: ./Dockerfile
+    container_name: flyjob_api-gateway
+    env_file: env/local/api-gateway.env.local
+    ports:
+      - "8082:8082"
+    depends_on:
+      - config-service
+      - discovery-service
+    links:
+      - discovery-service
+      - config-service
+      - postgres-db
+    networks:
+      - config-network
+    restart: on-failure
+
+  postgres-db:
+    container_name: flyjob_postgre_db
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      PGDATA: /data/postgres
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "4445:5432"
+    networks:
+      - config-network
+    restart: unless-stopped
+
+  auth-service:
+    env_file: env/local/auth.env.local
+    build:
+      context: ../auth-service/auth-container
+      dockerfile: ./Dockerfile
+    container_name: flyjob_auth_service
+    depends_on:
+      - config-service
+      - discovery-service
+      - api-gateway
+    links:
+      - discovery-service
+      - config-service
+      - api-gateway
+      - postgres-db
+    networks:
+      - config-network
+    restart: on-failure
+
+networks:
+  config-network:
+    driver: bridge
+
+volumes:
+  pgadmin:
+  db:
+    driver: local
