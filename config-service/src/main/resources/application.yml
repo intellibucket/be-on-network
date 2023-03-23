@@ -1,0 +1,24 @@
+server:
+  port: ${PORT:8012}
+spring:
+  application:
+    name: config-service
+  profiles:
+    active: ${PROFILE:develop}
+  cloud:
+    config:
+      server:
+        git:
+          default-label: ${GIT_BRANCH:main}
+          password: ${GIT_PASS}
+          username: ${GIT_NAME}
+          clone-on-start: false
+          uri: ${GIT_ADDRESS}
+#  main:
+#    web-application-type: servlet
+logging:
+  level:
+    web: debug
+endpoints:
+  restart:
+    enabled: true
