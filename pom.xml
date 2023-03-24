@@ -52,6 +52,9 @@
         <module>auth-service/auth-domain</module>
         <module>auth-service/auth-data-access</module>
         <module>auth-service/auth-messaging</module>
+        <module>article-command-service</module>
+        <module>article-sync-service</module>
+        <module>article-query-service</module>
     </modules>
 
     <properties>
