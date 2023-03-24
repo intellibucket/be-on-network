@@ -46,7 +46,6 @@
         <module>vacancy-sync-service</module>
         <module>notification-service</module>
         <module>payment-service</module>
-        <module>library/rock-spring-security</module>
         <module>auth-service/auth-container</module>
         <module>auth-service/auth-domain</module>
         <module>auth-service/auth-data-access</module>
@@ -358,14 +357,6 @@
 
 
     <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <release>17</release>
-                </configuration>
-            </plugin>
-        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
