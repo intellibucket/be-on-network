@@ -29,7 +29,9 @@
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-exception/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-message/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-response/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-ms-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/resources" charset="UTF-8" />
