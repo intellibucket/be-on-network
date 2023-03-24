@@ -25,8 +25,11 @@
     <file url="file://$PROJECT_DIR$/interview-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-exception/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-response/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/spring-ms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/spring-ms/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/java" charset="UTF-8" />
