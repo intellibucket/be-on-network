@@ -4,26 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>az.rock</groupId>
-        <artifactId>flyjob</artifactId>
+        <groupId>az.rock.lib</groupId>
+        <artifactId>library</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>az.rock.lib</groupId>
-    <artifactId>library</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>rock-response</module>
-        <module>rock-util</module>
-        <module>rock-exception</module>
-        <module>rock-spring-ms-core</module>
-        <module>api-spec</module>
-        <module>rock-security</module>
-        <module>rock-message</module>
-        <module>rock-kafka</module>
-    </modules>
+    <groupId>az.rock.kafka</groupId>
+    <artifactId>rock-kafka</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
