@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AuthServiceRouteLocatorBeanConfig {
 
-    @Value(value = "${az.rock.ws.values.locator.service-names.auth-service}")
+    @Value(value = "${az.rock.ws.values.locator.service-names.auth}")
     private String serviceName;
 
     @Value(value = "${az.rock.ws.values.locator.api.auth.private}")
