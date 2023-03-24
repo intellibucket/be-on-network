@@ -18,4 +18,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>az.rock.flyjob.auth</groupId>
+            <artifactId>auth-presentation</artifactId>
+        </dependency>
+    </dependencies>
 </project>
