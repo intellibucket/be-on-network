@@ -1,6 +1,14 @@
 server:
   port: ${PORT:0}
 spring:
+  profiles:
+    active: ${PROFILE:develop}
+  config:
+    fail-fast: true
+    retry:
+      maxAttempts: 200
+      maxInterval: 10000
+    import: ${CONFIG_URL:optional:configserver:http://localhost:8012}
   jpa:
     hibernate:
       ddl-auto: update
@@ -8,10 +16,6 @@ spring:
     name: auth-service
   banner:
     location: classpath:banner.txt
-  config:
-    import: ${CONFIG_URL:configserver:http://localhost:8012}
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  profiles:
-    active: ${PROFILE:develop}
