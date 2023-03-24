@@ -1,0 +1,16 @@
+[
+  {
+    "code": "S_0000000001",
+    "az": "İstifadəçi adı və ya şifrə səhvdir",
+    "en": "Username or password is not correct",
+    "ru": "",
+    "tr": "Kullanıcı adı ve ya şifre doğru deyil."
+  },
+  {
+    "code": "S_0000000002",
+    "az": "Sessiyanız bitmişdir, zəhmət olmasa təkrar giriş edərdiniz",
+    "en": "ENN Sessiyanız bitmişdir, zəhmət olmasa təkrar giriş edərdiniz",
+    "ru": "",
+    "tr": "ENN Sessiyanız bitmişdir, zəhmət olmasa təkrar giriş edərdiniz."
+  }
+]

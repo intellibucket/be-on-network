@@ -1,0 +1,23 @@
+[
+  {
+    "code": "F_0000000001",
+    "az": "İstifadəçi adı və ya şifrə səhvdir",
+    "en": "Username or password is not correct",
+    "ru": "",
+    "tr": "Kullanıcı adı ve ya şifre doğru deyil."
+  },
+  {
+    "code": "F_0000000002",
+    "az": "Düzgün olmayan istək forması aşkarlandı",
+    "en": "An invalid request form was detected",
+    "ru": "Обнаружена недопустимая форма запроса",
+    "tr": "Geçersiz bir istek formu algılandı"
+  },
+  {
+    "code": "F_0000000003",
+    "az": "Sessiyanız bitmişdir. Zəhmət olmasa təkrar giriş edərdiniz",
+    "en": "EN",
+    "ru": "RU",
+    "tr": "TR"
+  }
+]
