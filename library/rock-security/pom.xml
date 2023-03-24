@@ -18,8 +18,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud-starter-netflix-eureka-client.version>3.1.4</spring-cloud-starter-netflix-eureka-client.version>
         <spring-boot-starter.version>2.7.4</spring-boot-starter.version>
-        <security.version>3.0.2</security.version>
-        <aspect.version>3.0.2</aspect.version>
+        <security.version>3.0.4</security.version>
+        <aspect.version>3.0.4</aspect.version>
         <jwt.version>0.9.1</jwt.version>
         <openfeign.version>2.2.10.RELEASE</openfeign.version>
         <spring-cloud-gateway.version>3.1.4</spring-cloud-gateway.version>
