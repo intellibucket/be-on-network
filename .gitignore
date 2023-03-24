@@ -12,6 +12,10 @@ target/
 *.iml
 *.ipr
 
+### Sensitive Data ###
+*.env.*
+*.log
+
 ### Eclipse ###
 .apt_generated
 .classpath
