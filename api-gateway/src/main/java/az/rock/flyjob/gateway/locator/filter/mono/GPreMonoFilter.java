@@ -23,6 +23,7 @@ public class GPreMonoFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info("GPreMonoFilter started");
         var request = exchange.getRequest();
         var requestHeaders = request.getHeaders();
         request.mutate()
@@ -31,7 +32,7 @@ public class GPreMonoFilter implements GlobalFilter {
                 .header(HeaderConstant.LANG, this.lang(request))
                 .build();
         String requestPath = request.getPath().toString();
-        log.info("JPreFilter executed Path : {}", requestPath);
+        log.info("GPreMonoFilter executed Path : {}", requestPath);
         return chain.filter(exchange.mutate().request(request).build());
     }
 

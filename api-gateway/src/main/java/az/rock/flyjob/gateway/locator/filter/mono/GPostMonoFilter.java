@@ -13,7 +13,7 @@ public class GPostMonoFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-            log.info("JPostFilter executed Path : {}", exchange.getRequest().getPath());
+            log.info("GPostMonoFilter executed Path : {}", exchange.getRequest().getPath());
         }));
     }
 }

@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: ${PROFILE:local}
+    active: ${PROFILE:develop}
   config:
     fail-fast: true
     retry:

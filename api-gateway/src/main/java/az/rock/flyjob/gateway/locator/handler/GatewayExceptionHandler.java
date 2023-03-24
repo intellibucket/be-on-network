@@ -1,4 +1,4 @@
-package az.rock.flyjob.gateway.api.handler;
+package az.rock.flyjob.gateway.locator.handler;
 
 import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.jresponse.response.fail.JFailDataResponse;
