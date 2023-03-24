@@ -32,4 +32,6 @@ public class JFailDataResponse<D> extends JResponseDataTransfer<D> {
     public boolean isPresent() {
         return super.isPresent();
     }
+
+
 }

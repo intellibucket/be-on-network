@@ -19,4 +19,5 @@ public class JFailResponse extends JResponseTransfer {
         return super.getHeader();
     }
 
+
 }
