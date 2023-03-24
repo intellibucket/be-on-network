@@ -1,0 +1,17 @@
+server:
+  port: ${PORT:0}
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  application:
+    name: auth-service
+  banner:
+    location: classpath:banner.txt
+  config:
+    import: ${CONFIG_URL:configserver:http://localhost:8012}
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  profiles:
+    active: ${PROFILE:develop}

@@ -3,9 +3,15 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/article-command-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/article-query-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/article-sync-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-container/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/java" charset="UTF-8" />
@@ -16,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/discovery-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/employer-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/employer-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/interview-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/java" charset="UTF-8" />
