@@ -26,6 +26,7 @@ public class JwtService {
         var encodePrivateKey = Base64.getEncoder().encodeToString(privateKey.getBytes());
         var endKey = this.jwtConfig.getSecret().concat(encodePrivateKey);
         return Jwts.builder()
+                .setSubject(claimModel.getUserUUID().toString())
                 .signWith(JwtKey.generateKey(endKey), SignatureAlgorithm.HS512)
                 .setClaims(varClaims)
                 .compact();
@@ -47,7 +48,9 @@ public class JwtService {
 
     public Boolean validateToken(HeaderModel model) {
         var claimModel = ClaimModel.of(this.getClaims(model.getToken(), model.getEncodedUserRequestPrivateKey()));
-        return this.isTokenValid(model.getToken(), model.getEncodedUserRequestPrivateKey()) && this.checkEquality(model, claimModel);
+        return this.isTokenValid(model.getToken(), model.getEncodedUserRequestPrivateKey()) &&
+                !claimModel.isEmpty() &&
+                this.isEquals(model, claimModel);
     }
 
     private Boolean isExpired(String token, String encodedPrivateKey) {
@@ -55,7 +58,7 @@ public class JwtService {
         return new Date().after(expiredDate);
     }
 
-    public Claims getClaims(String token, String encodedPrivateKey) {
+    private Claims getClaims(String token, String encodedPrivateKey) {
         return Jwts.parserBuilder()
                 .setSigningKey(this.jwtConfig.getSecret().concat(encodedPrivateKey).getBytes(StandardCharsets.UTF_8))
                 .build()
@@ -63,13 +66,8 @@ public class JwtService {
                 .getBody();
     }
 
-    private Boolean isAvailable(Claims claims) {
 
-        return claims.getExpiration().after(new Date());
-    }
-
-
-    private Boolean checkEquality(HeaderModel headerModel, ClaimModel claimModel) {
+    private Boolean isEquals(HeaderModel headerModel, ClaimModel claimModel) {
         return claimModel.getUserPrivateKey().equals(headerModel.getEncodedUserRequestPrivateKey()) &&
                 claimModel.getIpAddress().equals(headerModel.getIpAddress());
     }

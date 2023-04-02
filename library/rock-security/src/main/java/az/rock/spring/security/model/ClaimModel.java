@@ -137,7 +137,7 @@ public class ClaimModel {
     }
 
     public Boolean isEmpty() {
-        return this.equals(ClaimModel.EMPTY);
+        return this.check().equals(ClaimModel.EMPTY);
     }
 
     public UUID getUserUUID() {
