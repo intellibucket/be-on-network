@@ -119,8 +119,8 @@ public class ClaimModel {
         return ClaimModel
                 .builder()
                 .withUserUUID(UUID.fromString((String) claims.get(HeaderConstant.UUID)))
-                .withRoleNames(new HashSet<>((ArrayList<String>) claims.get(HeaderConstant.ROLE)))
-                .withPermissions(new HashSet<>((ArrayList<String>) claims.get(HeaderConstant.PERMISSIONS)))
+                .withRoleNames((Set<String>) claims.get(HeaderConstant.ROLE))
+                .withPermissions((Set<String>) claims.get(HeaderConstant.PERMISSIONS))
                 .withUsername((String) claims.get(HeaderConstant.USERNAME))
                 .withIpAddress((String) claims.get(HeaderConstant.IP_ADDRESS))
                 .withUserPrivateKey((String) claims.get(HeaderConstant.USER_PRIVATE_KEY))

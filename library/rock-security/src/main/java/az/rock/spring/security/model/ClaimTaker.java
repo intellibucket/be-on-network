@@ -1,4 +1,4 @@
-package az.rock.spring.security.web;
+package az.rock.spring.security.model;
 
 import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.util.constant.ClaimConstant;
