@@ -71,6 +71,11 @@ public class ClaimModel {
             return this;
         }
 
+        public Builder withRoleName(String roleName) {
+            this.roleNames = Set.of(roleName);
+            return this;
+        }
+
         public Builder withPermissions(Set<String> permissions) {
             this.permissions = permissions;
             return this;

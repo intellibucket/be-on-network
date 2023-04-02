@@ -2,6 +2,7 @@ package az.rock.spring.security.core;
 
 import az.rock.lib.jexception.JSecurityException;
 import az.rock.lib.util.GObjects;
+import az.rock.spring.security.model.ClaimModel;
 import az.rock.spring.security.model.HeaderModel;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -49,7 +50,8 @@ public class JwtService {
     public void validateToken(HeaderModel model, JSecurityException exception) {
         GObjects.checkCondition(this.isTokenValid(model.getToken(), model.getEncodedUserRequestPrivateKey()), exception);
         GObjects.checkCondition(!this.isExpired(model.getToken(), model.getEncodedUserRequestPrivateKey()), exception);
-
+        var claimModel = ClaimModel.of(this.getClaims(model.getToken(), model.getEncodedUserRequestPrivateKey()));
+        GObjects.checkCondition(this.checkEquality(model, claimModel), exception);
     }
 
     private Boolean isExpired(String token, String encodedPrivateKey) {
@@ -65,5 +67,11 @@ public class JwtService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+
+    private Boolean checkEquality(HeaderModel headerModel, ClaimModel claimModel) {
+        return claimModel.getUserPrivateKey().equals(headerModel.getEncodedUserRequestPrivateKey()) &&
+                claimModel.getIpAddress().equals(headerModel.getIpAddress());
     }
 }
