@@ -12,11 +12,6 @@
     <groupId>az.rock.flyjob.auth</groupId>
     <artifactId>auth-application</artifactId>
     <packaging>pom</packaging>
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
     <modules>
         <module>auth-spec</module>
         <module>auth-presentation</module>
