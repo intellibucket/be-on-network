@@ -22,6 +22,8 @@ public class ClaimModel {
     public ClaimModel() {
     }
 
+    public static final ClaimModel EMPTY = new ClaimModel();
+
     private ClaimModel(Builder builder) {
         userUUID = builder.userUUID;
         username = builder.username;
@@ -123,6 +125,19 @@ public class ClaimModel {
                 .withIpAddress((String) claims.get(HeaderConstant.IP_ADDRESS))
                 .withUserPrivateKey((String) claims.get(HeaderConstant.USER_PRIVATE_KEY))
                 .build();
+    }
+
+    public ClaimModel check() {
+        if (Objects.isNull(this.userUUID) || Objects.isNull(this.username) ||
+                Objects.isNull(this.userPrivateKey) || Objects.isNull(this.roleNames)
+                || Objects.isNull(this.permissions) || this.roleNames.isEmpty() ||
+                this.permissions.isEmpty())
+            return ClaimModel.EMPTY;
+        else return this;
+    }
+
+    public Boolean isEmpty() {
+        return this.equals(ClaimModel.EMPTY);
     }
 
     public UUID getUserUUID() {

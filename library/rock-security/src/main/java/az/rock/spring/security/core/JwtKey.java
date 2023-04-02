@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public class JwtKey {
 
-    public SecretKey generateKey(String secretKey) {
+    public static SecretKey generateKey(String secretKey) {
         return new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), "HS512");
     }
 }

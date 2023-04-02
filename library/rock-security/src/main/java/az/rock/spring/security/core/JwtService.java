@@ -1,7 +1,5 @@
 package az.rock.spring.security.core;
 
-import az.rock.lib.jexception.JSecurityException;
-import az.rock.lib.util.GObjects;
 import az.rock.spring.security.model.ClaimModel;
 import az.rock.spring.security.model.HeaderModel;
 import io.jsonwebtoken.Claims;
@@ -9,9 +7,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
-import java.util.Map;
 import java.util.UUID;
 
 public class JwtService {
@@ -22,13 +19,14 @@ public class JwtService {
         this.jwtConfig = jwtConfig;
     }
 
-    public String generateToken(Map<String, Object> claims, String encodePrivateKey) {
+    public String generateToken(ClaimModel claimModel, String privateKey) {
+        var claims = claimModel.generateMapClaim();
         Claims varClaims = Jwts.claims(claims);
         varClaims.setExpiration(new Date(System.currentTimeMillis() + this.jwtConfig.getExpiration()));
-        var singKey = this.jwtConfig.getSecret().concat(encodePrivateKey);
-        JwtKey key = new JwtKey();
+        var encodePrivateKey = Base64.getEncoder().encodeToString(privateKey.getBytes());
+        var endKey = this.jwtConfig.getSecret().concat(encodePrivateKey);
         return Jwts.builder()
-                .signWith(key.generateKey(this.jwtConfig.getSecret().concat(encodePrivateKey)), SignatureAlgorithm.HS512)
+                .signWith(JwtKey.generateKey(endKey), SignatureAlgorithm.HS512)
                 .setClaims(varClaims)
                 .compact();
     }
@@ -41,24 +39,20 @@ public class JwtService {
     private Boolean isTokenValid(String token, String encodedPrivateKey) {
         try {
             this.getClaims(token, encodedPrivateKey);
-            return true;
+            return this.isExpired(token, encodedPrivateKey);
         } catch (Exception e) {
             return false;
         }
     }
 
-    public void validateToken(HeaderModel model, JSecurityException exception) {
-        GObjects.checkCondition(this.isTokenValid(model.getToken(), model.getEncodedUserRequestPrivateKey()), exception);
-        GObjects.checkCondition(!this.isExpired(model.getToken(), model.getEncodedUserRequestPrivateKey()), exception);
+    public Boolean validateToken(HeaderModel model) {
         var claimModel = ClaimModel.of(this.getClaims(model.getToken(), model.getEncodedUserRequestPrivateKey()));
-        GObjects.checkCondition(this.checkEquality(model, claimModel), exception);
+        return this.isTokenValid(model.getToken(), model.getEncodedUserRequestPrivateKey()) && this.checkEquality(model, claimModel);
     }
 
     private Boolean isExpired(String token, String encodedPrivateKey) {
-        Key key = null;
         var expiredDate = this.getClaims(token, encodedPrivateKey).getExpiration();
-        var now = new Date();
-        return now.after(expiredDate);
+        return new Date().after(expiredDate);
     }
 
     public Claims getClaims(String token, String encodedPrivateKey) {
@@ -67,6 +61,11 @@ public class JwtService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    private Boolean isAvailable(Claims claims) {
+
+        return claims.getExpiration().after(new Date());
     }
 
 
