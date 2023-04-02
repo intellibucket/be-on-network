@@ -34,22 +34,12 @@ public class JwtService {
 
 
     public UUID getUUIDFromToken(String token, String encodePrivateKey) {
-        var result = Jwts.parserBuilder()
-                .setSigningKey(this.jwtConfig.getSecret().concat(encodePrivateKey).getBytes(StandardCharsets.UTF_8))
-                .build();
-
-        return UUID.fromString(Jwts.parserBuilder()
-                .setSigningKey(jwtConfig.getSecret().concat(encodePrivateKey).getBytes(StandardCharsets.UTF_8))
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject());
+        return UUID.fromString(this.getClaims(token, encodePrivateKey).getSubject());
     }
 
-    private Boolean isTokenValid(String token, String decodePrivateKey) {
+    private Boolean isTokenValid(String token, String encodedPrivateKey) {
         try {
-            Jwts.parser()
-                    .setSigningKey(jwtConfig.getSecret().concat(decodePrivateKey))
-                    .parseClaimsJws(token);
+            this.getClaims(token, encodedPrivateKey);
             return true;
         } catch (Exception e) {
             return false;
@@ -64,18 +54,15 @@ public class JwtService {
 
     private Boolean isExpired(String token, String encodedPrivateKey) {
         Key key = null;
-        var expiredDate = Jwts.parser()
-                .setSigningKey(jwtConfig.getSecret().concat(encodedPrivateKey))
-                .parseClaimsJws(token)
-                .getBody()
-                .getExpiration();
+        var expiredDate = this.getClaims(token, encodedPrivateKey).getExpiration();
         var now = new Date();
         return now.after(expiredDate);
     }
 
     public Claims getClaims(String token, String encodedPrivateKey) {
-        return Jwts.parser()
-                .setSigningKey(jwtConfig.getSecret().concat(encodedPrivateKey))
+        return Jwts.parserBuilder()
+                .setSigningKey(this.jwtConfig.getSecret().concat(encodedPrivateKey).getBytes(StandardCharsets.UTF_8))
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
