@@ -4,31 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>az.rock.lib</groupId>
-        <artifactId>library</artifactId>
+        <groupId>az.rock.flyjob</groupId>
+        <artifactId>auth-service</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>az.rock.spec</groupId>
-    <artifactId>api-spec</artifactId>
+    <groupId>az.rock.flyjob.auth</groupId>
+    <artifactId>auth-application</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>auth-spec</module>
-    </modules>
-
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>6.0.6</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <modules>
+        <module>auth-spec</module>
+        <module>auth-presentation</module>
+    </modules>
 </project>

@@ -6,6 +6,12 @@
     <file url="file://$PROJECT_DIR$/article-command-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/article-query-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/article-sync-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-application/auth-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-application/auth-presentation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-application/auth-spec/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-application/auth-spec/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-application/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-container/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-core/src/main/java" charset="UTF-8" />
@@ -13,7 +19,6 @@
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-messaging/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/auth-service/auth-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
@@ -25,7 +30,6 @@
     <file url="file://$PROJECT_DIR$/interview-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/library/api-spec/auth-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-exception/src/main/java" charset="UTF-8" />

@@ -3,14 +3,13 @@ package az.rock.flyjob.auth.api.rest.publics;
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import az.rock.spec.auth.privates.AuthGetPrivateControllerSpec;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth/1.0/public")
-public class AuthGetPublicController implements AuthGetPrivateControllerSpec {
+public class AuthGetPublicController implements AuthGetPublicControllerSpec {
 
 
     @Override

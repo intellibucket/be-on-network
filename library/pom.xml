@@ -19,7 +19,6 @@
         <module>rock-util</module>
         <module>rock-exception</module>
         <module>rock-spring-ms-core</module>
-        <module>api-spec</module>
         <module>rock-security</module>
         <module>rock-message</module>
         <module>rock-kafka</module>

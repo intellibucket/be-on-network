@@ -13,7 +13,11 @@
     <artifactId>auth-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>auth-presentation</module>
+        <module>auth-application</module>
+        <module>auth-messaging</module>
+        <module>auth-domain</module>
+        <module>auth-data-access</module>
+        <module>auth-container</module>
     </modules>
 
     <properties>

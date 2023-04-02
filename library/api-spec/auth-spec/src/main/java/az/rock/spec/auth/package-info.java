@@ -1,1 +1,0 @@
-package az.rock.spec.auth;
