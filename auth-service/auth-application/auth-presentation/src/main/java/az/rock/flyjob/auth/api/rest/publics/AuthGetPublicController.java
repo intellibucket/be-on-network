@@ -3,6 +3,7 @@ package az.rock.flyjob.auth.api.rest.publics;
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
+import az.rock.spec.auth.publics.AuthGetPublicControllerSpec;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
