@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth/1.0/private")
 public class AuthGetPrivateController implements AuthGetPrivateControllerSpec {
 
-
     @Override
     @GetMapping("/live")
     public ResponseEntity<JSuccessResponse> live() {
