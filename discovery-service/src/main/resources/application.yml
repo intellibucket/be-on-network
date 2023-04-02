@@ -13,7 +13,7 @@ eureka:
     hostname: ${HOSTNAME:localhost}
     prefer-ip-address: ${PREFER_IP_ADDRESS:true}
   server:
-    enableSelfPreservation: false
+    enableSelfPreservation: true
     renewalPercentThreshold: 0.5
     maxThreadsForPeerReplication: ${MAX_THREAD_FOR_PEER_REPLICATION:3}
     waitTimeInMsWhenSyncEmpty: 0

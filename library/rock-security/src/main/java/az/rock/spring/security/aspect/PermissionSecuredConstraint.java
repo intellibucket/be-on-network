@@ -1,7 +1,6 @@
 package az.rock.spring.security.aspect;
 
 import az.rock.lib.jexception.JSecurityException;
-import az.rock.spring.security.web.JPermissionSecured;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

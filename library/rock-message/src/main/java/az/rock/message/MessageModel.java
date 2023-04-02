@@ -2,7 +2,7 @@ package az.rock.message;
 
 public class MessageModel {
     private String code;
-    private String hasExpression;
+    private String hasRegexp;
     private String az;
     private String en;
     private String tr;
@@ -17,6 +17,20 @@ public class MessageModel {
     }
 
     public MessageModel() {
+    }
+
+    public String getMessage(String lang) {
+        return switch (lang) {
+            case "az" -> az;
+            case "en" -> en;
+            case "tr" -> tr;
+            case "ru" -> ru;
+            default -> az;
+        };
+    }
+
+    public String hasRegexp() {
+        return hasRegexp;
     }
 
     public String getCode() {

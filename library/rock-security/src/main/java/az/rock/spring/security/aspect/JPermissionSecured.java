@@ -1,4 +1,4 @@
-package az.rock.spring.security.web;
+package az.rock.spring.security.aspect;
 
 import org.springframework.stereotype.Component;
 

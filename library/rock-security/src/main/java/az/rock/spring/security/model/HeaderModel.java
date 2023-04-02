@@ -1,14 +1,10 @@
 package az.rock.spring.security.model;
 
 public class HeaderModel {
-    private String lang;
-    private String userRequestPrivateKey;
-    private String ipAddress;
-    private String token;
-    private String unauthorizedMessage;
-
-    public HeaderModel() {
-    }
+    private final String lang;
+    private final String userRequestPrivateKey;
+    private final String ipAddress;
+    private final String token;
 
 
     private HeaderModel(Builder builder) {
@@ -16,15 +12,10 @@ public class HeaderModel {
         userRequestPrivateKey = builder.userRequestPrivateKey;
         ipAddress = builder.ipAddress;
         token = builder.token;
-        unauthorizedMessage = builder.unauthorizedMessage;
     }
 
     public static Builder builder() {
         return new Builder();
-    }
-
-    public String getUnauthorizedMessage() {
-        return unauthorizedMessage;
     }
 
     public String getLang() {
@@ -40,9 +31,12 @@ public class HeaderModel {
     }
 
     public String getToken() {
-        return token;
+        return !this.isGuest() ? this.token : this.token.replace("Guest ", "");
     }
 
+    public Boolean isGuest() {
+        return this.token.startsWith("Guest");
+    }
 
     public static final class Builder {
         private String lang;
@@ -87,23 +81,4 @@ public class HeaderModel {
     }
 
 
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public void setUserRequestPrivateKey(String userRequestPrivateKey) {
-        this.userRequestPrivateKey = userRequestPrivateKey;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public void setUnauthorizedMessage(String unauthorizedMessage) {
-        this.unauthorizedMessage = unauthorizedMessage;
-    }
 }

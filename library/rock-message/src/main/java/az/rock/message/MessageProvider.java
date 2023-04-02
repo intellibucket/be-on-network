@@ -1,5 +1,6 @@
 package az.rock.message;
 
+import az.rock.lib.util.constant.LangConstant;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -10,40 +11,51 @@ import java.util.Map;
 
 public class MessageProvider {
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private Map<String, MessageModel> successMessages = new HashMap<>();
     private Map<String, MessageModel> failMessages = new HashMap<>();
 
-    public static MessageProvider EMPTY = new MessageProvider();
+    public static final MessageProvider EMPTY = new MessageProvider();
 
     private MessageProvider() {
     }
 
 
-    private MessageProvider(File successFile, File failFile) {
-        this.objectMapper = new ObjectMapper();
-    }
-
     private MessageProvider(Builder builder) {
-        objectMapper = builder.objectMapper;
         successMessages = builder.successMessages;
         failMessages = builder.failMessages;
     }
 
-    public String fail(String code, String lang) {
-        var model = this.failMessages.get(code);
-        if (lang.equals("az")) return model.getAz();
-        else return model.getEn();
+    private String findModel(String code, String lang, Map<String, MessageModel> map) {
+        var model = map.get(code);
+        if (model == null) map.get("default");
+        assert model != null;
+        return model.getMessage(lang);
+    }
+
+    public String fail() {
+        return this.fail("default", LangConstant.AZ);
     }
 
     public String fail(String code) {
-        return this.fail(code, "az");
+        return this.fail(code, LangConstant.AZ);
+    }
+
+    public String fail(String code, String lang) {
+        return this.findModel(code, lang, this.failMessages);
+    }
+
+    public String success() {
+        return this.success("default", LangConstant.AZ);
+    }
+
+    public String success(String code) {
+        return this.success(code, LangConstant.AZ);
     }
 
     public String success(String code, String lang) {
-        return null;
+        return this.findModel(code, lang, this.successMessages);
     }
-
 
     /**
      * {@code MessageProvider} builder static inner class.
