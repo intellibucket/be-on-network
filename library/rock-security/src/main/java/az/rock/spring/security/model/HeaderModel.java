@@ -24,6 +24,18 @@ public class HeaderModel {
         token = builder.token;
     }
 
+    public Boolean isEmpty() {
+        return this.lang.isBlank() && this.userRequestPrivateKey.isBlank() && this.ipAddress.isBlank() && this.token.isBlank();
+    }
+
+    public Boolean isAvailable() {
+        return !this.isEmpty() && this.hasPrivateKey() && this.hasIpAddress() && this.isTokenAvailable();
+    }
+
+    private Boolean isTokenAvailable() {
+        return !this.token.isBlank() && (this.token.startsWith(HeaderConstant.BEARER) || this.token.startsWith(HeaderConstant.GUEST));
+    }
+
     public static Builder builder() {
         return new Builder();
     }

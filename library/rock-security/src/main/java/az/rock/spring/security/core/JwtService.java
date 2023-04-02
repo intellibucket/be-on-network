@@ -47,10 +47,15 @@ public class JwtService {
     }
 
     public Boolean validateToken(HeaderModel model) {
-        var claimModel = ClaimModel.of(this.getClaims(model.getToken(), model.getEncodedUserRequestPrivateKey()));
-        return this.isTokenValid(model.getToken(), model.getEncodedUserRequestPrivateKey()) &&
-                !claimModel.isEmpty() &&
-                this.isEquals(model, claimModel);
+        ClaimModel claimModel = ClaimModel.EMPTY;
+        try {
+            claimModel = ClaimModel.of(this.getClaims(model.getToken(), model.getEncodedUserRequestPrivateKey()));
+            return this.isTokenValid(model.getToken(), model.getEncodedUserRequestPrivateKey()) &&
+                    !claimModel.isEmpty() &&
+                    this.isEquals(model, claimModel);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private Boolean isExpired(String token, String encodedPrivateKey) {

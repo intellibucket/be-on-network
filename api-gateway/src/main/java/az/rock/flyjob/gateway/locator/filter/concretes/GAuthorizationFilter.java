@@ -34,7 +34,8 @@ public class GAuthorizationFilter extends AbstractGAuthorizationFilter {
                     .decorator()
                     .decorate(exchangeRequest);
             var exception = new JSecurityException(this.messageProvider.fail("F_0000000002", headerModel.getLang()));
-            if (!this.checkHeaderModel(headerModel)) throw exception;
+            if (!this.checkHeaderModel(headerModel))
+                throw exception;
             var claimModel = ClaimModel.of(this.jwtService.getClaims(headerModel.getToken(), headerModel.getEncodedUserRequestPrivateKey()));
             ServerHttpRequest modifiedRequest = this.modifyRequestHeader(exchange, claimModel);
             return chain.filter(exchange.mutate().request(modifiedRequest).build());
@@ -55,6 +56,7 @@ public class GAuthorizationFilter extends AbstractGAuthorizationFilter {
     }
 
     private Boolean checkHeaderModel(HeaderModel headerModel) {
-        return this.jwtService.validateToken(headerModel);
+        return this.jwtService.validateToken(headerModel) && headerModel.isAvailable();
     }
+
 }
