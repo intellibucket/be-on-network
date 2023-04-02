@@ -40,7 +40,7 @@ public class JwtService {
     private Boolean isTokenValid(String token, String encodedPrivateKey) {
         try {
             this.getClaims(token, encodedPrivateKey);
-            return this.isExpired(token, encodedPrivateKey);
+            return !this.isExpired(token, encodedPrivateKey);
         } catch (Exception e) {
             return false;
         }
@@ -58,7 +58,7 @@ public class JwtService {
         return new Date().after(expiredDate);
     }
 
-    private Claims getClaims(String token, String encodedPrivateKey) {
+    public Claims getClaims(String token, String encodedPrivateKey) {
         return Jwts.parserBuilder()
                 .setSigningKey(this.jwtConfig.getSecret().concat(encodedPrivateKey).getBytes(StandardCharsets.UTF_8))
                 .build()
