@@ -25,12 +25,18 @@ public class GenericExceptionHandler extends DefaultErrorAttributes {
                 MergedAnnotations.from(error.getClass(), MergedAnnotations.SearchStrategy.TYPE_HIERARCHY).get(ResponseStatus.class);
         HttpStatus errorStatus = this.findHttpStatus(error, responseStatusAnnotation);
         var failResponse = ServerFailPattern.resolve(errorStatus.value()).get();
-        return this.resolve(request, options, failResponse);
+        Map<String, Object> map = this.resolve(request, options, failResponse);
+        return map;
     }
 
     private Map<String, Object> resolve(ServerRequest request, ErrorAttributeOptions options, JFailResponse failResponse) {
         Map<String, Object> map = super.getErrorAttributes(request, options);
-        map.clear();
+        map.remove("timestamp");
+        map.remove("path");
+        map.remove("error");
+        map.remove("requestId");
+        map.remove("trace");
+
         map.put("trackId", failResponse.getTrackId());
         map.put("success", false);
         map.put("message", failResponse.getMessage());

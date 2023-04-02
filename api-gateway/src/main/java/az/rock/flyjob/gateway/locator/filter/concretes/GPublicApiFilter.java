@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class GCommonFilter extends AbstractGCommonFilter {
+public class GPublicApiFilter extends AbstractGCommonFilter {
     @Override
     public GatewayFilter apply(Config config) {
         log.debug("Api Gateway common filter executed");

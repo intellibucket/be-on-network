@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GUserDetail extends User {
-    private String uuid;
+    private final String uuid;
 
     public GUserDetail(String uuid, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);

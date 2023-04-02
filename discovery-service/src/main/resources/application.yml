@@ -12,8 +12,9 @@ eureka:
   instance:
     hostname: ${HOSTNAME:localhost}
     prefer-ip-address: ${PREFER_IP_ADDRESS:true}
+    lease-renewal-interval-in-seconds: ${LEASE_RENEWAL_INTERVAL_IN_SECONDS:10}
   server:
     enableSelfPreservation: true
-    renewalPercentThreshold: 0.5
+    renewalPercentThreshold: 0.85
     maxThreadsForPeerReplication: ${MAX_THREAD_FOR_PEER_REPLICATION:3}
-    waitTimeInMsWhenSyncEmpty: 0
+    waitTimeInMsWhenSyncEmpty: 1000

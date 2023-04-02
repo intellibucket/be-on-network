@@ -2,14 +2,15 @@ package az.rock.message;
 
 public class MessageModel {
     private String code;
-    private String hasRegexp;
+    private Boolean hasRegexp;
     private String az;
     private String en;
     private String tr;
     private String ru;
 
-    public MessageModel(String code, String az, String en, String tr, String ru) {
+    public MessageModel(String code, Boolean hasRegexp, String az, String en, String tr, String ru) {
         this.code = code;
+        this.hasRegexp = hasRegexp;
         this.az = az;
         this.en = en;
         this.tr = tr;
@@ -27,10 +28,6 @@ public class MessageModel {
             case "ru" -> ru;
             default -> az;
         };
-    }
-
-    public String hasRegexp() {
-        return hasRegexp;
     }
 
     public String getCode() {
@@ -71,5 +68,13 @@ public class MessageModel {
 
     public void setRu(String ru) {
         this.ru = ru;
+    }
+
+    public Boolean getHasRegexp() {
+        return hasRegexp;
+    }
+
+    public void setHasRegexp(Boolean hasRegexp) {
+        this.hasRegexp = hasRegexp;
     }
 }
