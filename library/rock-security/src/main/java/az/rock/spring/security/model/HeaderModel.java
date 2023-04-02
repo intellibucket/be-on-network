@@ -5,6 +5,7 @@ import az.rock.lib.util.constant.HeaderConstant;
 import az.rock.lib.util.constant.LangConstant;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -39,6 +40,10 @@ public class HeaderModel {
         return userRequestPrivateKey;
     }
 
+    public String getEncodedUserRequestPrivateKey() {
+        return Base64.getEncoder().encodeToString(this.userRequestPrivateKey.getBytes());
+    }
+
     public String getIpAddress() {
         return ipAddress;
     }
@@ -49,6 +54,18 @@ public class HeaderModel {
 
     public Boolean isGuest() {
         return this.token.startsWith("Guest");
+    }
+
+    public Boolean isUser() {
+        return !this.isGuest();
+    }
+
+    public Boolean hasPrivateKey() {
+        return !this.userRequestPrivateKey.isBlank();
+    }
+
+    public Boolean hasIpAddress() {
+        return !this.ipAddress.isBlank();
     }
 
     public static final class Decorator {

@@ -2,7 +2,7 @@ package az.rock.spring.security.core;
 
 public class JwtConfig {
     private String secret;
-    private long expiration;
+    private Long expiration;
 
     private JwtConfig(Builder builder) {
         secret = builder.secret;
@@ -14,7 +14,7 @@ public class JwtConfig {
         return secret;
     }
 
-    public long getExpiration() {
+    public Long getExpiration() {
         return expiration;
     }
 
@@ -39,8 +39,18 @@ public class JwtConfig {
             return this;
         }
 
+        @Override
+        public String toString() {
+            return "SECRET: " + "[...]" + " EXPIRATION: " + expiration;
+        }
+
         public JwtConfig build() {
             return new JwtConfig(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "SECRET: " + "[...]" + " EXPIRATION: " + expiration;
     }
 }
