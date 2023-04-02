@@ -4,7 +4,6 @@ import az.rock.flyjob.gateway.locator.filter.abstracts.AbstractGAuthorizationFil
 import az.rock.lib.jexception.JSecurityException;
 import az.rock.message.MessageProvider;
 import az.rock.spring.security.model.HeaderModel;
-import az.rock.spring.security.web.PerRequestHeaderBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.stereotype.Component;
@@ -13,11 +12,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class GAuthorizationFilter extends AbstractGAuthorizationFilter {
 
-    private final PerRequestHeaderBuilder perRequestHeaderBuilder;
     private final MessageProvider messageProvider;
 
-    public GAuthorizationFilter(PerRequestHeaderBuilder perRequestHeaderBuilder, MessageProvider messageProvider) {
-        this.perRequestHeaderBuilder = perRequestHeaderBuilder;
+    public GAuthorizationFilter(MessageProvider messageProvider) {
         this.messageProvider = messageProvider;
     }
 
@@ -26,7 +23,9 @@ public class GAuthorizationFilter extends AbstractGAuthorizationFilter {
         log.debug("Api Gateway authorization filter executed");
         return ((exchange, chain) -> {
             var exchangeRequest = exchange.getRequest();
-            HeaderModel headerModel = this.perRequestHeaderBuilder.build(exchangeRequest);
+            HeaderModel headerModel = HeaderModel
+                    .decorator()
+                    .decorate(exchangeRequest);
 
             return chain.filter(exchange);
         });

@@ -2,7 +2,6 @@ package az.rock.flyjob.gateway.config;
 
 import az.rock.message.ClasspathReader;
 import az.rock.message.MessageProvider;
-import az.rock.spring.security.web.PerRequestHeaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,10 +19,6 @@ public class BeanConfig {
 //        return new JSecurityManager(this.messageProvider(), encryptKey, tokenExpDate);
 //    }
 
-    @Bean
-    public PerRequestHeaderBuilder perRequestHeaderBuilder() {
-        return new PerRequestHeaderBuilder();
-    }
 
     @Bean
     public MessageProvider messageProvider() {
