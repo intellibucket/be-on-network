@@ -2,7 +2,6 @@ package az.rock.flyjob.gateway.config;
 
 import az.rock.message.ClasspathReader;
 import az.rock.message.MessageProvider;
-import az.rock.spring.security.web.JSecurityManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +14,10 @@ public class BeanConfig {
     @Value(value = "${ws.values.token-exp-time}")
     private String tokenExpDate;
 
-    @Bean
-    public JSecurityManager jSecurityManager() {
-        return new JSecurityManager(this.messageProvider(), encryptKey, tokenExpDate);
-    }
+//    @Bean
+//    public JSecurityManager jSecurityManager() {
+//        return new JSecurityManager(this.messageProvider(), encryptKey, tokenExpDate);
+//    }
 
     @Bean
     public MessageProvider messageProvider() {

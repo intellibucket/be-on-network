@@ -7,5 +7,6 @@ public class BaseConstant {
     public static final String ROLE = "ROLE";
     public static final String IP_ADDRESS = "IP_ADDRESS";
     public static final String PERMISSIONS = "PERMISSIONS";
+    public static final String PERMISSION = "PERMISSION";
     public static final String USER_PRIVATE_KEY = "USER_PRIVATE_KEY";
 }

@@ -3,7 +3,7 @@ package az.rock.spring.security.core;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
-public class CustomFeignRequestInterceptor implements RequestInterceptor {
+public class FeignRequestInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate template) {
