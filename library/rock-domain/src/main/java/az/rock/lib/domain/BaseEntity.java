@@ -1,8 +1,7 @@
-package az.rock.spring.domain;
+package az.rock.lib.domain;
 
 import az.rock.lib.valueObject.ColumnStatus;
 import jakarta.persistence.*;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,7 +13,6 @@ import java.util.Date;
 import java.util.UUID;
 
 @MappedSuperclass
-@Slf4j
 public class BaseEntity {
     @Id
     @GeneratedValue(generator = "UUID")

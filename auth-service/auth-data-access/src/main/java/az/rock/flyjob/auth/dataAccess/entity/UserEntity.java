@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
-import az.rock.spring.domain.BaseEntity;
+import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;

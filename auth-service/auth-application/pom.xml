@@ -16,4 +16,13 @@
         <module>auth-spec</module>
         <module>auth-presentation</module>
     </modules>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.0.8</version>
+        </dependency>
+    </dependencies>
 </project>

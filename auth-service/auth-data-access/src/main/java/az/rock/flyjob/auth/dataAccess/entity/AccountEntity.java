@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.flyjob.auth.dataAccess.entity.account.RoleEntity;
-import az.rock.spring.domain.BaseEntity;
+import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

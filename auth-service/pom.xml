@@ -19,4 +19,16 @@
         <module>auth-data-access</module>
         <module>auth-container</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>az.rock.spring</groupId>
+                <artifactId>rock-spring-ms-core</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
 </project>

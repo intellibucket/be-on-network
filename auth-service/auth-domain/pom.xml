@@ -16,4 +16,12 @@
         <module>auth-domain-core</module>
         <module>auth-domain-presentation</module>
     </modules>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.0.8</version>
+        </dependency>
+    </dependencies>
 </project>
