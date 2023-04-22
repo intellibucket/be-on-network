@@ -50,6 +50,7 @@
         <module>article-sync-service</module>
         <module>article-query-service</module>
         <module>interview-service</module>
+        <module>authorization-service</module>
     </modules>
 
     <properties>
