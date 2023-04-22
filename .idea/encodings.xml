@@ -33,6 +33,7 @@
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-exception/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-kafka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-message/src/main/java" charset="UTF-8" />
