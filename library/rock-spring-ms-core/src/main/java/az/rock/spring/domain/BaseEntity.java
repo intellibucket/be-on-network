@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.Id;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -29,6 +28,10 @@ public class BaseEntity {
     @Version
     private Long version;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, columnDefinition = "varchar(20) default 'ACTIVE'")
+    private ColumnStatus status;
+
     @CreationTimestamp
     @Column(name = "created_date", updatable = false)
     private Timestamp createdDate;
@@ -37,9 +40,6 @@ public class BaseEntity {
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, columnDefinition = "varchar(20) default 'ACTIVE'")
-    private ColumnStatus status;
 
     @Column(name = "is_active", nullable = false, columnDefinition = "boolean default true")
     private Boolean isActive;
@@ -121,6 +121,10 @@ public class BaseEntity {
         this.uuid = uuid;
     }
 
+    public void setStatus(ColumnStatus status) {
+        this.status = status;
+    }
+
     public UUID getUuid() {
         return uuid;
     }
@@ -141,6 +145,9 @@ public class BaseEntity {
         return isActive;
     }
 
+    public ColumnStatus getStatus() {
+        return status;
+    }
 
     public static final class Builder {
         private UUID uuid;
