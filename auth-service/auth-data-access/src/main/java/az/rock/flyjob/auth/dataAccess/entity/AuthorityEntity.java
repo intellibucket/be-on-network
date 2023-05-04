@@ -33,7 +33,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "authorities", schema = "users")
+@Table(name = "authorities", schema = "user")
 @Entity(name = "AuthorityEntity")
 public class AuthorityEntity extends BaseEntity {
 
