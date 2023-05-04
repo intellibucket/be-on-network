@@ -30,7 +30,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>az.rock.spec</groupId>
+            <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-spec</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
