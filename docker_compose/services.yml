@@ -32,24 +32,24 @@ services:
       - discovery-service
 
 
-  api-gateway:
-    build:
-      context: ../api-gateway
-      dockerfile: ./Dockerfile
-    container_name: flyjob_api-gateway
-    env_file: env/develop/api-gateway.env.develop
-    ports:
-      - "8082:8082"
-    depends_on:
-      - config-service
-      - discovery-service
-    links:
-      - discovery-service
-      - config-service
-      - postgres-db
-    networks:
-      - config-network
-    restart: on-failure
+#  api-gateway:
+#    build:
+#      context: ../api-gateway
+#      dockerfile: ./Dockerfile
+#    container_name: flyjob_api-gateway
+#    env_file: env/develop/api-gateway.env.develop
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - config-service
+#      - discovery-service
+#    links:
+#      - discovery-service
+#      - config-service
+#      - postgres-db
+#    networks:
+#      - config-network
+#    restart: on-failure
 
   postgres-db:
     container_name: flyjob_postgre_db
@@ -66,24 +66,24 @@ services:
       - config-network
     restart: unless-stopped
 
-  auth-service:
-    env_file: env/develop/auth.env.develop
-    build:
-      context: ../auth-service/auth-container
-      dockerfile: ./Dockerfile
-    container_name: flyjob_auth_service
-    depends_on:
-      - config-service
-      - discovery-service
-      - api-gateway
-    links:
-      - discovery-service
-      - config-service
-      - api-gateway
-      - postgres-db
-    networks:
-      - config-network
-    restart: on-failure
+#  auth-service:
+#    env_file: env/develop/auth.env.develop
+#    build:
+#      context: ../auth-service/auth-container
+#      dockerfile: ./Dockerfile
+#    container_name: flyjob_auth_service
+#    depends_on:
+#      - config-service
+#      - discovery-service
+#      - api-gateway
+#    links:
+#      - discovery-service
+#      - config-service
+#      - api-gateway
+#      - postgres-db
+#    networks:
+#      - config-network
+#    restart: on-failure
 
 networks:
   config-network:
