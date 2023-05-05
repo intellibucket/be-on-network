@@ -84,6 +84,10 @@ public final class Money {
         return this.amount.compareTo(money.getAmount()) == 0;
     }
 
+    public boolean isNotEquals(Money money) {
+        return this.amount.compareTo(money.getAmount()) != 0;
+    }
+
     public boolean isLessThanOrEquals(Money money) {
         return this.amount.compareTo(money.getAmount()) <= 0;
     }
