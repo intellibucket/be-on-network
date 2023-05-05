@@ -1,6 +1,7 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.valueObject.ColumnStatus;
+import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -27,8 +28,12 @@ public class BaseEntity {
     private Long version;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, columnDefinition = "varchar(20) default 'ACTIVE'")
-    private ColumnStatus status;
+    @Column(name = "process_status", nullable = false, columnDefinition = "varchar(20) default 'ON_WAITING'")
+    private ProcessStatus processStatus;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "data_status", nullable = false, columnDefinition = "varchar(20) default 'ACTIVE'")
+    private DataStatus dataStatus;
 
     @CreationTimestamp
     @Column(name = "created_date", updatable = false)
@@ -39,16 +44,14 @@ public class BaseEntity {
     private Timestamp lastModifiedDate;
 
 
-    @Column(name = "is_active", nullable = false, columnDefinition = "boolean default true")
-    private Boolean isActive;
 
     private BaseEntity(Builder builder) {
         setUuid(builder.uuid);
         setVersion(builder.version);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
-        status = builder.status;
-        isActive = builder.isActive;
+        processStatus = builder.processStatus;
+        dataStatus = builder.dataStatus;
     }
 
     public boolean isNew() {
@@ -60,13 +63,18 @@ public class BaseEntity {
     }
 
 
-    public BaseEntity(UUID uuid, Long version, Timestamp createdDate, Timestamp lastModifiedDate, ColumnStatus status, Boolean isActive) {
+    public BaseEntity(UUID uuid,
+                      Long version,
+                      Timestamp createdDate,
+                      Timestamp lastModifiedDate,
+                      ProcessStatus processStatus,
+                      DataStatus dataStatus) {
         this.uuid = uuid;
         this.version = version;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
-        this.status = status;
-        this.isActive = isActive;
+        this.processStatus = processStatus;
+        this.dataStatus = dataStatus;
     }
 
     public void setCreatedDate(Timestamp createdDate) {
@@ -107,8 +115,8 @@ public class BaseEntity {
         this.lastModifiedDate = Timestamp.valueOf(lastModifiedDate.toLocalDateTime());
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setActive(DataStatus dataStatus) {
+        this.dataStatus = dataStatus;
     }
 
     public void setVersion(Long version) {
@@ -119,8 +127,8 @@ public class BaseEntity {
         this.uuid = uuid;
     }
 
-    public void setStatus(ColumnStatus status) {
-        this.status = status;
+    public void setStatus(ProcessStatus processStatus) {
+        this.processStatus = processStatus;
     }
 
     public UUID getUuid() {
@@ -139,12 +147,12 @@ public class BaseEntity {
         return lastModifiedDate;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public DataStatus getActive() {
+        return this.dataStatus;
     }
 
-    public ColumnStatus getStatus() {
-        return status;
+    public ProcessStatus getStatus() {
+        return processStatus;
     }
 
     public static final class Builder {
@@ -152,8 +160,8 @@ public class BaseEntity {
         private Long version;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
-        private ColumnStatus status;
-        private Boolean isActive;
+        private ProcessStatus processStatus;
+        private DataStatus dataStatus;
 
         private Builder() {
         }
@@ -182,13 +190,13 @@ public class BaseEntity {
             return this;
         }
 
-        public Builder status(ColumnStatus status) {
-            this.status = status;
+        public Builder status(ProcessStatus processStatus) {
+            this.processStatus = processStatus;
             return this;
         }
 
-        public Builder isActive(Boolean isActive) {
-            this.isActive = isActive;
+        public Builder isActive(DataStatus dataStatus) {
+            this.dataStatus = dataStatus;
             return this;
         }
 

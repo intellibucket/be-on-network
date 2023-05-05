@@ -11,4 +11,34 @@ public enum ProcessStatus {
     CANCELLED,
     CANCELLED_BY_SYSTEM,
     CANCELLING;
+
+    public Boolean isOnWaiting() {
+        return this.equals(ON_WAITING);
+    }
+
+    public Boolean isProcessing() {
+        return this.equals(PROCESSING);
+    }
+
+    public Boolean isCompleted() {
+        return this.equals(COMPLETED);
+    }
+
+    public Boolean isFailed() {
+        return this.equals(FAILED);
+    }
+
+    public Boolean isCancelled() {
+        return this.equals(CANCELLED);
+    }
+
+    public Boolean isCancelledBySystem() {
+        return this.equals(CANCELLED_BY_SYSTEM);
+    }
+
+    public Boolean isCancelling() {
+        return this.equals(CANCELLING);
+    }
+
+
 }
