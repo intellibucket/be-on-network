@@ -9,6 +9,10 @@ public class RootID <ID> {
         this.value = value;
     }
 
+    public static <ID> RootID<ID> of(ID value){
+        return new RootID<>(value);
+    }
+
     public ID getValue() {
         return value;
     }
