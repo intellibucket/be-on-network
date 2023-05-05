@@ -57,4 +57,20 @@ public class Address {
             return new Address(this);
         }
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
 }
