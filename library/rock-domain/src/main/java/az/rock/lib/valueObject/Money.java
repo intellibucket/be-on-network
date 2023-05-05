@@ -1,9 +1,12 @@
 package az.rock.lib.valueObject;
 
+import az.rock.lib.annotation.ValueObject;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
+@ValueObject
 public class Money {
     private final BigDecimal amount;
 

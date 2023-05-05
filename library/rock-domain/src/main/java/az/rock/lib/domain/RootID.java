@@ -1,4 +1,4 @@
-package az.rock.lib.valueObject;
+package az.rock.lib.domain;
 
 import java.util.Objects;
 
