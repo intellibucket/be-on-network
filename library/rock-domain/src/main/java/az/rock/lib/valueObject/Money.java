@@ -8,13 +8,47 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 @ValueObject
-public class Money {
-    private final BigDecimal amount;
+public final class Money {
 
     public static final Money ZERO = new Money(BigDecimal.ZERO);
 
+    private final BigDecimal amount;
+
+
     public Money(final BigDecimal amount) {
         this.amount = Objects.requireNonNullElse(amount, BigDecimal.ZERO);
+    }
+
+    public static Money of(BigDecimal amount) {
+        return new Money(amount);
+    }
+
+    public static Money of(BigInteger amount) {
+        return new Money(new BigDecimal(amount));
+    }
+
+    public static Money of(long amount) {
+        return new Money(BigDecimal.valueOf(amount));
+    }
+
+    public static Money of(int amount) {
+        return new Money(BigDecimal.valueOf(amount));
+    }
+
+    public static Money of(String amount) {
+        return new Money(new BigDecimal(amount));
+    }
+
+    public static Money of(double amount) {
+        return new Money(BigDecimal.valueOf(amount));
+    }
+
+    public static Money of(float amount) {
+        return new Money(BigDecimal.valueOf(amount));
+    }
+
+    public static Money of(String amount, int scale) {
+        return new Money(new BigDecimal(amount).setScale(scale, RoundingMode.HALF_DOWN));
     }
 
     public boolean isGreaterThanZero() {
@@ -29,9 +63,42 @@ public class Money {
         return this.amount != null && this.amount.compareTo(money.getAmount()) > 0;
     }
 
+    public boolean isGreaterThanOrEquals(Money money) {
+        return this.amount.compareTo(money.getAmount()) >= 0;
+    }
+
 
     public boolean isZero() {
         return this.amount.compareTo(BigDecimal.ZERO) == 0;
+    }
+
+    public boolean isPositive() {
+        return this.amount.compareTo(BigDecimal.ZERO) > 0;
+    }
+
+    public boolean isNegative() {
+        return this.amount.compareTo(BigDecimal.ZERO) < 0;
+    }
+
+    public boolean isEquals(Money money) {
+        return this.amount.compareTo(money.getAmount()) == 0;
+    }
+
+    public boolean isLessThanOrEquals(Money money) {
+        return this.amount.compareTo(money.getAmount()) <= 0;
+    }
+
+
+    public boolean isLessThan(Money money) {
+        return this.amount.compareTo(money.getAmount()) < 0;
+    }
+
+    public boolean isLessThanZero() {
+        return this.amount.compareTo(BigDecimal.ZERO) < 0;
+    }
+
+    public boolean isLessThanZeroOrEquals() {
+        return this.amount.compareTo(BigDecimal.ZERO) <= 0;
     }
 
 
