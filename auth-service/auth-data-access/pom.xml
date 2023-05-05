@@ -19,10 +19,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
+            <groupId>az.rock.flyjob.auth</groupId>
+            <artifactId>auth-domain-presentation</artifactId>
         </dependency>
-
     </dependencies>
 
 

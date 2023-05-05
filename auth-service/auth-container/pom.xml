@@ -17,33 +17,26 @@
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-presentation</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-spec</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-data-access</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-domain-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-domain-presentation</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-messaging</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

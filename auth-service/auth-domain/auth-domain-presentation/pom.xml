@@ -22,5 +22,9 @@
             <artifactId>lombok</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>az.rock.flyjob.auth</groupId>
+            <artifactId>auth-domain-core</artifactId>
+        </dependency>
     </dependencies>
 </project>

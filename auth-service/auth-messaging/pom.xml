@@ -13,4 +13,10 @@
     <artifactId>auth-messaging</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>az.rock.flyjob.auth</groupId>
+            <artifactId>auth-domain-presentation</artifactId>
+        </dependency>
+    </dependencies>
 </project>

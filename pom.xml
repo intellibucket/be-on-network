@@ -355,9 +355,44 @@
                 <version>20220320</version>
             </dependency>
 
+
+            <!-- Auth Module Dep - START -->
+
+            <dependency>
+                <groupId>az.rock.flyjob.auth</groupId>
+                <artifactId>auth-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.rock.flyjob.auth</groupId>
+                <artifactId>auth-domain-presentation</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.rock.flyjob.auth</groupId>
+                <artifactId>auth-presentation</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.rock.flyjob.auth</groupId>
+                <artifactId>auth-spec</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.rock.flyjob.auth</groupId>
+                <artifactId>auth-data-access</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.rock.flyjob.auth</groupId>
+                <artifactId>auth-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Auth Module Dep - END-->
         </dependencies>
     </dependencyManagement>
 
+    <dependencies></dependencies>
 
     <build>
         <pluginManagement>
