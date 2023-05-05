@@ -16,47 +16,6 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    private Address(Builder builder) {
-        city = builder.city;
-        country = builder.country;
-        street = builder.street;
-        postalCode = builder.postalCode;
-    }
-
-
-    public static final class Builder {
-        private String city;
-        private String country;
-        private String street;
-        private String postalCode;
-
-        public Builder() {
-        }
-
-        public Builder city(String val) {
-            city = val;
-            return this;
-        }
-
-        public Builder country(String val) {
-            country = val;
-            return this;
-        }
-
-        public Builder street(String val) {
-            street = val;
-            return this;
-        }
-
-        public Builder postalCode(String val) {
-            postalCode = val;
-            return this;
-        }
-
-        public Address build() {
-            return new Address(this);
-        }
-    }
 
     public String getCity() {
         return city;
