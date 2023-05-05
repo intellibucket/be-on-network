@@ -5,7 +5,7 @@ import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
 
-public class AggregateRoot<ID> extends RootID<ID> {
+public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
     private Long version;
 
     private ProcessStatus processStatus;
