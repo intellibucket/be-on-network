@@ -1,5 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.account;
 
+import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
 import az.rock.flyjob.auth.dataAccess.entity.account.RoleEntity;
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;

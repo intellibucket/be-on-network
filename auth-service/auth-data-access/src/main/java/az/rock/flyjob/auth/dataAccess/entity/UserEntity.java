@@ -1,5 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
+import az.rock.flyjob.auth.dataAccess.entity.account.AccountEntity;
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -42,8 +43,8 @@ public class UserEntity extends BaseEntity {
     private String username;
 
     @Column(name = "password", nullable = false)
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$", message = "Invalid password")
-    private String password;
+    @OneToOne(cascade = CascadeType.ALL)
+    private PasswordEntity passwordEntity;
 
     @Column(name = "timezone", nullable = false)
     @Min(value = 1, message = "Timezone must be at least 3 characters long")
