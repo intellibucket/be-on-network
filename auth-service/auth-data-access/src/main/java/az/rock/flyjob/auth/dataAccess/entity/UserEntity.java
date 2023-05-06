@@ -42,7 +42,6 @@ public class UserEntity extends BaseEntity {
     @Max(value = 30, message = "Username must be at most 20 characters long")
     private String username;
 
-    @Column(name = "password", nullable = false)
     @OneToOne(cascade = CascadeType.ALL)
     private PasswordEntity passwordEntity;
 

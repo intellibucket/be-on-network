@@ -1,4 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.exception;
 
-public class AuthDataAccessException {
+import az.rock.lib.jexception.JException;
+
+public class AuthDataAccessException extends JException {
 }

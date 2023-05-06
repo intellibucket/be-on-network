@@ -356,6 +356,20 @@
             </dependency>
 
 
+            <!-- Libraries - START -->
+            <dependency>
+                <groupId>az.rock.lib</groupId>
+                <artifactId>rock-exception</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>az.rock.lib</groupId>
+                <artifactId>rock-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Libraries - END -->
+
             <!-- Auth Module Dep - START -->
 
             <dependency>
