@@ -34,7 +34,7 @@ public class AccountRoot extends AggregateRoot<AccountID> {
         roles = builder.roles;
     }
 
-    public UserRoot getUser() {
+    public UserRoot getUserRoot() {
         return user;
     }
 

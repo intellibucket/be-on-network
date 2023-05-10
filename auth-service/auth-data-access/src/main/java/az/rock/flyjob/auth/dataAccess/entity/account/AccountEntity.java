@@ -6,7 +6,9 @@ import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -27,4 +29,63 @@ public class AccountEntity extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "ROLE_UUID", referencedColumnName = "UUID")})
     private Set<RoleEntity> roles;
 
+    private AccountEntity(Builder builder) {
+        setUserEntity(builder.userEntity);
+        setRoles(builder.roles);
+        setUuid(builder.uuid);
+        setVersion(builder.version);
+        setCreatedDate(builder.createdDate);
+        setLastModifiedDate(builder.lastModifiedDate);
+    }
+
+
+    public static final class Builder {
+        private UserEntity userEntity;
+        private Set<RoleEntity> roles;
+        private UUID uuid;
+        private Long version;
+        private Timestamp createdDate;
+        private Timestamp lastModifiedDate;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder userEntity(UserEntity val) {
+            userEntity = val;
+            return this;
+        }
+
+        public Builder roles(Set<RoleEntity> val) {
+            roles = val;
+            return this;
+        }
+
+        public Builder uuid(UUID val) {
+            uuid = val;
+            return this;
+        }
+
+        public Builder version(Long val) {
+            version = val;
+            return this;
+        }
+
+        public Builder createdDate(Timestamp val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder lastModifiedDate(Timestamp val) {
+            lastModifiedDate = val;
+            return this;
+        }
+
+        public AccountEntity build() {
+            return new AccountEntity(this);
+        }
+    }
 }
