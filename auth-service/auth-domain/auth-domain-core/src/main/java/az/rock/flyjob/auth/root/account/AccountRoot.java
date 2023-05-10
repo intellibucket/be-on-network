@@ -27,4 +27,81 @@ public class AccountRoot extends AggregateRoot<AccountID> {
         this.user = user;
         this.roles = roles;
     }
+
+    private AccountRoot(Builder builder) {
+        super(builder.accountID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        user = builder.user;
+        roles = builder.roles;
+    }
+
+    public UserRoot getUser() {
+        return user;
+    }
+
+    public Set<RoleRoot> getRoles() {
+        return roles;
+    }
+
+
+    public static final class Builder {
+        private AccountID accountID;
+        private Long version;
+        private ProcessStatus processStatus;
+        private DataStatus dataStatus;
+        private ZonedDateTime createdDate;
+        private ZonedDateTime modificationDate;
+        private UserRoot user;
+        private Set<RoleRoot> roles;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder accountID(AccountID val) {
+            accountID = val;
+            return this;
+        }
+
+        public Builder version(Long val) {
+            version = val;
+            return this;
+        }
+
+        public Builder processStatus(ProcessStatus val) {
+            processStatus = val;
+            return this;
+        }
+
+        public Builder dataStatus(DataStatus val) {
+            dataStatus = val;
+            return this;
+        }
+
+        public Builder createdDate(ZonedDateTime val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder modificationDate(ZonedDateTime val) {
+            modificationDate = val;
+            return this;
+        }
+
+        public Builder user(UserRoot val) {
+            user = val;
+            return this;
+        }
+
+        public Builder roles(Set<RoleRoot> val) {
+            roles = val;
+            return this;
+        }
+
+        public AccountRoot build() {
+            return new AccountRoot(this);
+        }
+    }
 }
