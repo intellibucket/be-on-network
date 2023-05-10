@@ -1,11 +1,13 @@
 package az.rock.flyjob.auth.dataAccess.adapter;
 
-import az.rock.flyjob.auth.dataAccess.mapper.PasswordDataAccessMapper;
+import az.rock.auth.domain.presentation.ports.output.repository.AbstractPasswordRepositoryAdapter;
+import az.rock.flyjob.auth.dataAccess.mapper.concretes.PasswordDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.PasswordJPARepository;
+import az.rock.flyjob.auth.root.PasswordRoot;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PasswordRepositoryAdapter {
+public class PasswordRepositoryAdapter implements AbstractPasswordRepositoryAdapter {
     private final PasswordJPARepository passwordJPARepository;
 
     private final PasswordDataAccessMapper passwordDataAccessMapper;
@@ -14,5 +16,10 @@ public class PasswordRepositoryAdapter {
                                      PasswordDataAccessMapper passwordDataAccessMapper) {
         this.passwordJPARepository = passwordJPARepository;
         this.passwordDataAccessMapper = passwordDataAccessMapper;
+    }
+
+    @Override
+    public PasswordRoot create(PasswordRoot root) {
+        return null;
     }
 }

@@ -1,11 +1,13 @@
 package az.rock.flyjob.auth.dataAccess.adapter;
 
-import az.rock.flyjob.auth.dataAccess.mapper.UserDataAccessMapper;
+import az.rock.auth.domain.presentation.ports.output.repository.AbstractUserRepositoryAdapter;
+import az.rock.flyjob.auth.dataAccess.mapper.concretes.UserDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.UserJPARepository;
+import az.rock.flyjob.auth.root.UserRoot;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserRepositoryAdapter {
+public class UserRepositoryAdapter implements AbstractUserRepositoryAdapter {
     private final UserJPARepository userJPARepository;
 
     private final UserDataAccessMapper userDataAccessMapper;
@@ -14,5 +16,10 @@ public class UserRepositoryAdapter {
                                  UserDataAccessMapper userDataAccessMapper) {
         this.userJPARepository = userJPARepository;
         this.userDataAccessMapper = userDataAccessMapper;
+    }
+
+    @Override
+    public UserRoot create(UserRoot root) {
+        return null;
     }
 }
