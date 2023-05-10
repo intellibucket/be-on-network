@@ -18,7 +18,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users", schema = "user", indexes = {
+@Table(name = "users", schema = "auth", indexes = {
         @Index(name = "idx_userentity_username", columnList = "username")
 })
 @Entity(name = "UserEntity")

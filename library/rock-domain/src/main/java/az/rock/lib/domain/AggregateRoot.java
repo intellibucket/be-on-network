@@ -7,9 +7,7 @@ import java.time.ZonedDateTime;
 
 public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
     private Long version;
-
     private ProcessStatus processStatus;
-
     private DataStatus dataStatus;
     private ZonedDateTime createdDate;
     private ZonedDateTime modificationDate;
@@ -41,7 +39,10 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
         this.modificationDate = builder.modificationDate;
     }
 
-
+    @Override
+    public ID getUUID() {
+        return super.getUUID();
+    }
 
     public Long getVersion() {
         return version;

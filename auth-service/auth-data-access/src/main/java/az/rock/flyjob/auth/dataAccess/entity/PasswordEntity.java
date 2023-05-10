@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "passwords", schema = "user")
+@Table(name = "passwords", schema = "auth")
 @Entity(name = "PasswordEntity")
 public class PasswordEntity extends BaseEntity {
 

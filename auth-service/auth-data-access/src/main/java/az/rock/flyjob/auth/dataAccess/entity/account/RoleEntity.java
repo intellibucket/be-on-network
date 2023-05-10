@@ -11,10 +11,12 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "roles", schema = "user")
+@Table(name = "roles", schema = "auth")
 @Entity
 public class RoleEntity extends BaseEntity {
     private String name;
+
+    private String description;
 
     @ManyToMany(mappedBy = "roles")
     private Set<AccountEntity> userAccounts;

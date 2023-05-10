@@ -11,6 +11,12 @@
 
     <name>auth-domain-core</name>
     <url>http://www.intellibucket.com</url>
+    <dependencies>
+        <dependency>
+            <groupId>az.rock.lib</groupId>
+            <artifactId>rock-domain</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>

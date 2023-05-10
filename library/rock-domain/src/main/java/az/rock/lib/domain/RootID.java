@@ -3,18 +3,18 @@ package az.rock.lib.domain;
 import java.util.Objects;
 
 public class RootID <ID> {
-    private final ID value;
+    private final ID uuid;
 
     protected RootID(ID value) {
-        this.value = value;
+        this.uuid = value;
     }
 
     public static <ID> RootID<ID> of(ID value){
         return new RootID<>(value);
     }
 
-    public ID getValue() {
-        return value;
+    public ID getUUID() {
+        return uuid;
     }
 
     @Override
@@ -22,11 +22,11 @@ public class RootID <ID> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RootID<?> baseId = (RootID<?>) o;
-        return value.equals(baseId.value);
+        return uuid.equals(baseId.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(uuid);
     }
 }
