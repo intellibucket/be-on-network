@@ -20,7 +20,6 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final String email;
     private final AccountRoot account;
 
-
     protected UserRoot(UserID userID,
                        Long version,
                        ProcessStatus processStatus,
