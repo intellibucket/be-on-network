@@ -20,6 +20,8 @@ public class RoleRepositoryAdapter implements AbstractRoleRepositoryAdapter {
 
     @Override
     public RoleRoot create(RoleRoot root) {
-        return null;
+        var entity = this.roleDataAccessMapper.toNewEntity(root);
+        var savedEntity  = this.roleJPARepository.save(entity);
+        return this.roleDataAccessMapper.toRoot(savedEntity);
     }
 }

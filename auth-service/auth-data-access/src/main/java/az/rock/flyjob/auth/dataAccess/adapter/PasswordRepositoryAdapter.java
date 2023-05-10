@@ -20,6 +20,8 @@ public class PasswordRepositoryAdapter implements AbstractPasswordRepositoryAdap
 
     @Override
     public PasswordRoot create(PasswordRoot root) {
-        return null;
+        var entity = this.passwordDataAccessMapper.toNewEntity(root);
+        var savedEntity  = this.passwordJPARepository.save(entity);
+        return this.passwordDataAccessMapper.toRoot(savedEntity);
     }
 }

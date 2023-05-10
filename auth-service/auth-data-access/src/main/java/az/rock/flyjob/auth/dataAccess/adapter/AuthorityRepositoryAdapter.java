@@ -19,6 +19,8 @@ public class AuthorityRepositoryAdapter implements AbstractAuthorityRepositoryAd
 
     @Override
     public AuthorityRoot create(AuthorityRoot root) {
-        return null;
+        var entity = this.authorityDataAccessMapper.toNewEntity(root);
+        var savedEntity  = this.authorityJPARepository.save(entity);
+        return this.authorityDataAccessMapper.toRoot(savedEntity);
     }
 }

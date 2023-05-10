@@ -20,6 +20,8 @@ public class UserRepositoryAdapter implements AbstractUserRepositoryAdapter {
 
     @Override
     public UserRoot create(UserRoot root) {
-        return null;
+        var entity = this.userDataAccessMapper.toNewEntity(root);
+        var savedEntity  = this.userJPARepository.save(entity);
+        return this.userDataAccessMapper.toRoot(savedEntity);
     }
 }

@@ -20,6 +20,8 @@ public class AccountRepositoryAdapter implements AbstractAccountRepositoryAdapte
 
     @Override
     public AccountRoot create(AccountRoot root) {
-        return null;
+        var entity = this.accountDataAccessMapper.toNewEntity(root);
+        var savedEntity  = this.accountJPARepository.save(entity);
+        return this.accountDataAccessMapper.toRoot(savedEntity);
     }
 }
