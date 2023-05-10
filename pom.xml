@@ -372,11 +372,7 @@
 
             <!-- Auth Module Dep - START -->
 
-            <dependency>
-                <groupId>az.rock.flyjob.auth</groupId>
-                <artifactId>auth-domain-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>az.rock.flyjob.auth</groupId>
                 <artifactId>auth-domain-presentation</artifactId>

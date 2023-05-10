@@ -13,8 +13,8 @@
     <artifactId>auth-domain</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>auth-domain-core</module>
         <module>auth-domain-presentation</module>
+        <module>auth-domain-core</module>
     </modules>
 
 </project>

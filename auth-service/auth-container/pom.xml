@@ -26,10 +26,10 @@
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-data-access</artifactId>
         </dependency>
-        <dependency>
-            <groupId>az.rock.flyjob.auth</groupId>
-            <artifactId>auth-domain-core</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>az.rock.flyjob.auth</groupId>-->
+<!--            <artifactId>auth-domain-core</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-domain-presentation</artifactId>
