@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess;
+package az.rock.flyjob.auth.dataAccess.entity;
 
 import org.springframework.context.annotation.Configuration;
 

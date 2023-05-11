@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit name="Default" defaultSearchScope="Project">
+        <packages>
+          <package value="az.rock.flyjob.config" />
+        </packages>
+        <entities>
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.UserEntity" />
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.account.AuthorityEntity" />
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.account.RoleEntity" />
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.account.AccountEntity" />
+          <entity value="az.rock.lib.domain.BaseEntity" />
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.PasswordEntity" />
+        </entities>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>
