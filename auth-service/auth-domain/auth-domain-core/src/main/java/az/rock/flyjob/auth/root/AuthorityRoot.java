@@ -39,6 +39,17 @@ public class AuthorityRoot extends AggregateRoot<AuthorityID> {
         roles = builder.roles;
     }
 
+    public Set<RoleRoot> getRoles() {
+        return roles;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public static final class Builder {
         private AuthorityID id;

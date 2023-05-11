@@ -13,4 +13,8 @@ public class AuthorityID extends RootID<UUID> implements IdReference<UUID> {
     public UUID getId() {
         return super.getUUID();
     }
+
+    public static AuthorityID of(UUID value) {
+        return new AuthorityID(value);
+    }
 }

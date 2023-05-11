@@ -1,7 +1,8 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.account;
 
-import az.rock.flyjob.auth.dataAccess.entity.account.RoleEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -47,57 +48,78 @@ public class AuthorityEntity extends BaseEntity {
     private Set<RoleEntity> roles;
 
     private AuthorityEntity(Builder builder) {
+        setPermission(builder.permission);
+        setDescription(builder.description);
+        setRoles(builder.roles);
         setUuid(builder.uuid);
         setVersion(builder.version);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
-        setPermission(builder.permission);
-        setRoles(builder.roles);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
 
     public static final class Builder {
+        private String permission;
+        private String description;
+        private Set<RoleEntity> roles;
         private UUID uuid;
         private Long version;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
-        private String permission;
-        private Set<RoleEntity> roles;
+
+        private ProcessStatus processStatus;
+
+        private DataStatus dataStatus;
 
         private Builder() {
         }
 
-        public Builder withUuid(UUID uuid) {
-            this.uuid = uuid;
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder permission(String val) {
+            permission = val;
             return this;
         }
 
-        public Builder withVersion(Long version) {
-            this.version = version;
+        public Builder description(String val) {
+            description = val;
             return this;
         }
 
-        public Builder withCreatedDate(Timestamp createdDate) {
-            this.createdDate = createdDate;
+        public Builder roles(Set<RoleEntity> val) {
+            roles = val;
             return this;
         }
 
-        public Builder withLastModifiedDate(Timestamp lastModifiedDate) {
-            this.lastModifiedDate = lastModifiedDate;
+        public Builder uuid(UUID val) {
+            uuid = val;
             return this;
         }
 
-        public Builder withPermission(String permission) {
-            this.permission = permission;
+        public Builder version(Long val) {
+            version = val;
             return this;
         }
 
-        public Builder withRoles(Set<RoleEntity> roles) {
-            this.roles = roles;
+        public Builder processStatus(ProcessStatus val) {
+            processStatus = val;
+            return this;
+        }
+
+        public Builder dataStatus(DataStatus val) {
+            dataStatus = val;
+            return this;
+        }
+
+        public Builder createdDate(Timestamp val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder lastModifiedDate(Timestamp val) {
+            lastModifiedDate = val;
             return this;
         }
 

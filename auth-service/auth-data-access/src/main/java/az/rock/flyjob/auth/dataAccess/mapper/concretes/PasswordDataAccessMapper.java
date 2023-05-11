@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 public class PasswordDataAccessMapper implements AbstractDataAccessMapper<PasswordEntity, PasswordRoot> {
     @Override
     public PasswordRoot toRoot(PasswordEntity entity) {
-        return null;
+        return PasswordRoot.Builder
+                .builder()
+                .build();
     }
 
     @Override
