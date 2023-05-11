@@ -13,4 +13,8 @@ public class RoleID extends RootID<UUID> implements IdReference<UUID> {
     public UUID getId() {
         return super.getUUID();
     }
+
+    public static RoleID of(UUID value){
+        return new RoleID(value);
+    }
 }
