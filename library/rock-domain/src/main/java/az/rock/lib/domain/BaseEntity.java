@@ -147,11 +147,11 @@ public class BaseEntity {
         return lastModifiedDate;
     }
 
-    public DataStatus getActive() {
+    public DataStatus getDataStatus() {
         return this.dataStatus;
     }
 
-    public ProcessStatus getStatus() {
+    public ProcessStatus getProcessStatus() {
         return processStatus;
     }
 

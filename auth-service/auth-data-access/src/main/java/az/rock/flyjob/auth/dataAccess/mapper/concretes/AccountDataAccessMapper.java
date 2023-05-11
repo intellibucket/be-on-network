@@ -7,10 +7,8 @@ import az.rock.lib.domain.id.AccountID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 public class AccountDataAccessMapper implements AbstractDataAccessMapper<AccountEntity, AccountRoot> {

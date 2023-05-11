@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Getter
@@ -56,4 +57,105 @@ public class UserEntity extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private AccountEntity account;
 
+    private UserEntity(Builder builder) {
+        setKey(builder.key);
+        setFirstName(builder.firstName);
+        setLastName(builder.lastName);
+        setUsername(builder.username);
+        setPasswordEntity(builder.passwordEntity);
+        setTimezone(builder.timezone);
+        setEmail(builder.email);
+        setAccount(builder.account);
+        setUuid(builder.uuid);
+        setVersion(builder.version);
+        setCreatedDate(builder.createdDate);
+        setLastModifiedDate(builder.lastModifiedDate);
+    }
+
+
+    public static final class Builder {
+        private UUID key;
+        private @Min(value = 3, message = "First name must be at least 3 characters long") @Max(value = 30, message = "First name must be at most 20 characters long") String firstName;
+        private @Min(value = 3, message = "Last name must be at least 3 characters long") @Max(value = 40, message = "Last name must be at most 20 characters long") String lastName;
+        private @Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String username;
+        private PasswordEntity passwordEntity;
+        private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
+        private @Email String email;
+        private AccountEntity account;
+        private UUID uuid;
+        private Long version;
+        private Timestamp createdDate;
+        private Timestamp lastModifiedDate;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder key(UUID val) {
+            key = val;
+            return this;
+        }
+
+        public Builder firstName(@Min(value = 3, message = "First name must be at least 3 characters long") @Max(value = 30, message = "First name must be at most 20 characters long") String val) {
+            firstName = val;
+            return this;
+        }
+
+        public Builder lastName(@Min(value = 3, message = "Last name must be at least 3 characters long") @Max(value = 40, message = "Last name must be at most 20 characters long") String val) {
+            lastName = val;
+            return this;
+        }
+
+        public Builder username(@Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String val) {
+            username = val;
+            return this;
+        }
+
+        public Builder passwordEntity(PasswordEntity val) {
+            passwordEntity = val;
+            return this;
+        }
+
+        public Builder timezone(@Min(value = 1, message = "Timezone must be at least 3 characters long") String val) {
+            timezone = val;
+            return this;
+        }
+
+        public Builder email(@Email String val) {
+            email = val;
+            return this;
+        }
+
+        public Builder account(AccountEntity val) {
+            account = val;
+            return this;
+        }
+
+        public Builder uuid(UUID val) {
+            uuid = val;
+            return this;
+        }
+
+        public Builder version(Long val) {
+            version = val;
+            return this;
+        }
+
+        public Builder createdDate(Timestamp val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder lastModifiedDate(Timestamp val) {
+            lastModifiedDate = val;
+            return this;
+        }
+
+        public UserEntity build() {
+            return new UserEntity(this);
+        }
+    }
 }
