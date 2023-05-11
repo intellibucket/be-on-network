@@ -13,4 +13,8 @@ public class AccountID extends RootID<UUID> implements IdReference<UUID> {
     public UUID getId() {
         return super.getUUID();
     }
+
+    public static AccountID of(UUID value){
+        return new AccountID(value);
+    }
 }
