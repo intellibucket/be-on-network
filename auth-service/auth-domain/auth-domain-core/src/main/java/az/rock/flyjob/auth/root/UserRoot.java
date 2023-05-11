@@ -57,6 +57,37 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.account = builder.account;
     }
 
+    public UUID getKey() {
+        return key;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public PasswordRoot getPassword() {
+        return password;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public AccountRoot getAccount() {
+        return account;
+    }
 
     public static final class Builder {
 

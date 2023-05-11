@@ -2,6 +2,8 @@ package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.flyjob.auth.dataAccess.entity.account.AccountEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -84,6 +86,10 @@ public class UserEntity extends BaseEntity {
         private AccountEntity account;
         private UUID uuid;
         private Long version;
+
+        private ProcessStatus processStatus;
+
+        private DataStatus dataStatus;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
 
@@ -151,6 +157,16 @@ public class UserEntity extends BaseEntity {
 
         public Builder lastModifiedDate(Timestamp val) {
             lastModifiedDate = val;
+            return this;
+        }
+
+        public Builder processStatus(ProcessStatus val) {
+            processStatus = val;
+            return this;
+        }
+
+        public Builder dataStatus(DataStatus val) {
+            dataStatus = val;
             return this;
         }
 
