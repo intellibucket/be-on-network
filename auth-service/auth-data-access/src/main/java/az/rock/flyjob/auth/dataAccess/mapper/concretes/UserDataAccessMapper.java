@@ -22,7 +22,7 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
 
     @Override
     public UserRoot toRoot(UserEntity entity) {
-        var accountRoot = this.accountDataAccessMapper.toRoot(entity.getAccount());
+        var accountRoot = this.accountDataAccessMapper.toRoot(entity.getDetail());
         var passwordRoot = this.passwordDataAccessMapper.toRoot(entity.getPasswordEntity());
         return UserRoot.Builder
                 .builder()

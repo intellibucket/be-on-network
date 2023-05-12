@@ -55,7 +55,7 @@
                 <version>4.20.0</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                    <changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+                    <changeLogFile>src/main/resources/db/changelog/2023/05/01-create-changelog.xml</changeLogFile>
                 </configuration>
                 <executions>
                     <execution>

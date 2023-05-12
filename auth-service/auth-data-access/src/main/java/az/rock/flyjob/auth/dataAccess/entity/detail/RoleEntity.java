@@ -22,7 +22,7 @@ public class RoleEntity extends BaseEntity {
     private String description;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<DetailEntity> userAccounts;
+    private Set<DetailEntity> userDetails;
 
     @Singular
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
@@ -34,7 +34,7 @@ public class RoleEntity extends BaseEntity {
     private RoleEntity(Builder builder) {
         setName(builder.name);
         setDescription(builder.description);
-        setUserAccounts(builder.userAccounts);
+        setUserDetails(builder.userAccounts);
         setAuthorities(builder.authorities);
         setUuid(builder.uuid);
         setVersion(builder.version);

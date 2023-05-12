@@ -13,8 +13,8 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "accounts", schema = "auth")
-@Entity(name = "AccountEntity")
+@Table(name = "details", schema = "auth")
+@Entity(name = "DetailEntity")
 public class DetailEntity extends BaseEntity {
 
     @OneToOne
@@ -23,8 +23,8 @@ public class DetailEntity extends BaseEntity {
 
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "account_role", schema = "auth", joinColumns = {
-            @JoinColumn(name = "ACCOUNT_UUID", referencedColumnName = "UUID")},
+    @JoinTable(name = "detail_role", schema = "auth", joinColumns = {
+            @JoinColumn(name = "DETAIL_UUID", referencedColumnName = "UUID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_UUID", referencedColumnName = "UUID")})
     private Set<RoleEntity> roles;
 

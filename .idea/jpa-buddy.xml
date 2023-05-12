@@ -3,11 +3,11 @@
   <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="postgres">
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
-    <option name="sourceModelValue" value="Default" />
-    <option name="targetDbValue" value="00d0a9d4-12d1-4a44-acc8-cbb3bdb633f4" />
-    <option name="snapshotDbValue" value="00d0a9d4-12d1-4a44-acc8-cbb3bdb633f4" />
-    <option name="updateChangeLogPath" value="auth-service/auth-data-access/src/main/resources/db/changelog/2023/05/01-01-changelog.xml" />
-    <option name="updateDbConnectionName" value="00d0a9d4-12d1-4a44-acc8-cbb3bdb633f4" />
+    <option name="sourceModelValue" value="auth-persistence" />
+    <option name="targetDbValue" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
+    <option name="snapshotDbValue" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
+    <option name="updateChangeLogPath" value="auth-service/auth-data-access/src/main/resources/db/changelog/cumulative.xml" />
+    <option name="updateDbConnectionName" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
     <option name="updateLogLevel" value="DEBUG" />
     <option name="liquibaseAuthor" value="" />
   </component>

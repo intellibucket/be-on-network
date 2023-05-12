@@ -3,6 +3,7 @@ package az.rock.flyjob.auth.dataAccess.entity;
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -51,12 +52,15 @@ public class UserEntity extends BaseEntity {
     @Min(value = 1, message = "Timezone must be at least 3 characters long")
     private String timezone;
 
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private DetailEntity account;
+    private DetailEntity detail;
 
     private UserEntity(Builder builder) {
         setKey(builder.key);
@@ -66,7 +70,7 @@ public class UserEntity extends BaseEntity {
         setPasswordEntity(builder.passwordEntity);
         setTimezone(builder.timezone);
         setEmail(builder.email);
-        setAccount(builder.account);
+        setDetail(builder.account);
         setUuid(builder.uuid);
         setVersion(builder.version);
         setCreatedDate(builder.createdDate);
