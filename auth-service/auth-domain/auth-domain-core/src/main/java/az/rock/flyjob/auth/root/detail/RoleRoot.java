@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.root.account;
+package az.rock.flyjob.auth.root.detail;
 
 import az.rock.flyjob.auth.root.AuthorityRoot;
 import az.rock.lib.domain.AggregateRoot;
@@ -21,7 +21,7 @@ public class RoleRoot extends AggregateRoot<RoleID> {
                     DataStatus dataStatus,
                     ZonedDateTime createdDate,
                     ZonedDateTime modificationDate,
-                    AccountRoot account,
+                    DetailRoot account,
                     String name,
                     String description,
                     Set<AuthorityRoot> authorities) {

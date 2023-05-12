@@ -1,35 +1,35 @@
-package az.rock.flyjob.auth.root.account;
+package az.rock.flyjob.auth.root.detail;
 
 import az.rock.flyjob.auth.root.UserRoot;
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.AccountID;
+import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
 
-public class AccountRoot extends AggregateRoot<AccountID> {
+public class DetailRoot extends AggregateRoot<DetailID> {
 
     private final UserRoot user;
 
     private final Set<RoleRoot> roles;
 
-    public AccountRoot(AccountID accountID,
-                       Long version,
-                       ProcessStatus processStatus,
-                       DataStatus dataStatus,
-                       ZonedDateTime createdDate,
-                       ZonedDateTime modificationDate,
-                       UserRoot user,
-                       Set<RoleRoot> roles) {
-        super(accountID, version, processStatus, dataStatus, createdDate, modificationDate);
+    public DetailRoot(DetailID detailID,
+                      Long version,
+                      ProcessStatus processStatus,
+                      DataStatus dataStatus,
+                      ZonedDateTime createdDate,
+                      ZonedDateTime modificationDate,
+                      UserRoot user,
+                      Set<RoleRoot> roles) {
+        super(detailID, version, processStatus, dataStatus, createdDate, modificationDate);
         this.user = user;
         this.roles = roles;
     }
 
-    private AccountRoot(Builder builder) {
-        super(builder.accountID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+    private DetailRoot(Builder builder) {
+        super(builder.detailID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
         user = builder.user;
         roles = builder.roles;
     }
@@ -44,7 +44,7 @@ public class AccountRoot extends AggregateRoot<AccountID> {
 
 
     public static final class Builder {
-        private AccountID accountID;
+        private DetailID detailID;
         private Long version;
         private ProcessStatus processStatus;
         private DataStatus dataStatus;
@@ -60,8 +60,8 @@ public class AccountRoot extends AggregateRoot<AccountID> {
             return new Builder();
         }
 
-        public Builder accountID(AccountID val) {
-            accountID = val;
+        public Builder accountID(DetailID val) {
+            detailID = val;
             return this;
         }
 
@@ -100,8 +100,8 @@ public class AccountRoot extends AggregateRoot<AccountID> {
             return this;
         }
 
-        public AccountRoot build() {
-            return new AccountRoot(this);
+        public DetailRoot build() {
+            return new DetailRoot(this);
         }
     }
 }

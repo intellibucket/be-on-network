@@ -1,7 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.entity.account;
+package az.rock.flyjob.auth.dataAccess.entity.detail;
 
 import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
-import az.rock.flyjob.auth.dataAccess.entity.account.RoleEntity;
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "accounts", schema = "auth")
 @Entity(name = "AccountEntity")
-public class AccountEntity extends BaseEntity {
+public class DetailEntity extends BaseEntity {
 
     @OneToOne
     private UserEntity userEntity;
@@ -29,7 +28,15 @@ public class AccountEntity extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "ROLE_UUID", referencedColumnName = "UUID")})
     private Set<RoleEntity> roles;
 
-    private AccountEntity(Builder builder) {
+    private Boolean isAccountNonExpired;
+
+    private Boolean isAccountNonLocked;
+
+    private Boolean isCredentialsNonExpired;
+
+    private Boolean isEnabled;
+
+    private DetailEntity(Builder builder) {
         setUserEntity(builder.userEntity);
         setRoles(builder.roles);
         setUuid(builder.uuid);
@@ -84,8 +91,8 @@ public class AccountEntity extends BaseEntity {
             return this;
         }
 
-        public AccountEntity build() {
-            return new AccountEntity(this);
+        public DetailEntity build() {
+            return new DetailEntity(this);
         }
     }
 }

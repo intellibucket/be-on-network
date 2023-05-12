@@ -1,9 +1,9 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.account.AccountEntity;
+import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
-import az.rock.flyjob.auth.root.account.AccountRoot;
-import az.rock.lib.domain.id.AccountID;
+import az.rock.flyjob.auth.root.detail.DetailRoot;
+import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
-public class AccountDataAccessMapper implements AbstractDataAccessMapper<AccountEntity, AccountRoot> {
+public class AccountDataAccessMapper implements AbstractDataAccessMapper<DetailEntity, DetailRoot> {
     private final UserDataAccessMapper userDataAccessMapper;
     private final RoleDataAccessMapper roleDataAccessMapper;
 
@@ -22,14 +22,14 @@ public class AccountDataAccessMapper implements AbstractDataAccessMapper<Account
     }
 
     @Override
-    public AccountRoot toRoot(AccountEntity entity) {
+    public DetailRoot toRoot(DetailEntity entity) {
         var roleRoots = entity.getRoles()
                 .stream()
                 .map(this.roleDataAccessMapper::toRoot)
                 .collect(Collectors.toSet());
-        return AccountRoot.Builder
+        return DetailRoot.Builder
                 .builder()
-                .accountID(AccountID.of(entity.getUuid()))
+                .accountID(DetailID.of(entity.getUuid()))
                 .createdDate(GDateTime.of(entity.getCreatedDate()))
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
@@ -39,13 +39,13 @@ public class AccountDataAccessMapper implements AbstractDataAccessMapper<Account
     }
 
     @Override
-    public AccountEntity toEntity(AccountRoot root) {
+    public DetailEntity toEntity(DetailRoot root) {
         var userEntity = this.userDataAccessMapper.toEntity(root.getUserRoot());
         var roleEntities = root.getRoles()
                 .stream()
                 .map(this.roleDataAccessMapper::toEntity)
                 .collect(Collectors.toSet());
-        return AccountEntity.Builder
+        return DetailEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
@@ -57,13 +57,13 @@ public class AccountDataAccessMapper implements AbstractDataAccessMapper<Account
     }
 
     @Override
-    public AccountEntity toNewEntity(AccountRoot root) {
+    public DetailEntity toNewEntity(DetailRoot root) {
         var userEntity = this.userDataAccessMapper.toEntity(root.getUserRoot());
         var roleEntities = root.getRoles()
                 .stream()
                 .map(this.roleDataAccessMapper::toEntity)
                 .collect(Collectors.toSet());
-        return AccountEntity.Builder
+        return DetailEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
                 .version(1L)

@@ -4,8 +4,8 @@ import az.rock.lib.domain.RootID;
 
 import java.util.UUID;
 
-public class AccountID extends RootID<UUID> implements IdReference<UUID> {
-    protected AccountID(UUID value) {
+public class DetailID extends RootID<UUID> implements IdReference<UUID> {
+    protected DetailID(UUID value) {
         super(value);
     }
 
@@ -14,7 +14,7 @@ public class AccountID extends RootID<UUID> implements IdReference<UUID> {
         return super.getUUID();
     }
 
-    public static AccountID of(UUID value){
-        return new AccountID(value);
+    public static DetailID of(UUID value){
+        return new DetailID(value);
     }
 }

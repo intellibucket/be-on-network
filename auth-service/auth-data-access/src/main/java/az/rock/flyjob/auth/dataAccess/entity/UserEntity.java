@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
-import az.rock.flyjob.auth.dataAccess.entity.account.AccountEntity;
+import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -57,7 +56,7 @@ public class UserEntity extends BaseEntity {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private AccountEntity account;
+    private DetailEntity account;
 
     private UserEntity(Builder builder) {
         setKey(builder.key);
@@ -83,7 +82,7 @@ public class UserEntity extends BaseEntity {
         private PasswordEntity passwordEntity;
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
         private @Email String email;
-        private AccountEntity account;
+        private DetailEntity account;
         private UUID uuid;
         private Long version;
 
@@ -135,7 +134,7 @@ public class UserEntity extends BaseEntity {
             return this;
         }
 
-        public Builder account(AccountEntity val) {
+        public Builder account(DetailEntity val) {
             account = val;
             return this;
         }

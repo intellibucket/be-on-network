@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.entity.account;
+package az.rock.flyjob.auth.dataAccess.entity.detail;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
@@ -22,7 +22,7 @@ public class RoleEntity extends BaseEntity {
     private String description;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<AccountEntity> userAccounts;
+    private Set<DetailEntity> userAccounts;
 
     @Singular
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
@@ -46,7 +46,7 @@ public class RoleEntity extends BaseEntity {
     public static final class Builder {
         private String name;
         private String description;
-        private Set<AccountEntity> userAccounts;
+        private Set<DetailEntity> userAccounts;
         private Set<AuthorityEntity> authorities;
         private UUID uuid;
         private Long version;
@@ -74,7 +74,7 @@ public class RoleEntity extends BaseEntity {
             return this;
         }
 
-        public Builder userAccounts(Set<AccountEntity> val) {
+        public Builder userAccounts(Set<DetailEntity> val) {
             userAccounts = val;
             return this;
         }

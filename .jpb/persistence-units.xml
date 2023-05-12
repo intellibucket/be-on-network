@@ -8,9 +8,9 @@
         </packages>
         <entities>
           <entity value="az.rock.flyjob.auth.dataAccess.entity.UserEntity" />
-          <entity value="az.rock.flyjob.auth.dataAccess.entity.account.AuthorityEntity" />
-          <entity value="az.rock.flyjob.auth.dataAccess.entity.account.RoleEntity" />
-          <entity value="az.rock.flyjob.auth.dataAccess.entity.account.AccountEntity" />
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.detail.AuthorityEntity" />
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.detail.RoleEntity" />
+          <entity value="az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity" />
           <entity value="az.rock.lib.domain.BaseEntity" />
           <entity value="az.rock.flyjob.auth.dataAccess.entity.PasswordEntity" />
         </entities>

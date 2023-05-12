@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.root;
 
-import az.rock.flyjob.auth.root.account.AccountRoot;
+import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;
@@ -18,7 +18,7 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final PasswordRoot password;
     private final String timezone;
     private final String email;
-    private final AccountRoot account;
+    private final DetailRoot account;
 
     protected UserRoot(UserID userID,
                        Long version,
@@ -33,7 +33,7 @@ public class UserRoot extends AggregateRoot<UserID> {
                        PasswordRoot password,
                        String timezone,
                        String email,
-                       AccountRoot account) {
+                       DetailRoot account) {
         super(userID, version, processStatus, dataStatus, createdDate, modificationDate);
         this.key = key;
         this.firstName = firstName;
@@ -85,7 +85,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         return email;
     }
 
-    public AccountRoot getAccount() {
+    public DetailRoot getAccount() {
         return account;
     }
 
@@ -104,7 +104,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         private PasswordRoot password;
         private String timezone;
         private String email;
-        private AccountRoot account;
+        private DetailRoot account;
 
         private Builder() {
         }
@@ -178,7 +178,7 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder account(AccountRoot val) {
+        public Builder account(DetailRoot val) {
             account = val;
             return this;
         }

@@ -1,10 +1,8 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.account.AuthorityEntity;
+import az.rock.flyjob.auth.dataAccess.entity.detail.AuthorityEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.root.AuthorityRoot;
-import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.domain.id.AuthorityID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
