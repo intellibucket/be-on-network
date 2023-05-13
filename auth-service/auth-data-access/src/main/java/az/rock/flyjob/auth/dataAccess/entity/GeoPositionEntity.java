@@ -2,10 +2,7 @@ package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +18,8 @@ import java.math.BigDecimal;
 @Entity(name = "GeoPositionEntity")
 public class GeoPositionEntity extends BaseEntity {
 
-    @ManyToOne
-    private UserEntity userEntity;
+    @OneToOne
+    private DeviceEntity deviceEntity;
 
     @Column(name = "country_code", length = 2, nullable = false)
     private String countryCode;

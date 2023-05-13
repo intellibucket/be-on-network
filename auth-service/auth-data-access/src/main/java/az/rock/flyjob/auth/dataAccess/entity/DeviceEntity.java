@@ -2,10 +2,7 @@ package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +17,7 @@ import lombok.Setter;
 public class DeviceEntity extends BaseEntity {
 
     @ManyToOne
-    private UserEntity userEntity;
+    private DetailEntity detailEntity;
 
     @Column(name = "device_name", length = 100)
     private String deviceName;
@@ -67,4 +64,6 @@ public class DeviceEntity extends BaseEntity {
     @Column(name = "is_primary", nullable = false,columnDefinition = "boolean default false")
     private Boolean isPrimary;
 
+    @OneToOne(mappedBy = "deviceEntity")
+    private GeoPositionEntity geoPosition;
 }

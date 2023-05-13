@@ -34,6 +34,10 @@ public class DetailEntity extends BaseEntity {
 
     private Boolean isEnabled;
 
+    @OneToMany(mappedBy = "detailEntity")
+    private Set<DeviceEntity> deviceEntity;
+
+
     private DetailEntity(Builder builder) {
         setUserEntity(builder.userEntity);
         setRoles(builder.roles);
