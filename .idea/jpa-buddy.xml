@@ -6,7 +6,7 @@
     <option name="sourceModelValue" value="auth-persistence" />
     <option name="targetDbValue" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
     <option name="snapshotDbValue" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
-    <option name="updateChangeLogPath" value="auth-service/auth-data-access/src/main/resources/db/changelog/cumulative.xml" />
+    <option name="updateChangeLogPath" value="auth-service/auth-data-access/src/main/resources/db/cumulative.xml" />
     <option name="updateDbConnectionName" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
     <option name="updateLogLevel" value="DEBUG" />
     <option name="liquibaseAuthor" value="" />
