@@ -5,6 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.21.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1683981235433-1" author="Vugar Mammadli">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS auth;
+        </sql>
+    </changeSet>
+
     <changeSet id="1683981223827-1" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="account_packet">
             <column name="uuid" type="varchar">

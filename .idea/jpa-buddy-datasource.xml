@@ -2,7 +2,8 @@
 <project version="4">
   <component name="JpbDataSourceConfig">
     <data-source-infos>
-      <data-source-info id="f12a090d-8c13-406a-aa10-6e63d978a3bb" persistence-unit-name="auth-persistence" />
+      <data-source-info id="" persistence-unit-name="auth-persistence" />
+      <data-source-info id="" persistence-unit-name="auth-persistence2" />
     </data-source-infos>
   </component>
 </project>
