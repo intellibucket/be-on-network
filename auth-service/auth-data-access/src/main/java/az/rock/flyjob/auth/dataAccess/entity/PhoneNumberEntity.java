@@ -29,6 +29,12 @@ public class PhoneNumberEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PhoneNumberType type;
 
+    @Column(name = "is_enable_sms_notification", nullable = false,columnDefinition = "boolean default false")
+    private Boolean isEnableSmsNotification;
+
+    @Column(name = "is_enable_whatsapp_notification", nullable = false,columnDefinition = "boolean default false")
+    private Boolean isEnableWhatsappNotification;
+
     @Column(name = "is_primary", nullable = false,columnDefinition = "boolean default false")
     private Boolean isPrimary;
 

@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.EmailType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -11,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -23,9 +26,15 @@ public class EmailEntity extends BaseEntity {
     @ManyToOne
     private UserEntity userEntity;
 
+    @Column(name = "type", nullable = false)
+    private EmailType type;
+
     @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "is_enable_notification", nullable = false,columnDefinition = "boolean default false")
+    private Boolean isEnableNotification;
 
     @Column(name = "is_primary", nullable = false,columnDefinition = "boolean default false")
     private Boolean isPrimary;
@@ -44,5 +53,11 @@ public class EmailEntity extends BaseEntity {
 
     @Column(name = "verification_code_send_count")
     private String verificationCodeSendCount;
+
+    @Column(name = "is_subscribed_promotions", nullable = false,columnDefinition = "boolean default false")
+    private Boolean isSubscribedPromotions;
+
+    @Column(name = "subscribed_date")
+    private Timestamp subscribedDate;
 
 }

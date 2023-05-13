@@ -44,6 +44,14 @@
             <artifactId>liquibase-maven-plugin</artifactId>
             <version>4.20.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-spatial</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.maxmind.geoip2</groupId>
+            <artifactId>geoip2</artifactId>
+        </dependency>
     </dependencies>
 
 

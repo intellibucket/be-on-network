@@ -26,17 +26,27 @@ public class DetailEntity extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "ROLE_UUID", referencedColumnName = "UUID")})
     private Set<RoleEntity> roles;
 
+    @Column(name = "is_account_non_expired", nullable = false, columnDefinition = "boolean default true")
     private Boolean isAccountNonExpired;
 
+    @Column(name = "is_account_non_locked", nullable = false, columnDefinition = "boolean default true")
     private Boolean isAccountNonLocked;
 
+    @Column(name = "is_credentials_non_expired", nullable = false, columnDefinition = "boolean default true")
     private Boolean isCredentialsNonExpired;
 
+    @Column(name = "is_enabled", nullable = false, columnDefinition = "boolean default true")
     private Boolean isEnabled;
+
+    @Column(name = "is_deleted", nullable = false, columnDefinition = "boolean default false")
+    private Boolean isDeleted;
+
+    @Column(name = "is_frozen", nullable = false, columnDefinition = "boolean default false")
+    private Boolean isFrozen;
+
 
     @OneToMany(mappedBy = "detailEntity")
     private Set<DeviceEntity> deviceEntity;
-
 
     private DetailEntity(Builder builder) {
         setUserEntity(builder.userEntity);

@@ -2,10 +2,7 @@ package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.Language;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,26 +19,37 @@ public class UserSettingsEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Language language;
 
-    private Boolean isDarkMode;
+    @Column(name = "is_active_dark_mode")
+    private Boolean isActiveDarkMode;
 
-    private Boolean isEmailNotification;
+    @Column(name = "is_active_email_notification")
+    private Boolean isActiveEmailNotification;
 
-    private Boolean isSmsNotification;
+    @Column(name = "is_active_sms_notification")
+    private Boolean isActiveSmsNotification;
 
-    private Boolean isPushNotification;
+    @Column(name = "is_active_push_notification")
+    private Boolean isActivePushNotification;
 
-    private Boolean isTwoFactorAuthentication;
+    @Column(name = "is_active_two_factor_authentication")
+    private Boolean isActiveTwoFactorAuthentication;
 
-    private Boolean visibleLocation;
+    @Column(name = "is_visible_location", nullable = false)
+    private Boolean isVisibleLocation;
 
-    private Boolean visibleOnlineStatus;
+    @Column(name = "is_visible_online_status", nullable = false)
+    private Boolean isVisibleOnlineStatus;
 
-    private Boolean visibleLastSeen;
+    @Column(name = "is_visible_last_seen", nullable = false)
+    private Boolean isVisibleLastSeen;
 
-    private Boolean visibleProfilePicture;
+    @Column(name = "is_visible_phone_number", nullable = false)
+    private Boolean isVisibleProfilePicture;
 
-    private Boolean visibleEmail;
+    @Column(name = "is_visible_phone_number", nullable = false)
+    private Boolean isVisibleEmail;
 
-    private Boolean visibleResume;
+    @Column(name = "is_visible_phone_number", nullable = false)
+    private Boolean isVisibleResume;
 
 }

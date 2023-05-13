@@ -64,7 +64,7 @@ public class UserEntity extends BaseEntity {
     private DetailEntity detail;
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private Set<AccountPacketEntity> accountPackets;
+    private Set<AccountPlanEntity> accountPackets;
 
     private UserEntity(Builder builder) {
         setKey(builder.key);
