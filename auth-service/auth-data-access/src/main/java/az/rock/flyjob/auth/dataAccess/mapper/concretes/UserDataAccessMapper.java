@@ -40,7 +40,6 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .lastName(entity.getLastName())
                 .username(entity.getUsername())
                 .password(passwordRoots)
-                .email(entity.getEmail())
                 .account(accountRoot)
                 .timezone(entity.getTimezone())
                 .build();
@@ -65,7 +64,6 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .passwordEntity(passwordEntitySet)
-                .email(root.getEmail())
                 .account(accountEntity)
                 .timezone(root.getTimezone())
                 .build();
@@ -88,7 +86,6 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .passwordEntity(passwordEntitySet)
-                .email(root.getEmail())
                 .account(accountEntity)
                 .timezone(root.getTimezone())
                 .build();

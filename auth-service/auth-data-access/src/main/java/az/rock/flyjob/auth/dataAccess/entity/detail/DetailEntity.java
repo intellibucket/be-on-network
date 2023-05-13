@@ -20,7 +20,6 @@ public class DetailEntity extends BaseEntity {
     @OneToOne
     private UserEntity userEntity;
 
-
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "detail_role", schema = "auth", joinColumns = {

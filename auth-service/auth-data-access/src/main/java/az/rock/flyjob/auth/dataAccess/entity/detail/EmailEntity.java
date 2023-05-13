@@ -2,8 +2,11 @@ package az.rock.flyjob.auth.dataAccess.entity.detail;
 
 import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.valueObject.PhoneNumberType;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,21 +16,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "phone_numbers", schema = "auth")
-@Entity(name = "PhoneNumberEntity")
-public class PhoneNumberEntity extends BaseEntity {
+@Table(name = "emails", schema = "auth")
+@Entity(name = "EmailEntity")
+public class EmailEntity extends BaseEntity {
 
     @ManyToOne
     private UserEntity userEntity;
 
-    @Column(name = "country_code", length = 1, nullable = false)
-    private String countryCode;
-
-    @Column(name = "phone_number", length = 20, nullable = false)
-    private String phoneNumber;
-
-    @Enumerated(EnumType.STRING)
-    private PhoneNumberType type;
+    @Email
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
 
     @Column(name = "is_primary", nullable = false,columnDefinition = "boolean default false")
     private Boolean isPrimary;
@@ -46,4 +44,5 @@ public class PhoneNumberEntity extends BaseEntity {
 
     @Column(name = "verification_code_send_count")
     private String verificationCodeSendCount;
+
 }

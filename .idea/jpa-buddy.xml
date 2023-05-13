@@ -4,11 +4,11 @@
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
     <option name="sourceModelValue" value="auth-persistence" />
-    <option name="targetDbValue" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
+    <option name="targetDbValue" value="f12a090d-8c13-406a-aa10-6e63d978a3bb" />
     <option name="snapshotDbValue" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
     <option name="updateChangeLogPath" value="auth-service/auth-data-access/src/main/resources/db/cumulative.xml" />
-    <option name="updateDbConnectionName" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
+    <option name="updateDbConnectionName" value="f12a090d-8c13-406a-aa10-6e63d978a3bb" />
     <option name="updateLogLevel" value="DEBUG" />
-    <option name="liquibaseAuthor" value="" />
+    <option name="liquibaseAuthor" value="Vugar Mammadli" />
   </component>
 </project>

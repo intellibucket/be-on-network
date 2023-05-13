@@ -1,6 +1,8 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
+import az.rock.flyjob.auth.dataAccess.entity.detail.EmailEntity;
+import az.rock.flyjob.auth.dataAccess.entity.detail.PhoneNumberEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.Gender;
@@ -49,16 +51,18 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
     private Set<PasswordEntity> passwordEntity;
 
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    private Set<EmailEntity> email;
+
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    private Set<PhoneNumberEntity> phoneNumber;
+
     @Column(name = "timezone", nullable = false)
     @Min(value = 1, message = "Timezone must be at least 3 characters long")
     private String timezone;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
-
-    @Email
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
     private DetailEntity detail;
@@ -70,7 +74,6 @@ public class UserEntity extends BaseEntity {
         setUsername(builder.username);
         setPasswordEntity(builder.passwordEntity);
         setTimezone(builder.timezone);
-        setEmail(builder.email);
         setDetail(builder.account);
         setUuid(builder.uuid);
         setVersion(builder.version);
@@ -86,7 +89,6 @@ public class UserEntity extends BaseEntity {
         private @Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String username;
         private Set<PasswordEntity> passwordEntity;
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
-        private @Email String email;
         private DetailEntity account;
         private UUID uuid;
         private Long version;
@@ -134,10 +136,6 @@ public class UserEntity extends BaseEntity {
             return this;
         }
 
-        public Builder email(@Email String val) {
-            email = val;
-            return this;
-        }
 
         public Builder account(DetailEntity val) {
             account = val;

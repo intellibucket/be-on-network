@@ -9,3 +9,6 @@ spring:
     import: configserver:http://localhost:8012
   application:
     name: auth-service
+  jpa:
+    hibernate:
+      ddl-auto: create
