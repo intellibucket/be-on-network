@@ -1,14 +1,10 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
-import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
-import az.rock.flyjob.auth.dataAccess.entity.detail.EmailEntity;
-import az.rock.flyjob.auth.dataAccess.entity.detail.PhoneNumberEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;

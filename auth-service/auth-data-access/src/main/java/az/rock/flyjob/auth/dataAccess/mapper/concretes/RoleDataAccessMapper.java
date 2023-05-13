@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.detail.RoleEntity;
+import az.rock.flyjob.auth.dataAccess.entity.RoleEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.root.detail.RoleRoot;
 import az.rock.lib.domain.id.RoleID;

@@ -7,9 +7,9 @@
     <persistence-unit name="auth-persistence-unit" transaction-type="RESOURCE_LOCAL">
         <class>az.rock.flyjob.auth.dataAccess.entity.UserEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.entity.PasswordEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.detail.PhoneNumberEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.detail.AuthorityEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.detail.RoleEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.PhoneNumberEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.DetailEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.AuthorityEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.RoleEntity</class>
     </persistence-unit>
 </persistence>
