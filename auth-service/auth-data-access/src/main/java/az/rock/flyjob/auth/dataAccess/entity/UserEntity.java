@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -45,8 +46,8 @@ public class UserEntity extends BaseEntity {
     @Max(value = 30, message = "Username must be at most 20 characters long")
     private String username;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private PasswordEntity passwordEntity;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    private Set<PasswordEntity> passwordEntity;
 
     @Column(name = "timezone", nullable = false)
     @Min(value = 1, message = "Timezone must be at least 3 characters long")
@@ -83,7 +84,7 @@ public class UserEntity extends BaseEntity {
         private @Min(value = 3, message = "First name must be at least 3 characters long") @Max(value = 30, message = "First name must be at most 20 characters long") String firstName;
         private @Min(value = 3, message = "Last name must be at least 3 characters long") @Max(value = 40, message = "Last name must be at most 20 characters long") String lastName;
         private @Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String username;
-        private PasswordEntity passwordEntity;
+        private Set<PasswordEntity> passwordEntity;
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
         private @Email String email;
         private DetailEntity account;
@@ -123,7 +124,7 @@ public class UserEntity extends BaseEntity {
             return this;
         }
 
-        public Builder passwordEntity(PasswordEntity val) {
+        public Builder passwordEntity(Set<PasswordEntity> val) {
             passwordEntity = val;
             return this;
         }

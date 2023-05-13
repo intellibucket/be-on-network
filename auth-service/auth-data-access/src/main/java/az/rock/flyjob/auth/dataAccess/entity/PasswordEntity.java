@@ -1,10 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +16,7 @@ import lombok.Setter;
 @Entity(name = "PasswordEntity")
 public class PasswordEntity extends BaseEntity {
 
-    @OneToOne
+    @ManyToOne
     private UserEntity userEntity;
 
     @Column(name = "salt", nullable = false)
@@ -28,4 +25,6 @@ public class PasswordEntity extends BaseEntity {
     @Column(name = "hash", nullable = false)
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$", message = "Invalid password")
     private String hash;
+
+
 }

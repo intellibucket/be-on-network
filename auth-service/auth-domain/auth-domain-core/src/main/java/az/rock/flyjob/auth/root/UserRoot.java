@@ -7,6 +7,7 @@ import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 public class UserRoot extends AggregateRoot<UserID> {
@@ -15,7 +16,7 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final String firstName;
     private final String lastName;
     private final String username;
-    private final PasswordRoot password;
+    private final Set<PasswordRoot> password;
     private final String timezone;
     private final String email;
     private final DetailRoot account;
@@ -30,7 +31,7 @@ public class UserRoot extends AggregateRoot<UserID> {
                        String firstName,
                        String lastName,
                        String username,
-                       PasswordRoot password,
+                       Set<PasswordRoot> password,
                        String timezone,
                        String email,
                        DetailRoot account) {
@@ -73,7 +74,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         return username;
     }
 
-    public PasswordRoot getPassword() {
+    public Set<PasswordRoot> getPasswords() {
         return password;
     }
 
@@ -101,7 +102,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         private String firstName;
         private String lastName;
         private String username;
-        private PasswordRoot password;
+        private Set<PasswordRoot> password;
         private String timezone;
         private String email;
         private DetailRoot account;
@@ -163,7 +164,7 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder password(PasswordRoot val) {
+        public Builder password(Set<PasswordRoot> val) {
             password = val;
             return this;
         }

@@ -8,6 +8,7 @@ import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity, UserRoot> {
@@ -23,7 +24,9 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
     @Override
     public UserRoot toRoot(UserEntity entity) {
         var accountRoot = this.accountDataAccessMapper.toRoot(entity.getDetail());
-        var passwordRoot = this.passwordDataAccessMapper.toRoot(entity.getPasswordEntity());
+        var passwordRoots = entity.getPasswordEntity().stream()
+                .map(this.passwordDataAccessMapper::toRoot)
+                .collect(Collectors.toSet());
         return UserRoot.Builder
                 .builder()
                 .id(UserID.of(entity.getUuid()))
@@ -36,7 +39,7 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .username(entity.getUsername())
-                .password(passwordRoot)
+                .password(passwordRoots)
                 .email(entity.getEmail())
                 .account(accountRoot)
                 .timezone(entity.getTimezone())
@@ -46,7 +49,9 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
     @Override
     public UserEntity toEntity(UserRoot root) {
         var accountEntity = this.accountDataAccessMapper.toEntity(root.getAccount());
-        var passwordEntity = this.passwordDataAccessMapper.toEntity(root.getPassword());
+        var passwordEntitySet = root.getPasswords().stream()
+                .map(this.passwordDataAccessMapper::toEntity)
+                .collect(Collectors.toSet());
         return UserEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
@@ -59,7 +64,7 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .firstName(root.getFirstName())
                 .lastName(root.getLastName())
                 .username(root.getUsername())
-                .passwordEntity(passwordEntity)
+                .passwordEntity(passwordEntitySet)
                 .email(root.getEmail())
                 .account(accountEntity)
                 .timezone(root.getTimezone())
@@ -69,7 +74,9 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
     @Override
     public UserEntity toNewEntity(UserRoot root) {
         var accountEntity = this.accountDataAccessMapper.toNewEntity(root.getAccount());
-        var passwordEntity = this.passwordDataAccessMapper.toNewEntity(root.getPassword());
+        var passwordEntitySet = root.getPasswords().stream()
+                .map(this.passwordDataAccessMapper::toNewEntity)
+                .collect(Collectors.toSet());
         return UserEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
@@ -80,7 +87,7 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .firstName(root.getFirstName())
                 .lastName(root.getLastName())
                 .username(root.getUsername())
-                .passwordEntity(passwordEntity)
+                .passwordEntity(passwordEntitySet)
                 .email(root.getEmail())
                 .account(accountEntity)
                 .timezone(root.getTimezone())
