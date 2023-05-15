@@ -62,8 +62,8 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.20.0</version>
                 <configuration>
-                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                    <changeLogFile>src/main/resources/db/cumulative.xml</changeLogFile>
+<!--                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>-->
+<!--                    <changeLogFile>src/main/resources/db/changelog-master.xml</changeLogFile>-->
                 </configuration>
                 <executions>
                     <execution>
@@ -86,7 +86,6 @@
                     <dependency>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-starter-data-jpa</artifactId>
-                        <version>3.0.6</version>
                     </dependency>
                     <dependency>
                         <groupId>javax.validation</groupId>
