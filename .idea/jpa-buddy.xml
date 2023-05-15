@@ -5,8 +5,8 @@
     <option name="renamerInitialized" value="true" />
     <option name="sourceModelValue" value="auth-persistence" />
     <option name="targetDbValue" value="d1580f64-6381-46e4-8868-d4a56fac9be5" />
-    <option name="snapshotDbValue" value="a44dc303-fd0b-4717-a85d-2fde4ba7de3d" />
-    <option name="updateChangeLogPath" value="auth-service/auth-data-access/src/main/resources/db/changelog/2023/05/13-02-changelog.xml" />
+    <option name="snapshotDbValue" value="d1580f64-6381-46e4-8868-d4a56fac9be5" />
+    <option name="updateChangeLogPath" value="" />
     <option name="updateDbConnectionName" value="d1580f64-6381-46e4-8868-d4a56fac9be5" />
     <option name="updateLogLevel" value="DEBUG" />
     <option name="liquibaseAuthor" value="Vugar Mammadli" />
