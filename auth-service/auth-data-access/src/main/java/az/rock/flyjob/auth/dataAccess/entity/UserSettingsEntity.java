@@ -43,13 +43,13 @@ public class UserSettingsEntity extends BaseEntity {
     @Column(name = "is_visible_last_seen", nullable = false)
     private Boolean isVisibleLastSeen;
 
-    @Column(name = "is_visible_phone_number", nullable = false)
+    @Column(name = "is_visible_profile_picture", nullable = false)
     private Boolean isVisibleProfilePicture;
 
-    @Column(name = "is_visible_phone_number", nullable = false)
+    @Column(name = "is_visible_email", nullable = false)
     private Boolean isVisibleEmail;
 
-    @Column(name = "is_visible_phone_number", nullable = false)
+    @Column(name = "is_visible_resume", nullable = false)
     private Boolean isVisibleResume;
 
 }

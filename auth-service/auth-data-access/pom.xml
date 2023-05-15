@@ -38,16 +38,6 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-maven-plugin</artifactId>
-            <version>4.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-spatial</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.maxmind.geoip2</groupId>
             <artifactId>geoip2</artifactId>
@@ -62,8 +52,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.20.0</version>
                 <configuration>
-<!--                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>-->
-<!--                    <changeLogFile>src/main/resources/db/changelog-master.xml</changeLogFile>-->
+                    <changeLogFile>src/main/resources/db/changelog-master.xml</changeLogFile>
                 </configuration>
                 <executions>
                     <execution>
@@ -74,28 +63,12 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>org.liquibase.ext</groupId>
-                        <artifactId>liquibase-hibernate5</artifactId>
-                        <version>4.4.3</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                        <version>6.0.6</version>
-                    </dependency>
-                    <dependency>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-starter-data-jpa</artifactId>
                     </dependency>
                     <dependency>
-                        <groupId>javax.validation</groupId>
-                        <artifactId>validation-api</artifactId>
-                        <version>2.0.1.Final</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.javassist</groupId>
-                        <artifactId>javassist</artifactId>
-                        <version>3.27.0-GA</version>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
                     </dependency>
                 </dependencies>
             </plugin>

@@ -26,7 +26,7 @@ public class RoleEntity extends BaseEntity {
 
     @Singular
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "role_authority", schema = "user",
+    @JoinTable(name = "role_authority", schema = "auth",
             joinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "UUID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "UUID")})
     private Set<AuthorityEntity> authorities;
