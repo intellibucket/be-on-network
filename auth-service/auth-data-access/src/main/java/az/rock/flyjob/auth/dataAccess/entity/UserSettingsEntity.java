@@ -16,6 +16,9 @@ import lombok.Setter;
 @Entity(name = "UserSettingsEntity")
 public class UserSettingsEntity extends BaseEntity {
 
+    @OneToOne(fetch = FetchType.LAZY)
+    private UserEntity user;
+
     @Enumerated(EnumType.STRING)
     private Language language;
 
