@@ -11,12 +11,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
-public class AccountDataAccessMapper implements AbstractDataAccessMapper<DetailEntity, DetailRoot> {
+public class DetailDataAccessMapper implements AbstractDataAccessMapper<DetailEntity, DetailRoot> {
     private final UserDataAccessMapper userDataAccessMapper;
     private final RoleDataAccessMapper roleDataAccessMapper;
 
-    public AccountDataAccessMapper(UserDataAccessMapper userDataAccessMapper,
-                                   RoleDataAccessMapper roleDataAccessMapper) {
+    public DetailDataAccessMapper(UserDataAccessMapper userDataAccessMapper,
+                                  RoleDataAccessMapper roleDataAccessMapper) {
         this.userDataAccessMapper = userDataAccessMapper;
         this.roleDataAccessMapper = roleDataAccessMapper;
     }

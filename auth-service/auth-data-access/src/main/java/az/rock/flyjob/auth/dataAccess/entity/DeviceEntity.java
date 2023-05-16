@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +19,10 @@ import lombok.Setter;
 public class DeviceEntity extends BaseEntity {
 
     @ManyToOne
-    private DetailEntity detailEntity;
+    private UserEntity user;
+
+    @OneToMany(mappedBy = "device")
+    private Set<AuthenticationLogEntity> authenticationLogs;
 
     @Column(name = "device_name", length = 100)
     private String deviceName;
@@ -66,4 +71,6 @@ public class DeviceEntity extends BaseEntity {
 
     @OneToOne(mappedBy = "deviceEntity")
     private GeoPositionEntity geoPosition;
+
+
 }

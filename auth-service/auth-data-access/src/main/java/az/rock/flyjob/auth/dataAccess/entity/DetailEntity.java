@@ -44,10 +44,6 @@ public class DetailEntity extends BaseEntity {
     @Column(name = "is_frozen", nullable = false, columnDefinition = "boolean default false")
     private Boolean isFrozen;
 
-
-    @OneToMany(mappedBy = "detailEntity")
-    private Set<DeviceEntity> deviceEntity;
-
     private DetailEntity(Builder builder) {
         setUserEntity(builder.userEntity);
         setRoles(builder.roles);

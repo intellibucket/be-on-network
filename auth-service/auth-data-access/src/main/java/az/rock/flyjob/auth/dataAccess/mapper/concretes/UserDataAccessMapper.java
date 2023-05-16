@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
 @Component
 public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity, UserRoot> {
     private final PasswordDataAccessMapper passwordDataAccessMapper;
-    private final AccountDataAccessMapper accountDataAccessMapper;
+    private final DetailDataAccessMapper detailDataAccessMapper;
 
     public UserDataAccessMapper(PasswordDataAccessMapper passwordDataAccessMapper,
-                                AccountDataAccessMapper accountDataAccessMapper) {
+                                DetailDataAccessMapper detailDataAccessMapper) {
         this.passwordDataAccessMapper = passwordDataAccessMapper;
-        this.accountDataAccessMapper = accountDataAccessMapper;
+        this.detailDataAccessMapper = detailDataAccessMapper;
     }
 
     @Override
     public UserRoot toRoot(UserEntity entity) {
-        var accountRoot = this.accountDataAccessMapper.toRoot(entity.getDetail());
+        var accountRoot = this.detailDataAccessMapper.toRoot(entity.getDetail());
         var passwordRoots = entity.getPasswordEntity().stream()
                 .map(this.passwordDataAccessMapper::toRoot)
                 .collect(Collectors.toSet());
@@ -47,7 +47,7 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
 
     @Override
     public UserEntity toEntity(UserRoot root) {
-        var accountEntity = this.accountDataAccessMapper.toEntity(root.getAccount());
+        var accountEntity = this.detailDataAccessMapper.toEntity(root.getAccount());
         var passwordEntitySet = root.getPasswords().stream()
                 .map(this.passwordDataAccessMapper::toEntity)
                 .collect(Collectors.toSet());
@@ -71,7 +71,7 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
 
     @Override
     public UserEntity toNewEntity(UserRoot root) {
-        var accountEntity = this.accountDataAccessMapper.toNewEntity(root.getAccount());
+        var accountEntity = this.detailDataAccessMapper.toNewEntity(root.getAccount());
         var passwordEntitySet = root.getPasswords().stream()
                 .map(this.passwordDataAccessMapper::toNewEntity)
                 .collect(Collectors.toSet());
