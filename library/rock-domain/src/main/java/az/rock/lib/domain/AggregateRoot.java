@@ -30,14 +30,6 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
         this.modificationDate = modificationDate;
     }
 
-    private AggregateRoot(Builder<ID> builder) {
-        super(builder.id);
-        this.version = builder.version;
-        this.processStatus = builder.processStatus;
-        this.dataStatus = builder.dataStatus;
-        this.createdDate = builder.createdDate;
-        this.modificationDate = builder.modificationDate;
-    }
 
     @Override
     public ID getUUID() {
