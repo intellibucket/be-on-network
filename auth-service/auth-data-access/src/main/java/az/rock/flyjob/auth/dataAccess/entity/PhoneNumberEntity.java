@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -45,11 +48,11 @@ public class PhoneNumberEntity extends BaseEntity {
     private String verificationCode;
 
     @Column(name = "verification_code_expire_date")
-    private String verificationCodeExpireDate;
+    private Timestamp verificationCodeExpireDate;
 
     @Column(name = "verification_code_send_date")
-    private String verificationCodeSendDate;
+    private Timestamp verificationCodeSendDate;
 
     @Column(name = "verification_code_send_count")
-    private String verificationCodeSendCount;
+    private BigInteger verificationCodeSendCount;
 }

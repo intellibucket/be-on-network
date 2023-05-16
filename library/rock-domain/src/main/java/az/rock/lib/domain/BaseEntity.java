@@ -36,7 +36,7 @@ public class BaseEntity {
     private DataStatus dataStatus;
 
     @CreationTimestamp
-    @Column(name = "created_date", updatable = false)
+    @Column(name = "created_date", updatable = false,nullable = false)
     private Timestamp createdDate;
 
     @Column(name = "modification_date")
