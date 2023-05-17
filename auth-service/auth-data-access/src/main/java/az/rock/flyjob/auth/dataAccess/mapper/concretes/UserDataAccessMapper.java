@@ -23,10 +23,6 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
 
     @Override
     public UserRoot toRoot(UserEntity entity) {
-        var accountRoot = this.detailDataAccessMapper.toRoot(entity.getDetail());
-        var passwordRoots = entity.getPasswordEntity().stream()
-                .map(this.passwordDataAccessMapper::toRoot)
-                .collect(Collectors.toSet());
         return UserRoot.Builder
                 .builder()
                 .id(UserID.of(entity.getUuid()))
@@ -39,18 +35,12 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .username(entity.getUsername())
-                .password(passwordRoots)
-                .account(accountRoot)
                 .timezone(entity.getTimezone())
                 .build();
     }
 
     @Override
     public UserEntity toEntity(UserRoot root) {
-        var accountEntity = this.detailDataAccessMapper.toEntity(root.getAccount());
-        var passwordEntitySet = root.getPasswords().stream()
-                .map(this.passwordDataAccessMapper::toEntity)
-                .collect(Collectors.toSet());
         return UserEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
@@ -63,18 +53,12 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .firstName(root.getFirstName())
                 .lastName(root.getLastName())
                 .username(root.getUsername())
-                .passwordEntity(passwordEntitySet)
-                .account(accountEntity)
                 .timezone(root.getTimezone())
                 .build();
     }
 
     @Override
     public UserEntity toNewEntity(UserRoot root) {
-        var accountEntity = this.detailDataAccessMapper.toNewEntity(root.getAccount());
-        var passwordEntitySet = root.getPasswords().stream()
-                .map(this.passwordDataAccessMapper::toNewEntity)
-                .collect(Collectors.toSet());
         return UserEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
@@ -85,8 +69,6 @@ public class UserDataAccessMapper implements AbstractDataAccessMapper<UserEntity
                 .firstName(root.getFirstName())
                 .lastName(root.getLastName())
                 .username(root.getUsername())
-                .passwordEntity(passwordEntitySet)
-                .account(accountEntity)
                 .timezone(root.getTimezone())
                 .build();
     }

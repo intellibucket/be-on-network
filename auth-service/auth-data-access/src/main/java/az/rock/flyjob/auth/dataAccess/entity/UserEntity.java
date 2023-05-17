@@ -44,15 +44,6 @@ public class UserEntity extends BaseEntity {
     @Max(value = 30, message = "Username must be at most 20 characters long")
     private String username;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private Set<PasswordEntity> passwordEntity;
-
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private Set<EmailEntity> email;
-
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private Set<PhoneNumberEntity> phoneNumber;
-
     @Column(name = "timezone", nullable = false)
     @Min(value = 1, message = "Timezone must be at least 3 characters long")
     private String timezone;
@@ -63,15 +54,11 @@ public class UserEntity extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private DetailEntity detail;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private Set<AccountPlanEntity> accountPackets;
-
     private UserEntity(Builder builder) {
         setKey(builder.key);
         setFirstName(builder.firstName);
         setLastName(builder.lastName);
         setUsername(builder.username);
-        setPasswordEntity(builder.passwordEntity);
         setTimezone(builder.timezone);
         setDetail(builder.account);
         setUuid(builder.uuid);

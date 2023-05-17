@@ -5,6 +5,7 @@ import az.rock.lib.domain.id.DeviceID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
+import java.math.BigInteger;
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -34,11 +35,11 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
 
     private final String verificationCode;
 
-    private final String verificationCodeExpireDate;
+    private final ZonedDateTime verificationCodeExpireDate;
 
-    private final String verificationCodeSendDate;
+    private final ZonedDateTime verificationCodeSendDate;
 
-    private final String verificationCodeSendCount;
+    private final BigInteger verificationCodeSendCount;
 
     private final Boolean isVerified;
 
@@ -64,9 +65,9 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
                       String salt,
                       String hash,
                       String verificationCode,
-                      String verificationCodeExpireDate,
-                      String verificationCodeSendDate,
-                      String verificationCodeSendCount,
+                      ZonedDateTime verificationCodeExpireDate,
+                      ZonedDateTime verificationCodeSendDate,
+                      BigInteger verificationCodeSendCount,
                       Boolean isVerified,
                       Boolean isPrimary,
                       GeoPositionRoot geoPosition) {
@@ -161,15 +162,15 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
         return verificationCode;
     }
 
-    public String getVerificationCodeExpireDate() {
+    public ZonedDateTime getVerificationCodeExpireDate() {
         return verificationCodeExpireDate;
     }
 
-    public String getVerificationCodeSendDate() {
+    public ZonedDateTime getVerificationCodeSendDate() {
         return verificationCodeSendDate;
     }
 
-    public String getVerificationCodeSendCount() {
+    public BigInteger getVerificationCodeSendCount() {
         return verificationCodeSendCount;
     }
 
@@ -206,9 +207,9 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
         private String salt;
         private String hash;
         private String verificationCode;
-        private String verificationCodeExpireDate;
-        private String verificationCodeSendDate;
-        private String verificationCodeSendCount;
+        private ZonedDateTime verificationCodeExpireDate;
+        private ZonedDateTime verificationCodeSendDate;
+        private BigInteger verificationCodeSendCount;
         private Boolean isVerified;
         private Boolean isPrimary;
         private GeoPositionRoot geoPosition;
@@ -310,17 +311,17 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
             return this;
         }
 
-        public Builder verificationCodeExpireDate(String val) {
+        public Builder verificationCodeExpireDate(ZonedDateTime val) {
             verificationCodeExpireDate = val;
             return this;
         }
 
-        public Builder verificationCodeSendDate(String val) {
+        public Builder verificationCodeSendDate(ZonedDateTime val) {
             verificationCodeSendDate = val;
             return this;
         }
 
-        public Builder verificationCodeSendCount(String val) {
+        public Builder verificationCodeSendCount(BigInteger val) {
             verificationCodeSendCount = val;
             return this;
         }
