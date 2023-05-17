@@ -3,22 +3,75 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 import az.rock.flyjob.auth.dataAccess.entity.AccountPlanEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.root.AccountPlanRoot;
+import az.rock.lib.domain.id.AccountPlanID;
+import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 public class AccountPlanDataAccessMapper implements AbstractDataAccessMapper<AccountPlanEntity, AccountPlanRoot> {
+
+    private final UserDataAccessMapper userDataAccessMapper;
+
+    public AccountPlanDataAccessMapper(UserDataAccessMapper userDataAccessMapper) {
+        this.userDataAccessMapper = userDataAccessMapper;
+    }
+
     @Override
     public AccountPlanRoot toRoot(AccountPlanEntity entity) {
-        return null;
+        return AccountPlanRoot.Builder
+                .builder()
+                .accountPlanID(AccountPlanID.of(entity.getUuid()))
+                .version(entity.getVersion())
+                .processStatus(entity.getProcessStatus())
+                .dataStatus(entity.getDataStatus())
+                .createdDate(GDateTime.of(entity.getCreatedDate()))
+                .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
+                .user(userDataAccessMapper.toRoot(entity.getUserEntity()))
+                .plan(entity.getPlan())
+                .startDate(GDateTime.of(entity.getStartDate()))
+                .expiredDate(GDateTime.of(entity.getExpiredDate()))
+                .isExpired(entity.getIsExpired())
+                .promoCode(entity.getPromoCode())
+                .build();
     }
 
     @Override
     public AccountPlanEntity toEntity(AccountPlanRoot root) {
-        return null;
+        return AccountPlanEntity.Builder
+                .builder()
+                .uuid(root.getUUID().getId())
+                .version(root.getVersion())
+                .processStatus(root.getProcessStatus())
+                .dataStatus(root.getDataStatus())
+                .createdDate(GDateTime.of(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .userEntity(userDataAccessMapper.toEntity(root.getUser()))
+                .plan(root.getPlan())
+                .startDate(GDateTime.of(root.getStartDate()))
+                .expiredDate(GDateTime.of(root.getExpiredDate()))
+                .isExpired(root.getExpired())
+                .promoCode(root.getPromoCode())
+                .build();
     }
 
     @Override
     public AccountPlanEntity toNewEntity(AccountPlanRoot root) {
-        return null;
+        return AccountPlanEntity.Builder
+                .builder()
+                .uuid(UUID.randomUUID())
+                .version(1L)
+                .processStatus(root.getProcessStatus())
+                .dataStatus(root.getDataStatus())
+                .createdDate(GDateTime.of(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .userEntity(userDataAccessMapper.toNewEntity(root.getUser()))
+                .plan(root.getPlan())
+                .startDate(GDateTime.of(root.getStartDate()))
+                .expiredDate(GDateTime.of(root.getExpiredDate()))
+                .isExpired(root.getExpired())
+                .promoCode(root.getPromoCode())
+                .build();
     }
 }

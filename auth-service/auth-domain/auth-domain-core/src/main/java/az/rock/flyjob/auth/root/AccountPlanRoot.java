@@ -15,9 +15,9 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
 
     private final AccountPlanType plan;
 
-    private final Timestamp startDate;
+    private final ZonedDateTime startDate;
 
-    private final Timestamp expiredDate;
+    private final ZonedDateTime expiredDate;
 
     private final Boolean isExpired;
 
@@ -32,8 +32,8 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
                            ZonedDateTime modificationDate,
                            UserRoot user,
                            AccountPlanType plan,
-                           Timestamp startDate,
-                           Timestamp expiredDate,
+                           ZonedDateTime startDate,
+                           ZonedDateTime expiredDate,
                            Boolean isExpired,
                            String promoCode) {
         super(accountPlanID, version, processStatus, dataStatus, createdDate, modificationDate);
@@ -63,11 +63,11 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
         return plan;
     }
 
-    public Timestamp getStartDate() {
+    public ZonedDateTime getStartDate() {
         return startDate;
     }
 
-    public Timestamp getExpiredDate() {
+    public ZonedDateTime getExpiredDate() {
         return expiredDate;
     }
 
@@ -88,8 +88,8 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
         private ZonedDateTime modificationDate;
         private UserRoot user;
         private AccountPlanType plan;
-        private Timestamp startDate;
-        private Timestamp expiredDate;
+        private ZonedDateTime startDate;
+        private ZonedDateTime expiredDate;
         private Boolean isExpired;
         private String promoCode;
 
@@ -140,12 +140,12 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
             return this;
         }
 
-        public Builder startDate(Timestamp val) {
+        public Builder startDate(ZonedDateTime val) {
             startDate = val;
             return this;
         }
 
-        public Builder expiredDate(Timestamp val) {
+        public Builder expiredDate(ZonedDateTime val) {
             expiredDate = val;
             return this;
         }

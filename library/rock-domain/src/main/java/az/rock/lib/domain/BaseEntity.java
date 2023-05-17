@@ -155,6 +155,14 @@ public class BaseEntity {
         return processStatus;
     }
 
+    public void setDataStatus(DataStatus dataStatus) {
+        this.dataStatus = dataStatus;
+    }
+
+    public void setProcessStatus(ProcessStatus processStatus) {
+        this.processStatus = processStatus;
+    }
+
     public static final class Builder {
         private UUID uuid;
         private Long version;
