@@ -31,6 +31,14 @@ public enum GDateTime {
         return Timestamp.valueOf(ZonedDateTime.now().toLocalDateTime());
     }
 
+    public static ZonedDateTime toZonedDateTime(Timestamp createdDate) {
+        return createdDate.toLocalDateTime().atZone(ZoneId.of("UTC"));
+    }
+
+    public static Timestamp toTimestamp(ZonedDateTime createdDate) {
+        return Timestamp.valueOf(createdDate.toLocalDateTime());
+    }
+
     public abstract ZonedDateTime now();
 
     public static LocalDate convertToLocalDate(Date dateToConvert) {

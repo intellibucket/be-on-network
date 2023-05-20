@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.DetailEntity;
-import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
+import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDetailDataAccessMapper;
 import az.rock.flyjob.auth.root.DetailRoot;
 import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.util.GDateTime;
@@ -11,7 +11,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
-public class DetailDataAccessMapper implements AbstractDataAccessMapper<DetailEntity, DetailRoot> {
+public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<DetailEntity, DetailRoot> {
     private final UserDataAccessMapper userDataAccessMapper;
     private final RoleDataAccessMapper roleDataAccessMapper;
 

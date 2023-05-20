@@ -2,13 +2,19 @@ package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -55,13 +61,13 @@ public class DeviceEntity extends BaseEntity {
     private String verificationCode;
 
     @Column(name = "verification_code_expire_date")
-    private String verificationCodeExpireDate;
+    private Timestamp verificationCodeExpireDate;
 
     @Column(name = "verification_code_send_date")
-    private String verificationCodeSendDate;
+    private Timestamp verificationCodeSendDate;
 
     @Column(name = "verification_code_send_count")
-    private String verificationCodeSendCount;
+    private BigInteger verificationCodeSendCount;
 
     @Column(name = "is_verified", nullable = false,columnDefinition = "boolean default false")
     private Boolean isVerified;
@@ -72,5 +78,189 @@ public class DeviceEntity extends BaseEntity {
     @OneToOne(mappedBy = "deviceEntity")
     private GeoPositionEntity geoPosition;
 
+    private DeviceEntity(Builder builder) {
+        setUser(builder.user);
+        setAuthenticationLogs(builder.authenticationLogs);
+        setDeviceName(builder.deviceName);
+        setDeviceModel(builder.deviceModel);
+        setDeviceManufacturer(builder.deviceManufacturer);
+        setOperatingSystem(builder.operatingSystem);
+        setDeviceOsVersion(builder.deviceOsVersion);
+        setBrowserName(builder.browserName);
+        setIpAddress(builder.ipAddress);
+        setSalt(builder.salt);
+        setHash(builder.hash);
+        setVerificationCode(builder.verificationCode);
+        setVerificationCodeExpireDate(builder.verificationCodeExpireDate);
+        setVerificationCodeSendDate(builder.verificationCodeSendDate);
+        setVerificationCodeSendCount(builder.verificationCodeSendCount);
+        setIsVerified(builder.isVerified);
+        setIsPrimary(builder.isPrimary);
+        setGeoPosition(builder.geoPosition);
+        setUuid(builder.uuid);
+        setVersion(builder.version);
+        setProcessStatus(builder.processStatus);
+        setDataStatus(builder.dataStatus);
+        setCreatedDate(builder.createdDate);
+        setLastModifiedDate(builder.lastModifiedDate);
+    }
 
+
+    public static final class Builder {
+        private UserEntity user;
+        private Set<AuthenticationLogEntity> authenticationLogs;
+        private String deviceName;
+        private String deviceModel;
+        private String deviceManufacturer;
+        private String operatingSystem;
+        private String deviceOsVersion;
+        private String browserName;
+        private String ipAddress;
+        private String salt;
+        private String hash;
+        private String verificationCode;
+        private Timestamp verificationCodeExpireDate;
+        private Timestamp verificationCodeSendDate;
+        private BigInteger verificationCodeSendCount;
+        private Boolean isVerified;
+        private Boolean isPrimary;
+        private GeoPositionEntity geoPosition;
+        private UUID uuid;
+        private Long version;
+        private ProcessStatus processStatus;
+        private DataStatus dataStatus;
+        private Timestamp createdDate;
+        private Timestamp lastModifiedDate;
+
+        private Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder user(UserEntity val) {
+            user = val;
+            return this;
+        }
+
+        public Builder authenticationLogs(Set<AuthenticationLogEntity> val) {
+            authenticationLogs = val;
+            return this;
+        }
+
+        public Builder deviceName(String val) {
+            deviceName = val;
+            return this;
+        }
+
+        public Builder deviceModel(String val) {
+            deviceModel = val;
+            return this;
+        }
+
+        public Builder deviceManufacturer(String val) {
+            deviceManufacturer = val;
+            return this;
+        }
+
+        public Builder operatingSystem(String val) {
+            operatingSystem = val;
+            return this;
+        }
+
+        public Builder deviceOsVersion(String val) {
+            deviceOsVersion = val;
+            return this;
+        }
+
+        public Builder browserName(String val) {
+            browserName = val;
+            return this;
+        }
+
+        public Builder ipAddress(String val) {
+            ipAddress = val;
+            return this;
+        }
+
+        public Builder salt(String val) {
+            salt = val;
+            return this;
+        }
+
+        public Builder hash(String val) {
+            hash = val;
+            return this;
+        }
+
+        public Builder verificationCode(String val) {
+            verificationCode = val;
+            return this;
+        }
+
+        public Builder verificationCodeExpireDate(Timestamp val) {
+            verificationCodeExpireDate = val;
+            return this;
+        }
+
+        public Builder verificationCodeSendDate(Timestamp val) {
+            verificationCodeSendDate = val;
+            return this;
+        }
+
+        public Builder verificationCodeSendCount(BigInteger val) {
+            verificationCodeSendCount = val;
+            return this;
+        }
+
+        public Builder isVerified(Boolean val) {
+            isVerified = val;
+            return this;
+        }
+
+        public Builder isPrimary(Boolean val) {
+            isPrimary = val;
+            return this;
+        }
+
+        public Builder geoPosition(GeoPositionEntity val) {
+            geoPosition = val;
+            return this;
+        }
+
+        public Builder uuid(UUID val) {
+            uuid = val;
+            return this;
+        }
+
+        public Builder version(Long val) {
+            version = val;
+            return this;
+        }
+
+        public Builder processStatus(ProcessStatus val) {
+            processStatus = val;
+            return this;
+        }
+
+        public Builder dataStatus(DataStatus val) {
+            dataStatus = val;
+            return this;
+        }
+
+        public Builder createdDate(Timestamp val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder lastModifiedDate(Timestamp val) {
+            lastModifiedDate = val;
+            return this;
+        }
+
+        public DeviceEntity build() {
+            return new DeviceEntity(this);
+        }
+    }
 }
