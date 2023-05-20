@@ -147,7 +147,7 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
         private Builder() {
         }
 
-        public static Builder anUserSettingsRoot() {
+        public static Builder builder() {
             return new Builder();
         }
 

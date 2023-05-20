@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.AuthenticationLogEntity;
-import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
+import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractAuthenticationLogDataAccessMapper;
 import az.rock.flyjob.auth.root.AuthenticationLogRoot;
 import az.rock.lib.domain.id.AuthenticationLogID;
 import az.rock.lib.util.GDateTime;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class AuthenticationLogDataAccessMapper implements AbstractDataAccessMapper<AuthenticationLogEntity, AuthenticationLogRoot> {
+public class AuthenticationLogDataAccessMapper implements AbstractAuthenticationLogDataAccessMapper<AuthenticationLogEntity, AuthenticationLogRoot> {
 
     private final DeviceDataAccessMapper deviceDataAccessMapper;
 
