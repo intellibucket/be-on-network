@@ -1,6 +1,7 @@
 package az.rock.spec.auth.publics;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
+import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ public interface AuthGetPublicControllerSpec {
     ResponseEntity<JSuccessResponse> live();
 
     @GetMapping("/registry")
-    ResponseEntity<JSuccessResponse> registry(@RequestBody CreateUserCommand credentials);
+    ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody CreateUserCommand credentials);
 
     @PostMapping("/forgotPassword")
     ResponseEntity<JSuccessDataResponse<?>> forgotPassword(String email);
