@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth/1.0/public")
-public class AuthGetPublicController implements AuthGetPublicControllerSpec {
+public class AuthPublicController implements AuthGetPublicControllerSpec {
 
 
     @Override

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth/1.0/private")
-public class AuthGetPrivateController implements AuthGetPrivateControllerSpec {
+public class AuthPrivateController implements AuthGetPrivateControllerSpec {
 
     @Override
     @GetMapping("/live")
