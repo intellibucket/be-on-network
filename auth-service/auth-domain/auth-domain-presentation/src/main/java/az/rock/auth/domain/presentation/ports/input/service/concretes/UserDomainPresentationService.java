@@ -29,6 +29,6 @@ public class UserDomainPresentationService implements AbstractUserDomainPresenta
     public CreateUserResponse createUser(CreateUserCommand createUserCommand) {
         UserCreatedEvent userCreatedEvent = this.userCreateCommandHandler.handle(createUserCommand);
         this.userMessagePublisher.publish(userCreatedEvent);
-        return this.userDomainMapper.toCreateUserResponse(userCreatedEvent);
+        return this.userDomainMapper.toCreateUserResponse(userCreatedEvent.getRoot());
     }
 }
