@@ -29,4 +29,8 @@ public class RootID <ID> {
     public int hashCode() {
         return Objects.hash(uuid);
     }
+
+    public Boolean isNull(){
+        return uuid == null;
+    }
 }

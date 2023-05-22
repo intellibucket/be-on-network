@@ -7,6 +7,6 @@ import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 public class UserDomainService implements AbstractUserDomainService {
     @Override
     public UserCreatedEvent validateAndInitializeUser(UserRoot userRoot) {
-        return null;
+        return UserCreatedEvent.of(userRoot);
     }
 }

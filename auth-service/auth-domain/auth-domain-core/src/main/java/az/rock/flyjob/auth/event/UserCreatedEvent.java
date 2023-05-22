@@ -11,4 +11,8 @@ public class UserCreatedEvent extends AbstractDomainEvent<UserRoot> {
     protected UserCreatedEvent(UserRoot root) {
         super(root);
     }
+
+    public static UserCreatedEvent of(UserRoot root) {
+        return new UserCreatedEvent(root);
+    }
 }

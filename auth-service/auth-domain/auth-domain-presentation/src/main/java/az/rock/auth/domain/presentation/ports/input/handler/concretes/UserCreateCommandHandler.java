@@ -5,10 +5,13 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMappe
 import az.rock.auth.domain.presentation.ports.input.handler.abstracts.AbstractUserCreateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.AbstractUserRepositoryAdapter;
 import az.rock.flyjob.auth.event.UserCreatedEvent;
+import az.rock.auth.domain.presentation.exception.AuthDomainException;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandler {
     private final AbstractUserDomainService userDomainService;
     private final AbstractUserDomainMapper userDomainMapper;
@@ -24,7 +27,10 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
 
     @Override
     public UserCreatedEvent handle(CreateUserCommand createUserCommand) {
-
-        return null;
+        var userRoot = this.userDomainMapper.toUserRoot(createUserCommand);
+        var userCreatedEvent = this.userDomainService.validateAndInitializeUser(userRoot);
+        var savedUserRoot = this.userRepositoryAdapter.create(userCreatedEvent.getRoot());
+        if (savedUserRoot.isNull()) throw new AuthDomainException();
+        return userCreatedEvent;
     }
 }
