@@ -9,23 +9,24 @@ import java.time.ZonedDateTime;
 
 public class PasswordRoot extends AggregateRoot<PasswordID>{
 
-    private final UserRoot user;
     private final String salt;
     private final String hash;
 
     protected PasswordRoot(PasswordID passwordID,
-                           UserRoot user,
                            String salt,
                            String hash) {
         super(passwordID);
-        this.user = user;
         this.salt = salt;
         this.hash = hash;
     }
 
+
+    public static PasswordRoot of(String salt,String hash){
+        return new PasswordRoot(PasswordID.of(),salt, hash);
+    }
+
     private PasswordRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
-        user = builder.user;
         salt = builder.salt;
         hash = builder.hash;
     }
@@ -45,9 +46,7 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
 
     @Override
     public String toString() {
-        return "PasswordRoot{" +
-                "user id=" + user.getUUID().getId() +
-                '}';
+        return "PasswordRoot{}";
     }
 
 
@@ -58,7 +57,6 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
         private DataStatus dataStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
-        private UserRoot user;
         private String salt;
         private String hash;
 
@@ -99,10 +97,6 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
             return this;
         }
 
-        public Builder user(UserRoot val) {
-            user = val;
-            return this;
-        }
 
         public Builder salt(String val) {
             salt = val;

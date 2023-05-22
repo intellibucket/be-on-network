@@ -168,6 +168,11 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
+        public Builder password(PasswordRoot val) {
+            password = Set.of(val);
+            return this;
+        }
+
         public Builder timezone(String val) {
             timezone = val;
             return this;
