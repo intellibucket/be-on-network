@@ -1,6 +1,7 @@
 package az.rock.lib.domain;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class RootID <ID> {
     private final ID uuid;
@@ -11,6 +12,10 @@ public class RootID <ID> {
 
     public static <ID> RootID<ID> of(ID value){
         return new RootID<>(value);
+    }
+
+    public static RootID<UUID> of(){
+        return new RootID<>(UUID.randomUUID());
     }
 
     public ID getUUID() {
@@ -30,7 +35,7 @@ public class RootID <ID> {
         return Objects.hash(uuid);
     }
 
-    public Boolean isNull(){
+    public Boolean isEmpty(){
         return uuid == null;
     }
 }

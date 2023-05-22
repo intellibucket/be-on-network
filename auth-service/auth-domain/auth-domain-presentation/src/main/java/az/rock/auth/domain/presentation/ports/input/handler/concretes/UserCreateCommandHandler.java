@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandler {
     private final AbstractUserDomainService userDomainService;
     private final AbstractUserDomainMapper userDomainMapper;
@@ -30,7 +29,7 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
         var userRoot = this.userDomainMapper.toUserRoot(createUserCommand);
         var userCreatedEvent = this.userDomainService.validateAndInitializeUser(userRoot);
         var savedUserRoot = this.userRepositoryAdapter.create(userCreatedEvent.getRoot());
-        if (savedUserRoot.isNull()) throw new AuthDomainException();
+        if (savedUserRoot.isEmpty()) throw new AuthDomainException();
         return userCreatedEvent;
     }
 }

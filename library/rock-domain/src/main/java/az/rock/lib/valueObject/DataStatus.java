@@ -6,12 +6,7 @@ import az.rock.lib.annotation.ValueObject;
 public enum DataStatus {
     ACTIVE,
     INACTIVE,
-    DELETED,
-    FAILED,
-    FROZEN,
-    ON_PROCESSING,
-    ON_WAITING;
-
+    DELETED;
     public Boolean isActive() {
         return this.equals(ACTIVE);
     }
@@ -23,22 +18,5 @@ public enum DataStatus {
     public Boolean isDeleted() {
         return this.equals(DELETED);
     }
-
-    public Boolean isFailed() {
-        return this.equals(FAILED);
-    }
-
-    public Boolean isFrozen() {
-        return this.equals(FROZEN);
-    }
-
-    public Boolean isOnProcessing() {
-        return this.equals(ON_PROCESSING);
-    }
-
-    public Boolean isOnWaiting() {
-        return this.equals(ON_WAITING);
-    }
-
 
 }
