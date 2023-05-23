@@ -10,10 +10,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication(exclude = {},
         scanBasePackageClasses = {
                 az.rock.flyjob.auth.config.PresentationBeanConfig.class
-                , az.rock.flyjob.auth.config.SwaggerConfig.class
         })
 @ServletComponentScan
-//@EnableSwagger2
 public class AuthServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthServiceApplication.class, args);
