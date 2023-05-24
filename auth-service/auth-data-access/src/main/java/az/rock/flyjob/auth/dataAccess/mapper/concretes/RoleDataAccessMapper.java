@@ -12,18 +12,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleEntity, RoleRoot> {
-    private final AuthorityDataAccessMapper authorityDataAccessMapper;
-
-    public RoleDataAccessMapper(AuthorityDataAccessMapper authorityDataAccessMapper) {
-        this.authorityDataAccessMapper = authorityDataAccessMapper;
-    }
-
     @Override
     public RoleRoot toRoot(RoleEntity entity) {
-        var authorities = entity.getAuthorities()
-                .stream()
-                .map(this.authorityDataAccessMapper::toRoot)
-                .collect(Collectors.toSet());
         return RoleRoot.Builder
                 .builder()
                 .roleID(RoleID.of(entity.getUuid()))
@@ -34,16 +24,11 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
                 .name(entity.getName())
                 .description(entity.getDescription())
-                .authorities(authorities)
                 .build();
     }
 
     @Override
     public RoleEntity toEntity(RoleRoot root) {
-        var authorities = root.getAuthorities()
-                .stream()
-                .map(this.authorityDataAccessMapper::toEntity)
-                .collect(Collectors.toSet());
         return RoleEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
@@ -54,16 +39,11 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
                 .dataStatus(root.getDataStatus())
                 .name(root.getName())
                 .description(root.getDescription())
-                .authorities(authorities)
                 .build();
     }
 
     @Override
     public RoleEntity toNewEntity(RoleRoot root) {
-        var authorities = root.getAuthorities()
-                .stream()
-                .map(this.authorityDataAccessMapper::toNewEntity)
-                .collect(Collectors.toSet());
         return RoleEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
@@ -72,7 +52,6 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
                 .dataStatus(root.getDataStatus())
                 .name(root.getName())
                 .description(root.getDescription())
-                .authorities(authorities)
                 .build();
     }
 }

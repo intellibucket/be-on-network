@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 public interface AuthGetPublicControllerSpec {
     ResponseEntity<JSuccessResponse> live();
 
-    @GetMapping("/registry")
-    ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody CreateUserCommand credentials);
+    ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(CreateUserCommand credentials);
 
-    @PostMapping("/forgotPassword")
     ResponseEntity<JSuccessDataResponse<?>> forgotPassword(String email);
 }

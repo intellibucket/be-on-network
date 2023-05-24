@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/public" ,produces = MediaType.ALL_VALUE)
+@RequestMapping(value = "/auth/1.0/public" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthPublicController implements AuthGetPublicControllerSpec {
 
     private final AbstractUserDomainPresentationService userDomainPresentationService;

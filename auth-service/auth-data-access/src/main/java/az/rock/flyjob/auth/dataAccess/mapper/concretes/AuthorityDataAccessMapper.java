@@ -12,20 +12,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMapper<AuthorityEntity, AuthorityRoot> {
-    private final RoleDataAccessMapper roleDataAccessMapper;
-
-
-
-    public AuthorityDataAccessMapper(RoleDataAccessMapper roleDataAccessMapper) {
-        this.roleDataAccessMapper = roleDataAccessMapper;
-    }
 
     @Override
     public AuthorityRoot toRoot(AuthorityEntity entity) {
-        var roleRoots = entity.getRoles()
-                .stream()
-                .map(this.roleDataAccessMapper::toRoot)
-                .collect(Collectors.toSet());
         return AuthorityRoot.Builder
                 .builder()
                 .id(AuthorityID.of(entity.getUuid()))
@@ -36,16 +25,11 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .dataStatus(entity.getDataStatus())
                 .permission(entity.getPermission())
                 .description(entity.getDescription())
-                .roles(roleRoots)
                 .build();
     }
 
     @Override
     public AuthorityEntity toEntity(AuthorityRoot root) {
-        var roleEntities = root.getRoles()
-                .stream()
-                .map(this.roleDataAccessMapper::toEntity)
-                .collect(Collectors.toSet());
         return AuthorityEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getUUID())
@@ -56,16 +40,11 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .dataStatus(root.getDataStatus())
                 .description(root.getDescription())
                 .permission(root.getPermission())
-                .roles(roleEntities)
                 .build();
     }
 
     @Override
     public AuthorityEntity toNewEntity(AuthorityRoot root) {
-        var roleEntities = root.getRoles()
-                .stream()
-                .map(this.roleDataAccessMapper::toNewEntity)
-                .collect(Collectors.toSet());
         return AuthorityEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
@@ -76,7 +55,6 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .dataStatus(root.getDataStatus())
                 .description(root.getDescription())
                 .permission(root.getPermission())
-                .roles(roleEntities)
                 .build();
     }
 }
