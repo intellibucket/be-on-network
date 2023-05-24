@@ -12,19 +12,6 @@ import java.util.stream.Collectors;
 @Component
 public class DeviceDataAccessMapper  implements AbstractDataAccessMapper<DeviceEntity, DeviceRoot> {
 
-    private final AuthenticationLogDataAccessMapper authenticationLogDataAccessMapper;
-
-    private final GeoPositionDataAccessMapper geoPositionDataAccessMapper;
-
-    private final UserDataAccessMapper userDataAccessMapper;
-    public DeviceDataAccessMapper(AuthenticationLogDataAccessMapper authenticationLogDataAccessMapper,
-                                  GeoPositionDataAccessMapper geoPositionDataAccessMapper,
-                                  UserDataAccessMapper userDataAccessMapper) {
-        this.authenticationLogDataAccessMapper = authenticationLogDataAccessMapper;
-        this.geoPositionDataAccessMapper = geoPositionDataAccessMapper;
-        this.userDataAccessMapper = userDataAccessMapper;
-    }
-
     @Override
     public DeviceRoot toRoot(DeviceEntity entity) {
         return DeviceRoot.Builder
@@ -34,12 +21,6 @@ public class DeviceDataAccessMapper  implements AbstractDataAccessMapper<DeviceE
 
     @Override
     public DeviceEntity toEntity(DeviceRoot root) {
-        var userEntity = this.userDataAccessMapper.toEntity(root.getUser());
-        var geoPositionEntity = this.geoPositionDataAccessMapper.toEntity(root.getGeoPosition());
-        var authenticationLogEntity = root.getAuthenticationLogs()
-                .stream()
-                .map(this.authenticationLogDataAccessMapper::toEntity)
-                .collect(Collectors.toSet());
         return DeviceEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
@@ -48,9 +29,6 @@ public class DeviceDataAccessMapper  implements AbstractDataAccessMapper<DeviceE
                 .dataStatus(root.getDataStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
-                .user(userEntity)
-                .geoPosition(geoPositionEntity)
-                .authenticationLogs(authenticationLogEntity)
                 .deviceName(root.getDeviceName())
                 .deviceModel(root.getDeviceModel())
                 .deviceManufacturer(root.getDeviceManufacturer())
@@ -71,19 +49,10 @@ public class DeviceDataAccessMapper  implements AbstractDataAccessMapper<DeviceE
 
     @Override
     public DeviceEntity toNewEntity(DeviceRoot root) {
-        var userEntity = this.userDataAccessMapper.toNewEntity(root.getUser());
-        var geoPositionEntity = this.geoPositionDataAccessMapper.toNewEntity(root.getGeoPosition());
-        var authenticationLogEntity = root.getAuthenticationLogs()
-                .stream()
-                .map(this.authenticationLogDataAccessMapper::toNewEntity)
-                .collect(Collectors.toSet());
         return DeviceEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
                 .version(1L)
-                .user(userEntity)
-                .geoPosition(geoPositionEntity)
-                .authenticationLogs(authenticationLogEntity)
                 .deviceName(root.getDeviceName())
                 .deviceModel(root.getDeviceModel())
                 .deviceManufacturer(root.getDeviceManufacturer())

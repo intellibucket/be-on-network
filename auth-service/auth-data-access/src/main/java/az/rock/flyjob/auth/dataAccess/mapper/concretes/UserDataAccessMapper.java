@@ -11,14 +11,6 @@ import java.util.UUID;
 
 @Component
 public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEntity, UserRoot> {
-    private final PasswordDataAccessMapper passwordDataAccessMapper;
-    private final DetailDataAccessMapper detailDataAccessMapper;
-
-    public UserDataAccessMapper(PasswordDataAccessMapper passwordDataAccessMapper,
-                                DetailDataAccessMapper detailDataAccessMapper) {
-        this.passwordDataAccessMapper = passwordDataAccessMapper;
-        this.detailDataAccessMapper = detailDataAccessMapper;
-    }
 
     @Override
     public UserRoot toRoot(UserEntity entity) {

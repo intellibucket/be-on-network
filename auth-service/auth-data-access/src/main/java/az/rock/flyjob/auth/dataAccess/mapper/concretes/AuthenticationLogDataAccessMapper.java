@@ -12,12 +12,6 @@ import java.util.UUID;
 @Component
 public class AuthenticationLogDataAccessMapper implements AbstractAuthenticationLogDataAccessMapper<AuthenticationLogEntity, AuthenticationLogRoot> {
 
-    private final DeviceDataAccessMapper deviceDataAccessMapper;
-
-    public AuthenticationLogDataAccessMapper(DeviceDataAccessMapper deviceDataAccessMapper) {
-        this.deviceDataAccessMapper = deviceDataAccessMapper;
-    }
-
     @Override
     public AuthenticationLogRoot toRoot(AuthenticationLogEntity entity) {
         return AuthenticationLogRoot.Builder
@@ -28,7 +22,6 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
                 .dataStatus(entity.getDataStatus())
                 .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
                 .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
-                .device(this.deviceDataAccessMapper.toRoot(entity.getDevice()))
                 .deviceToken(entity.getDeviceToken())
                 .build();
     }
@@ -43,7 +36,6 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
                 .dataStatus(root.getDataStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
-                .device(this.deviceDataAccessMapper.toEntity(root.getDevice()))
                 .deviceToken(root.getDeviceToken())
                 .build();
     }
@@ -56,7 +48,6 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
                 .version(1L)
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getDataStatus())
-                .device(this.deviceDataAccessMapper.toNewEntity(root.getDevice()))
                 .deviceToken(root.getDeviceToken())
                 .build();
     }
