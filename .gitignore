@@ -12,10 +12,12 @@ target/
 *.iml
 *.ipr
 
+
 ### Sensitive Data ###
 *.env.*
 *.log
 *.txt
+*.gz
 
 ### Eclipse ###
 .apt_generated
