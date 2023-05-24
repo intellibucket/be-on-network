@@ -1,4 +1,6 @@
 package az.rock.flyjob.auth.service.concretes;
 
-public class DetailDomainService {
+import az.rock.flyjob.auth.service.abstracts.AbstractDetailDomainService;
+
+public class DetailDomainService implements AbstractDetailDomainService {
 }

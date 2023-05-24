@@ -1,4 +1,6 @@
 package az.rock.flyjob.auth.service.concretes;
 
-public class PasswordDomainService {
+import az.rock.flyjob.auth.service.abstracts.AbstractPasswordDomainService;
+
+public class PasswordDomainService implements AbstractPasswordDomainService {
 }

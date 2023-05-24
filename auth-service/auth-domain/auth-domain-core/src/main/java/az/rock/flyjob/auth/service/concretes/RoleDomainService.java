@@ -1,4 +1,6 @@
 package az.rock.flyjob.auth.service.concretes;
 
-public class RoleDomainService {
+import az.rock.flyjob.auth.service.abstracts.AbstractRoleDomainService;
+
+public class RoleDomainService implements AbstractRoleDomainService {
 }
