@@ -24,7 +24,7 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
     }
 
     @Override
-    public UserRoot toUserRoot(CreateUserCommand createUserCommand) {
+    public UserRoot toNewUserRoot(CreateUserCommand createUserCommand) {
         return UserRoot.Builder
                 .builder()
                 .id(UserID.of(UUID.randomUUID()))

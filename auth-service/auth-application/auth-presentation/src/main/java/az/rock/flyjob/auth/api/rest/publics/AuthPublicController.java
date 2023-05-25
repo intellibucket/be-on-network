@@ -31,7 +31,7 @@ public class AuthPublicController implements AuthGetPublicControllerSpec {
 
 
     @Override
-    @GetMapping(value = "/registry")
+    @PostMapping(value = "/registry")
     public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody @Valid CreateUserCommand credentials) {
         var response  = this.userDomainPresentationService.createUser(credentials);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response,"Success private result"));

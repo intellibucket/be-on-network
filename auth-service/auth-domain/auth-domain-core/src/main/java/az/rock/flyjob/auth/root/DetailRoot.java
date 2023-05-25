@@ -10,9 +10,13 @@ import java.util.Set;
 
 public class DetailRoot extends AggregateRoot<DetailID> {
 
-    private final UserRoot user;
+    private UserRoot user;
 
     private final Set<RoleRoot> roles;
+
+    public void setUserRoot(UserRoot userRoot) {
+        this.user = userRoot;
+    }
 
     public DetailRoot(DetailID detailID,
                       Long version,
