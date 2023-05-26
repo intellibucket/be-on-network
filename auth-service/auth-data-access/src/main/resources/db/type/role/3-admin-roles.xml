@@ -1,0 +1,16 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="role-type-insert-super-admin-1" author="Vugar Mammadli">
+        <preConditions>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_SUPER_ADMIN';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:12:54.617545', null, 'ROLE_SUPER_ADMIN', 'Role for Super Admin');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

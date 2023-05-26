@@ -3,16 +3,6 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="role-type-insert-admin-1" author="Vugar Mammadli">
-        <preConditions>
-            <sqlCheck expectedResult="0">
-                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_ADMIN';
-            </sqlCheck>
-        </preConditions>
-        <sql>
-            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:12:54.617545', null, 'ROLE_ADMIN', 'Role for Admin');
-        </sql>
-    </changeSet>
     <changeSet id="role-type-insert-job-seeker-2" author="Vugar Mammadli">
         <preConditions>
             <sqlCheck expectedResult="0">
