@@ -31,6 +31,10 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
         hash = builder.hash;
     }
 
+    public Boolean currentPassword(){
+        return this.getDataStatus().isActive();
+    }
+
     public String getSalt() {
         return salt;
     }
@@ -39,16 +43,14 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
         return hash;
     }
 
-
-
-
-
+    public Boolean inActivePassword() {
+        return this.getDataStatus().isInactive();
+    }
 
     @Override
     public String toString() {
         return "PasswordRoot{}";
     }
-
 
     public static final class Builder {
         private PasswordID id;

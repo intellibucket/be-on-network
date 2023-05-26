@@ -3,58 +3,31 @@ package az.rock.flyjob.auth.root;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.TimeZoneID;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class UserRoot extends AggregateRoot<UserID> {
-
     private final UUID key;
     private final String firstName;
     private final String lastName;
     private final String username;
-    private Set<PasswordRoot> password = new HashSet<>();
-    private final String timezone;
-    private final String email;
-    private DetailRoot detailRoot;
+    private final TimeZoneID timezone;
+    private final Gender gender;
+    private final Set<PasswordRoot> passwords;
+    private final Set<EmailRoot> emails;
+    private final Set<PhoneNumberRoot> phoneNumbers;
+    private final DetailRoot detailRoot;
+    private final Set<AccountPlanRoot> accountPlans;
+    private final Set<DeviceRoot> devices;
+    private final UserSettingsRoot userSettingsRoot;
 
-    public void setUserRootAndDetailRootPair(DetailRoot detailRoot) {
-        detailRoot.setUserRoot(this);
-        this.detailRoot = detailRoot;
-    }
-
-    public void setPassword(Set<PasswordRoot> password) {
-        if (this.password == null) this.password = password;
-        else this.password.addAll(password);
-    }
-
-    protected UserRoot(UserID userID,
-                       Long version,
-                       ProcessStatus processStatus,
-                       DataStatus dataStatus,
-                       ZonedDateTime createdDate,
-                       ZonedDateTime modificationDate,
-                       UUID key,
-                       String firstName,
-                       String lastName,
-                       String username,
-                       Set<PasswordRoot> password,
-                       String timezone,
-                       String email,
-                       DetailRoot detailRoot) {
-        super(userID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.key = key;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.timezone = timezone;
-        this.email = email;
-        this.detailRoot = detailRoot;
-    }
 
     private UserRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
@@ -62,10 +35,15 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.username = builder.username;
-        this.password = builder.password;
+        this.passwords = builder.password;
         this.timezone = builder.timezone;
-        this.email = builder.email;
-        this.detailRoot = builder.account;
+        this.emails = builder.emails;
+        this.detailRoot = builder.detail;
+        this.gender = builder.gender;
+        this.phoneNumbers = builder.phoneNumbers;
+        this.accountPlans = builder.accountPlans;
+        this.devices = builder.devices;
+        this.userSettingsRoot = builder.userSettingsRoot;
     }
 
     public UUID getKey() {
@@ -85,25 +63,42 @@ public class UserRoot extends AggregateRoot<UserID> {
     }
 
     public Set<PasswordRoot> getPasswords() {
-        return password;
+        return passwords;
     }
 
-    public String getTimezone() {
+    public Set<PasswordRoot> getInActivePasswords() {
+        return passwords.stream().filter(PasswordRoot::inActivePassword).collect(Collectors.toSet());
+    }
+    public PasswordRoot getCurrentPassword() {
+        return passwords.stream().filter(PasswordRoot::currentPassword).findFirst().orElse(null);
+    }
+
+    public TimeZoneID getTimezone() {
         return timezone;
     }
 
-    public String getEmail() {
-        return email;
+
+    public Set<EmailRoot> getEmails() {
+        return emails;
+    }
+
+    public EmailRoot getPrimaryEmail() {
+        return this.emails.stream().filter(EmailRoot::getPrimary).findFirst().orElse(null);
+    }
+
+    public String getAbsoluteEmail() {
+        return this.getPrimaryEmail().getEmail();
     }
 
     public DetailRoot getDetailRoot() {
         return detailRoot;
     }
 
-
+    public Gender getGender() {
+        return gender;
+    }
 
     public static final class Builder {
-
         private UserID id;
         private Long version;
         private ProcessStatus processStatus;
@@ -114,10 +109,16 @@ public class UserRoot extends AggregateRoot<UserID> {
         private String firstName;
         private String lastName;
         private String username;
+        private TimeZoneID timezone;
+        public Gender gender;
         private Set<PasswordRoot> password = new HashSet<>();
-        private String timezone;
-        private String email;
-        private DetailRoot account;
+        private Set<EmailRoot> emails = new HashSet<>();
+        private Set<PhoneNumberRoot> phoneNumbers = new HashSet<>();
+        private DetailRoot detail;
+        public Set<AccountPlanRoot> accountPlans = new HashSet<>();
+        public Set<DeviceRoot> devices  = new HashSet<>();
+        public UserSettingsRoot userSettingsRoot ;
+
 
         private Builder() {
         }
@@ -176,7 +177,7 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder password(Set<PasswordRoot> val) {
+        public Builder passwords(Set<PasswordRoot> val) {
             password = val;
             return this;
         }
@@ -186,18 +187,63 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder timezone(String val) {
+        public Builder timezone(TimeZoneID val) {
             timezone = val;
             return this;
         }
 
-        public Builder email(String val) {
-            email = val;
+        public Builder gender(Gender val){
+            gender = val;
+            return this;
+        }
+
+        public Builder email(Set<EmailRoot> val) {
+            emails = val;
+            return this;
+        }
+
+        public Builder email(EmailRoot val) {
+            emails = Set.of(val);
+            return this;
+        }
+
+        public Builder phoneNumbers(Set<PhoneNumberRoot> val) {
+            phoneNumbers = val;
+            return this;
+        }
+
+        public Builder phoneNumber(PhoneNumberRoot val) {
+            phoneNumbers = Set.of(val);
             return this;
         }
 
         public Builder account(DetailRoot val) {
-            account = val;
+            detail = val;
+            return this;
+        }
+
+        public Builder accountPlans(Set<AccountPlanRoot> val) {
+            accountPlans = val;
+            return this;
+        }
+
+        public Builder accountPlan(AccountPlanRoot val) {
+            accountPlans = Set.of(val);
+            return this;
+        }
+
+        public Builder devices(Set<DeviceRoot> val) {
+            devices = val;
+            return this;
+        }
+
+        public Builder device(DeviceRoot val) {
+            devices = Set.of(val);
+            return this;
+        }
+
+        public Builder userSettings(UserSettingsRoot val) {
+            userSettingsRoot = val;
             return this;
         }
 
