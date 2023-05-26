@@ -1,20 +1,23 @@
 package az.rock.lib.valueObject;
 
+import az.rock.lib.annotation.ValueObject;
+
 import java.util.TimeZone;
 
-public class TimeZoneValue {
+@ValueObject
+public class TimeZoneID {
     private final String timezone;
 
-    private TimeZoneValue(String timezone) {
+    private TimeZoneID(String timezone) {
         this.timezone = timezone;
     }
 
-    public static TimeZoneValue of(String timezone){
-        return new TimeZoneValue(timezone);
+    public static TimeZoneID of(String timezone){
+        return new TimeZoneID(timezone);
     }
 
-    public static TimeZoneValue of(TimeZone timezone){
-        return new TimeZoneValue(timezone.getID());
+    public static TimeZoneID of(TimeZone timezone){
+        return new TimeZoneID(timezone.getID());
     }
 
     public Boolean isTimezone(String timezone){

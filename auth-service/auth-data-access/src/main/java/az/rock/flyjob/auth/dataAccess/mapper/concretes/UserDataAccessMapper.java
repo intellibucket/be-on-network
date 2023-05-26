@@ -5,7 +5,7 @@ import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserDataAccessMap
 import az.rock.flyjob.auth.root.UserRoot;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.util.GDateTime;
-import az.rock.lib.valueObject.TimeZoneValue;
+import az.rock.lib.valueObject.TimeZoneID;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -27,7 +27,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .username(entity.getUsername())
-                .timezone(TimeZoneValue.of(entity.getTimezone()))
+                .timezone(TimeZoneID.of(entity.getTimezone()))
                 .build();
     }
 

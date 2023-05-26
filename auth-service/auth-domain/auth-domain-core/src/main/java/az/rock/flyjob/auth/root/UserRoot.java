@@ -5,7 +5,7 @@ import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.ProcessStatus;
-import az.rock.lib.valueObject.TimeZoneValue;
+import az.rock.lib.valueObject.TimeZoneID;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -18,7 +18,7 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final String firstName;
     private final String lastName;
     private final String username;
-    private final TimeZoneValue timezone;
+    private final TimeZoneID timezone;
     private final Gender gender;
     private final Set<PasswordRoot> passwords;
     private final Set<EmailRoot> emails;
@@ -73,7 +73,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         return passwords.stream().filter(PasswordRoot::currentPassword).findFirst().orElse(null);
     }
 
-    public TimeZoneValue getTimezone() {
+    public TimeZoneID getTimezone() {
         return timezone;
     }
 
@@ -109,7 +109,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         private String firstName;
         private String lastName;
         private String username;
-        private TimeZoneValue timezone;
+        private TimeZoneID timezone;
         public Gender gender;
         private Set<PasswordRoot> password = new HashSet<>();
         private Set<EmailRoot> emails = new HashSet<>();
@@ -187,7 +187,7 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder timezone(TimeZoneValue val) {
+        public Builder timezone(TimeZoneID val) {
             timezone = val;
             return this;
         }
