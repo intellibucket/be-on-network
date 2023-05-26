@@ -2,6 +2,8 @@ package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
+import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDetailDomainMapper;
+import az.rock.auth.domain.presentation.mapper.abstracts.AbstractEmailDomainMapper;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractPasswordDomainMapper;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
 import az.rock.flyjob.auth.root.UserRoot;
@@ -15,16 +17,26 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
 
     private final AbstractPasswordDomainMapper passwordDomainMapper;
 
-    public UserDomainMapper(AbstractPasswordDomainMapper passwordDomainMapper) {
+    private final AbstractDetailDomainMapper detailDomainMapper;
+
+    private final AbstractEmailDomainMapper emailDomainMapper;
+
+    public UserDomainMapper(AbstractPasswordDomainMapper passwordDomainMapper,
+                            AbstractDetailDomainMapper detailDomainMapper,
+                            AbstractEmailDomainMapper emailDomainMapper) {
         this.passwordDomainMapper = passwordDomainMapper;
+        this.detailDomainMapper = detailDomainMapper;
+        this.emailDomainMapper = emailDomainMapper;
     }
 
     public CreateUserResponse toCreateUserResponse(UserRoot userRoot) {
-        return new CreateUserResponse(userRoot.getUUID().getId(), userRoot.getUsername(), userRoot.getEmail());
+        return new CreateUserResponse(userRoot.getUUID().getId(), userRoot.getUsername(), userRoot.getAbsoluteEmail());
     }
 
     @Override
     public UserRoot toNewUserRoot(CreateUserCommand createUserCommand) {
+        var emailRoot = this.emailDomainMapper.toNewEmailRoot(createUserCommand.getEmail());
+        var passwordRoot = this.passwordDomainMapper.toNewPasswordRoot(createUserCommand.getPassword());
         return UserRoot.Builder
                 .builder()
                 .id(UserID.of(UUID.randomUUID()))
@@ -32,8 +44,8 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .username(createUserCommand.getUsername())
                 .firstName(createUserCommand.getFirstName())
                 .lastName(createUserCommand.getLastName())
-                .email(createUserCommand.getEmail())
-                .password(this.passwordDomainMapper.toNewPasswordRoot(createUserCommand.getPassword()))
+                .email(emailRoot)
+                .password(passwordRoot)
                 .build();
     }
 }
