@@ -6,6 +6,7 @@ import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -15,10 +16,20 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final String firstName;
     private final String lastName;
     private final String username;
-    private final Set<PasswordRoot> password;
+    private Set<PasswordRoot> password = new HashSet<>();
     private final String timezone;
     private final String email;
-    private final DetailRoot account;
+    private DetailRoot detailRoot;
+
+    public void setUserRootAndDetailRootPair(DetailRoot detailRoot) {
+        detailRoot.setUserRoot(this);
+        this.detailRoot = detailRoot;
+    }
+
+    public void setPassword(Set<PasswordRoot> password) {
+        if (this.password == null) this.password = password;
+        else this.password.addAll(password);
+    }
 
     protected UserRoot(UserID userID,
                        Long version,
@@ -33,7 +44,7 @@ public class UserRoot extends AggregateRoot<UserID> {
                        Set<PasswordRoot> password,
                        String timezone,
                        String email,
-                       DetailRoot account) {
+                       DetailRoot detailRoot) {
         super(userID, version, processStatus, dataStatus, createdDate, modificationDate);
         this.key = key;
         this.firstName = firstName;
@@ -42,7 +53,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.password = password;
         this.timezone = timezone;
         this.email = email;
-        this.account = account;
+        this.detailRoot = detailRoot;
     }
 
     private UserRoot(Builder builder) {
@@ -54,7 +65,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.password = builder.password;
         this.timezone = builder.timezone;
         this.email = builder.email;
-        this.account = builder.account;
+        this.detailRoot = builder.account;
     }
 
     public UUID getKey() {
@@ -85,9 +96,11 @@ public class UserRoot extends AggregateRoot<UserID> {
         return email;
     }
 
-    public DetailRoot getAccount() {
-        return account;
+    public DetailRoot getDetailRoot() {
+        return detailRoot;
     }
+
+
 
     public static final class Builder {
 
@@ -101,7 +114,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         private String firstName;
         private String lastName;
         private String username;
-        private Set<PasswordRoot> password;
+        private Set<PasswordRoot> password = new HashSet<>();
         private String timezone;
         private String email;
         private DetailRoot account;

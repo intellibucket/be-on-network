@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.AccountPlanEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.AccountPlanEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractAccountPlanDataAccessMapper;
 import az.rock.flyjob.auth.root.AccountPlanRoot;
 import az.rock.lib.domain.id.AccountPlanID;
@@ -28,7 +28,7 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
                 .dataStatus(entity.getDataStatus())
                 .createdDate(GDateTime.of(entity.getCreatedDate()))
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
-                .user(userDataAccessMapper.toRoot(entity.getUserEntity()))
+                .user(userDataAccessMapper.toRoot(entity.getUser()))
                 .plan(entity.getPlan())
                 .startDate(GDateTime.of(entity.getStartDate()))
                 .expiredDate(GDateTime.of(entity.getExpiredDate()))

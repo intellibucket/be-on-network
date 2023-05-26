@@ -1,6 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user.device;
 
-import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

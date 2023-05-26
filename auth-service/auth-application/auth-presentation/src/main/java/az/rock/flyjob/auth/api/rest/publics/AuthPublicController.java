@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.api.rest.publics;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
-import az.rock.auth.domain.presentation.ports.input.service.abstracts.AbstractUserDomainPresentationService;
+import az.rock.auth.domain.presentation.service.abstracts.AbstractUserDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.spec.auth.publics.AuthGetPublicControllerSpec;
@@ -31,7 +31,7 @@ public class AuthPublicController implements AuthGetPublicControllerSpec {
 
 
     @Override
-    @GetMapping(value = "/registry")
+    @PostMapping(value = "/registry")
     public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(@RequestBody @Valid CreateUserCommand credentials) {
         var response  = this.userDomainPresentationService.createUser(credentials);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response,"Success private result"));

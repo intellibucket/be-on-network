@@ -3,18 +3,18 @@
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="auth-persistence" transaction-type="RESOURCE_LOCAL">
-        <class>az.rock.flyjob.auth.dataAccess.entity.UserSettingsEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.GeoPositionEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.UserSettingsEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.device.GeoPositionEntity</class>
 
-        <class>az.rock.flyjob.auth.dataAccess.entity.EmailEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.DeviceEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.AccountPlanEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.EmailEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.AccountPlanEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.entity.AuthorityEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.PasswordEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.UserEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.entity.DetailEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.PasswordEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.UserEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity</class>
 
-        <class>az.rock.flyjob.auth.dataAccess.entity.PhoneNumberEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.entity.user.PhoneNumberEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.entity.RoleEntity</class>
     </persistence-unit>
 </persistence>

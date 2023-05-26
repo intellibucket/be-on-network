@@ -1,5 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user;
 
+import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
@@ -17,7 +18,7 @@ import lombok.Setter;
 public class PasswordEntity extends BaseEntity {
 
     @ManyToOne
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @Column(name = "salt", nullable = false)
     private String salt;

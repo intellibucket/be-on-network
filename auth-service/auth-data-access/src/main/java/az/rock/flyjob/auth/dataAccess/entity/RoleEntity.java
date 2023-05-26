@@ -1,5 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
+import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;

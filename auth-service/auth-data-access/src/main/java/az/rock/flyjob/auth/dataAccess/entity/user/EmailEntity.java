@@ -1,6 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user;
 
-import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.EmailType;
 import jakarta.persistence.Column;
@@ -25,7 +25,7 @@ import java.sql.Timestamp;
 public class EmailEntity extends BaseEntity {
 
     @ManyToOne
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @Column(name = "type", nullable = false)
     private EmailType type;

@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.EmailEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.EmailEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractEmailDataAccessMapper;
 import az.rock.flyjob.auth.root.EmailRoot;
 import org.springframework.stereotype.Component;

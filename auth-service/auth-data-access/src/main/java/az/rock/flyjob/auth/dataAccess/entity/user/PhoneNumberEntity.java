@@ -1,6 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user;
 
-import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.PhoneNumberType;
 import jakarta.persistence.*;
@@ -21,7 +21,7 @@ import java.sql.Timestamp;
 public class PhoneNumberEntity extends BaseEntity {
 
     @ManyToOne
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @Column(name = "country_code", length = 1, nullable = false)
     private String countryCode;
