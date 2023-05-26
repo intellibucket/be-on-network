@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user.device;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;

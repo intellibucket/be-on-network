@@ -1,5 +1,7 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user;
 
+import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.Gender;
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -51,8 +54,26 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PasswordEntity> passwords;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<EmailEntity> emails;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PhoneNumberEntity> phoneNumbers;
+
     @OneToOne(cascade = CascadeType.ALL)
     private DetailEntity detail;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<AccountPlanEntity> accountPlans;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<DeviceEntity> devices;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserSettingsEntity settings;
 
     private UserEntity(Builder builder) {
         setKey(builder.key);

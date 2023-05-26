@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccountPlanType;
@@ -25,7 +25,7 @@ import java.util.UUID;
 public class AccountPlanEntity extends BaseEntity {
 
     @ManyToOne
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @Column(name = "plan", nullable = false, length = 100,columnDefinition = "varchar(20) default 'FREE'")
     private AccountPlanType plan;
@@ -43,7 +43,7 @@ public class AccountPlanEntity extends BaseEntity {
     private String promoCode;
 
     private AccountPlanEntity(Builder builder) {
-        setUserEntity(builder.userEntity);
+        setUser(builder.userEntity);
         setPlan(builder.plan);
         setStartDate(builder.startDate);
         setExpiredDate(builder.expiredDate);

@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.UserSettingsEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.UserSettingsEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserSettingsDataAccessMapper;
 import az.rock.flyjob.auth.root.UserSettingsRoot;
 import az.rock.lib.util.GDateTime;

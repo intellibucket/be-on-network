@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.PhoneNumberEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAccessMapper;
 import az.rock.flyjob.auth.root.PhoneNumberRoot;
 import org.springframework.stereotype.Component;

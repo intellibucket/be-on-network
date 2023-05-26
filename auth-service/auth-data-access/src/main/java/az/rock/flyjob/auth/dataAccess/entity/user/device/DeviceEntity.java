@@ -1,6 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.entity;
+package az.rock.flyjob.auth.dataAccess.entity.user.device;
 
-import az.rock.flyjob.auth.dataAccess.entity.UserEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigInteger;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
@@ -27,7 +26,7 @@ public class DeviceEntity extends BaseEntity {
     @ManyToOne
     private UserEntity user;
 
-    @OneToMany(mappedBy = "device")
+    @OneToMany(mappedBy = "device",cascade = CascadeType.ALL)
     private Set<AuthenticationLogEntity> authenticationLogs;
 
     @Column(name = "device_name", length = 100)

@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.repository;
 
-import az.rock.flyjob.auth.dataAccess.entity.DeviceEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

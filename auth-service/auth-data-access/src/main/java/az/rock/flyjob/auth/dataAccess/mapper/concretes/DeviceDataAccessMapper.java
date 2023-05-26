@@ -1,13 +1,12 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.DeviceEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.root.DeviceRoot;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 public class DeviceDataAccessMapper  implements AbstractDataAccessMapper<DeviceEntity, DeviceRoot> {
