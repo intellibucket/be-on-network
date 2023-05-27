@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter;
 import az.rock.auth.domain.presentation.ports.output.repository.AbstractPasswordRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.PasswordDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.PasswordJPARepository;
-import az.rock.flyjob.auth.root.PasswordRoot;
+import az.rock.flyjob.auth.root.user.PasswordRoot;
 import org.springframework.stereotype.Component;
 
 @Component

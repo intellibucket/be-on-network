@@ -1,7 +1,8 @@
-package az.rock.flyjob.auth.root;
+package az.rock.flyjob.auth.root.user;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.PasswordID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
@@ -9,24 +10,29 @@ import java.time.ZonedDateTime;
 
 public class PasswordRoot extends AggregateRoot<PasswordID>{
 
+    private final UserID userID;
+
     private final String salt;
     private final String hash;
 
     protected PasswordRoot(PasswordID passwordID,
+                           UserID userID,
                            String salt,
                            String hash) {
         super(passwordID);
+        this.userID = userID;
         this.salt = salt;
         this.hash = hash;
     }
 
 
-    public static PasswordRoot of(String salt,String hash){
-        return new PasswordRoot(PasswordID.of(),salt, hash);
+    public static PasswordRoot of(UserID userID,String salt,String hash){
+        return new PasswordRoot(PasswordID.of(),userID,salt, hash);
     }
 
     private PasswordRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        userID = builder.userID;
         salt = builder.salt;
         hash = builder.hash;
     }
@@ -59,6 +65,8 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
         private DataStatus dataStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
+
+        private UserID userID;
         private String salt;
         private String hash;
 
@@ -99,6 +107,11 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
             return this;
         }
 
+        public Builder userID(UserID val) {
+            userID = val;
+            return this;
+        }
+
 
         public Builder salt(String val) {
             salt = val;
@@ -112,6 +125,13 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
 
         public PasswordRoot build() {
             return new PasswordRoot(this);
+        }
+
+        @Override
+        public String toString() {
+            return "Builder{" +
+                    "id=" + id +
+                    '}';
         }
     }
 }

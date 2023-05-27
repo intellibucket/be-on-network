@@ -1,6 +1,5 @@
 package az.rock.flyjob.auth.root.user;
 
-import az.rock.flyjob.auth.root.*;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
 import az.rock.lib.domain.AggregateRoot;
@@ -86,7 +85,7 @@ public class UserRoot extends AggregateRoot<UserID> {
     }
 
     public EmailRoot getPrimaryEmail() {
-        return this.emails.stream().filter(EmailRoot::getPrimary).findFirst().orElse(null);
+        return this.emails.stream().filter(EmailRoot::isPrimary).findFirst().orElse(null);
     }
 
     public String getAbsoluteEmail() {

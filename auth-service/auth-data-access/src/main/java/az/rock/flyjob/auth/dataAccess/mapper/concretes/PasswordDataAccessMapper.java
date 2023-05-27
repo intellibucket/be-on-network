@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.PasswordEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPasswordDataAccessMapper;
-import az.rock.flyjob.auth.root.PasswordRoot;
+import az.rock.flyjob.auth.root.user.PasswordRoot;
 import org.springframework.stereotype.Component;
 
 @Component

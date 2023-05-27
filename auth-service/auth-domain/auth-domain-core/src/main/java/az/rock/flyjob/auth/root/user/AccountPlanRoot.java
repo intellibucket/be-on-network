@@ -1,8 +1,8 @@
-package az.rock.flyjob.auth.root;
+package az.rock.flyjob.auth.root.user;
 
-import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.AccountPlanID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.AccountPlanType;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 
 public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
 
-    private final UserRoot user;
+    private final UserID userID;
 
     private final AccountPlanType plan;
 
@@ -30,14 +30,14 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
                            DataStatus dataStatus,
                            ZonedDateTime createdDate,
                            ZonedDateTime modificationDate,
-                           UserRoot user,
+                           UserID userID,
                            AccountPlanType plan,
                            ZonedDateTime startDate,
                            ZonedDateTime expiredDate,
                            Boolean isExpired,
                            String promoCode) {
         super(accountPlanID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.user = user;
+        this.userID = userID;
         this.plan = plan;
         this.startDate = startDate;
         this.expiredDate = expiredDate;
@@ -47,7 +47,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
 
     private AccountPlanRoot(Builder builder) {
         super(builder.accountPlanID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
-        user = builder.user;
+        userID = builder.userID;
         plan = builder.plan;
         startDate = builder.startDate;
         expiredDate = builder.expiredDate;
@@ -55,8 +55,8 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
         promoCode = builder.promoCode;
     }
 
-    public UserRoot getUser() {
-        return user;
+    public UserID getUserID() {
+        return userID;
     }
 
     public AccountPlanType getPlan() {
@@ -86,7 +86,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
         private DataStatus dataStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
-        private UserRoot user;
+        private UserID userID;
         private AccountPlanType plan;
         private ZonedDateTime startDate;
         private ZonedDateTime expiredDate;
@@ -130,8 +130,8 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
             return this;
         }
 
-        public Builder user(UserRoot val) {
-            user = val;
+        public Builder user(UserID val) {
+            userID = val;
             return this;
         }
 

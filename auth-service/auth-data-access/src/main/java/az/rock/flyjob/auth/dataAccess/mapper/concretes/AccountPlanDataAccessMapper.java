@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.AccountPlanEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractAccountPlanDataAccessMapper;
-import az.rock.flyjob.auth.root.AccountPlanRoot;
+import az.rock.flyjob.auth.root.user.AccountPlanRoot;
 import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,6 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
                 .dataStatus(entity.getDataStatus())
                 .createdDate(GDateTime.of(entity.getCreatedDate()))
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
-                .user(userDataAccessMapper.toRoot(entity.getUser()))
                 .plan(entity.getPlan())
                 .startDate(GDateTime.of(entity.getStartDate()))
                 .expiredDate(GDateTime.of(entity.getExpiredDate()))
@@ -47,7 +46,6 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
                 .dataStatus(root.getDataStatus())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
-                .userEntity(userDataAccessMapper.toEntity(root.getUser()))
                 .plan(root.getPlan())
                 .startDate(GDateTime.of(root.getStartDate()))
                 .expiredDate(GDateTime.of(root.getExpiredDate()))
@@ -66,7 +64,6 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
                 .dataStatus(root.getDataStatus())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
-                .userEntity(userDataAccessMapper.toNewEntity(root.getUser()))
                 .plan(root.getPlan())
                 .startDate(GDateTime.of(root.getStartDate()))
                 .expiredDate(GDateTime.of(root.getExpiredDate()))

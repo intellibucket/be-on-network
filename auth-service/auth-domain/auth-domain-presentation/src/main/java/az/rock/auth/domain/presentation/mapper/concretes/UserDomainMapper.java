@@ -35,11 +35,12 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
 
     @Override
     public UserRoot toNewUserRoot(CreateUserCommand createUserCommand) {
+        var userId = UserID.of(UUID.randomUUID());
         var emailRoot = this.emailDomainMapper.toNewEmailRoot(createUserCommand.getEmail());
-        var passwordRoot = this.passwordDomainMapper.toNewPasswordRoot(createUserCommand.getPassword());
+        var passwordRoot = this.passwordDomainMapper.toNewPasswordRoot(userId,createUserCommand.getPassword());
         return UserRoot.Builder
                 .builder()
-                .id(UserID.of(UUID.randomUUID()))
+                .id(userId)
                 .version(1L)
                 .username(createUserCommand.getUsername())
                 .firstName(createUserCommand.getFirstName())
