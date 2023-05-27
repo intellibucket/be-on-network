@@ -1,7 +1,8 @@
-package az.rock.flyjob.auth.root;
+package az.rock.flyjob.auth.root.user.device;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.AuthenticationLogID;
+import az.rock.lib.domain.id.DeviceID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
@@ -9,7 +10,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class AuthenticationLogRoot extends AggregateRoot<AuthenticationLogID> {
-    private final DeviceRoot device;
+    private final DeviceID deviceID;
     private final UUID deviceToken;
 
     public AuthenticationLogRoot(AuthenticationLogID authenticationLogID,
@@ -18,22 +19,22 @@ public class AuthenticationLogRoot extends AggregateRoot<AuthenticationLogID> {
                                  DataStatus dataStatus,
                                  ZonedDateTime createdDate,
                                  ZonedDateTime modificationDate,
-                                 DeviceRoot device,
+                                 DeviceID deviceID,
                                  UUID deviceToken) {
         super(authenticationLogID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.device = device;
+        this.deviceID = deviceID;
         this.deviceToken = deviceToken;
     }
 
     private AuthenticationLogRoot(Builder builder) {
         super(builder.authenticationLogID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
-        device = builder.device;
+        deviceID = builder.deviceID;
         deviceToken = builder.deviceToken;
     }
 
 
-    public DeviceRoot getDevice() {
-        return device;
+    public DeviceID getDeviceID() {
+        return deviceID;
     }
 
     public UUID getDeviceToken() {
@@ -48,7 +49,7 @@ public class AuthenticationLogRoot extends AggregateRoot<AuthenticationLogID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
 
-        private DeviceRoot device;
+        private DeviceID deviceID;
         private UUID deviceToken;
 
         private Builder() {
@@ -89,8 +90,8 @@ public class AuthenticationLogRoot extends AggregateRoot<AuthenticationLogID> {
         }
 
 
-        public Builder device(DeviceRoot val) {
-            device = val;
+        public Builder device(DeviceID val) {
+            deviceID = val;
             return this;
         }
 
