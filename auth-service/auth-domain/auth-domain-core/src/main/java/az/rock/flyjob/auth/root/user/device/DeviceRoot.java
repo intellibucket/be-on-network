@@ -1,7 +1,9 @@
-package az.rock.flyjob.auth.root;
+package az.rock.flyjob.auth.root.user.device;
 
+import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.DeviceID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
@@ -11,7 +13,7 @@ import java.util.Set;
 
 public final class DeviceRoot extends AggregateRoot<DeviceID> {
 
-    private final UserRoot user;
+    private final UserID userID;
 
     private final Set<AuthenticationLogRoot> authenticationLogs;
 
@@ -47,54 +49,11 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
 
     private final GeoPositionRoot geoPosition;
 
-    public DeviceRoot(DeviceID deviceID,
-                      Long version,
-                      ProcessStatus processStatus,
-                      DataStatus dataStatus,
-                      ZonedDateTime createdDate,
-                      ZonedDateTime modificationDate,
-                      UserRoot user,
-                      Set<AuthenticationLogRoot> authenticationLogs,
-                      String deviceName,
-                      String deviceModel,
-                      String deviceManufacturer,
-                      String operatingSystem,
-                      String deviceOsVersion,
-                      String browserName,
-                      String ipAddress,
-                      String salt,
-                      String hash,
-                      String verificationCode,
-                      ZonedDateTime verificationCodeExpireDate,
-                      ZonedDateTime verificationCodeSendDate,
-                      BigInteger verificationCodeSendCount,
-                      Boolean isVerified,
-                      Boolean isPrimary,
-                      GeoPositionRoot geoPosition) {
-        super(deviceID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.user = user;
-        this.authenticationLogs = authenticationLogs;
-        this.deviceName = deviceName;
-        this.deviceModel = deviceModel;
-        this.deviceManufacturer = deviceManufacturer;
-        this.operatingSystem = operatingSystem;
-        this.deviceOsVersion = deviceOsVersion;
-        this.browserName = browserName;
-        this.ipAddress = ipAddress;
-        this.salt = salt;
-        this.hash = hash;
-        this.verificationCode = verificationCode;
-        this.verificationCodeExpireDate = verificationCodeExpireDate;
-        this.verificationCodeSendDate = verificationCodeSendDate;
-        this.verificationCodeSendCount = verificationCodeSendCount;
-        this.isVerified = isVerified;
-        this.isPrimary = isPrimary;
-        this.geoPosition = geoPosition;
-    }
+
 
     private DeviceRoot(Builder builder) {
         super(builder.deviceID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
-        user = builder.user;
+        userID = builder.userID;
         authenticationLogs = builder.authenticationLogs;
         deviceName = builder.deviceName;
         deviceModel = builder.deviceModel;
@@ -114,8 +73,8 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
         geoPosition = builder.geoPosition;
     }
 
-    public UserRoot getUser() {
-        return user;
+    public UserID getUserID() {
+        return userID;
     }
 
     public Set<AuthenticationLogRoot> getAuthenticationLogs() {
@@ -195,7 +154,7 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
         private DataStatus dataStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
-        private UserRoot user;
+        private UserID userID;
         private Set<AuthenticationLogRoot> authenticationLogs;
         private String deviceName;
         private String deviceModel;
@@ -251,8 +210,8 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
             return this;
         }
 
-        public Builder user(UserRoot val) {
-            user = val;
+        public Builder user(UserID val) {
+            userID = val;
             return this;
         }
 

@@ -1,15 +1,17 @@
-package az.rock.flyjob.auth.root;
+package az.rock.flyjob.auth.root.user.device;
 
 import az.rock.lib.domain.AggregateRoot;
+import az.rock.lib.domain.id.DeviceID;
 import az.rock.lib.domain.id.GeoPositionID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.TimeZoneID;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
-    private final DeviceRoot device;
+    private final DeviceID deviceID;
 
     private final String countryCode;
 
@@ -17,7 +19,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
 
     private final BigDecimal longitude;
 
-    private final String timezone;
+    private final TimeZoneID timezone;
 
     private final String gmt;
 
@@ -27,14 +29,14 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
                            DataStatus dataStatus,
                            ZonedDateTime createdDate,
                            ZonedDateTime modificationDate,
-                           DeviceRoot device,
+                           DeviceID deviceID,
                            String countryCode,
                            BigDecimal latitude,
                            BigDecimal longitude,
-                           String timezone,
+                           TimeZoneID timezone,
                            String gmt) {
         super(geoPositionID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.device = device;
+        this.deviceID = deviceID;
         this.countryCode = countryCode;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -42,8 +44,8 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
         this.gmt = gmt;
     }
 
-    public DeviceRoot getDevice() {
-        return device;
+    public DeviceID getDeviceID() {
+        return deviceID;
     }
 
     public String getCountryCode() {
@@ -58,7 +60,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
         return longitude;
     }
 
-    public String getTimezone() {
+    public TimeZoneID getTimezone() {
         return timezone;
     }
 
@@ -67,11 +69,11 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
     }
 
     public static final class Builder {
-        private DeviceRoot device;
+        private DeviceID deviceID;
         private String countryCode;
         private BigDecimal latitude;
         private BigDecimal longitude;
-        private String timezone;
+        private TimeZoneID timezone;
         private String gmt;
         private Long version;
         private ProcessStatus processStatus;
@@ -87,8 +89,8 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
             return new Builder();
         }
 
-        public Builder device(DeviceRoot device) {
-            this.device = device;
+        public Builder device(DeviceID deviceID) {
+            this.deviceID = deviceID;
             return this;
         }
 
@@ -107,7 +109,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
             return this;
         }
 
-        public Builder timezone(String timezone) {
+        public Builder timezone(TimeZoneID timezone) {
             this.timezone = timezone;
             return this;
         }
@@ -148,7 +150,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
         }
 
         public GeoPositionRoot build() {
-            return new GeoPositionRoot(geoPositionID, version, processStatus, dataStatus, createdDate, modificationDate, device, countryCode, latitude, longitude, timezone, gmt);
+            return new GeoPositionRoot(geoPositionID, version, processStatus, dataStatus, createdDate, modificationDate, deviceID, countryCode, latitude, longitude, timezone, gmt);
         }
     }
 }

@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDetailDataAccessMapper;
-import az.rock.flyjob.auth.root.DetailRoot;
+import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;

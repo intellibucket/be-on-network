@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.event;
 
-import az.rock.flyjob.auth.root.DetailRoot;
+import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.event.AbstractDomainEvent;
 
 public class DetailCreatedEvent  extends AbstractDomainEvent<DetailRoot> {

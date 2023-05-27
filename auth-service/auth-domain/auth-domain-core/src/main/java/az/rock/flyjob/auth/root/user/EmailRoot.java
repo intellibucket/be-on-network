@@ -1,7 +1,8 @@
-package az.rock.flyjob.auth.root;
+package az.rock.flyjob.auth.root.user;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.EmailID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.EmailType;
 import az.rock.lib.valueObject.ProcessStatus;
@@ -10,9 +11,8 @@ import java.math.BigInteger;
 import java.time.ZonedDateTime;
 
 public class EmailRoot extends AggregateRoot<EmailID> {
-    private final UserRoot user;
+    private final UserID userID;
     private final EmailType type;
-
     private final String email;
 
     private final Boolean isEnableNotification;
@@ -39,7 +39,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
                      DataStatus dataStatus,
                      ZonedDateTime createdDate,
                      ZonedDateTime modificationDate,
-                     UserRoot user,
+                     UserID userID,
                      EmailType type,
                      String email,
                      Boolean isEnableNotification,
@@ -52,7 +52,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
                      Boolean isSubscribedPromotions,
                      ZonedDateTime subscribedDate) {
         super(emailID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.user = user;
+        this.userID = userID;
         this.type = type;
         this.email = email;
         this.isEnableNotification = isEnableNotification;
@@ -66,8 +66,8 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         this.subscribedDate = subscribedDate;
     }
 
-    public UserRoot getUser() {
-        return user;
+    public UserID getUserId() {
+        return userID;
     }
 
     public EmailType getType() {
@@ -78,15 +78,15 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         return email;
     }
 
-    public Boolean getEnableNotification() {
+    public Boolean isEnableNotification() {
         return isEnableNotification;
     }
 
-    public Boolean getPrimary() {
+    public Boolean isPrimary() {
         return isPrimary;
     }
 
-    public Boolean getVerified() {
+    public Boolean isVerified() {
         return isVerified;
     }
 
@@ -106,7 +106,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         return verificationCodeSendCount;
     }
 
-    public Boolean getSubscribedPromotions() {
+    public Boolean isSubscribedPromotions() {
         return isSubscribedPromotions;
     }
 
@@ -115,7 +115,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
     }
 
     public static final class Builder {
-        private UserRoot user;
+        private UserID userID;
         private EmailType type;
         private String email;
         private Boolean isEnableNotification;
@@ -141,8 +141,8 @@ public class EmailRoot extends AggregateRoot<EmailID> {
             return new Builder();
         }
 
-        public Builder user(UserRoot user) {
-            this.user = user;
+        public Builder user(UserID userID) {
+            this.userID = userID;
             return this;
         }
 
@@ -232,7 +232,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         }
 
         public EmailRoot build() {
-            return new EmailRoot(emailID, version, processStatus, dataStatus, createdDate, modificationDate, user, type, email, isEnableNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount, isSubscribedPromotions, subscribedDate);
+            return new EmailRoot(emailID, version, processStatus, dataStatus, createdDate, modificationDate, userID, type, email, isEnableNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount, isSubscribedPromotions, subscribedDate);
         }
     }
 }

@@ -6,7 +6,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDetailDomainMap
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractEmailDomainMapper;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractPasswordDomainMapper;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
-import az.rock.flyjob.auth.root.UserRoot;
+import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.id.UserID;
 import org.springframework.stereotype.Component;
 
@@ -35,11 +35,12 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
 
     @Override
     public UserRoot toNewUserRoot(CreateUserCommand createUserCommand) {
+        var userId = UserID.of(UUID.randomUUID());
         var emailRoot = this.emailDomainMapper.toNewEmailRoot(createUserCommand.getEmail());
-        var passwordRoot = this.passwordDomainMapper.toNewPasswordRoot(createUserCommand.getPassword());
+        var passwordRoot = this.passwordDomainMapper.toNewPasswordRoot(userId,createUserCommand.getPassword());
         return UserRoot.Builder
                 .builder()
-                .id(UserID.of(UUID.randomUUID()))
+                .id(userId)
                 .version(1L)
                 .username(createUserCommand.getUsername())
                 .firstName(createUserCommand.getFirstName())
