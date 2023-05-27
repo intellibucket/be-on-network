@@ -1,12 +1,12 @@
 package az.rock.flyjob.auth.root;
 
+import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.valueObject.AccountPlanType;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
-import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 
 public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {

@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.handler.referentials.abstracts.AbstractUserReferential;
 import az.rock.auth.domain.presentation.mapper.concretes.DetailDomainMapper;
 import az.rock.auth.domain.presentation.mapper.concretes.UserDomainMapper;
-import az.rock.flyjob.auth.root.UserRoot;
+import az.rock.flyjob.auth.root.user.UserRoot;
 import org.springframework.stereotype.Component;
 
 @Component

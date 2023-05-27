@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.root;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.DetailID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
@@ -10,39 +11,64 @@ import java.util.Set;
 
 public class DetailRoot extends AggregateRoot<DetailID> {
 
-    private UserRoot user;
+    private final UserID userID;
 
     private final Set<RoleRoot> roles;
 
-    public void setUserRoot(UserRoot userRoot) {
-        this.user = userRoot;
-    }
+    private final Boolean isAccountNonExpired;
 
-    public DetailRoot(DetailID detailID,
-                      Long version,
-                      ProcessStatus processStatus,
-                      DataStatus dataStatus,
-                      ZonedDateTime createdDate,
-                      ZonedDateTime modificationDate,
-                      UserRoot user,
-                      Set<RoleRoot> roles) {
-        super(detailID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.user = user;
-        this.roles = roles;
-    }
+    private final Boolean isAccountNonLocked;
 
-    private DetailRoot(Builder builder) {
-        super(builder.detailID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
-        user = builder.user;
-        roles = builder.roles;
-    }
+    private final Boolean isCredentialsNonExpired;
 
-    public UserRoot getUserRoot() {
-        return user;
+    private final Boolean isEnabled;
+
+    private final Boolean isDeleted;
+
+    private final Boolean isFrozen;
+
+    public UserID getUserID() {
+        return userID;
     }
 
     public Set<RoleRoot> getRoles() {
         return roles;
+    }
+
+    public Boolean isAccountNonExpired() {
+        return isAccountNonExpired;
+    }
+
+    public Boolean isAccountNonLocked() {
+        return isAccountNonLocked;
+    }
+
+    public Boolean isCredentialsNonExpired() {
+        return isCredentialsNonExpired;
+    }
+
+    public Boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public Boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public Boolean isFrozen() {
+        return isFrozen;
+    }
+
+    private DetailRoot(Builder builder) {
+        super(builder.detailID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        userID = builder.userID;
+        roles = builder.roles;
+        isAccountNonExpired = builder.isAccountNonExpired;
+        isAccountNonLocked = builder.isAccountNonLocked;
+        isCredentialsNonExpired = builder.isCredentialsNonExpired;
+        isEnabled = builder.isEnabled;
+        isDeleted = builder.isDeleted;
+        isFrozen = builder.isFrozen;
     }
 
 
@@ -53,8 +79,14 @@ public class DetailRoot extends AggregateRoot<DetailID> {
         private DataStatus dataStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
-        private UserRoot user;
+        private UserID userID;
         private Set<RoleRoot> roles;
+        private Boolean isAccountNonExpired;
+        private Boolean isAccountNonLocked;
+        private Boolean isCredentialsNonExpired;
+        private Boolean isEnabled;
+        private Boolean isDeleted;
+        private Boolean isFrozen;
 
         private Builder() {
         }
@@ -63,7 +95,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
             return new Builder();
         }
 
-        public Builder accountID(DetailID val) {
+        public Builder detailID(DetailID val) {
             detailID = val;
             return this;
         }
@@ -93,13 +125,43 @@ public class DetailRoot extends AggregateRoot<DetailID> {
             return this;
         }
 
-        public Builder user(UserRoot val) {
-            user = val;
+        public Builder userID(UserID val) {
+            userID = val;
             return this;
         }
 
         public Builder roles(Set<RoleRoot> val) {
             roles = val;
+            return this;
+        }
+
+        public Builder isAccountNonExpired(Boolean val) {
+            isAccountNonExpired = val;
+            return this;
+        }
+
+        public Builder isAccountNonLocked(Boolean val) {
+            isAccountNonLocked = val;
+            return this;
+        }
+
+        public Builder isCredentialsNonExpired(Boolean val) {
+            isCredentialsNonExpired = val;
+            return this;
+        }
+
+        public Builder isEnabled(Boolean val) {
+            isEnabled = val;
+            return this;
+        }
+
+        public Builder isDeleted(Boolean val) {
+            isDeleted = val;
+            return this;
+        }
+
+        public Builder isFrozen(Boolean val) {
+            isFrozen = val;
             return this;
         }
 

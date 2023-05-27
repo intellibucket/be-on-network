@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.mapper.abstracts;
 
 import az.rock.flyjob.auth.root.DetailRoot;
-import az.rock.flyjob.auth.root.UserRoot;
+import az.rock.flyjob.auth.root.user.UserRoot;
 
 public interface AbstractDetailDomainMapper {
     DetailRoot toNewDetailRoot(UserRoot userRoot);

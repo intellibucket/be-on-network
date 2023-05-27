@@ -1,5 +1,6 @@
-package az.rock.flyjob.auth.root;
+package az.rock.flyjob.auth.root.user;
 
+import az.rock.flyjob.auth.root.*;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.DataStatus;

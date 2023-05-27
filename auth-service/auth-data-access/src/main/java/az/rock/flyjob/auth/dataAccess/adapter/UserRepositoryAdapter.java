@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter;
 import az.rock.auth.domain.presentation.ports.output.repository.AbstractUserRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.UserDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.UserJPARepository;
-import az.rock.flyjob.auth.root.UserRoot;
+import az.rock.flyjob.auth.root.user.UserRoot;
 import org.springframework.stereotype.Component;
 
 @Component

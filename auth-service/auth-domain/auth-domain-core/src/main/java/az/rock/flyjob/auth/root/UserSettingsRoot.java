@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.root;
 
 import az.rock.lib.domain.AggregateRoot;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.domain.id.UserSettingsID;
 import az.rock.lib.valueObject.DataStatus;
 import az.rock.lib.valueObject.Language;
@@ -9,7 +10,7 @@ import az.rock.lib.valueObject.ProcessStatus;
 import java.time.ZonedDateTime;
 
 public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
-    private final UserRoot user;
+    private final UserID userID;
 
     private final Language language;
 
@@ -35,96 +36,83 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
 
     private final Boolean isVisibleResume;
 
-    public UserSettingsRoot(UserSettingsID userSettingsID,
-                            Long version,
-                            ProcessStatus processStatus,
-                            DataStatus dataStatus,
-                            ZonedDateTime createdDate,
-                            ZonedDateTime modificationDate,
-                            UserRoot user,
-                            Language language,
-                            Boolean isActiveDarkMode,
-                            Boolean isActiveEmailNotification,
-                            Boolean isActiveSmsNotification,
-                            Boolean isActivePushNotification,
-                            Boolean isActiveTwoFactorAuthentication,
-                            Boolean isVisibleLocation,
-                            Boolean isVisibleOnlineStatus,
-                            Boolean isVisibleLastSeen,
-                            Boolean isVisibleProfilePicture,
-                            Boolean isVisibleEmail,
-                            Boolean isVisibleResume) {
-        super(userSettingsID, version, processStatus, dataStatus, createdDate, modificationDate);
-        this.user = user;
-        this.language = language;
-        this.isActiveDarkMode = isActiveDarkMode;
-        this.isActiveEmailNotification = isActiveEmailNotification;
-        this.isActiveSmsNotification = isActiveSmsNotification;
-        this.isActivePushNotification = isActivePushNotification;
-        this.isActiveTwoFactorAuthentication = isActiveTwoFactorAuthentication;
-        this.isVisibleLocation = isVisibleLocation;
-        this.isVisibleOnlineStatus = isVisibleOnlineStatus;
-        this.isVisibleLastSeen = isVisibleLastSeen;
-        this.isVisibleProfilePicture = isVisibleProfilePicture;
-        this.isVisibleEmail = isVisibleEmail;
-        this.isVisibleResume = isVisibleResume;
+    private UserSettingsRoot(Builder builder) {
+        super(builder.uuid, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.lastModifiedDate);
+        userID = builder.userID;
+        language = builder.language;
+        isActiveDarkMode = builder.isActiveDarkMode;
+        isActiveEmailNotification = builder.isActiveEmailNotification;
+        isActiveSmsNotification = builder.isActiveSmsNotification;
+        isActivePushNotification = builder.isActivePushNotification;
+        isActiveTwoFactorAuthentication = builder.isActiveTwoFactorAuthentication;
+        isVisibleLocation = builder.isVisibleLocation;
+        isVisibleOnlineStatus = builder.isVisibleOnlineStatus;
+        isVisibleLastSeen = builder.isVisibleLastSeen;
+        isVisibleProfilePicture = builder.isVisibleProfilePicture;
+        isVisibleEmail = builder.isVisibleEmail;
+        isVisibleResume = builder.isVisibleResume;
     }
 
-
-    public UserRoot getUser() {
-        return user;
+    public UserID getUserID() {
+        return userID;
     }
 
     public Language getLanguage() {
         return language;
     }
 
-    public Boolean getActiveDarkMode() {
+    public Boolean isActiveDarkMode() {
         return isActiveDarkMode;
     }
 
-    public Boolean getActiveEmailNotification() {
+    public Boolean isActiveEmailNotification() {
         return isActiveEmailNotification;
     }
 
-    public Boolean getActiveSmsNotification() {
+    public Boolean isActiveSmsNotification() {
         return isActiveSmsNotification;
     }
 
-    public Boolean getActivePushNotification() {
+    public Boolean isActivePushNotification() {
         return isActivePushNotification;
     }
 
-    public Boolean getActiveTwoFactorAuthentication() {
+    public Boolean isActiveTwoFactorAuthentication() {
         return isActiveTwoFactorAuthentication;
     }
 
-    public Boolean getVisibleLocation() {
+    public Boolean isVisibleLocation() {
         return isVisibleLocation;
     }
 
-    public Boolean getVisibleOnlineStatus() {
+    public Boolean isVisibleOnlineStatus() {
         return isVisibleOnlineStatus;
     }
 
-    public Boolean getVisibleLastSeen() {
+    public Boolean isVisibleLastSeen() {
         return isVisibleLastSeen;
     }
 
-    public Boolean getVisibleProfilePicture() {
+    public Boolean isVisibleProfilePicture() {
         return isVisibleProfilePicture;
     }
 
-    public Boolean getVisibleEmail() {
+    public Boolean isVisibleEmail() {
         return isVisibleEmail;
     }
 
-    public Boolean getVisibleResume() {
+    public Boolean isVisibleResume() {
         return isVisibleResume;
     }
 
     public static final class Builder {
-        private UserRoot user;
+        public UserSettingsID uuid;
+        public Long version;
+        public ProcessStatus processStatus;
+        public DataStatus dataStatus;
+        public ZonedDateTime createdDate;
+        public ZonedDateTime lastModifiedDate;
+        private UserID userID;
         private Language language;
         private Boolean isActiveDarkMode;
         private Boolean isActiveEmailNotification;
@@ -137,12 +125,6 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
         private Boolean isVisibleProfilePicture;
         private Boolean isVisibleEmail;
         private Boolean isVisibleResume;
-        private Long version;
-        private ProcessStatus processStatus;
-        private DataStatus dataStatus;
-        private ZonedDateTime createdDate;
-        private ZonedDateTime modificationDate;
-        private UserSettingsID userSettingsID;
 
         private Builder() {
         }
@@ -151,103 +133,103 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
             return new Builder();
         }
 
-        public Builder user(UserRoot user) {
-            this.user = user;
+        public Builder userSettingsID(UserSettingsID val) {
+            uuid = val;
             return this;
         }
 
-        public Builder language(Language language) {
-            this.language = language;
+        public Builder version(Long val) {
+            version = val;
             return this;
         }
 
-        public Builder isActiveDarkMode(Boolean isActiveDarkMode) {
-            this.isActiveDarkMode = isActiveDarkMode;
+        public Builder processStatus(ProcessStatus val) {
+            processStatus = val;
             return this;
         }
 
-        public Builder isActiveEmailNotification(Boolean isActiveEmailNotification) {
-            this.isActiveEmailNotification = isActiveEmailNotification;
+        public Builder dataStatus(DataStatus val) {
+            dataStatus = val;
             return this;
         }
 
-        public Builder isActiveSmsNotification(Boolean isActiveSmsNotification) {
-            this.isActiveSmsNotification = isActiveSmsNotification;
+        public Builder createdDate(ZonedDateTime val) {
+            createdDate = val;
             return this;
         }
 
-        public Builder isActivePushNotification(Boolean isActivePushNotification) {
-            this.isActivePushNotification = isActivePushNotification;
+        public Builder lastModifiedDate(ZonedDateTime val) {
+            lastModifiedDate = val;
             return this;
         }
 
-        public Builder isActiveTwoFactorAuthentication(Boolean isActiveTwoFactorAuthentication) {
-            this.isActiveTwoFactorAuthentication = isActiveTwoFactorAuthentication;
+        public Builder userID(UserID val) {
+            userID = val;
             return this;
         }
 
-        public Builder isVisibleLocation(Boolean isVisibleLocation) {
-            this.isVisibleLocation = isVisibleLocation;
+        public Builder language(Language val) {
+            language = val;
             return this;
         }
 
-        public Builder isVisibleOnlineStatus(Boolean isVisibleOnlineStatus) {
-            this.isVisibleOnlineStatus = isVisibleOnlineStatus;
+        public Builder isActiveDarkMode(Boolean val) {
+            isActiveDarkMode = val;
             return this;
         }
 
-        public Builder isVisibleLastSeen(Boolean isVisibleLastSeen) {
-            this.isVisibleLastSeen = isVisibleLastSeen;
+        public Builder isActiveEmailNotification(Boolean val) {
+            isActiveEmailNotification = val;
             return this;
         }
 
-        public Builder isVisibleProfilePicture(Boolean isVisibleProfilePicture) {
-            this.isVisibleProfilePicture = isVisibleProfilePicture;
+        public Builder isActiveSmsNotification(Boolean val) {
+            isActiveSmsNotification = val;
             return this;
         }
 
-        public Builder isVisibleEmail(Boolean isVisibleEmail) {
-            this.isVisibleEmail = isVisibleEmail;
+        public Builder isActivePushNotification(Boolean val) {
+            isActivePushNotification = val;
             return this;
         }
 
-        public Builder isVisibleResume(Boolean isVisibleResume) {
-            this.isVisibleResume = isVisibleResume;
+        public Builder isActiveTwoFactorAuthentication(Boolean val) {
+            isActiveTwoFactorAuthentication = val;
             return this;
         }
 
-        public Builder version(Long version) {
-            this.version = version;
+        public Builder isVisibleLocation(Boolean val) {
+            isVisibleLocation = val;
             return this;
         }
 
-        public Builder processStatus(ProcessStatus processStatus) {
-            this.processStatus = processStatus;
+        public Builder isVisibleOnlineStatus(Boolean val) {
+            isVisibleOnlineStatus = val;
             return this;
         }
 
-        public Builder dataStatus(DataStatus dataStatus) {
-            this.dataStatus = dataStatus;
+        public Builder isVisibleLastSeen(Boolean val) {
+            isVisibleLastSeen = val;
             return this;
         }
 
-        public Builder createdDate(ZonedDateTime createdDate) {
-            this.createdDate = createdDate;
+        public Builder isVisibleProfilePicture(Boolean val) {
+            isVisibleProfilePicture = val;
             return this;
         }
 
-        public Builder modificationDate(ZonedDateTime modificationDate) {
-            this.modificationDate = modificationDate;
+        public Builder isVisibleEmail(Boolean val) {
+            isVisibleEmail = val;
             return this;
         }
 
-        public Builder uuid(UserSettingsID userSettingsID) {
-            this.userSettingsID = userSettingsID;
+        public Builder isVisibleResume(Boolean val) {
+            isVisibleResume = val;
             return this;
         }
 
         public UserSettingsRoot build() {
-            return new UserSettingsRoot(null, version, processStatus, dataStatus, createdDate, modificationDate, user, language, isActiveDarkMode, isActiveEmailNotification, isActiveSmsNotification, isActivePushNotification, isActiveTwoFactorAuthentication, isVisibleLocation, isVisibleOnlineStatus, isVisibleLastSeen, isVisibleProfilePicture, isVisibleEmail, isVisibleResume);
+            return new UserSettingsRoot(this);
         }
     }
 }

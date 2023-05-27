@@ -6,7 +6,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDetailDomainMap
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractEmailDomainMapper;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractPasswordDomainMapper;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
-import az.rock.flyjob.auth.root.UserRoot;
+import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.id.UserID;
 import org.springframework.stereotype.Component;
 
