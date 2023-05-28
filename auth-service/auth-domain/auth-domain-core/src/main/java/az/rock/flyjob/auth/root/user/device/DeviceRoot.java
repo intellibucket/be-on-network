@@ -5,6 +5,7 @@ import az.rock.lib.domain.id.DeviceID;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
@@ -80,6 +81,10 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
         return authenticationLogs;
     }
 
+    public AuthenticationLogRoot getFirstAuthenticationLogRoot() {
+        return authenticationLogs.stream().findFirst().orElse(null);
+    }
+
     public String getDeviceName() {
         return deviceName;
     }
@@ -148,7 +153,7 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
 
         private DeviceID deviceID;
 
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
@@ -185,6 +190,11 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
         }
 
         public Builder version(Long val) {
+            version = Version.of(val);
+            return this;
+        }
+
+        public Builder version(Version val) {
             version = val;
             return this;
         }

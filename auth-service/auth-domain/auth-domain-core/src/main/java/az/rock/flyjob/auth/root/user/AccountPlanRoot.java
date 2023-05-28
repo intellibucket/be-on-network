@@ -6,6 +6,7 @@ import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.AccountPlanType;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
 
@@ -81,7 +82,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
 
     public static final class Builder {
         private AccountPlanID accountPlanID;
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
@@ -106,6 +107,11 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
         }
 
         public Builder version(Long val) {
+            version = Version.of(val);
+            return this;
+        }
+
+        public Builder version(Version val) {
             version = val;
             return this;
         }
@@ -115,7 +121,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
             return this;
         }
 
-        public Builder dataStatus(RowStatus val) {
+        public Builder rowStatus(RowStatus val) {
             rowStatus = val;
             return this;
         }

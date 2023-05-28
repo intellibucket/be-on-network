@@ -5,6 +5,8 @@ import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
 import az.rock.auth.domain.presentation.mapper.abstracts.*;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.id.UserID;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.TimeZoneID;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
@@ -58,6 +60,8 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .builder()
                 .id(userId)
                 .version(Version.ONE)
+                .processStatus(ProcessStatus.ON_WAITING)
+                .rowStatus(RowStatus.ACTIVE)
                 .key(UUID.randomUUID())
                 .firstName(createUserCommand.getFirstName())
                 .lastName(createUserCommand.getLastName())
@@ -68,7 +72,6 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .email(emailRoot)
                 .detail(detailRoot)
                 .accountPlan(freeAccountsPlan)
-                .device(deviceRoot)
                 .userSettings(userSettingsRoot)
                 .build();
     }

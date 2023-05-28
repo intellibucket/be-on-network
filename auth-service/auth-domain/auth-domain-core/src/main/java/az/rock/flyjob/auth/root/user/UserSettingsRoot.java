@@ -6,6 +6,7 @@ import az.rock.lib.domain.id.UserSettingsID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
 
@@ -107,24 +108,30 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
 
     public static final class Builder {
         public UserSettingsID uuid;
-        public Long version;
+        public Version version;
         public ProcessStatus processStatus;
         public RowStatus rowStatus;
         public ZonedDateTime createdDate;
         public ZonedDateTime lastModifiedDate;
         private UserID userID;
-        private Language language;
-        private Boolean isActiveDarkMode;
-        private Boolean isActiveEmailNotification;
-        private Boolean isActiveSmsNotification;
-        private Boolean isActivePushNotification;
-        private Boolean isActiveTwoFactorAuthentication;
-        private Boolean isVisibleLocation;
-        private Boolean isVisibleOnlineStatus;
-        private Boolean isVisibleLastSeen;
-        private Boolean isVisibleProfilePicture;
-        private Boolean isVisibleEmail;
-        private Boolean isVisibleResume;
+        private Language language = Language.EN;
+        private Boolean isActiveDarkMode = false;
+
+        private Boolean isActiveEmailNotification = false;
+
+        private Boolean isActiveSmsNotification = false;
+
+        private Boolean isActivePushNotification = true;
+
+        private Boolean isActiveTwoFactorAuthentication = false;
+
+        private Boolean isVisibleLocation = true;
+
+        private Boolean isVisibleOnlineStatus = true;
+        private Boolean isVisibleLastSeen = true;
+        private Boolean isVisibleProfilePicture = true;
+        private Boolean isVisibleEmail = true;
+        private Boolean isVisibleResume = true;
 
         private Builder() {
         }
@@ -139,6 +146,11 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
         }
 
         public Builder version(Long val) {
+            version = Version.of(val);
+            return this;
+        }
+
+        public Builder version(Version val) {
             version = val;
             return this;
         }
@@ -148,7 +160,7 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
             return this;
         }
 
-        public Builder dataStatus(RowStatus val) {
+        public Builder rowStatus(RowStatus val) {
             rowStatus = val;
             return this;
         }

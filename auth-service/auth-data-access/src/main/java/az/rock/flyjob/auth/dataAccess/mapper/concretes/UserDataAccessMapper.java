@@ -22,7 +22,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
                 .processStatus(entity.getProcessStatus())
-                .dataStatus(entity.getDataStatus())
+                .rowStatus(entity.getDataStatus())
                 .key(entity.getKey())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())

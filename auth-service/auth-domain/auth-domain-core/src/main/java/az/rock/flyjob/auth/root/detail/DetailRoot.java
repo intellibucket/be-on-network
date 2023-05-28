@@ -6,9 +6,11 @@ import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 public class DetailRoot extends AggregateRoot<DetailID> {
 
@@ -75,7 +77,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
 
     public static final class Builder {
         private DetailID detailID;
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
@@ -101,7 +103,17 @@ public class DetailRoot extends AggregateRoot<DetailID> {
             return this;
         }
 
+        public Builder detailID(UUID val) {
+            detailID = DetailID.of(val);
+            return this;
+        }
+
         public Builder version(Long val) {
+            version = Version.of(val);
+            return this;
+        }
+
+        public Builder version(Version val) {
             version = val;
             return this;
         }
@@ -111,7 +123,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
             return this;
         }
 
-        public Builder dataStatus(RowStatus val) {
+        public Builder rowStatus(RowStatus val) {
             rowStatus = val;
             return this;
         }
@@ -133,6 +145,11 @@ public class DetailRoot extends AggregateRoot<DetailID> {
 
         public Builder roles(Set<RoleRoot> val) {
             roles = val;
+            return this;
+        }
+
+        public Builder roles(RoleRoot val) {
+            roles = Set.of(val);
             return this;
         }
 

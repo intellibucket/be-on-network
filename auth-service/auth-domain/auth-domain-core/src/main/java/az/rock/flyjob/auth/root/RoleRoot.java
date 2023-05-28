@@ -13,7 +13,6 @@ public class RoleRoot extends AggregateRoot<RoleID> {
 
     private final String name;
     private final String description;
-
     private final Set<AuthorityRoot> authorities;
     public RoleRoot(RoleID roleID,
                     Long version,
