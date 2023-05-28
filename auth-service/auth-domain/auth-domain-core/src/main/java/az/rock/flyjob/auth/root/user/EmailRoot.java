@@ -3,9 +3,10 @@ package az.rock.flyjob.auth.root.user;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.EmailID;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.EmailType;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
@@ -34,9 +35,9 @@ public class EmailRoot extends AggregateRoot<EmailID> {
     private final ZonedDateTime subscribedDate;
 
     public EmailRoot(EmailID emailID,
-                     Long version,
+                     Version version,
                      ProcessStatus processStatus,
-                     DataStatus dataStatus,
+                     RowStatus rowStatus,
                      ZonedDateTime createdDate,
                      ZonedDateTime modificationDate,
                      UserID userID,
@@ -51,7 +52,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
                      BigInteger verificationCodeSendCount,
                      Boolean isSubscribedPromotions,
                      ZonedDateTime subscribedDate) {
-        super(emailID, version, processStatus, dataStatus, createdDate, modificationDate);
+        super(emailID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.userID = userID;
         this.type = type;
         this.email = email;
@@ -127,9 +128,9 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         private BigInteger verificationCodeSendCount;
         private Boolean isSubscribedPromotions;
         private ZonedDateTime subscribedDate;
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private EmailID emailID;
@@ -137,7 +138,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         private Builder() {
         }
 
-        public static Builder anEmailRoot() {
+        public static Builder builder() {
             return new Builder();
         }
 
@@ -202,6 +203,11 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         }
 
         public Builder version(Long version) {
+            this.version = Version.of(version);
+            return this;
+        }
+
+        public Builder version(Version version) {
             this.version = version;
             return this;
         }
@@ -211,8 +217,8 @@ public class EmailRoot extends AggregateRoot<EmailID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus dataStatus) {
-            this.dataStatus = dataStatus;
+        public Builder rowStatus(RowStatus rowStatus) {
+            this.rowStatus = rowStatus;
             return this;
         }
 
@@ -232,7 +238,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         }
 
         public EmailRoot build() {
-            return new EmailRoot(emailID, version, processStatus, dataStatus, createdDate, modificationDate, userID, type, email, isEnableNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount, isSubscribedPromotions, subscribedDate);
+            return new EmailRoot(emailID, version, processStatus, rowStatus, createdDate, modificationDate, userID, type, email, isEnableNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount, isSubscribedPromotions, subscribedDate);
         }
     }
 }

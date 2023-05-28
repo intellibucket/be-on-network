@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.root;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.RoleID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
@@ -18,21 +18,21 @@ public class RoleRoot extends AggregateRoot<RoleID> {
     public RoleRoot(RoleID roleID,
                     Long version,
                     ProcessStatus processStatus,
-                    DataStatus dataStatus,
+                    RowStatus rowStatus,
                     ZonedDateTime createdDate,
                     ZonedDateTime modificationDate,
                     DetailRoot account,
                     String name,
                     String description,
                     Set<AuthorityRoot> authorities) {
-        super(roleID, version, processStatus, dataStatus, createdDate, modificationDate);
+        super(roleID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.name = name;
         this.description = description;
         this.authorities = authorities;
     }
 
     private RoleRoot(Builder builder) {
-        super(builder.roleID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.roleID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         name = builder.name;
         description = builder.description;
         authorities = builder.authorities;
@@ -54,7 +54,7 @@ public class RoleRoot extends AggregateRoot<RoleID> {
         private RoleID roleID;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
 
@@ -85,8 +85,8 @@ public class RoleRoot extends AggregateRoot<RoleID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

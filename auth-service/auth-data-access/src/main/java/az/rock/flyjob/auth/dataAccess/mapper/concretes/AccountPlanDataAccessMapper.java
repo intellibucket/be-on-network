@@ -41,7 +41,7 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
         return AccountPlanEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getDataStatus())
                 .createdDate(GDateTime.of(root.getCreatedDate()))

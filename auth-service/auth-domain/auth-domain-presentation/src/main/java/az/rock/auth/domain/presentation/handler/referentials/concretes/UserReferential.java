@@ -19,8 +19,7 @@ public class UserReferential implements AbstractUserReferential {
 
     @Override
     public UserRoot createReferentialUser(CreateUserCommand createUserCommand) {
-        var userRoot = this.userDomainMapper.toNewUserRoot(createUserCommand);
-
+        var userRoot = this.userDomainMapper.registrationUserRoot(createUserCommand);
         return null;
     }
 }

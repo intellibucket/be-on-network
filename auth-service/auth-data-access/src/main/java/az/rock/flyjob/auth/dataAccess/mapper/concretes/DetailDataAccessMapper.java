@@ -16,7 +16,7 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
     public DetailRoot toRoot(DetailEntity entity) {
         return DetailRoot.Builder
                 .builder()
-                .accountID(DetailID.of(entity.getUuid()))
+                .detailID(DetailID.of(entity.getUuid()))
                 .createdDate(GDateTime.of(entity.getCreatedDate()))
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
@@ -30,7 +30,7 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
                 .uuid(root.getUUID().getId())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .build();
     }
 

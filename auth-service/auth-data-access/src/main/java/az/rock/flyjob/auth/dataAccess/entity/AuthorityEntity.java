@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.entity;
 
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -69,7 +69,7 @@ public class AuthorityEntity extends BaseEntity {
 
         private ProcessStatus processStatus;
 
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
 
         private Builder() {
         }
@@ -108,8 +108,8 @@ public class AuthorityEntity extends BaseEntity {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

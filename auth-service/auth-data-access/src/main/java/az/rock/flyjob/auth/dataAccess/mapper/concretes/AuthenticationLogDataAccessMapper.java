@@ -31,7 +31,7 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
         return AuthenticationLogEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getDataStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))

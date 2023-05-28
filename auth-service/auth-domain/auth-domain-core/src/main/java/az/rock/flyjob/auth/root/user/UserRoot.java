@@ -4,10 +4,7 @@ import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.DataStatus;
-import az.rock.lib.valueObject.Gender;
-import az.rock.lib.valueObject.ProcessStatus;
-import az.rock.lib.valueObject.TimeZoneID;
+import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -32,7 +29,7 @@ public class UserRoot extends AggregateRoot<UserID> {
 
 
     private UserRoot(Builder builder) {
-        super(builder.id, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         this.key = builder.key;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
@@ -102,9 +99,9 @@ public class UserRoot extends AggregateRoot<UserID> {
 
     public static final class Builder {
         private UserID id;
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private UUID key;
@@ -134,8 +131,13 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder version(Long val) {
+        public Builder version(Version val) {
             version = val;
+            return this;
+        }
+
+        public Builder version(Long val) {
+            version = Version.of(val);
             return this;
         }
 
@@ -144,8 +146,8 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 
@@ -219,7 +221,7 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
-        public Builder account(DetailRoot val) {
+        public Builder detail(DetailRoot val) {
             detail = val;
             return this;
         }

@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.root.user.device;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.AuthenticationLogID;
 import az.rock.lib.domain.id.DeviceID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
@@ -16,18 +16,18 @@ public class AuthenticationLogRoot extends AggregateRoot<AuthenticationLogID> {
     public AuthenticationLogRoot(AuthenticationLogID authenticationLogID,
                                  Long version,
                                  ProcessStatus processStatus,
-                                 DataStatus dataStatus,
+                                 RowStatus rowStatus,
                                  ZonedDateTime createdDate,
                                  ZonedDateTime modificationDate,
                                  DeviceID deviceID,
                                  UUID deviceToken) {
-        super(authenticationLogID, version, processStatus, dataStatus, createdDate, modificationDate);
+        super(authenticationLogID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.deviceID = deviceID;
         this.deviceToken = deviceToken;
     }
 
     private AuthenticationLogRoot(Builder builder) {
-        super(builder.authenticationLogID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.authenticationLogID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         deviceID = builder.deviceID;
         deviceToken = builder.deviceToken;
     }
@@ -45,7 +45,7 @@ public class AuthenticationLogRoot extends AggregateRoot<AuthenticationLogID> {
         private AuthenticationLogID authenticationLogID;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
 
@@ -74,8 +74,8 @@ public class AuthenticationLogRoot extends AggregateRoot<AuthenticationLogID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

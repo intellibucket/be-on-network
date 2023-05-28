@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.root.user.device;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.DeviceID;
 import az.rock.lib.domain.id.GeoPositionID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.TimeZoneID;
 
@@ -26,7 +26,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
     public GeoPositionRoot(GeoPositionID geoPositionID,
                            Long version,
                            ProcessStatus processStatus,
-                           DataStatus dataStatus,
+                           RowStatus rowStatus,
                            ZonedDateTime createdDate,
                            ZonedDateTime modificationDate,
                            DeviceID deviceID,
@@ -35,7 +35,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
                            BigDecimal longitude,
                            TimeZoneID timezone,
                            String gmt) {
-        super(geoPositionID, version, processStatus, dataStatus, createdDate, modificationDate);
+        super(geoPositionID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.deviceID = deviceID;
         this.countryCode = countryCode;
         this.latitude = latitude;
@@ -77,7 +77,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
         private String gmt;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private GeoPositionID geoPositionID;
@@ -129,8 +129,8 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus dataStatus) {
-            this.dataStatus = dataStatus;
+        public Builder dataStatus(RowStatus rowStatus) {
+            this.rowStatus = rowStatus;
             return this;
         }
 
@@ -150,7 +150,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
         }
 
         public GeoPositionRoot build() {
-            return new GeoPositionRoot(geoPositionID, version, processStatus, dataStatus, createdDate, modificationDate, deviceID, countryCode, latitude, longitude, timezone, gmt);
+            return new GeoPositionRoot(geoPositionID, version, processStatus, rowStatus, createdDate, modificationDate, deviceID, countryCode, latitude, longitude, timezone, gmt);
         }
     }
 }

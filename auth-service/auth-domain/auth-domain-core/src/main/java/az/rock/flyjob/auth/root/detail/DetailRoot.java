@@ -4,7 +4,7 @@ import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
@@ -61,7 +61,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
     }
 
     private DetailRoot(Builder builder) {
-        super(builder.detailID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.detailID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         userID = builder.userID;
         roles = builder.roles;
         isAccountNonExpired = builder.isAccountNonExpired;
@@ -77,7 +77,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
         private DetailID detailID;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private UserID userID;
@@ -111,8 +111,8 @@ public class DetailRoot extends AggregateRoot<DetailID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

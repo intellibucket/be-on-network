@@ -4,5 +4,5 @@ import az.rock.flyjob.auth.root.user.PasswordRoot;
 import az.rock.lib.domain.id.UserID;
 
 public interface AbstractPasswordDomainMapper {
-    PasswordRoot toNewPasswordRoot(UserID userID,String rawPassword);
+    PasswordRoot generatePasswordRoot(UserID userID, String rawPassword);
 }

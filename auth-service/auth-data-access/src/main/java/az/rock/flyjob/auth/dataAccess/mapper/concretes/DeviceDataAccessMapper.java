@@ -23,7 +23,7 @@ public class DeviceDataAccessMapper  implements AbstractDataAccessMapper<DeviceE
         return DeviceEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getDataStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))

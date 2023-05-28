@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.root;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.AuthorityID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
@@ -19,20 +19,20 @@ public class AuthorityRoot extends AggregateRoot<AuthorityID> {
     public AuthorityRoot(AuthorityID authorityID,
                          Long version,
                          ProcessStatus processStatus,
-                         DataStatus dataStatus,
+                         RowStatus rowStatus,
                          ZonedDateTime createdDate,
                          ZonedDateTime modificationDate,
                          String permission,
                          String description,
                          Set<RoleRoot> roles) {
-        super(authorityID, version, processStatus, dataStatus, createdDate, modificationDate);
+        super(authorityID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.permission = permission;
         this.description = description;
         this.roles = roles;
     }
 
     private AuthorityRoot(Builder builder) {
-        super(builder.id, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         permission = builder.permission;
         description = builder.description;
         roles = builder.roles;
@@ -54,7 +54,7 @@ public class AuthorityRoot extends AggregateRoot<AuthorityID> {
         private AuthorityID id;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private String permission;
@@ -85,8 +85,8 @@ public class AuthorityRoot extends AggregateRoot<AuthorityID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

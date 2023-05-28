@@ -4,7 +4,7 @@ import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.AccountPlanType;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
@@ -27,7 +27,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
     public AccountPlanRoot(AccountPlanID accountPlanID,
                            Long version,
                            ProcessStatus processStatus,
-                           DataStatus dataStatus,
+                           RowStatus rowStatus,
                            ZonedDateTime createdDate,
                            ZonedDateTime modificationDate,
                            UserID userID,
@@ -36,7 +36,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
                            ZonedDateTime expiredDate,
                            Boolean isExpired,
                            String promoCode) {
-        super(accountPlanID, version, processStatus, dataStatus, createdDate, modificationDate);
+        super(accountPlanID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.userID = userID;
         this.plan = plan;
         this.startDate = startDate;
@@ -46,7 +46,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
     }
 
     private AccountPlanRoot(Builder builder) {
-        super(builder.accountPlanID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.accountPlanID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         userID = builder.userID;
         plan = builder.plan;
         startDate = builder.startDate;
@@ -83,7 +83,7 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
         private AccountPlanID accountPlanID;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private UserID userID;
@@ -115,8 +115,8 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

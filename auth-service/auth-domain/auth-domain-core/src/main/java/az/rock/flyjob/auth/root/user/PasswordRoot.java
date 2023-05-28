@@ -3,8 +3,9 @@ package az.rock.flyjob.auth.root.user;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.PasswordID;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
 
@@ -31,7 +32,7 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
     }
 
     private PasswordRoot(Builder builder) {
-        super(builder.id, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         userID = builder.userID;
         salt = builder.salt;
         hash = builder.hash;
@@ -60,9 +61,9 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
 
     public static final class Builder {
         private PasswordID id;
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
 
@@ -83,6 +84,11 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
         }
 
         public Builder version(Long val) {
+            version = Version.of(val);
+            return this;
+        }
+
+        public Builder version(Version val) {
             version = val;
             return this;
         }
@@ -92,8 +98,8 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder rowStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

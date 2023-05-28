@@ -38,7 +38,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .uuid(root.getUUID().getId())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getDataStatus())
                 .key(root.getKey())

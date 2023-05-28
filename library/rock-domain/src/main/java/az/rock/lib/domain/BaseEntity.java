@@ -1,6 +1,6 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -33,7 +33,7 @@ public class BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "data_status", nullable = false, columnDefinition = "varchar(20) default 'ACTIVE'")
-    private DataStatus dataStatus;
+    private RowStatus rowStatus;
 
     @CreationTimestamp
     @Column(name = "created_date", updatable = false,nullable = false)
@@ -51,7 +51,7 @@ public class BaseEntity {
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
         processStatus = builder.processStatus;
-        dataStatus = builder.dataStatus;
+        rowStatus = builder.rowStatus;
     }
 
     public boolean isNew() {
@@ -68,13 +68,13 @@ public class BaseEntity {
                       Timestamp createdDate,
                       Timestamp lastModifiedDate,
                       ProcessStatus processStatus,
-                      DataStatus dataStatus) {
+                      RowStatus rowStatus) {
         this.uuid = uuid;
         this.version = version;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
         this.processStatus = processStatus;
-        this.dataStatus = dataStatus;
+        this.rowStatus = rowStatus;
     }
 
     public void setCreatedDate(Timestamp createdDate) {
@@ -115,8 +115,8 @@ public class BaseEntity {
         this.lastModifiedDate = Timestamp.valueOf(lastModifiedDate.toLocalDateTime());
     }
 
-    public void setActive(DataStatus dataStatus) {
-        this.dataStatus = dataStatus;
+    public void setActive(RowStatus rowStatus) {
+        this.rowStatus = rowStatus;
     }
 
     public void setVersion(Long version) {
@@ -147,16 +147,16 @@ public class BaseEntity {
         return lastModifiedDate;
     }
 
-    public DataStatus getDataStatus() {
-        return this.dataStatus;
+    public RowStatus getDataStatus() {
+        return this.rowStatus;
     }
 
     public ProcessStatus getProcessStatus() {
         return processStatus;
     }
 
-    public void setDataStatus(DataStatus dataStatus) {
-        this.dataStatus = dataStatus;
+    public void setDataStatus(RowStatus rowStatus) {
+        this.rowStatus = rowStatus;
     }
 
     public void setProcessStatus(ProcessStatus processStatus) {
@@ -169,7 +169,7 @@ public class BaseEntity {
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
 
         private Builder() {
         }
@@ -203,8 +203,8 @@ public class BaseEntity {
             return this;
         }
 
-        public Builder isActive(DataStatus dataStatus) {
-            this.dataStatus = dataStatus;
+        public Builder isActive(RowStatus rowStatus) {
+            this.rowStatus = rowStatus;
             return this;
         }
 

@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.root.user;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.domain.id.UserSettingsID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.ProcessStatus;
 
@@ -37,7 +37,7 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
     private final Boolean isVisibleResume;
 
     private UserSettingsRoot(Builder builder) {
-        super(builder.uuid, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.uuid, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         userID = builder.userID;
         language = builder.language;
         isActiveDarkMode = builder.isActiveDarkMode;
@@ -109,7 +109,7 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
         public UserSettingsID uuid;
         public Long version;
         public ProcessStatus processStatus;
-        public DataStatus dataStatus;
+        public RowStatus rowStatus;
         public ZonedDateTime createdDate;
         public ZonedDateTime lastModifiedDate;
         private UserID userID;
@@ -148,8 +148,8 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 
