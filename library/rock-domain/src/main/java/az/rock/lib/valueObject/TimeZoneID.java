@@ -6,6 +6,8 @@ import java.util.TimeZone;
 
 @ValueObject
 public class TimeZoneID {
+
+    public static final TimeZoneID EMPTY = TimeZoneID.of("");
     private final String timezone;
 
     private TimeZoneID(String timezone) {

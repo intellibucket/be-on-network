@@ -19,7 +19,7 @@ import java.util.UUID;
 public class DetailEntity extends BaseEntity {
 
     @OneToOne
-    private UserEntity userEntity;
+    private UserEntity user;
 
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -47,7 +47,7 @@ public class DetailEntity extends BaseEntity {
     private Boolean isFrozen;
 
     private DetailEntity(Builder builder) {
-        setUserEntity(builder.userEntity);
+        setUser(builder.userEntity);
         setRoles(builder.roles);
         setUuid(builder.uuid);
         setVersion(builder.version);

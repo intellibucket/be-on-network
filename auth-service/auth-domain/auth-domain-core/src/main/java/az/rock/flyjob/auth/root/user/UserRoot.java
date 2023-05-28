@@ -76,6 +76,21 @@ public class UserRoot extends AggregateRoot<UserID> {
         return timezone;
     }
 
+    public Set<PhoneNumberRoot> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public Set<AccountPlanRoot> getAccountPlans() {
+        return accountPlans;
+    }
+
+    public Set<DeviceRoot> getDevices() {
+        return devices;
+    }
+
+    public UserSettingsRoot getUserSettingsRoot() {
+        return userSettingsRoot;
+    }
 
     public Set<EmailRoot> getEmails() {
         return emails;

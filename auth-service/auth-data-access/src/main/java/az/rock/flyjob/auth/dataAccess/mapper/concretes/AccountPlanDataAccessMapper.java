@@ -12,11 +12,7 @@ import java.util.UUID;
 @Component
 public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAccessMapper<AccountPlanEntity, AccountPlanRoot> {
 
-    private final UserDataAccessMapper userDataAccessMapper;
 
-    public AccountPlanDataAccessMapper(UserDataAccessMapper userDataAccessMapper) {
-        this.userDataAccessMapper = userDataAccessMapper;
-    }
 
     @Override
     public AccountPlanRoot toRoot(AccountPlanEntity entity) {
@@ -43,9 +39,7 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
                 .uuid(root.getUUID().getId())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
-                .createdDate(GDateTime.of(root.getCreatedDate()))
-                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .dataStatus(root.getRowStatus())
                 .plan(root.getPlan())
                 .startDate(GDateTime.of(root.getStartDate()))
                 .expiredDate(GDateTime.of(root.getExpiredDate()))
@@ -61,9 +55,7 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
                 .uuid(UUID.randomUUID())
                 .version(1L)
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
-                .createdDate(GDateTime.of(root.getCreatedDate()))
-                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .dataStatus(root.getRowStatus())
                 .plan(root.getPlan())
                 .startDate(GDateTime.of(root.getStartDate()))
                 .expiredDate(GDateTime.of(root.getExpiredDate()))

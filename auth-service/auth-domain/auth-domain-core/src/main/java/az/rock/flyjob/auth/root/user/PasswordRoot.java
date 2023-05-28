@@ -39,7 +39,7 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
     }
 
     public Boolean currentPassword(){
-        return this.getDataStatus().isActive();
+        return this.getRowStatus().isActive();
     }
 
     public String getSalt() {
@@ -51,7 +51,7 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
     }
 
     public Boolean inActivePassword() {
-        return this.getDataStatus().isInactive();
+        return this.getRowStatus().isInactive();
     }
 
     @Override

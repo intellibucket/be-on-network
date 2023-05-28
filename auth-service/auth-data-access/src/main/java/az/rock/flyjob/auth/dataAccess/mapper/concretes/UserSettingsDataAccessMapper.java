@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> {
 
-    private final UserDataAccessMapper userDataAccessMapper;
-
-    public UserSettingsDataAccessMapper(UserDataAccessMapper userDataAccessMapper) {
-        this.userDataAccessMapper = userDataAccessMapper;
-    }
 
     @Override
     public UserSettingsRoot toRoot(UserSettingsEntity entity) {
@@ -43,7 +38,7 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .language(root.getLanguage())
                 .isActiveDarkMode(root.isActiveDarkMode())
                 .isActiveEmailNotification(root.isActiveEmailNotification())
@@ -68,7 +63,7 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .language(root.getLanguage())
                 .isActiveDarkMode(root.isActiveDarkMode())
                 .isActiveEmailNotification(root.isActiveEmailNotification())

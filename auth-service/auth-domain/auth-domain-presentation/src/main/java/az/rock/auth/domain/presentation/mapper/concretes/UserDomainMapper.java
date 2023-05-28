@@ -56,7 +56,7 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
         var freeAccountsPlan = this.accountPlanDomainMapper.freeAccountPlan(userId);
         var deviceRoot = this.deviceDomainMapper.registrationDevice(userId);
         var userSettingsRoot = this.userSettingsDomainMapper.defaultUserSettingsRoot(userId);
-        return UserRoot.Builder
+        var userRoot =  UserRoot.Builder
                 .builder()
                 .id(userId)
                 .version(Version.ONE)
@@ -74,5 +74,6 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .accountPlan(freeAccountsPlan)
                 .userSettings(userSettingsRoot)
                 .build();
+        return userRoot;
     }
 }

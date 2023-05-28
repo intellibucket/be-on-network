@@ -26,6 +26,7 @@ public class AccountPlanDomainMapper implements AbstractAccountPlanDomainMapper 
                 .user(userID)
                 .plan(AccountPlanType.FREE)
                 .startDate(ZonedDateTime.now())
+                .expiredDate(ZonedDateTime.now().plusYears(10))
                 .isExpired(false)
                 .build();
     }
