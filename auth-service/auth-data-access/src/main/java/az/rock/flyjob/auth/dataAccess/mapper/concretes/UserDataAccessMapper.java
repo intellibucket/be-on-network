@@ -110,7 +110,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         var userEntity =  UserEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
-                .version(1L)
+                .version(root.getVersionValue())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
                 .key(root.getKey())
@@ -127,6 +127,13 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .devices(deviceEntities)
                 .settings(userSettingsEntity)
                 .build();
+        passwordEntities.forEach(passwordEntity -> passwordEntity.setUser(userEntity));
+        emailEntities.forEach(emailEntity -> emailEntity.setUser(userEntity));
+        phoneNumberEntities.forEach(phoneNumberEntity -> phoneNumberEntity.setUser(userEntity));
+        detailEntity.setUser(userEntity);
+        accountPlanEntities.forEach(accountPlanEntity -> accountPlanEntity.setUser(userEntity));
+        deviceEntities.forEach(deviceEntity -> deviceEntity.setUser(userEntity));
+        userSettingsEntity.setUser(userEntity);
         return userEntity;
     }
 

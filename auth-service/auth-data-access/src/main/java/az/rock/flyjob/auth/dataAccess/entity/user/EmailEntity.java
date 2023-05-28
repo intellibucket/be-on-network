@@ -5,10 +5,7 @@ import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.EmailType;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +27,7 @@ public class EmailEntity extends BaseEntity {
     @ManyToOne
     private UserEntity user;
 
-    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private EmailType type;
 
     @Email
