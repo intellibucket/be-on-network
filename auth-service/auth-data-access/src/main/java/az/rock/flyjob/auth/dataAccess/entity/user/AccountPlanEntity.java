@@ -4,10 +4,7 @@ import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccountPlanType;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +24,7 @@ public class AccountPlanEntity extends BaseEntity {
     @ManyToOne
     private UserEntity user;
 
-    @Column(name = "plan", nullable = false, length = 100,columnDefinition = "varchar(20) default 'FREE'")
+    @Enumerated(EnumType.STRING)
     private AccountPlanType plan;
 
     @Column(name = "start_date", nullable = false, updatable = false)
@@ -124,7 +121,7 @@ public class AccountPlanEntity extends BaseEntity {
             return this;
         }
 
-        public Builder dataStatus(RowStatus val) {
+        public Builder rowStatus(RowStatus val) {
             rowStatus = val;
             return this;
         }

@@ -15,13 +15,10 @@ import org.springframework.validation.annotation.Validated;
 @Service
 public class UserDomainPresentationService implements AbstractUserDomainPresentationService {
     private final AbstractUserCreateCommandHandler userCreateCommandHandler;
-    private final AbstractUserDomainMapper userDomainMapper;
     private final AbstractUserMessagePublisher userMessagePublisher;
     public UserDomainPresentationService(AbstractUserCreateCommandHandler userCreateCommandHandler,
-                                         UserDomainMapper userDomainMapper,
                                          AbstractUserMessagePublisher userMessagePublisher) {
         this.userCreateCommandHandler = userCreateCommandHandler;
-        this.userDomainMapper = userDomainMapper;
         this.userMessagePublisher = userMessagePublisher;
     }
 
@@ -29,6 +26,6 @@ public class UserDomainPresentationService implements AbstractUserDomainPresenta
     public CreateUserResponse createUser(CreateUserCommand createUserCommand) {
         UserCreatedEvent userCreatedEvent = this.userCreateCommandHandler.handle(createUserCommand);
         this.userMessagePublisher.publish(userCreatedEvent);
-        return this.userDomainMapper.toCreateUserResponse(userCreatedEvent.getRoot());
+        return CreateUserResponse.of(userCreatedEvent.getRoot());
     }
 }

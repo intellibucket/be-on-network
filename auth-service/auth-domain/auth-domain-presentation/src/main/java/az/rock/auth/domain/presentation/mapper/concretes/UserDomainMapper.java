@@ -43,9 +43,6 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
         this.userSettingsDomainMapper = userSettingsDomainMapper;
     }
 
-    public CreateUserResponse toCreateUserResponse(UserRoot userRoot) {
-        return new CreateUserResponse(userRoot.getUUID().getId(), userRoot.getUsername(), userRoot.getAbsoluteEmail());
-    }
 
     @Override
     public UserRoot registrationUserRoot(CreateUserCommand createUserCommand) {

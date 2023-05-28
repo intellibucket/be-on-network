@@ -38,8 +38,18 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
     public DetailEntity toNewEntity(DetailRoot root) {
         return DetailEntity.Builder
                 .builder()
-                .uuid(UUID.randomUUID())
-                .version(1L)
+                .uuid(root.getUUID().getId())
+                .version(root.getVersionValue())
+                .processStatus(root.getProcessStatus())
+                .rowStatus(root.getRowStatus())
+                .createdDate(GDateTime.of(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .isAccountNonExpired(root.isAccountNonExpired())
+                .isAccountNonLocked(root.isAccountNonLocked())
+                .isCredentialsNonExpired(root.isCredentialsNonExpired())
+                .isEnabled(root.isEnabled())
+                .isDeleted(root.isDeleted())
+                .isFrozen(root.isFrozen())
                 .build();
     }
 }

@@ -38,7 +38,7 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getRowStatus())
+                .rowStatus(root.getRowStatus())
                 .language(root.getLanguage())
                 .isActiveDarkMode(root.isActiveDarkMode())
                 .isActiveEmailNotification(root.isActiveEmailNotification())
@@ -58,12 +58,12 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
     public UserSettingsEntity toNewEntity(UserSettingsRoot root) {
         return UserSettingsEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getId())
+                .uuid(root.getUserID().getId())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getRowStatus())
+                .rowStatus(root.getRowStatus())
                 .language(root.getLanguage())
                 .isActiveDarkMode(root.isActiveDarkMode())
                 .isActiveEmailNotification(root.isActiveEmailNotification())

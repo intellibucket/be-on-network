@@ -190,4 +190,53 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
             return  new PhoneNumberRoot(null, version, processStatus, rowStatus, createdDate, modificationDate, userID, countryCode, phoneNumber, type, isEnableSmsNotification, isEnableWhatsappNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount);
         }
     }
+
+
+    public UserID getUserID() {
+        return userID;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public PhoneNumberType getType() {
+        return type;
+    }
+
+    public Boolean getEnableSmsNotification() {
+        return isEnableSmsNotification;
+    }
+
+    public Boolean getEnableWhatsappNotification() {
+        return isEnableWhatsappNotification;
+    }
+
+    public Boolean getPrimary() {
+        return isPrimary;
+    }
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public ZonedDateTime getVerificationCodeExpireDate() {
+        return verificationCodeExpireDate;
+    }
+
+    public ZonedDateTime getVerificationCodeSendDate() {
+        return verificationCodeSendDate;
+    }
+
+    public BigInteger getVerificationCodeSendCount() {
+        return verificationCodeSendCount;
+    }
 }
