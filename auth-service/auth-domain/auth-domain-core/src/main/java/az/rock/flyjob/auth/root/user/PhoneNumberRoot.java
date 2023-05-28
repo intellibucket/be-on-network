@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.root.user;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.PhoneNumberID;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.PhoneNumberType;
 import az.rock.lib.valueObject.ProcessStatus;
 
@@ -38,7 +38,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
     public PhoneNumberRoot(PhoneNumberID phoneNumberID,
                            Long version,
                            ProcessStatus processStatus,
-                           DataStatus dataStatus,
+                           RowStatus rowStatus,
                            ZonedDateTime createdDate,
                            ZonedDateTime modificationDate,
                            UserID userID,
@@ -53,7 +53,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
                            ZonedDateTime verificationCodeExpireDate,
                            ZonedDateTime verificationCodeSendDate,
                            BigInteger verificationCodeSendCount) {
-        super(phoneNumberID, version, processStatus, dataStatus, createdDate, modificationDate);
+        super(phoneNumberID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.userID = userID;
         this.countryCode = countryCode;
         this.phoneNumber = phoneNumber;
@@ -84,7 +84,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         private BigInteger verificationCodeSendCount;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private PhoneNumberID phoneNumberID;
@@ -166,8 +166,8 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus dataStatus) {
-            this.dataStatus = dataStatus;
+        public Builder dataStatus(RowStatus rowStatus) {
+            this.rowStatus = rowStatus;
             return this;
         }
 
@@ -187,7 +187,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         }
 
         public PhoneNumberRoot build() {
-            return  new PhoneNumberRoot(null, version, processStatus, dataStatus, createdDate, modificationDate, userID, countryCode, phoneNumber, type, isEnableSmsNotification, isEnableWhatsappNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount);
+            return  new PhoneNumberRoot(null, version, processStatus, rowStatus, createdDate, modificationDate, userID, countryCode, phoneNumber, type, isEnableSmsNotification, isEnableWhatsappNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount);
         }
     }
 }

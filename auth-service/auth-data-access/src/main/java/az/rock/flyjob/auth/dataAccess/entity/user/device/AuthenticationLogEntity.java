@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.entity.user.device;
 
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +34,7 @@ public class AuthenticationLogEntity extends BaseEntity {
         setUuid(builder.uuid);
         setVersion(builder.version);
         setProcessStatus(builder.processStatus);
-        setDataStatus(builder.dataStatus);
+        setDataStatus(builder.rowStatus);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
     }
@@ -46,7 +46,7 @@ public class AuthenticationLogEntity extends BaseEntity {
         private UUID uuid;
         private Long version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
 
@@ -82,8 +82,8 @@ public class AuthenticationLogEntity extends BaseEntity {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

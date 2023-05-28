@@ -35,4 +35,8 @@ public class TimeZoneID {
     public TimeZone toTimeZone(){
         return TimeZone.getTimeZone(timezone);
     }
+
+    public static class Prototype {
+        public static final TimeZoneID ASIA_BAKU = TimeZoneID.of("Asia/Baku");
+    }
 }

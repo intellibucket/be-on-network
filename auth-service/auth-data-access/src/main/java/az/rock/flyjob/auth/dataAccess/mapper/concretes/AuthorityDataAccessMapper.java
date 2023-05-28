@@ -8,7 +8,6 @@ import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMapper<AuthorityEntity, AuthorityRoot> {
@@ -35,7 +34,7 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .uuid(root.getUUID().getUUID())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getDataStatus())
                 .description(root.getDescription())
@@ -50,7 +49,7 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .uuid(UUID.randomUUID())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getDataStatus())
                 .description(root.getDescription())

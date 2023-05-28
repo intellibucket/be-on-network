@@ -1,16 +1,15 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
 
-import static az.rock.lib.valueObject.DataStatus.*;
-
 public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
-    private Long version;
+    private Version version;
     private ProcessStatus processStatus;
-    private DataStatus dataStatus;
+    private RowStatus rowStatus;
     private ZonedDateTime createdDate;
     private ZonedDateTime modificationDate;
 
@@ -19,15 +18,29 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
     }
 
     public AggregateRoot(ID id,
-                         Long version,
+                         Version version,
                          ProcessStatus processStatus,
-                         DataStatus dataStatus,
+                         RowStatus rowStatus,
                          ZonedDateTime createdDate,
                          ZonedDateTime modificationDate) {
         super(id);
         this.version = version;
         this.processStatus = processStatus;
-        this.dataStatus = dataStatus;
+        this.rowStatus = rowStatus;
+        this.createdDate = createdDate;
+        this.modificationDate = modificationDate;
+    }
+
+    public AggregateRoot(ID id,
+                         Long version,
+                         ProcessStatus processStatus,
+                         RowStatus rowStatus,
+                         ZonedDateTime createdDate,
+                         ZonedDateTime modificationDate) {
+        super(id);
+        this.version = new Version(version);
+        this.processStatus = processStatus;
+        this.rowStatus = rowStatus;
         this.createdDate = createdDate;
         this.modificationDate = modificationDate;
     }
@@ -38,7 +51,11 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
         return super.getUUID();
     }
 
-    public Long getVersion() {
+    public Long getVersionValue() {
+        return version.value();
+    }
+
+    public Version getVersion() {
         return version;
     }
 
@@ -46,8 +63,8 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
         return processStatus;
     }
 
-    public DataStatus getDataStatus() {
-        return dataStatus;
+    public RowStatus getDataStatus() {
+        return rowStatus;
     }
 
     public ZonedDateTime getCreatedDate() {
@@ -64,23 +81,23 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
     }
 
     public Boolean sameVersionAs(AggregateRoot<ID> other) {
-        return this.getVersion().equals(other.getVersion());
+        return this.getVersionValue().equals(other.getVersionValue());
     }
 
     public Boolean sameVersionAs(Long otherVersion) {
-        return this.getVersion().equals(otherVersion);
+        return this.getVersionValue().equals(otherVersion);
     }
 
     public Boolean isActive() {
-        return this.dataStatus.isActive();
+        return this.rowStatus.isActive();
     }
 
     public Boolean isInactive() {
-        return this.dataStatus.isInactive();
+        return this.rowStatus.isInactive();
     }
 
     public Boolean isDeleted() {
-        return this.dataStatus.isDeleted();
+        return this.rowStatus.isDeleted();
     }
 
 

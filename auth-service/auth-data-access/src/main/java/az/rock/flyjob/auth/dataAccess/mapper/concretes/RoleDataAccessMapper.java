@@ -8,7 +8,6 @@ import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleEntity, RoleRoot> {
@@ -32,7 +31,7 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
         return RoleEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
-                .version(root.getVersion())
+                .version(root.getVersionValue())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
                 .processStatus(root.getProcessStatus())

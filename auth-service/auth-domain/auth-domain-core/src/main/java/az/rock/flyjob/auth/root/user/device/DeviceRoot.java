@@ -1,11 +1,11 @@
 package az.rock.flyjob.auth.root.user.device;
 
-import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.DeviceID;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.DataStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.Version;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
@@ -52,7 +52,7 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
 
 
     private DeviceRoot(Builder builder) {
-        super(builder.deviceID, builder.version, builder.processStatus, builder.dataStatus, builder.createdDate, builder.modificationDate);
+        super(builder.deviceID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         userID = builder.userID;
         authenticationLogs = builder.authenticationLogs;
         deviceName = builder.deviceName;
@@ -79,6 +79,10 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
 
     public Set<AuthenticationLogRoot> getAuthenticationLogs() {
         return authenticationLogs;
+    }
+
+    public AuthenticationLogRoot getFirstAuthenticationLogRoot() {
+        return authenticationLogs.stream().findFirst().orElse(null);
     }
 
     public String getDeviceName() {
@@ -149,9 +153,9 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
 
         private DeviceID deviceID;
 
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
-        private DataStatus dataStatus;
+        private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private UserID userID;
@@ -186,6 +190,11 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
         }
 
         public Builder version(Long val) {
+            version = Version.of(val);
+            return this;
+        }
+
+        public Builder version(Version val) {
             version = val;
             return this;
         }
@@ -195,8 +204,8 @@ public final class DeviceRoot extends AggregateRoot<DeviceID> {
             return this;
         }
 
-        public Builder dataStatus(DataStatus val) {
-            dataStatus = val;
+        public Builder dataStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 

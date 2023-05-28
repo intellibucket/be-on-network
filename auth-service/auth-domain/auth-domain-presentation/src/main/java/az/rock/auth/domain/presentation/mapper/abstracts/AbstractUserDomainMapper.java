@@ -7,5 +7,5 @@ import az.rock.flyjob.auth.root.user.UserRoot;
 public interface AbstractUserDomainMapper {
     CreateUserResponse toCreateUserResponse(UserRoot userRoot);
 
-    UserRoot toNewUserRoot(CreateUserCommand createUserCommand);
+    UserRoot registrationUserRoot(CreateUserCommand createUserCommand);
 }
