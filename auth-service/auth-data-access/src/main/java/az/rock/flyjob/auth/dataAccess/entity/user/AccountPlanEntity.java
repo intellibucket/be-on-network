@@ -124,7 +124,7 @@ public class AccountPlanEntity extends BaseEntity {
             return this;
         }
 
-        public Builder dataStatus(RowStatus val) {
+        public Builder rowStatus(RowStatus val) {
             rowStatus = val;
             return this;
         }

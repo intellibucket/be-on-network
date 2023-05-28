@@ -1,7 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
-import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDeviceDataAccessMapper;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
 import az.rock.lib.util.GDateTime;
@@ -26,7 +25,7 @@ public class DeviceDataAccessMapper  implements AbstractDeviceDataAccessMapper<D
                 .uuid(root.getUUID().getId())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getRowStatus())
+                .rowStatus(root.getRowStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .deviceName(root.getDeviceName())
@@ -52,7 +51,9 @@ public class DeviceDataAccessMapper  implements AbstractDeviceDataAccessMapper<D
         return DeviceEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
-                .version(1L)
+                .version(root.getVersionValue())
+                .rowStatus(root.getRowStatus())
+                .processStatus(root.getProcessStatus())
                 .deviceName(root.getDeviceName())
                 .deviceModel(root.getDeviceModel())
                 .deviceManufacturer(root.getDeviceManufacturer())

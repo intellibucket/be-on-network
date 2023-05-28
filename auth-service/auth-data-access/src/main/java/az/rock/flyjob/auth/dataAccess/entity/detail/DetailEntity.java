@@ -3,6 +3,8 @@ package az.rock.flyjob.auth.dataAccess.entity.detail;
 import az.rock.flyjob.auth.dataAccess.entity.RoleEntity;
 import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -47,20 +49,36 @@ public class DetailEntity extends BaseEntity {
     private Boolean isFrozen;
 
     private DetailEntity(Builder builder) {
-        setUser(builder.userEntity);
+        setUser(builder.user);
         setRoles(builder.roles);
+        setIsAccountNonExpired(builder.isAccountNonExpired);
+        setIsAccountNonLocked(builder.isAccountNonLocked);
+        setIsCredentialsNonExpired(builder.isCredentialsNonExpired);
+        setIsEnabled(builder.isEnabled);
+        setIsDeleted(builder.isDeleted);
+        setIsFrozen(builder.isFrozen);
         setUuid(builder.uuid);
         setVersion(builder.version);
+        setProcessStatus(builder.processStatus);
+        setRowStatus(builder.rowStatus);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
     }
 
 
     public static final class Builder {
-        private UserEntity userEntity;
+        private UserEntity user;
         private Set<RoleEntity> roles;
+        private Boolean isAccountNonExpired;
+        private Boolean isAccountNonLocked;
+        private Boolean isCredentialsNonExpired;
+        private Boolean isEnabled;
+        private Boolean isDeleted;
+        private Boolean isFrozen;
         private UUID uuid;
         private Long version;
+        private ProcessStatus processStatus;
+        private RowStatus rowStatus;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
 
@@ -71,13 +89,43 @@ public class DetailEntity extends BaseEntity {
             return new Builder();
         }
 
-        public Builder userEntity(UserEntity val) {
-            userEntity = val;
+        public Builder user(UserEntity val) {
+            user = val;
             return this;
         }
 
         public Builder roles(Set<RoleEntity> val) {
             roles = val;
+            return this;
+        }
+
+        public Builder isAccountNonExpired(Boolean val) {
+            isAccountNonExpired = val;
+            return this;
+        }
+
+        public Builder isAccountNonLocked(Boolean val) {
+            isAccountNonLocked = val;
+            return this;
+        }
+
+        public Builder isCredentialsNonExpired(Boolean val) {
+            isCredentialsNonExpired = val;
+            return this;
+        }
+
+        public Builder isEnabled(Boolean val) {
+            isEnabled = val;
+            return this;
+        }
+
+        public Builder isDeleted(Boolean val) {
+            isDeleted = val;
+            return this;
+        }
+
+        public Builder isFrozen(Boolean val) {
+            isFrozen = val;
             return this;
         }
 
@@ -88,6 +136,16 @@ public class DetailEntity extends BaseEntity {
 
         public Builder version(Long val) {
             version = val;
+            return this;
+        }
+
+        public Builder processStatus(ProcessStatus val) {
+            processStatus = val;
+            return this;
+        }
+
+        public Builder rowStatus(RowStatus val) {
+            rowStatus = val;
             return this;
         }
 
