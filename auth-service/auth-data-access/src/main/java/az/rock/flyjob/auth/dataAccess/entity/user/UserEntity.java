@@ -9,14 +9,10 @@ import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -24,7 +20,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users", schema = "auth", indexes = {
-        @Index(name = "idx_userentity_username", columnList = "username")
+        @Index(name = "idx_users_username", columnList = "username")
 })
 @Entity(name = "UserEntity")
 public class UserEntity extends BaseEntity {
@@ -33,22 +29,15 @@ public class UserEntity extends BaseEntity {
     private UUID key;
 
     @Column(name = "first_name", nullable = false)
-    @Min(value = 3, message = "First name must be at least 3 characters long")
-    @Max(value = 30, message = "First name must be at most 20 characters long")
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
-    @Min(value = 3, message = "Last name must be at least 3 characters long")
-    @Max(value = 40, message = "Last name must be at most 20 characters long")
     private String lastName;
 
     @Column(name = "username", nullable = false, unique = true)
-    @Min(value = 2, message = "Username must be at least 3 characters long")
-    @Max(value = 30, message = "Username must be at most 20 characters long")
     private String username;
 
     @Column(name = "timezone", nullable = false)
-    @Min(value = 1, message = "Timezone must be at least 3 characters long")
     private String timezone;
 
     @Enumerated(EnumType.STRING)
@@ -63,7 +52,7 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<PhoneNumberEntity> phoneNumbers;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private DetailEntity detail;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -81,9 +70,18 @@ public class UserEntity extends BaseEntity {
         setLastName(builder.lastName);
         setUsername(builder.username);
         setTimezone(builder.timezone);
-        setDetail(builder.account);
+        setGender(builder.gender);
+        setPasswords(builder.passwords);
+        setEmails(builder.emails);
+        setPhoneNumbers(builder.phoneNumbers);
+        setDetail(builder.detail);
+        setAccountPlans(builder.accountPlans);
+        setDevices(builder.devices);
+        setSettings(builder.settings);
         setUuid(builder.uuid);
         setVersion(builder.version);
+        setProcessStatus(builder.processStatus);
+        setRowStatus(builder.rowStatus);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
     }
@@ -94,12 +92,17 @@ public class UserEntity extends BaseEntity {
         private @Min(value = 3, message = "First name must be at least 3 characters long") @Max(value = 30, message = "First name must be at most 20 characters long") String firstName;
         private @Min(value = 3, message = "Last name must be at least 3 characters long") @Max(value = 40, message = "Last name must be at most 20 characters long") String lastName;
         private @Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String username;
-        private Set<PasswordEntity> passwordEntity;
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
-        private DetailEntity account;
+        private Gender gender;
+        private List<PasswordEntity> passwords;
+        private List<EmailEntity> emails;
+        private List<PhoneNumberEntity> phoneNumbers;
+        private DetailEntity detail;
+        private List<AccountPlanEntity> accountPlans;
+        private List<DeviceEntity> devices;
+        private UserSettingsEntity settings;
         private UUID uuid;
         private Long version;
-
         private ProcessStatus processStatus;
 
         private RowStatus rowStatus;
@@ -133,19 +136,48 @@ public class UserEntity extends BaseEntity {
             return this;
         }
 
-        public Builder passwordEntity(Set<PasswordEntity> val) {
-            passwordEntity = val;
-            return this;
-        }
-
         public Builder timezone(@Min(value = 1, message = "Timezone must be at least 3 characters long") String val) {
             timezone = val;
             return this;
         }
 
+        public Builder gender(Gender val) {
+            gender = val;
+            return this;
+        }
 
-        public Builder account(DetailEntity val) {
-            account = val;
+        public Builder passwords(List<PasswordEntity> val) {
+            passwords = val;
+            return this;
+        }
+
+        public Builder emails(List<EmailEntity> val) {
+            emails = val;
+            return this;
+        }
+
+        public Builder phoneNumbers(List<PhoneNumberEntity> val) {
+            phoneNumbers = val;
+            return this;
+        }
+
+        public Builder detail(DetailEntity val) {
+            detail = val;
+            return this;
+        }
+
+        public Builder accountPlans(List<AccountPlanEntity> val) {
+            accountPlans = val;
+            return this;
+        }
+
+        public Builder devices(List<DeviceEntity> val) {
+            devices = val;
+            return this;
+        }
+
+        public Builder settings(UserSettingsEntity val) {
+            settings = val;
             return this;
         }
 
@@ -159,6 +191,16 @@ public class UserEntity extends BaseEntity {
             return this;
         }
 
+        public Builder processStatus(ProcessStatus val) {
+            processStatus = val;
+            return this;
+        }
+
+        public Builder rowStatus(RowStatus val) {
+            rowStatus = val;
+            return this;
+        }
+
         public Builder createdDate(Timestamp val) {
             createdDate = val;
             return this;
@@ -166,16 +208,6 @@ public class UserEntity extends BaseEntity {
 
         public Builder lastModifiedDate(Timestamp val) {
             lastModifiedDate = val;
-            return this;
-        }
-
-        public Builder processStatus(ProcessStatus val) {
-            processStatus = val;
-            return this;
-        }
-
-        public Builder dataStatus(RowStatus val) {
-            rowStatus = val;
             return this;
         }
 

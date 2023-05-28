@@ -35,7 +35,7 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
                 .createdDate(GDateTime.of(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .name(root.getName())
                 .description(root.getDescription())
                 .build();
@@ -48,7 +48,7 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
                 .uuid(UUID.randomUUID())
                 .version(1L)
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .name(root.getName())
                 .description(root.getDescription())
                 .build();

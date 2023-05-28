@@ -63,7 +63,7 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
         return processStatus;
     }
 
-    public RowStatus getDataStatus() {
+    public RowStatus getRowStatus() {
         return rowStatus;
     }
 

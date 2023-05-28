@@ -36,7 +36,7 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .description(root.getDescription())
                 .permission(root.getPermission())
                 .build();
@@ -51,7 +51,7 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .lastModifiedDate(GDateTime.of(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .description(root.getDescription())
                 .permission(root.getPermission())
                 .build();

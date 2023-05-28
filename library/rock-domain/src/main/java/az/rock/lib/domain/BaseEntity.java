@@ -21,18 +21,18 @@ public class BaseEntity {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+    @Column(length = 36, updatable = false, nullable = false)
     private UUID uuid;
 
     @Version
     private Long version;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "process_status", nullable = false, columnDefinition = "varchar(20) default 'ON_WAITING'")
+    @Column(name = "process_status", nullable = false)
     private ProcessStatus processStatus;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "data_status", nullable = false, columnDefinition = "varchar(20) default 'ACTIVE'")
+    @Column(name = "row_status", nullable = false)
     private RowStatus rowStatus;
 
     @CreationTimestamp
@@ -155,7 +155,7 @@ public class BaseEntity {
         return processStatus;
     }
 
-    public void setDataStatus(RowStatus rowStatus) {
+    public void setRowStatus(RowStatus rowStatus) {
         this.rowStatus = rowStatus;
     }
 
@@ -200,6 +200,11 @@ public class BaseEntity {
 
         public Builder status(ProcessStatus processStatus) {
             this.processStatus = processStatus;
+            return this;
+        }
+
+        public Builder rowStatus(RowStatus rowStatus) {
+            this.rowStatus = rowStatus;
             return this;
         }
 

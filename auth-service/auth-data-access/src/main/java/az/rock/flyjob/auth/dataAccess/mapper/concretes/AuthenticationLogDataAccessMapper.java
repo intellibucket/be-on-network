@@ -33,7 +33,7 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
                 .uuid(root.getUUID().getId())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .deviceToken(root.getDeviceToken())
@@ -47,7 +47,7 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
                 .uuid(UUID.randomUUID())
                 .version(1L)
                 .processStatus(root.getProcessStatus())
-                .dataStatus(root.getDataStatus())
+                .dataStatus(root.getRowStatus())
                 .deviceToken(root.getDeviceToken())
                 .build();
     }

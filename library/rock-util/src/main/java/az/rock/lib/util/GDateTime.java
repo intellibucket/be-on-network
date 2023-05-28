@@ -24,6 +24,8 @@ public enum GDateTime {
     }
 
     public static Timestamp of(ZonedDateTime date) {
+        if (date == null)
+            return null;
         return Timestamp.valueOf(date.toLocalDateTime());
     }
 
@@ -36,6 +38,8 @@ public enum GDateTime {
     }
 
     public static Timestamp toTimestamp(ZonedDateTime createdDate) {
+        if (createdDate == null)
+            return null;
         return Timestamp.valueOf(createdDate.toLocalDateTime());
     }
 

@@ -52,7 +52,7 @@ public class AccountPlanEntity extends BaseEntity {
         setUuid(builder.uuid);
         setVersion(builder.version);
         setProcessStatus(builder.processStatus);
-        setDataStatus(builder.rowStatus);
+        setRowStatus(builder.rowStatus);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
     }
