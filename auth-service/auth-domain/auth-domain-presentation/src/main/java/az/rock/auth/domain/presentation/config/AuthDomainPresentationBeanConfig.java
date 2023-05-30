@@ -42,4 +42,5 @@ public class AuthDomainPresentationBeanConfig {
     public AbstractUserDomainService abstractUserDomainService() {
         return new UserDomainService();
     }
+
 }
