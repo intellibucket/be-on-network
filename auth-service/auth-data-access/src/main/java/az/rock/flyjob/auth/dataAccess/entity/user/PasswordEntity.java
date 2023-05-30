@@ -1,11 +1,12 @@
 package az.rock.flyjob.auth.dataAccess.entity.user;
 
-import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,6 @@ public class PasswordEntity extends BaseEntity {
     private String salt;
 
     @Column(name = "hash", nullable = false)
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$", message = "Invalid password")
     private String hash;
 
     private PasswordEntity(Builder builder) {
@@ -46,15 +46,17 @@ public class PasswordEntity extends BaseEntity {
 
 
     public static final class Builder {
-        private UserEntity user;
-        private String salt;
-        private @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$", message = "Invalid password") String hash;
+
         private UUID uuid;
         private Long version;
+
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
+        private UserEntity user;
+        private String salt;
+        private String hash;
 
         private Builder() {
         }
@@ -73,7 +75,7 @@ public class PasswordEntity extends BaseEntity {
             return this;
         }
 
-        public Builder hash(@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$", message = "Invalid password") String val) {
+        public Builder hash(String val) {
             hash = val;
             return this;
         }
