@@ -9,8 +9,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class AuthControllerAdvice {
 
-    @ExceptionHandler(AuthValidationException.class)
+
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<JFailResponse> handleException(Exception exception) {
+        return ResponseEntity.badRequest().body(new JFailResponse(exception.getMessage()));
+    }
+
+
+    @ExceptionHandler(AuthValidationException.class)
+    public ResponseEntity<JFailResponse> handleException(AuthValidationException exception) {
         return ResponseEntity.badRequest().body(new JFailResponse(exception.getMessage()));
     }
 }

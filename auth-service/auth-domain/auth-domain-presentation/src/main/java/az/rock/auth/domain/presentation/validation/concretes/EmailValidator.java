@@ -13,8 +13,8 @@ public class EmailValidator implements ConstraintValidator<GEmail, String>{
     }
 
     @Override
-    @SneakyThrows(AuthValidationException.class)
+//    @SneakyThrows(AuthValidationException.class)
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        throw new AuthValidationException("Email validation is not implemented yet.");
+        return true;
     }
 }
