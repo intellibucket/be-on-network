@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 
 @Documented
 @Constraint(validatedBy = StringValueValidator.class)
-@Target( { ElementType.METHOD, ElementType.FIELD })
+@Target( {  ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GStringValue {
     String message() default "Invalid string value";
@@ -18,5 +18,7 @@ public @interface GStringValue {
     String pattern() default "";
     int min() default 0;
     int max() default 50;
+    boolean nullable() default false;
+    boolean empty() default true;
 
 }

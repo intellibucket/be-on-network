@@ -6,6 +6,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,9 +21,13 @@ public class PatternValidator implements ConstraintValidator<GPattern, String>{
     @Override
     @SneakyThrows(ValidationException.class)
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        Pattern pattern = Pattern.compile(this.pattern);
-        Matcher matcher = pattern.matcher(value);
-        if (!matcher.find()) throw new ValidationException("Value pattern does not match");
-        return true;
+        if (!Objects.isNull(value)){
+            Pattern pattern = Pattern.compile(this.pattern);
+            Matcher matcher = pattern.matcher(value);
+            if (!matcher.find()) throw new ValidationException("Value pattern does not match");
+            return true;
+        }else {
+            throw new ValidationException("Value cannot be null");
+        }
     }
 }

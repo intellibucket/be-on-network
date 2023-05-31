@@ -6,6 +6,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,7 @@ public class EmailValidator implements ConstraintValidator<GEmail, String>{
     @Override
     @SneakyThrows(ValidationException.class)
     public boolean isValid(String value, ConstraintValidatorContext context) {
+        if (Objects.isNull(value)) throw new ValidationException("Email cannot be null");
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(value);
         if (!matcher.find()) throw new ValidationException("Invalid email");
