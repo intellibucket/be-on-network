@@ -1,9 +1,8 @@
 package az.rock.auth.domain.presentation.dto.request;
 
-import az.rock.auth.domain.presentation.validation.annotation.GEmail;
-import az.rock.auth.domain.presentation.validation.annotation.GPattern;
 import az.rock.lib.valueObject.Gender;
-import jakarta.validation.constraints.Pattern;
+import com.intellibucket.ws.validation.annotation.GEmail;
+import com.intellibucket.ws.validation.annotation.GPattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

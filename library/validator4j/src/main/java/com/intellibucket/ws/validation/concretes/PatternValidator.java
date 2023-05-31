@@ -1,8 +1,7 @@
-package az.rock.auth.domain.presentation.validation.concretes;
+package com.intellibucket.ws.validation.concretes;
 
-import az.rock.auth.domain.presentation.exception.AuthValidationException;
-import az.rock.auth.domain.presentation.validation.annotation.GEmail;
-import az.rock.auth.domain.presentation.validation.annotation.GPattern;
+import com.intellibucket.ws.exception.ValidationException;
+import com.intellibucket.ws.validation.annotation.GPattern;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;
@@ -19,11 +18,11 @@ public class PatternValidator implements ConstraintValidator<GPattern, String>{
     }
 
     @Override
-    @SneakyThrows(AuthValidationException.class)
+    @SneakyThrows(ValidationException.class)
     public boolean isValid(String value, ConstraintValidatorContext context) {
         Pattern pattern = Pattern.compile(this.pattern);
         Matcher matcher = pattern.matcher(value);
-        if (!matcher.find()) throw new AuthValidationException("Invalid password");
+        if (!matcher.find()) throw new ValidationException("Value pattern does not match");
         return true;
     }
 }
