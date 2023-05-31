@@ -3,4 +3,22 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+
+    <changeSet id="authority-registration-1" author="Vugar Mammadli">
+        <preConditions>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM auth.authorities WHERE permission = '/registration/';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            insert into auth.authorities
+            values (gen_random_uuid(),1,'COMPLETED','ACTIVE',now(),now(),'/registration/','Registration for Guest User');
+        </sql>
+        <sql>
+            insert into auth.role_authority
+            VALUES ((select uuid from auth.authorities where permission = '/registration/'),
+                    (select uuid from auth.roles where name = 'ROLE_GUEST'));
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
