@@ -1,6 +1,6 @@
-package az.rock.auth.domain.presentation.validation.annotation;
+package com.intellibucket.ws.validation.annotation;
 
-import az.rock.auth.domain.presentation.validation.concretes.EmailValidator;
+import com.intellibucket.ws.validation.concretes.EmailValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GEmail {
-    String message() default "Invalid phone number";
+    String message() default "Invalid email";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

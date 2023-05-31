@@ -1,7 +1,6 @@
-package az.rock.auth.domain.presentation.validation.annotation;
+package com.intellibucket.ws.validation.annotation;
 
-import az.rock.auth.domain.presentation.validation.concretes.EmailValidator;
-import az.rock.auth.domain.presentation.validation.concretes.PatternValidator;
+import com.intellibucket.ws.validation.concretes.PatternValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

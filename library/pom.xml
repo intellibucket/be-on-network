@@ -23,6 +23,7 @@
         <module>rock-message</module>
         <module>rock-kafka</module>
         <module>rock-domain</module>
+        <module>validator4j</module>
     </modules>
 
     <properties>
