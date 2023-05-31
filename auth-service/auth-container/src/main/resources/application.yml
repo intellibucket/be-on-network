@@ -19,3 +19,7 @@ springdoc:
 server:
   servlet:
     context-path: /auth-context
+
+logging:
+  level:
+    org.springframework.transaction.interceptor: TRACE

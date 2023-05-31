@@ -23,24 +23,44 @@
             INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:14:29.433000', null, 'ROLE_COMPANY', 'Role for Company');
         </sql>
     </changeSet>
-    <changeSet id="role-type-insert-job-seeker-business-4" author="Vugar Mammadli">
+    <changeSet id="role-type-insert-job-seeker-ultimate-4" author="Vugar Mammadli">
         <preConditions>
             <sqlCheck expectedResult="0">
-                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_BUSINESS_JOB_SEEKER';
+                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_ULTIMATE_JOB_SEEKER';
             </sqlCheck>
         </preConditions>
         <sql>
-            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:16:08.665852', null, 'ROLE_BUSINESS_JOB_SEEKER', 'Role for Business Plan Job Seeker');
+            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:16:08.665852', null, 'ROLE_ULTIMATE_JOB_SEEKER', 'Role for ULTIMATE Plan Job Seeker');
         </sql>
     </changeSet>
-    <changeSet id="role-type-insert-company-business-5" author="Vugar Mammadli">
+    <changeSet id="role-type-insert-company-ultimate-5" author="Vugar Mammadli">
         <preConditions>
             <sqlCheck expectedResult="0">
-                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_BUSINESS_COMPANY';
+                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_ULTIMATE_COMPANY';
             </sqlCheck>
         </preConditions>
         <sql>
-            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:14:29.433000', null, 'ROLE_BUSINESS_COMPANY', 'Role Business Plan for Company');
+            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:14:29.433000', null, 'ROLE_ULTIMATE_COMPANY', 'Role ULTIMATE Plan for Company');
+        </sql>
+    </changeSet>
+    <changeSet id="role-type-insert-job-seeker-basic-6" author="Vugar Mammadli">
+        <preConditions>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_BASIC_JOB_SEEKER';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:16:08.665852', null, 'ROLE_BASIC_JOB_SEEKER', 'Role for ULTIMATE Plan Job Seeker');
+        </sql>
+    </changeSet>
+    <changeSet id="role-type-insert-company-basic-7" author="Vugar Mammadli">
+        <preConditions>
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM auth.roles WHERE name = 'ROLE_BASIC_COMPANY';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO auth.roles VALUES (gen_random_uuid(), 1, 'COMPLETED', 'ACTIVE', '2023-05-26 01:14:29.433000', null, 'ROLE_BASIC_COMPANY', 'Role ULTIMATE Plan for Company');
         </sql>
     </changeSet>
 </databaseChangeLog>
