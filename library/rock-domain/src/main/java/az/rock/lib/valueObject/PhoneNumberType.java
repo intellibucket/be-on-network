@@ -4,7 +4,5 @@ import az.rock.lib.annotation.ValueObject;
 
 @ValueObject
 public enum PhoneNumberType {
-    MOBILE,
-    HOME,
-    WORK;
+    MOBILE,HOME,WORK,UNKNOWN;
 }

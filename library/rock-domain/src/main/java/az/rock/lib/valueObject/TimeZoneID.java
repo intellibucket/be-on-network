@@ -2,6 +2,7 @@ package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
 
+import java.util.Locale;
 import java.util.TimeZone;
 
 @ValueObject
@@ -40,5 +41,9 @@ public class TimeZoneID {
 
     public static class Prototype {
         public static final TimeZoneID ASIA_BAKU = TimeZoneID.of("Asia/Baku");
+    }
+
+    public Locale toLocale(String language){
+        return new Locale(language, timezone);
     }
 }
