@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.api.rest.publics;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
-import az.rock.auth.domain.presentation.service.abstracts.AbstractUserDomainPresentationService;
+import az.rock.auth.domain.presentation.service.command.abstracts.AbstractUserCommandDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.spec.auth.publics.AuthGetPublicControllerSpec;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/auth/1.0/public" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthPublicController implements AuthGetPublicControllerSpec {
 
-    private final AbstractUserDomainPresentationService userDomainPresentationService;
+    private final AbstractUserCommandDomainPresentationService userDomainPresentationService;
 
-    public AuthPublicController(AbstractUserDomainPresentationService userDomainPresentationService) {
+    public AuthPublicController(AbstractUserCommandDomainPresentationService userDomainPresentationService) {
         this.userDomainPresentationService = userDomainPresentationService;
     }
 

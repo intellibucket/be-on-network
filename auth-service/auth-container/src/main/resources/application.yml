@@ -9,6 +9,8 @@ spring:
     import: configserver:http://localhost:8012
   application:
     name: auth-service
+  liquibase:
+    clear-checksums: false
 #  mvc:
 #    pathmatch:
 #      matching-strategy: ANT_PATH_MATCHER

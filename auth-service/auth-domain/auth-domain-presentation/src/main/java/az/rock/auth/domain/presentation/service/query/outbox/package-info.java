@@ -1,0 +1,1 @@
+package az.rock.auth.domain.presentation.service.query.outbox;

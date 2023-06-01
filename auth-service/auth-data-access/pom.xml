@@ -57,7 +57,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>update</goal>
+                            <goal>diff</goal>
                         </goals>
                     </execution>
                 </executions>

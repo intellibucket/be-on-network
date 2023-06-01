@@ -21,56 +21,64 @@
         <security.version>3.0.4</security.version>
         <aspect.version>3.0.4</aspect.version>
         <jwt.version>0.9.1</jwt.version>
-        <openfeign.version>2.2.10.RELEASE</openfeign.version>
         <spring-cloud-gateway.version>3.1.4</spring-cloud-gateway.version>
         <config-server.version>3.1.4</config-server.version>
         <servlet-api.version>4.0.1</servlet-api.version>
         <slf4j.version>1.7.36</slf4j.version>
+        <log4j.version>2.17.1</log4j.version>
+        <jwt.version>0.11.5</jwt.version>
+        <openfeign.version>12.3</openfeign.version>
+        <spring-config.version>3.1.0</spring-config.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <version>${aspect.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <version>${security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>az.rock.lib</groupId>
-            <artifactId>rock-exception</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>az.rock.lib</groupId>
-            <artifactId>rock-util</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>az.rock.message</groupId>
-            <artifactId>rock-message</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
+                <version>${aspect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>2.7.6</version>
+            </dependency>
 
-    </dependencies>
+
+
+            <dependency>
+                <groupId>az.rock.lib</groupId>
+                <artifactId>rock-exception</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>az.rock.lib</groupId>
+                <artifactId>rock-util</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.rock.message</groupId>
+                <artifactId>rock-message</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-core</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <optional>true</optional>
+            </dependency>
+
+        </dependencies>
+
 
 </project>

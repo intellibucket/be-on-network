@@ -1,4 +1,4 @@
-package az.rock.auth.domain.presentation.service.abstracts;
+package az.rock.auth.domain.presentation.service.command.abstracts;
 
 import az.rock.lib.annotation.InputPort;
 
