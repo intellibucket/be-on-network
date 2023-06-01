@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
 import az.rock.auth.domain.presentation.service.command.abstracts.AbstractUserCommandDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import az.rock.spec.auth.publics.AuthCommandPublicControllerSpec;
+import az.rock.spec.auth.publics.command.AuthCommandPublicControllerSpec;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

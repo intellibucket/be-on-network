@@ -1,4 +1,4 @@
-package az.rock.spec.auth.publics;
+package az.rock.spec.auth.publics.command;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
