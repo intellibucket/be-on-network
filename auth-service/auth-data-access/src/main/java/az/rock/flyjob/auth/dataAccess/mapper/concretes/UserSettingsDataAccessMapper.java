@@ -3,6 +3,8 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 import az.rock.flyjob.auth.dataAccess.entity.user.UserSettingsEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserSettingsDataAccessMapper;
 import az.rock.flyjob.auth.root.user.UserSettingsRoot;
+import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.UserSettingsID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,8 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
     public UserSettingsRoot toRoot(UserSettingsEntity entity) {
         return UserSettingsRoot.Builder
                 .builder()
+                .userSettingsID(UserSettingsID.of(entity.getUuid()))
+                .userID(UserID.of(entity.getUser().getUuid()))
                 .language(entity.getLanguage())
                 .isActiveDarkMode(entity.getIsActiveDarkMode())
                 .isActiveEmailNotification(entity.getIsActiveEmailNotification())
