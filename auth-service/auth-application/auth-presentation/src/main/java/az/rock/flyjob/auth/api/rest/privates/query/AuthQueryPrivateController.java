@@ -1,18 +1,17 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
-import az.rock.auth.domain.presentation.service.query.abstracts.AbstractUserSettingsQueryDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import az.rock.spec.auth.privates.AuthGetPrivateControllerSpec;
+import az.rock.spec.auth.privates.query.AuthQueryPrivateControllerSpec;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+@CrossOrigin
 @RestController
-@RequestMapping("/auth/1.0/private")
-public class AuthQueryPrivateController implements AuthGetPrivateControllerSpec {
-
-
+@RequestMapping(value = "/auth/1.0/private/query",produces = MediaType.APPLICATION_JSON_VALUE)
+public class AuthQueryPrivateController implements AuthQueryPrivateControllerSpec {
 
     @Override
     @GetMapping("/live")

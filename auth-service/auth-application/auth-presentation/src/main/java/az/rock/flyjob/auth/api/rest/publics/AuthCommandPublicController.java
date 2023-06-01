@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
 import az.rock.auth.domain.presentation.service.command.abstracts.AbstractUserCommandDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import az.rock.spec.auth.publics.AuthGetPublicControllerSpec;
+import az.rock.spec.auth.publics.AuthCommandPublicControllerSpec;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/public" ,produces = MediaType.APPLICATION_JSON_VALUE)
-public class AuthPublicController implements AuthGetPublicControllerSpec {
+@RequestMapping(value = "/auth/1.0/public/command" ,produces = MediaType.APPLICATION_JSON_VALUE)
+public class AuthCommandPublicController implements AuthCommandPublicControllerSpec {
 
     private final AbstractUserCommandDomainPresentationService userDomainPresentationService;
 
-    public AuthPublicController(AbstractUserCommandDomainPresentationService userDomainPresentationService) {
+    public AuthCommandPublicController(AbstractUserCommandDomainPresentationService userDomainPresentationService) {
         this.userDomainPresentationService = userDomainPresentationService;
     }
 
@@ -38,7 +38,7 @@ public class AuthPublicController implements AuthGetPublicControllerSpec {
     }
 
     @Override
-    @PostMapping(value = "/forgotPassword")
+    @PostMapping(value = "/forgot-password")
     public ResponseEntity<JSuccessDataResponse<?>> forgotPassword(String email) {
         return null;
     }
