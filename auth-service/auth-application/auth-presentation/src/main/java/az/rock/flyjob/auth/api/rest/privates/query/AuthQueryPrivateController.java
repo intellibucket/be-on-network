@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/private/query",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/auth/1.0/private/query/auth",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthQueryPrivateController implements AuthQueryPrivateControllerSpec {
 
     @Override

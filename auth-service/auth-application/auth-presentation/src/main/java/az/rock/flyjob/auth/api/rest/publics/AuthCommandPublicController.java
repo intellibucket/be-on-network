@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/public/command" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/auth/1.0/public/command/auth" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class AuthCommandPublicController implements AuthCommandPublicControllerSpec {
 
     private final AbstractUserCommandDomainPresentationService userDomainPresentationService;
