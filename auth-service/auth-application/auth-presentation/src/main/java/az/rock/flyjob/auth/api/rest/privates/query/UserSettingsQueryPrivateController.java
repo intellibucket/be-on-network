@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
-import az.rock.auth.domain.presentation.dto.response.UserSettingResponse;
+import az.rock.auth.domain.presentation.dto.response.UserSettingModelResponse;
 import az.rock.auth.domain.presentation.service.query.abstracts.AbstractUserSettingsQueryDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.UserSettingsQueryPrivateControllerSpec;
@@ -21,7 +21,7 @@ public class UserSettingsQueryPrivateController implements UserSettingsQueryPriv
     }
 
     @GetMapping("/my-settings")
-    public ResponseEntity<JSuccessDataResponse<UserSettingResponse>> mySettings() {
+    public ResponseEntity<JSuccessDataResponse<UserSettingModelResponse>> mySettings() {
         var response = this.userSettingsQueryDomainPresentationService.getUserSettings();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }

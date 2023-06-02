@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.service.query.concretes;
 
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
-import az.rock.auth.domain.presentation.dto.response.UserSettingResponse;
+import az.rock.auth.domain.presentation.dto.response.UserSettingModelResponse;
 import az.rock.auth.domain.presentation.ports.output.repository.AbstractUserSettingsRepositoryAdapter;
 import az.rock.auth.domain.presentation.service.query.abstracts.AbstractUserSettingsQueryDomainPresentationService;
 import az.rock.lib.domain.id.UserID;
@@ -19,9 +19,9 @@ public class UserSettingsQueryDomainPresentationService implements AbstractUserS
     }
 
     @Override
-    public UserSettingResponse getUserSettings() {
+    public UserSettingModelResponse getUserSettings() {
         UserID currentUserId = this.securityContextHolder.currentUser();
         var settingsRoot = this.userRepositoryAdapter.findByUserId(currentUserId);
-        return UserSettingResponse.of(settingsRoot);
+        return UserSettingModelResponse.of(settingsRoot);
     }
 }
