@@ -1,11 +1,11 @@
 package az.rock.auth.domain.presentation.dto.request;
 
 
-public record AuthUserQuery(
+public record AuthenticationUserQuery(
         String username,
         String password
 ) {
-    public AuthUserQuery(String username, String password) {
+    public AuthenticationUserQuery(String username, String password) {
         this.username = username;
         this.password = password;
     }
