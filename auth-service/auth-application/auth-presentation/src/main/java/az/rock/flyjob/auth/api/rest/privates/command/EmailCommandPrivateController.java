@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.api.rest.privates.command;
 
 import az.rock.auth.domain.presentation.dto.request.EmailChangeRequest;
+import az.rock.auth.domain.presentation.dto.request.EmailCreateRequest;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.SwitchCase;
 import az.rock.spec.auth.privates.command.EmailCommandPrivateControlSpec;
@@ -17,7 +18,7 @@ public class EmailCommandPrivateController implements EmailCommandPrivateControl
 
     @Override
     @PostMapping(value = "/add")
-    public ResponseEntity<JSuccessResponse> addEmail(@RequestBody String email) {
+    public ResponseEntity<JSuccessResponse> addEmail(@RequestBody EmailCreateRequest email) {
         return null;
     }
 
