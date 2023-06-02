@@ -12,62 +12,62 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/auth/1.0/private/command/settings",produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserSettingsCommandPrivateController implements UserSettingsCommandPrivateSpec {
 
-    @PutMapping("/language")
-    public ResponseEntity<JSuccessResponse> language(@RequestBody Language language) {
+    @PutMapping("/change-language")
+    public ResponseEntity<JSuccessResponse> changeLanguage(@RequestBody Language language) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-active-dark-mode")
+    @PutMapping("/set-active-dark-mode")
     public ResponseEntity<JSuccessResponse> isActiveDarkMode(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-active-email-notification")
+    @PutMapping("/set-active-email-notification")
     public ResponseEntity<JSuccessResponse> isActiveEmailNotification(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-active-sms-notification")
+    @PutMapping("/set-active-sms-notification")
     public ResponseEntity<JSuccessResponse> isActiveSmsNotification(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-active-push-notification")
+    @PutMapping("/set-active-push-notification")
     public ResponseEntity<JSuccessResponse> isActivePushNotification(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-active-two-factor-authentication")
+    @PutMapping("/set-active-two-factor-authentication")
     public ResponseEntity<JSuccessResponse> isActiveTwoFactorAuthentication(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-visible-location")
+    @PutMapping("/set-visible-location")
     public ResponseEntity<JSuccessResponse> isVisibleLocation(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-visible-online-status")
+    @PutMapping("/set-visible-online-status")
     public ResponseEntity<JSuccessResponse> isVisibleOnlineStatus(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-visible-last-seen")
+    @PutMapping("/set-visible-last-seen")
     public ResponseEntity<JSuccessResponse> isVisibleLastSeen(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-visible-profile-picture")
+    @PutMapping("/set-visible-profile-picture")
     public ResponseEntity<JSuccessResponse> isVisibleProfilePicture(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-visible-email")
+    @PutMapping("/set-visible-email")
     public ResponseEntity<JSuccessResponse> isVisibleEmail(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @PutMapping("/is-visible-resume")
+    @PutMapping("/set-visible-resume")
     public ResponseEntity<JSuccessResponse> isVisibleResume(@RequestBody Switch switcher) {
         return ResponseEntity.ok(new JSuccessResponse());
     }
