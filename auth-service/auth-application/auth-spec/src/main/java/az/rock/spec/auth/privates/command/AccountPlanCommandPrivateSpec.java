@@ -4,7 +4,7 @@ import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.BugReport;
 import org.springframework.http.ResponseEntity;
 
-public interface AccountPlanCommandPrivateControllerSpec {
+public interface AccountPlanCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> updateToBasic();
 
     ResponseEntity<JSuccessResponse> updateToUltimate();

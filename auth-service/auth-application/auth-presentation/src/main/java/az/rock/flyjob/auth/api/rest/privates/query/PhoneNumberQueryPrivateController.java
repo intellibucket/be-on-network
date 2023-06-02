@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.api.rest.privates.query;
 
 import az.rock.auth.domain.presentation.dto.response.PhoneNumberPrivateDetailModelResponse;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
-import az.rock.spec.auth.privates.query.PhoneNumberQueryPrivateControllerSpec;
+import az.rock.spec.auth.privates.query.PhoneNumberQueryPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/phone-number",produces = MediaType.APPLICATION_JSON_VALUE)
-public class PhoneNumberQueryPrivateController implements PhoneNumberQueryPrivateControllerSpec {
+public class PhoneNumberQueryPrivateController implements PhoneNumberQueryPrivateSpec {
     @Override
     @GetMapping(value = "/query-model-by-id")
     public ResponseEntity<JSuccessDataResponse<PhoneNumberPrivateDetailModelResponse>> queryById(UUID phoneNumberUUID) {

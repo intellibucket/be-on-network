@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
 
-public interface EmailCommandPrivateControlSpec {
+public interface EmailCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> addEmail(EmailCreateRequest email);
     ResponseEntity<JSuccessResponse> changeEmail(EmailChangeRequest request);

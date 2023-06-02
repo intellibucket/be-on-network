@@ -4,6 +4,6 @@ import az.rock.auth.domain.presentation.dto.request.PasswordChangeRequest;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.ResponseEntity;
 
-public interface PasswordCommandPrivateControlSpec {
+public interface PasswordCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> changePassword(PasswordChangeRequest passwordChangeRequest);
 }

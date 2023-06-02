@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.dto.request.PhoneNumberChangeRequest;
 import az.rock.auth.domain.presentation.dto.request.PhoneNumberCommandRequest;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.SwitchCase;
-import az.rock.spec.auth.privates.command.PhoneNumberCommandPrivateControllerSpec;
+import az.rock.spec.auth.privates.command.PhoneNumberCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/command/phone-number",produces = MediaType.APPLICATION_JSON_VALUE)
-public class PhoneNumberCommandPrivateController implements PhoneNumberCommandPrivateControllerSpec {
+public class PhoneNumberCommandPrivateController implements PhoneNumberCommandPrivateSpec {
 
     @Override
     @PostMapping(value = "/add")

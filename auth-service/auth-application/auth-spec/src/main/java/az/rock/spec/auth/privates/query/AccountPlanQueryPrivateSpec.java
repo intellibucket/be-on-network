@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.dto.response.AccountPlanPrivateModelResp
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import org.springframework.http.ResponseEntity;
 
-public interface AccountPlanQueryPrivateControllerSpec {
+public interface AccountPlanQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<AccountPlanPrivateModelResponse>> queryActiveAccountPlan();
     ResponseEntity<JSuccessDataResponse<AccountPlanPrivateModelResponse>> queryAllAccountPlans();
 }

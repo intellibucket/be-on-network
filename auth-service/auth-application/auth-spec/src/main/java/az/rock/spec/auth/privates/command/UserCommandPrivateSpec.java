@@ -5,7 +5,7 @@ import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import org.springframework.http.ResponseEntity;
 
-public interface UserCommandPrivateControllerSpec {
+public interface UserCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> changeFirstName(String firstName);
     ResponseEntity<JSuccessResponse> changeLastName(String lastName);

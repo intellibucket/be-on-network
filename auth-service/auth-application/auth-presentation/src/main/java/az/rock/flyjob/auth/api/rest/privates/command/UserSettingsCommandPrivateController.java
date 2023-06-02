@@ -3,14 +3,14 @@ package az.rock.flyjob.auth.api.rest.privates.command;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
-import az.rock.spec.auth.privates.command.UserSettingsCommandPrivateControllerSpec;
+import az.rock.spec.auth.privates.command.UserSettingsCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/command/settings",produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserSettingsCommandPrivateController implements UserSettingsCommandPrivateControllerSpec {
+public class UserSettingsCommandPrivateController implements UserSettingsCommandPrivateSpec {
 
     @PutMapping("/language")
     public ResponseEntity<JSuccessResponse> language(@RequestBody Language language) {

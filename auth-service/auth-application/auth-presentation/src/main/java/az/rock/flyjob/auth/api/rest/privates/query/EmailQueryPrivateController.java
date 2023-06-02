@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.api.rest.privates.query;
 
 import az.rock.auth.domain.presentation.dto.response.EmailModelResponse;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
-import az.rock.spec.auth.privates.query.EmailQueryPrivateControllerSpec;
+import az.rock.spec.auth.privates.query.EmailQueryPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/email",produces = MediaType.APPLICATION_JSON_VALUE)
-public class EmailQueryPrivateController implements EmailQueryPrivateControllerSpec {
+public class EmailQueryPrivateController implements EmailQueryPrivateSpec {
 
     @Override
     @GetMapping(value = "/get/model/my/{emailUUID}")

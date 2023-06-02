@@ -4,6 +4,6 @@ import az.rock.auth.domain.presentation.dto.response.DetailPrivateModelResponse;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import org.springframework.http.ResponseEntity;
 
-public interface DetailQueryPrivateControllerSpec {
+public interface DetailQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<DetailPrivateModelResponse>> queryDetail();
 }

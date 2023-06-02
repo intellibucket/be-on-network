@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
 
-public interface PhoneNumberCommandPrivateControllerSpec {
+public interface PhoneNumberCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> addPhoneNumber(PhoneNumberCommandRequest phoneNumberCommandRequest);
     ResponseEntity<JSuccessResponse> deletePhoneNumber(UUID phoneNumberUUID);
     ResponseEntity<JSuccessResponse> changePhoneNumber(PhoneNumberChangeRequest phoneNumberChangeRequest);

@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.api.rest.privates.command;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
-import az.rock.spec.auth.privates.command.UserCommandPrivateControllerSpec;
+import az.rock.spec.auth.privates.command.UserCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/command/user",produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserCommandPrivateController implements UserCommandPrivateControllerSpec {
+public class UserCommandPrivateController implements UserCommandPrivateSpec {
 
     @Override
     @PutMapping("/change-first-name")

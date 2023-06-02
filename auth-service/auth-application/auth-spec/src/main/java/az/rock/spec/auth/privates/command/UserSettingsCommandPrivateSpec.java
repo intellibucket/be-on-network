@@ -5,7 +5,7 @@ import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
 import org.springframework.http.ResponseEntity;
 
-public interface UserSettingsCommandPrivateControllerSpec {
+public interface UserSettingsCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> language(Language language);
 
     ResponseEntity<JSuccessResponse> isActiveDarkMode(Switch switcher);

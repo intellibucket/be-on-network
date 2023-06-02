@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.UUID;
 
-public interface EmailQueryPrivateControllerSpec {
+public interface EmailQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<EmailModelResponse>> getModel(UUID uuid);
 
     ResponseEntity<JSuccessDataResponse<List<EmailModelResponse>>> getAllModel();

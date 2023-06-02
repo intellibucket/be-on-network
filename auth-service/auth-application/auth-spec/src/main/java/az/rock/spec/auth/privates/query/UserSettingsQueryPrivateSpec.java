@@ -4,6 +4,6 @@ import az.rock.auth.domain.presentation.dto.response.UserSettingModelResponse;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import org.springframework.http.ResponseEntity;
 
-public interface UserSettingsQueryPrivateControllerSpec {
+public interface UserSettingsQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<UserSettingModelResponse>> mySettings();
 }

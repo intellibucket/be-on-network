@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.UUID;
 
-public interface PhoneNumberQueryPrivateControllerSpec {
+public interface PhoneNumberQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<PhoneNumberPrivateDetailModelResponse>> queryById(UUID phoneNumberUUID);
     ResponseEntity<JSuccessDataResponse<List<PhoneNumberPrivateDetailModelResponse>>> queryAll();
 
