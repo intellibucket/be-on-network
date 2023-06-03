@@ -1,11 +1,9 @@
 package az.rock.auth.domain.presentation.handler.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
-import az.rock.auth.domain.presentation.handler.abstracts.AbstractDetailCreateCommandHandler;
 import az.rock.auth.domain.presentation.handler.referentials.abstracts.AbstractUserReferential;
-import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserCreateCommandHandler;
-import az.rock.auth.domain.presentation.ports.output.repository.AbstractUserRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
 import az.rock.flyjob.auth.event.UserCreatedEvent;
 import az.rock.auth.domain.presentation.exception.AuthDomainException;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
@@ -14,13 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandler {
     private final AbstractUserDomainService userDomainService;
-    private final AbstractUserRepositoryAdapter userRepositoryAdapter;
+    private final AbstractUserCommandRepositoryAdapter userRepositoryAdapter;
     private final AbstractUserReferential userReferential;
 
 
 
     public UserCreateCommandHandler(AbstractUserDomainService userDomainService,
-                                    AbstractUserRepositoryAdapter userRepositoryAdapter,
+                                    AbstractUserCommandRepositoryAdapter userRepositoryAdapter,
                                     AbstractUserReferential userReferential) {
         this.userDomainService = userDomainService;
         this.userRepositoryAdapter = userRepositoryAdapter;
