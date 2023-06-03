@@ -2,6 +2,7 @@ package az.rock.auth.domain.presentation.handler.concretes;
 
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractDetailCreateCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDetailDomainMapper;
+import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractDetailCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractDetailQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.DetailCreatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
@@ -15,14 +16,14 @@ public class DetailCreateCommandHandler implements AbstractDetailCreateCommandHa
 
     private final AbstractDetailDomainMapper detailDomainMapper;
 
-    private final AbstractDetailQueryRepositoryAdapter detailRepositoryAdapter;
+    private final AbstractDetailCommandRepositoryAdapter detailCommandRepositoryAdapter;
 
     public DetailCreateCommandHandler(AbstractDetailDomainService detailDomainService,
                                       AbstractDetailDomainMapper detailDomainMapper,
-                                      AbstractDetailQueryRepositoryAdapter detailRepositoryAdapter) {
+                                      AbstractDetailCommandRepositoryAdapter detailCommandRepositoryAdapter) {
         this.detailDomainService = detailDomainService;
         this.detailDomainMapper = detailDomainMapper;
-        this.detailRepositoryAdapter = detailRepositoryAdapter;
+        this.detailCommandRepositoryAdapter = detailCommandRepositoryAdapter;
     }
 
 
