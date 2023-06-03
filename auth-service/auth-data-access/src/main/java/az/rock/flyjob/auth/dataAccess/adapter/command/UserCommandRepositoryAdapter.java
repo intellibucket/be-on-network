@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.adapter;
+package az.rock.flyjob.auth.dataAccess.adapter.command;
 
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.UserDataAccessMapper;

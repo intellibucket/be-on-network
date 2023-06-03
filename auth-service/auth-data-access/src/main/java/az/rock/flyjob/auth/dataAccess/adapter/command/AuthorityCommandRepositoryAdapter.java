@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.adapter;
+package az.rock.flyjob.auth.dataAccess.adapter.command;
 
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractAuthorityCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.AuthorityDataAccessMapper;
@@ -7,12 +7,12 @@ import az.rock.flyjob.auth.root.AuthorityRoot;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthorityRepositoryAdapter implements AbstractAuthorityCommandRepositoryAdapter {
+public class AuthorityCommandRepositoryAdapter implements AbstractAuthorityCommandRepositoryAdapter {
     private final AuthorityJPARepository authorityJPARepository;
 
     private final AuthorityDataAccessMapper authorityDataAccessMapper;
-    public AuthorityRepositoryAdapter(AuthorityJPARepository authorityJPARepository,
-                                      AuthorityDataAccessMapper authorityDataAccessMapper) {
+    public AuthorityCommandRepositoryAdapter(AuthorityJPARepository authorityJPARepository,
+                                             AuthorityDataAccessMapper authorityDataAccessMapper) {
         this.authorityJPARepository = authorityJPARepository;
         this.authorityDataAccessMapper = authorityDataAccessMapper;
     }

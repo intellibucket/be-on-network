@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.adapter;
+package az.rock.flyjob.auth.dataAccess.adapter.query;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserSettingsQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.entity.user.UserSettingsEntity;
@@ -24,7 +24,8 @@ public class UserSettingsQueryRepositoryAdapter implements AbstractUserSettingsQ
 
     @Override
     public UserSettingsRoot findById(UserSettingsID rootId) {
-        return null;
+        var entity = this.userSettingsJPARepository.findByUser(rootId.getUUID());
+        return this.userSettingsDataAccessMapper.toRoot(entity);
     }
 
     @Override
