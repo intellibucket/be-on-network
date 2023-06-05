@@ -1,7 +1,7 @@
 package az.rock.lib.jresponse.response.factory;
 
 import az.rock.lib.jresponse.JHeader;
-import az.rock.lib.jresponse.response.Message;
+import az.rock.lib.jresponse.response.message.Message;
 import az.rock.lib.jresponse.response.fail.JFailDataResponse;
 import az.rock.lib.jresponse.response.fail.JFailResponse;
 

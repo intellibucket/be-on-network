@@ -2,7 +2,7 @@ package az.rock.lib.jresponse.response.fail;
 
 import az.rock.lib.jresponse.JHeader;
 import az.rock.lib.jresponse.response.JResponseDataTransfer;
-import az.rock.lib.jresponse.response.Message;
+import az.rock.lib.jresponse.response.message.Message;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class JFailDataResponse<D> extends JResponseDataTransfer<D> {

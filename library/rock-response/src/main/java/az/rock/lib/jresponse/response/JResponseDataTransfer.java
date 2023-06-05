@@ -2,6 +2,7 @@ package az.rock.lib.jresponse.response;
 
 import az.rock.lib.jresponse.JDataTransfer;
 import az.rock.lib.jresponse.JHeader;
+import az.rock.lib.jresponse.response.message.Message;
 
 
 public class JResponseDataTransfer<D> extends JDataTransfer<D> {

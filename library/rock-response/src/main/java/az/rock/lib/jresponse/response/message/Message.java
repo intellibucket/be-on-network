@@ -1,6 +1,5 @@
-package az.rock.lib.jresponse.response;
+package az.rock.lib.jresponse.response.message;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
