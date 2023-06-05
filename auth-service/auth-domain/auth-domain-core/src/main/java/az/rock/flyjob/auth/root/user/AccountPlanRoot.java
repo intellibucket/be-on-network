@@ -12,6 +12,8 @@ import java.time.ZonedDateTime;
 
 public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
 
+    public static final AccountPlanRoot NULL = new AccountPlanRoot();
+
     private final UserID userID;
 
     private final AccountPlanType plan;
@@ -24,6 +26,21 @@ public final class AccountPlanRoot extends AggregateRoot<AccountPlanID> {
 
     private final String promoCode;
 
+    private AccountPlanRoot() {
+        super(AccountPlanID.NULL);
+        userID = UserID.NULL;
+        plan = AccountPlanType.UNKNOWN;
+        startDate = null;
+        expiredDate = null;
+        isExpired = null;
+        promoCode = null;
+    }
+
+
+    @Override
+    public Boolean isNull() {
+        return this == NULL;
+    }
 
     public AccountPlanRoot(AccountPlanID accountPlanID,
                            Long version,

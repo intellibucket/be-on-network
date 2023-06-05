@@ -6,12 +6,17 @@ import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
 
-public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
+public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullValueReference<AggregateRoot<ID>> {
+
     private Version version;
     private ProcessStatus processStatus;
     private RowStatus rowStatus;
     private ZonedDateTime createdDate;
     private ZonedDateTime modificationDate;
+
+    public Boolean isNull() {
+        return true;
+    }
 
     protected AggregateRoot(ID value) {
         super(value);
@@ -43,6 +48,10 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> {
         this.rowStatus = rowStatus;
         this.createdDate = createdDate;
         this.modificationDate = modificationDate;
+    }
+
+    public AggregateRoot() {
+        super(null);
     }
 
 

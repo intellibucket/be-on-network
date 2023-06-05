@@ -1,5 +1,5 @@
 package az.rock.lib.valueObject;
 
 public enum AccountPlanType {
-    FREE,BASIC,ULTIMATE,DEMO;
+    FREE,BASIC,ULTIMATE,DEMO,UNKNOWN;
 }

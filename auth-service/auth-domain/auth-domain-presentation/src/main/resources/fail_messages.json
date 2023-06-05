@@ -1,0 +1,92 @@
+[
+  {
+    "code": "F0000000001",
+    "az": " Bir sistem xətası çıxdı. Ən yaxın zamanda yenidən cəhd edin.",
+    "en": " An error occurred. Please try again later.",
+    "ru": " Произошла ошибка. Пожалуйста, попробуйте позже.",
+    "tr": " Bir sorun oluştu. Lütfen daha sonra tekrar deneyin.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000002",
+    "az": " Sessiyanız bitdi. Xahiş edirik yenidən daxil edin.",
+    "en": " Session expired. Please login again.",
+    "ru": " Сессия истекла. Пожалуйста, войдите снова.",
+    "tr": " Oturumunuz sona erdi. Lütfen tekrar giriş yapın.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000003",
+    "az": " Giriş üçün icazəniz yoxdur.",
+    "en": " You do not have permission to log in.",
+    "ru": " У вас нет разрешения на вход.",
+    "tr": " Giriş yapmaya izniniz yok.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000004",
+    "az": " Giriş məlumatları səhvdir.",
+    "en": " Login information is incorrect.",
+    "ru": " Информация для входа неверна.",
+    "tr": " Giriş bilgileri yanlış.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000005",
+    "az": " Sosial şəbəkə hesabınızla giriş etmək mümkün deyil.",
+    "en": " It is not possible to log in with your social network account.",
+    "ru": " Невозможно войти в систему с помощью вашей учетной записи в социальной сети.",
+    "tr": " Sosyal ağ hesabınızla giriş yapmak mümkün değil.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000006",
+    "az": " Hesabınız bloklanıb. Zəhmət olmasa, dəstək xidməti ilə əlaqə saxlayın.",
+    "en": " Your account is blocked. Please contact support.",
+    "ru": " Ваша учетная запись заблокирована. Пожалуйста, свяжитесь со службой поддержки.",
+    "tr": " Hesabınız bloke edildi. Lütfen destek ile iletişime geçin.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000007",
+    "az": " Hesabınız aktiv deyil. Zəhmət olmasa, dəstək xidməti ilə əlaqə saxlayın.",
+    "en": " Your account is not active. Please contact support.",
+    "ru": " Ваша учетная запись не активна. Пожалуйста, свяжитесь со службой поддержки.",
+    "tr": " Hesabınız aktif değil. Lütfen destek ile iletişime geçin.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000008",
+    "az": " Hesabınız silinib. Zəhmət olmasa, dəstək xidməti ilə əlaqə saxlayın.",
+    "en": " Your account is deleted. Please contact support.",
+    "ru": " Ваша учетная запись удалена. Пожалуйста, свяжитесь со службой поддержки.",
+    "tr": " Hesabınız silindi. Lütfen destek ile iletişime geçin.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000009",
+    "az": " Ödəniş məlumatları səhvdir.",
+    "en": " Payment information is incorrect.",
+    "ru": " Информация об оплате неверна.",
+    "tr": " Ödeme bilgileri yanlış.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000010",
+    "az": " Əməliyyat uğursuz oldu.",
+    "en": " Operation failed.",
+    "ru": " Операция не удалась.",
+    "tr": " İşlem başarısız oldu.",
+    "hasRegex": false,
+    "regex": ""
+  }
+]

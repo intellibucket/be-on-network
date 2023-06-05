@@ -11,12 +11,19 @@ import java.util.UUID;
 
 @Repository
 public interface AccountPlanQueryJPARepository extends JpaRepository<AccountPlanEntity, UUID> {
-    @Query("SELECT row FROM AccountPlanEntity row WHERE (:userId = row.user.uuid)")
+    @Query("SELECT row FROM AccountPlanEntity row " +
+            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
     AccountPlanEntity findByUser(@Param(value = "userId") UUID userId);
 
-    @Query("SELECT row FROM AccountPlanEntity row WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
+    @Query("SELECT row FROM AccountPlanEntity row " +
+            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
+    List<AccountPlanEntity> findAllByUser(@Param(value = "userId") UUID userId);
+
+    @Query("SELECT row FROM AccountPlanEntity row " +
+            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
     AccountPlanEntity findByUserAndActiveRowStatus(@Param(value = "userId") UUID userId);
 
-    @Query("SELECT row FROM AccountPlanEntity row WHERE (:userId = row.user.uuid)")
+    @Query("SELECT row FROM AccountPlanEntity row " +
+            "WHERE (:userId = row.user.uuid)")
     List<AccountPlanEntity> findAllByUserAndActiveRowStatus(@Param(value = "userId") UUID userId);
 }

@@ -24,7 +24,8 @@ public class AccountPlanQueryRepositoryAdapter implements AbstractAccountPlanQue
 
     @Override
     public AccountPlanRoot findById(AccountPlanID rootId) {
-        return null;
+        var entity = this.accountPlanJPARepository.findById(rootId.getUUID()).orElse(null);
+        return this.accountPlanDataAccessMapper.toRoot(entity);
     }
 
     @Override

@@ -3,8 +3,10 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 import az.rock.flyjob.auth.dataAccess.entity.user.AccountPlanEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractAccountPlanDataAccessMapper;
 import az.rock.flyjob.auth.root.user.AccountPlanRoot;
+import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.util.GDateTime;
+import az.rock.lib.util.GObjects;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -12,10 +14,9 @@ import java.util.UUID;
 @Component
 public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAccessMapper<AccountPlanEntity, AccountPlanRoot> {
 
-
-
     @Override
     public AccountPlanRoot toRoot(AccountPlanEntity entity) {
+        if (GObjects.isNull(entity)) return AccountPlanRoot.NULL;
         return AccountPlanRoot.Builder
                 .builder()
                 .accountPlanID(AccountPlanID.of(entity.getUuid()))
