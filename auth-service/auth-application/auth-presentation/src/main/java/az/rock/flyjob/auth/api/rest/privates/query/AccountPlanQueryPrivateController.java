@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/account-plan",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,7 +32,8 @@ public class AccountPlanQueryPrivateController implements AccountPlanQueryPrivat
 
     @Override
     @GetMapping("/all")
-    public ResponseEntity<JSuccessDataResponse<AccountPlanPrivateModelResponse>> queryAllAccountPlans() {
-        return null;
+    public ResponseEntity<JSuccessDataResponse<List<AccountPlanPrivateModelResponse>>> queryAllAccountPlans() {
+        var response = this.accountPlanQueryDomainPresentation.findAllAccountPlans();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 }

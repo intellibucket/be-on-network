@@ -9,6 +9,8 @@ import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.domain.id.UserID;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class AccountPlanQueryRepositoryAdapter implements AbstractAccountPlanQueryRepositoryAdapter {
     private final AccountPlanQueryJPARepository accountPlanJPARepository;
@@ -28,7 +30,17 @@ public class AccountPlanQueryRepositoryAdapter implements AbstractAccountPlanQue
     @Override
     public AccountPlanRoot findByPID(UserID parentID) {
         var entity = this.accountPlanJPARepository.findByUser(parentID.getUUID());
-        var root = this.accountPlanDataAccessMapper.toRoot(entity);
-        return root;
+        return this.accountPlanDataAccessMapper.toRoot(entity);
+    }
+
+    public AccountPlanRoot findByPIDAndActiveStatus(UserID parentID) {
+        var entity = this.accountPlanJPARepository.findByUserAndActiveRowStatus(parentID.getUUID());
+        return this.accountPlanDataAccessMapper.toRoot(entity);
+    }
+
+    @Override
+    public List<AccountPlanRoot> findAllByPIDAndActiveStatus(UserID parentID) {
+        var entities = this.accountPlanJPARepository.findAllByUserAndActiveRowStatus(parentID.getUUID());
+        return entities.stream().map(this.accountPlanDataAccessMapper::toRoot).toList();
     }
 }

@@ -6,6 +6,10 @@ import az.rock.lib.annotation.OutputPort;
 import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.domain.id.UserID;
 
+import java.util.List;
+
 @OutputPort
 public interface AbstractAccountPlanQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<AccountPlanRoot, AccountPlanID, UserID> {
+    AccountPlanRoot findByPIDAndActiveStatus(UserID parentID);
+    List<AccountPlanRoot> findAllByPIDAndActiveStatus(UserID parentID);
 }
