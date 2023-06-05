@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
 import az.rock.auth.domain.presentation.dto.response.AccountPlanPrivateModelResponse;
+import az.rock.auth.domain.presentation.service.query.abstracts.AbstractAccountPlanQueryDomainPresentation;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.AccountPlanQueryPrivateSpec;
 import org.springframework.http.MediaType;
@@ -14,10 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/account-plan",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AccountPlanQueryPrivateController implements AccountPlanQueryPrivateSpec {
+    private final AbstractAccountPlanQueryDomainPresentation accountPlanQueryDomainPresentation;
+
+    public AccountPlanQueryPrivateController(AbstractAccountPlanQueryDomainPresentation accountPlanQueryDomainPresentation) {
+        this.accountPlanQueryDomainPresentation = accountPlanQueryDomainPresentation;
+    }
+
     @Override
     @GetMapping("/active")
     public ResponseEntity<JSuccessDataResponse<AccountPlanPrivateModelResponse>> queryActiveAccountPlan() {
-        return null;
+        var response = this.accountPlanQueryDomainPresentation.findCurrentAccountPlan();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
