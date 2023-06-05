@@ -2,16 +2,15 @@ package az.rock.lib.valueObject;
 
 import java.util.List;
 
-public class BugReport {
+public class CustomBugReport {
 
     private String title;
     private String description;
     private String email;
     private List<Byte[]> screenshots;
-
     private Boolean repeatable;
 
-    public BugReport(String title, String description, String email, List<Byte[]> screenshots,Boolean repeatable) {
+    public CustomBugReport(String title, String description, String email, List<Byte[]> screenshots, Boolean repeatable) {
         this.title = title;
         this.description = description;
         this.email = email;
@@ -19,7 +18,7 @@ public class BugReport {
         this.repeatable = repeatable;
     }
 
-    public BugReport(){}
+    public CustomBugReport(){}
 
     public String getTitle() {
         return title;

@@ -21,4 +21,6 @@ public class UserQueryPrivateController implements UserQueryPrivateSpec {
         return null;
     }
 
+
+
 }

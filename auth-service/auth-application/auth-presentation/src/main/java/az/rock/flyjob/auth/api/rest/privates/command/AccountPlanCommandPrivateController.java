@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.api.rest.privates.command;
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import az.rock.lib.valueObject.BugReport;
+import az.rock.lib.valueObject.CustomBugReport;
 import az.rock.spec.auth.privates.command.AccountPlanCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +43,7 @@ public class AccountPlanCommandPrivateController implements AccountPlanCommandPr
 
     @Override
     @PostMapping("/report-bug")
-    public ResponseEntity<JSuccessResponse> reportBug(@RequestBody BugReport report) {
+    public ResponseEntity<JSuccessResponse> reportBug(@RequestBody CustomBugReport report) {
         return null;
     }
 }

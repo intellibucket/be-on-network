@@ -1,7 +1,7 @@
 package az.rock.spec.auth.privates.command;
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import az.rock.lib.valueObject.BugReport;
+import az.rock.lib.valueObject.CustomBugReport;
 import org.springframework.http.ResponseEntity;
 
 public interface AccountPlanCommandPrivateSpec {
@@ -15,5 +15,5 @@ public interface AccountPlanCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> cancelCurrentPlan();
 
-    ResponseEntity<JSuccessResponse> reportBug(BugReport report);
+    ResponseEntity<JSuccessResponse> reportBug(CustomBugReport report);
 }

@@ -8,4 +8,9 @@
             CREATE SCHEMA IF NOT EXISTS auth;
         </sql>
     </changeSet>
+    <changeSet id="create-report-schema" author="Vugar Mammadli">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS report;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
