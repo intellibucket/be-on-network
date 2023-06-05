@@ -4,12 +4,18 @@ import az.rock.lib.jresponse.JTransfer;
 
 public class JResponseTransfer extends JTransfer {
     private final Boolean success;
-    private final String message;
+    private final Message message;
 
-    public JResponseTransfer(Boolean success, String message) {
+    public JResponseTransfer(Boolean success, Message message) {
         super();
         this.success = success;
         this.message = message;
+    }
+
+    public JResponseTransfer(Boolean success, String messageCode) {
+        super();
+        this.success = success;
+        this.message = new Message(messageCode, true);
     }
 
     public JResponseTransfer(Boolean success) {
@@ -22,7 +28,7 @@ public class JResponseTransfer extends JTransfer {
         return success;
     }
 
-    public String getMessage() {
+    public Message getMessage() {
         return message;
     }
 }

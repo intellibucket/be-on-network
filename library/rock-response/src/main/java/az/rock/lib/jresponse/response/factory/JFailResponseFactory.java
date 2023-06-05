@@ -1,6 +1,7 @@
 package az.rock.lib.jresponse.response.factory;
 
 import az.rock.lib.jresponse.JHeader;
+import az.rock.lib.jresponse.response.Message;
 import az.rock.lib.jresponse.response.fail.JFailDataResponse;
 import az.rock.lib.jresponse.response.fail.JFailResponse;
 
@@ -11,7 +12,7 @@ public class JFailResponseFactory<D> implements AbstractJFailResponseFactory<D> 
     }
 
     @Override
-    public JFailResponse factoryResponse(String message) {
+    public JFailResponse factoryResponse(Message message) {
         return new JFailResponse(message);
     }
 
@@ -26,12 +27,12 @@ public class JFailResponseFactory<D> implements AbstractJFailResponseFactory<D> 
     }
 
     @Override
-    public JFailDataResponse<D> factoryResponse(D data, String message) {
-        return new JFailDataResponse<>(data, message);
+    public JFailDataResponse<D> factoryResponse(D data, Message message) {
+        return new JFailDataResponse<>(data,message);
     }
 
     @Override
-    public JFailDataResponse<D> factoryResponse(JHeader header, D data, String message) {
+    public JFailDataResponse<D> factoryResponse(JHeader header, D data, Message message) {
         return new JFailDataResponse<>(header, data, message);
     }
 

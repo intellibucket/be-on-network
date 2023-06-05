@@ -7,18 +7,30 @@ import az.rock.lib.jresponse.JHeader;
 public class JResponseDataTransfer<D> extends JDataTransfer<D> {
 
     private Boolean success;
-    private String message;
+    private Message message;
 
-    public JResponseDataTransfer(D data, Boolean success, String message) {
+    public JResponseDataTransfer(D data, Boolean success, Message message) {
         super(data);
         this.success = success;
         this.message = message;
     }
 
-    public JResponseDataTransfer(JHeader header, D data, Boolean success, String message) {
+    public JResponseDataTransfer(D data, Boolean success, String messageCode) {
+        super(data);
+        this.success = success;
+        this.message = new Message(messageCode,true);
+    }
+
+    public JResponseDataTransfer(JHeader header, D data, Boolean success, Message message) {
         super(header, data);
         this.success = success;
         this.message = message;
+    }
+
+    public JResponseDataTransfer(JHeader header, D data, Boolean success, String messageCode) {
+        super(header, data);
+        this.success = success;
+        this.message = new Message(messageCode,true);
     }
 
     public JResponseDataTransfer(D data, Boolean success) {
@@ -41,7 +53,7 @@ public class JResponseDataTransfer<D> extends JDataTransfer<D> {
         return success;
     }
 
-    public String getMessage() {
+    public Message getMessage() {
         return message;
     }
 
@@ -50,7 +62,7 @@ public class JResponseDataTransfer<D> extends JDataTransfer<D> {
         this.success = success;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Message message) {
         this.message = message;
     }
 }

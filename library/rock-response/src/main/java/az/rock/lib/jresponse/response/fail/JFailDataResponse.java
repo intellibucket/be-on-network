@@ -2,6 +2,7 @@ package az.rock.lib.jresponse.response.fail;
 
 import az.rock.lib.jresponse.JHeader;
 import az.rock.lib.jresponse.response.JResponseDataTransfer;
+import az.rock.lib.jresponse.response.Message;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class JFailDataResponse<D> extends JResponseDataTransfer<D> {
@@ -13,11 +14,11 @@ public class JFailDataResponse<D> extends JResponseDataTransfer<D> {
         super(header, data, Boolean.FALSE);
     }
 
-    public JFailDataResponse(D data, String message) {
+    public JFailDataResponse(D data, Message message) {
         super(data, Boolean.FALSE, message);
     }
 
-    public JFailDataResponse(JHeader header, D data, String message) {
+    public JFailDataResponse(JHeader header, D data, Message message) {
         super(header, data, Boolean.FALSE, message);
     }
 
