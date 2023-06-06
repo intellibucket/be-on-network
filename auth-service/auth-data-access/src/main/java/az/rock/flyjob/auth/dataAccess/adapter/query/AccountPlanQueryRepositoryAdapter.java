@@ -34,7 +34,7 @@ public class AccountPlanQueryRepositoryAdapter implements AbstractAccountPlanQue
         var entity = this.accountPlanJPARepository.findByUser(parentID.getUUID());
         return this.accountPlanDataAccessMapper.toRoot(entity);
     }
-
+    @Override
     public Optional<AccountPlanRoot> findByPIDAndActiveStatus(UserID parentID) {
         var entity = this.accountPlanJPARepository.findByUserAndActiveRowStatus(parentID.getUUID());
         return this.accountPlanDataAccessMapper.toRoot(entity);

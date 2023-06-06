@@ -14,7 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
                 "az.rock.flyjob.auth.dataAccess",
                 "az.rock.flyjob.auth.messaging",
                 "az.rock.flyjob.auth.config",
-                "az.rock.flyjob.auth.dfs",},
+                "az.rock.flyjob.auth.dfs"},
         scanBasePackageClasses = {
                 az.rock.flyjob.auth.config.PresentationBeanConfig.class
         })
@@ -23,6 +23,5 @@ public class AuthServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthServiceApplication.class, args);
     }
-
 
 }
