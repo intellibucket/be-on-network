@@ -13,6 +13,14 @@
     <name>auth-dfs</name>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.jlefebure</groupId>
+            <artifactId>spring-boot-starter-minio</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>az.rock.lib</groupId>
+            <artifactId>rock-domain</artifactId>
+        </dependency>
     </dependencies>
 </project>
