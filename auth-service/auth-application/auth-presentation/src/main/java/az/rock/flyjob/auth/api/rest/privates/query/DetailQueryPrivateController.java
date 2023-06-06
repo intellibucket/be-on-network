@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
 import az.rock.auth.domain.presentation.dto.response.DetailPrivateModelResponse;
+import az.rock.auth.domain.presentation.service.command.abstracts.AbstractDetailDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.DetailQueryPrivateSpec;
 import org.springframework.http.MediaType;
@@ -14,9 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/detail",produces = MediaType.APPLICATION_JSON_VALUE)
 public class DetailQueryPrivateController implements DetailQueryPrivateSpec {
+    private final AbstractDetailDomainPresentationService detailDomainPresentationService;
+
+    public DetailQueryPrivateController(AbstractDetailDomainPresentationService detailDomainPresentationService) {
+        this.detailDomainPresentationService = detailDomainPresentationService;
+    }
+
     @Override
     @GetMapping(value = "/query-detail")
     public ResponseEntity<JSuccessDataResponse<DetailPrivateModelResponse>> queryDetail() {
-        return null;
+        var response = this.detailDomainPresentationService.queryDetail();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 }
