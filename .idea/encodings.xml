@@ -13,7 +13,10 @@
     <file url="file://$PROJECT_DIR$/auth-service/auth-application/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-application/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/auth-dfs/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-dfs/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/java" charset="UTF-8" />

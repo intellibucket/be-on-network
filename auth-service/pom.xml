@@ -18,6 +18,7 @@
         <module>auth-domain</module>
         <module>auth-data-access</module>
         <module>auth-container</module>
+        <module>auth-dfs</module>
     </modules>
 
     <dependencyManagement>

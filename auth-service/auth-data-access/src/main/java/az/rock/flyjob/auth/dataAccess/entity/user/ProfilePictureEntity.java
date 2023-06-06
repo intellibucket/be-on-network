@@ -19,6 +19,9 @@ public class ProfilePictureEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PictureType type;
 
+    @Column(name = "is_current", nullable = false, columnDefinition = "boolean default false")
+    private Boolean isCurrent;
+
     @Column(name = "file_path", nullable = false)
     private String filepath;
 
@@ -31,21 +34,18 @@ public class ProfilePictureEntity extends BaseEntity {
     @Column(name = "file_size", nullable = false , updatable = false)
     private Long filesize;
 
-    @Column(name = "file_url", nullable = false, updatable = true)
-    private String fileUrl;
-
     @Column(name = "file_url_thumbnail", nullable = false, updatable = true)
-    private String fileUrlThumbnail;
+    private String filepathThumbnail;
 
     @Column(name = "file_url_small", nullable = false, updatable = true)
-    private String fileUrlMedium;
+    private String filepathMedium;
 
     @Column(name = "file_url_medium", nullable = false, updatable = true)
-    private String fileUrlLarge;
+    private String filepathLarge;
 
     @Column(name = "file_url_large", nullable = false, updatable = true)
-    private String fileUrlExtraLarge;
+    private String filepathExtraLarge;
 
     @Column(name = "file_url_webp", nullable = false, updatable = true)
-    private String fileUrlWebp;
+    private String filepathWebp;
 }
