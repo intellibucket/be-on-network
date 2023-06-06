@@ -6,6 +6,8 @@ import az.rock.flyjob.auth.dataAccess.repository.AuthorityJPARepository;
 import az.rock.flyjob.auth.root.AuthorityRoot;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class AuthorityCommandRepositoryAdapter implements AbstractAuthorityCommandRepositoryAdapter {
     private final AuthorityJPARepository authorityJPARepository;
@@ -18,9 +20,11 @@ public class AuthorityCommandRepositoryAdapter implements AbstractAuthorityComma
     }
 
     @Override
-    public AuthorityRoot create(AuthorityRoot root) {
-        var entity = this.authorityDataAccessMapper.toNewEntity(root);
-        var savedEntity  = this.authorityJPARepository.save(entity);
-        return this.authorityDataAccessMapper.toRoot(savedEntity);
+    public Optional<AuthorityRoot> create(AuthorityRoot root) {
+        var optionalAuthorityEntity = this.authorityDataAccessMapper.toNewEntity(root);
+        if (optionalAuthorityEntity.isPresent()) {
+            var savedEntity = this.authorityJPARepository.save(optionalAuthorityEntity.get());
+            return this.authorityDataAccessMapper.toRoot(savedEntity);
+        }else return Optional.empty();
     }
 }

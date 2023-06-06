@@ -6,5 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface AbstractUserSettingsQueryDomainPresentationService {
 
-    UserSettingModelResponse getUserSettings();
+    UserSettingModelResponse currentUserSettings();
 }

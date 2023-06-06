@@ -92,7 +92,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         private Builder() {
         }
 
-        public static Builder aPhoneNumberRoot() {
+        public static Builder builder() {
             return new Builder();
         }
 
@@ -166,7 +166,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
             return this;
         }
 
-        public Builder dataStatus(RowStatus rowStatus) {
+        public Builder rowStatus(RowStatus rowStatus) {
             this.rowStatus = rowStatus;
             return this;
         }

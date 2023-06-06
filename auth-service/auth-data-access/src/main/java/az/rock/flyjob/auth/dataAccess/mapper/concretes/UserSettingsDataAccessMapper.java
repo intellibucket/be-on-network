@@ -8,13 +8,17 @@ import az.rock.lib.domain.id.UserSettingsID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> {
 
 
     @Override
-    public UserSettingsRoot toRoot(UserSettingsEntity entity) {
-        return UserSettingsRoot.Builder
+    public Optional<UserSettingsRoot> toRoot(UserSettingsEntity entity) {
+        var optionalEntity = Optional.ofNullable(entity);
+        if (optionalEntity.isEmpty()) return Optional.empty();
+        return Optional.of(UserSettingsRoot.Builder
                 .builder()
                 .userSettingsID(UserSettingsID.of(entity.getUuid()))
                 .userID(UserID.of(entity.getUser().getUuid()))
@@ -30,12 +34,14 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .isVisibleProfilePicture(entity.getIsVisibleProfilePicture())
                 .isVisibleEmail(entity.getIsVisibleEmail())
                 .isVisibleResume(entity.getIsVisibleResume())
-                .build();
+                .build());
     }
 
     @Override
-    public UserSettingsEntity toEntity(UserSettingsRoot root) {
-        return UserSettingsEntity.Builder
+    public Optional<UserSettingsEntity> toEntity(UserSettingsRoot root) {
+        var optionalRoot = Optional.ofNullable(root);
+        if (optionalRoot.isEmpty()) return Optional.empty();
+        return Optional.of(UserSettingsEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
@@ -55,12 +61,14 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .isVisibleProfilePicture(root.isVisibleProfilePicture())
                 .isVisibleEmail(root.isVisibleEmail())
                 .isVisibleResume(root.isVisibleResume())
-                .build();
+                .build());
     }
 
     @Override
-    public UserSettingsEntity toNewEntity(UserSettingsRoot root) {
-        return UserSettingsEntity.Builder
+    public Optional<UserSettingsEntity> toNewEntity(UserSettingsRoot root) {
+        var optionalRoot = Optional.ofNullable(root);
+        if (optionalRoot.isEmpty()) return Optional.empty();
+        return Optional.of(UserSettingsEntity.Builder
                 .builder()
                 .uuid(root.getUserID().getId())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
@@ -80,6 +88,6 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .isVisibleProfilePicture(root.isVisibleProfilePicture())
                 .isVisibleEmail(root.isVisibleEmail())
                 .isVisibleResume(root.isVisibleResume())
-                .build();
+                .build());
     }
 }

@@ -20,9 +20,9 @@ public class UserSettingsQueryDomainPresentationService implements AbstractUserS
     }
 
     @Override
-    public UserSettingModelResponse getUserSettings() {
+    public UserSettingModelResponse currentUserSettings() {
         UserID currentUserId = this.securityContextHolder.currentUser();
         var settingsRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserId);
-        return UserSettingModelResponse.of(settingsRoot);
+        return UserSettingModelResponse.of(settingsRoot.orElseThrow(() -> new RuntimeException("F0000000001")));
     }
 }

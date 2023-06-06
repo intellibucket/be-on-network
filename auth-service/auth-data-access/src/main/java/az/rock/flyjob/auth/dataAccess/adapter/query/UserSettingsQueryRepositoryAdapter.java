@@ -9,6 +9,8 @@ import az.rock.lib.domain.id.UserID;
 import az.rock.lib.domain.id.UserSettingsID;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserSettingsQueryRepositoryAdapter implements AbstractUserSettingsQueryRepositoryAdapter {
     private final UserSettingsQueryJPARepository userSettingsJPARepository;
@@ -21,13 +23,13 @@ public class UserSettingsQueryRepositoryAdapter implements AbstractUserSettingsQ
     }
 
     @Override
-    public UserSettingsRoot findById(UserSettingsID rootId) {
+    public Optional<UserSettingsRoot> findById(UserSettingsID rootId) {
         var entity = this.userSettingsJPARepository.findByUser(rootId.getUUID());
         return this.userSettingsDataAccessMapper.toRoot(entity);
     }
 
     @Override
-    public UserSettingsRoot findByPID(UserID userId) {
+    public Optional<UserSettingsRoot> findByPID(UserID userId) {
         var entity = this.userSettingsJPARepository.findByUser(userId.getUUID());
         return this.userSettingsDataAccessMapper.toRoot(entity);
     }

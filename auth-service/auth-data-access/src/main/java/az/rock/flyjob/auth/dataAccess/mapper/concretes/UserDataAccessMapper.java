@@ -12,6 +12,7 @@ import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.TimeZoneID;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -48,26 +49,30 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
     }
 
     @Override
-    public UserRoot toRoot(UserEntity entity) {
-        return UserRoot.Builder
+    public Optional<UserRoot> toRoot(UserEntity entity) {
+        var optionalUserEntity = Optional.ofNullable(entity);
+        if (optionalUserEntity.isEmpty()) return Optional.empty();
+        return Optional.of(UserRoot.Builder
                 .builder()
                 .id(UserID.of(entity.getUuid()))
                 .createdDate(GDateTime.of(entity.getCreatedDate()))
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
                 .processStatus(entity.getProcessStatus())
-                .rowStatus(entity.getDataStatus())
+                .rowStatus(entity.getRowStatus())
                 .key(entity.getKey())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .username(entity.getUsername())
                 .timezone(TimeZoneID.of(entity.getTimezone()))
-                .build();
+                .build());
     }
 
     @Override
-    public UserEntity toEntity(UserRoot root) {
-        return UserEntity.Builder
+    public Optional<UserEntity> toEntity(UserRoot root) {
+        var optionalUserRoot = Optional.ofNullable(root);
+        if (optionalUserRoot.isEmpty()) return Optional.empty();
+        return Optional.of(UserEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
@@ -80,33 +85,45 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .timezone(root.getTimezone().getValue())
-                .build();
+                .build());
     }
 
     @Override
-    public UserEntity toNewEntity(UserRoot root) {
+    public Optional<UserEntity> toNewEntity(UserRoot root) {
         var passwordEntities = root.getPasswords()
                 .stream()
                 .map(this.passwordDataAccessMapper::toNewEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
         var emailEntities = root.getEmails()
                 .stream()
                 .map(this.emailDataAccessMapper::toNewEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
         var phoneNumberEntities = root.getPhoneNumbers()
                 .stream()
                 .map(this.phoneNumberDataAccessMapper::toNewEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
-        var detailEntity = this.detailDataAccessMapper.toNewEntity(root.getDetailRoot());
+        var detailEntity = this.detailDataAccessMapper
+                .toNewEntity(root.getDetailRoot()).orElseThrow(() -> new RuntimeException("Detail not found"));
         var accountPlanEntities = root.getAccountPlans()
                 .stream()
                 .map(this.accountPlanDataAccessMapper::toNewEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
         var deviceEntities = root.getDevices()
                 .stream()
                 .map(this.deviceDataAccessMapper::toNewEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
-        var userSettingsEntity = this.userSettingsDataAccessMapper.toNewEntity(root.getUserSettingsRoot());
+        var userSettingsEntity = this.userSettingsDataAccessMapper
+                .toNewEntity(root.getUserSettingsRoot()).orElseThrow(()-> new RuntimeException("User Settings not found"));
         var userEntity =  UserEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
@@ -134,7 +151,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         accountPlanEntities.forEach(accountPlanEntity -> accountPlanEntity.setUser(userEntity));
         deviceEntities.forEach(deviceEntity -> deviceEntity.setUser(userEntity));
         userSettingsEntity.setUser(userEntity);
-        return userEntity;
+        return Optional.of(userEntity);
     }
 
 }

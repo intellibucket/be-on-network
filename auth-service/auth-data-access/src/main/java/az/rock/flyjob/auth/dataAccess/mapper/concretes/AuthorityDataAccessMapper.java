@@ -7,29 +7,34 @@ import az.rock.lib.domain.id.AuthorityID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
 public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMapper<AuthorityEntity, AuthorityRoot> {
 
     @Override
-    public AuthorityRoot toRoot(AuthorityEntity entity) {
-        return AuthorityRoot.Builder
+    public Optional<AuthorityRoot> toRoot(AuthorityEntity entity) {
+        var optionalAuthorityEntity = Optional.ofNullable(entity);
+        if (optionalAuthorityEntity.isEmpty()) return Optional.empty();
+        return Optional.of(AuthorityRoot.Builder
                 .builder()
                 .id(AuthorityID.of(entity.getUuid()))
                 .createdDate(GDateTime.of(entity.getCreatedDate()))
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
                 .processStatus(entity.getProcessStatus())
-                .dataStatus(entity.getDataStatus())
+                .dataStatus(entity.getRowStatus())
                 .permission(entity.getPermission())
                 .description(entity.getDescription())
-                .build();
+                .build());
     }
 
     @Override
-    public AuthorityEntity toEntity(AuthorityRoot root) {
-        return AuthorityEntity.Builder
+    public Optional<AuthorityEntity> toEntity(AuthorityRoot root) {
+        var optionalAuthorityRoot = Optional.ofNullable(root);
+        if (optionalAuthorityRoot.isEmpty()) return Optional.empty();
+        return Optional.of(AuthorityEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getUUID())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
@@ -39,12 +44,14 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .dataStatus(root.getRowStatus())
                 .description(root.getDescription())
                 .permission(root.getPermission())
-                .build();
+                .build());
     }
 
     @Override
-    public AuthorityEntity toNewEntity(AuthorityRoot root) {
-        return AuthorityEntity.Builder
+    public Optional<AuthorityEntity> toNewEntity(AuthorityRoot root) {
+        var optionalAuthorityRoot = Optional.ofNullable(root);
+        if (optionalAuthorityRoot.isEmpty()) return Optional.empty();
+        return Optional.of(AuthorityEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
                 .createdDate(GDateTime.of(root.getCreatedDate()))
@@ -54,7 +61,7 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
                 .dataStatus(root.getRowStatus())
                 .description(root.getDescription())
                 .permission(root.getPermission())
-                .build();
+                .build());
     }
 }
 

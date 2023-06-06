@@ -8,6 +8,8 @@ import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.domain.id.UserID;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class DetailQueryRepositoryAdapter implements AbstractDetailQueryRepositoryAdapter {
     private final DetailQueryJPARepository detailQueryJPARepository;
@@ -20,23 +22,23 @@ public class DetailQueryRepositoryAdapter implements AbstractDetailQueryReposito
     }
 
     @Override
-    public DetailRoot findById(DetailID rootId) {
+    public Optional<DetailRoot> findById(DetailID rootId) {
         var entity = this.detailQueryJPARepository.findById(rootId.getId());
         return this.detailDataAccessMapper.toRoot(entity.orElse(null));
     }
 
     @Override
-    public DetailRoot findByPID(UserID parentID) {
+    public Optional<DetailRoot> findByPID(UserID parentID) {
         return null;
     }
 
     @Override
-    public DetailRoot findByPIDAndActiveStatus(UserID parentID) {
+    public Optional<DetailRoot> findByPIDAndActiveStatus(UserID parentID) {
         return null;
     }
 
     @Override
-    public DetailRoot findByIdAndActiveStatus(DetailID detailID) {
+    public Optional<DetailRoot> findByIdAndActiveStatus(DetailID detailID) {
         return null;
     }
 }

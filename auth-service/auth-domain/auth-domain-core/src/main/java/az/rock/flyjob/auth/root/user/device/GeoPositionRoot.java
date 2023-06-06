@@ -85,7 +85,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
         private Builder() {
         }
 
-        public static Builder aGeoPositionRoot() {
+        public static Builder builder() {
             return new Builder();
         }
 
@@ -129,7 +129,7 @@ public class GeoPositionRoot extends AggregateRoot<GeoPositionID> {
             return this;
         }
 
-        public Builder dataStatus(RowStatus rowStatus) {
+        public Builder rowStatus(RowStatus rowStatus) {
             this.rowStatus = rowStatus;
             return this;
         }

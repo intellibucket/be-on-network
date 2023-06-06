@@ -7,28 +7,33 @@ import az.rock.lib.domain.id.AuthenticationLogID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
 public class AuthenticationLogDataAccessMapper implements AbstractAuthenticationLogDataAccessMapper<AuthenticationLogEntity, AuthenticationLogRoot> {
 
     @Override
-    public AuthenticationLogRoot toRoot(AuthenticationLogEntity entity) {
-        return AuthenticationLogRoot.Builder
+    public Optional<AuthenticationLogRoot> toRoot(AuthenticationLogEntity entity) {
+        var optionalAuthenticationLogEntity = Optional.ofNullable(entity);
+        if (optionalAuthenticationLogEntity.isEmpty()) return Optional.empty();
+        return Optional.of(AuthenticationLogRoot.Builder
                 .builder()
                 .authenticationLogID(AuthenticationLogID.of(entity.getUuid()))
                 .version(entity.getVersion())
                 .processStatus(entity.getProcessStatus())
-                .dataStatus(entity.getDataStatus())
+                .dataStatus(entity.getRowStatus())
                 .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
                 .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
                 .deviceToken(entity.getDeviceToken())
-                .build();
+                .build());
     }
 
     @Override
-    public AuthenticationLogEntity toEntity(AuthenticationLogRoot root) {
-        return AuthenticationLogEntity.Builder
+    public Optional<AuthenticationLogEntity> toEntity(AuthenticationLogRoot root) {
+        var optionalAuthenticationLogRoot = Optional.ofNullable(root);
+        if (optionalAuthenticationLogRoot.isEmpty()) return Optional.empty();
+        return Optional.of(AuthenticationLogEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
                 .version(root.getVersionValue())
@@ -37,18 +42,20 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .deviceToken(root.getDeviceToken())
-                .build();
+                .build());
     }
 
     @Override
-    public AuthenticationLogEntity toNewEntity(AuthenticationLogRoot root) {
-        return AuthenticationLogEntity.Builder
+    public Optional<AuthenticationLogEntity> toNewEntity(AuthenticationLogRoot root) {
+        var optionalAuthenticationLogRoot = Optional.ofNullable(root);
+        if (optionalAuthenticationLogRoot.isEmpty()) return Optional.empty();
+        return Optional.of(AuthenticationLogEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
                 .version(1L)
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getRowStatus())
                 .deviceToken(root.getDeviceToken())
-                .build();
+                .build());
     }
 }

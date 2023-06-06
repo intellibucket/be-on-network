@@ -6,6 +6,8 @@ import az.rock.flyjob.auth.dataAccess.repository.PasswordJPARepository;
 import az.rock.flyjob.auth.root.user.PasswordRoot;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class PasswordCommandRepositoryAdapter implements AbstractPasswordCommandRepositoryAdapter {
     private final PasswordJPARepository passwordJPARepository;
@@ -19,9 +21,11 @@ public class PasswordCommandRepositoryAdapter implements AbstractPasswordCommand
     }
 
     @Override
-    public PasswordRoot create(PasswordRoot root) {
+    public Optional<PasswordRoot> create(PasswordRoot root) {
         var entity = this.passwordDataAccessMapper.toNewEntity(root);
-        var savedEntity  = this.passwordJPARepository.save(entity);
-        return this.passwordDataAccessMapper.toRoot(savedEntity);
+        if(entity.isPresent()){
+            var savedEntity  = this.passwordJPARepository.save(entity.get());
+            return this.passwordDataAccessMapper.toRoot(savedEntity);
+        }else return Optional.empty();
     }
 }

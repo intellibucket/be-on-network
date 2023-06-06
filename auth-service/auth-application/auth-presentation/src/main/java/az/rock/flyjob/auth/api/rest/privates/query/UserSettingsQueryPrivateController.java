@@ -22,7 +22,7 @@ public class UserSettingsQueryPrivateController implements UserSettingsQueryPriv
 
     @GetMapping("/my-settings")
     public ResponseEntity<JSuccessDataResponse<UserSettingModelResponse>> mySettings() {
-        var response = this.userSettingsQueryDomainPresentationService.getUserSettings();
+        var response = this.userSettingsQueryDomainPresentationService.currentUserSettings();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 

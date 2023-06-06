@@ -6,6 +6,8 @@ import az.rock.flyjob.auth.dataAccess.repository.command.DetailCommandJPAReposit
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class DetailCommandRepositoryAdapter implements AbstractDetailCommandRepositoryAdapter {
     private final DetailCommandJPARepository detailJPARepository;
@@ -19,9 +21,11 @@ public class DetailCommandRepositoryAdapter implements AbstractDetailCommandRepo
     }
 
     @Override
-    public DetailRoot create(DetailRoot root) {
+    public Optional<DetailRoot> create(DetailRoot root) {
         var entity = this.detailDataAccessMapper.toNewEntity(root);
-        var savedEntity  = this.detailJPARepository.save(entity);
-        return this.detailDataAccessMapper.toRoot(savedEntity);
+        if (entity.isPresent()) {
+            var savedEntity = this.detailJPARepository.save(entity.get());
+            return this.detailDataAccessMapper.toRoot(savedEntity);
+        }else return Optional.empty();
     }
 }

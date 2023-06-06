@@ -7,28 +7,33 @@ import az.rock.lib.domain.id.RoleID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
 public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleEntity, RoleRoot> {
     @Override
-    public RoleRoot toRoot(RoleEntity entity) {
-        return RoleRoot.Builder
+    public Optional<RoleRoot> toRoot(RoleEntity entity) {
+        var optionalEntity = Optional.ofNullable(entity);
+        if (optionalEntity.isEmpty()) return Optional.empty();
+        return Optional.of(RoleRoot.Builder
                 .builder()
                 .roleID(RoleID.of(entity.getUuid()))
                 .version(entity.getVersion())
                 .processStatus(entity.getProcessStatus())
-                .dataStatus(entity.getDataStatus())
+                .dataStatus(entity.getRowStatus())
                 .createdDate(GDateTime.of(entity.getCreatedDate()))
                 .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
                 .name(entity.getName())
                 .description(entity.getDescription())
-                .build();
+                .build());
     }
 
     @Override
-    public RoleEntity toEntity(RoleRoot root) {
-        return RoleEntity.Builder
+    public Optional<RoleEntity> toEntity(RoleRoot root) {
+        var optionalRoot = Optional.ofNullable(root);
+        if (optionalRoot.isEmpty()) return Optional.empty();
+        return Optional.of(RoleEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
                 .version(root.getVersionValue())
@@ -38,12 +43,14 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
                 .dataStatus(root.getRowStatus())
                 .name(root.getName())
                 .description(root.getDescription())
-                .build();
+                .build());
     }
 
     @Override
-    public RoleEntity toNewEntity(RoleRoot root) {
-        return RoleEntity.Builder
+    public Optional<RoleEntity> toNewEntity(RoleRoot root) {
+        var optionalRoot = Optional.ofNullable(root);
+        if (optionalRoot.isEmpty()) return Optional.empty();
+        return Optional.of(RoleEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
                 .version(1L)
@@ -51,6 +58,6 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
                 .dataStatus(root.getRowStatus())
                 .name(root.getName())
                 .description(root.getDescription())
-                .build();
+                .build());
     }
 }

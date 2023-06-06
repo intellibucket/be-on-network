@@ -1,7 +1,9 @@
 package az.rock.flyjob.auth.dataAccess.mapper.abstracts;
 
+import java.util.Optional;
+
 public interface AbstractDataAccessMapper <E,R>{
-    R toRoot(E entity);
-    E toEntity(R root);
-    E toNewEntity(R root);
+    Optional<R> toRoot(E entity);
+    Optional<E> toEntity(R root);
+    Optional<E> toNewEntity(R root);
 }

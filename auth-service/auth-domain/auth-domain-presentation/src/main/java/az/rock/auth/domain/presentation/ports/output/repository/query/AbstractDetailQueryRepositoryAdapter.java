@@ -6,9 +6,11 @@ import az.rock.lib.annotation.OutputPort;
 import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.domain.id.UserID;
 
+import java.util.Optional;
+
 @OutputPort
 public interface AbstractDetailQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<DetailRoot, DetailID, UserID> {
-    DetailRoot findByPIDAndActiveStatus(UserID parentID);
+    Optional<DetailRoot> findByPIDAndActiveStatus(UserID parentID);
 
-    DetailRoot findByIdAndActiveStatus(DetailID detailID);
+    Optional<DetailRoot> findByIdAndActiveStatus(DetailID detailID);
 }

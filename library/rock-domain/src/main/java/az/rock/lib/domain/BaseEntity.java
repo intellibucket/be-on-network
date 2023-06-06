@@ -147,7 +147,7 @@ public class BaseEntity {
         return lastModifiedDate;
     }
 
-    public RowStatus getDataStatus() {
+    public RowStatus getRowStatus() {
         return this.rowStatus;
     }
 

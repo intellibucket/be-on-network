@@ -6,6 +6,8 @@ import az.rock.flyjob.auth.dataAccess.repository.UserJPARepository;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserCommandRepositoryAdapter implements AbstractUserCommandRepositoryAdapter {
     private final UserJPARepository userJPARepository;
@@ -19,10 +21,12 @@ public class UserCommandRepositoryAdapter implements AbstractUserCommandReposito
     }
 
     @Override
-    public UserRoot create(UserRoot root) {
+    public Optional<UserRoot> create(UserRoot root) {
         var entity = this.userDataAccessMapper.toNewEntity(root);
-        var savedEntity  = this.userJPARepository.saveAndFlush(entity);
-        return this.userDataAccessMapper.toRoot(savedEntity);
+        if(entity.isPresent()) {
+            var savedEntity = this.userJPARepository.save(entity.get());
+            return this.userDataAccessMapper.toRoot(savedEntity);
+        }else return Optional.empty();
     }
 
 }

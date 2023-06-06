@@ -7,9 +7,10 @@ import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.domain.id.UserID;
 
 import java.util.List;
+import java.util.Optional;
 
 @OutputPort
 public interface AbstractAccountPlanQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<AccountPlanRoot, AccountPlanID, UserID> {
-    AccountPlanRoot findByPIDAndActiveStatus(UserID parentID);
-    List<AccountPlanRoot> findAllByPIDAndActiveStatus(UserID parentID);
+    Optional<AccountPlanRoot> findByPIDAndActiveStatus(UserID parentID);
+    List<Optional<AccountPlanRoot>> findAllByPIDAndActiveStatus(UserID parentID);
 }

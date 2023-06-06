@@ -7,6 +7,7 @@ import az.rock.auth.domain.presentation.service.query.abstracts.AbstractAccountP
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountPlanQueryDomainPresentation implements AbstractAccountPlanQueryDomainPresentation {
@@ -23,13 +24,17 @@ public class AccountPlanQueryDomainPresentation implements AbstractAccountPlanQu
     public AccountPlanPrivateModelResponse findCurrentAccountPlan() {
         var currentUser = this.securityContextHolder.currentUser();
         var accountPlan = this.accountPlanQueryRepositoryAdapter.findByPIDAndActiveStatus(currentUser);
-        return AccountPlanPrivateModelResponse.of(accountPlan);
+        return AccountPlanPrivateModelResponse.of(accountPlan.orElseThrow(() -> new RuntimeException("F0000000001")));
     }
 
     @Override
     public List<AccountPlanPrivateModelResponse> findAllAccountPlans() {
         var currentUser = this.securityContextHolder.currentUser();
         var accountPlan = this.accountPlanQueryRepositoryAdapter.findAllByPIDAndActiveStatus(currentUser);
-        return accountPlan.stream().map(AccountPlanPrivateModelResponse::of).toList();
+        return accountPlan.stream()
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .map(AccountPlanPrivateModelResponse::of)
+                .toList();
     }
 }

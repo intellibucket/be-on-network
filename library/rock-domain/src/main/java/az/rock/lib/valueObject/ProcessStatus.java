@@ -40,5 +40,12 @@ public enum ProcessStatus {
         return this.equals(CANCELLING);
     }
 
+    public static ProcessStatus of(String processStatus) {
+        return ProcessStatus.valueOf(processStatus);
+    }
+
+    public static ProcessStatus of(ProcessStatus processStatus) {
+        return processStatus;
+    }
 
 }
