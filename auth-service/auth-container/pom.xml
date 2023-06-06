@@ -27,6 +27,10 @@
             <artifactId>auth-data-access</artifactId>
         </dependency>
         <dependency>
+            <groupId>az.rock.flyjob</groupId>
+            <artifactId>auth-dfs</artifactId>
+        </dependency>
+        <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-domain-core</artifactId>
         </dependency>

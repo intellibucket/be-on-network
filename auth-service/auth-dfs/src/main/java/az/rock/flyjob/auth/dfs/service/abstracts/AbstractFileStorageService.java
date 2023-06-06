@@ -1,4 +1,4 @@
-package az.rock.flyjob.dfs.service.abstracts;
+package az.rock.flyjob.auth.dfs.service.abstracts;
 
 import az.rock.lib.valueObject.FileMetaData;
 import az.rock.lib.valueObject.MultipartFileWrapper;

@@ -396,6 +396,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>az.rock.flyjob</groupId>
+                <artifactId>auth-dfs</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>az.rock.flyjob.auth</groupId>
                 <artifactId>auth-presentation</artifactId>
                 <version>${project.version}</version>

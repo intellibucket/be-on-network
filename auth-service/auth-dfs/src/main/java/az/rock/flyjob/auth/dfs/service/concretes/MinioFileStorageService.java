@@ -1,6 +1,6 @@
-package az.rock.flyjob.dfs.service.concretes;
+package az.rock.flyjob.auth.dfs.service.concretes;
 
-import az.rock.flyjob.dfs.service.abstracts.AbstractFileStorageService;
+import az.rock.flyjob.auth.dfs.service.abstracts.AbstractFileStorageService;
 import az.rock.lib.valueObject.FileMetaData;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.jlefebure.spring.boot.minio.MinioService;
