@@ -5,6 +5,7 @@ import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserCreateComm
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractQueryRoleDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
+import az.rock.flyjob.auth.event.CompanyCreatedEvent;
 import az.rock.flyjob.auth.event.UserCreatedEvent;
 import az.rock.auth.domain.presentation.exception.AuthDomainException;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
@@ -32,12 +33,22 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
     }
 
     @Override
-    public UserCreatedEvent handle(CreateUserCommand createUserCommand) {
-        var roleId = this.roleDomainPresentationService.findIdByName(UserType.JOB_SEEKER.asRoleName());
-        var userRoot = this.userDomainMapper.registrationUserRoot(roleId,createUserCommand);
+    public UserCreatedEvent handleUserCreated(CreateUserCommand createUserCommand) {
+        var roleRoot = this.roleDomainPresentationService.findIdByName(UserType.JOB_SEEKER.asRoleName());
+        var userRoot = this.userDomainMapper.registrationUserRoot(roleRoot,createUserCommand);
         var userCreatedEvent = this.userDomainService.validateAndInitializeUser(userRoot);
         var savedUserRoot = this.userRepositoryAdapter.create(userCreatedEvent.getRoot());
         if (savedUserRoot.isEmpty()) throw new AuthDomainException();
         return userCreatedEvent;
+    }
+
+    @Override
+    public CompanyCreatedEvent handleCompanyCreated(CreateUserCommand createUserCommand) {
+        var roleId = this.roleDomainPresentationService.findIdByName(UserType.COMPANY.asRoleName());
+        var userRoot = this.userDomainMapper.registrationUserRoot(roleId,createUserCommand);
+        var companyCreatedEvent = this.userDomainService.validateAndInitializeCompany(userRoot);
+        var savedUserRoot = this.userRepositoryAdapter.create(companyCreatedEvent.getRoot());
+        if (savedUserRoot.isEmpty()) throw new AuthDomainException();
+        return companyCreatedEvent;
     }
 }

@@ -18,8 +18,9 @@ import java.util.UUID;
 @Component
 public class DetailDomainMapper implements AbstractDetailDomainMapper {
     @Override
-    public DetailRoot toNewDetailRoot(UserID userID,RoleID roleID,CreateUserCommand createUserCommand) {
+    public DetailRoot toNewDetailRoot(UserID userID,RoleRoot roleRoot,CreateUserCommand createUserCommand) {
         var detailId = DetailID.of(UUID.randomUUID());
+        roleRoot.addDetail(detailId);
         return DetailRoot.Builder
                 .builder()
                 .detailID(detailId)
@@ -27,7 +28,7 @@ public class DetailDomainMapper implements AbstractDetailDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .userID(userID)
-                .roles(Set.of(roleID))
+                .roles(Set.of(roleRoot.getUUID()))
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)

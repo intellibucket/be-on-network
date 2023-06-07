@@ -2,11 +2,13 @@ package az.rock.flyjob.auth.root;
 
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.AggregateRoot;
+import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.domain.id.RoleID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 
 import java.time.ZonedDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 public class RoleRoot extends AggregateRoot<RoleID> {
@@ -14,6 +16,10 @@ public class RoleRoot extends AggregateRoot<RoleID> {
     private final String name;
     private final String description;
     private final Set<AuthorityRoot> authorities;
+
+    private final Set<DetailID> details;
+
+
     public RoleRoot(RoleID roleID,
                     Long version,
                     ProcessStatus processStatus,
@@ -23,11 +29,17 @@ public class RoleRoot extends AggregateRoot<RoleID> {
                     DetailRoot account,
                     String name,
                     String description,
-                    Set<AuthorityRoot> authorities) {
+                    Set<AuthorityRoot> authorities,
+                    Set<DetailID> details) {
         super(roleID, version, processStatus, rowStatus, createdDate, modificationDate);
         this.name = name;
         this.description = description;
         this.authorities = authorities;
+        this.details = details;
+    }
+
+    public void addDetail(DetailID detailID) {
+        details.add(detailID);
     }
 
     private RoleRoot(Builder builder) {
@@ -35,6 +47,7 @@ public class RoleRoot extends AggregateRoot<RoleID> {
         name = builder.name;
         description = builder.description;
         authorities = builder.authorities;
+        details = builder.details;
     }
 
     public String getName() {
@@ -60,7 +73,9 @@ public class RoleRoot extends AggregateRoot<RoleID> {
         private String name;
         private String description;
 
-        private Set<AuthorityRoot> authorities;
+        private Set<AuthorityRoot> authorities = new HashSet<>();
+
+        private Set<DetailID> details = new HashSet<>();
 
         private Builder() {
         }
@@ -109,6 +124,15 @@ public class RoleRoot extends AggregateRoot<RoleID> {
             return this;
         }
 
+        public Builder details(Set<DetailID> val) {
+            details = val;
+            return this;
+        }
+
+        public Builder details(DetailID val) {
+            details = Set.of(val);
+            return this;
+        }
 
         public Builder authorities(Set<AuthorityRoot> val) {
             authorities = val;
