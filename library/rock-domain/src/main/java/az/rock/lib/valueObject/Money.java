@@ -13,8 +13,6 @@ public final class Money {
     public static final Money ZERO = new Money(BigDecimal.ZERO);
 
     private final BigDecimal amount;
-
-
     public Money(final BigDecimal amount) {
         this.amount = Objects.requireNonNullElse(amount, BigDecimal.ZERO);
     }

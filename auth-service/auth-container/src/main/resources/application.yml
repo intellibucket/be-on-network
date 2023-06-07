@@ -42,4 +42,8 @@ logging:
 test:
   values:
     user:
-      uuid: ${TEST_USER:476143fe-c158-4473-a62c-a1cd31a91583}
+      uuid: ${TEST_USER:be27f873-7320-478c-991f-2a1461881fdd}
+      username: ${TEST_USERNAME:vugar_mammadli}
+      language: ${TEST_LANGUAGE:EN}
+      role:
+        name: ${TEST_ROLE:ROLE_JOB_SEEKER}
