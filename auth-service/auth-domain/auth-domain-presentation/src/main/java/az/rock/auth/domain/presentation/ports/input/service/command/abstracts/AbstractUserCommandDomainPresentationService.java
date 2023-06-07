@@ -1,4 +1,4 @@
-package az.rock.auth.domain.presentation.service.command.abstracts;
+package az.rock.auth.domain.presentation.ports.input.service.command.abstracts;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;

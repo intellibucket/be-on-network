@@ -1,10 +1,10 @@
-package az.rock.auth.domain.presentation.service.command.concretes;
+package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserCreateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.message.AbstractUserMessagePublisher;
-import az.rock.auth.domain.presentation.service.command.abstracts.AbstractUserCommandDomainPresentationService;
+import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
 import az.rock.flyjob.auth.event.UserCreatedEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

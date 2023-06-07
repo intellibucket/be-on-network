@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
 import az.rock.auth.domain.presentation.dto.response.UserSettingModelResponse;
-import az.rock.auth.domain.presentation.service.query.abstracts.AbstractUserSettingsQueryDomainPresentationService;
+import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractUserSettingsQueryDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.UserSettingsQueryPrivateSpec;
 import org.springframework.http.MediaType;

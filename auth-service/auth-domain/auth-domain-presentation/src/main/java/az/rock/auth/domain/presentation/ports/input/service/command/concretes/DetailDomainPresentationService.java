@@ -1,9 +1,9 @@
-package az.rock.auth.domain.presentation.service.command.concretes;
+package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.DetailPrivateModelResponse;
+import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractDetailDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractDetailQueryRepositoryAdapter;
-import az.rock.auth.domain.presentation.service.command.abstracts.AbstractDetailDomainPresentationService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
