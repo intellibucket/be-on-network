@@ -24,21 +24,33 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     @Value("${test.values.user.username}")
     private String testUsername;
 
+    @Value("${test.values.user.isAnonymous:false}")
+    private Boolean isAnonymous ;
+    @Value("${test.values.user.isAuthenticated:true}")
+    private Boolean isAuthenticated ;
+
     public UserID currentUser() {
         return UserID.of(UUID.fromString(testUserUUID));
     }
-
     @Override
     public Language currentLanguage() {
         return Language.valueOf(this.testLanguage.toUpperCase());
     }
-
     public Role currentRoleName() {
         return Role.valueOf(this.testRoleName);
     }
-
     @Override
     public String currentUsername() {
         return this.testUsername;
+    }
+
+    @Override
+    public Boolean isAnonymous() {
+        return this.isAnonymous;
+    }
+
+    @Override
+    public Boolean isAuthenticated() {
+        return this.isAuthenticated;
     }
 }

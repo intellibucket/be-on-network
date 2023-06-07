@@ -14,4 +14,8 @@ public interface AbstractSecurityContextHolder {
     Role currentRoleName();
 
     String currentUsername();
+
+    Boolean isAnonymous();
+
+    Boolean isAuthenticated();
 }
