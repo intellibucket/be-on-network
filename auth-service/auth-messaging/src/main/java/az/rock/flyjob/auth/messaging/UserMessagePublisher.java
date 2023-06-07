@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.messaging;
 
 import az.rock.auth.domain.presentation.ports.output.message.AbstractUserMessagePublisher;
+import az.rock.flyjob.auth.event.CompanyCreatedEvent;
 import az.rock.flyjob.auth.event.UserCreatedEvent;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,11 @@ import org.springframework.stereotype.Component;
 public class UserMessagePublisher implements AbstractUserMessagePublisher {
     @Override
     public void publish(UserCreatedEvent userCreatedEvent) {
+
+    }
+
+    @Override
+    public void publish(CompanyCreatedEvent companyCreatedEvent) {
 
     }
 }

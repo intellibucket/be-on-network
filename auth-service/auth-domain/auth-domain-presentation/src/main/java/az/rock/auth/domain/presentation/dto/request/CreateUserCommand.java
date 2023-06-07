@@ -1,6 +1,7 @@
 package az.rock.auth.domain.presentation.dto.request;
 
 import az.rock.lib.valueObject.Gender;
+import az.rock.lib.valueObject.UserRegistrationType;
 import com.intellibucket.ws.validation.annotation.GEmail;
 import com.intellibucket.ws.validation.annotation.GNotNull;
 import com.intellibucket.ws.validation.annotation.GPattern;

@@ -7,6 +7,9 @@ import az.rock.lib.annotation.OutputPort;
 import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.domain.id.RoleID;
 
+import java.util.Optional;
+
 @OutputPort
 public interface AbstractQueryRoleRepositoryAdapter extends AbstractQueryRepositoryAdapter<RoleRoot, RoleID, DetailID> {
+    Optional<RoleRoot> findByName(String name);
 }

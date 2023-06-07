@@ -7,4 +7,6 @@ import az.rock.lib.annotation.InputPort;
 @InputPort
 public interface AbstractUserCommandDomainPresentationService {
     CreateUserResponse createUser(CreateUserCommand createUserCommand);
+
+    CreateUserResponse createCompany(CreateUserCommand createUserCommand);
 }

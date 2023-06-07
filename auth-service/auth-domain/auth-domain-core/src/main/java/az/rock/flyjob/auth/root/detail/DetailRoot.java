@@ -3,6 +3,7 @@ package az.rock.flyjob.auth.root.detail;
 import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.DetailID;
+import az.rock.lib.domain.id.RoleID;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
@@ -16,7 +17,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
 
     private final UserID userID;
 
-    private final Set<RoleRoot> roles;
+    private final Set<RoleID> roles;
 
     private final Boolean isAccountNonExpired;
 
@@ -34,7 +35,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
         return userID;
     }
 
-    public Set<RoleRoot> getRoles() {
+    public Set<RoleID> getRoles() {
         return roles;
     }
 
@@ -83,7 +84,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private UserID userID;
-        private Set<RoleRoot> roles;
+        private Set<RoleID> roles;
         private Boolean isAccountNonExpired;
         private Boolean isAccountNonLocked;
         private Boolean isCredentialsNonExpired;
@@ -143,12 +144,12 @@ public class DetailRoot extends AggregateRoot<DetailID> {
             return this;
         }
 
-        public Builder roles(Set<RoleRoot> val) {
+        public Builder roles(Set<RoleID> val) {
             roles = val;
             return this;
         }
 
-        public Builder roles(RoleRoot val) {
+        public Builder roles(RoleID val) {
             roles = Set.of(val);
             return this;
         }

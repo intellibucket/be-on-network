@@ -5,6 +5,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDetailDomainMap
 import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.id.DetailID;
+import az.rock.lib.domain.id.RoleID;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Component
 public class DetailDomainMapper implements AbstractDetailDomainMapper {
     @Override
-    public DetailRoot toNewDetailRoot(UserID userID, CreateUserCommand createUserCommand) {
+    public DetailRoot toNewDetailRoot(UserID userID,RoleID roleID,CreateUserCommand createUserCommand) {
         var detailId = DetailID.of(UUID.randomUUID());
         return DetailRoot.Builder
                 .builder()
@@ -26,7 +27,7 @@ public class DetailDomainMapper implements AbstractDetailDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .userID(userID)
-                .roles(Set.of())
+                .roles(Set.of(roleID))
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)

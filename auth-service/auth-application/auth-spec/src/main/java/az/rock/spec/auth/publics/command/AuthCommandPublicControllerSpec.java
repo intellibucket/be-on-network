@@ -10,7 +10,10 @@ import org.springframework.http.ResponseEntity;
 public interface AuthCommandPublicControllerSpec {
     ResponseEntity<JSuccessResponse> live();
 
-    ResponseEntity<JSuccessDataResponse<CreateUserResponse>> registry(CreateUserCommand credentials);
+    ResponseEntity<JSuccessDataResponse<CreateUserResponse>> userRegistry(CreateUserCommand credentials);
+
+    ResponseEntity<JSuccessDataResponse<CreateUserResponse>> companyRegistry(CreateUserCommand credentials);
+
 
     ResponseEntity<JSuccessDataResponse<?>> forgotPassword(String email);
 }

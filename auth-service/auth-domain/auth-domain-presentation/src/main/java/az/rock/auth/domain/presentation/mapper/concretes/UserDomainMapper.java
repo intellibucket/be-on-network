@@ -4,6 +4,7 @@ import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
 import az.rock.auth.domain.presentation.mapper.abstracts.*;
 import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.lib.domain.id.RoleID;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
@@ -45,13 +46,12 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
 
 
     @Override
-    public UserRoot registrationUserRoot(CreateUserCommand createUserCommand) {
+    public UserRoot registrationUserRoot(RoleID roleID,CreateUserCommand createUserCommand) {
         var userId = UserID.of(UUID.randomUUID());
         var emailRoot = this.emailDomainMapper.toNewEmailRoot(userId,createUserCommand.getEmail());
         var passwordRoot = this.passwordDomainMapper.generatePasswordRoot(userId,createUserCommand.getPassword());
-        var detailRoot = this.detailDomainMapper.toNewDetailRoot(userId,createUserCommand);
+        var detailRoot = this.detailDomainMapper.toNewDetailRoot(userId,roleID,createUserCommand);
         var freeAccountsPlan = this.accountPlanDomainMapper.freeAccountPlan(userId);
-        var deviceRoot = this.deviceDomainMapper.registrationDevice(userId);
         var userSettingsRoot = this.userSettingsDomainMapper.defaultUserSettingsRoot(userId);
         var userRoot =  UserRoot.Builder
                 .builder()

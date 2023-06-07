@@ -26,4 +26,9 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
         this.userMessagePublisher.publish(userCreatedEvent);
         return CreateUserResponse.of(userCreatedEvent.getRoot());
     }
+
+    @Override
+    public CreateUserResponse createCompany(CreateUserCommand createUserCommand) {
+        return null;
+    }
 }

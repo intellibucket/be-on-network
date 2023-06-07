@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface AbstractUserCreateCommandHandler {
-
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     UserCreatedEvent handle(CreateUserCommand createUserCommand);
 }
