@@ -20,8 +20,8 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
         return Optional.of(DetailRoot.Builder
                 .builder()
                 .detailID(DetailID.of(entity.getUuid()))
-                .createdDate(GDateTime.of(entity.getCreatedDate()))
-                .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
+                .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
+                .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
                 .build());
     }
@@ -33,8 +33,8 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
         return Optional.of(DetailEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
-                .createdDate(GDateTime.of(root.getCreatedDate()))
-                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .build());
     }
@@ -49,8 +49,8 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
-                .createdDate(GDateTime.of(root.getCreatedDate()))
-                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .isAccountNonExpired(root.isAccountNonExpired())
                 .isAccountNonLocked(root.isAccountNonLocked())
                 .isCredentialsNonExpired(root.isCredentialsNonExpired())

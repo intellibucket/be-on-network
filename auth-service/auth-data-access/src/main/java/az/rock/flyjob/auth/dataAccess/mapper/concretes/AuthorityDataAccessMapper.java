@@ -20,8 +20,8 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
         return Optional.of(AuthorityRoot.Builder
                 .builder()
                 .id(AuthorityID.of(entity.getUuid()))
-                .createdDate(GDateTime.of(entity.getCreatedDate()))
-                .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
+                .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
+                .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
                 .processStatus(entity.getProcessStatus())
                 .dataStatus(entity.getRowStatus())
@@ -37,8 +37,8 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
         return Optional.of(AuthorityEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getUUID())
-                .createdDate(GDateTime.of(root.getCreatedDate()))
-                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getRowStatus())
@@ -54,8 +54,8 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
         return Optional.of(AuthorityEntity.Builder
                 .builder()
                 .uuid(UUID.randomUUID())
-                .createdDate(GDateTime.of(root.getCreatedDate()))
-                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getRowStatus())

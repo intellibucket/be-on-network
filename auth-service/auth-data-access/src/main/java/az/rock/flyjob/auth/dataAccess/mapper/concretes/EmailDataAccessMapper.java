@@ -27,11 +27,11 @@ public class EmailDataAccessMapper  implements AbstractEmailDataAccessMapper<Ema
                 .isPrimary(entity.getIsPrimary())
                 .isVerified(entity.getIsVerified())
                 .verificationCode(entity.getVerificationCode())
-                .verificationCodeExpireDate(GDateTime.of(entity.getVerificationCodeExpireDate()))
-                .verificationCodeSendDate(GDateTime.of(entity.getVerificationCodeSendDate()))
+                .verificationCodeExpireDate(GDateTime.toZonedDateTime(entity.getVerificationCodeExpireDate()))
+                .verificationCodeSendDate(GDateTime.toZonedDateTime(entity.getVerificationCodeSendDate()))
                 .verificationCodeSendCount(entity.getVerificationCodeSendCount())
                 .isSubscribedPromotions(entity.getIsSubscribedPromotions())
-                .subscribedDate(GDateTime.of(entity.getSubscribedDate()))
+                .subscribedDate(GDateTime.toZonedDateTime(entity.getSubscribedDate()))
                 .build());
     }
 

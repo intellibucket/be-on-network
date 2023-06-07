@@ -55,8 +55,8 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         return Optional.of(UserRoot.Builder
                 .builder()
                 .id(UserID.of(entity.getUuid()))
-                .createdDate(GDateTime.of(entity.getCreatedDate()))
-                .modificationDate(GDateTime.of(entity.getLastModifiedDate()))
+                .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
+                .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
                 .version(entity.getVersion())
                 .processStatus(entity.getProcessStatus())
                 .rowStatus(entity.getRowStatus())
@@ -75,8 +75,8 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         return Optional.of(UserEntity.Builder
                 .builder()
                 .uuid(root.getUUID().getId())
-                .createdDate(GDateTime.of(root.getCreatedDate()))
-                .lastModifiedDate(GDateTime.of(root.getModificationDate()))
+                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())

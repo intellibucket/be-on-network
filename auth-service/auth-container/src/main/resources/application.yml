@@ -38,3 +38,8 @@ server:
 logging:
   level:
     org.springframework.transaction.interceptor: TRACE
+
+test:
+  values:
+    user:
+      uuid: ${TEST_USER:476143fe-c158-4473-a62c-a1cd31a91583}

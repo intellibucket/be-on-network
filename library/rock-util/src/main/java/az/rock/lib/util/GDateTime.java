@@ -34,6 +34,7 @@ public enum GDateTime {
     }
 
     public static ZonedDateTime toZonedDateTime(Timestamp createdDate) {
+        if (createdDate == null) return null;
         return createdDate.toLocalDateTime().atZone(ZoneId.of("UTC"));
     }
 
