@@ -88,5 +88,59 @@
     "tr": " İşlem başarısız oldu.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000011",
+    "az": " Email tapılmadı.",
+    "en": " Email not found.",
+    "ru": " Email не найден.",
+    "tr": " Email bulunamadı.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000012",
+    "az": " Bu email artıq istifadə olunub.",
+    "en": " This email is already in use.",
+    "ru": " Этот email уже используется.",
+    "tr": " Bu email zaten kullanılıyor.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000013",
+    "az": " Bu istifadəçi adı artıq istifadə olunub.",
+    "en": " This username is already in use.",
+    "ru": " Это имя пользователя уже используется.",
+    "tr": " Bu kullanıcı adı zaten kullanılıyor.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000014",
+    "az": " Istifadəçi adı və ya şifrə səhvdir.",
+    "en": " Username or password is incorrect.",
+    "ru": " Имя пользователя или пароль неверны.",
+    "tr": " Kullanıcı adı veya şifre yanlış.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000015",
+    "az": " Bu elektron poçt ünvanını görmək üçün icazəniz yoxdur.",
+    "en": " You do not have permission to view this email address.",
+    "ru": " У вас нет разрешения на просмотр этого адреса электронной почты.",
+    "tr": " Bu e-posta adresini görüntüleme izniniz yok.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000016",
+    "az": " Bu telefon nömrəsini görmək üçün icazəniz yoxdur.",
+    "en": " You do not have permission to view this phone number.",
+    "ru": " У вас нет разрешения на просмотр этого номера телефона.",
+    "tr": " Bu telefon numarasını görüntüleme izniniz yok.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

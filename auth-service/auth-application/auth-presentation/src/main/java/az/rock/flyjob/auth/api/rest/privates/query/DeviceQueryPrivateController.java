@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/device",produces = MediaType.APPLICATION_JSON_VALUE)
 public class DeviceQueryPrivateController implements DeviceQueryPrivateSpec {
+
 }

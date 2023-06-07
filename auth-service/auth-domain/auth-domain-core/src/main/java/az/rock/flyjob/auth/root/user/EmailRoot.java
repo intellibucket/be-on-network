@@ -16,24 +16,16 @@ public class EmailRoot extends AggregateRoot<EmailID> {
     private final EmailType type;
     private final String email;
 
+    private final Boolean isPublic;
     private final Boolean isEnableNotification;
-
     private final Boolean isPrimary;
-
     private final Boolean isVerified;
-
     private final String verificationCode;
-
     private final ZonedDateTime verificationCodeExpireDate;
-
     private final ZonedDateTime verificationCodeSendDate;
-
     private final BigInteger verificationCodeSendCount;
-
     private final Boolean isSubscribedPromotions;
-
     private final ZonedDateTime subscribedDate;
-
     public EmailRoot(EmailID emailID,
                      Version version,
                      ProcessStatus processStatus,
@@ -43,7 +35,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
                      UserID userID,
                      EmailType type,
                      String email,
-                     Boolean isEnableNotification,
+                     Boolean isPublic, Boolean isEnableNotification,
                      Boolean isPrimary,
                      Boolean isVerified,
                      String verificationCode,
@@ -56,6 +48,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         this.userID = userID;
         this.type = type;
         this.email = email;
+        this.isPublic = isPublic;
         this.isEnableNotification = isEnableNotification;
         this.isPrimary = isPrimary;
         this.isVerified = isVerified;
@@ -85,6 +78,10 @@ public class EmailRoot extends AggregateRoot<EmailID> {
 
     public Boolean isPrimary() {
         return isPrimary;
+    }
+
+    public Boolean isPublic() {
+        return isPublic;
     }
 
     public Boolean isVerified() {
@@ -119,6 +116,8 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         private UserID userID;
         private EmailType type;
         private String email;
+
+        private Boolean isPublic = Boolean.TRUE;
         private Boolean isEnableNotification;
         private Boolean isPrimary;
         private Boolean isVerified;
@@ -144,6 +143,11 @@ public class EmailRoot extends AggregateRoot<EmailID> {
 
         public Builder user(UserID userID) {
             this.userID = userID;
+            return this;
+        }
+
+        public Builder isPublic(Boolean isPublic) {
+            this.isPublic = isPublic;
             return this;
         }
 
@@ -238,7 +242,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         }
 
         public EmailRoot build() {
-            return new EmailRoot(emailID, version, processStatus, rowStatus, createdDate, modificationDate, userID, type, email, isEnableNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount, isSubscribedPromotions, subscribedDate);
+            return new EmailRoot(emailID, version, processStatus, rowStatus, createdDate, modificationDate, userID, type, email, isPublic, isEnableNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount, isSubscribedPromotions, subscribedDate);
         }
     }
 }

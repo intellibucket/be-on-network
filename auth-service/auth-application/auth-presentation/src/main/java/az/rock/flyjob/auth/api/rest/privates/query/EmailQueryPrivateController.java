@@ -1,6 +1,8 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
-import az.rock.auth.domain.presentation.dto.response.EmailModelResponse;
+import az.rock.auth.domain.presentation.dto.response.EmailClientModelResponse;
+import az.rock.auth.domain.presentation.dto.response.EmailPrivateModelResponse;
+import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractEmailQueryDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.EmailQueryPrivateSpec;
 import org.springframework.http.MediaType;
@@ -15,22 +17,39 @@ import java.util.UUID;
 @RequestMapping(value = "/auth/1.0/private/query/email",produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmailQueryPrivateController implements EmailQueryPrivateSpec {
 
+    private final AbstractEmailQueryDomainPresentationService emailQueryDomainPresentationService;
+
+    public EmailQueryPrivateController(AbstractEmailQueryDomainPresentationService emailQueryDomainPresentationService) {
+        this.emailQueryDomainPresentationService = emailQueryDomainPresentationService;
+    }
+
+
     @Override
-    @GetMapping(value = "/get/model/my/{emailUUID}")
-    public ResponseEntity<JSuccessDataResponse<EmailModelResponse>> getModel(@PathVariable(name = "emailUUID") UUID emailUUID) {
-        return null;
+    @GetMapping(value = "/get-my/{emailUUID}")
+    public ResponseEntity<JSuccessDataResponse<EmailPrivateModelResponse>> queryMyEmailById(@PathVariable(name = "emailUUID") UUID emailUUID) {
+        var response = this.emailQueryDomainPresentationService.queryMyEmailById(emailUUID);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
+    }
+
+    @GetMapping(value = "/get-any/{emailUUID}")
+    public ResponseEntity<JSuccessDataResponse<EmailClientModelResponse>> queryAnyEmailByID(@PathVariable(name = "emailUUID") UUID emailUUID) {
+        var response = this.emailQueryDomainPresentationService.queryAnyEmailByID(emailUUID);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    @GetMapping(value = "/get/model/all")
-    public ResponseEntity<JSuccessDataResponse<List<EmailModelResponse>>> getAllModel() {
-        return null;
+    @GetMapping(value = "/get-my/all")
+    public ResponseEntity<JSuccessDataResponse<List<EmailPrivateModelResponse>>> queryMyAllEmails() {
+        var response = this.emailQueryDomainPresentationService.queryMyAllEmails();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    @GetMapping(value = "/get/uuid/all-uuid")
-    public ResponseEntity<JSuccessDataResponse<List<UUID>>> getAllModelUUID() {
-        return null;
+    @GetMapping(value = "/get-my/all-uuids")
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyAllEmailsID() {
+        var response = this.emailQueryDomainPresentationService.queryMyAllEmailsID();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
+
 
 }
