@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.dataAccess.entity.user;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.PhoneNumberType;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
@@ -23,6 +24,9 @@ import java.util.UUID;
 @Entity(name = "PhoneNumberEntity")
 public class PhoneNumberEntity extends BaseEntity {
 
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
     @ManyToOne
     private UserEntity user;
 
@@ -61,6 +65,7 @@ public class PhoneNumberEntity extends BaseEntity {
 
     private PhoneNumberEntity(Builder builder) {
         setUser(builder.user);
+        setAccessModifier(builder.accessModifier);
         setCountryCode(builder.countryCode);
         setPhoneNumber(builder.phoneNumber);
         setType(builder.type);
@@ -83,6 +88,7 @@ public class PhoneNumberEntity extends BaseEntity {
 
     public static final class Builder {
         private UserEntity user;
+        private AccessModifier accessModifier = AccessModifier.PRIVATE;
         private String countryCode;
         private String phoneNumber;
         private PhoneNumberType type;
@@ -108,6 +114,11 @@ public class PhoneNumberEntity extends BaseEntity {
             return new Builder();
         }
 
+
+        public Builder accessModifier(AccessModifier val) {
+            accessModifier = val;
+            return this;
+        }
         public Builder user(UserEntity val) {
             user = val;
             return this;

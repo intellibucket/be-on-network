@@ -7,10 +7,7 @@ import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.id.RoleID;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.ProcessStatus;
-import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.TimeZoneID;
-import az.rock.lib.valueObject.Version;
+import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -60,6 +57,7 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .version(Version.ONE)
                 .processStatus(ProcessStatus.ON_WAITING)
                 .rowStatus(RowStatus.ACTIVE)
+                .accessModifier(AccessModifier.PUBLIC)
                 .key(UUID.randomUUID())
                 .firstName(createUserCommand.getFirstName())
                 .lastName(createUserCommand.getLastName())

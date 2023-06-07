@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.adapter.query;
 
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractQueryRoleRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractRoleQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.RoleDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.query.RoleQueryJPARepository;
 import az.rock.flyjob.auth.root.RoleRoot;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class RoleQueryRepositoryAdapter implements AbstractQueryRoleRepositoryAdapter {
+public class RoleQueryRepositoryAdapter implements AbstractRoleQueryRepositoryAdapter {
     private final RoleQueryJPARepository roleQueryJPARepository;
     private final RoleDataAccessMapper roleDataAccessMapper;
 

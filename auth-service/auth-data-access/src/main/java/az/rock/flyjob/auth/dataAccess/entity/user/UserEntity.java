@@ -3,6 +3,7 @@ package az.rock.flyjob.auth.dataAccess.entity.user;
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.ProcessStatus;
@@ -24,6 +25,10 @@ import java.util.UUID;
 })
 @Entity(name = "UserEntity")
 public class UserEntity extends BaseEntity {
+
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
 
     @Column(name = "key", nullable = false, unique = true)
     private UUID key;
@@ -66,6 +71,7 @@ public class UserEntity extends BaseEntity {
 
     private UserEntity(Builder builder) {
         setKey(builder.key);
+        setAccessModifier(builder.accessModifier);
         setFirstName(builder.firstName);
         setLastName(builder.lastName);
         setUsername(builder.username);
@@ -94,6 +100,8 @@ public class UserEntity extends BaseEntity {
         private @Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String username;
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
         private Gender gender;
+
+        private AccessModifier accessModifier;
         private List<PasswordEntity> passwords;
         private List<EmailEntity> emails;
         private List<PhoneNumberEntity> phoneNumbers;
@@ -118,6 +126,11 @@ public class UserEntity extends BaseEntity {
 
         public Builder key(UUID val) {
             key = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier val) {
+            accessModifier = val;
             return this;
         }
 

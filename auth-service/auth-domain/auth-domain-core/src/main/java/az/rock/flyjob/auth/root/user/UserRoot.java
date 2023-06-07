@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 public class UserRoot extends AggregateRoot<UserID> {
     private final UUID key;
+
+    private final AccessModifier accessModifier;
     private final String firstName;
     private final String lastName;
     private final String username;
@@ -43,6 +45,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.accountPlans = builder.accountPlans;
         this.devices = builder.devices;
         this.userSettingsRoot = builder.userSettingsRoot;
+        this.accessModifier = builder.accessModifier;
     }
 
     public UUID getKey() {
@@ -63,6 +66,10 @@ public class UserRoot extends AggregateRoot<UserID> {
 
     public Set<PasswordRoot> getPasswords() {
         return passwords;
+    }
+
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
     }
 
     public Set<PasswordRoot> getInActivePasswords() {
@@ -96,6 +103,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         return emails;
     }
 
+
     public EmailRoot getPrimaryEmail() {
         return this.emails.stream().filter(EmailRoot::isPrimary).findFirst().orElse(null);
     }
@@ -119,6 +127,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
+        private AccessModifier accessModifier = AccessModifier.PUBLIC;
         private UUID key;
         private String firstName;
         private String lastName;
@@ -143,6 +152,12 @@ public class UserRoot extends AggregateRoot<UserID> {
 
         public Builder id(UserID val) {
             id = val;
+            return this;
+        }
+
+
+        public Builder accessModifier(AccessModifier val) {
+            accessModifier = val;
             return this;
         }
 

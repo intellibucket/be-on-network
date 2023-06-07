@@ -3,15 +3,18 @@ package az.rock.flyjob.auth.root.user;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.PhoneNumberID;
 import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.PhoneNumberType;
-import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
 
 public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
     private final UserID userID;
+
+    private AccessModifier accessModifier ;
 
     private final String countryCode;
 
@@ -36,6 +39,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
     private final BigInteger verificationCodeSendCount;
 
     public PhoneNumberRoot(PhoneNumberID phoneNumberID,
+                           AccessModifier accessModifier,
                            Long version,
                            ProcessStatus processStatus,
                            RowStatus rowStatus,
@@ -54,6 +58,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
                            ZonedDateTime verificationCodeSendDate,
                            BigInteger verificationCodeSendCount) {
         super(phoneNumberID, version, processStatus, rowStatus, createdDate, modificationDate);
+        this.accessModifier = accessModifier;
         this.userID = userID;
         this.countryCode = countryCode;
         this.phoneNumber = phoneNumber;
@@ -70,7 +75,15 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
 
 
     public static final class Builder {
+
+        private PhoneNumberID phoneNumberID;
+        private Long version;
+        private ProcessStatus processStatus;
+        private RowStatus rowStatus;
+        private ZonedDateTime createdDate;
+        private ZonedDateTime modificationDate;
         private UserID userID;
+        private AccessModifier accessModifier = AccessModifier.ONLY_AUTHENTICATED;
         private String countryCode;
         private String phoneNumber;
         private PhoneNumberType type;
@@ -82,12 +95,6 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         private ZonedDateTime verificationCodeExpireDate;
         private ZonedDateTime verificationCodeSendDate;
         private BigInteger verificationCodeSendCount;
-        private Long version;
-        private ProcessStatus processStatus;
-        private RowStatus rowStatus;
-        private ZonedDateTime createdDate;
-        private ZonedDateTime modificationDate;
-        private PhoneNumberID phoneNumberID;
 
         private Builder() {
         }
@@ -98,6 +105,11 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
 
         public Builder user(UserID userID) {
             this.userID = userID;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier) {
+            this.accessModifier = accessModifier;
             return this;
         }
 
@@ -187,11 +199,14 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         }
 
         public PhoneNumberRoot build() {
-            return  new PhoneNumberRoot(null, version, processStatus, rowStatus, createdDate, modificationDate, userID, countryCode, phoneNumber, type, isEnableSmsNotification, isEnableWhatsappNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount);
+            return  new PhoneNumberRoot(phoneNumberID,accessModifier, version, processStatus, rowStatus, createdDate, modificationDate, userID, countryCode, phoneNumber, type, isEnableSmsNotification, isEnableWhatsappNotification, isPrimary, isVerified, verificationCode, verificationCodeExpireDate, verificationCodeSendDate, verificationCodeSendCount);
         }
     }
 
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
     public UserID getUserID() {
         return userID;
     }

@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.dataAccess.entity.user;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.EmailType;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
@@ -24,6 +25,9 @@ import java.util.UUID;
 @Entity(name = "EmailEntity")
 public class EmailEntity extends BaseEntity {
 
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
     @ManyToOne
     private UserEntity user;
 
@@ -66,6 +70,7 @@ public class EmailEntity extends BaseEntity {
         setType(builder.type);
         setEmail(builder.email);
         setIsEnableNotification(builder.isEnableNotification);
+        setAccessModifier(builder.accessModifier);
         setIsPrimary(builder.isPrimary);
         setIsVerified(builder.isVerified);
         setVerificationCode(builder.verificationCode);
@@ -87,6 +92,8 @@ public class EmailEntity extends BaseEntity {
         private UserEntity user;
         private EmailType type;
         private @Email String email;
+
+        private AccessModifier accessModifier;
         private Boolean isEnableNotification;
         private Boolean isPrimary;
         private Boolean isVerified;
@@ -122,6 +129,11 @@ public class EmailEntity extends BaseEntity {
 
         public Builder email(@Email String val) {
             email = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier val) {
+            accessModifier = val;
             return this;
         }
 

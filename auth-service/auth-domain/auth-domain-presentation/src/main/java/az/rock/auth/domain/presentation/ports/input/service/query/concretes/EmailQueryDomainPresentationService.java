@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.dto.response.EmailClientModelResponse;
 import az.rock.auth.domain.presentation.dto.response.EmailPrivateModelResponse;
 import az.rock.auth.domain.presentation.exception.AuthDomainException;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractEmailQueryDomainPresentationService;
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractQueryEmailRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
 import az.rock.lib.domain.id.EmailID;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +17,10 @@ import java.util.UUID;
 public class EmailQueryDomainPresentationService implements AbstractEmailQueryDomainPresentationService {
 
     private final AbstractSecurityContextHolder securityContextHolder;
-    private final AbstractQueryEmailRepositoryAdapter queryEmailRepositoryAdapter;
+    private final AbstractEmailQueryRepositoryAdapter queryEmailRepositoryAdapter;
 
     public EmailQueryDomainPresentationService(AbstractSecurityContextHolder securityContextHolder,
-                                               AbstractQueryEmailRepositoryAdapter queryEmailRepositoryAdapter) {
+                                               AbstractEmailQueryRepositoryAdapter queryEmailRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;
         this.queryEmailRepositoryAdapter = queryEmailRepositoryAdapter;
     }

@@ -1,0 +1,46 @@
+package az.rock.flyjob.auth.dataAccess.adapter.query;
+
+import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
+import az.rock.flyjob.auth.dataAccess.mapper.concretes.EmailDataAccessMapper;
+import az.rock.flyjob.auth.dataAccess.repository.query.EmailQueryJPARepository;
+import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.lib.domain.id.EmailID;
+import az.rock.lib.domain.id.UserID;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
+
+@Component
+public class EmailQueryRepositoryAdapter implements AbstractEmailQueryRepositoryAdapter {
+
+    private final EmailQueryJPARepository emailQueryJPARepository;
+
+    private final EmailDataAccessMapper emailDataAccessMapper;
+
+    public EmailQueryRepositoryAdapter(EmailQueryJPARepository emailQueryJPARepository,
+                                       EmailDataAccessMapper emailDataAccessMapper) {
+        this.emailQueryJPARepository = emailQueryJPARepository;
+        this.emailDataAccessMapper = emailDataAccessMapper;
+    }
+
+    @Override
+    public Optional<EmailRoot> findMyEmailByID(UserID userID, EmailID emailID) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<EmailRoot> findAnyByByID(EmailID emailID) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Optional<EmailRoot>> findAllMyEmails(UserID userID) {
+        return null;
+    }
+
+    @Override
+    public List<Optional<EmailID>> findAllMyEmailsID(UserID userID) {
+        return null;
+    }
+}

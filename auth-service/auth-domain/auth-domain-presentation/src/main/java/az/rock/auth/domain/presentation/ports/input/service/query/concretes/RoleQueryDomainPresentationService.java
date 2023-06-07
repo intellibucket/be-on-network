@@ -1,10 +1,8 @@
 package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractQueryRoleDomainPresentationService;
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractQueryRoleRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractRoleQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.RoleRoot;
-import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.RoleID;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -12,9 +10,9 @@ import org.springframework.validation.annotation.Validated;
 @Service
 public class RoleQueryDomainPresentationService implements AbstractQueryRoleDomainPresentationService {
 
-    private final AbstractQueryRoleRepositoryAdapter queryRoleRepositoryAdapter;
+    private final AbstractRoleQueryRepositoryAdapter queryRoleRepositoryAdapter;
 
-    public RoleQueryDomainPresentationService(AbstractQueryRoleRepositoryAdapter queryRoleRepositoryAdapter) {
+    public RoleQueryDomainPresentationService(AbstractRoleQueryRepositoryAdapter queryRoleRepositoryAdapter) {
         this.queryRoleRepositoryAdapter = queryRoleRepositoryAdapter;
     }
 

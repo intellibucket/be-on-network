@@ -7,7 +7,7 @@ import az.rock.lib.domain.id.UserID;
 import java.util.List;
 import java.util.Optional;
 
-public interface AbstractQueryEmailRepositoryAdapter {
+public interface AbstractEmailQueryRepositoryAdapter {
     Optional<EmailRoot> findMyEmailByID(UserID userID,EmailID emailID);
     Optional<EmailRoot> findAnyByByID(EmailID emailID);
     List<Optional<EmailRoot>> findAllMyEmails(UserID userID);
