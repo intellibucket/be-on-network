@@ -32,11 +32,19 @@ public class RoleEntity extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "UUID")})
     private Set<AuthorityEntity> authorities;
 
+    public void addDetailEntity(DetailEntity entity){
+        if (this.userDetails == null) this.userDetails = Set.of(entity);
+        else this.userDetails.add(entity);
+        //entity.getRoles().add(this);
+    }
+
     private RoleEntity(Builder builder) {
         setName(builder.name);
         setDescription(builder.description);
         setUserDetails(builder.userAccounts);
         setAuthorities(builder.authorities);
+        setProcessStatus(builder.processStatus);
+        setRowStatus(builder.rowStatus);
         setUuid(builder.uuid);
         setVersion(builder.version);
         setCreatedDate(builder.createdDate);

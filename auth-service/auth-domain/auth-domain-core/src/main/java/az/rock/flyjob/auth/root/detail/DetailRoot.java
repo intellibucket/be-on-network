@@ -17,7 +17,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
 
     private final UserID userID;
 
-    private final Set<RoleID> roles;
+    private final Set<RoleRoot> roles;
 
     private final Boolean isAccountNonExpired;
 
@@ -35,7 +35,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
         return userID;
     }
 
-    public Set<RoleID> getRoles() {
+    public Set<RoleRoot> getRoles() {
         return roles;
     }
 
@@ -84,7 +84,7 @@ public class DetailRoot extends AggregateRoot<DetailID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private UserID userID;
-        private Set<RoleID> roles;
+        private Set<RoleRoot> roles;
         private Boolean isAccountNonExpired;
         private Boolean isAccountNonLocked;
         private Boolean isCredentialsNonExpired;
@@ -144,12 +144,12 @@ public class DetailRoot extends AggregateRoot<DetailID> {
             return this;
         }
 
-        public Builder roles(Set<RoleID> val) {
+        public Builder roles(Set<RoleRoot> val) {
             roles = val;
             return this;
         }
 
-        public Builder roles(RoleID val) {
+        public Builder roles(RoleRoot val) {
             roles = Set.of(val);
             return this;
         }

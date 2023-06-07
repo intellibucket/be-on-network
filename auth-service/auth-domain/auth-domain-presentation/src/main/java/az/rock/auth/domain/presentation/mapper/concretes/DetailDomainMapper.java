@@ -28,7 +28,7 @@ public class DetailDomainMapper implements AbstractDetailDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .userID(userID)
-                .roles(Set.of(roleRoot.getUUID()))
+                .roles(Set.of(roleRoot))
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)

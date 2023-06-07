@@ -1,9 +1,11 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
+import az.rock.flyjob.auth.dataAccess.entity.RoleEntity;
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.entity.user.*;
 import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.*;
+import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.flyjob.auth.root.user.*;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEntity, UserRoot> {
@@ -32,13 +35,16 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
 
     private final AbstractUserSettingsDataAccessMapper<UserSettingsEntity,UserSettingsRoot> userSettingsDataAccessMapper;
 
+    private final AbstractRoleDataAccessMapper<RoleEntity, RoleRoot> roleDataAccessMapper;
+
     public UserDataAccessMapper(AbstractPasswordDataAccessMapper<PasswordEntity, PasswordRoot> passwordDataAccessMapper,
                                 AbstractEmailDataAccessMapper<EmailEntity, EmailRoot> emailDataAccessMapper,
                                 AbstractPhoneNumberDataAccessMapper<PhoneNumberEntity, PhoneNumberRoot> phoneNumberDataAccessMapper,
                                 AbstractDetailDataAccessMapper<DetailEntity, DetailRoot> detailDataAccessMapper,
                                 AbstractAccountPlanDataAccessMapper<AccountPlanEntity, AccountPlanRoot> accountPlanDataAccessMapper,
                                 AbstractDeviceDataAccessMapper<DeviceEntity, DeviceRoot> deviceDataAccessMapper,
-                                AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> userSettingsDataAccessMapper) {
+                                AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> userSettingsDataAccessMapper,
+                                AbstractRoleDataAccessMapper<RoleEntity, RoleRoot> roleDataAccessMapper) {
         this.passwordDataAccessMapper = passwordDataAccessMapper;
         this.emailDataAccessMapper = emailDataAccessMapper;
         this.phoneNumberDataAccessMapper = phoneNumberDataAccessMapper;
@@ -46,6 +52,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         this.accountPlanDataAccessMapper = accountPlanDataAccessMapper;
         this.deviceDataAccessMapper = deviceDataAccessMapper;
         this.userSettingsDataAccessMapper = userSettingsDataAccessMapper;
+        this.roleDataAccessMapper = roleDataAccessMapper;
     }
 
     @Override
