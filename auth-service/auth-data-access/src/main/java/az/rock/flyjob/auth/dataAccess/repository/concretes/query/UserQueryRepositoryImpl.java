@@ -27,13 +27,18 @@ public class UserQueryRepositoryImpl implements UserQueryJPARepository {
     }
 
     @Override
-    public UserEntity findByIdAndActive(UUID userId) {
+    public UserEntity findByIdAndActiveRowStatus(UUID userId) {
         return this.entityManager.createQuery(
                 "SELECT row FROM UserEntity row WHERE (:userId = row.uuid) " +
                         "and (row.rowStatus = 'ACTIVE')",
                         UserEntity.class)
                 .setParameter("userId", userId)
                 .getSingleResult();
+    }
+
+    @Override
+    public UserEntity findByEmail(String email) {
+        return null;
     }
 
     public UserEntity findById(UUID userId) {
