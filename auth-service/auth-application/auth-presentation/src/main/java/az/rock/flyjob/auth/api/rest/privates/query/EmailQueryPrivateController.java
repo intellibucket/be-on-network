@@ -26,7 +26,7 @@ public class EmailQueryPrivateController implements EmailQueryPrivateSpec {
 
     @Override
     @GetMapping(value = "/get-my/{emailUUID}")
-    public ResponseEntity<JSuccessDataResponse<EmailPrivateModelResponse>> queryMyEmailById(@PathVariable(name = "emailUUID") UUID emailUUID) {
+    public ResponseEntity<JSuccessDataResponse<EmailPrivateModelResponse>> queryOwnEmailById(@PathVariable(name = "emailUUID") UUID emailUUID) {
         var response = this.emailQueryDomainPresentationService.queryMyEmailById(emailUUID);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
@@ -39,14 +39,14 @@ public class EmailQueryPrivateController implements EmailQueryPrivateSpec {
 
     @Override
     @GetMapping(value = "/get-my/all")
-    public ResponseEntity<JSuccessDataResponse<List<EmailPrivateModelResponse>>> queryMyAllEmails() {
+    public ResponseEntity<JSuccessDataResponse<List<EmailPrivateModelResponse>>> queryOwnAllEmails() {
         var response = this.emailQueryDomainPresentationService.queryMyAllEmails();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
     @GetMapping(value = "/get-my/all-uuids")
-    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyAllEmailsID() {
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryOwnAllEmailsID() {
         var response = this.emailQueryDomainPresentationService.queryMyAllEmailsID();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
