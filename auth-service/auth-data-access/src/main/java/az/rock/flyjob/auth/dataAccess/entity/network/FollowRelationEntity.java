@@ -4,6 +4,7 @@ import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.BlockReasonStatus;
 import az.rock.lib.valueObject.UserType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,16 +17,18 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "follow_relation", schema = "network")
+@Table(name = "follow_relation", schema = "network", indexes = {
+        @Index(name = "ıdx_following_id", columnList = "followingUserId")
+})
 @Entity
 public class FollowRelationEntity extends BaseEntity {
-    private UserType requestOwnerType;
+    private UserType followingUserType;
 
-    private UUID requestOwnerId;
+    private UUID followingUserId;
 
-    private UserType requestTargetType;
+    private UserType followerUserType;
 
-    private UUID requestTargetId;
+    private UUID followerUserId;
 
     private BlockReasonStatus blockReasonStatus;
 }

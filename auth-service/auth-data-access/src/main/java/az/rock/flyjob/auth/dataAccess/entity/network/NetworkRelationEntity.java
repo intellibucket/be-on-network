@@ -3,6 +3,7 @@ package az.rock.flyjob.auth.dataAccess.entity.network;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.*;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,9 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "network_relation", schema = "network")
+@Table(name = "network_relation", schema = "network", indexes = {
+        @Index(name = "ıdx_networkrelationentity", columnList = "networkStatus")
+})
 @Entity
 public class NetworkRelationEntity extends BaseEntity {
 
