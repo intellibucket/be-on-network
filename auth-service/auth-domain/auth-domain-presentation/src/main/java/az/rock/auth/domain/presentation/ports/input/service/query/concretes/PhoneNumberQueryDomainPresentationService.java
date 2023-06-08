@@ -4,6 +4,8 @@ import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.PhoneNumberClientModelResponse;
 import az.rock.auth.domain.presentation.dto.response.PhoneNumberPrivateModelResponse;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractPhoneNumberQueryDomainPresentationService;
+import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPhoneNumberQueryRepositoryAdapter;
+import az.rock.lib.domain.id.PhoneNumberID;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,17 +15,26 @@ import java.util.UUID;
 public class PhoneNumberQueryDomainPresentationService implements AbstractPhoneNumberQueryDomainPresentationService {
     private final AbstractSecurityContextHolder securityContextHolder;
 
-    public PhoneNumberQueryDomainPresentationService(AbstractSecurityContextHolder securityContextHolder) {
+    private final AbstractPhoneNumberQueryRepositoryAdapter phoneNumberQueryRepositoryAdapter;
+
+    public PhoneNumberQueryDomainPresentationService(AbstractSecurityContextHolder securityContextHolder,
+                                                     AbstractPhoneNumberQueryRepositoryAdapter phoneNumberQueryRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;
+        this.phoneNumberQueryRepositoryAdapter = phoneNumberQueryRepositoryAdapter;
     }
 
     @Override
     public PhoneNumberPrivateModelResponse queryOwnById(UUID phoneNumberUUID) {
-        return null;
+        var currentUserID = this.securityContextHolder.currentUser();
+        var response = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUserID, PhoneNumberID.of(phoneNumberUUID));
+        return   response
+                .map(PhoneNumberPrivateModelResponse::of)
+                .orElseThrow(()-> new RuntimeException("F0000000011"));
     }
 
     @Override
     public PhoneNumberClientModelResponse queryAnyById(UUID phoneNumberUUID) {
+
         return null;
     }
 
