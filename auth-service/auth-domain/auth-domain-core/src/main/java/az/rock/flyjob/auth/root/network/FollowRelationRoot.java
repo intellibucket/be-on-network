@@ -22,6 +22,29 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
     private final BlockReasonStatus blockReasonStatus;
 
 
+    public UUID getFollowingUserId() {
+        return followingUserId;
+    }
+
+    public UUID getFollowerUserId() {
+        return followerUserId;
+    }
+
+    public UserType getFollowingUserType() {
+        return followingUserType;
+    }
+
+    public UserType getFollowerUserType() {
+        return followerUserType;
+    }
+
+    public FollowStatus getFollowStatus() {
+        return followStatus;
+    }
+
+    public BlockReasonStatus getBlockReasonStatus() {
+        return blockReasonStatus;
+    }
 
     private FollowRelationRoot(Builder builder) {
         followingUserType = builder.followingUserType;

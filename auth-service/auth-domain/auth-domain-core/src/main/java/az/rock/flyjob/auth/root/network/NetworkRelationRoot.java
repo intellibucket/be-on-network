@@ -1,7 +1,6 @@
 package az.rock.flyjob.auth.root.network;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.FollowID;
 import az.rock.lib.domain.id.NetworkID;
 import az.rock.lib.valueObject.BlockReasonStatus;
 import az.rock.lib.valueObject.NetworkStatus;
@@ -19,6 +18,22 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
     private NetworkStatus networkStatus;
 
     private final BlockReasonStatus blockReasonStatus;
+
+    public UUID getRequestTargetId() {
+        return requestTargetId;
+    }
+
+    public UUID getRequestOwnerId() {
+        return requestOwnerId;
+    }
+
+    public NetworkStatus getNetworkStatus() {
+        return networkStatus;
+    }
+
+    public BlockReasonStatus getBlockReasonStatus() {
+        return blockReasonStatus;
+    }
 
     private NetworkRelationRoot(Builder builder) {
         requestOwnerId = builder.requestOwnerId;
