@@ -35,7 +35,6 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
 
     private final AbstractUserSettingsDataAccessMapper<UserSettingsEntity,UserSettingsRoot> userSettingsDataAccessMapper;
 
-    private final AbstractRoleDataAccessMapper<RoleEntity, RoleRoot> roleDataAccessMapper;
 
     public UserDataAccessMapper(AbstractPasswordDataAccessMapper<PasswordEntity, PasswordRoot> passwordDataAccessMapper,
                                 AbstractEmailDataAccessMapper<EmailEntity, EmailRoot> emailDataAccessMapper,
@@ -43,8 +42,8 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                                 AbstractDetailDataAccessMapper<DetailEntity, DetailRoot> detailDataAccessMapper,
                                 AbstractAccountPlanDataAccessMapper<AccountPlanEntity, AccountPlanRoot> accountPlanDataAccessMapper,
                                 AbstractDeviceDataAccessMapper<DeviceEntity, DeviceRoot> deviceDataAccessMapper,
-                                AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> userSettingsDataAccessMapper,
-                                AbstractRoleDataAccessMapper<RoleEntity, RoleRoot> roleDataAccessMapper) {
+                                AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> userSettingsDataAccessMapper)
+    {
         this.passwordDataAccessMapper = passwordDataAccessMapper;
         this.emailDataAccessMapper = emailDataAccessMapper;
         this.phoneNumberDataAccessMapper = phoneNumberDataAccessMapper;
@@ -52,7 +51,6 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         this.accountPlanDataAccessMapper = accountPlanDataAccessMapper;
         this.deviceDataAccessMapper = deviceDataAccessMapper;
         this.userSettingsDataAccessMapper = userSettingsDataAccessMapper;
-        this.roleDataAccessMapper = roleDataAccessMapper;
     }
 
     @Override
@@ -68,6 +66,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .processStatus(entity.getProcessStatus())
                 .rowStatus(entity.getRowStatus())
                 .accessModifier(entity.getAccessModifier())
+                .userType(entity.getUserType())
                 .key(entity.getKey())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
@@ -88,6 +87,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
+                .userType(root.getUserType())
                 .accessModifier(root.getAccessModifier())
                 .key(root.getKey())
                 .firstName(root.getFirstName())
@@ -141,6 +141,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .processStatus(root.getProcessStatus())
                 .key(root.getKey())
                 .accessModifier(root.getAccessModifier())
+                .userType(root.getUserType())
                 .firstName(root.getFirstName())
                 .lastName(root.getLastName())
                 .username(root.getUsername())

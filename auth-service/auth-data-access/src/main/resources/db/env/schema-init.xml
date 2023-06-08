@@ -13,4 +13,9 @@
             CREATE SCHEMA IF NOT EXISTS report;
         </sql>
     </changeSet>
+    <changeSet id="create-network-schema" author="Vugar Mammadli">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS network;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

@@ -6,8 +6,8 @@ import az.rock.lib.annotation.ValueObject;
 public enum AccessModifier {
     PUBLIC,
     ONLY_AUTHENTICATED,
-    ONLY_NETWORK,
     ONLY_FOLLOWERS,
+    ONLY_NETWORK,
     PRIVATE,
     UNKNOWN;
 

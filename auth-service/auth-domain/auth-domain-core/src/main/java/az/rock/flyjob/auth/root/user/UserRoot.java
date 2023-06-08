@@ -16,6 +16,8 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final UUID key;
 
     private final AccessModifier accessModifier;
+
+    private final UserType userType;
     private final String firstName;
     private final String lastName;
     private final String username;
@@ -46,6 +48,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.devices = builder.devices;
         this.userSettingsRoot = builder.userSettingsRoot;
         this.accessModifier = builder.accessModifier;
+        this.userType = builder.userType;
     }
 
     public UUID getKey() {
@@ -103,6 +106,10 @@ public class UserRoot extends AggregateRoot<UserID> {
         return emails;
     }
 
+    public UserType getUserType() {
+        return userType;
+    }
+
 
     public EmailRoot getPrimaryEmail() {
         return this.emails.stream().filter(EmailRoot::isPrimary).findFirst().orElse(null);
@@ -128,6 +135,8 @@ public class UserRoot extends AggregateRoot<UserID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private AccessModifier accessModifier = AccessModifier.PUBLIC;
+
+        private UserType userType;
         private UUID key;
         private String firstName;
         private String lastName;
@@ -155,6 +164,10 @@ public class UserRoot extends AggregateRoot<UserID> {
             return this;
         }
 
+        public Builder userType(UserType val) {
+            userType = val;
+            return this;
+        }
 
         public Builder accessModifier(AccessModifier val) {
             accessModifier = val;

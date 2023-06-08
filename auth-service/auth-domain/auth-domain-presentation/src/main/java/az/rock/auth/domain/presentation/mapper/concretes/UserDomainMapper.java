@@ -58,6 +58,7 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .processStatus(ProcessStatus.ON_WAITING)
                 .rowStatus(RowStatus.ACTIVE)
                 .accessModifier(AccessModifier.PUBLIC)
+                .userType(UserType.of(roleRoot.getName()))
                 .key(UUID.randomUUID())
                 .firstName(createUserCommand.getFirstName())
                 .lastName(createUserCommand.getLastName())

@@ -2,11 +2,9 @@ package az.rock.flyjob.auth.dataAccess.entity.user;
 
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
+import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.valueObject.AccessModifier;
-import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.Gender;
-import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -26,9 +24,13 @@ import java.util.UUID;
 @Entity(name = "UserEntity")
 public class UserEntity extends BaseEntity {
 
-    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Column(length = 32, columnDefinition = "varchar(32) default 'PUBLIC'")
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
+
+    @Column(updatable = false,nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     @Column(name = "key", nullable = false, unique = true)
     private UUID key;
@@ -72,6 +74,7 @@ public class UserEntity extends BaseEntity {
     private UserEntity(Builder builder) {
         setKey(builder.key);
         setAccessModifier(builder.accessModifier);
+        setUserType(builder.userType);
         setFirstName(builder.firstName);
         setLastName(builder.lastName);
         setUsername(builder.username);
@@ -101,6 +104,7 @@ public class UserEntity extends BaseEntity {
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
         private Gender gender;
 
+        private UserType userType;
         private AccessModifier accessModifier;
         private List<PasswordEntity> passwords;
         private List<EmailEntity> emails;
@@ -126,6 +130,11 @@ public class UserEntity extends BaseEntity {
 
         public Builder key(UUID val) {
             key = val;
+            return this;
+        }
+
+        public Builder userType(UserType val) {
+            userType = val;
             return this;
         }
 
