@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.query;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractDetailQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.DetailDataAccessMapper;
-import az.rock.flyjob.auth.dataAccess.repository.query.DetailQueryJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.DetailQueryJPARepository;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.id.DetailID;
 import az.rock.lib.domain.id.UserID;

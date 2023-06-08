@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.query;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractAccountPlanQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.entity.user.AccountPlanEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractAccountPlanDataAccessMapper;
-import az.rock.flyjob.auth.dataAccess.repository.query.AccountPlanQueryJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.AccountPlanQueryJPARepository;
 import az.rock.flyjob.auth.root.user.AccountPlanRoot;
 import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.domain.id.UserID;

@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.repository.query;
+package az.rock.flyjob.auth.dataAccess.repository.abstracts.query;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.UserSettingsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
