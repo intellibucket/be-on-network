@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.UUID;
 
 public interface NetworkCommandPrivateSpec {
-    ResponseEntity<JSuccessResponse> addRequest(UUID userID);
+    ResponseEntity<JSuccessResponse> sendRequest(UUID userID);
     ResponseEntity<JSuccessResponse> acceptRequest(UUID networkID);
     ResponseEntity<JSuccessResponse> rejectRequest(UUID networkID);
     ResponseEntity<JSuccessResponse> cancelRequest(UUID networkID);

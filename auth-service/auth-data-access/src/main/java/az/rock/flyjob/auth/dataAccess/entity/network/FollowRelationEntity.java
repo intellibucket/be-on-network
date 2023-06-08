@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.dataAccess.entity.network;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.BlockReasonStatus;
+import az.rock.lib.valueObject.FollowStatus;
 import az.rock.lib.valueObject.UserType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Index;
@@ -29,6 +30,8 @@ public class FollowRelationEntity extends BaseEntity {
     private UserType followerUserType;
 
     private UUID followerUserId;
+
+    private FollowStatus followStatus;
 
     private BlockReasonStatus blockReasonStatus;
 }
