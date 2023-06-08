@@ -1,7 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
 import az.rock.flyjob.auth.root.detail.DetailRoot;
-import lombok.Getter;
 
 import java.util.UUID;
 
@@ -15,7 +14,7 @@ public record DetailPrivateModelResponse(UUID uuid,
                                          Boolean isFrozen) {
 
     private DetailPrivateModelResponse(DetailRoot root){
-        this(root.getUUID().getId(),
+        this(root.getUUID().getAbsoluteID(),
                 root.isAccountNonExpired(),
                 root.isAccountNonLocked(),
                 root.isCredentialsNonExpired(),

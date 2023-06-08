@@ -3,11 +3,8 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 import az.rock.flyjob.auth.dataAccess.entity.user.PasswordEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPasswordDataAccessMapper;
 import az.rock.flyjob.auth.root.user.PasswordRoot;
-import az.rock.flyjob.auth.root.user.UserRoot;
-import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.domain.id.PasswordID;
 import az.rock.lib.util.GDateTime;
-import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +35,7 @@ public class PasswordDataAccessMapper implements AbstractPasswordDataAccessMappe
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(PasswordEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getId())
+                .uuid(root.getUUID().getAbsoluteID())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
@@ -55,7 +52,7 @@ public class PasswordDataAccessMapper implements AbstractPasswordDataAccessMappe
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(PasswordEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getId())
+                .uuid(root.getUUID().getAbsoluteID())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
                 .version(root.getVersion().value())

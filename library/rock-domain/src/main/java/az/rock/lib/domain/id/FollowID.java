@@ -4,10 +4,15 @@ import az.rock.lib.domain.RootID;
 
 import java.util.UUID;
 
-public class VacancyID extends RootID<UUID>  implements IdReference<UUID>{
-    protected VacancyID(UUID value) {
+public class FollowID  extends RootID<UUID> implements IdReference<UUID> {
+    protected FollowID(UUID value) {
         super(value);
     }
+
+    public static FollowID of(UUID value) {
+        return new FollowID(value);
+    }
+
     @Override
     public UUID getAbsoluteID() {
         return super.getUUID();

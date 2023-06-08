@@ -10,7 +10,7 @@ public class PhoneNumberID  extends RootID<UUID> implements IdReference<UUID> {
     }
 
     @Override
-    public UUID getId() {
+    public UUID getAbsoluteID() {
         return super.getUUID();
     }
 

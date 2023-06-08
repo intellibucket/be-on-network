@@ -43,7 +43,7 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(UserSettingsEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getId())
+                .uuid(root.getUUID().getAbsoluteID())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
@@ -70,7 +70,7 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(UserSettingsEntity.Builder
                 .builder()
-                .uuid(root.getUserID().getId())
+                .uuid(root.getUserID().getAbsoluteID())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())

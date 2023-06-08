@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public record PhoneNumberClientModelResponse(UUID uuid, String countryCode, String phoneNumber, PhoneNumberType type) {
     private PhoneNumberClientModelResponse(PhoneNumberRoot root){
-        this(root.getUUID().getId() , root.getCountryCode(), root.getPhoneNumber(), root.getType());
+        this(root.getUUID().getAbsoluteID() , root.getCountryCode(), root.getPhoneNumber(), root.getType());
     }
 
     public static PhoneNumberClientModelResponse of(PhoneNumberRoot root){

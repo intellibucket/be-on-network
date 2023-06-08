@@ -10,7 +10,7 @@ public class AuthenticationLogID extends RootID<UUID> implements IdReference<UUI
     }
 
     @Override
-    public UUID getId() {
+    public UUID getAbsoluteID() {
         return super.getUUID();
     }
 

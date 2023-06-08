@@ -41,7 +41,7 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
         if (optionalDetailRoot.isEmpty()) return Optional.empty();
         return Optional.of(DetailEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getId())
+                .uuid(root.getUUID().getAbsoluteID())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
@@ -59,7 +59,7 @@ public class DetailDataAccessMapper implements AbstractDetailDataAccessMapper<De
                 .collect(Collectors.toSet());
         var detailEntity =  Optional.of(DetailEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getId())
+                .uuid(root.getUUID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())

@@ -45,7 +45,7 @@ public class DeviceDataAccessMapper  implements AbstractDeviceDataAccessMapper<D
         if (optionalDeviceRoot.isEmpty()) return Optional.empty();
         return Optional.of(DeviceEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getId())
+                .uuid(root.getUUID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
