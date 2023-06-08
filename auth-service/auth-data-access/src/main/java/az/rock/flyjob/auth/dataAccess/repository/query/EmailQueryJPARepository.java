@@ -19,10 +19,10 @@ public interface EmailQueryJPARepository extends JpaRepository<EmailEntity, UUID
     EmailEntity findByID(@Param(value = "emailID") UUID emailID);
 
     @Query("SELECT e FROM EmailEntity e WHERE e.user.uuid = :userID")
-    List<EmailEntity> findAllByUserID(@Param(value = "emailID") UUID userID);
+    List<EmailEntity> findAllByUserID(@Param(value = "userID") UUID userID);
 
     @Query("SELECT e.uuid FROM EmailEntity e WHERE e.user.uuid = :userID")
-    List<UUID> findAllIDByUserID(@Param(value = "emailID") UUID userID);
+    List<UUID> findAllIDByUserID(@Param(value = "userID") UUID userID);
 
 
 }
