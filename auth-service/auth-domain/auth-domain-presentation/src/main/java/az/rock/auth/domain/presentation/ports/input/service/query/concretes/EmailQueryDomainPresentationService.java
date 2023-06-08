@@ -64,8 +64,6 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
         var optionalEmails = this.queryEmailRepositoryAdapter
                 .findAllMyEmailsID(currentUserId);
         var responseList =  optionalEmails.stream()
-                .filter(Optional::isPresent)
-                .map(Optional::get)
                 .map(EmailID::getId)
                 .toList();
         if (responseList.isEmpty()) throw new AuthDomainException("F0000000011");

@@ -11,6 +11,5 @@ public interface AbstractEmailQueryRepositoryAdapter {
     Optional<EmailRoot> findMyEmailByID(UserID userID,EmailID emailID);
     Optional<EmailRoot> findAnyByByID(EmailID emailID);
     List<Optional<EmailRoot>> findAllMyEmails(UserID userID);
-
-    List<Optional<EmailID>> findAllMyEmailsID(UserID userID);
+    List<EmailID> findAllMyEmailsID(UserID userID);
 }

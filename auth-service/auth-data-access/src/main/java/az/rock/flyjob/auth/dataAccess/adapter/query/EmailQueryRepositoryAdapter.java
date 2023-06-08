@@ -26,21 +26,28 @@ public class EmailQueryRepositoryAdapter implements AbstractEmailQueryRepository
 
     @Override
     public Optional<EmailRoot> findMyEmailByID(UserID userID, EmailID emailID) {
-        return Optional.empty();
+        var optionalEntity = Optional.ofNullable(this.emailQueryJPARepository
+                .findByUserIDAndEmailID(userID.getId(), emailID.getId()));
+        if (optionalEntity.isPresent()) return this.emailDataAccessMapper.toRoot(optionalEntity.get());
+        else return Optional.empty();
     }
 
     @Override
     public Optional<EmailRoot> findAnyByByID(EmailID emailID) {
-        return Optional.empty();
+        var optionalEntity = Optional.ofNullable(this.emailQueryJPARepository.findByID(emailID.getId()));
+        if (optionalEntity.isPresent()) return this.emailDataAccessMapper.toRoot(optionalEntity.get());
+        else return Optional.empty();
     }
 
     @Override
     public List<Optional<EmailRoot>> findAllMyEmails(UserID userID) {
-        return null;
+        var entities = this.emailQueryJPARepository.findAllByUserID(userID.getId());
+        return entities.stream().map(this.emailDataAccessMapper::toRoot).toList();
     }
 
     @Override
-    public List<Optional<EmailID>> findAllMyEmailsID(UserID userID) {
-        return null;
+    public List<EmailID> findAllMyEmailsID(UserID userID) {
+        var entities = this.emailQueryJPARepository.findAllIDByUserID(userID.getId());
+        return entities.stream().map(EmailID::of).toList();
     }
 }
