@@ -1,5 +1,6 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
+import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.NetworkQueryPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,17 +16,17 @@ import java.util.UUID;
 @RequestMapping(value = "/auth/1.0/private/query/follow",produces = MediaType.APPLICATION_JSON_VALUE)
 public class FollowQueryPrivateController implements NetworkQueryPrivateSpec {
     @Override
-    public ResponseEntity<List<UUID>> queryMyNetworks() {
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>>queryMyNetworks() {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<UUID>> queryInMyNetworkPendingRequests() {
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryInMyNetworkPendingRequests() {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<UUID>> queryMyPendingRequests() {
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyPendingRequests() {
         return null;
     }
 }

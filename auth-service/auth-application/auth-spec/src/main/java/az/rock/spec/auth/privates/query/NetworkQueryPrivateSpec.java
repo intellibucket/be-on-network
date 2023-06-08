@@ -1,5 +1,6 @@
 package az.rock.spec.auth.privates.query;
 
+import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -9,15 +10,15 @@ public interface NetworkQueryPrivateSpec {
     /**
      * This method returns the list of user id who are in my network
      */
-    ResponseEntity<List<UUID>> queryMyNetworks();
+    ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyNetworks();
 
     /**
      * This method returns the list of user id who are in my network and their request is pending
      */
-    ResponseEntity<List<UUID>> queryInMyNetworkPendingRequests();
+    ResponseEntity<JSuccessDataResponse<List<UUID>>>queryInMyNetworkPendingRequests();
 
     /**
      * This method returns the list of user id who are in my network and I have sent request to them
      */
-    ResponseEntity<List<UUID>> queryMyPendingRequests();
+    ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyPendingRequests();
 }

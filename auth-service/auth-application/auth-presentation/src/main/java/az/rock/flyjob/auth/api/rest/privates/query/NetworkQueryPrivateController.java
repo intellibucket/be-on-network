@@ -1,5 +1,9 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
+import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractNetworkQueryDomainPresentation;
+import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
+import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.NetworkQueryPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +18,26 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/network",produces = MediaType.APPLICATION_JSON_VALUE)
 public class NetworkQueryPrivateController implements NetworkQueryPrivateSpec {
+    private final AbstractNetworkQueryDomainPresentation networkQueryDomainPresentation;
+
+    public NetworkQueryPrivateController(AbstractNetworkQueryDomainPresentation networkQueryDomainPresentation) {
+        this.networkQueryDomainPresentation = networkQueryDomainPresentation;
+    }
+
     @Override
-    public ResponseEntity<List<UUID>> queryMyNetworks() {
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyNetworks() {
+        var response = this.networkQueryDomainPresentation.queryMyNetworks();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
+    }
+
+    @Override
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryInMyNetworkPendingRequests() {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<UUID>> queryInMyNetworkPendingRequests() {
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyPendingRequests() {
         return null;
     }
 
-    @Override
-    public ResponseEntity<List<UUID>> queryMyPendingRequests() {
-        return null;
-    }
 }
