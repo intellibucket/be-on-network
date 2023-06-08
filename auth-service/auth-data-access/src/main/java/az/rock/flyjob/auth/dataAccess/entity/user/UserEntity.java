@@ -19,7 +19,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users", schema = "auth", indexes = {
-        @Index(name = "idx_users_username", columnList = "username")
+        @Index(name = "idx_users_username", columnList = "username"),
+        @Index(name = "ıdx_users_row_status", columnList = "row_status"),
+        @Index(name = "ıdx_users_usertype", columnList = "userType")
 })
 @Entity(name = "UserEntity")
 public class UserEntity extends BaseEntity {
