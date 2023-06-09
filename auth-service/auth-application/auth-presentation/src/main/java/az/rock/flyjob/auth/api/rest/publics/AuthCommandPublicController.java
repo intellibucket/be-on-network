@@ -23,11 +23,13 @@ public class AuthCommandPublicController implements AuthCommandPublicControllerS
     }
 
 
+
     @Override
     @GetMapping(value = "/live")
     public ResponseEntity<JSuccessResponse> live() {
         return ResponseEntity.ok(new JSuccessResponse("Success public result"));
     }
+
 
 
     @Override

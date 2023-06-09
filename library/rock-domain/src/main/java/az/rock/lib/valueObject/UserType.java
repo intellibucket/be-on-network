@@ -9,7 +9,7 @@ public enum UserType {
     GUEST,COMPANY,JOB_SEEKER;
 
     public static UserType of(String roleRootName) {
-        var splits = roleRootName.split("_");
+        var splits = roleRootName.split("_", 2);
         var name = splits[splits.length - 1];
         return UserType.valueOf(name);
     }
