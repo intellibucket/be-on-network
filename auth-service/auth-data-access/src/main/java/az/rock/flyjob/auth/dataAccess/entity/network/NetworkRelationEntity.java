@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "network_relation", schema = "network", indexes = {
-        @Index(name = "ıdx_networkrelationentity", columnList = "networkStatus")
+        @Index(name = "ıdx_networkrelationentity", columnList = "requestTargetId, requestOwnerId, networkStatus")
 })
 @Entity
 public class NetworkRelationEntity extends BaseEntity {

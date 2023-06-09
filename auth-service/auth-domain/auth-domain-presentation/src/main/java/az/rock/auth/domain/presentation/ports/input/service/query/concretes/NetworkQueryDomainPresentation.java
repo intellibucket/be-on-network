@@ -24,18 +24,18 @@ public class NetworkQueryDomainPresentation implements AbstractNetworkQueryDomai
     @Override
     public List<UUID> findMyNetworks() {
         var currentUserID = this.securityContextHolder.currentUser();
-        return null;
+        return this.networkQueryRepositoryAdapter.findMyNetworks(currentUserID);
     }
 
     @Override
     public List<UUID> findInMyNetworkPendingRequests() {
         var currentUserID = this.securityContextHolder.currentUser();
-        return null;
+        return this.networkQueryRepositoryAdapter.findInMyNetworkPendingRequests(currentUserID);
     }
 
     @Override
     public List<UUID> findMyPendingRequests() {
         var currentUserID = this.securityContextHolder.currentUser();
-        return null;
+        return this.networkQueryRepositoryAdapter.findMyPendingRequests(currentUserID);
     }
 }
