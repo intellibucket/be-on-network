@@ -1,8 +1,6 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractNetworkQueryDomainPresentation;
-import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.NetworkQueryPrivateSpec;
 import org.springframework.http.MediaType;
@@ -26,18 +24,20 @@ public class NetworkQueryPrivateController implements NetworkQueryPrivateSpec {
 
     @Override
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyNetworks() {
-        var response = this.networkQueryDomainPresentation.queryMyNetworks();
+        var response = this.networkQueryDomainPresentation.findMyNetworks();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryInMyNetworkPendingRequests() {
-        return null;
+        var response = this.networkQueryDomainPresentation.findInMyNetworkPendingRequests();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyPendingRequests() {
-        return null;
+        var response = this.networkQueryDomainPresentation.findMyPendingRequests();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
 }
