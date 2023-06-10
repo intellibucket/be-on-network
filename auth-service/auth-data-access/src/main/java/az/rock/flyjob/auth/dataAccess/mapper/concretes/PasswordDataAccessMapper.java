@@ -35,7 +35,7 @@ public class PasswordDataAccessMapper implements AbstractPasswordDataAccessMappe
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(PasswordEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
@@ -52,7 +52,7 @@ public class PasswordDataAccessMapper implements AbstractPasswordDataAccessMappe
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(PasswordEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
                 .version(root.getVersion().value())

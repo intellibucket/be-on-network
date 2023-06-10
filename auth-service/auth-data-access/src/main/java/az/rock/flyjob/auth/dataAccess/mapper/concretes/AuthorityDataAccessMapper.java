@@ -36,7 +36,7 @@ public class AuthorityDataAccessMapper implements AbstractAuthorityDataAccessMap
         if (optionalAuthorityRoot.isEmpty()) return Optional.empty();
         return Optional.of(AuthorityEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getUUID())
+                .uuid(root.getRootID().getRootID())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())

@@ -15,6 +15,6 @@ public class NetworkID extends RootID<UUID> implements IdReference<UUID> {
 
     @Override
     public UUID getAbsoluteID() {
-        return super.getUUID();
+        return super.getRootID();
     }
 }

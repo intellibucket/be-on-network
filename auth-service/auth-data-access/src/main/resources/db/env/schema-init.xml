@@ -18,4 +18,9 @@
             CREATE SCHEMA IF NOT EXISTS network;
         </sql>
     </changeSet>
+    <changeSet id="create-outbox-schema" author="Vugar Mammadli">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS outbox;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

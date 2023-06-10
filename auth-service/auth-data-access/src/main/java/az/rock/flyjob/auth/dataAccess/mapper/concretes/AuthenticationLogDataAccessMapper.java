@@ -35,7 +35,7 @@ public class AuthenticationLogDataAccessMapper implements AbstractAuthentication
         if (optionalAuthenticationLogRoot.isEmpty()) return Optional.empty();
         return Optional.of(AuthenticationLogEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .dataStatus(root.getRowStatus())

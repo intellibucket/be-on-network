@@ -10,7 +10,7 @@ public record EmailClientModelResponse(UUID uuid,
                                        EmailType type,
                                        String email) {
     private EmailClientModelResponse(EmailRoot root) {
-        this(root.getUUID().getAbsoluteID(), root.getUserId().getAbsoluteID(), root.getType(), root.getEmail());
+        this(root.getRootID().getAbsoluteID(), root.getUserId().getAbsoluteID(), root.getType(), root.getEmail());
     }
 
     public static EmailClientModelResponse of(EmailRoot root) {

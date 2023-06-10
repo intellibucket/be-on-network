@@ -39,7 +39,7 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(AccountPlanEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())

@@ -14,7 +14,7 @@ public record EmailPrivateModelResponse(UUID uuid,
                                         Boolean isVerified,
                                         Boolean isSubscribedPromotions) {
     private EmailPrivateModelResponse(EmailRoot root) {
-        this(root.getUUID().getAbsoluteID(), root.getUserId().getAbsoluteID(), root.getType(), root.getEmail(), root.isEnableNotification(),
+        this(root.getRootID().getAbsoluteID(), root.getUserId().getAbsoluteID(), root.getType(), root.getEmail(), root.isEnableNotification(),
                 root.isPrimary(), root.isVerified(), root.isSubscribedPromotions());
     }
 

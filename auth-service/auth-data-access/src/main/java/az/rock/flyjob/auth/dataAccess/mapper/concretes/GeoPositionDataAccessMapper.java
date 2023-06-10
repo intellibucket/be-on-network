@@ -40,7 +40,7 @@ public class GeoPositionDataAccessMapper  implements AbstractGeoPositionDataAcce
         if (optionalGeoPositionRoot.isEmpty()) return Optional.empty();
         return Optional.of(GeoPositionEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
@@ -61,7 +61,7 @@ public class GeoPositionDataAccessMapper  implements AbstractGeoPositionDataAcce
         if (optionalGeoPositionRoot.isEmpty()) return Optional.empty();
         return Optional.of(GeoPositionEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(1L)
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())

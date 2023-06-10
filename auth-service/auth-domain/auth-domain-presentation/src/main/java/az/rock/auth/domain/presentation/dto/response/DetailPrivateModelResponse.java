@@ -14,7 +14,7 @@ public record DetailPrivateModelResponse(UUID uuid,
                                          Boolean isFrozen) {
 
     private DetailPrivateModelResponse(DetailRoot root){
-        this(root.getUUID().getAbsoluteID(),
+        this(root.getRootID().getAbsoluteID(),
                 root.isAccountNonExpired(),
                 root.isAccountNonLocked(),
                 root.isCredentialsNonExpired(),

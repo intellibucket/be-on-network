@@ -11,7 +11,7 @@ public class GeoPositionID  extends RootID<UUID> implements IdReference<UUID> {
 
     @Override
     public UUID getAbsoluteID() {
-        return super.getUUID();
+        return super.getRootID();
     }
 
     public static GeoPositionID of(UUID value) {

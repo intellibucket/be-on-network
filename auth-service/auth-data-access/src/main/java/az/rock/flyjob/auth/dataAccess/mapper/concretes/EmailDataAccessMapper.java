@@ -42,7 +42,7 @@ public class EmailDataAccessMapper  implements AbstractEmailDataAccessMapper<Ema
         if (optionalEmailRoot.isEmpty()) return Optional.empty();
         return Optional.of(EmailEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
                 .version(root.getVersion().value())
@@ -67,7 +67,7 @@ public class EmailDataAccessMapper  implements AbstractEmailDataAccessMapper<Ema
         if (optionalEmailRoot.isEmpty()) return Optional.empty();
         return Optional.of(EmailEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
                 .version(root.getVersion().value())

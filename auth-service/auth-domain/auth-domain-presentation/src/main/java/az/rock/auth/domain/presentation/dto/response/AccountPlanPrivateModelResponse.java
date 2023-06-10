@@ -9,7 +9,7 @@ import java.util.UUID;
 public record AccountPlanPrivateModelResponse(UUID uuid, AccountPlanType plan, ZonedDateTime startDate,
                                               ZonedDateTime expiredDate, Boolean isExpired) {
     private AccountPlanPrivateModelResponse(AccountPlanRoot root){
-        this(root.getUUID().getAbsoluteID(), root.getPlan(), root.getStartDate(), root.getExpiredDate(), root.getExpired());
+        this(root.getRootID().getAbsoluteID(), root.getPlan(), root.getStartDate(), root.getExpiredDate(), root.getExpired());
     }
 
     public static AccountPlanPrivateModelResponse of(AccountPlanRoot root){

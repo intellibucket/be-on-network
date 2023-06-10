@@ -11,7 +11,7 @@ public class AuthenticationLogID extends RootID<UUID> implements IdReference<UUI
 
     @Override
     public UUID getAbsoluteID() {
-        return super.getUUID();
+        return super.getRootID();
     }
 
     public static AuthenticationLogID of(UUID value) {

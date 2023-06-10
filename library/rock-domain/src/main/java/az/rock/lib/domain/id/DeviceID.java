@@ -11,7 +11,7 @@ public class DeviceID  extends RootID<UUID> implements IdReference<UUID> {
 
     @Override
     public UUID getAbsoluteID() {
-        return super.getUUID();
+        return super.getRootID();
     }
 
     public static DeviceID of(UUID value) {

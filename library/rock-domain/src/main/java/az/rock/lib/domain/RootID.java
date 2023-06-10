@@ -21,7 +21,7 @@ public class RootID <ID> {
     }
 
     @JsonIgnore
-    public ID getUUID() {
+    public ID getRootID() {
         return uuid;
     }
 

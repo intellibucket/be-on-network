@@ -13,7 +13,7 @@ public class UserID extends RootID<UUID> implements IdReference<UUID> {
 
     @Override
     public UUID getAbsoluteID() {
-        return super.getUUID();
+        return super.getRootID();
     }
 
     public static UserID of(UUID value){

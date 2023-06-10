@@ -4,9 +4,7 @@ import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.BlockReasonStatus;
 import az.rock.lib.valueObject.FollowStatus;
 import az.rock.lib.valueObject.UserType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,15 +21,21 @@ import java.util.UUID;
 })
 @Entity
 public class FollowRelationEntity extends BaseEntity {
+    @Enumerated(EnumType.STRING)
     private UserType followingUserType;
 
+    @Column(nullable = false, updatable = false)
     private UUID followingUserId;
 
+    @Enumerated(EnumType.STRING)
     private UserType followerUserType;
 
+    @Column(nullable = false, updatable = false)
     private UUID followerUserId;
 
+    @Enumerated(EnumType.STRING)
     private FollowStatus followStatus;
 
+    @Enumerated(EnumType.STRING)
     private BlockReasonStatus blockReasonStatus;
 }

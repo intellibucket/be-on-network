@@ -13,7 +13,6 @@ import az.rock.lib.valueObject.TimeZoneID;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEntity, UserRoot> {
@@ -78,7 +77,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         if (optionalUserRoot.isEmpty()) return Optional.empty();
         return Optional.of(UserEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersionValue())
@@ -132,7 +131,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .toNewEntity(root.getUserSettingsRoot()).orElseThrow(()-> new RuntimeException("User Settings not found"));
         var userEntity =  UserEntity.Builder
                 .builder()
-                .uuid(UUID.randomUUID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())

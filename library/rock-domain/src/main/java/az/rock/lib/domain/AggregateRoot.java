@@ -56,8 +56,8 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
 
 
     @Override
-    public ID getUUID() {
-        return super.getUUID();
+    public ID getRootID() {
+        return super.getRootID();
     }
 
     public Long getVersionValue() {
@@ -86,7 +86,7 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
 
 
     public Boolean sameIdentityAs(AggregateRoot<ID> other) {
-        return this.getUUID().equals(other.getUUID());
+        return this.getRootID().equals(other.getRootID());
     }
 
     public Boolean sameVersionAs(AggregateRoot<ID> other) {

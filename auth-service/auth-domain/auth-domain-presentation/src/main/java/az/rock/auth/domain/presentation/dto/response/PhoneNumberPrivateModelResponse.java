@@ -9,7 +9,7 @@ public record PhoneNumberPrivateModelResponse(UUID uuid, String countryCode, Str
                                               Boolean isEnableSmsNotification, Boolean isEnableWhatsappNotification,
                                               Boolean isPrimary, Boolean isVerified) {
     private PhoneNumberPrivateModelResponse(PhoneNumberRoot root){
-        this(root.getUUID().getAbsoluteID() , root.getCountryCode(), root.getPhoneNumber(), root.getType(),
+        this(root.getRootID().getAbsoluteID() , root.getCountryCode(), root.getPhoneNumber(), root.getType(),
                 root.getEnableSmsNotification(), root.getEnableWhatsappNotification(), root.getPrimary(),
                 root.getVerified());
     }

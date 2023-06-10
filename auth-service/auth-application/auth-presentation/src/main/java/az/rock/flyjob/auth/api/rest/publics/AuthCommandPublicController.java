@@ -35,7 +35,7 @@ public class AuthCommandPublicController implements AuthCommandPublicControllerS
     @Override
     @PostMapping(value = "/registry/user")
     public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> userRegistry(@RequestBody @Valid CreateUserCommand credentials) {
-        var response  = this.userDomainPresentationService.createUser(credentials);
+        var response  = this.userDomainPresentationService.createJobSeeker(credentials);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response,"Success private result"));
     }
 

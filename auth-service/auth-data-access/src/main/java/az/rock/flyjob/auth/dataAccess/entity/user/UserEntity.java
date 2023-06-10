@@ -74,6 +74,12 @@ public class UserEntity extends BaseEntity {
     private UserSettingsEntity settings;
 
     private UserEntity(Builder builder) {
+        setUuid(builder.uuid);
+        setVersion(builder.version);
+        setProcessStatus(builder.processStatus);
+        setRowStatus(builder.rowStatus);
+        setCreatedDate(builder.createdDate);
+        setLastModifiedDate(builder.lastModifiedDate);
         setKey(builder.key);
         setAccessModifier(builder.accessModifier);
         setUserType(builder.userType);
@@ -89,23 +95,22 @@ public class UserEntity extends BaseEntity {
         setAccountPlans(builder.accountPlans);
         setDevices(builder.devices);
         setSettings(builder.settings);
-        setUuid(builder.uuid);
-        setVersion(builder.version);
-        setProcessStatus(builder.processStatus);
-        setRowStatus(builder.rowStatus);
-        setCreatedDate(builder.createdDate);
-        setLastModifiedDate(builder.lastModifiedDate);
     }
 
 
     public static final class Builder {
+        private UUID uuid;
+        private Long version;
+        private ProcessStatus processStatus;
+        private RowStatus rowStatus;
+        private Timestamp createdDate;
+        private Timestamp lastModifiedDate;
         private UUID key;
         private @Min(value = 3, message = "First name must be at least 3 characters long") @Max(value = 30, message = "First name must be at most 20 characters long") String firstName;
         private @Min(value = 3, message = "Last name must be at least 3 characters long") @Max(value = 40, message = "Last name must be at most 20 characters long") String lastName;
         private @Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String username;
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
         private Gender gender;
-
         private UserType userType;
         private AccessModifier accessModifier;
         private List<PasswordEntity> passwords;
@@ -115,13 +120,6 @@ public class UserEntity extends BaseEntity {
         private List<AccountPlanEntity> accountPlans;
         private List<DeviceEntity> devices;
         private UserSettingsEntity settings;
-        private UUID uuid;
-        private Long version;
-        private ProcessStatus processStatus;
-
-        private RowStatus rowStatus;
-        private Timestamp createdDate;
-        private Timestamp lastModifiedDate;
 
         private Builder() {
         }

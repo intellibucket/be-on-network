@@ -44,7 +44,7 @@ public class PhoneNumberDataAccessMapper implements AbstractPhoneNumberDataAcces
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(PhoneNumberEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersion().value())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
@@ -69,7 +69,7 @@ public class PhoneNumberDataAccessMapper implements AbstractPhoneNumberDataAcces
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(PhoneNumberEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersion().value())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())

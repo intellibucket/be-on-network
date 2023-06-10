@@ -24,13 +24,13 @@ public class UserSettingsQueryRepositoryAdapter implements AbstractUserSettingsQ
 
     @Override
     public Optional<UserSettingsRoot> findById(UserSettingsID rootId) {
-        var entity = this.userSettingsJPARepository.findByUser(rootId.getUUID());
+        var entity = this.userSettingsJPARepository.findByUser(rootId.getRootID());
         return this.userSettingsDataAccessMapper.toRoot(entity);
     }
 
     @Override
     public Optional<UserSettingsRoot> findByPID(UserID userId) {
-        var entity = this.userSettingsJPARepository.findByUser(userId.getUUID());
+        var entity = this.userSettingsJPARepository.findByUser(userId.getRootID());
         return this.userSettingsDataAccessMapper.toRoot(entity);
     }
 

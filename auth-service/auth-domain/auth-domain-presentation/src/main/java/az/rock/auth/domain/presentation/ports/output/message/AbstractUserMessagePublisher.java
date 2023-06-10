@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.ports.output.message;
 
 import az.rock.flyjob.auth.event.CompanyCreatedEvent;
-import az.rock.flyjob.auth.event.UserCreatedEvent;
+import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
 import az.rock.lib.annotation.OutputPort;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AbstractUserMessagePublisher {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    void publish(UserCreatedEvent userCreatedEvent);
+    void publish(JobSeekerCreatedEvent jobSeekerCreatedEvent);
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     void publish(CompanyCreatedEvent companyCreatedEvent);

@@ -11,7 +11,7 @@ public class AuthorityID extends RootID<UUID> implements IdReference<UUID> {
 
     @Override
     public UUID getAbsoluteID() {
-        return super.getUUID();
+        return super.getRootID();
     }
 
     public static AuthorityID of(UUID value) {

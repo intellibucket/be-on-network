@@ -8,6 +8,6 @@ import java.util.UUID;
 @Builder
 public record CreateUserResponse(UUID userId,String firstName,String username,String email) {
     public  static CreateUserResponse of(UserRoot root){
-        return new CreateUserResponse(root.getUUID().getAbsoluteID(),root.getFirstName(), root.getUsername(), root.getAbsoluteEmail());
+        return new CreateUserResponse(root.getRootID().getAbsoluteID(),root.getFirstName(), root.getUsername(), root.getAbsoluteEmail());
     }
 }

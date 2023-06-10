@@ -3,7 +3,6 @@ package az.rock.auth.domain.presentation.dto.response;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
-import lombok.Getter;
 
 import java.util.UUID;
 
@@ -15,7 +14,7 @@ public record UserModelResponse(UUID uuid,
                                 Gender gender) {
 
     private UserModelResponse(UserRoot root){
-        this(root.getUUID().getUUID(),
+        this(root.getRootID().getRootID(),
                 root.getFirstName(),
                 root.getLastName(),
                 root.getUsername(),

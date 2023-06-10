@@ -35,7 +35,7 @@ public class RoleDataAccessMapper  implements AbstractRoleDataAccessMapper<RoleE
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(RoleEntity.Builder
                 .builder()
-                .uuid(root.getUUID().getAbsoluteID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))

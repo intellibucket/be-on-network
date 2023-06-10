@@ -25,24 +25,24 @@ public class AccountPlanQueryRepositoryAdapter implements AbstractAccountPlanQue
 
     @Override
     public Optional<AccountPlanRoot> findById(AccountPlanID rootId) {
-        var entity = this.accountPlanJPARepository.findById(rootId.getUUID()).orElse(null);
+        var entity = this.accountPlanJPARepository.findById(rootId.getRootID()).orElse(null);
         return this.accountPlanDataAccessMapper.toRoot(entity);
     }
 
     @Override
     public Optional<AccountPlanRoot> findByPID(UserID parentID) {
-        var entity = this.accountPlanJPARepository.findByUser(parentID.getUUID());
+        var entity = this.accountPlanJPARepository.findByUser(parentID.getRootID());
         return this.accountPlanDataAccessMapper.toRoot(entity);
     }
     @Override
     public Optional<AccountPlanRoot> findByPIDAndActiveStatus(UserID parentID) {
-        var entity = this.accountPlanJPARepository.findByUserAndActiveRowStatus(parentID.getUUID());
+        var entity = this.accountPlanJPARepository.findByUserAndActiveRowStatus(parentID.getRootID());
         return this.accountPlanDataAccessMapper.toRoot(entity);
     }
 
     @Override
     public List<Optional<AccountPlanRoot>> findAllByPIDAndActiveStatus(UserID parentID) {
-        var entities = this.accountPlanJPARepository.findAllByUserAndActiveRowStatus(parentID.getUUID());
+        var entities = this.accountPlanJPARepository.findAllByUserAndActiveRowStatus(parentID.getRootID());
         return entities.stream().map(this.accountPlanDataAccessMapper::toRoot).toList();
     }
 }
