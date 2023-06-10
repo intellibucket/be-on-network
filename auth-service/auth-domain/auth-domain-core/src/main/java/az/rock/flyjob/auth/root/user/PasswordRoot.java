@@ -13,8 +13,8 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
 
     private final UserID userID;
 
-    private final String salt;
-    private final String hash;
+    private transient final String salt;
+    private transient final String hash;
 
     protected PasswordRoot(PasswordID passwordID,
                            UserID userID,
@@ -36,6 +36,10 @@ public class PasswordRoot extends AggregateRoot<PasswordID>{
         userID = builder.userID;
         salt = builder.salt;
         hash = builder.hash;
+    }
+
+    public UserID getUserID() {
+        return userID;
     }
 
     public Boolean currentPassword(){

@@ -9,7 +9,6 @@ public class UserDomainService implements AbstractUserDomainService {
 
     @Override
     public UserCreatedEvent validateAndInitializeUser(UserRoot userRoot) {
-        //TODO: validate username, email, password
         return UserCreatedEvent.of(userRoot);
     }
 

@@ -1,5 +1,8 @@
 package az.rock.lib.event;
 
+import az.rock.lib.domain.RootID;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -32,4 +35,5 @@ public abstract class AbstractDomainEvent<R> implements DomainEvent<R> {
     public R getRoot() {
         return root;
     }
+
 }

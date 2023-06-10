@@ -1,5 +1,7 @@
 package az.rock.lib.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,6 +20,7 @@ public class RootID <ID> {
         return new RootID<>(UUID.randomUUID());
     }
 
+    @JsonIgnore
     public ID getUUID() {
         return uuid;
     }
