@@ -27,7 +27,8 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
     @Override
     @Transactional
     public CreateUserResponse createJobSeeker(CreateUserCommand createUserCommand) {
-        JobSeekerCreatedEvent jobSeekerCreatedEvent = this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);
+        JobSeekerCreatedEvent jobSeekerCreatedEvent =
+                this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);
         this.userOutboxInputPort.save(jobSeekerCreatedEvent);
         this.userMessagePublisher.publish(jobSeekerCreatedEvent);
         return CreateUserResponse.of(jobSeekerCreatedEvent.getRoot());

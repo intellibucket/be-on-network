@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/auth-service/pom.xml" />
         <option value="$PROJECT_DIR$/job-seeker/pom.xml" />
         <option value="$PROJECT_DIR$/employer-service/pom.xml" />
+        <option value="$PROJECT_DIR$/library/rock-payload/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

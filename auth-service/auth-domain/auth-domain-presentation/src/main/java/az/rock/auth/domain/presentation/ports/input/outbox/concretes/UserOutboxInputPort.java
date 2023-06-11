@@ -21,7 +21,7 @@ public class UserOutboxInputPort implements AbstractUserOutboxInputPort {
 
     @Override
     public void save(AbstractDomainEvent<UserRoot> event) {
-        var userOutboxRoot = this.domainMapper.mapToDomainModel(event);
+        var userOutboxRoot = this.domainMapper.mapToStartedOutbox(event);
         this.repositoryAdapter.save(userOutboxRoot);
     }
 

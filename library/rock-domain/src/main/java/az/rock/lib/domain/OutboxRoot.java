@@ -46,4 +46,36 @@ public class OutboxRoot  extends RootID<OutboxID> {
         this.payload = payload;
     }
 
+
+    public SagaID getSagaId() {
+        return sagaId;
+    }
+
+    public Version getVersion() {
+        return version;
+    }
+
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public ZonedDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public SagaStatus getSagaStatus() {
+        return sagaStatus;
+    }
+
+    public OutboxStatus getOutboxStatus() {
+        return outboxStatus;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getPayload() {
+        return payload;
+    }
 }

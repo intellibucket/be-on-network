@@ -10,6 +10,7 @@ import az.rock.flyjob.auth.service.concretes.PasswordDomainService;
 import az.rock.flyjob.auth.service.concretes.UserDomainService;
 import az.rock.lib.AbstractPasswordEncryptor;
 import az.rock.lib.GPasswordEncryptor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

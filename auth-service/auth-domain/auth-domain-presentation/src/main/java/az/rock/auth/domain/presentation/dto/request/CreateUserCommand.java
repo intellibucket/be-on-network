@@ -8,34 +8,38 @@ import com.intellibucket.ws.validation.annotation.GPattern;
 import com.intellibucket.ws.validation.annotation.GStringValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 public class CreateUserCommand {
 
     @GNotNull
     @GStringValue(absoluteName = "username")
-    private final String username;
+    private String username;
 
     @GNotNull
     @GStringValue(absoluteName = "firstName")
-    private final String firstName;
+    private String firstName;
 
     @GNotNull
     @GStringValue(absoluteName = "lastName")
-    private final String lastName;
+    private String lastName;
 
     @GPattern
-    private final String password;
+    private String password;
 
     @GNotNull
-    private final Gender gender;
+    private Gender gender;
 
     @GNotNull
     @GEmail
-    private final String email;
+    private String email;
+
+
 
 }

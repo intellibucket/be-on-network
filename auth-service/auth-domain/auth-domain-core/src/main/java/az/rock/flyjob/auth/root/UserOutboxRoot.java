@@ -101,4 +101,8 @@ public class UserOutboxRoot extends OutboxRoot {
             return new UserOutboxRoot(this);
         }
     }
+
+    public ProcessStatus getProcessStatus() {
+        return processStatus;
+    }
 }

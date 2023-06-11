@@ -51,7 +51,7 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
         var detailRoot = this.detailDomainMapper.toNewDetailRoot(userId,roleRoot,createUserCommand);
         var freeAccountsPlan = this.accountPlanDomainMapper.freeAccountPlan(userId);
         var userSettingsRoot = this.userSettingsDomainMapper.defaultUserSettingsRoot(userId);
-        var userRoot =  UserRoot.Builder
+        return UserRoot.Builder
                 .builder()
                 .id(userId)
                 .version(Version.ONE)
@@ -71,6 +71,5 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .accountPlan(freeAccountsPlan)
                 .userSettings(userSettingsRoot)
                 .build();
-        return userRoot;
     }
 }

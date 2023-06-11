@@ -5,5 +5,5 @@ import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.event.AbstractDomainEvent;
 
 public interface AbstractUserOutboxDomainMapper {
-    UserOutboxRoot mapToDomainModel(AbstractDomainEvent<UserRoot> event);
+    UserOutboxRoot mapToStartedOutbox(AbstractDomainEvent<UserRoot> event);
 }
