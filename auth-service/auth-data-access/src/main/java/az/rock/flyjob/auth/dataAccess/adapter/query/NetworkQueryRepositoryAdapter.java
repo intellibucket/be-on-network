@@ -31,8 +31,7 @@ public class NetworkQueryRepositoryAdapter implements AbstractNetworkQueryReposi
                 .stream().map(this.networkDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .filter(NetworkRelationRoot::isAcceptedStatus)
-                .filter(NetworkRelationRoot::isNonBlockedStatus)
+                .filter(NetworkRelationRoot::hasNetwork)
                 .map(root->root.getOtherPair(currentUserID.getAbsoluteID()))
                 .toList();
     }

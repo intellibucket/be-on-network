@@ -27,6 +27,27 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
         return requestOwnerId.equals(currentUserID) ? requestTargetId : requestOwnerId;
     }
 
+    public Boolean isAvailableForAccept() {
+        return networkStatus == NetworkStatus.PENDING;
+    }
+
+    public Boolean isAvailableForReject() {
+        return networkStatus == NetworkStatus.PENDING;
+    }
+
+    public Boolean isAvailableForBlock() {
+        return networkStatus != NetworkStatus.BLOCKED;
+    }
+
+    public Boolean isAvailableForUnblock() {
+        return networkStatus == NetworkStatus.BLOCKED;
+    }
+
+    public Boolean hasNetwork(){
+        return this.isAcceptedStatus() && this.isNonBlockedStatus();
+    }
+
+
     public Boolean isMeRequestOwner(UUID currentUserID) {
         return requestOwnerId.equals(currentUserID);
     }
