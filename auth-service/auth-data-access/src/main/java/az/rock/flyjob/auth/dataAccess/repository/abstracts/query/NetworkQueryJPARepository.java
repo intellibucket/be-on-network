@@ -15,4 +15,9 @@ public interface NetworkQueryJPARepository extends JpaRepository<NetworkRelation
             "where (n.requestOwnerId = :currentUserID or n.requestTargetId = :currentUserID) " +
             "and n.networkStatus = 'ACCEPTED'")
     List<NetworkRelationEntity> findMyNetworks(UUID currentUserID);
+
+    @Query("select n from NetworkRelationEntity n " +
+            "where n.requestTargetId = :currentUserID " +
+            "and n.networkStatus = 'PENDING'")
+    List<NetworkRelationEntity> findInMyNetworkPendingRequests(UUID currentUserID);
 }

@@ -38,7 +38,13 @@ public class NetworkQueryRepositoryAdapter implements AbstractNetworkQueryReposi
 
     @Override
     public List<UUID> findInMyNetworkPendingRequests(UserID currentUserID) {
-        return null;
+        return this.networkQueryJPARepository.findInMyNetworkPendingRequests(currentUserID.getAbsoluteID())
+                .stream().map(this.networkDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .filter(NetworkRelationRoot::isAvailableForAccept)
+                .map(root->root.getOtherPair(currentUserID.getAbsoluteID()))
+                .toList();
     }
 
     @Override
