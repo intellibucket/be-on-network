@@ -8,5 +8,5 @@ public interface AbstractFollowQueryDomainPresentationService {
 
     List<UUID> findMyFollowings();
 
-    List<UUID> findMyFollowPendingRequests();
+    List<UUID> findInMyFollowPendingRequests();
 }

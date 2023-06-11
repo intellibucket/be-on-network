@@ -36,7 +36,7 @@ public class FollowQueryPrivateController implements FollowQueryPrivateSpec {
 
     @Override
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyFollowPendingRequests() {
-        List<UUID> entitiesId = this.followQueryDomainPresentationService.findMyFollowPendingRequests();
+        List<UUID> entitiesId = this.followQueryDomainPresentationService.findInMyFollowPendingRequests();
         return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
     }
 }

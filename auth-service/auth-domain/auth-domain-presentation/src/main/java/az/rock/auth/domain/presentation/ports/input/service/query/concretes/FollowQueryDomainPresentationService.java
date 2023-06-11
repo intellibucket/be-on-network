@@ -33,7 +33,7 @@ public class FollowQueryDomainPresentationService  implements AbstractFollowQuer
     }
 
     @Override
-    public List<UUID> findMyFollowPendingRequests() {
+    public List<UUID> findInMyFollowPendingRequests() {
         var currentId = this.securityContextHolder.currentUser();
         return null;
     }
