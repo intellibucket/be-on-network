@@ -26,29 +26,29 @@ public class NetworkQueryRepositoryAdapter implements AbstractNetworkQueryReposi
     }
 
     @Override
-    public List<UUID> findMyNetworks(UserID currentUserID) {
+    public List<NetworkRelationRoot> findMyNetworks(UserID currentUserID) {
         return this.networkQueryJPARepository.findMyNetworks(currentUserID.getAbsoluteID())
                 .stream().map(this.networkDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .filter(NetworkRelationRoot::hasNetwork)
-                .map(root->root.getOtherPair(currentUserID.getAbsoluteID()))
                 .toList();
     }
 
     @Override
-    public List<UUID> findInMyNetworkPendingRequests(UserID currentUserID) {
+    public List<NetworkRelationRoot> findInMyNetworkPendingRequests(UserID currentUserID) {
         return this.networkQueryJPARepository.findInMyNetworkPendingRequests(currentUserID.getAbsoluteID())
                 .stream().map(this.networkDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .filter(NetworkRelationRoot::isAvailableForAccept)
-                .map(root->root.getOtherPair(currentUserID.getAbsoluteID()))
                 .toList();
     }
 
     @Override
-    public List<UUID> findMyPendingRequests(UserID currentUserID) {
-        return null;
+    public List<NetworkRelationRoot> findMyPendingRequests(UserID currentUserID) {
+        return this.networkQueryJPARepository.findMyNetworkPendingRequests(currentUserID.getAbsoluteID())
+                .stream().map(this.networkDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }
