@@ -6,6 +6,7 @@ import az.rock.spec.auth.privates.query.FollowQueryPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,19 +24,29 @@ public class FollowQueryPrivateController implements FollowQueryPrivateSpec {
     }
 
     @Override
+    @GetMapping("/my-followers")
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyFollowers() {
         List<UUID> entitiesId = this.followQueryDomainPresentationService.findMyFollowers();
         return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
     }
 
     @Override
+    @GetMapping("/my-followings")
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyFollowings() {
         List<UUID> entitiesId = this.followQueryDomainPresentationService.findMyFollowings();
         return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
     }
 
     @Override
+    @GetMapping("/my-follow-pending-requests")
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyFollowPendingRequests() {
+        List<UUID> entitiesId = this.followQueryDomainPresentationService.findMyFollowPendingRequests();
+        return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
+    }
+
+    @Override
+    @GetMapping("/in-my-follow-pending-requests")
+    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryInMyFollowPendingRequests() {
         List<UUID> entitiesId = this.followQueryDomainPresentationService.findInMyFollowPendingRequests();
         return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
     }

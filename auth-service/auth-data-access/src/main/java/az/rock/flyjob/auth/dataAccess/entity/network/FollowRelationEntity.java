@@ -28,10 +28,10 @@ public class FollowRelationEntity extends BaseEntity {
     private UUID followingUserId;
 
     @Enumerated(EnumType.STRING)
-    private UserType followerUserType;
+    private UserType followedUserType;
 
     @Column(nullable = false, updatable = false)
-    private UUID followerUserId;
+    private UUID followedUserId;
 
     @Enumerated(EnumType.STRING)
     private FollowStatus followStatus;

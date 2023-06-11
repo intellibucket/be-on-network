@@ -2,7 +2,6 @@ package az.rock.flyjob.auth.root.network;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.FollowID;
-import az.rock.lib.domain.id.RoleID;
 import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
@@ -47,6 +46,7 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
     }
 
     private FollowRelationRoot(Builder builder) {
+        super(builder.followID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         followingUserType = builder.followingUserType;
         followingUserId = builder.followingUserId;
         followerUserType = builder.followerUserType;
@@ -91,7 +91,7 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
 
     public static final class Builder {
         private FollowID followID;
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
@@ -115,7 +115,7 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
             return this;
         }
 
-        public Builder version(Long val) {
+        public Builder version(Version val) {
             version = val;
             return this;
         }
@@ -155,7 +155,7 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
             return this;
         }
 
-        public Builder followerUserId(UUID val) {
+        public Builder followedUserId(UUID val) {
             followerUserId = val;
             return this;
         }

@@ -12,4 +12,5 @@ public interface AbstractFollowQueryRepositoryAdapter {
 
     List<FollowRelationRoot> findMyFollowPendingRequests(UserID userID);
 
+    List<FollowRelationRoot> findInMyFollowPendingRequests(UserID userID);
 }
