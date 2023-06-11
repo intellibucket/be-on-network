@@ -25,7 +25,7 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
         return followingUserId;
     }
 
-    public UUID getFollowerUserId() {
+    public UUID getFollowedUserId() {
         return followerUserId;
     }
 

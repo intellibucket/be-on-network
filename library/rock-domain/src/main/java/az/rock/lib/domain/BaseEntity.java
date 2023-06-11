@@ -193,7 +193,7 @@ public class BaseEntity {
             return this;
         }
 
-        public Builder status(ProcessStatus processStatus) {
+        public Builder processStatus(ProcessStatus processStatus) {
             this.processStatus = processStatus;
             return this;
         }

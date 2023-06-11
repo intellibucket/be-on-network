@@ -37,11 +37,45 @@ public class FollowDataAccessMapper implements AbstractFollowDataAccessMapper<Fo
 
     @Override
     public Optional<FollowRelationEntity> toEntity(FollowRelationRoot root) {
+        var optional = Optional.ofNullable(root);
+        if (optional.isPresent()){
+            return Optional.of(
+                    FollowRelationEntity.Builder.builder()
+                            .uuid(root.getRootID().getAbsoluteID())
+                            .version(root.getVersion().value())
+                            .processStatus(root.getProcessStatus())
+                            .rowStatus(root.getRowStatus())
+                            .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                            .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
+                            .followStatus(root.getFollowStatus())
+                            .followedUserId(root.getFollowedUserId())
+                            .followingUserId(root.getFollowingUserId())
+                            .followingUserType(root.getFollowingUserType())
+                            .followedUserType(root.getFollowerUserType())
+                            .build()
+            );
+        }
         return Optional.empty();
     }
 
     @Override
     public Optional<FollowRelationEntity> toNewEntity(FollowRelationRoot root) {
+        var optional = Optional.ofNullable(root);
+        if (optional.isPresent()){
+            return Optional.of(
+                    FollowRelationEntity.Builder.builder()
+                            .uuid(root.getRootID().getAbsoluteID())
+                            .version(Version.ONE.value())
+                            .processStatus(root.getProcessStatus())
+                            .rowStatus(root.getRowStatus())
+                            .followStatus(root.getFollowStatus())
+                            .followedUserId(root.getFollowedUserId())
+                            .followingUserId(root.getFollowingUserId())
+                            .followingUserType(root.getFollowingUserType())
+                            .followedUserType(root.getFollowerUserType())
+                            .build()
+            );
+        }
         return Optional.empty();
     }
 }

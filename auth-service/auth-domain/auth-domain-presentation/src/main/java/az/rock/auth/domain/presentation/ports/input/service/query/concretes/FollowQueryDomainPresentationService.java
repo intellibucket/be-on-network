@@ -35,7 +35,7 @@ public class FollowQueryDomainPresentationService  implements AbstractFollowQuer
         var currentId = this.securityContextHolder.currentUser();
         return this.followQueryRepositoryAdapter.findMyFollowings(currentId)
                 .stream()
-                .map(FollowRelationRoot::getFollowerUserId)
+                .map(FollowRelationRoot::getFollowedUserId)
                 .toList();
     }
 
@@ -53,7 +53,7 @@ public class FollowQueryDomainPresentationService  implements AbstractFollowQuer
         var currentId = this.securityContextHolder.currentUser();
         return this.followQueryRepositoryAdapter.findMyFollowPendingRequests(currentId)
                 .stream()
-                .map(FollowRelationRoot::getFollowerUserId)
+                .map(FollowRelationRoot::getFollowedUserId)
                 .toList();
     }
 }
