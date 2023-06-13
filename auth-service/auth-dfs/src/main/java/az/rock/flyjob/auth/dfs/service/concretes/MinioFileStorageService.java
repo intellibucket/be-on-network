@@ -4,7 +4,9 @@ import az.rock.flyjob.auth.dfs.service.abstracts.AbstractFileStorageService;
 import az.rock.lib.valueObject.FileMetaData;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.jlefebure.spring.boot.minio.MinioService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MinioFileStorageService implements AbstractFileStorageService {
     private MinioService minioService;
 

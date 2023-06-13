@@ -1,12 +1,12 @@
 package az.rock.auth.domain.presentation.ports.input.advice.concretes;
 
-import az.rock.auth.domain.presentation.ports.input.advice.abstracts.AbstractExceptionPublisher;
+import az.rock.auth.domain.presentation.ports.input.advice.abstracts.AbstractExceptionPublisherService;
 import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.ExceptionPublishModel;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class ExceptionPublisher implements AbstractExceptionPublisher {
+@Service
+public class ExceptionPublisherService implements AbstractExceptionPublisherService {
 
     @Override
     public void publish(UserID userID,Exception exception) {
