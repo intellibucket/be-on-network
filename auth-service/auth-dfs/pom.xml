@@ -11,12 +11,15 @@
     <packaging>jar</packaging>
 
     <name>auth-dfs</name>
-
     <dependencies>
         <dependency>
-            <groupId>com.jlefebure</groupId>
-            <artifactId>spring-boot-starter-minio</artifactId>
-            <version>1.10</version>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>az.rock.lib</groupId>

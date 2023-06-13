@@ -13,7 +13,7 @@ spring:
     access-key: ${MINIO_ACCESS_KEY:minio-root-user}
     secret-key: ${MINIO_SECRET_KEY:minio-root-password}
     url: ${MINIO_URL:http://localhost:9000}
-    bucket: ${MINIO_BUCKET:auth-service}
+    bucket: auth-bucket
     region: ${MINIO_REGION:us-east-1}
     enabled: ${MINIO_ENABLED:true}
   servlet:
