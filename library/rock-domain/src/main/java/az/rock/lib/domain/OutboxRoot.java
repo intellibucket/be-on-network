@@ -2,13 +2,14 @@ package az.rock.lib.domain;
 
 import az.rock.lib.event.saga.SagaStatus;
 import az.rock.lib.valueObject.OutboxStatus;
+import az.rock.lib.valueObject.SagaRoot;
 import az.rock.lib.valueObject.Version;
 
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-public class OutboxRoot  extends RootID<OutboxID> {
+public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
 
     private SagaID sagaId;
 

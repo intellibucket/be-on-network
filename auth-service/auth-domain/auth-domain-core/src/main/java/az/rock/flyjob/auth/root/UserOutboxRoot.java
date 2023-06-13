@@ -6,12 +6,15 @@ import az.rock.lib.domain.SagaID;
 import az.rock.lib.event.saga.SagaStatus;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.SagaRoot;
 import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
 
-public class UserOutboxRoot extends OutboxRoot {
+public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
     private final ProcessStatus processStatus;
+
+
 
     private UserOutboxRoot(Builder builder) {
         super(builder.outboxID,
@@ -25,6 +28,8 @@ public class UserOutboxRoot extends OutboxRoot {
                 builder.payload);
         processStatus = builder.processStatus;
     }
+
+
 
 
     public static final class Builder {

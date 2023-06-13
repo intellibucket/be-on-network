@@ -63,6 +63,10 @@ public class DetailRoot extends AggregateRoot<DetailID> {
         return isFrozen;
     }
 
+    public Boolean isAvailable() {
+        return !isDeleted && !isFrozen && isAccountNonLocked && isAccountNonExpired;
+    }
+
     private DetailRoot(Builder builder) {
         super(builder.detailID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         userID = builder.userID;
