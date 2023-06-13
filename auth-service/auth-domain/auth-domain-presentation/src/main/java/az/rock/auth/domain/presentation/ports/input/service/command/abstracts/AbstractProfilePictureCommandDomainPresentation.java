@@ -5,5 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @InputPort
 @Transactional
-public interface AbstractFollowCommandDomainPresentationService {
+public interface AbstractProfilePictureCommandDomainPresentation {
+
 }

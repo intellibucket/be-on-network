@@ -25,7 +25,6 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
     }
 
     @Override
-    @Transactional
     public CreateUserResponse createJobSeeker(CreateUserCommand createUserCommand) {
         JobSeekerCreatedEvent jobSeekerCreatedEvent =
                 this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);

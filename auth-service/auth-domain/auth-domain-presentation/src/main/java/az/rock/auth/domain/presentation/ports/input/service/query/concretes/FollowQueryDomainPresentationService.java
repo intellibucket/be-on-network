@@ -5,11 +5,12 @@ import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.Abst
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
+@Service
 public class FollowQueryDomainPresentationService  implements AbstractFollowQueryDomainPresentationService {
     private final AbstractFollowQueryRepositoryAdapter followQueryRepositoryAdapter;
     private final AbstractSecurityContextHolder securityContextHolder;

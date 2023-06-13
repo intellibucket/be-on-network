@@ -5,11 +5,12 @@ import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.Abst
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
+@Service
 public class NetworkQueryDomainPresentation implements AbstractNetworkQueryDomainPresentation {
     private final AbstractSecurityContextHolder securityContextHolder;
 
