@@ -1,18 +1,20 @@
 package az.rock.lib.valueObject;
 
+import java.io.InputStream;
+
 public final class MultipartFileWrapper {
 
         private final String fileName;
         private final String contentType;
-        private final byte[] content;
+        private final InputStream content;
 
-        public MultipartFileWrapper(String fileName, String contentType, byte[] content) {
+        public MultipartFileWrapper(String fileName, String contentType, InputStream content) {
             this.fileName = fileName;
             this.contentType = contentType;
             this.content = content;
         }
 
-        public static MultipartFileWrapper of(String fileName, String contentType, byte[] content) {
+        public static MultipartFileWrapper of(String fileName, String contentType, InputStream content) {
             return new MultipartFileWrapper(fileName, contentType, content);
         }
 
@@ -24,7 +26,7 @@ public final class MultipartFileWrapper {
             return contentType;
         }
 
-        public byte[] getContent() {
+        public InputStream getInputStream() {
             return content;
         }
 

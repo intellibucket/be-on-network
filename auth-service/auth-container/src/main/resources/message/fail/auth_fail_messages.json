@@ -142,5 +142,14 @@
     "tr": " Bu telefon numarasını görüntüleme izniniz yok.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000017",
+    "az": " Profil şəkli yüklənərkən bir xəta baş verdi.",
+    "en": " An error occurred while uploading the profile picture.",
+    "ru": " Произошла ошибка при загрузке фотографии профиля.",
+    "tr": " Profil resmi yüklenirken bir hata oluştu.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]
