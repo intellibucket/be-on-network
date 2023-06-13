@@ -10,10 +10,11 @@ import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.SagaRoot;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 
-@Component
+@Service
 public class UserOutboxInputPort implements AbstractUserOutboxInputPort {
     private final AbstractUserOutboxRepositoryAdapter repositoryAdapter;
     private final AbstractUserOutboxDomainMapper domainMapper;
