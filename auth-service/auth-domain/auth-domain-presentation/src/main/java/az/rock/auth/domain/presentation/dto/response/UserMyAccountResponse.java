@@ -1,18 +1,30 @@
 package az.rock.auth.domain.presentation.dto.response;
 
+import az.rock.flyjob.auth.root.user.UserRoot;
 import lombok.Getter;
 
 import java.util.UUID;
 
 @Getter
-public final class AuthMyAccountResponse {
+public final class UserMyAccountResponse {
     private final UUID userUUID;
     private final String firstName;
     private final String lastName;
     private final String username;
     private final String email;
 
-    private AuthMyAccountResponse(Builder builder) {
+
+    public static UserMyAccountResponse of(UserRoot root){
+        return builder()
+                .withUserUUID(root.getRootID().getRootID())
+                .withFirstName(root.getFirstName())
+                .withLastName(root.getLastName())
+                .withUsername(root.getUsername())
+                .withEmail(root.getPrimaryEmail().getEmail())
+                .build();
+    }
+
+    private UserMyAccountResponse(Builder builder) {
         userUUID = builder.userUUID;
         firstName = builder.firstName;
         lastName = builder.lastName;
@@ -60,8 +72,8 @@ public final class AuthMyAccountResponse {
             return this;
         }
 
-        public AuthMyAccountResponse build() {
-            return new AuthMyAccountResponse(this);
+        public UserMyAccountResponse build() {
+            return new UserMyAccountResponse(this);
         }
     }
 }

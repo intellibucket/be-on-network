@@ -46,7 +46,7 @@
   },
   {
     "code": "F0000000006",
-    "az": " Hesabınız bloklanıb. Zəhmət olmasa, dəstək xidməti ilə əlaqə saxlayın.",
+    "az": " Hesabınız bloklandı. Zəhmət olmasa, dəstək xidməti ilə əlaqə saxlayın.",
     "en": " Your account is blocked. Please contact support.",
     "ru": " Ваша учетная запись заблокирована. Пожалуйста, свяжитесь со службой поддержки.",
     "tr": " Hesabınız bloke edildi. Lütfen destek ile iletişime geçin.",
@@ -149,6 +149,15 @@
     "en": " An error occurred while uploading the profile picture.",
     "ru": " Произошла ошибка при загрузке фотографии профиля.",
     "tr": " Profil resmi yüklenirken bir hata oluştu.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000018",
+    "az": " Bir xəta oldu və istifadəçi məlumatları tapılmadı",
+    "en": " An error occurred and user information was not found",
+    "ru": " Произошла ошибка и информация о пользователе не была найдена",
+    "tr": " Bir hata oluştu ve kullanıcı bilgileri bulunamadı",
     "hasRegex": false,
     "regex": ""
   }
