@@ -12,16 +12,16 @@ import java.util.UUID;
 @Repository
 public interface EmailQueryJPARepository extends JpaRepository<EmailEntity, UUID> {
 
-    @Query("SELECT e FROM EmailEntity e WHERE e.user.uuid = :userID AND e.uuid = :emailID")
+    @Query("SELECT e FROM EmailEntity e WHERE e.user.uuid = :userID AND e.uuid = :emailID and e.rowStatus = 'ACTIVE'")
     EmailEntity findByUserIDAndEmailID(@Param(value = "userID") UUID userID,@Param(value = "emailID") UUID emailID);
 
-    @Query("SELECT e FROM EmailEntity e WHERE e.uuid = :emailID")
+    @Query("SELECT e FROM EmailEntity e WHERE e.uuid = :emailID and e.rowStatus = 'ACTIVE'")
     EmailEntity findByID(@Param(value = "emailID") UUID emailID);
 
-    @Query("SELECT e FROM EmailEntity e WHERE e.user.uuid = :userID")
+    @Query("SELECT e FROM EmailEntity e WHERE e.user.uuid = :userID and e.rowStatus = 'ACTIVE'")
     List<EmailEntity> findAllByUserID(@Param(value = "userID") UUID userID);
 
-    @Query("SELECT e.uuid FROM EmailEntity e WHERE e.user.uuid = :userID")
+    @Query("SELECT e.uuid FROM EmailEntity e WHERE e.user.uuid = :userID and e.rowStatus = 'ACTIVE'")
     List<UUID> findAllIDByUserID(@Param(value = "userID") UUID userID);
 
 

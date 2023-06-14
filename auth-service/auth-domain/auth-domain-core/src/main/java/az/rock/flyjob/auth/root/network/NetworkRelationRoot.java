@@ -27,6 +27,10 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
         return requestOwnerId.equals(currentUserID) ? requestTargetId : requestOwnerId;
     }
 
+    public Boolean hasValidRelation(){
+        return this.isAcceptedStatus() && this.isNonBlockedStatus();
+    }
+
     public Boolean isAvailableForAccept() {
         return networkStatus == NetworkStatus.PENDING;
     }

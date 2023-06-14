@@ -26,6 +26,17 @@ public class NetworkQueryRepositoryAdapter implements AbstractNetworkQueryReposi
     }
 
     @Override
+    public Optional<NetworkRelationRoot> findNetworkRelationByBothOfUserIDs(UserID firstUserID, UserID secondUserID) {
+        var networkRelationEntityOptional = Optional.ofNullable(
+                this.networkQueryJPARepository
+                .findNetworkRelationByBothOfUserIDs(firstUserID.getAbsoluteID(), secondUserID.getAbsoluteID())
+        );
+        if (networkRelationEntityOptional.isPresent())
+            return this.networkDataAccessMapper.toRoot(networkRelationEntityOptional.get());
+        return Optional.empty();
+    }
+
+    @Override
     public List<NetworkRelationRoot> findMyNetworks(UserID currentUserID) {
         return this.networkQueryJPARepository.findMyNetworks(currentUserID.getAbsoluteID())
                 .stream().map(this.networkDataAccessMapper::toRoot)

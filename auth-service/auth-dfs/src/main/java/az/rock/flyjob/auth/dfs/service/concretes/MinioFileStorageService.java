@@ -35,6 +35,7 @@ public class MinioFileStorageService implements AbstractFileStorageService {
 
     @Override
     public byte[] downloadFile(String fileName) {
+
         return new byte[0];
     }
 

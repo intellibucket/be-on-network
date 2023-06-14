@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.dataAccess.repository.abstracts.query;
 
 
 import az.rock.flyjob.auth.dataAccess.entity.network.NetworkRelationEntity;
+import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,4 +26,9 @@ public interface NetworkQueryJPARepository extends JpaRepository<NetworkRelation
             "where n.requestOwnerId = :currentUserID " +
             "and n.networkStatus = 'PENDING'")
     List<NetworkRelationEntity> findMyNetworkPendingRequests(UUID currentUserID);
+
+    @Query("select n from NetworkRelationEntity n " +
+            "where (n.requestOwnerId = :firstUserID and n.requestTargetId = :secondUserID) " +
+            "or (n.requestOwnerId = :secondUserID and n.requestTargetId = :firstUserID)")
+    NetworkRelationEntity findNetworkRelationByBothOfUserIDs(UUID firstUserID, UUID secondUserID);
 }

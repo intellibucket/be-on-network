@@ -6,6 +6,7 @@ import az.rock.auth.domain.presentation.dto.response.EmailPrivateModelResponse;
 import az.rock.auth.domain.presentation.exception.AuthDomainException;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractEmailQueryDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
 import az.rock.lib.domain.id.EmailID;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +20,14 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
     private final AbstractSecurityContextHolder securityContextHolder;
     private final AbstractEmailQueryRepositoryAdapter queryEmailRepositoryAdapter;
 
+    private final AbstractNetworkQueryRepositoryAdapter queryNetworkRepositoryAdapter;
+
     public EmailQueryDomainPresentationService(AbstractSecurityContextHolder securityContextHolder,
-                                               AbstractEmailQueryRepositoryAdapter queryEmailRepositoryAdapter) {
+                                               AbstractEmailQueryRepositoryAdapter queryEmailRepositoryAdapter,
+                                               AbstractNetworkQueryRepositoryAdapter queryNetworkRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;
         this.queryEmailRepositoryAdapter = queryEmailRepositoryAdapter;
+        this.queryNetworkRepositoryAdapter = queryNetworkRepositoryAdapter;
     }
 
     @Override
@@ -40,8 +45,16 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
                 .findAnyByByID(EmailID.of(uuid));
         if (optionalEmail.isEmpty()) throw new AuthDomainException("F0000000011");
         var emailRoot = optionalEmail.get();
-        if (!emailRoot.isPublic()) throw new AuthDomainException("F0000000015");
-        return EmailClientModelResponse.of(emailRoot);
+        var response = EmailClientModelResponse.of(emailRoot);
+        var currentUserId = this.securityContextHolder.currentUser();
+        var targetUserId = emailRoot.getUserId();
+        var optionalNetwork =
+                this.queryNetworkRepositoryAdapter.findNetworkRelationByBothOfUserIDs(currentUserId, targetUserId);
+        if (emailRoot.isPublic()) return response;
+        else {
+            if (optionalNetwork.isPresent() && optionalNetwork.get().hasValidRelation()) return response;
+            else throw new AuthDomainException("F0000000015");
+        }
     }
 
     @Override

@@ -21,7 +21,9 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "emails", schema = "auth")
+@Table(name = "emails", schema = "auth", indexes = {
+        @Index(name = "ıdx_emailentity_row_status", columnList = "row_status")
+})
 @Entity(name = "EmailEntity")
 public class EmailEntity extends BaseEntity {
 

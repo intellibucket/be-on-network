@@ -4,9 +4,12 @@ import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import az.rock.lib.domain.id.UserID;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface AbstractNetworkQueryRepositoryAdapter {
+
+    Optional<NetworkRelationRoot> findNetworkRelationByBothOfUserIDs(UserID firstUserID, UserID secondUserID);
     List<NetworkRelationRoot> findMyNetworks(UserID currentUserID);
 
     List<NetworkRelationRoot> findInMyNetworkPendingRequests(UserID currentUserID);
