@@ -42,7 +42,7 @@ public class AccountPlanQueryRepositoryAdapter implements AbstractAccountPlanQue
 
     @Override
     public List<Optional<AccountPlanRoot>> findAllByPIDAndActiveStatus(UserID parentID) {
-        var entities = this.accountPlanJPARepository.findAllByUserAndActiveRowStatus(parentID.getRootID());
+        var entities = this.accountPlanJPARepository.findAllByUser(parentID.getRootID());
         return entities.stream().map(this.accountPlanDataAccessMapper::toRoot).toList();
     }
 }

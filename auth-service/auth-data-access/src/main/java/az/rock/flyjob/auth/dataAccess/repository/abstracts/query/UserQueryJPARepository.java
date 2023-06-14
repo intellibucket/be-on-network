@@ -14,19 +14,19 @@ import java.util.UUID;
 public interface UserQueryJPARepository extends JpaRepository<UserEntity,UUID> {
 
     @Query("SELECT row.userType FROM UserEntity row " +
-            "WHERE (:userId = row.uuid)")
+            "WHERE (:userId = row.uuid) and (row.rowStatus = 'ACTIVE')")
     UserType findUserTypeById(@Param(value = "userId") UUID userId);
 
     @Query("SELECT row FROM UserEntity row " +
-            "WHERE (:userId = row.uuid) ")
+            "WHERE (:userId = row.uuid) and (row.rowStatus = 'ACTIVE') ")
     UserEntity findByUUID(@Param(value = "userId") UUID userId);
 
     @Query("SELECT row.key FROM UserEntity row " +
-            "WHERE (:uuid = row.uuid)")
+            "WHERE (:uuid = row.uuid) and (row.rowStatus = 'ACTIVE')")
     UUID findKeyByUUID(@Param(value = "uuid") UUID uuid);
 
     @Query("SELECT row.username FROM UserEntity row " +
-            "WHERE (:uuid = row.uuid)")
+            "WHERE (:uuid = row.uuid) and (row.rowStatus = 'ACTIVE')")
     String findUsernameByUUID(UUID uuid);
 
     @Query("SELECT row FROM UserEntity row " +
@@ -34,7 +34,7 @@ public interface UserQueryJPARepository extends JpaRepository<UserEntity,UUID> {
     UserEntity findByUsername(String username);
 
     @Query("SELECT row.accessModifier FROM UserEntity row " +
-            "WHERE (:userID = row.uuid)")
+            "WHERE (:userID = row.uuid) and (row.rowStatus = 'ACTIVE')")
     AccessModifier findAccessModifierByUUID(UUID userID);
 
 }

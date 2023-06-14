@@ -23,7 +23,4 @@ public interface AccountPlanQueryJPARepository extends JpaRepository<AccountPlan
             "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
     AccountPlanEntity findByUserAndActiveRowStatus(@Param(value = "userId") UUID userId);
 
-    @Query("SELECT row FROM AccountPlanEntity row " +
-            "WHERE (:userId = row.user.uuid)")
-    List<AccountPlanEntity> findAllByUserAndActiveRowStatus(@Param(value = "userId") UUID userId);
 }

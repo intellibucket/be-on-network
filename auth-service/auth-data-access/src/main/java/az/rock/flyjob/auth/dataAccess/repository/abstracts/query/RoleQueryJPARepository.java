@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Repository
 public interface RoleQueryJPARepository extends JpaRepository<RoleEntity, UUID> {
-    @Query("SELECT row FROM RoleEntity row WHERE (:name = row.name)")
+    @Query("SELECT row FROM RoleEntity row WHERE (:name = row.name) " +
+            " AND (row.rowStatus = 'ACTIVE')")
     RoleEntity findByName(@Param(value = "name") String name);
 }

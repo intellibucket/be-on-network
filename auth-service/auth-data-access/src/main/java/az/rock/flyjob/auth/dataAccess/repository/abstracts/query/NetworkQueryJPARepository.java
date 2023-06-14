@@ -14,21 +14,22 @@ import java.util.UUID;
 public interface NetworkQueryJPARepository extends JpaRepository<NetworkRelationEntity, UUID> {
     @Query("select n from NetworkRelationEntity n " +
             "where (n.requestOwnerId = :currentUserID or n.requestTargetId = :currentUserID) " +
-            "and n.networkStatus = 'ACCEPTED'")
+            "and n.networkStatus = 'ACCEPTED' and n.rowStatus = 'ACTIVE'")
     List<NetworkRelationEntity> findMyNetworks(UUID currentUserID);
 
     @Query("select n from NetworkRelationEntity n " +
             "where n.requestTargetId = :currentUserID " +
-            "and n.networkStatus = 'PENDING'")
+            "and n.networkStatus = 'PENDING' and n.rowStatus = 'ACTIVE'")
     List<NetworkRelationEntity> findInMyNetworkPendingRequests(UUID currentUserID);
 
     @Query("select n from NetworkRelationEntity n " +
             "where n.requestOwnerId = :currentUserID " +
-            "and n.networkStatus = 'PENDING'")
+            "and n.networkStatus = 'PENDING' and n.rowStatus = 'ACTIVE'")
     List<NetworkRelationEntity> findMyNetworkPendingRequests(UUID currentUserID);
 
     @Query("select n from NetworkRelationEntity n " +
             "where (n.requestOwnerId = :firstUserID and n.requestTargetId = :secondUserID) " +
-            "or (n.requestOwnerId = :secondUserID and n.requestTargetId = :firstUserID)")
+            "or (n.requestOwnerId = :secondUserID and n.requestTargetId = :firstUserID)" +
+            "and n.rowStatus = 'ACTIVE'")
     NetworkRelationEntity findNetworkRelationByBothOfUserIDs(UUID firstUserID, UUID secondUserID);
 }

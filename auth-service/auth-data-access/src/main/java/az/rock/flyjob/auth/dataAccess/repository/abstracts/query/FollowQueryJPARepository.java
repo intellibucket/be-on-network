@@ -11,18 +11,18 @@ import java.util.UUID;
 @Repository
 public interface FollowQueryJPARepository extends JpaRepository<FollowRelationEntity,UUID> {
     @Query("select f from FollowRelationEntity f where f.followedUserId = ?1" +
-            "and f.followStatus = 'ACCEPTED'")
+            "and f.followStatus = 'ACCEPTED' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllMyFollowers(UUID absoluteID);
 
     @Query("select f from FollowRelationEntity f where f.followingUserId = ?1" +
-            "and f.followStatus = 'ACCEPTED'")
+            "and f.followStatus = 'ACCEPTED' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllMyFollowings(UUID absoluteID);
 
     @Query("select f from FollowRelationEntity f where f.followingUserId = ?1" +
-            "and f.followStatus = 'PENDING'")
+            "and f.followStatus = 'PENDING' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllInMyPendingFollowRequests(UUID absoluteID);
 
     @Query("select f from FollowRelationEntity f where f.followedUserId = ?1" +
-            "and f.followStatus = 'PENDING'")
+            "and f.followStatus = 'PENDING' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllMyPendingFollowRequests(UUID absoluteID);
 }

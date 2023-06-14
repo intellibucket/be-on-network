@@ -10,9 +10,11 @@ import java.util.UUID;
 
 @Repository
 public interface UserSettingsQueryJPARepository extends JpaRepository<UserSettingsEntity, UUID> {
-    @Query("SELECT row FROM UserSettingsEntity row WHERE (:userId = row.user.uuid)")
+    @Query("SELECT row FROM UserSettingsEntity row WHERE (:userId = row.user.uuid)" +
+            " and (row.rowStatus = 'ACTIVE')")
     UserSettingsEntity findByUser(@Param(value = "userId") UUID userId);
 
-    @Query("SELECT row FROM UserSettingsEntity row WHERE (:uuid = row.uuid)")
+    @Query("SELECT row FROM UserSettingsEntity row WHERE (:uuid = row.uuid)" +
+            " and (row.rowStatus = 'ACTIVE')")
     UserSettingsEntity findByUuid(@Param(value = "uuid")UUID uuid);
 }

@@ -16,7 +16,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "follow_relation", schema = "network", indexes = {
-        @Index(name = "ıdx_following_id", columnList = "followingUserId")
+        @Index(name = "ıdx_following_id", columnList = "followingUserId"),
+        @Index(name = "ıdx_followrelationentity_row_status", columnList = "row_status")
 })
 @Entity
 public class FollowRelationEntity extends BaseEntity {
