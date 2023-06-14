@@ -18,15 +18,9 @@ public interface DetailQueryJPARepository extends JpaRepository<DetailEntity, UU
             " AND row.rowStatus = 'ACTIVE'")
     Optional<DetailEntity> findByPID(@Param("userID") UUID userID);
 
-
     @Query("SELECT row FROM DetailEntity row WHERE row.uuid = :detailID" +
             " AND row = 'ACTIVE'")
     Optional<DetailEntity> findById(@Param("detailID") @NotNull UUID detailID);
-
-    @Query("SELECT row FROM DetailEntity row " +
-            "WHERE row.user.uuid = :userID AND row.rowStatus = 'ACTIVE'" +
-            " AND row.rowStatus = 'ACTIVE'")
-    Optional<DetailEntity> findByPIDAndActiveStatus(@Param("userID") UUID userID);
 
     @Query("SELECT row FROM DetailEntity row " +
             "WHERE row.uuid = :detailID AND row.rowStatus = 'ACTIVE' " +
