@@ -4,6 +4,7 @@ import az.rock.lib.annotation.ValueObject;
 import az.rock.lib.domain.SagaID;
 import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.event.saga.SagaStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.ZonedDateTime;
 
@@ -48,6 +49,7 @@ public final class SagaRoot<D> {
         return data;
     }
 
+    @JsonIgnore
     public  Boolean hasData() {
         return data != null;
     }

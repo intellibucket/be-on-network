@@ -22,14 +22,16 @@ public class UserMessagePublisher implements AbstractUserMessagePublisher {
     private void publishToJobSeeker(SagaRoot<AbstractDomainEvent<UserRoot>> sagaRoot) {
         var root = sagaRoot.getData().getRoot();
         var payload = UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(), root.getUserType());
-        this.userCreatedEventKafkaTemplate.send("job-seeker-created", SagaRoot.replace(sagaRoot,payload));
+        var wrappedPayload = new SagaRoot<UserCreatedEventPayload>(sagaRoot.getSagaID(),sagaRoot.getSagaStatus(),sagaRoot.getTime(),payload);
+        this.userCreatedEventKafkaTemplate.send("job-seeker-created", wrappedPayload);
     }
 
 
     public void publishCompany(SagaRoot<AbstractDomainEvent<UserRoot>> sagaRoot) {
         var root = sagaRoot.getData().getRoot();
         var payload = UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(), root.getUserType());
-        this.userCreatedEventKafkaTemplate.send("company-created", SagaRoot.replace(sagaRoot,payload));
+        var wrappedPayload = new SagaRoot<UserCreatedEventPayload>(sagaRoot.getSagaID(),sagaRoot.getSagaStatus(),sagaRoot.getTime(),payload);
+        this.userCreatedEventKafkaTemplate.send("company-created", wrappedPayload);
     }
 
     @Override
