@@ -13,12 +13,16 @@
     <file url="file://$PROJECT_DIR$/auth-service/auth-application/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-application/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-container/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/auth-dfs/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-data-access/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-dfs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-dfs/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-domain/auth-domain-presentation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-messaging/src/main/java" charset="UTF-8" />
@@ -43,6 +47,7 @@
     <file url="file://$PROJECT_DIR$/library/rock-payload/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-response/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-ms-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/resources" charset="UTF-8" />

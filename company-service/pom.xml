@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>az.rock.flyjob</groupId>
-    <artifactId>employer-service</artifactId>
+    <artifactId>company-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -38,7 +38,7 @@
         <module>config-service</module>
         <module>auth-service</module>
         <module>job-seeker-service</module>
-        <module>employer-service</module>
+        <module>company-service</module>
         <module>stream-service</module>
         <module>library</module>
         <module>vacancy-command-service</module>
@@ -131,7 +131,7 @@
             <dependency>
                 <groupId>org.hibernate.orm</groupId>
                 <artifactId>hibernate-spatial</artifactId>
-                <version>6.2.2.Final</version>
+                <version>6.2.4.Final</version>
             </dependency>
             <dependency>
                 <groupId>com.maxmind.geoip2</groupId>

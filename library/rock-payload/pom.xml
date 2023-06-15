@@ -16,7 +16,7 @@
     </parent>
 
     <groupId>az.rock.kafka</groupId>
-    <artifactId>rock-kafka</artifactId>
+    <artifactId>rock-payload</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>az.rock.kafka</groupId>
-            <artifactId>rock-kafka</artifactId>
+            <artifactId>rock-payload</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

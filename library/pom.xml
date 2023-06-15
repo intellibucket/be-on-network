@@ -21,7 +21,7 @@
         <module>rock-spring-ms-core</module>
         <module>rock-security</module>
         <module>rock-message</module>
-        <module>rock-kafka</module>
+        <module>rock-payload</module>
         <module>rock-domain</module>
         <module>validator4j</module>
     </modules>
