@@ -2,11 +2,11 @@ package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
 import az.rock.lib.domain.SagaID;
-import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.event.saga.SagaStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @ValueObject
 public final class SagaRoot<D> {
@@ -50,12 +50,16 @@ public final class SagaRoot<D> {
     }
 
     @JsonIgnore
-    public  Boolean hasData() {
+    public Boolean hasData() {
         return data != null;
     }
 
     public static <D> SagaRoot<D> of(SagaID sagaID, SagaStatus sagaStatus, ZonedDateTime time, D data) {
         return new SagaRoot<>(sagaID, sagaStatus, time, data);
+    }
+
+    public static <D> SagaRoot<D> of(D data) {
+        return SagaRoot.of(SagaID.of(UUID.randomUUID()), SagaStatus.STARTED, ZonedDateTime.now(), data);
     }
 
 

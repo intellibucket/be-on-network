@@ -160,5 +160,23 @@
     "tr": " Bir hata oluştu ve kullanıcı bilgileri bulunamadı",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000019",
+    "az": " Hesabınız mövcud planın dəyişdirilməsi üçün uyğun deyil.",
+    "en": " Your account is not eligible to change the current plan.",
+    "ru": " Ваша учетная запись не имеет права изменять текущий план.",
+    "tr": " Hesabınız mevcut planı değiştirmeye uygun değil.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000020",
+    "az": " Hesabınızın cari planı dəyişdirilmək isdənilən plan ilə eynidir.",
+    "en": " Your account's current plan is the same as the plan you want to change.",
+    "ru": " Текущий план вашей учетной записи такой же, как план, который вы хотите изменить.",
+    "tr": " Hesabınızın mevcut planı, değiştirmek istediğiniz planla aynıdır.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

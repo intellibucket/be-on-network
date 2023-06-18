@@ -30,4 +30,20 @@ public class AccountPlanDomainMapper implements AbstractAccountPlanDomainMapper 
                 .isExpired(false)
                 .build();
     }
+
+    @Override
+    public AccountPlanRoot upgradedAccountPlan(UserID userID, AccountPlanType plan) {
+        return AccountPlanRoot.Builder
+                .builder()
+                .accountPlanID(AccountPlanID.of(UUID.randomUUID()))
+                .version(Version.ONE)
+                .processStatus(ProcessStatus.ON_WAITING_FOR_PAYMENT)
+                .rowStatus(RowStatus.ACTIVE)
+                .user(userID)
+                .plan(plan)
+                .startDate(ZonedDateTime.now())
+                .expiredDate(ZonedDateTime.now().plusMonths(1))
+                .isExpired(false)
+                .build();
+    }
 }

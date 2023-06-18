@@ -8,7 +8,6 @@ import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAccessMapper<AccountPlanEntity, AccountPlanRoot> {
@@ -57,7 +56,7 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(AccountPlanEntity.Builder
                 .builder()
-                .uuid(UUID.randomUUID())
+                .uuid(root.getRootID().getAbsoluteID())
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())

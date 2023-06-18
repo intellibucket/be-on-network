@@ -4,6 +4,7 @@ import az.rock.lib.annotation.ValueObject;
 
 @ValueObject
 public enum ProcessStatus {
+    ON_WAITING_FOR_PAYMENT,
     ON_WAITING,
     PROCESSING,
     COMPLETED,

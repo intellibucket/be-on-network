@@ -1,16 +1,9 @@
 package az.rock.auth.domain.presentation.config;
 
-import az.rock.flyjob.auth.service.abstracts.AbstractAuthorityDomainService;
-import az.rock.flyjob.auth.service.abstracts.AbstractDetailDomainService;
-import az.rock.flyjob.auth.service.abstracts.AbstractPasswordDomainService;
-import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
-import az.rock.flyjob.auth.service.concretes.AuthorityDomainService;
-import az.rock.flyjob.auth.service.concretes.DetailDomainService;
-import az.rock.flyjob.auth.service.concretes.PasswordDomainService;
-import az.rock.flyjob.auth.service.concretes.UserDomainService;
+import az.rock.flyjob.auth.service.abstracts.*;
+import az.rock.flyjob.auth.service.concretes.*;
 import az.rock.lib.AbstractPasswordEncryptor;
 import az.rock.lib.GPasswordEncryptor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -44,4 +37,9 @@ public class AuthDomainPresentationBeanConfig {
         return new UserDomainService();
     }
 
+
+    @Bean
+    public AbstractAccountPlanDomainService abstractAccountPlanDomainService() {
+        return new AccountPlanDomainService();
+    }
 }
