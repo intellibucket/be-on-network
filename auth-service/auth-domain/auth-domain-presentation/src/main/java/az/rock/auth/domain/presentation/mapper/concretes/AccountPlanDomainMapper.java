@@ -32,7 +32,7 @@ public class AccountPlanDomainMapper implements AbstractAccountPlanDomainMapper 
     }
 
     @Override
-    public AccountPlanRoot upgradedAccountPlan(UserID userID, AccountPlanType plan) {
+    public AccountPlanRoot createOnWaitingAccountPlan(UserID userID, AccountPlanType plan) {
         return AccountPlanRoot.Builder
                 .builder()
                 .accountPlanID(AccountPlanID.of(UUID.randomUUID()))

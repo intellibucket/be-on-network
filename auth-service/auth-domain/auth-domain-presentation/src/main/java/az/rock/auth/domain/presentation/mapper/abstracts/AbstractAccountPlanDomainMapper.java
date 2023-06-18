@@ -7,5 +7,5 @@ import az.rock.lib.valueObject.AccountPlanType;
 public interface AbstractAccountPlanDomainMapper {
     AccountPlanRoot freeAccountPlan(UserID userID);
 
-    AccountPlanRoot upgradedAccountPlan(UserID userID, AccountPlanType plan);
+    AccountPlanRoot createOnWaitingAccountPlan(UserID userID, AccountPlanType plan);
 }

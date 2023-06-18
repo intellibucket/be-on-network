@@ -44,8 +44,8 @@ public class AccountPlanUpgradeCommandHandler implements AbstractAccountPlanUpgr
         if (optionalCurrentUserDetail.isPresent() && optionalCurrentAccountPlan.isPresent() && optionalCurrentUserDetail.get().isAvailable()) {
             var currentAccountPlan = optionalCurrentAccountPlan.get();
             this.accountPlanDomainService.validateForUpgrade(currentAccountPlan, plan);
-            var uncompletedAccountPlan = this.accountPlanDomainMapper.upgradedAccountPlan(currentUserID, plan);
-            this.accountPlanCommandRepositoryAdapter.create(uncompletedAccountPlan);
+            var onWaitingAccountPlan = this.accountPlanDomainMapper.createOnWaitingAccountPlan(currentUserID, plan);
+            this.accountPlanCommandRepositoryAdapter.create(onWaitingAccountPlan);
             return UpgradedAccountPlanEvent.of(optionalCurrentAccountPlan.get());
         } else throw new AuthDomainException("F0000000019");
     }
