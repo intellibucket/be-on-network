@@ -40,6 +40,8 @@ public class BaseEntity {
 
 
 
+
+
     private BaseEntity(Builder builder) {
         setUuid(builder.uuid);
         setVersion(builder.version);

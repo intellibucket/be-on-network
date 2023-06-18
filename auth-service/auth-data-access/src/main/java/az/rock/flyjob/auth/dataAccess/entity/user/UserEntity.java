@@ -73,6 +73,12 @@ public class UserEntity extends BaseEntity {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserSettingsEntity settings;
 
+
+
+    public static UserEntity ofID(UUID uuid){
+        return UserEntity.Builder.builder().uuid(uuid).build();
+    }
+
     private UserEntity(Builder builder) {
         setUuid(builder.uuid);
         setVersion(builder.version);

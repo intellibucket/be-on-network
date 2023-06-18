@@ -29,7 +29,8 @@ public class DetailQueryRepositoryAdapter implements AbstractDetailQueryReposito
 
     @Override
     public Optional<DetailRoot> findByPID(UserID parentID) {
-        return null;
+        var entity = this.detailQueryJPARepository.findByPID(parentID.getRootID());
+        return this.detailDataAccessMapper.toRoot(entity.orElse(null));
     }
 
     @Override
