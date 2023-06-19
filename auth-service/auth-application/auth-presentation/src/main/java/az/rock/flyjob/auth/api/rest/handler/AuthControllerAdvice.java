@@ -24,8 +24,13 @@ public class AuthControllerAdvice {
     public ResponseEntity<JFailResponse> handleException(Exception exception) {
         exception.printStackTrace();
         var currentUserId  = this.securityContextHolder.currentUser();
+        var message = exception.getMessage();
+        if (message != null && message.startsWith("F0")) {
+            var currentLang = this.securityContextHolder.currentLanguage();
+            message = MessageBundle.fail(message, currentLang);
+        }
         exceptionPublisher.publish(currentUserId, exception);
-        return ResponseEntity.badRequest().body(new JFailResponse(exception.getMessage()));
+        return ResponseEntity.badRequest().body(new JFailResponse(message));
     }
 
 

@@ -178,5 +178,14 @@
     "tr": " Hesabınızın mevcut planı, değiştirmek istediğiniz planla aynıdır.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000021",
+    "az": " Cari planın dəyişdirilməsi ilə bağlı daha əvvəlki sorğunuz işləmədədir. Yeni soruğu göndərmək üçün əvvəlki sorğunun tamamlanmasını  gözləyin.",
+    "en": " Your previous request regarding changing the current plan is in progress. Wait for the previous request to complete before submitting a new request.",
+    "ru": " Ваш предыдущий запрос на изменение текущего плана выполняется. Подождите, пока предыдущий запрос не будет завершен, прежде чем отправить новый запрос.",
+    "tr": " Mevcut planı değiştirme ile ilgili önceki isteğiniz devam ediyor. Yeni bir istek göndermeden önce önceki isteğin tamamlanmasını bekleyin.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

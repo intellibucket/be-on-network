@@ -23,7 +23,7 @@ public class AccountPlanQueryDomainPresentation implements AbstractAccountPlanQu
     @Override
     public AccountPlanPrivateModelResponse findCurrentAccountPlan() {
         var currentUser = this.securityContextHolder.currentUser();
-        var accountPlan = this.accountPlanQueryRepositoryAdapter.findByPIDAndActiveStatus(currentUser);
+        var accountPlan = this.accountPlanQueryRepositoryAdapter.findByPID(currentUser);
         return AccountPlanPrivateModelResponse.of(accountPlan.orElseThrow(() -> new RuntimeException("F0000000001")));
     }
 
@@ -32,8 +32,6 @@ public class AccountPlanQueryDomainPresentation implements AbstractAccountPlanQu
         var currentUser = this.securityContextHolder.currentUser();
         var accountPlan = this.accountPlanQueryRepositoryAdapter.findAllByPIDAndActiveStatus(currentUser);
         return accountPlan.stream()
-                .filter(Optional::isPresent)
-                .map(Optional::get)
                 .map(AccountPlanPrivateModelResponse::of)
                 .toList();
     }

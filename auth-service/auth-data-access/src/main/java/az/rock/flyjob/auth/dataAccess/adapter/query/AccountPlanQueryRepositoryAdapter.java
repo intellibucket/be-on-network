@@ -35,14 +35,32 @@ public class AccountPlanQueryRepositoryAdapter implements AbstractAccountPlanQue
         return this.accountPlanDataAccessMapper.toRoot(entity);
     }
     @Override
-    public Optional<AccountPlanRoot> findByPIDAndActiveStatus(UserID parentID) {
-        var entity = this.accountPlanJPARepository.findByUserAndActiveRowStatus(parentID.getRootID());
-        return this.accountPlanDataAccessMapper.toRoot(entity);
+    public List<AccountPlanRoot> findByPIDAndInActiveStatus(UserID parentID) {
+        var entities = this.accountPlanJPARepository.findByUserAndInActiveRowStatus(parentID.getRootID());
+        return entities.stream()
+                .map(this.accountPlanDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 
     @Override
-    public List<Optional<AccountPlanRoot>> findAllByPIDAndActiveStatus(UserID parentID) {
+    public List<AccountPlanRoot> findAllByPIDAndActiveStatus(UserID parentID) {
         var entities = this.accountPlanJPARepository.findAllByUser(parentID.getRootID());
-        return entities.stream().map(this.accountPlanDataAccessMapper::toRoot).toList();
+        return entities.stream()
+                .map(this.accountPlanDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
+    @Override
+    public List<AccountPlanRoot> findAllUnCompletedAccountPlanByPID(UserID parentID) {
+        var entities = this.accountPlanJPARepository.findAllUnCompletedByUser(parentID.getRootID());
+        return entities.stream()
+                .map(this.accountPlanDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }

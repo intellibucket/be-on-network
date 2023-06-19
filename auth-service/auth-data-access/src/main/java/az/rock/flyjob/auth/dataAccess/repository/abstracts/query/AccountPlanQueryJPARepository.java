@@ -12,15 +12,19 @@ import java.util.UUID;
 @Repository
 public interface AccountPlanQueryJPARepository extends JpaRepository<AccountPlanEntity, UUID> {
     @Query("SELECT row FROM AccountPlanEntity row " +
-            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
+            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
     AccountPlanEntity findByUser(@Param(value = "userId") UUID userId);
 
     @Query("SELECT row FROM AccountPlanEntity row " +
-            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
+            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
     List<AccountPlanEntity> findAllByUser(@Param(value = "userId") UUID userId);
 
     @Query("SELECT row FROM AccountPlanEntity row " +
-            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE')")
-    AccountPlanEntity findByUserAndActiveRowStatus(@Param(value = "userId") UUID userId);
+            "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE') and row.processStatus <> 'COMPLETED'")
+    List<AccountPlanEntity> findAllUnCompletedByUser(@Param(value = "userId") UUID userId);
+
+    @Query("SELECT row FROM AccountPlanEntity row " +
+            "WHERE (:userId = row.user.uuid) and row.rowStatus = 'INACTIVE' ")
+    List<AccountPlanEntity> findByUserAndInActiveRowStatus(@Param(value = "userId") UUID userId);
 
 }

@@ -11,6 +11,8 @@ import java.util.Optional;
 
 @OutputPort
 public interface AbstractAccountPlanQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<AccountPlanRoot, AccountPlanID, UserID> {
-    Optional<AccountPlanRoot> findByPIDAndActiveStatus(UserID parentID);
-    List<Optional<AccountPlanRoot>> findAllByPIDAndActiveStatus(UserID parentID);
+    List<AccountPlanRoot> findByPIDAndInActiveStatus(UserID parentID);
+    List<AccountPlanRoot> findAllByPIDAndActiveStatus(UserID parentID);
+
+    List<AccountPlanRoot> findAllUnCompletedAccountPlanByPID(UserID parentID);
 }
