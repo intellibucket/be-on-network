@@ -1,11 +1,8 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts;
 
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.Repository;
-import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 import java.util.List;
-import java.util.Optional;
 
 @NoRepositoryBean
 public interface BaseCustomRepository<T> {

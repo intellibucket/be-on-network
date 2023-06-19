@@ -122,25 +122,23 @@ public class AccountPlanCustomCommandJPARepository implements AbstractAccountPla
         return executeBatch(() -> {
             List<S> result = new ArrayList<>();
             for(S entity : entities)
-                result.add(update(entity));
+                result.add(this.update(entity));
             entityManager.flush();
             return result;
         });
     }
 
     protected Integer getBatchSize(Session session) {
-        SessionFactoryImplementor sessionFactory = session
-                .getSessionFactory()
-                .unwrap(SessionFactoryImplementor.class);
-
-        final JdbcServices jdbcServices = sessionFactory
-                .getServiceRegistry()
-                .getService(JdbcServices.class);
-
-        if(!jdbcServices.getExtractedMetaDataSupport().supportsBatchUpdates())
-            return Integer.MIN_VALUE;
-        return session
-                .unwrap(AbstractSharedSessionContract.class)
+        try(var sessionFactory = session.getSessionFactory()
+                .unwrap(SessionFactoryImplementor.class);) {
+            final var jdbcServices = sessionFactory.getServiceRegistry()
+                    .getService(JdbcServices.class);
+            if(!jdbcServices.getExtractedMetaDataSupport().supportsBatchUpdates()) return Integer.MIN_VALUE;
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return session.unwrap(AbstractSharedSessionContract.class)
                 .getConfiguredJdbcBatchSize();
     }
 
