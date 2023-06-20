@@ -187,5 +187,55 @@
     "tr": " Mevcut planı değiştirme ile ilgili önceki isteğiniz devam ediyor. Yeni bir istek göndermeden önce önceki isteğin tamamlanmasını bekleyin.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000022",
+    "az": " Dəyişdirmək istədiyiniz istifadəçi adı cari istifadəçi adı ilə eynidir.",
+    "en": " The username you want to change is the same as the current username.",
+    "ru": " Имя пользователя, которое вы хотите изменить, такое же, как текущее имя пользователя.",
+    "tr": " Değiştirmek istediğiniz kullanıcı adı, mevcut kullanıcı adıyla aynıdır.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000023",
+    "az": " Istifadəçi adı ən azı 3 hərf olmalıdır.",
+    "en": " Username must be at least 3 characters.",
+    "ru": " Имя пользователя должно содержать не менее 3 символов.",
+    "tr": " Kullanıcı adı en az 3 karakter olmalıdır.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000024",
+    "az": " Ad və soyad ən azı 3 hərf olmalıdır.",
+    "en": " Name and surname must be at least 3 characters.",
+    "ru": " Имя и фамилия должны содержать не менее 3 символов.",
+    "tr": " Ad ve soyad en az 3 karakter olmalıdır.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000025",
+    "az": " Dəyişdirmək istədiyiniz ad və soyad cari ad və soyadınızla eyni olmamalıdır.",
+    "en": " The name and surname you want to change should not be the same as your current name and surname.",
+    "ru": " Имя и фамилия, которые вы хотите изменить, не должны совпадать с вашим текущим именем и фамилией.",
+    "tr": " Değiştirmek istediğiniz ad ve soyad, mevcut ad ve soyadınızla aynı olmamalıdır.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000026",
+    "az": " Cari cinsiyyətiniz haqqında məlumatları dəyişdirmək üçün bir seçim edin.",
+    "en": " ",
+    "ru": "",
+    "tr": "",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000027",
+    "az": " Seçilən cinsiyyət ilə cari cinsiyyətiniz eyni olmamalıdır.",
+    "en": " "
   }
 ]

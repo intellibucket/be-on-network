@@ -4,6 +4,7 @@ import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.UserID;
+import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
@@ -18,11 +19,11 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final AccessModifier accessModifier;
 
     private final UserType userType;
-    private final String firstName;
-    private final String lastName;
-    private final String username;
-    private final TimeZoneID timezone;
-    private final Gender gender;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private TimeZoneID timezone;
+    private Gender gender;
     private final Set<PasswordRoot> passwords;
     private final Set<EmailRoot> emails;
     private final Set<PhoneNumberRoot> phoneNumbers;
@@ -125,6 +126,23 @@ public class UserRoot extends AggregateRoot<UserID> {
 
     public Gender getGender() {
         return gender;
+    }
+
+
+    public void changeFirstName(String firstName) {
+        this.firstName = StringUtils.capitalize(firstName);
+    }
+
+    public void changeLastName(String lastName) {
+        this.lastName = StringUtils.capitalize(lastName);
+    }
+
+    public void changeUsername(String username) {
+        this.username = StringUtils.lowerCase(username);
+    }
+
+    public void changeGender(Gender gender) {
+        this.gender = gender;
     }
 
     public static final class Builder {

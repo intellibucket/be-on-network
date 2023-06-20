@@ -14,4 +14,8 @@ public enum Gender {
     public Boolean isUnknown(){
         return this == Gender.UNKNOWN;
     }
+
+    public Boolean isEquals(Gender gender){
+        return this == gender;
+    }
 }
