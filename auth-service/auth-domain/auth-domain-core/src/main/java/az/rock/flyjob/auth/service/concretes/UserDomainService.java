@@ -10,6 +10,8 @@ import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 
+import java.util.Objects;
+
 public class UserDomainService implements AbstractUserDomainService {
 
     @Override
@@ -55,7 +57,8 @@ public class UserDomainService implements AbstractUserDomainService {
     @Override
     public UserRoot changeGender(UserRoot currentUserRoot, Gender gender) {
         if (GObjects.isNull(gender)) throw new AuthDomainException("F0000000026");
-        if (currentUserRoot.getGender().isEquals(gender)) throw new AuthDomainException("F0000000027");
+        if (!Objects.isNull(currentUserRoot.getGender()) && currentUserRoot.getGender().isEquals(gender))
+            throw new AuthDomainException("F0000000027");
         currentUserRoot.changeGender(gender);
         return currentUserRoot;
     }

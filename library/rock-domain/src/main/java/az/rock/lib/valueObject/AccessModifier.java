@@ -9,6 +9,7 @@ public enum AccessModifier {
     ONLY_FOLLOWERS,
     ONLY_NETWORK,
     PRIVATE,
+
     UNKNOWN;
 
     public boolean isPublic() {
