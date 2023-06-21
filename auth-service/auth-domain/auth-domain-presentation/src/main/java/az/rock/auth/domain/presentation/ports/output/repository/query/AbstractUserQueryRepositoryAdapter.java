@@ -9,4 +9,6 @@ import java.util.Optional;
 @OutputPort
 public interface AbstractUserQueryRepositoryAdapter {
     Optional<UserRoot> findById(UserID currentUser);
+
+    Boolean isExistByUsername(String username);
 }

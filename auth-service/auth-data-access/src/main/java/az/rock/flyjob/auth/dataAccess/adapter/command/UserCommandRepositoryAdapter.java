@@ -29,4 +29,9 @@ public class UserCommandRepositoryAdapter implements AbstractUserCommandReposito
         }else return Optional.empty();
     }
 
+    @Override
+    public void update(UserRoot root) {
+        var entity = this.userDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.userCommandJPARepository::saveAndFlush);
+    }
 }

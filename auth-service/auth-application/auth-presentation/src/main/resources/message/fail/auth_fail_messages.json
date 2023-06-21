@@ -236,6 +236,19 @@
   {
     "code": "F0000000027",
     "az": " Seçilən cinsiyyət ilə cari cinsiyyətiniz eyni olmamalıdır.",
-    "en": " "
+    "en": " ",
+    "ru": "",
+    "tr": "",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000028",
+    "az": " Bu istifadəçi adı artıq istifadə olunur. Xahiş edirik başqa bir istifadəçi adı seçin.",
+    "en": " This username is already in use. Please choose another username.",
+    "ru": " Это имя пользователя уже используется. Пожалуйста, выберите другое имя пользователя.",
+    "tr": " Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı seçin.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

@@ -8,6 +8,7 @@ import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.util.GObjects;
 import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.Gender;
+import az.rock.lib.valueObject.TimeZoneID;
 
 public class UserDomainService implements AbstractUserDomainService {
 
@@ -57,5 +58,10 @@ public class UserDomainService implements AbstractUserDomainService {
         if (currentUserRoot.getGender().isEquals(gender)) throw new AuthDomainException("F0000000027");
         currentUserRoot.changeGender(gender);
         return currentUserRoot;
+    }
+
+    @Override
+    public UserRoot changeTimezone(UserRoot currentUserRoot, TimeZoneID timezone) {
+        return null;
     }
 }

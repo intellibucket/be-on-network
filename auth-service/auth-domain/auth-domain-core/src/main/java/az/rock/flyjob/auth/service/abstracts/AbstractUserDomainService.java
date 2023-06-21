@@ -4,6 +4,7 @@ import az.rock.flyjob.auth.event.CompanyCreatedEvent;
 import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.valueObject.Gender;
+import az.rock.lib.valueObject.TimeZoneID;
 
 public interface AbstractUserDomainService {
     JobSeekerCreatedEvent validateAndInitializeUser(UserRoot userRoot);
@@ -17,4 +18,6 @@ public interface AbstractUserDomainService {
     UserRoot changeUsername(UserRoot currentUserRoot, String username);
 
     UserRoot changeGender(UserRoot currentUserRoot, Gender gender);
+
+    UserRoot changeTimezone(UserRoot currentUserRoot, TimeZoneID timezone);
 }

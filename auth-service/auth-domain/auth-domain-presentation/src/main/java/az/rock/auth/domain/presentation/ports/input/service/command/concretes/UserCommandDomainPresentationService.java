@@ -1,44 +1,35 @@
 package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
-import az.rock.auth.domain.presentation.exception.AuthDomainException;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserCreateCommandHandler;
+import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.outbox.abstracts.AbstractUserOutboxInputPort;
 import az.rock.auth.domain.presentation.ports.output.message.AbstractUserMessagePublisher;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.CompanyCreatedEvent;
 import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
-import az.rock.flyjob.auth.root.user.UserRoot;
-import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserCommandDomainPresentationService implements AbstractUserCommandDomainPresentationService {
-    private final AbstractSecurityContextHolder securityContextHolder;
     private final AbstractUserCreateCommandHandler userCreateCommandHandler;
+
+    private final AbstractUserUpdateCommandHandler userUpdateCommandHandler;
     private final AbstractUserMessagePublisher userMessagePublisher;
     private final AbstractUserOutboxInputPort userOutboxInputPort;
 
-    private final AbstractUserQueryRepositoryAdapter userQueryRepositoryAdapter;
 
-    private final AbstractUserDomainService userDomainService;
-    public UserCommandDomainPresentationService(AbstractSecurityContextHolder securityContextHolder,
-                                                AbstractUserCreateCommandHandler userCreateCommandHandler,
+    public UserCommandDomainPresentationService(AbstractUserCreateCommandHandler userCreateCommandHandler,
+                                                AbstractUserUpdateCommandHandler userUpdateCommandHandler,
                                                 AbstractUserMessagePublisher userMessagePublisher,
-                                                AbstractUserOutboxInputPort userOutboxInputPort,
-                                                AbstractUserQueryRepositoryAdapter userQueryRepositoryAdapter,
-                                                AbstractUserDomainService userDomainService) {
-        this.securityContextHolder = securityContextHolder;
+                                                AbstractUserOutboxInputPort userOutboxInputPort) {
         this.userCreateCommandHandler = userCreateCommandHandler;
+        this.userUpdateCommandHandler = userUpdateCommandHandler;
         this.userMessagePublisher = userMessagePublisher;
         this.userOutboxInputPort = userOutboxInputPort;
-        this.userQueryRepositoryAdapter = userQueryRepositoryAdapter;
-        this.userDomainService = userDomainService;
     }
 
     @Override
@@ -58,37 +49,41 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
         return CreateUserResponse.of(userCreatedEvent.getRoot());
     }
 
-    private UserRoot findCurrentUser(){
-        var currentUserID = this.securityContextHolder.currentUser();
-        var currentUserRoot = this.userQueryRepositoryAdapter.findById(currentUserID);
-        if (currentUserRoot.isEmpty()) throw new AuthDomainException("F0000000018");
-        return currentUserRoot.get();
-    }
+
 
     @Override
     public void changeFirstName(String firstName) {
-        var currentUserRoot = this.findCurrentUser();
-        this.userDomainService.changeFirstName(currentUserRoot, firstName);
+        var event = this.userUpdateCommandHandler.handleFirstnameUpdated(firstName);
+        var sagaRoot = this.userOutboxInputPort.save(event);
+        this.userMessagePublisher.publish(sagaRoot);
     }
 
     @Override
     public void changeLastName(String lastName) {
-
+        var event = this.userUpdateCommandHandler.handleLastnameUpdated(lastName);
+        var sagaRoot = this.userOutboxInputPort.save(event);
+        this.userMessagePublisher.publish(sagaRoot);
     }
 
     @Override
     public void changeUsername(String username) {
-
+        var event = this.userUpdateCommandHandler.handleUsernameUpdated(username);
+        var sagaRoot = this.userOutboxInputPort.save(event);
+        this.userMessagePublisher.publish(sagaRoot);
     }
 
     @Override
     public void changeGender(Gender gender) {
-
+        var event = this.userUpdateCommandHandler.handleGenderUpdated(gender);
+        var sagaRoot = this.userOutboxInputPort.save(event);
+        this.userMessagePublisher.publish(sagaRoot);
     }
 
     @Override
     public void changeTimezone(TimeZoneID timezone) {
-
+        var event = this.userUpdateCommandHandler.handleTimezoneUpdated(timezone);
+        var sagaRoot = this.userOutboxInputPort.save(event);
+        this.userMessagePublisher.publish(sagaRoot);
     }
 
 

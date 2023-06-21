@@ -31,4 +31,9 @@ public class UserQueryRepositoryAdapter implements AbstractUserQueryRepositoryAd
         }
         return Optional.empty();
     }
+
+    @Override
+    public Boolean isExistByUsername(String username) {
+        return this.userQueryJPARepository.existsByUsername(username);
+    }
 }

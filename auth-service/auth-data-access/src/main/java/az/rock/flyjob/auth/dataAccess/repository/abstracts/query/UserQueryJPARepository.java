@@ -37,4 +37,7 @@ public interface UserQueryJPARepository extends JpaRepository<UserEntity,UUID> {
             "WHERE (:userID = row.uuid) and (row.rowStatus = 'ACTIVE')")
     AccessModifier findAccessModifierByUUID(UUID userID);
 
+    @Query("SELECT count(row) > 0 FROM UserEntity row " +
+            "WHERE (:username = row.username) and (row.rowStatus = 'ACTIVE')")
+    Boolean existsByUsername(String username);
 }
