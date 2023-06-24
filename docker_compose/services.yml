@@ -51,6 +51,15 @@ services:
 #      - config-network
 #    restart: on-failure
 
+  redis-cache:
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
   minio:
     container_name: flyjob_auth_dfs
     image: 'bitnami/minio:latest'
@@ -103,6 +112,8 @@ networks:
     driver: bridge
 
 volumes:
+  cache:
+      driver: local
   pgadmin:
   db:
     driver: local
