@@ -22,7 +22,36 @@ public final class SagaRoot<D> {
         this.data = data;
     }
 
-    public static <T> SagaRoot<T> replace(SagaRoot<?> sagaRoot , T payload){
+    public static class SagaDetail {
+        private final SagaID sagaID;
+        private final SagaStatus sagaStatus;
+        private final ZonedDateTime time;
+
+        private SagaDetail(SagaID sagaID, SagaStatus sagaStatus, ZonedDateTime time) {
+            this.sagaID = sagaID;
+            this.sagaStatus = sagaStatus;
+            this.time = time;
+        }
+
+        public static SagaDetail of(SagaRoot<?> sagaRoot) {
+            return new SagaDetail(sagaRoot.getSagaID(), sagaRoot.getSagaStatus(), sagaRoot.getTime());
+        }
+
+
+        public SagaID getSagaID() {
+            return sagaID;
+        }
+
+        public SagaStatus getSagaStatus() {
+            return sagaStatus;
+        }
+
+        public ZonedDateTime getTime() {
+            return time;
+        }
+    }
+
+    public static <T> SagaRoot<T> replace(SagaRoot<?> sagaRoot, T payload) {
         return new SagaRoot<>(sagaRoot.getSagaID(), sagaRoot.sagaStatus, sagaRoot.time, payload);
     }
 

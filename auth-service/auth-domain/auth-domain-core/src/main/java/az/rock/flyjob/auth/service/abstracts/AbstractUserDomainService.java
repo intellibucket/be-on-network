@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.service.abstracts;
 
-import az.rock.flyjob.auth.event.CompanyCreatedEvent;
-import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
+import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
+import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;

@@ -1,9 +1,9 @@
 package az.rock.flyjob.auth.messaging;
 
 import az.rock.auth.domain.presentation.ports.output.message.AbstractUserMessagePublisher;
-import az.rock.flyjob.auth.event.CompanyCreatedEvent;
-import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
-import az.rock.flyjob.auth.event.UserUpdatedEvent;
+import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
+import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
+import az.rock.flyjob.auth.event.user.UserUpdatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.valueObject.SagaRoot;

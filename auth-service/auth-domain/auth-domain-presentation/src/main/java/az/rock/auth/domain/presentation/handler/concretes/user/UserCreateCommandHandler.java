@@ -1,13 +1,13 @@
-package az.rock.auth.domain.presentation.handler.concretes;
+package az.rock.auth.domain.presentation.handler.concretes.user;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
-import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserCreateCommandHandler;
+import az.rock.auth.domain.presentation.exception.AuthDomainException;
+import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserCreateCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractQueryRoleDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
-import az.rock.flyjob.auth.event.CompanyCreatedEvent;
-import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
-import az.rock.auth.domain.presentation.exception.AuthDomainException;
+import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
+import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.valueObject.UserType;
 import org.springframework.stereotype.Component;

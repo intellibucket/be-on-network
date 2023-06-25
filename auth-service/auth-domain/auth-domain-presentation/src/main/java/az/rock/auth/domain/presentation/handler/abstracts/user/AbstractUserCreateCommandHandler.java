@@ -1,8 +1,8 @@
-package az.rock.auth.domain.presentation.handler.abstracts;
+package az.rock.auth.domain.presentation.handler.abstracts.user;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
-import az.rock.flyjob.auth.event.CompanyCreatedEvent;
-import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
+import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
+import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -2,13 +2,13 @@ package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
-import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserCreateCommandHandler;
-import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserUpdateCommandHandler;
+import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserCreateCommandHandler;
+import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.outbox.abstracts.AbstractUserOutboxInputPort;
-import az.rock.auth.domain.presentation.ports.output.message.AbstractUserMessagePublisher;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
-import az.rock.flyjob.auth.event.CompanyCreatedEvent;
-import az.rock.flyjob.auth.event.JobSeekerCreatedEvent;
+import az.rock.auth.domain.presentation.ports.output.message.AbstractUserMessagePublisher;
+import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
+import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import org.springframework.stereotype.Service;

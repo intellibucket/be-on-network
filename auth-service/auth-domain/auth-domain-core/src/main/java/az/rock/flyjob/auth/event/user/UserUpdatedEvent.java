@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.event;
+package az.rock.flyjob.auth.event.user;
 
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.event.AbstractDomainEvent;

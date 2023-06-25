@@ -1,11 +1,11 @@
-package az.rock.auth.domain.presentation.handler.concretes;
+package az.rock.auth.domain.presentation.handler.concretes.user;
 
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.exception.AuthDomainException;
-import az.rock.auth.domain.presentation.handler.abstracts.AbstractUserUpdateCommandHandler;
+import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
-import az.rock.flyjob.auth.event.UserUpdatedEvent;
+import az.rock.flyjob.auth.event.user.UserUpdatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.valueObject.Gender;
