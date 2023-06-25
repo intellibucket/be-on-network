@@ -38,7 +38,6 @@
         <module>config-service</module>
         <module>auth-service</module>
         <module>job-seeker-service</module>
-        <module>company-service</module>
         <module>stream-service</module>
         <module>library</module>
         <module>vacancy-command-service</module>
