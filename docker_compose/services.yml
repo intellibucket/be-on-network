@@ -1,55 +1,35 @@
 version: "3.7"
 
 services:
-#  discovery-service:
-#    build:
-#      context: ../discovery-service
-#      dockerfile: ./Dockerfile
-#    env_file: env/develop/discovery.env.develop
-#    container_name: flyjob_discovery_service
-#    restart: always
-#    ports:
-#      - "8761:8761"
-#    networks:
-#      - config-network
-#
-#  config-service:
-#    env_file: env/develop/config.env.develop
-#    build:
-#      context: ../config-service
-#      dockerfile: ./Dockerfile
-#    container_name: flyjob_config_service
-#    depends_on:
-#      - discovery-service
-#    ports:
-#      - "8012:8012"
-#    expose:
-#      - "8012"
-#    networks:
-#      - config-network
-#    restart: on-failure
-#    links:
-#      - discovery-service
+  discovery-service:
+    build:
+      context: ../discovery-service
+      dockerfile: ./Dockerfile
+    env_file: env/develop/discovery.env.develop
+    container_name: flyjob_discovery_service
+    restart: always
+    ports:
+      - "8761:8761"
+    networks:
+      - config-network
 
-
-#  api-gateway:
-#    build:
-#      context: ../api-gateway
-#      dockerfile: ./Dockerfile
-#    container_name: flyjob_api-gateway
-#    env_file: env/develop/api-gateway.env.develop
-#    ports:
-#      - "8082:8082"
-#    depends_on:
-#      - config-service
-#      - discovery-service
-#    links:
-#      - discovery-service
-#      - config-service
-#      - postgres-db
-#    networks:
-#      - config-network
-#    restart: on-failure
+  config-service:
+    env_file: env/develop/config.env.develop
+    build:
+      context: ../config-service
+      dockerfile: ./Dockerfile
+    container_name: flyjob_config_service
+    depends_on:
+      - discovery-service
+    ports:
+      - "8012:8012"
+    expose:
+      - "8012"
+    networks:
+      - config-network
+    restart: on-failure
+    links:
+      - discovery-service
 
   redis-cache:
     image: redis:latest
@@ -102,6 +82,26 @@ services:
 #      - discovery-service
 #      - config-service
 #      - api-gateway
+#      - postgres-db
+#    networks:
+#      - config-network
+#    restart: on-failure
+
+
+#  api-gateway:
+#    build:
+#      context: ../api-gateway
+#      dockerfile: ./Dockerfile
+#    container_name: flyjob_api-gateway
+#    env_file: env/develop/api-gateway.env.develop
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - config-service
+#      - discovery-service
+#    links:
+#      - discovery-service
+#      - config-service
 #      - postgres-db
 #    networks:
 #      - config-network
