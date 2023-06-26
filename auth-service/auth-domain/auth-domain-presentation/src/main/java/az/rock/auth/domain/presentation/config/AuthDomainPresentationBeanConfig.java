@@ -37,6 +37,11 @@ public class AuthDomainPresentationBeanConfig {
         return new UserDomainService();
     }
 
+    @Bean
+    public AbstractEmailDomainService abstractEmailDomainService(){
+        return new EmailDomainService();
+    }
+
 
     @Bean
     public AbstractAccountPlanDomainService abstractAccountPlanDomainService() {

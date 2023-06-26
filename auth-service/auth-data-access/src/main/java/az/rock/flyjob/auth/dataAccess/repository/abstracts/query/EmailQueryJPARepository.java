@@ -24,5 +24,6 @@ public interface EmailQueryJPARepository extends JpaRepository<EmailEntity, UUID
     @Query("SELECT e.uuid FROM EmailEntity e WHERE e.user.uuid = :userID and e.rowStatus = 'ACTIVE'")
     List<UUID> findAllIDByUserID(@Param(value = "userID") UUID userID);
 
-
+    @Query("SELECT COUNT (e) > 0 FROM EmailEntity e WHERE e.email = :email and e.rowStatus = 'ACTIVE'")
+    Boolean existsByEmail(String email);
 }

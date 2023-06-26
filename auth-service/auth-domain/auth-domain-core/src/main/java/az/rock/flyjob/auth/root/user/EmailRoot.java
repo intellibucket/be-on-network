@@ -7,6 +7,7 @@ import az.rock.lib.valueObject.*;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 public class EmailRoot extends AggregateRoot<EmailID> {
     private final UserID userID;
@@ -114,6 +115,18 @@ public class EmailRoot extends AggregateRoot<EmailID> {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmailRoot emailRoot)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getEmail(), emailRoot.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getEmail());
+    }
 
     public static final class Builder {
         private UserID userID;

@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface AbstractEmailQueryRepositoryAdapter {
     Optional<EmailRoot> findMyEmailByID(UserID userID,EmailID emailID);
     Optional<EmailRoot> findAnyByByID(EmailID emailID);
-    List<Optional<EmailRoot>> findAllMyEmails(UserID userID);
+    List<EmailRoot> findAllMyEmails(UserID userID);
     List<EmailID> findAllMyEmailsID(UserID userID);
+
+    Boolean isExistEmailAsActive(String email);
 }
