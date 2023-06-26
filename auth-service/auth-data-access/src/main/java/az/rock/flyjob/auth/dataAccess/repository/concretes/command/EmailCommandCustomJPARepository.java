@@ -8,21 +8,14 @@ import jakarta.persistence.PersistenceContext;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 public class EmailCommandCustomJPARepository implements AbstractEmailCommandCustomJPARepository {
 
     @PersistenceContext
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
-
-    public EmailCommandCustomJPARepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    protected Session session() {
+    @Override
+    public Session session() {
         return entityManager.unwrap(Session.class);
     }
 
@@ -40,61 +33,10 @@ public class EmailCommandCustomJPARepository implements AbstractEmailCommandCust
     }
 
     @Override
-    public <S extends EmailEntity> S persistAndFlush(S entity) {
-        var savedEntity = this.persist(entity);
-        this.flush();
-        return savedEntity;
-    }
-
-    @Override
-    public <S extends EmailEntity> List<S> persistAll(Iterable<S> entities) {
-        return this.executeBatch(this.session(), () -> {
-            List<S> result = new ArrayList<>();
-            for (S entity : entities) {
-                result.add(this.persist(entity));
-            }
-            return result;
-        });
-    }
-
-    @Override
-    public <S extends EmailEntity> List<S> persistAllAndFlush(Iterable<S> entities) {
-        return this.executeBatch(this.session(), () -> {
-            List<S> result = new ArrayList<>();
-            for (S entity : entities) {
-                result.add(this.persist(entity));
-            }
-            this.flush();
-            return result;
-        });
-    }
-
-    @Override
     public <S extends EmailEntity> S merge(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         return this.entityManager.merge(entity);
-    }
-
-    @Override
-    public <S extends EmailEntity> S mergeAndFlush(S entity) {
-        var mergedEntity = this.merge(entity);
-        this.flush();
-        return mergedEntity;
-    }
-
-    @Override
-    public <S extends EmailEntity> List<S> mergeAll(Iterable<S> entities) {
-        List<S> result = new ArrayList<>();
-        entities.forEach(entity -> result.add(this.merge(entity)));
-        return result;
-    }
-
-    @Override
-    public <S extends EmailEntity> List<S> mergeAllAndFlush(Iterable<S> entities) {
-        List<S> result = new ArrayList<>();
-        entities.forEach(entity -> result.add(this.mergeAndFlush(entity)));
-        return result;
     }
 
 }

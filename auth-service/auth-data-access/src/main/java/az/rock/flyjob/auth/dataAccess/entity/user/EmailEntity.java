@@ -25,7 +25,7 @@ import java.util.UUID;
         @Index(name = "ıdx_emailentity_row_status", columnList = "row_status")
 })
 @Entity(name = "EmailEntity")
-public class EmailEntity extends BaseEntity {
+public class EmailEntity extends BaseEntity implements UserEntityReference {
 
     @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
@@ -66,6 +66,11 @@ public class EmailEntity extends BaseEntity {
 
     @Column(name = "subscribed_date")
     private Timestamp subscribedDate;
+
+
+    public UserEntity getUser() {
+        return user;
+    }
 
     private EmailEntity(Builder builder) {
         setUser(builder.user);
