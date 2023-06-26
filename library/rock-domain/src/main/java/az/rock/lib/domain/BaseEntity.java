@@ -38,6 +38,10 @@ public class BaseEntity {
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
 
+    public void inActive(){
+        this.rowStatus = RowStatus.INACTIVE;
+    }
+
 
 
 

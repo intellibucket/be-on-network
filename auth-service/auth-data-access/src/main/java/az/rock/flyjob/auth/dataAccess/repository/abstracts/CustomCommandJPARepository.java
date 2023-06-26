@@ -1,5 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts;
 
+import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.engine.jdbc.spi.JdbcServices;
@@ -45,6 +46,33 @@ public interface CustomCommandJPARepository<T> {
             entities.forEach(entity -> result.add(this.persist(entity)));
             this.flush();
             return result;
+        });
+    }
+
+    default <S extends T> void  remove(S entity){
+        if (entity instanceof BaseEntity baseEntity) {
+            baseEntity.inActive();
+            this.merge(entity);
+        }
+    }
+
+    default <S extends T> void  removeAndFlush(S entity){
+        this.remove(entity);
+        this.flush();
+    }
+
+    default <S extends T> void  removeAll(Iterable<S> entities){
+        this.executeBatch(this.session(), () -> {
+            entities.forEach(this::remove);
+            return null;
+        });
+    }
+
+    default <S extends T> void  removeAllAndFlush(Iterable<S> entities){
+        this.executeBatch(this.session(), () -> {
+            entities.forEach(this::remove);
+            this.flush();
+            return null;
         });
     }
 
