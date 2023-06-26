@@ -1,5 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts;
 
+import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.engine.jdbc.spi.JdbcServices;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
@@ -11,9 +12,17 @@ import java.util.List;
 import java.util.function.Supplier;
 
 @NoRepositoryBean
-public interface CustomJPARepository<T> {
-    Session session();
-    void flush();
+public interface CustomCommandJPARepository<T> {
+
+    EntityManager entityManager();
+
+    default Session session(){
+        return this.entityManager().unwrap(Session.class);
+    }
+    default void flush(){
+        this.entityManager().flush();
+    }
+
     <S extends T > S persist(S entity);
 
     default <S extends T> S persistAndFlush(S entity){
@@ -63,7 +72,6 @@ public interface CustomJPARepository<T> {
             return result;
         });
     }
-
 
     default <S extends T> S update(S entity){
         return this.merge(entity);

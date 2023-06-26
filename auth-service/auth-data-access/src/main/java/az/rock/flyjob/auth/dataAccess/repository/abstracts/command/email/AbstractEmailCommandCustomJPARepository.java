@@ -1,9 +1,9 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts.command.email;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.EmailEntity;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.CustomJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.CustomCommandJPARepository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public interface AbstractEmailCommandCustomJPARepository extends CustomJPARepository<EmailEntity> {
+public interface AbstractEmailCommandCustomJPARepository extends CustomCommandJPARepository<EmailEntity> {
 }
