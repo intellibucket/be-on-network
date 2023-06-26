@@ -19,7 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "account_plan", schema = "auth")
 @Entity(name = "AccountPlanEntity")
-public class AccountPlanEntity extends BaseEntity implements UserEntityReference {
+public class AccountPlanEntity extends BaseEntity  {
 
     @ManyToOne
     private UserEntity user;
@@ -39,10 +39,6 @@ public class AccountPlanEntity extends BaseEntity implements UserEntityReference
     @Column(name = "promo_code", nullable = true,updatable = false, length = 100)
     private String promoCode;
 
-
-    public UserEntity getUser() {
-        return user;
-    }
 
     private AccountPlanEntity(Builder builder) {
         setUser(builder.userEntity);

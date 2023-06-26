@@ -55,7 +55,7 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<PasswordEntity> passwords;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<EmailEntity> emails;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

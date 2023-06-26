@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.EmailEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractEmailDataAccessMapper;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.lib.domain.id.EmailID;
@@ -48,6 +49,7 @@ public class EmailDataAccessMapper  implements AbstractEmailDataAccessMapper<Ema
                 .version(root.getVersion().value())
                 .accessModifier(root.getAccessModifier())
                 .type(root.getType())
+                .user(UserEntity.ofID(root.getUserId().getAbsoluteID()))
                 .email(root.getEmail())
                 .isEnableNotification(root.isEnableNotification())
                 .isPrimary(root.isPrimary())

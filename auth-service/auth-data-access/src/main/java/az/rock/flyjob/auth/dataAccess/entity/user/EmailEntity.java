@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
@@ -25,7 +27,7 @@ import java.util.UUID;
         @Index(name = "ıdx_emailentity_row_status", columnList = "row_status")
 })
 @Entity(name = "EmailEntity")
-public class EmailEntity extends BaseEntity implements UserEntityReference {
+public class EmailEntity extends BaseEntity {
 
     @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
@@ -66,11 +68,6 @@ public class EmailEntity extends BaseEntity implements UserEntityReference {
 
     @Column(name = "subscribed_date")
     private Timestamp subscribedDate;
-
-
-    public UserEntity getUser() {
-        return user;
-    }
 
     private EmailEntity(Builder builder) {
         setUser(builder.user);
