@@ -62,16 +62,30 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
 
     @Override
     public EmailUpdatedEvent handleEmailSetPrimary(EmailID emailID) {
-        return null;
+        // FIXME: 27.06.23 
+        var currentUserId = this.securityContextHolder.currentUser();
+        var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,emailID);
+        if(email.isPresent()) {
+            var updatedEmailRoot = this.emailDomainService.validateForSetPrimaryEmail(currentUserId, email.get());
+            this.emailCommandRepositoryAdapter.update(email.get());
+            return EmailUpdatedEvent.of(email.get());
+        }else throw new EmailNotFoundException();
     }
 
     @Override
     public EmailUpdatedEvent handleEmailEnableNotification(SwitchCase switchCase) {
-        return null;
+        // FIXME: 27.06.23 
+        var currentUserId = this.securityContextHolder.currentUser();
+        var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,EmailID.of(switchCase.getUuid()));
+        if(email.isPresent()) {
+            this.emailCommandRepositoryAdapter.update(email.get());
+            return EmailUpdatedEvent.of(email.get());
+        }else throw new EmailNotFoundException();
     }
 
     @Override
     public EmailUpdatedEvent handleEmailSubscribedPromotions(SwitchCase switchCase) {
+        // TODO: 27.06.23  
         return null;
     }
 }

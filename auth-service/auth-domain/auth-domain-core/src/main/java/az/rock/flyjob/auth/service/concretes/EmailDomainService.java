@@ -5,10 +5,12 @@ import az.rock.flyjob.auth.exception.email.EmailAlreadyExistException;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractEmailDomainService;
 import az.rock.lib.domain.id.UserID;
+import az.rock.lib.valueObject.SwitchCase;
 
 import java.util.List;
 
 public class EmailDomainService implements AbstractEmailDomainService {
+
     @Override
     public void validateNewEmail(List<EmailRoot> existingEmails, EmailRoot newEmail) {
         var isExist = existingEmails.contains(newEmail);
@@ -25,5 +27,11 @@ public class EmailDomainService implements AbstractEmailDomainService {
     @Override
     public void validateForDeleteEmail(UserID userID, EmailRoot emailRoot) {
         if (!emailRoot.isOwned(userID)) throw new AccessDeniedDomainException();
+    }
+
+    @Override
+    public EmailRoot validateForSetPrimaryEmail(UserID currentUserId, EmailRoot emailRoot) {
+        if (!emailRoot.isOwned(currentUserId)) throw new AccessDeniedDomainException();
+        return emailRoot.changePrimary();
     }
 }

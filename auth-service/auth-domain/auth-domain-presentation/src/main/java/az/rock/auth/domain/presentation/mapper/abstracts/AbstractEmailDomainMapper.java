@@ -11,4 +11,5 @@ public interface AbstractEmailDomainMapper {
     EmailRoot toNewEmailRoot(UserID userID,EmailCreateRequest emailCreateRequest);
 
     EmailRoot mapToEmailRoot(EmailRoot oldEmail ,EmailChangeRequest emailChangeRequest);
+
 }

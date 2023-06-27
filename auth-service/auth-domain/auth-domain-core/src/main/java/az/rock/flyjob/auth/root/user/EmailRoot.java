@@ -15,7 +15,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
     private final EmailType type;
     private final String email;
     private final Boolean isEnableNotification;
-    private final Boolean isPrimary;
+    private Boolean isPrimary;
     private final Boolean isVerified;
     private final String verificationCode;
     private final ZonedDateTime verificationCodeExpireDate;
@@ -88,6 +88,11 @@ public class EmailRoot extends AggregateRoot<EmailID> {
 
     public Boolean isVerified() {
         return isVerified;
+    }
+
+    public EmailRoot changePrimary() {
+        this.isPrimary = Boolean.TRUE;
+        return this;
     }
 
     public String getVerificationCode() {
