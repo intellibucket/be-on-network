@@ -12,4 +12,8 @@ public interface AbstractCommandRepositoryAdapter<R> {
     default void update(R root){
         throw new UnsupportedOperationException();
     }
+
+    default void delete(R root){
+        throw new UnsupportedOperationException();
+    }
 }

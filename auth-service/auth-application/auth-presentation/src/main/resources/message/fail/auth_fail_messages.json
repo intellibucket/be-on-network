@@ -250,5 +250,14 @@
     "tr": " Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir kullanıcı adı seçin.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000029",
+    "az": " Bu əməliyyatı icra etmək üçün icazəniz yoxdur.",
+    "en": " You do not have permission to perform this operation.",
+    "ru": " У вас нет разрешения на выполнение этой операции.",
+    "tr": " Bu işlemi gerçekleştirmek için izniniz yok.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

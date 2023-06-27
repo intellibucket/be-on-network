@@ -128,6 +128,10 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         return Objects.hash(super.hashCode(), getEmail());
     }
 
+    public Boolean isOwned(UserID userID) {
+        return this.userID.equals(userID);
+    }
+
     public static final class Builder {
         private UserID userID;
         private EmailType type;

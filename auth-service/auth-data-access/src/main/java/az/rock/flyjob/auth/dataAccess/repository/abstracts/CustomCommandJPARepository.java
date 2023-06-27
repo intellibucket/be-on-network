@@ -55,7 +55,7 @@ public interface CustomCommandJPARepository<T> {
         if (entity instanceof BaseEntity baseEntity) {
             baseEntity.inActive();
             this.merge(entity);
-        }
+        }else throw new UnsupportedOperationException();
     }
 
     default <S extends T> void  removeAndFlush(S entity){
