@@ -7,12 +7,14 @@ import org.hibernate.engine.jdbc.spi.JdbcServices;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.internal.AbstractSharedSessionContract;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
 @NoRepositoryBean
+@Transactional
 public interface CustomCommandJPARepository<T> {
 
     EntityManager entityManager();

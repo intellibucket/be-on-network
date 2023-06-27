@@ -1,4 +1,6 @@
-package az.rock.flyjob.auth.exception;
+package az.rock.flyjob.auth.exception.email;
+
+import az.rock.flyjob.auth.exception.AuthDomainException;
 
 public class EmailAlreadyExistException extends AuthDomainException {
     public EmailAlreadyExistException() {

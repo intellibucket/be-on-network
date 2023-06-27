@@ -1,5 +1,6 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
+import az.rock.auth.domain.presentation.dto.request.EmailChangeRequest;
 import az.rock.auth.domain.presentation.dto.request.EmailCreateRequest;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractEmailDomainMapper;
 import az.rock.flyjob.auth.root.user.EmailRoot;
@@ -51,6 +52,25 @@ public class EmailDomainMapper implements AbstractEmailDomainMapper {
                 .isVerified(Boolean.FALSE)
                 .verificationCodeSendCount(BigInteger.ZERO)
                 .isSubscribedPromotions(Boolean.FALSE)
+                .build();
+    }
+
+    @Override
+    public EmailRoot mapToEmailRoot(EmailRoot oldEmail , EmailChangeRequest emailChangeRequest) {
+        return EmailRoot.Builder
+                .builder()
+                .uuid(oldEmail.getRootID())
+                .version(oldEmail.getVersion())
+                .processStatus(ProcessStatus.COMPLETED)
+                .rowStatus(RowStatus.ACTIVE)
+                .user(oldEmail.getUserId())
+                .type(emailChangeRequest.getType())
+                .email(emailChangeRequest.getEmail())
+                .isEnableNotification(oldEmail.isEnableNotification())
+                .isPrimary(oldEmail.isPrimary())
+                .isVerified(Boolean.FALSE)
+                .verificationCodeSendCount(BigInteger.ZERO)
+                .isSubscribedPromotions(oldEmail.isSubscribedPromotions())
                 .build();
     }
 }

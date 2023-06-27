@@ -8,7 +8,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractEmailDomainMapp
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractEmailCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
-import az.rock.flyjob.auth.exception.EmailAlreadyUsedException;
+import az.rock.flyjob.auth.exception.email.EmailAlreadyUsedException;
 import az.rock.flyjob.auth.service.abstracts.AbstractEmailDomainService;
 import org.springframework.stereotype.Component;
 

@@ -5,6 +5,7 @@ import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractEmailDataAccessMapper;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.lib.domain.id.EmailID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ public class EmailDataAccessMapper  implements AbstractEmailDataAccessMapper<Ema
                 .processStatus(entity.getProcessStatus())
                 .rowStatus(entity.getRowStatus())
                 .type(entity.getType())
+                .user(UserID.of(entity.getUser().getUuid()))
                 .email(entity.getEmail())
                 .isEnableNotification(entity.getIsEnableNotification())
                 .isPrimary(entity.getIsPrimary())

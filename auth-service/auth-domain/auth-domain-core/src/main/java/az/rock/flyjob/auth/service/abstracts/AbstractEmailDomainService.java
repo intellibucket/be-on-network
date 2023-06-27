@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AbstractEmailDomainService {
     void validateNewEmail(List<EmailRoot> existingEmails, EmailRoot newEmail);
+    void validateForChangeEmail(EmailRoot existingEmail, EmailRoot newEmail);
 }
