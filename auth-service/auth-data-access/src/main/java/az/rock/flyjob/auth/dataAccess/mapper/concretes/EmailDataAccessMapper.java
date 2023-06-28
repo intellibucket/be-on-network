@@ -51,7 +51,7 @@ public class EmailDataAccessMapper  implements AbstractEmailDataAccessMapper<Ema
                 .version(root.getVersion().value())
                 .accessModifier(root.getAccessModifier())
                 .type(root.getType())
-                .user(UserEntity.ofID(root.getUserId().getAbsoluteID()))
+                .user(UserEntity.referenceObject(root.getUserId().getAbsoluteID()))
                 .email(root.getEmail())
                 .isEnableNotification(root.isEnableNotification())
                 .isPrimary(root.isPrimary())

@@ -2,7 +2,6 @@ package az.rock.flyjob.auth.dataAccess.entity.user;
 
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
-import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.*;
 import jakarta.persistence.*;
@@ -75,7 +74,7 @@ public class UserEntity extends BaseEntity {
 
 
 
-    public static UserEntity ofID(UUID uuid){
+    public static UserEntity referenceObject(UUID uuid){
         return UserEntity.Builder.builder().uuid(uuid).build();
     }
 

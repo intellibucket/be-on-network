@@ -40,7 +40,7 @@ public class PasswordUpdateCommandHandler implements AbstractPasswordUpdateComma
 
     @Override
     public PasswordUpdatedEvent handlePasswordChanged(PasswordChangeRequest passwordChangeRequest) {
-        // FIXME: 28.06.23 
+        // FIXME: 28.06.23
         var currentUserId = this.securityContextHolder.currentUser();
         var currentPassword = this.passwordQueryRepositoryAdapter.findByPID(currentUserId);
         if (currentPassword.isPresent()) {

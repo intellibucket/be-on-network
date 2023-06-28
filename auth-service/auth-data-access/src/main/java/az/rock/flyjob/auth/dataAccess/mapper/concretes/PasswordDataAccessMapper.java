@@ -1,9 +1,11 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.entity.user.PasswordEntity;
+import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPasswordDataAccessMapper;
 import az.rock.flyjob.auth.root.user.PasswordRoot;
 import az.rock.lib.domain.id.PasswordID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,7 @@ public class PasswordDataAccessMapper implements AbstractPasswordDataAccessMappe
                         .rowStatus(entity.getRowStatus())
                         .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
                         .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
+                        .userID(UserID.of(entity.getUser().getUuid()))
                         .salt(entity.getSalt())
                         .hash(entity.getHash())
                         .build());
@@ -41,6 +44,7 @@ public class PasswordDataAccessMapper implements AbstractPasswordDataAccessMappe
                 .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
                 .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
                 .version(root.getVersion().value())
+                .user(UserEntity.referenceObject(root.getUserID().getAbsoluteID()))
                 .salt(root.getSalt())
                 .hash(root.getHash())
                 .build());
@@ -56,6 +60,7 @@ public class PasswordDataAccessMapper implements AbstractPasswordDataAccessMappe
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
                 .version(root.getVersion().value())
+                .user(UserEntity.referenceObject(root.getUserID().getAbsoluteID()))
                 .salt(root.getSalt())
                 .hash(root.getHash())
                 .build());

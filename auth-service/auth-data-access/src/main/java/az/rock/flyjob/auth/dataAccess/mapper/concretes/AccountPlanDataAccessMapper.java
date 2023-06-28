@@ -59,7 +59,7 @@ public class AccountPlanDataAccessMapper implements AbstractAccountPlanDataAcces
     public Optional<AccountPlanEntity> toNewEntity(AccountPlanRoot root) {
         var optionalRoot = Optional.ofNullable(root);
         if (optionalRoot.isEmpty()) return Optional.empty();
-        var userEntityID = UserEntity.ofID(root.getUserID().getAbsoluteID());
+        var userEntityID = UserEntity.referenceObject(root.getUserID().getAbsoluteID());
         return Optional.of(AccountPlanEntity.Builder
                 .builder()
                 .uuid(root.getRootID().getAbsoluteID())
