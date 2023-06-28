@@ -7,6 +7,7 @@ import org.hibernate.engine.jdbc.spi.JdbcServices;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.internal.AbstractSharedSessionContract;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -77,6 +78,7 @@ public interface CustomCommandJPARepository<T> {
             return null;
         });
     }
+
 
     <S extends T> S merge(S entity);
 
