@@ -17,4 +17,9 @@ public class EmailID  extends RootID<UUID> implements IdReference<UUID> {
     public static EmailID of(UUID value) {
         return new EmailID(value);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 }

@@ -90,6 +90,11 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         return isVerified;
     }
 
+    public EmailRoot changeUnPrimary() {
+        this.isPrimary = Boolean.FALSE;
+        return this;
+    }
+
     public EmailRoot changePrimary() {
         this.isPrimary = Boolean.TRUE;
         return this;

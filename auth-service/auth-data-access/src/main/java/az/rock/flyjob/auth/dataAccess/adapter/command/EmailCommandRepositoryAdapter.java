@@ -7,6 +7,7 @@ import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.email.Abstrac
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -41,5 +42,10 @@ public class EmailCommandRepositoryAdapter implements AbstractEmailCommandReposi
     public void delete(EmailRoot root) {
         var entity = this.emailDataAccessMapper.toEntity(root);
         entity.ifPresent(this.emailCommandCustomJPARepository::remove);
+    }
+
+    @Override
+    public void updateAll(List<EmailRoot> emailRoots) {
+        emailRoots.forEach(this::update);
     }
 }

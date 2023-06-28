@@ -8,10 +8,13 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.exception.email.EmailNotFoundException;
+import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractEmailDomainService;
 import az.rock.lib.domain.id.EmailID;
 import az.rock.lib.valueObject.SwitchCase;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
 
 @Component
 public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHandler {
@@ -64,11 +67,15 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
     public EmailUpdatedEvent handleEmailSetPrimary(EmailID emailID) {
         // FIXME: 27.06.23 
         var currentUserId = this.securityContextHolder.currentUser();
-        var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,emailID);
-        if(email.isPresent()) {
-            var updatedEmailRoot = this.emailDomainService.validateForSetPrimaryEmail(currentUserId, email.get());
-            this.emailCommandRepositoryAdapter.update(email.get());
-            return EmailUpdatedEvent.of(email.get());
+        var emails = this.emailQueryRepositoryAdapter.findAllMyEmails(currentUserId);
+        var changedEmail = emails.stream()
+                .map(EmailRoot::changeUnPrimary)
+                .filter(item->item.getRootID().equals(emailID))
+                .map(EmailRoot::changePrimary)
+                .findFirst();
+        if(changedEmail.isPresent()){
+            this.emailCommandRepositoryAdapter.updateAll(emails);
+            return EmailUpdatedEvent.of(changedEmail.get());
         }else throw new EmailNotFoundException();
     }
 
@@ -85,7 +92,7 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
 
     @Override
     public EmailUpdatedEvent handleEmailSubscribedPromotions(SwitchCase switchCase) {
-        // TODO: 27.06.23  
+        // TODO: 27.06.23
         return null;
     }
 }
