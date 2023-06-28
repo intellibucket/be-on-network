@@ -5,4 +5,5 @@ import az.rock.lib.domain.id.UserID;
 
 public interface AbstractPasswordDomainMapper {
     PasswordRoot generatePasswordRoot(UserID userID, String rawPassword);
+
 }

@@ -11,6 +11,8 @@ public interface AbstractSecurityContextHolder {
 
     Language currentLanguage();
 
+    Boolean accountIsNotLocked();
+
     Role currentRoleName();
 
     String currentUsername();

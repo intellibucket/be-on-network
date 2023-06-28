@@ -36,6 +36,12 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     public Language currentLanguage() {
         return Language.valueOf(this.testLanguage.toUpperCase());
     }
+
+    @Override
+    public Boolean accountIsNotLocked() {
+        return Boolean.FALSE;
+    }
+
     public Role currentRoleName() {
         return Role.valueOf(this.testRoleName);
     }
