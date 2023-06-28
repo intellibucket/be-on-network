@@ -80,19 +80,24 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
     }
 
     @Override
-    public EmailUpdatedEvent handleEmailEnableNotification(SwitchCase switchCase) {
-        // FIXME: 27.06.23 
+    public EmailUpdatedEvent handleEmailNotification(SwitchCase switchCase) {
         var currentUserId = this.securityContextHolder.currentUser();
         var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,EmailID.of(switchCase.getUuid()));
         if(email.isPresent()) {
-            this.emailCommandRepositoryAdapter.update(email.get());
+            EmailRoot changedEmail = this.emailDomainService.validateAndInitializeEmailNotification(currentUserId,email.get(), switchCase);
+            this.emailCommandRepositoryAdapter.update(changedEmail);
             return EmailUpdatedEvent.of(email.get());
         }else throw new EmailNotFoundException();
     }
 
     @Override
     public EmailUpdatedEvent handleEmailSubscribedPromotions(SwitchCase switchCase) {
-        // TODO: 27.06.23
-        return null;
+        var currentUserId = this.securityContextHolder.currentUser();
+        var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,EmailID.of(switchCase.getUuid()));
+        if(email.isPresent()) {
+            EmailRoot changedEmail = this.emailDomainService.validateAndInitializeEmailSubscribedPromotions(currentUserId, email.get(), switchCase);
+            this.emailCommandRepositoryAdapter.update(changedEmail);
+            return EmailUpdatedEvent.of(email.get());
+        }else throw new EmailNotFoundException();
     }
 }

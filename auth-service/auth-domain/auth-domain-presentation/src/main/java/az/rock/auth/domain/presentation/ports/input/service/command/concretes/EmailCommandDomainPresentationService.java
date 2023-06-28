@@ -58,7 +58,7 @@ public class EmailCommandDomainPresentationService implements AbstractEmailComma
 
     @Override
     public void switchEnableNotification(SwitchCase switchCase) {
-        EmailUpdatedEvent emailUpdatedEvent = this.emailUpdateCommandHandler.handleEmailEnableNotification(switchCase);
+        EmailUpdatedEvent emailUpdatedEvent = this.emailUpdateCommandHandler.handleEmailNotification(switchCase);
         this.publish(emailUpdatedEvent);
     }
 

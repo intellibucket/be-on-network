@@ -34,4 +34,18 @@ public class EmailDomainService implements AbstractEmailDomainService {
         if (!emailRoot.isOwned(currentUserId)) throw new AccessDeniedDomainException();
         return emailRoot.changePrimary();
     }
+
+    @Override
+    public EmailRoot validateAndInitializeEmailNotification(UserID currentUserId,
+                                                            EmailRoot emailRoot,
+                                                            SwitchCase switchCase) {
+        if (!emailRoot.isOwned(currentUserId)) throw new AccessDeniedDomainException();
+        return emailRoot.changeEmailNotification(switchCase);
+    }
+
+    @Override
+    public EmailRoot validateAndInitializeEmailSubscribedPromotions(UserID currentUserId, EmailRoot emailRoot, SwitchCase switchCase) {
+        if (!emailRoot.isOwned(currentUserId)) throw new AccessDeniedDomainException();
+        return emailRoot.changeEmailSubscribedPromotions(switchCase);
+    }
 }

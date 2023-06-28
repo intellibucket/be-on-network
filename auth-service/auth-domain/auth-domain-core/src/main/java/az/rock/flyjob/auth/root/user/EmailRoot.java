@@ -14,14 +14,14 @@ public class EmailRoot extends AggregateRoot<EmailID> {
     private final AccessModifier accessModifier;
     private final EmailType type;
     private final String email;
-    private final Boolean isEnableNotification;
+    private Boolean isEnableNotification;
     private Boolean isPrimary;
-    private final Boolean isVerified;
-    private final String verificationCode;
+    private Boolean isVerified;
+    private String verificationCode;
     private final ZonedDateTime verificationCodeExpireDate;
     private final ZonedDateTime verificationCodeSendDate;
     private final BigInteger verificationCodeSendCount;
-    private final Boolean isSubscribedPromotions;
+    private Boolean isSubscribedPromotions;
     private final ZonedDateTime subscribedDate;
     public EmailRoot(EmailID emailID,
                      Version version,
@@ -90,6 +90,21 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         return isVerified;
     }
 
+    public EmailRoot enableNotification() {
+        this.isEnableNotification = Boolean.TRUE;
+        return this;
+    }
+
+    public EmailRoot changeEmailNotification(SwitchCase switchCase) {
+        if (switchCase.isActive()) return enableNotification();
+        else return disableNotification();
+    }
+
+    public EmailRoot disableNotification() {
+        this.isEnableNotification = Boolean.FALSE;
+        return this;
+    }
+
     public EmailRoot changeUnPrimary() {
         this.isPrimary = Boolean.FALSE;
         return this;
@@ -140,6 +155,21 @@ public class EmailRoot extends AggregateRoot<EmailID> {
 
     public Boolean isOwned(UserID userID) {
         return this.userID.equals(userID);
+    }
+
+    public EmailRoot changeEmailSubscribedPromotions(SwitchCase switchCase) {
+        if (switchCase.isActive()) return enableSubscribedPromotions();
+        else return disableSubscribedPromotions();
+    }
+
+    public EmailRoot enableSubscribedPromotions() {
+        this.isSubscribedPromotions = Boolean.TRUE;
+        return this;
+    }
+
+    public EmailRoot disableSubscribedPromotions() {
+        this.isSubscribedPromotions = Boolean.FALSE;
+        return this;
     }
 
     public static final class Builder {

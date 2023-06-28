@@ -32,4 +32,12 @@ public class SwitchCase {
     public Boolean getActive() {
         return isActive;
     }
+
+    public Boolean isActive(){
+        return isActive;
+    }
+
+    public Boolean isInActive(){
+        return !isActive;
+    }
 }

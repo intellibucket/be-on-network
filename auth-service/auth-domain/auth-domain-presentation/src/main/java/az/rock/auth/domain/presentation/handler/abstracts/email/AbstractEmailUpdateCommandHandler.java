@@ -14,7 +14,7 @@ public interface AbstractEmailUpdateCommandHandler {
 
     EmailUpdatedEvent handleEmailSetPrimary(EmailID emailID);
 
-    EmailUpdatedEvent handleEmailEnableNotification(SwitchCase switchCase);
+    EmailUpdatedEvent handleEmailNotification(SwitchCase switchCase);
 
     EmailUpdatedEvent handleEmailSubscribedPromotions(SwitchCase switchCase);
 }

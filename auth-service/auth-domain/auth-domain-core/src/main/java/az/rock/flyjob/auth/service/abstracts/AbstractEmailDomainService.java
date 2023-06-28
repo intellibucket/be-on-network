@@ -13,4 +13,8 @@ public interface AbstractEmailDomainService {
     void validateForDeleteEmail(UserID userID,EmailRoot emailRoot);
 
     EmailRoot validateForSetPrimaryEmail(UserID currentUserId, EmailRoot emailRoot);
+
+    EmailRoot validateAndInitializeEmailNotification(UserID currentUserId,EmailRoot emailRoot, SwitchCase switchCase);
+
+    EmailRoot validateAndInitializeEmailSubscribedPromotions(UserID currentUserId, EmailRoot emailRoot, SwitchCase switchCase);
 }
