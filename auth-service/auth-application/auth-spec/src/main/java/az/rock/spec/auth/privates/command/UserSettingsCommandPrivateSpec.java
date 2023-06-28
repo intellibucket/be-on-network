@@ -8,21 +8,21 @@ import org.springframework.http.ResponseEntity;
 public interface UserSettingsCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> changeLanguage(Language language);
 
-    ResponseEntity<JSuccessResponse> isActiveDarkMode(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeDarkMode(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isActiveEmailNotification(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeEmailNotification(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isActiveSmsNotification(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeSmsNotification(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isActivePushNotification(Switch switcher);
+    ResponseEntity<JSuccessResponse> changePushNotification(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isActiveTwoFactorAuthentication(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeTwoFactorAuthentication(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isVisibleLocation(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeVisibleLocation(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isVisibleOnlineStatus(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeVisibleOnlineStatus(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isVisibleLastSeen(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeVisibleLastSeen(Switch switcher);
 
-    ResponseEntity<JSuccessResponse> isVisibleProfilePicture(Switch switcher);
+    ResponseEntity<JSuccessResponse> changeVisibleProfilePicture(Switch switcher);
 }
