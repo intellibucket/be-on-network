@@ -19,7 +19,7 @@ public class MinioFileStorageService implements AbstractFileStorageService {
 
     @Override
     public FileMetaData uploadFile(MultipartFileWrapper multipartFileWrapper) {
-        Path path = Paths.get("./uploads/pictures/profile/" + multipartFileWrapper.getFileName());
+        Path path = Paths.get("/image/profile/" + multipartFileWrapper.getFileName());
         try {
             var response = this.minioService.upload(path, multipartFileWrapper.getInputStream());
             return new FileMetaData( response.versionId(), response.etag(), response.bucket(), response.region());

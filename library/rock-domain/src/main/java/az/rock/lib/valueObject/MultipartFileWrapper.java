@@ -8,6 +8,10 @@ public final class MultipartFileWrapper {
         private final String contentType;
         private final InputStream content;
 
+        private UploadType uploadType;
+
+        private FileType fileType;
+
         public MultipartFileWrapper(String fileName, String contentType, InputStream content) {
             this.fileName = fileName;
             this.contentType = contentType;

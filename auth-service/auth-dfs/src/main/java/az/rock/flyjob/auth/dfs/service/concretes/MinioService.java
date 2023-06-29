@@ -22,7 +22,12 @@ public class MinioService implements AbstractMinioService {
     }
 
     private String generateFileName(String fileName) {
-        return String.valueOf(System.currentTimeMillis()).concat("_").concat(fileName);
+        var names = fileName.split("\\.");
+        return names[0]
+                .concat("_")
+                .concat(String.valueOf(System.currentTimeMillis()))
+                .concat(".")
+                .concat(names[1]);
     }
 
     @Override
@@ -31,7 +36,7 @@ public class MinioService implements AbstractMinioService {
             var args = PutObjectArgs
                     .builder()
                     .bucket(this.bucketName)
-                    .object(this.generateFileName(path.getFileName().toString()))
+                    .object(this.generateFileName(path.toFile().getAbsolutePath()))
                     .stream(inputStream, -1, 10485760)
                     .build();
             return this.minioClient.putObject(args);

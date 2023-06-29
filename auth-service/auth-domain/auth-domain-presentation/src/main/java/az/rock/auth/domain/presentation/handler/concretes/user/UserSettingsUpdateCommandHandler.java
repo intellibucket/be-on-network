@@ -41,6 +41,7 @@ public class UserSettingsUpdateCommandHandler implements AbstractUserSettingsUpd
         }else throw new UnknownSystemException();
     }
 
+    // TODO: 29.06.23 must be implement other methods
     @Override
     public UserSettingsUpdatedEvent handleChangeDarkMode(Switch switcher) {
         return null;
