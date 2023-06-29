@@ -99,4 +99,5 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .isVisibleResume(root.isVisibleResume())
                 .build());
     }
+
 }
