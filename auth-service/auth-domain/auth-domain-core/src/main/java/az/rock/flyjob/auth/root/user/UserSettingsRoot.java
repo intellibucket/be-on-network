@@ -11,31 +11,31 @@ import az.rock.lib.valueObject.Version;
 import java.time.ZonedDateTime;
 
 public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
-    private final UserID userID;
+    private UserID userID;
 
-    private final Language language;
+    private Language language;
 
-    private final Boolean isActiveDarkMode;
+    private Boolean isActiveDarkMode;
 
-    private final Boolean isActiveEmailNotification;
+    private Boolean isActiveEmailNotification;
 
-    private final Boolean isActiveSmsNotification;
+    private Boolean isActiveSmsNotification;
 
-    private final Boolean isActivePushNotification;
+    private Boolean isActivePushNotification;
 
-    private final Boolean isActiveTwoFactorAuthentication;
+    private Boolean isActiveTwoFactorAuthentication;
 
-    private final Boolean isVisibleLocation;
+    private Boolean isVisibleLocation;
 
-    private final Boolean isVisibleOnlineStatus;
+    private Boolean isVisibleOnlineStatus;
 
-    private final Boolean isVisibleLastSeen;
+    private Boolean isVisibleLastSeen;
 
-    private final Boolean isVisibleProfilePicture;
+    private Boolean isVisibleProfilePicture;
 
-    private final Boolean isVisibleEmail;
+    private Boolean isVisibleEmail;
 
-    private final Boolean isVisibleResume;
+    private Boolean isVisibleResume;
 
     private UserSettingsRoot(Builder builder) {
         super(builder.uuid, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
@@ -106,7 +106,11 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
         return isVisibleResume;
     }
 
-    public static final class Builder {
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public static class Builder {
         public UserSettingsID uuid;
         public Version version;
         public ProcessStatus processStatus;

@@ -5,4 +5,6 @@ import az.rock.lib.domain.id.UserID;
 
 public interface AbstractUserSettingsDomainMapper {
     UserSettingsRoot defaultUserSettingsRoot(UserID userID);
+
+
 }

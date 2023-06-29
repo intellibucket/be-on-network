@@ -1,5 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
+import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.entity.user.UserSettingsEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserSettingsDataAccessMapper;
 import az.rock.flyjob.auth.root.user.UserSettingsRoot;
@@ -18,23 +19,30 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
     public Optional<UserSettingsRoot> toRoot(UserSettingsEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
         if (optionalEntity.isEmpty()) return Optional.empty();
-        return Optional.of(UserSettingsRoot.Builder
-                .builder()
-                .userSettingsID(UserSettingsID.of(entity.getUuid()))
-                .userID(UserID.of(entity.getUser().getUuid()))
-                .language(entity.getLanguage())
-                .isActiveDarkMode(entity.getIsActiveDarkMode())
-                .isActiveEmailNotification(entity.getIsActiveEmailNotification())
-                .isActiveSmsNotification(entity.getIsActiveSmsNotification())
-                .isActivePushNotification(entity.getIsActivePushNotification())
-                .isActiveTwoFactorAuthentication(entity.getIsActiveTwoFactorAuthentication())
-                .isVisibleLocation(entity.getIsVisibleLocation())
-                .isVisibleOnlineStatus(entity.getIsVisibleOnlineStatus())
-                .isVisibleLastSeen(entity.getIsVisibleLastSeen())
-                .isVisibleProfilePicture(entity.getIsVisibleProfilePicture())
-                .isVisibleEmail(entity.getIsVisibleEmail())
-                .isVisibleResume(entity.getIsVisibleResume())
-                .build());
+        return Optional.of
+                (UserSettingsRoot.Builder
+                        .builder()
+                        .userSettingsID(UserSettingsID.of(entity.getUuid()))
+                        .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
+                        .lastModifiedDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
+                        .version(entity.getVersion())
+                        .processStatus(entity.getProcessStatus())
+                        .rowStatus(entity.getRowStatus())
+                        .userID(UserID.of(entity.getUser().getUuid()))
+                        .language(entity.getLanguage())
+                        .isActiveDarkMode(entity.getIsActiveDarkMode())
+                        .isActiveEmailNotification(entity.getIsActiveEmailNotification())
+                        .isActiveSmsNotification(entity.getIsActiveSmsNotification())
+                        .isActivePushNotification(entity.getIsActivePushNotification())
+                        .isActiveTwoFactorAuthentication(entity.getIsActiveTwoFactorAuthentication())
+                        .isVisibleLocation(entity.getIsVisibleLocation())
+                        .isVisibleOnlineStatus(entity.getIsVisibleOnlineStatus())
+                        .isVisibleLastSeen(entity.getIsVisibleLastSeen())
+                        .isVisibleProfilePicture(entity.getIsVisibleProfilePicture())
+                        .isVisibleEmail(entity.getIsVisibleEmail())
+                        .isVisibleResume(entity.getIsVisibleResume())
+                        .build()
+        );
     }
 
     @Override
@@ -49,6 +57,7 @@ public class UserSettingsDataAccessMapper implements AbstractUserSettingsDataAcc
                 .version(root.getVersionValue())
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
+                .user(UserEntity.referenceObject(root.getUserID().getAbsoluteID()))
                 .language(root.getLanguage())
                 .isActiveDarkMode(root.isActiveDarkMode())
                 .isActiveEmailNotification(root.isActiveEmailNotification())
