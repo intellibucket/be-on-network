@@ -11,8 +11,8 @@ public class BeanConfig {
     private String accessKey = "Hzrrn6bhdoKl5rT33NVU";
     private String secretKey = "yV8pLtcGIpDQ4tkaa91OlV11EKJvX8XzSBvst87l";
 
-    @Bean
-    public MinioClient minioClient() {
+    @Bean(name = "authMinioClient")
+    public MinioClient authMinioClient() {
         return MinioClient.builder()
                 .endpoint(this.minioUrl)
                 .credentials(this.accessKey, this.secretKey)

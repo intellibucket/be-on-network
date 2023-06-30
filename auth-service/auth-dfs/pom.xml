@@ -25,5 +25,15 @@
             <groupId>az.rock.lib</groupId>
             <artifactId>rock-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>az.rock.lib</groupId>
+            <artifactId>rock-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>az.rock.flyjob.auth</groupId>
+            <artifactId>auth-domain-presentation</artifactId>
+        </dependency>
     </dependencies>
 </project>

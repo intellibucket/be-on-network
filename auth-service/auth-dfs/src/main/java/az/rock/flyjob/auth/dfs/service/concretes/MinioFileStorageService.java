@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.dfs.service.concretes;
 
-import az.rock.flyjob.auth.dfs.service.abstracts.AbstractFileStorageService;
+import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
+import az.rock.flyjob.auth.dfs.service.abstracts.AbstractMinioService;
 import az.rock.lib.valueObject.FileMetaData;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import io.minio.errors.MinioException;
@@ -10,10 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Service
-public class MinioFileStorageService implements AbstractFileStorageService {
-    private final MinioService minioService;
+public class MinioFileStorageService implements AbstractFileStorageAdapter {
+    private final AbstractMinioService minioService;
 
-    public MinioFileStorageService(MinioService minioService) {
+    public MinioFileStorageService(AbstractMinioService minioService) {
         this.minioService = minioService;
     }
 
