@@ -1,11 +1,9 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts.query;
 
 import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -20,7 +18,7 @@ public interface DetailQueryJPARepository extends JpaRepository<DetailEntity, UU
 
     @Query("SELECT row FROM DetailEntity row WHERE row.uuid = :detailID" +
             " AND row = 'ACTIVE'")
-    Optional<DetailEntity> findById(@Param("detailID") @NotNull UUID detailID);
+    Optional<DetailEntity> findById(@Param("detailID") UUID detailID);
 
     @Query("SELECT row FROM DetailEntity row " +
             "WHERE row.uuid = :detailID AND row.rowStatus = 'ACTIVE' " +

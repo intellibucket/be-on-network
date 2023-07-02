@@ -1,15 +1,24 @@
 package az.rock.flyjob.auth.config;
 
 import io.minio.MinioClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeanConfig {
-    private String minioUrl = "http://localhost:9000";
-    private String miniobucket = "auth-bucket";
-    private String accessKey = "Hzrrn6bhdoKl5rT33NVU";
-    private String secretKey = "yV8pLtcGIpDQ4tkaa91OlV11EKJvX8XzSBvst87l";
+
+    @Value("${spring.minio.url}")
+    private String minioUrl;
+
+    @Value("${spring.minio.bucket}")
+    private String miniobucket;
+
+    @Value("${spring.minio.access-key}")
+    private String accessKey;
+
+    @Value("${spring.minio.secret-key}")
+    private String secretKey;
 
     @Bean(name = "authMinioClient")
     public MinioClient authMinioClient() {

@@ -7,13 +7,11 @@ import az.rock.flyjob.auth.event.user.UserUpdatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.valueObject.SagaRoot;
-import lombok.extern.slf4j.Slf4j;
 import model.auth.UserCreatedEventPayload;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class UserMessagePublisher implements AbstractUserMessagePublisher {
     private final KafkaTemplate<String, SagaRoot<UserCreatedEventPayload>>userCreatedEventKafkaTemplate;
 
@@ -38,7 +36,7 @@ public class UserMessagePublisher implements AbstractUserMessagePublisher {
     }
 
     public void publishUpdatedEvent(SagaRoot<AbstractDomainEvent<UserRoot>> sagaRoot) {
-        log.info("Publish UserUpdatedEvent to Kafka with Saga ID : {}", sagaRoot.getSagaID());
+        //log.info("Publish UserUpdatedEvent to Kafka with Saga ID : {}", sagaRoot.getSagaID());
     }
 
     @Override

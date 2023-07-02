@@ -10,11 +10,9 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPa
 import az.rock.flyjob.auth.event.PasswordUpdatedEvent;
 import az.rock.flyjob.auth.root.user.PasswordProxyRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPasswordDomainService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class PasswordUpdateCommandHandler implements AbstractPasswordUpdateCommandHandler {
     private final AbstractSecurityContextHolder securityContextHolder;
 
