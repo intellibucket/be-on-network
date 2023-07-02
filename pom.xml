@@ -51,6 +51,7 @@
         <module>interview-service</module>
         <module>authorization-service</module>
         <module>rapid-log-service</module>
+        <module>image-processor-service</module>
     </modules>
 
     <properties>
