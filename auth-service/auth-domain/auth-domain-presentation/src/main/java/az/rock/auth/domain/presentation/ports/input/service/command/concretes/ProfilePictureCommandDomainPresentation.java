@@ -3,7 +3,12 @@ package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 import az.rock.auth.domain.presentation.dto.request.PictureQueryRequest;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractProfilePictureCommandDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
-import az.rock.lib.valueObject.MultipartFileWrapper;
+import az.rock.auth.domain.presentation.ports.output.publisher.AbstractProfilePictureMessagePublisher;
+import az.rock.flyjob.auth.event.user.ProfilePictureCreatedEvent;
+import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
+import az.rock.lib.domain.id.ProfilePictureID;
+import az.rock.lib.util.GDateTime;
+import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -12,15 +17,31 @@ import java.util.UUID;
 public class ProfilePictureCommandDomainPresentation implements AbstractProfilePictureCommandDomainPresentation {
 
     private final AbstractFileStorageAdapter fileStorageService;
+    private final AbstractProfilePictureMessagePublisher profilePictureMessagePublisher;
 
-    public ProfilePictureCommandDomainPresentation(AbstractFileStorageAdapter fileStorageService) {
+    public ProfilePictureCommandDomainPresentation(AbstractFileStorageAdapter fileStorageService,
+                                                   AbstractProfilePictureMessagePublisher profilePictureMessagePublisher) {
         this.fileStorageService = fileStorageService;
+        this.profilePictureMessagePublisher = profilePictureMessagePublisher;
     }
 
     @Override
     public UUID uploadProfilePicture(MultipartFileWrapper file) {
         var result = this.fileStorageService.uploadFile(file);
-        return null;
+        var pictureRoot = ProfilePictureRoot.Builder
+                .builder()
+                .id(ProfilePictureID.of(UUID.randomUUID()))
+                .accessModifier(AccessModifier.PUBLIC)
+                .rowStatus(RowStatus.ACTIVE)
+                .processStatus(ProcessStatus.PROCESSING)
+                .createdDate(GDateTime.toZonedDateTime(GDateTime.of()))
+                .version(Version.ONE)
+                .modificationDate(GDateTime.toZonedDateTime(GDateTime.of()))
+                .fileFormat("jpg")
+                .build();
+        var event = ProfilePictureCreatedEvent.of(pictureRoot);
+        this.profilePictureMessagePublisher.publish(SagaRoot.of(event));
+        return UUID.randomUUID();
     }
 
     @Override

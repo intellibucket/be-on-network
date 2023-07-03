@@ -5,4 +5,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProfilePictureKafkaListener implements AbstractProfilePictureListener {
+
 }

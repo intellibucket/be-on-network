@@ -1,6 +1,7 @@
 package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @ValueObject
 public record Version(Long value) {
@@ -24,10 +25,12 @@ public record Version(Long value) {
         return new Version(1L);
     }
 
+    @JsonIgnore
     public boolean isOne() {
         return value == 1L;
     }
 
+    @JsonIgnore
     public boolean isNotOne() {
         return value != 1L;
     }

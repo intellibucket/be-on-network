@@ -1,8 +1,9 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.ZonedDateTime;
 
@@ -14,6 +15,8 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
     private ZonedDateTime createdDate;
     private ZonedDateTime modificationDate;
 
+
+    @JsonIgnore
     public Boolean isNull() {
         return true;
     }
@@ -56,6 +59,7 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
 
 
     @Override
+    @JsonIgnore
     public ID getRootID() {
         return super.getRootID();
     }
@@ -85,55 +89,68 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
     }
 
 
+    @JsonIgnore
     public Boolean sameIdentityAs(AggregateRoot<ID> other) {
         return this.getRootID().equals(other.getRootID());
     }
 
+    @JsonIgnore
     public Boolean sameVersionAs(AggregateRoot<ID> other) {
         return this.getVersionValue().equals(other.getVersionValue());
     }
 
+    @JsonIgnore
     public Boolean sameVersionAs(Long otherVersion) {
         return this.getVersionValue().equals(otherVersion);
     }
 
+    @JsonIgnore
     public Boolean isActive() {
         return this.rowStatus.isActive();
     }
 
+    @JsonIgnore
     public Boolean isInactive() {
         return this.rowStatus.isInactive();
     }
 
+    @JsonIgnore
     public Boolean isDeleted() {
         return this.rowStatus.isDeleted();
     }
 
 
+    @JsonIgnore
     public Boolean isOnWaiting() {
         return this.processStatus.isOnWaiting();
     }
 
+    @JsonIgnore
     public Boolean isProcessing() {
         return this.processStatus.isProcessing();
     }
 
+    @JsonIgnore
     public Boolean isCompleted() {
         return this.processStatus.isCompleted();
     }
 
+    @JsonIgnore
     public Boolean isFailed() {
         return this.processStatus.isFailed();
     }
 
+    @JsonIgnore
     public Boolean isCancelled() {
         return this.processStatus.isCancelled();
     }
 
+    @JsonIgnore
     public Boolean isCancelledBySystem() {
         return this.processStatus.isCancelledBySystem();
     }
 
+    @JsonIgnore
     public Boolean isCancelling() {
         return this.processStatus.isCancelling();
     }

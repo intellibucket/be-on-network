@@ -38,6 +38,7 @@ public class RootID <ID> {
         return Objects.hash(uuid);
     }
 
+    @JsonIgnore
     public Boolean isEmpty(){
         return uuid == null;
     }
