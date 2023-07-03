@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.messaging;
 
-import az.rock.auth.domain.presentation.ports.output.message.AbstractEmailMessagePublisher;
+import az.rock.auth.domain.presentation.ports.output.publisher.AbstractEmailMessagePublisher;
 import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
 import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.root.user.EmailRoot;

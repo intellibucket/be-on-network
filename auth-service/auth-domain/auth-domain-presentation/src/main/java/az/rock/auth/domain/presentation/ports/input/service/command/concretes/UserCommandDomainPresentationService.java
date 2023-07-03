@@ -6,7 +6,7 @@ import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserCreat
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.outbox.abstracts.AbstractUserOutboxInputPort;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
-import az.rock.auth.domain.presentation.ports.output.message.AbstractUserMessagePublisher;
+import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
 import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
 import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
 import az.rock.lib.valueObject.Gender;

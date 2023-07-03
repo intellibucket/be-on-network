@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractAccountPlanUpgradeCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.outbox.abstracts.AbstractAccountPlanOutboxInputPort;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractAccountPlanCommandDomainPresentationService;
-import az.rock.auth.domain.presentation.ports.output.message.AbstractAccountPlanMessagePublisher;
+import az.rock.auth.domain.presentation.ports.output.publisher.AbstractAccountPlanMessagePublisher;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractAccountPlanQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.UpgradedAccountPlanEvent;
 import az.rock.lib.valueObject.AccountPlanType;

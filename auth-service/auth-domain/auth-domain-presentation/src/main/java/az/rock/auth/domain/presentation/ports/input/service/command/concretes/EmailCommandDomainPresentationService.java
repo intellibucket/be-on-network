@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.dto.request.EmailCreateRequest;
 import az.rock.auth.domain.presentation.handler.abstracts.email.AbstractEmailCreateCommandHandler;
 import az.rock.auth.domain.presentation.handler.abstracts.email.AbstractEmailUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractEmailCommandDomainPresentationService;
-import az.rock.auth.domain.presentation.ports.output.message.AbstractEmailMessagePublisher;
+import az.rock.auth.domain.presentation.ports.output.publisher.AbstractEmailMessagePublisher;
 import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
 import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.root.user.EmailRoot;
