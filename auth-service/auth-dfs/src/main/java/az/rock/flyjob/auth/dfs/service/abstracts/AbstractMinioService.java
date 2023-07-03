@@ -8,4 +8,6 @@ import java.nio.file.Path;
 
 public interface AbstractMinioService {
     ObjectWriteResponse upload(Path path, InputStream inputStream) throws MinioException;
+
+    byte[] get(String path);
 }

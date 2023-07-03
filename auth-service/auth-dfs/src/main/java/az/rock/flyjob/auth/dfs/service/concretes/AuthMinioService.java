@@ -2,15 +2,16 @@ package az.rock.flyjob.auth.dfs.service.concretes;
 
 import az.rock.flyjob.auth.dfs.service.abstracts.AbstractMinioService;
 import az.rock.lib.util.DFSUtil;
-import io.minio.MinioClient;
-import io.minio.ObjectWriteResponse;
-import io.minio.PutObjectArgs;
-import io.minio.errors.MinioException;
+import io.minio.*;
+import io.minio.errors.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 @Component
 public class AuthMinioService implements AbstractMinioService {
@@ -34,6 +35,24 @@ public class AuthMinioService implements AbstractMinioService {
                     .build();
             return this.minioClient.putObject(args);
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public byte[] get(String path){
+        try {
+            var response = this.minioClient.getObject(
+                    GetObjectArgs
+                            .builder()
+                            .bucket(this.bucketName)
+                            .object(path)
+                            .build()
+            );
+            return response.readAllBytes();
+        } catch (ErrorResponseException | InsufficientDataException | InternalException | InvalidKeyException |
+                 InvalidResponseException | NoSuchAlgorithmException | IOException | ServerException |
+                 XmlParserException e) {
             throw new RuntimeException(e);
         }
     }

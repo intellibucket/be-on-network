@@ -1,5 +1,6 @@
 package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
+import az.rock.auth.domain.presentation.dto.request.PictureQueryRequest;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractProfilePictureCommandDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.lib.valueObject.MultipartFileWrapper;
@@ -21,4 +22,12 @@ public class ProfilePictureCommandDomainPresentation implements AbstractProfileP
         var result = this.fileStorageService.uploadFile(file);
         return null;
     }
+
+    @Override
+    public byte[] get(PictureQueryRequest request) {
+        var response = this.fileStorageService.get(request.path());
+        return new byte[0];
+    }
+
+
 }
