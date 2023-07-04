@@ -17,27 +17,47 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.intellibucket.flyjob.ws</groupId>
-                <artifactId>ip-dfs</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>com.intellibucket.flyjob.ws</groupId>
-                <artifactId>ip-domain-core</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>com.intellibucket.flyjob.ws</groupId>
-                <artifactId>ip-domain-presentation</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>com.intellibucket.flyjob.ws</groupId>
-                <artifactId>ip-messaging</artifactId>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>com.intellibucket.flyjob.ws</groupId>-->
+<!--                <artifactId>ip-dfs</artifactId>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.intellibucket.flyjob.ws</groupId>-->
+<!--                <artifactId>ip-domain-core</artifactId>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.intellibucket.flyjob.ws</groupId>-->
+<!--                <artifactId>ip-domain-presentation</artifactId>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.intellibucket.flyjob.ws</groupId>-->
+<!--                <artifactId>ip-messaging</artifactId>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
     <dependencies>
+        <dependency>
+            <groupId>com.intellibucket.flyjob.ws</groupId>
+            <artifactId>ip-dfs</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.intellibucket.flyjob.ws</groupId>
+            <artifactId>ip-domain-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.intellibucket.flyjob.ws</groupId>
+            <artifactId>ip-domain-presentation</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.intellibucket.flyjob.ws</groupId>
+            <artifactId>ip-messaging</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>az.rock.spring</groupId>
             <artifactId>rock-spring-ms-core</artifactId>

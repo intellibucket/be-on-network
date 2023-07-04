@@ -7,6 +7,7 @@ import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.valueObject.SagaRoot;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import model.auth.ProfilePictureCreatedPayload;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +26,9 @@ public class ProfilePictureMessagePublisher implements AbstractProfilePictureMes
     @Override
     public void publish(SagaRoot<AbstractDomainEvent<ProfilePictureRoot>> sagaRoot) {
         try {
-            var message = objectMapper.convertValue(sagaRoot, JsonNode.class);
+            var root = sagaRoot.getData().getRoot();
+            var payload = SagaRoot.of(ProfilePictureCreatedPayload.of(root.getRootID().getRootID(), root.getRootID().getRootID(), "jpg"));
+            var message = objectMapper.convertValue(payload, JsonNode.class);
             this.kafkaTemplate.send("auth.profilePicture.created", message);
         } catch (Exception e) {
             throw new RuntimeException(e);

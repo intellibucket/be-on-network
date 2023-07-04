@@ -9,4 +9,13 @@ public record ProfilePictureCreatedPayload(UUID userUUID, UUID pictureUUID, Stri
     public static ProfilePictureCreatedPayload of(UUID userUUID, UUID pictureUUID, String dfsPath) {
         return new ProfilePictureCreatedPayload(userUUID, pictureUUID, dfsPath);
     }
+
+    @Override
+    public String toString() {
+        return "ProfilePictureCreatedPayload{" +
+                "userUUID=" + userUUID +
+                ", pictureUUID=" + pictureUUID +
+                ", dfsPath='" + dfsPath + '\'' +
+                '}';
+    }
 }
