@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.messaging;
+package az.rock.flyjob.auth.messaging.publisher;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
 import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
