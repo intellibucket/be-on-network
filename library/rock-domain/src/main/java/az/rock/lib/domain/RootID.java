@@ -6,9 +6,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class RootID <ID> {
-    private final ID uuid;
+    private ID uuid;
 
-    protected RootID(ID value) {
+    public RootID() {}
+
+    public RootID(ID value) {
         this.uuid = value;
     }
 
@@ -40,6 +42,10 @@ public class RootID <ID> {
 
     @JsonIgnore
     public Boolean isEmpty(){
-        return uuid == null;
+        return this.uuid == null;
+    }
+
+    public void setUuid(ID uuid) {
+        this.uuid = uuid;
     }
 }

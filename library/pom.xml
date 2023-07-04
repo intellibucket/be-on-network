@@ -24,7 +24,6 @@
         <module>rock-payload</module>
         <module>rock-domain</module>
         <module>validator4j</module>
-        <module>ib-kafka</module>
     </modules>
 
     <properties>

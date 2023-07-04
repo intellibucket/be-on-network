@@ -20,8 +20,14 @@ public class ProfilePictureKafkaListener implements AbstractProfilePictureListen
     @Override
     @KafkaListener(topics = "auth.profilePicture.created",groupId = "image-processor-service")
     public void listen(JsonNode record) {
+        var payload = this.convertToSagaRoot(record);
+    }
+
+
+    private SagaRoot<ProfilePictureCreatedPayload> convertToSagaRoot(JsonNode record) {
         var model = objectMapper.convertValue(record, SagaRoot.class);
-        var payload = (ProfilePictureCreatedPayload) model.getData();
-        System.out.println(payload.toString());
+        var payloadObject = model.getData();
+        var payload = this.objectMapper.convertValue(payloadObject, ProfilePictureCreatedPayload.class);
+        return SagaRoot.replace(model, payload);
     }
 }

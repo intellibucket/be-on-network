@@ -9,7 +9,11 @@ import java.util.UUID;
 public class SagaID extends RootID<UUID> implements IdReference<UUID> {
     public static final SagaID NULL = new SagaID(null);
 
-    protected SagaID(UUID value) {
+    public SagaID() {
+        super();
+    }
+
+    public SagaID(UUID value) {
         super(value);
     }
 

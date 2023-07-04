@@ -18,6 +18,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/auth-service/auth-data-access/auth-dfs/pom.xml" />
+        <option value="$PROJECT_DIR$/library/ib-kafka/pom.xml" />
       </set>
     </option>
   </component>
