@@ -33,9 +33,4 @@ public class AuthControllerAdvice {
         return ResponseEntity.badRequest().body(new JFailResponse(message));
     }
 
-
-    @ExceptionHandler(AuthValidationException.class)
-    public ResponseEntity<JFailResponse> handleException(AuthValidationException exception) {
-        return ResponseEntity.badRequest().body(new JFailResponse(exception.getMessage()));
-    }
 }

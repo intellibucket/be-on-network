@@ -5,13 +5,16 @@ import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import az.rock.spec.auth.privates.command.UserCommandPrivateSpec;
+import com.intellibucket.ws.validation.annotation.GPattern;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/command/user",produces = MediaType.APPLICATION_JSON_VALUE)
+@Validated
 public class UserCommandPrivateController implements UserCommandPrivateSpec {
 
     private final AbstractUserCommandDomainPresentationService userCommandDomainPresentationService;
@@ -37,7 +40,8 @@ public class UserCommandPrivateController implements UserCommandPrivateSpec {
 
     @Override
     @PutMapping("/change-username")
-    public ResponseEntity<JSuccessResponse> changeUsername(@RequestBody String username) {
+    public ResponseEntity<JSuccessResponse> changeUsername
+            (@RequestBody String username) {
         this.userCommandDomainPresentationService.changeUsername(username);
         return ResponseEntity.ok(new JSuccessResponse());
     }

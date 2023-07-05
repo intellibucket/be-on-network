@@ -8,10 +8,10 @@ import java.lang.annotation.*;
 
 @Documented
 @Constraint(validatedBy = PatternValidator.class)
-@Target( { ElementType.FIELD })
+@Target( { ElementType.FIELD, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface GPattern {
-    String message() default "Invalid phone number";
+    String message() default "F0000000001";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     String pattern() default "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$";
