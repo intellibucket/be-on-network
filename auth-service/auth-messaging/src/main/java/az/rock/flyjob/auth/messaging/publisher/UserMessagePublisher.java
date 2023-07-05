@@ -7,16 +7,21 @@ import az.rock.flyjob.auth.event.user.UserUpdatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.valueObject.SagaRoot;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.auth.UserCreatedEventPayload;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMessagePublisher implements AbstractUserMessagePublisher {
-    private final KafkaTemplate<String, SagaRoot<UserCreatedEventPayload>>userCreatedEventKafkaTemplate;
+    private final KafkaTemplate<String, JsonNode>userCreatedEventKafkaTemplate;
+    private final ObjectMapper objectMapper;
 
-    public UserMessagePublisher(KafkaTemplate<String, SagaRoot<UserCreatedEventPayload>> userCreatedEventKafkaTemplate) {
+    public UserMessagePublisher(KafkaTemplate<String, JsonNode> userCreatedEventKafkaTemplate,
+                                ObjectMapper objectMapper) {
         this.userCreatedEventKafkaTemplate = userCreatedEventKafkaTemplate;
+        this.objectMapper = objectMapper;
     }
 
 
@@ -24,7 +29,8 @@ public class UserMessagePublisher implements AbstractUserMessagePublisher {
         var root = sagaRoot.getData().getRoot();
         var payload = UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(), root.getUserType());
         var wrappedPayload = new SagaRoot<>(sagaRoot.getSagaID(),sagaRoot.getSagaStatus(),sagaRoot.getTime(),payload);
-        this.userCreatedEventKafkaTemplate.send("job-seeker-created", wrappedPayload);
+        var record =this.objectMapper.convertValue(wrappedPayload, JsonNode.class);
+        this.userCreatedEventKafkaTemplate.send("job-seeker-created", record);
     }
 
 
@@ -32,7 +38,8 @@ public class UserMessagePublisher implements AbstractUserMessagePublisher {
         var root = sagaRoot.getData().getRoot();
         var payload = UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(), root.getUserType());
         var wrappedPayload = new SagaRoot<>(sagaRoot.getSagaID(),sagaRoot.getSagaStatus(),sagaRoot.getTime(),payload);
-        this.userCreatedEventKafkaTemplate.send("company-created", wrappedPayload);
+        var record =this.objectMapper.convertValue(wrappedPayload, JsonNode.class);
+        this.userCreatedEventKafkaTemplate.send("company-created", record);
     }
 
     public void publishUpdatedEvent(SagaRoot<AbstractDomainEvent<UserRoot>> sagaRoot) {
