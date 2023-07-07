@@ -3,24 +3,30 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+    <changeSet id="create-auth-db" author="Vugar Mammadli">
+        <sql>
+            CREATE DATABASE IF NOT EXISTS auth_db
+        </sql>
+    </changeSet>
+
     <changeSet id="create-auth-schema" author="Vugar Mammadli">
         <sql>
-            CREATE SCHEMA IF NOT EXISTS auth;
+            CREATE SCHEMA IF NOT EXISTS auth
         </sql>
     </changeSet>
     <changeSet id="create-report-schema" author="Vugar Mammadli">
         <sql>
-            CREATE SCHEMA IF NOT EXISTS report;
+            CREATE SCHEMA IF NOT EXISTS report
         </sql>
     </changeSet>
     <changeSet id="create-network-schema" author="Vugar Mammadli">
         <sql>
-            CREATE SCHEMA IF NOT EXISTS network;
+            CREATE SCHEMA IF NOT EXISTS network
         </sql>
     </changeSet>
     <changeSet id="create-outbox-schema" author="Vugar Mammadli">
         <sql>
-            CREATE SCHEMA IF NOT EXISTS outbox;
+            CREATE SCHEMA IF NOT EXISTS outbox
         </sql>
     </changeSet>
 </databaseChangeLog>
