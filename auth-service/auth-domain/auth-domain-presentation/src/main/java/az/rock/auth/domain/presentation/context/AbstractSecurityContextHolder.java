@@ -4,10 +4,11 @@ import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Role;
 
-import java.util.UUID;
-
 public interface AbstractSecurityContextHolder {
+
     UserID currentUser();
+
+    UserID availableUser();
 
     Language currentLanguage();
 

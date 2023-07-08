@@ -11,7 +11,6 @@ import az.rock.lib.domain.id.EmailID;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,7 +31,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
 
     @Override
     public EmailPrivateModelResponse queryMyEmailById(UUID uuid) {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var optionalEmail = this.queryEmailRepositoryAdapter
                 .findMyEmailByID(currentUserId, EmailID.of(uuid));
         return optionalEmail.map(EmailPrivateModelResponse::of)
@@ -46,7 +45,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
         if (optionalEmail.isEmpty()) throw new AuthDomainException("F0000000011");
         var emailRoot = optionalEmail.get();
         var response = EmailClientModelResponse.of(emailRoot);
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var targetUserId = emailRoot.getUserId();
         var optionalNetwork =
                 this.queryNetworkRepositoryAdapter.findNetworkRelationByBothOfUserIDs(currentUserId, targetUserId);
@@ -59,7 +58,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
 
     @Override
     public List<EmailPrivateModelResponse> queryMyAllEmails() {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var optionalEmails = this.queryEmailRepositoryAdapter
                 .findAllMyEmails(currentUserId);
         var responseList =  optionalEmails.stream()
@@ -71,7 +70,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
 
     @Override
     public List<UUID> queryMyAllEmailsID() {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var optionalEmails = this.queryEmailRepositoryAdapter
                 .findAllMyEmailsID(currentUserId);
         var responseList =  optionalEmails.stream()

@@ -64,6 +64,6 @@ public class AccountPlanCommandDomainPresentationService implements AbstractAcco
 
     @Override
     public void reportBug(CustomBugReport report) {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
     }
 }

@@ -25,7 +25,7 @@ public class PhoneNumberQueryDomainPresentationService implements AbstractPhoneN
 
     @Override
     public PhoneNumberPrivateModelResponse queryOwnById(UUID phoneNumberUUID) {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         var response = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUserID, PhoneNumberID.of(phoneNumberUUID));
         return   response
                 .map(PhoneNumberPrivateModelResponse::of)

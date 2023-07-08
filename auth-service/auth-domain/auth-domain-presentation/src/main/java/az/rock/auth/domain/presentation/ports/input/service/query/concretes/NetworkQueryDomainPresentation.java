@@ -4,7 +4,6 @@ import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractNetworkQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class NetworkQueryDomainPresentation implements AbstractNetworkQueryDomai
 
     @Override
     public List<UUID> findMyNetworks() {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         return this.networkQueryRepositoryAdapter.findMyNetworks(currentUserID)
                         .stream()
                         .filter(NetworkRelationRoot::hasNetwork)
@@ -35,7 +34,7 @@ public class NetworkQueryDomainPresentation implements AbstractNetworkQueryDomai
 
     @Override
     public List<UUID> findInMyNetworkPendingRequests() {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         return this.networkQueryRepositoryAdapter.findInMyNetworkPendingRequests(currentUserID)
                 .stream()
                 .filter(NetworkRelationRoot::isAvailableForAccept)
@@ -45,7 +44,7 @@ public class NetworkQueryDomainPresentation implements AbstractNetworkQueryDomai
 
     @Override
     public List<UUID> findMyPendingRequests() {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         return this.networkQueryRepositoryAdapter.findMyPendingRequests(currentUserID)
                 .stream()
                 .filter(NetworkRelationRoot::isAvailableForAccept)

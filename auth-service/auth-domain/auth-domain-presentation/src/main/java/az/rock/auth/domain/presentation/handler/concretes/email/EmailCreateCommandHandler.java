@@ -34,7 +34,7 @@ public class EmailCreateCommandHandler implements AbstractEmailCreateCommandHand
     }
 
     public EmailCreatedEvent handleEmailCreated(EmailCreateRequest emailCreateRequest) {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var activeEmails = this.emailQueryRepositoryAdapter.findAllMyEmails(currentUserId);
         var newEmailRoot = this.emailDomainMapper.toNewEmailRoot(currentUserId,emailCreateRequest);
         var alreadyUsed = this.emailQueryRepositoryAdapter.isExistEmailAsActive(newEmailRoot.getEmail());

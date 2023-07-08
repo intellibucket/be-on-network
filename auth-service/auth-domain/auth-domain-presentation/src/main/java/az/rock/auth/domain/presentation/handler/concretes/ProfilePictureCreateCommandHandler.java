@@ -36,8 +36,8 @@ public class ProfilePictureCreateCommandHandler implements AbstractProfilePictur
 
     @Override
     public ProfilePictureCreatedEvent handle(MultipartFileWrapper profilePicture) {
-        var currentUserId = this.securityContextHolder.currentUser();
-
+        var currentUserId = this.securityContextHolder.availableUser();
+        var savedFile = this.fileStorageService.uploadFile(profilePicture);
         return null;
     }
 }

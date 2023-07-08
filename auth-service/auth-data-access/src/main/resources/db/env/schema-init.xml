@@ -3,11 +3,11 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="create-auth-db" author="Vugar Mammadli">
-        <sql>
-            CREATE DATABASE IF NOT EXISTS auth_db
-        </sql>
-    </changeSet>
+<!--    <changeSet id="create-auth-db" author="Vugar Mammadli">-->
+<!--        <sql>-->
+<!--            CREATE DATABASE IF NOT EXISTS auth_db-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
     <changeSet id="create-auth-schema" author="Vugar Mammadli">
         <sql>

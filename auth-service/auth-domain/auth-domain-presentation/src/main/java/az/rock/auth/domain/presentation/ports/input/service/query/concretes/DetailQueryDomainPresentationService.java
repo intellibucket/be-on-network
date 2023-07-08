@@ -21,7 +21,7 @@ public class DetailQueryDomainPresentationService implements AbstractDetailQuery
 
     @Override
     public DetailPrivateModelResponse queryDetail() {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         return null;
     }
 }

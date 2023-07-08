@@ -31,7 +31,7 @@ public class UserSettingsUpdateCommandHandler implements AbstractUserSettingsUpd
 
     @Override
     public UserSettingsUpdatedEvent handleLanguageChange(Language language) {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         var optionalEntity = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
         if (optionalEntity.isPresent()){
             var entity = optionalEntity.get();

@@ -30,17 +30,8 @@ public class MinioFileStorageService implements AbstractFileStorageAdapter {
     }
 
     @Override
-    public FileMetaData getFileMetaData(String fileName) {
-        return null;
-    }
-
-    @Override
     public byte[] get(String path) {
         return this.minioService.get(path);
     }
 
-    @Override
-    public void deleteFile(String fileName) {
-
-    }
 }

@@ -14,8 +14,6 @@ import az.rock.lib.domain.id.EmailID;
 import az.rock.lib.valueObject.SwitchCase;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
-
 @Component
 public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHandler {
 
@@ -40,7 +38,7 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
 
     @Override
     public EmailUpdatedEvent handleEmailChanged(EmailChangeRequest emailChangeRequest) {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var emails = this.emailQueryRepositoryAdapter.findAllMyEmails(currentUserId);
         var optionalOldEmail = emails.stream().filter(item->item.getRootID().getAbsoluteID().equals(emailChangeRequest.getEmailUUID())).findFirst();
         if(optionalOldEmail.isPresent()){
@@ -54,7 +52,7 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
 
     @Override
     public EmailUpdatedEvent handleEmailDeleted(EmailID emailID) {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,emailID);
         if(email.isPresent()) {
             this.emailDomainService.validateForDeleteEmail(currentUserId,email.get());
@@ -66,7 +64,7 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
     @Override
     public EmailUpdatedEvent handleEmailSetPrimary(EmailID emailID) {
         // FIXME: 27.06.23 
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var emails = this.emailQueryRepositoryAdapter.findAllMyEmails(currentUserId);
         var changedEmail = emails.stream()
                 .map(EmailRoot::changeUnPrimary)
@@ -81,7 +79,7 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
 
     @Override
     public EmailUpdatedEvent handleEmailNotification(SwitchCase switchCase) {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,EmailID.of(switchCase.getUuid()));
         if(email.isPresent()) {
             EmailRoot changedEmail = this.emailDomainService.validateAndInitializeEmailNotification(currentUserId,email.get(), switchCase);
@@ -92,7 +90,7 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
 
     @Override
     public EmailUpdatedEvent handleEmailSubscribedPromotions(SwitchCase switchCase) {
-        var currentUserId = this.securityContextHolder.currentUser();
+        var currentUserId = this.securityContextHolder.availableUser();
         var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,EmailID.of(switchCase.getUuid()));
         if(email.isPresent()) {
             EmailRoot changedEmail = this.emailDomainService.validateAndInitializeEmailSubscribedPromotions(currentUserId, email.get(), switchCase);
