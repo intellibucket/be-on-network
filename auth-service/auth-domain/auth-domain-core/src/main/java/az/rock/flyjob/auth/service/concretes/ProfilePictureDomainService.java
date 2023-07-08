@@ -6,6 +6,5 @@ import az.rock.lib.valueObject.MultipartFileWrapper;
 public class ProfilePictureDomainService implements AbstractProfilePictureDomainService {
     @Override
     public void validate(MultipartFileWrapper multipartFileWrapper) {
-
     }
 }
