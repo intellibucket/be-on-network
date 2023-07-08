@@ -2,22 +2,20 @@ package az.rock.flyjob.auth.dfs.service.concretes;
 
 import az.rock.flyjob.auth.dfs.service.abstracts.AbstractMinioService;
 import az.rock.lib.util.DFSUtil;
+import az.rock.lib.valueObject.MultipartFileWrapper;
 import io.minio.*;
 import io.minio.errors.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 @Component
 public class AuthMinioService implements AbstractMinioService {
 
-    private final String bucketName = "auth-bucket";
-    private final String folderName = "profile";
+    private static final String BUCKET_NAME = "auth-bucket";
     private final MinioClient minioClient;
 
     public AuthMinioService(@Qualifier(value = "authMinioClient") MinioClient minioClient) {
@@ -25,13 +23,13 @@ public class AuthMinioService implements AbstractMinioService {
     }
 
     @Override
-    public ObjectWriteResponse upload(Path path, InputStream inputStream)  throws MinioException {
+    public ObjectWriteResponse upload(MultipartFileWrapper multipartFileWrapper)  throws MinioException {
         try {
             var args = PutObjectArgs
                     .builder()
-                    .bucket(this.bucketName)
-                    .object(DFSUtil.generateFileName(path.toFile().getAbsolutePath()))
-                    .stream(inputStream, -1, 10485760)
+                    .bucket(BUCKET_NAME)
+                    .object(multipartFileWrapper.getAbsolutePath())
+                    .stream(multipartFileWrapper.getContent(), -1, 10485760)
                     .build();
             return this.minioClient.putObject(args);
         } catch (Exception e) {
@@ -45,7 +43,7 @@ public class AuthMinioService implements AbstractMinioService {
             var response = this.minioClient.getObject(
                     GetObjectArgs
                             .builder()
-                            .bucket(this.bucketName)
+                            .bucket(this.BUCKET_NAME)
                             .object(path)
                             .build()
             );

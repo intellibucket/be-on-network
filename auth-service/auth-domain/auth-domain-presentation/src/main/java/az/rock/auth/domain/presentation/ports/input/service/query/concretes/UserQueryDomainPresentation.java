@@ -2,7 +2,7 @@ package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.UserMyAccountResponse;
-import az.rock.auth.domain.presentation.exception.AuthDomainException;
+import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractUserQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.user.UserRoot;
@@ -27,6 +27,6 @@ public class UserQueryDomainPresentation implements AbstractUserQueryDomainPrese
         if (optionalUserRoot.isPresent()) {
             UserRoot userRoot = optionalUserRoot.get();
             return UserMyAccountResponse.of(userRoot);
-        }else throw new AuthDomainException("F0000000018");
+        }else throw new AuthDomainPresentationException("F0000000018");
     }
 }

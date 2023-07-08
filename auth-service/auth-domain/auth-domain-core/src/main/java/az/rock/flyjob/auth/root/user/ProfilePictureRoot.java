@@ -2,17 +2,20 @@ package az.rock.flyjob.auth.root.user;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.ProfilePictureID;
+import az.rock.lib.domain.id.UserID;
 import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
 
 public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
 
+    private UserID userID;
+
     private AccessModifier accessModifier;
 
-    private PictureType type;
-
     private Boolean isCurrent;
+
+    private String region;
 
     private String filepath;
 
@@ -34,8 +37,9 @@ public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
 
     private ProfilePictureRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
+        userID = builder.userID;
         accessModifier = builder.accessModifier;
-        type = builder.type;
+        region = builder.region;
         isCurrent = builder.isCurrent;
         filepath = builder.filepath;
         filename = builder.filename;
@@ -50,6 +54,7 @@ public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
 
 
     public static final class Builder {
+        private UserID userID;
         private ProfilePictureID id;
         private Version version;
         private ProcessStatus processStatus;
@@ -57,7 +62,7 @@ public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private AccessModifier accessModifier;
-        private PictureType type;
+        private String region;
         private Boolean isCurrent;
         private String filepath;
         private String filename;
@@ -74,6 +79,17 @@ public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
 
         public static Builder builder() {
             return new Builder();
+        }
+
+
+        public Builder userID(UserID userID) {
+            this.userID = userID;
+            return this;
+        }
+
+        public Builder region(String region) {
+            this.region = region;
+            return this;
         }
 
         public Builder id(ProfilePictureID id) {
@@ -108,11 +124,6 @@ public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
 
         public Builder accessModifier(AccessModifier accessModifier) {
             this.accessModifier = accessModifier;
-            return this;
-        }
-
-        public Builder type(PictureType type) {
-            this.type = type;
             return this;
         }
 
@@ -169,5 +180,57 @@ public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
         public ProfilePictureRoot build() {
             return new ProfilePictureRoot(this);
         }
+    }
+
+    public UserID getUserID() {
+        return userID;
+    }
+
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
+    public Boolean getCurrent() {
+        return isCurrent;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public String getFileFormat() {
+        return fileFormat;
+    }
+
+    public Long getFilesize() {
+        return filesize;
+    }
+
+    public String getFilepathThumbnail() {
+        return filepathThumbnail;
+    }
+
+    public String getFilepathMedium() {
+        return filepathMedium;
+    }
+
+    public String getFilepathLarge() {
+        return filepathLarge;
+    }
+
+    public String getFilepathExtraLarge() {
+        return filepathExtraLarge;
+    }
+
+    public String getFilepathWebp() {
+        return filepathWebp;
     }
 }

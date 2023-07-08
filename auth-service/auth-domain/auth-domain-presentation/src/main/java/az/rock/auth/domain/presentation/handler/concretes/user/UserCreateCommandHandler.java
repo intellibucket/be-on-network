@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.handler.concretes.user;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
-import az.rock.auth.domain.presentation.exception.AuthDomainException;
+import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserCreateCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractQueryRoleDomainPresentationService;
@@ -35,7 +35,7 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
         var userRoot = this.userDomainMapper.registrationUserRoot(roleRoot,createUserCommand);
         var userCreatedEvent = this.userDomainService.validateAndInitializeUser(userRoot);
         var savedUserRoot = this.userRepositoryAdapter.create(userCreatedEvent.getRoot());
-        if (savedUserRoot.isEmpty()) throw new AuthDomainException();
+        if (savedUserRoot.isEmpty()) throw new AuthDomainPresentationException();
         return userCreatedEvent;
     }
 
@@ -45,7 +45,7 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
         var userRoot = this.userDomainMapper.registrationUserRoot(roleId,createUserCommand);
         var companyCreatedEvent = this.userDomainService.validateAndInitializeCompany(userRoot);
         var savedUserRoot = this.userRepositoryAdapter.create(companyCreatedEvent.getRoot());
-        if (savedUserRoot.isEmpty()) throw new AuthDomainException();
+        if (savedUserRoot.isEmpty()) throw new AuthDomainPresentationException();
         return companyCreatedEvent;
     }
 }

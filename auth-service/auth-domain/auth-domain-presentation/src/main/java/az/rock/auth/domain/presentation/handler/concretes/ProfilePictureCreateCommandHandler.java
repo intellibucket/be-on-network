@@ -1,6 +1,7 @@
 package az.rock.auth.domain.presentation.handler.concretes;
 
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractProfilePictureCreateCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractProfilePictureDomainMapper;
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
@@ -38,6 +39,9 @@ public class ProfilePictureCreateCommandHandler implements AbstractProfilePictur
     public ProfilePictureCreatedEvent handle(MultipartFileWrapper profilePicture) {
         var currentUserId = this.securityContextHolder.availableUser();
         var savedFile = this.fileStorageService.uploadFile(profilePicture);
-        return null;
+        var root = this.profilePictureDomainMapper.of(currentUserId, savedFile);
+        var savedRoot = this.profilePictureCommandRepositoryAdapter.create(root);
+        if (savedRoot.isPresent()) return ProfilePictureCreatedEvent.of(root);
+        else throw new AuthDomainPresentationException("F0000000001");
     }
 }

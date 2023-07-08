@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.dfs.service.concretes;
 
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
+import az.rock.flyjob.auth.dfs.mapper.FileMetaDataMapper;
 import az.rock.flyjob.auth.dfs.service.abstracts.AbstractMinioService;
 import az.rock.lib.valueObject.FileMetaData;
 import az.rock.lib.valueObject.MultipartFileWrapper;
@@ -14,16 +15,19 @@ import java.nio.file.Paths;
 public class MinioFileStorageService implements AbstractFileStorageAdapter {
     private final AbstractMinioService minioService;
 
-    public MinioFileStorageService(AbstractMinioService minioService) {
+    private final FileMetaDataMapper fileMetaDataMapper;
+
+    public MinioFileStorageService(AbstractMinioService minioService,
+                                   FileMetaDataMapper fileMetaDataMapper) {
         this.minioService = minioService;
+        this.fileMetaDataMapper = fileMetaDataMapper;
     }
 
     @Override
     public FileMetaData uploadFile(MultipartFileWrapper multipartFileWrapper) {
-        Path path = Paths.get("/image/profile/" + multipartFileWrapper.getFileName());
         try {
-            var response = this.minioService.upload(path, multipartFileWrapper.getInputStream());
-            return new FileMetaData( response.versionId(), response.etag(), response.bucket(), response.region());
+            var response = this.minioService.upload(multipartFileWrapper);
+            return this.fileMetaDataMapper.map(response);
         } catch (MinioException e) {
             throw new RuntimeException(e);
         }
