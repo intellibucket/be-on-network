@@ -1,6 +1,7 @@
 package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.PictureQueryRequest;
+import az.rock.auth.domain.presentation.handler.abstracts.AbstractProfilePictureCreateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractProfilePictureCommandDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractProfilePictureMessagePublisher;
@@ -16,37 +17,26 @@ import java.util.UUID;
 @Service
 public class ProfilePictureCommandDomainPresentation implements AbstractProfilePictureCommandDomainPresentation {
 
-    private final AbstractFileStorageAdapter fileStorageService;
     private final AbstractProfilePictureMessagePublisher profilePictureMessagePublisher;
 
-    public ProfilePictureCommandDomainPresentation(AbstractFileStorageAdapter fileStorageService,
-                                                   AbstractProfilePictureMessagePublisher profilePictureMessagePublisher) {
-        this.fileStorageService = fileStorageService;
+    private final AbstractProfilePictureCreateCommandHandler profilePictureCreateCommandHandler;
+
+    public ProfilePictureCommandDomainPresentation(AbstractProfilePictureMessagePublisher profilePictureMessagePublisher,
+                                                   AbstractProfilePictureCreateCommandHandler profilePictureCreateCommandHandler) {
         this.profilePictureMessagePublisher = profilePictureMessagePublisher;
+        this.profilePictureCreateCommandHandler = profilePictureCreateCommandHandler;
     }
 
     @Override
     public UUID uploadProfilePicture(MultipartFileWrapper file) {
-        var result = this.fileStorageService.uploadFile(file);
-        var pictureRoot = ProfilePictureRoot.Builder
-                .builder()
-                .id(ProfilePictureID.of(UUID.randomUUID()))
-                .accessModifier(AccessModifier.PUBLIC)
-                .rowStatus(RowStatus.ACTIVE)
-                .processStatus(ProcessStatus.PROCESSING)
-                .createdDate(GDateTime.toZonedDateTime(GDateTime.of()))
-                .version(Version.ONE)
-                .modificationDate(GDateTime.toZonedDateTime(GDateTime.of()))
-                .fileFormat("jpg")
-                .build();
-        var event = ProfilePictureCreatedEvent.of(pictureRoot);
+        var event = this.profilePictureCreateCommandHandler.handle(file);
         this.profilePictureMessagePublisher.publish(SagaRoot.of(event));
         return UUID.randomUUID();
     }
 
     @Override
     public byte[] get(PictureQueryRequest request) {
-        var response = this.fileStorageService.get(request.path());
+        //var response = this.fileStorageService.get(request.path());
         return new byte[0];
     }
 

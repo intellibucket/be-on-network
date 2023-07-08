@@ -22,7 +22,7 @@ public class UserQueryDomainPresentation implements AbstractUserQueryDomainPrese
 
     @Override
     public UserMyAccountResponse myAccount() {
-        UserID currentUser = this.securityContextHolder.currentUser();
+        UserID currentUser = this.securityContextHolder.availableUser();
         var optionalUserRoot = this.userQueryRepositoryAdapter.findById(currentUser);
         if (optionalUserRoot.isPresent()) {
             UserRoot userRoot = optionalUserRoot.get();

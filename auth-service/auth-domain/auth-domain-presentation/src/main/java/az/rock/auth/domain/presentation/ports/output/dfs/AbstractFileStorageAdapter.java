@@ -8,11 +8,6 @@ import jakarta.transaction.Transactional;
 public interface AbstractFileStorageAdapter {
     FileMetaData uploadFile(MultipartFileWrapper multipartFileWrapper);
 
-
-    FileMetaData getFileMetaData(String fileName);
-
     byte[] get(String path);
-
-    void deleteFile(String fileName);
 
 }

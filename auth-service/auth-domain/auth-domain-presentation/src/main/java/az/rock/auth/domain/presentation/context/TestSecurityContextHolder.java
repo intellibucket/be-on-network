@@ -29,8 +29,18 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     @Value("${test.values.user.isAuthenticated:true}")
     private Boolean isAuthenticated ;
 
+    @Override
     public UserID currentUser() {
         return UserID.of(UUID.fromString(testUserUUID));
+    }
+
+    @Override
+    public UserID availableUser() {
+        var userID = this.currentUser();
+        var availableUser = Boolean.TRUE;
+        if (availableUser) {
+            return userID;
+        }else throw new RuntimeException("User is not available");
     }
     @Override
     public Language currentLanguage() {

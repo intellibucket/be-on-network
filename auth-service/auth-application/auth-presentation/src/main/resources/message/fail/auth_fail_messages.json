@@ -259,5 +259,14 @@
     "tr": " Bu işlemi gerçekleştirmek için izniniz yok.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000030",
+    "az": " Bu istifadəçi adı seçilə bilməz. Xahiş edirik başqa bir istifadəçi adı daxil edin.",
+    "en": " This username cannot be selected. Please enter another username.",
+    "ru": " Это имя пользователя нельзя выбрать. Пожалуйста, введите другое имя пользователя.",
+    "tr": " Bu kullanıcı adı seçilemez. Lütfen başka bir kullanıcı adı girin.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

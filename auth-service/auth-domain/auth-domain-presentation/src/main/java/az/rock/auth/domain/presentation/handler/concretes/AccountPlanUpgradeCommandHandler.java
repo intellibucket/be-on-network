@@ -38,7 +38,7 @@ public class AccountPlanUpgradeCommandHandler implements AbstractAccountPlanUpgr
 
     @Override
     public UpgradedAccountPlanEvent handle(AccountPlanType plan) {
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         var optionalCurrentUserDetail = this.detailQueryRepositoryAdapter.findByPID(currentUserID);
         var optionalCurrentAccountPlan = this.accountPlanQueryRepositoryAdapter.findByPID(currentUserID);
         if (optionalCurrentUserDetail.isPresent() && optionalCurrentAccountPlan.isPresent() && optionalCurrentUserDetail.get().isAvailable()) {

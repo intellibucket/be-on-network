@@ -35,7 +35,7 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
     }
 
     private UserRoot findCurrentUser(){
-        var currentUserID = this.securityContextHolder.currentUser();
+        var currentUserID = this.securityContextHolder.availableUser();
         var currentUserRoot = this.userQueryRepositoryAdapter.findById(currentUserID);
         if (currentUserRoot.isEmpty()) throw new AuthDomainException("F0000000018");
         return currentUserRoot.get();

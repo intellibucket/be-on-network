@@ -4,7 +4,6 @@ import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractFollowQueryDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class FollowQueryDomainPresentationService  implements AbstractFollowQuer
 
     @Override
     public List<UUID> findMyFollowers() {
-        var currentId = this.securityContextHolder.currentUser();
+        var currentId = this.securityContextHolder.availableUser();
         return this.followQueryRepositoryAdapter.findMyFollowers(currentId)
                 .stream()
                 .map(FollowRelationRoot::getFollowingUserId)
@@ -33,7 +32,7 @@ public class FollowQueryDomainPresentationService  implements AbstractFollowQuer
 
     @Override
     public List<UUID> findMyFollowings() {
-        var currentId = this.securityContextHolder.currentUser();
+        var currentId = this.securityContextHolder.availableUser();
         return this.followQueryRepositoryAdapter.findMyFollowings(currentId)
                 .stream()
                 .map(FollowRelationRoot::getFollowedUserId)
@@ -42,7 +41,7 @@ public class FollowQueryDomainPresentationService  implements AbstractFollowQuer
 
     @Override
     public List<UUID> findInMyFollowPendingRequests() {
-        var currentId = this.securityContextHolder.currentUser();
+        var currentId = this.securityContextHolder.availableUser();
         return this.followQueryRepositoryAdapter.findInMyFollowPendingRequests(currentId)
                 .stream()
                 .map(FollowRelationRoot::getFollowingUserId)
@@ -51,7 +50,7 @@ public class FollowQueryDomainPresentationService  implements AbstractFollowQuer
 
     @Override
     public List<UUID> findMyFollowPendingRequests() {
-        var currentId = this.securityContextHolder.currentUser();
+        var currentId = this.securityContextHolder.availableUser();
         return this.followQueryRepositoryAdapter.findMyFollowPendingRequests(currentId)
                 .stream()
                 .map(FollowRelationRoot::getFollowedUserId)
