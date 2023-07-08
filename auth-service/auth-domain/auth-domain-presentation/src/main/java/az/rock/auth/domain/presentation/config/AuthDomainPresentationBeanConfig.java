@@ -28,6 +28,11 @@ public class AuthDomainPresentationBeanConfig {
     }
 
     @Bean
+    public AbstractProfilePictureDomainService abstractProfilePictureDomainService(){
+        return new ProfilePictureDomainService();
+    }
+
+    @Bean
     public AbstractUserSettingsDomainService abstractUserSettingsDomainService(){
         return new UserSettingsDomainService();
     }
