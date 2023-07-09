@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.handler.concretes.user;
 
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
-import az.rock.auth.domain.presentation.exception.AuthDomainException;
+import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
@@ -37,7 +37,7 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
     private UserRoot findCurrentUser(){
         var currentUserID = this.securityContextHolder.availableUser();
         var currentUserRoot = this.userQueryRepositoryAdapter.findById(currentUserID);
-        if (currentUserRoot.isEmpty()) throw new AuthDomainException("F0000000018");
+        if (currentUserRoot.isEmpty()) throw new AuthDomainPresentationException("F0000000018");
         return currentUserRoot.get();
     }
 
@@ -67,7 +67,7 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
     public UserUpdatedEvent handleUsernameUpdated(String username) {
         var currentUserRoot = this.findCurrentUser();
         var isExist = this.userQueryRepositoryAdapter.isExistByUsername(username);
-        if (isExist) throw new AuthDomainException("F0000000028");
+        if (isExist) throw new AuthDomainPresentationException("F0000000028");
         var updatedRoot = this.userDomainService.changeUsername(currentUserRoot, username);
         this.userCommandRepositoryAdapter.update(updatedRoot);
         return UserUpdatedEvent.of(updatedRoot);

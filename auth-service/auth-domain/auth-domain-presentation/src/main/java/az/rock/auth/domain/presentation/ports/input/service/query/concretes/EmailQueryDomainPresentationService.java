@@ -3,7 +3,7 @@ package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.EmailClientModelResponse;
 import az.rock.auth.domain.presentation.dto.response.EmailPrivateModelResponse;
-import az.rock.auth.domain.presentation.exception.AuthDomainException;
+import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractEmailQueryDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
@@ -35,14 +35,14 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
         var optionalEmail = this.queryEmailRepositoryAdapter
                 .findMyEmailByID(currentUserId, EmailID.of(uuid));
         return optionalEmail.map(EmailPrivateModelResponse::of)
-                .orElseThrow(()->new AuthDomainException("F0000000011"));
+                .orElseThrow(()->new AuthDomainPresentationException("F0000000011"));
     }
 
     @Override
     public EmailClientModelResponse queryAnyEmailByID(UUID uuid) {
         var optionalEmail = this.queryEmailRepositoryAdapter
                 .findAnyByByID(EmailID.of(uuid));
-        if (optionalEmail.isEmpty()) throw new AuthDomainException("F0000000011");
+        if (optionalEmail.isEmpty()) throw new AuthDomainPresentationException("F0000000011");
         var emailRoot = optionalEmail.get();
         var response = EmailClientModelResponse.of(emailRoot);
         var currentUserId = this.securityContextHolder.availableUser();
@@ -52,7 +52,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
         if (emailRoot.isPublic()) return response;
         else {
             if (optionalNetwork.isPresent() && optionalNetwork.get().hasValidRelation()) return response;
-            else throw new AuthDomainException("F0000000015");
+            else throw new AuthDomainPresentationException("F0000000015");
         }
     }
 
@@ -64,7 +64,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
         var responseList =  optionalEmails.stream()
                 .map(EmailPrivateModelResponse::of)
                 .toList();
-        if (responseList.isEmpty()) throw new AuthDomainException("F0000000011");
+        if (responseList.isEmpty()) throw new AuthDomainPresentationException("F0000000011");
         return responseList;
     }
 
@@ -76,7 +76,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
         var responseList =  optionalEmails.stream()
                 .map(EmailID::getAbsoluteID)
                 .toList();
-        if (responseList.isEmpty()) throw new AuthDomainException("F0000000011");
+        if (responseList.isEmpty()) throw new AuthDomainPresentationException("F0000000011");
         return responseList;
     }
 }

@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.handler.concretes;
 
 import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
-import az.rock.auth.domain.presentation.exception.AuthDomainException;
+import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractAccountPlanUpgradeCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractAccountPlanDomainMapper;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractAccountPlanCommandRepositoryAdapter;
@@ -44,11 +44,11 @@ public class AccountPlanUpgradeCommandHandler implements AbstractAccountPlanUpgr
         if (optionalCurrentUserDetail.isPresent() && optionalCurrentAccountPlan.isPresent() && optionalCurrentUserDetail.get().isAvailable()) {
             var currentAccountPlan = optionalCurrentAccountPlan.get();
             var latestPlanActions = this.accountPlanQueryRepositoryAdapter.findAllUnCompletedAccountPlanByPID(currentUserID);
-            if (!latestPlanActions.isEmpty()) throw new AuthDomainException("F0000000021");
+            if (!latestPlanActions.isEmpty()) throw new AuthDomainPresentationException("F0000000021");
             this.accountPlanDomainService.validateForUpgrade(currentAccountPlan, plan);
             var onWaitingAccountPlan = this.accountPlanDomainMapper.createOnWaitingAccountPlan(currentUserID, plan);
             this.accountPlanCommandRepositoryAdapter.create(onWaitingAccountPlan);
             return UpgradedAccountPlanEvent.of(optionalCurrentAccountPlan.get());
-        } else throw new AuthDomainException("F0000000019");
+        } else throw new AuthDomainPresentationException("F0000000019");
     }
 }

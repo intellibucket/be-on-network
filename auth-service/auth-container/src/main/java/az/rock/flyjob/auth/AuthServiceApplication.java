@@ -9,12 +9,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 @SpringBootApplication(
         scanBasePackages = {
-                "az.rock.flyjob.auth.api.rest",
+                "az.rock.flyjob.auth",
                 "az.rock.auth.domain.presentation",
                 "az.rock.flyjob.auth.dataAccess",
                 "az.rock.flyjob.auth.messaging",
                 "az.rock.flyjob.auth.config",
-                "az.rock.flyjob.auth.dfs.service"},
+                "az.rock.flyjob.auth.dfs"},
         scanBasePackageClasses = {
                 az.rock.flyjob.auth.config.PresentationBeanConfig.class
         })

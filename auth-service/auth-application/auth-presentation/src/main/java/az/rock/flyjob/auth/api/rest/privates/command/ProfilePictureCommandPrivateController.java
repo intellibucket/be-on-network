@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.api.rest.privates.command;
 
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractProfilePictureCommandDomainPresentation;
+import az.rock.flyjob.auth.mapper.MultipartFileWrapperMapper;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,9 +19,12 @@ import java.util.UUID;
 @RequestMapping(value = "/auth/1.0/private/command/profile-picture")
 public class ProfilePictureCommandPrivateController {
     private final AbstractProfilePictureCommandDomainPresentation profilePictureCommandDomainPresentation;
+    private final MultipartFileWrapperMapper multipartFileWrapperMapper;
 
-    public ProfilePictureCommandPrivateController(AbstractProfilePictureCommandDomainPresentation profilePictureCommandDomainPresentation) {
+    public ProfilePictureCommandPrivateController(AbstractProfilePictureCommandDomainPresentation profilePictureCommandDomainPresentation,
+                                                  MultipartFileWrapperMapper multipartFileWrapperMapper) {
         this.profilePictureCommandDomainPresentation = profilePictureCommandDomainPresentation;
+        this.multipartFileWrapperMapper = multipartFileWrapperMapper;
     }
 
     @PostMapping(value = "/upload",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.IMAGE_PNG_VALUE,MediaType.IMAGE_JPEG_VALUE})
@@ -34,7 +38,7 @@ public class ProfilePictureCommandPrivateController {
     private MultipartFileWrapper factoryWrapper(MultipartFile file) {
         MultipartFileWrapper wrapFile = null;
         try {
-            wrapFile = MultipartFileWrapper.of(file.getOriginalFilename(), file.getContentType(), file.getInputStream());
+            wrapFile = this.multipartFileWrapperMapper.map(file);
         } catch (IOException e) {
             throw new RuntimeException("F0000000017");
         }
