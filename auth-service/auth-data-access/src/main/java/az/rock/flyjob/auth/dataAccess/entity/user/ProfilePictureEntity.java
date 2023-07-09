@@ -32,7 +32,7 @@ public class ProfilePictureEntity extends BaseEntity {
     @Column(name = "is_current", nullable = false, columnDefinition = "boolean default false")
     private Boolean isCurrent;
 
-    @Column( nullable = false )
+    @Column( nullable = false ,columnDefinition = "varchar(64) default 'eu-central-1'")
     private String region;
 
     @Column(name = "file_path", nullable = false)

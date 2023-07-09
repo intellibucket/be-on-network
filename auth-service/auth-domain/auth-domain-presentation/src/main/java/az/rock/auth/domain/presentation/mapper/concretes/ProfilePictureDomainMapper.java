@@ -4,8 +4,11 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractProfilePictureD
 import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
 import az.rock.lib.domain.id.ProfilePictureID;
 import az.rock.lib.domain.id.UserID;
+import az.rock.lib.util.GObjects;
 import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 @Component
 public class ProfilePictureDomainMapper implements AbstractProfilePictureDomainMapper {
@@ -23,6 +26,13 @@ public class ProfilePictureDomainMapper implements AbstractProfilePictureDomainM
                 .isCurrent(Boolean.TRUE)
                 .fileFormat(fileMetaData.fileFormat())
                 .filepath(fileMetaData.getObject())
+                .region(Objects.requireNonNullElse(fileMetaData.getRegion(), "eu-central-1"))
+                .filesize(0L)
+                .filepathExtraLarge("filepathExtraLarge")
+                .filepathThumbnail("filepathThumbnail")
+                .filepathWebp("filepathWebp")
+                .filepathLarge("filepathLarge")
+                .filepathMedium("filepathMedium")
                 .build();
     }
 }
