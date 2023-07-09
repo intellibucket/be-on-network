@@ -17,15 +17,18 @@ import lombok.Setter;
 @Entity(name = "CoverPictureEntity")
 public class CoverPictureEntity extends BaseEntity {
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity user;
+
     @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
 
-    @Enumerated(EnumType.STRING)
-    private PictureType type;
-
     @Column(name = "is_current", nullable = false, columnDefinition = "boolean default false")
     private Boolean isCurrent;
+
+    @Column( nullable = false ,columnDefinition = "varchar(64) default 'eu-central-1'")
+    private String region;
 
     @Column(name = "file_path", nullable = false)
     private String filepath;
@@ -39,9 +42,7 @@ public class CoverPictureEntity extends BaseEntity {
     @Column(name = "file_size", nullable = false , updatable = false)
     private Long filesize;
 
-    @Column(name = "file_url_small", nullable = false, updatable = true)
-    private String filepathMedium;
+    @Column(name = "header_line_color", columnDefinition = "varchar(14) default '#ffffff'")
+    private String headerLineColor;
 
-    @Column(name = "file_url_webp", nullable = false, updatable = true)
-    private String filepathWebp;
 }

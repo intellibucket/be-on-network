@@ -45,6 +45,18 @@
     <file url="file://$PROJECT_DIR$/image-processor-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/interview-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/js-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/js-spec/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-dfs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-presentation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/java" charset="UTF-8" />
