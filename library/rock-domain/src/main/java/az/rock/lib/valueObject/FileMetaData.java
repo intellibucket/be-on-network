@@ -14,12 +14,15 @@ public class FileMetaData {
 
     private String bucket;
 
+    private Long fileSize;
+
     private FileMetaData(Builder builder) {
         etag = builder.etag;
         versionId = builder.versionId;
         object = builder.object;
         region = builder.region;
         bucket = builder.bucket;
+        fileSize = builder.fileSize;
     }
 
     public String fileFormat(){
@@ -35,6 +38,9 @@ public class FileMetaData {
         private String region;
         private String bucket;
 
+        private Long fileSize;
+
+
         private Builder() {
         }
 
@@ -42,6 +48,10 @@ public class FileMetaData {
             return new Builder();
         }
 
+        public Builder fileSize(Long val) {
+            fileSize = val;
+            return this;
+        }
         public Builder etag(String val) {
             etag = val;
             return this;
@@ -110,5 +120,13 @@ public class FileMetaData {
 
     public void setBucket(String bucket) {
         this.bucket = bucket;
+    }
+
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
     }
 }

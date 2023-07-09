@@ -22,17 +22,12 @@ public class ProfilePictureDomainMapper implements AbstractProfilePictureDomainM
                 .processStatus(ProcessStatus.ON_WAITING)
                 .rowStatus(RowStatus.ACTIVE)
                 .version(Version.ONE)
-                .filename("file name")
+                .filename(fileMetaData.getObject())
                 .isCurrent(Boolean.TRUE)
                 .fileFormat(fileMetaData.fileFormat())
                 .filepath(fileMetaData.getObject())
                 .region(Objects.requireNonNullElse(fileMetaData.getRegion(), "eu-central-1"))
-                .filesize(0L)
-                .filepathExtraLarge("filepathExtraLarge")
-                .filepathThumbnail("filepathThumbnail")
-                .filepathWebp("filepathWebp")
-                .filepathLarge("filepathLarge")
-                .filepathMedium("filepathMedium")
+                .filesize(fileMetaData.getFileSize())
                 .build();
     }
 }

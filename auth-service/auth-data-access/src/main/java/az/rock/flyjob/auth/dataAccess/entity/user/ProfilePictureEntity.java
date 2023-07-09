@@ -47,19 +47,19 @@ public class ProfilePictureEntity extends BaseEntity {
     @Column(name = "file_size", nullable = false , updatable = false)
     private Long filesize;
 
-    @Column(name = "file_url_thumbnail", nullable = false, updatable = true)
+    @Column(name = "file_url_thumbnail")
     private String filepathThumbnail;
 
-    @Column(name = "file_url_small", nullable = false, updatable = true)
+    @Column(name = "file_url_small")
     private String filepathMedium;
 
-    @Column(name = "file_url_medium", nullable = false, updatable = true)
+    @Column(name = "file_url_medium")
     private String filepathLarge;
 
-    @Column(name = "file_url_large", nullable = false, updatable = true)
+    @Column(name = "file_url_large")
     private String filepathExtraLarge;
 
-    @Column(name = "file_url_webp", nullable = false, updatable = true)
+    @Column(name = "file_url_webp")
     private String filepathWebp;
 
     private ProfilePictureEntity(Builder builder) {

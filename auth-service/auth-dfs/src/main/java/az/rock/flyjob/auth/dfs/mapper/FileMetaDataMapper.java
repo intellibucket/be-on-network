@@ -13,6 +13,7 @@ public class FileMetaDataMapper {
                 .object(objectWriteResponse.object())
                 .region(objectWriteResponse.region())
                 .bucket(objectWriteResponse.bucket())
+                .fileSize(objectWriteResponse.headers().byteCount())
                 .build();
     }
 }
