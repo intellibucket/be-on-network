@@ -54,13 +54,13 @@ public class ProfilePictureRoot extends AggregateRoot<ProfilePictureID> {
 
 
     public static final class Builder {
-        private UserID userID;
         private ProfilePictureID id;
         private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
+        private UserID userID;
         private AccessModifier accessModifier;
         private String region;
         private Boolean isCurrent;
