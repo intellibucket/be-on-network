@@ -57,4 +57,9 @@ public class AuthDomainPresentationBeanConfig {
     public AbstractAccountPlanDomainService abstractAccountPlanDomainService() {
         return new AccountPlanDomainService();
     }
+
+    @Bean
+    public AbstractCoverPictureDomainService abstractCoverPictureDomainService(){
+        return new CoverPictureDomainService();
+    }
 }
