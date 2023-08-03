@@ -14,6 +14,7 @@ public class UserQueryDomainPresentation implements AbstractUserQueryDomainPrese
     private final AbstractSecurityContextHolder securityContextHolder;
     private final AbstractUserQueryRepositoryAdapter userQueryRepositoryAdapter;
 
+
     public UserQueryDomainPresentation(AbstractSecurityContextHolder securityContextHolder,
                                        AbstractUserQueryRepositoryAdapter userQueryRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;

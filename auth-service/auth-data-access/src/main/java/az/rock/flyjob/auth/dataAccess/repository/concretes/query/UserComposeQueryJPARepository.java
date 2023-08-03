@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @NoRepositoryBean
 @Component
-public class UserComposeQueryJPARepository implements AbstractUserComposeQueryJPARepository {
+public class UserComposeQueryJPARepository   {
 
     @PersistenceContext
     private final EntityManager entityManager;
@@ -21,7 +21,7 @@ public class UserComposeQueryJPARepository implements AbstractUserComposeQueryJP
         this.entityManager = entityManager;
     }
 
-    @Override
+//    @Override
     public Optional<UserSimpleCompose> findUserSimpleComposeByUserId(UUID userId) {
         return Optional.empty();
     }
