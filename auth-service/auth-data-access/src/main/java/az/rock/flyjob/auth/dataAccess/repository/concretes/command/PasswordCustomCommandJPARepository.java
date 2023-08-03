@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.repository.concretes.command;
 
-import az.rock.flyjob.auth.dataAccess.entity.user.PasswordEntity;
-import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPasswordCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.detail.DetailEntity;
-import az.rock.flyjob.auth.dataAccess.entity.user.*;
-import az.rock.flyjob.auth.dataAccess.entity.user.device.DeviceEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.detail.DetailEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.*;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.*;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.flyjob.auth.root.user.*;

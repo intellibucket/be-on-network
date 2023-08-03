@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.repository.outbox;
 
-import az.rock.flyjob.auth.dataAccess.entity.outbox.UserOutboxEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.outbox.UserOutboxEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

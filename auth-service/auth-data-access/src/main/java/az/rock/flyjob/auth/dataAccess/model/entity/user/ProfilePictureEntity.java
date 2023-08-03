@@ -1,8 +1,7 @@
-package az.rock.flyjob.auth.dataAccess.entity.user;
+package az.rock.flyjob.auth.dataAccess.model.entity.user;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccessModifier;
-import az.rock.lib.valueObject.PictureType;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.*;

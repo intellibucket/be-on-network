@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.service.concretes;
 
 import az.rock.flyjob.auth.exception.AccessDeniedDomainException;
 import az.rock.flyjob.auth.exception.email.EmailAlreadyExistException;
+import az.rock.flyjob.auth.exception.email.EmailMaxCountException;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractEmailDomainService;
 import az.rock.lib.domain.id.UserID;
@@ -14,8 +15,11 @@ public class EmailDomainService implements AbstractEmailDomainService {
     @Override
     public void validateNewEmail(List<EmailRoot> existingEmails, EmailRoot newEmail) {
         var isExist = existingEmails.contains(newEmail);
+        var countOfActiveEmails = existingEmails.stream()
+                .filter(EmailRoot::isActive)
+                .count();
+        if (countOfActiveEmails > 3) throw new EmailMaxCountException();
         if (isExist) throw new EmailAlreadyExistException();
-
     }
 
     @Override

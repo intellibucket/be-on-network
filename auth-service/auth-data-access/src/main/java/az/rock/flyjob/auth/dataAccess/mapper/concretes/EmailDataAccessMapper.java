@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.user.EmailEntity;
-import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractEmailDataAccessMapper;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.lib.domain.id.EmailID;

@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.adapter.command;
 
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractEmailCommandRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.entity.user.EmailEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.email.AbstractEmailCommandCustomJPARepository;
 import az.rock.flyjob.auth.root.user.EmailRoot;

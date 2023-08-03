@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.entity.user;
+package az.rock.flyjob.auth.dataAccess.model.entity.user;
 
 public interface UserEntityReference {
     UserEntity getUser();

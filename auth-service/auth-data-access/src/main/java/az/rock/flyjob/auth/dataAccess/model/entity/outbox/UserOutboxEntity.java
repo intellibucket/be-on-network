@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.entity.outbox;
+package az.rock.flyjob.auth.dataAccess.model.entity.outbox;
 
 import az.rock.lib.domain.OutboxEntity;
 import az.rock.lib.event.saga.SagaStatus;

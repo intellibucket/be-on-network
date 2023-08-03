@@ -1,6 +1,5 @@
-package az.rock.flyjob.auth.dataAccess.entity.user;
+package az.rock.flyjob.auth.dataAccess.model.entity.user;
 
-import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.EmailType;
@@ -12,8 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;

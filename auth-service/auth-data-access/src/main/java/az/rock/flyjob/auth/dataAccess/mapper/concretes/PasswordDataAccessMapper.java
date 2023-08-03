@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.user.PasswordEntity;
-import az.rock.flyjob.auth.dataAccess.entity.user.UserEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPasswordDataAccessMapper;
 import az.rock.flyjob.auth.root.user.PasswordRoot;
 import az.rock.lib.domain.id.PasswordID;

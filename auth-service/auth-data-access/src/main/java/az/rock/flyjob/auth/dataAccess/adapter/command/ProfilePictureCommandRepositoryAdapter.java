@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.adapter.command;
 
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractProfilePictureCommandRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.entity.user.ProfilePictureEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.ProfilePictureEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractProfilePictureDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractProfilePictureCustomCommandJPARepository;
 import az.rock.flyjob.auth.root.user.ProfilePictureRoot;

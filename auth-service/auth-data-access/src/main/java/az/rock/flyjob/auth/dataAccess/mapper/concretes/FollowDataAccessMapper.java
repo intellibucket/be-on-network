@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.entity.network.FollowRelationEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractFollowDataAccessMapper;
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import az.rock.lib.domain.id.FollowID;

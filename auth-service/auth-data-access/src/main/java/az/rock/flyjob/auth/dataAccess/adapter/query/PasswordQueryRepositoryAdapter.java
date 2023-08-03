@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.adapter.query;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPasswordQueryRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.entity.user.PasswordEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.PasswordQueryJPARepository;
 import az.rock.flyjob.auth.root.user.PasswordRoot;

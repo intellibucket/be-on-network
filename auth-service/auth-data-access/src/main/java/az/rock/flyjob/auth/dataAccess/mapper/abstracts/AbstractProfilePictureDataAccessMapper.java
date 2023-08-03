@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.mapper.abstracts;
 
-import az.rock.flyjob.auth.dataAccess.entity.user.ProfilePictureEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.ProfilePictureEntity;
 import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
 import az.rock.lib.domain.AggregateRoot;
 

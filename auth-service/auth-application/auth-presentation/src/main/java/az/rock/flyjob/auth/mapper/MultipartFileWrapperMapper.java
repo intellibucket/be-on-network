@@ -10,7 +10,8 @@ import java.io.IOException;
 @Component
 public class MultipartFileWrapperMapper {
     public MultipartFileWrapper map(MultipartFile multipartFile) throws IOException {
-        return MultipartFileWrapper.Builder.builder()
+        return MultipartFileWrapper.Builder
+                .builder()
                 .originalFileName(multipartFile.getName())
                 .absolutePath(multipartFile.getOriginalFilename())
                 .contentType(ContentType.fromValue(multipartFile.getContentType()))

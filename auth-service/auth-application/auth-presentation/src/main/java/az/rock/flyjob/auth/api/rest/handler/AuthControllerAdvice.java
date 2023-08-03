@@ -28,6 +28,7 @@ public class AuthControllerAdvice {
             var currentLang = this.securityContextHolder.currentLanguage();
             message = MessageBundle.fail(message, currentLang);
         }
+        // FIXME: 02.08.23 currentUserId bosh ola biler
         exceptionPublisher.publish(currentUserId, exception);
         return ResponseEntity.badRequest().body(new JFailResponse(message));
     }

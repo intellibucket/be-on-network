@@ -1,7 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts.command.email;
 
-import az.rock.flyjob.auth.dataAccess.entity.user.EmailEntity;
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
