@@ -50,6 +50,7 @@
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-container/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-data-access/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-dfs/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-presentation/src/main/java" charset="UTF-8" />

@@ -11,6 +11,12 @@
 
     <groupId>az.rock.flyjob.js</groupId>
     <artifactId>js-data-access</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>az.rock.lib</groupId>
+            <artifactId>rock-domain</artifactId>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
