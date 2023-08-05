@@ -48,6 +48,21 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>develop</id>
+        </profile>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <liquibase.skip.diff>true</liquibase.skip.diff>
+                <liquibase.skip.update>true</liquibase.skip.update>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>

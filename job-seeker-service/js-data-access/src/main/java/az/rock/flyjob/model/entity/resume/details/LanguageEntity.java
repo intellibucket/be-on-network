@@ -2,13 +2,14 @@ package az.rock.flyjob.model.entity.resume.details;
 
 import az.rock.flyjob.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import az.rock.lib.valueObject.LanguageLevel;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,4 +20,13 @@ import lombok.Setter;
 public class LanguageEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
+
+    @Column(name = "language_uuid", nullable = false)
+    private UUID languageUUID;
+
+    @Column(name = "name")
+    private String additionalInfo;
+
+    @Enumerated(EnumType.STRING)
+    private LanguageLevel level;
 }

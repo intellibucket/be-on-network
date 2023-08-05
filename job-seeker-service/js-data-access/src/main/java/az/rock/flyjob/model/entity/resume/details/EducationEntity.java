@@ -39,11 +39,8 @@ public class EducationEntity extends BaseEntity {
     @Column(name = "establishment_name", nullable = false)
     private String establishmentName;
 
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "country")
-    private String country;
+    @Column(name = "city_id")
+    private UUID cityId;
 
     @Temporal(value = TemporalType.DATE)
     private Timestamp startDate;

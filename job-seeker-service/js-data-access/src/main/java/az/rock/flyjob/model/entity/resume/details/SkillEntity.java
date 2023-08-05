@@ -2,9 +2,8 @@ package az.rock.flyjob.model.entity.resume.details;
 
 import az.rock.flyjob.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import az.rock.lib.valueObject.js.SkillLevel;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +18,13 @@ import lombok.Setter;
 public class SkillEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
+
+    @Column(name = "skill_name", nullable = false)
+    private String skillName;
+
+    @Enumerated(EnumType.STRING)
+    private SkillLevel skillLevel;
+
+    @Column(name = "information")
+    private String informatin;
 }
