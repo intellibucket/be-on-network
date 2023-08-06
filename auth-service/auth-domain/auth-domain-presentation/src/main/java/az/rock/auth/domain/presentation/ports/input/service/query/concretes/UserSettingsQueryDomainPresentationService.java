@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.UserSettingModelResponse;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserSettingsQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractUserSettingsQueryDomainPresentationService;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Service;
 
 @Service

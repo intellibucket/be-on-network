@@ -3,8 +3,8 @@ package az.rock.auth.domain.presentation.ports.output.repository.query;
 import az.rock.auth.domain.presentation.ports.output.repository.AbstractQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.annotation.DomainOutputPort;
-import az.rock.lib.domain.id.DetailID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.DetailID;
+import az.rock.lib.domain.id.auth.UserID;
 
 import java.util.Optional;
 

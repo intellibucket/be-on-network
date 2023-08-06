@@ -6,7 +6,7 @@ import az.rock.auth.domain.presentation.exception.AuthDomainPresentationExceptio
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractUserQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
 import az.rock.flyjob.auth.root.user.UserRoot;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Service;
 
 @Service

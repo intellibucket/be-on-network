@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.context;
 
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Role;
 

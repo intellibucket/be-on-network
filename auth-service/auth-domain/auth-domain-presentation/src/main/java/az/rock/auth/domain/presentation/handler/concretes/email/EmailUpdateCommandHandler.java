@@ -10,7 +10,7 @@ import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.exception.email.EmailNotFoundException;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractEmailDomainService;
-import az.rock.lib.domain.id.EmailID;
+import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.valueObject.SwitchCase;
 import org.springframework.stereotype.Component;
 

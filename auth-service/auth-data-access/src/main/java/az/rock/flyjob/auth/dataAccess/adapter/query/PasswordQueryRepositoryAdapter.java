@@ -5,8 +5,8 @@ import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.PasswordQueryJPARepository;
 import az.rock.flyjob.auth.root.user.PasswordRoot;
-import az.rock.lib.domain.id.PasswordID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.PasswordID;
+import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

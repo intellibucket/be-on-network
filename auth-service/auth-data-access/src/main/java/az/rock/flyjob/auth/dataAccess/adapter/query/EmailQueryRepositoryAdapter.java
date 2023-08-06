@@ -4,8 +4,8 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEm
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.EmailDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.EmailQueryJPARepository;
 import az.rock.flyjob.auth.root.user.EmailRoot;
-import az.rock.lib.domain.id.EmailID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.EmailID;
+import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
