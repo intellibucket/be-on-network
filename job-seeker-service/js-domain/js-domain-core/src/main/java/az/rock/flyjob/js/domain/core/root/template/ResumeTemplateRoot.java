@@ -1,68 +1,46 @@
 package az.rock.flyjob.js.domain.core.root.template;
 
-import az.rock.flyjob.model.entity.resume.ResumeEntity;
-import az.rock.lib.domain.BaseEntity;
+
+import az.rock.lib.domain.AggregateRoot;
+import az.rock.lib.domain.id.js.AwardID;
+import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.domain.id.js.ResumeTemplateID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.Version;
 import az.rock.lib.valueObject.js.ResumeTemplateType;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.sql.Timestamp;
-import java.util.UUID;
+import java.time.ZonedDateTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "resume_templates", schema = "resume")
-@Entity(name = "ResumeTemplateEntity")
-public class ResumeTemplateRoot extends BaseEntity {
-    @OneToOne
-    private ResumeEntity resume;
+public class ResumeTemplateRoot extends AggregateRoot<ResumeTemplateID> {
+    private ResumeID resume;
 
-    @Enumerated(EnumType.STRING)
     private ResumeTemplateType resumeTemplateType;
 
     private ResumeTemplateRoot(Builder builder) {
-        setResume(builder.resume);
-        setResumeTemplateType(builder.resumeTemplateType);
-        setUuid(builder.uuid);
-        setVersion(builder.version);
-        setProcessStatus(builder.processStatus);
-        setRowStatus(builder.rowStatus);
-        setCreatedDate(builder.createdDate);
-        setLastModifiedDate(builder.lastModifiedDate);
+        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        resume = builder.resume;
+        resumeTemplateType = builder.resumeTemplateType;
     }
 
-    public static class Prototype{
 
-        public static ResumeTemplateRoot defaultTemplate(ResumeEntity resume){
-            return Builder.builder()
-                    .uuid(UUID.randomUUID())
-                    .processStatus(ProcessStatus.COMPLETED)
-                    .rowStatus(RowStatus.ACTIVE)
-                    .version(1L)
-                    .resume(resume)
-                    .resumeTemplateType(ResumeTemplateType.CLASSIC)
-                    .build();
-        }
-
+    public ResumeID getResume() {
+        return resume;
     }
 
+    public ResumeTemplateType getResumeTemplateType() {
+        return resumeTemplateType;
+    }
 
     public static final class Builder {
-        private ResumeEntity resume;
-        private ResumeTemplateType resumeTemplateType;
-        private UUID uuid;
-        private Long version;
+        private ResumeTemplateID id;
+        private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
-        private Timestamp createdDate;
-        private Timestamp lastModifiedDate;
+        private ZonedDateTime createdDate;
+        private ZonedDateTime lastModifiedDate;
+        private ResumeID resume;
+        private ResumeTemplateType resumeTemplateType;
 
         private Builder() {
         }
@@ -71,22 +49,12 @@ public class ResumeTemplateRoot extends BaseEntity {
             return new Builder();
         }
 
-        public Builder resume(ResumeEntity val) {
-            resume = val;
+        public Builder id(ResumeTemplateID val) {
+            id = val;
             return this;
         }
 
-        public Builder resumeTemplateType(ResumeTemplateType val) {
-            resumeTemplateType = val;
-            return this;
-        }
-
-        public Builder uuid(UUID val) {
-            uuid = val;
-            return this;
-        }
-
-        public Builder version(Long val) {
+        public Builder version(Version val) {
             version = val;
             return this;
         }
@@ -101,13 +69,23 @@ public class ResumeTemplateRoot extends BaseEntity {
             return this;
         }
 
-        public Builder createdDate(Timestamp val) {
+        public Builder createdDate(ZonedDateTime val) {
             createdDate = val;
             return this;
         }
 
-        public Builder lastModifiedDate(Timestamp val) {
+        public Builder lastModifiedDate(ZonedDateTime val) {
             lastModifiedDate = val;
+            return this;
+        }
+
+        public Builder resume(ResumeID val) {
+            resume = val;
+            return this;
+        }
+
+        public Builder resumeTemplateType(ResumeTemplateType val) {
+            resumeTemplateType = val;
             return this;
         }
 
