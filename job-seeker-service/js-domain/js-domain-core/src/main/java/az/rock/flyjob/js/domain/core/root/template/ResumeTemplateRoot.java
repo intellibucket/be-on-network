@@ -20,14 +20,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "resume_templates", schema = "resume")
 @Entity(name = "ResumeTemplateEntity")
-public class ResumeTemplateEntity extends BaseEntity {
+public class ResumeTemplateRoot extends BaseEntity {
     @OneToOne
     private ResumeEntity resume;
 
     @Enumerated(EnumType.STRING)
     private ResumeTemplateType resumeTemplateType;
 
-    private ResumeTemplateEntity(Builder builder) {
+    private ResumeTemplateRoot(Builder builder) {
         setResume(builder.resume);
         setResumeTemplateType(builder.resumeTemplateType);
         setUuid(builder.uuid);
@@ -40,7 +40,7 @@ public class ResumeTemplateEntity extends BaseEntity {
 
     public static class Prototype{
 
-        public static ResumeTemplateEntity defaultTemplate(ResumeEntity resume){
+        public static ResumeTemplateRoot defaultTemplate(ResumeEntity resume){
             return Builder.builder()
                     .uuid(UUID.randomUUID())
                     .processStatus(ProcessStatus.COMPLETED)
@@ -111,8 +111,8 @@ public class ResumeTemplateEntity extends BaseEntity {
             return this;
         }
 
-        public ResumeTemplateEntity build() {
-            return new ResumeTemplateEntity(this);
+        public ResumeTemplateRoot build() {
+            return new ResumeTemplateRoot(this);
         }
     }
 }

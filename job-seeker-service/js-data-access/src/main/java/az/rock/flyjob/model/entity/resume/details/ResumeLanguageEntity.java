@@ -1,8 +1,9 @@
-package az.rock.flyjob.js.domain.core.root.detail;
+package az.rock.flyjob.model.entity.resume.details;
 
 import az.rock.flyjob.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.LanguageLevel;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,9 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "languages", schema = "resume")
-@Entity(name = "LanguageEntity")
-public class LanguageEntity extends BaseEntity {
+@Table(name = "resume_languages", schema = "resume")
+@Entity(name = "ResumeLanguageEntity")
+public class ResumeLanguageEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 

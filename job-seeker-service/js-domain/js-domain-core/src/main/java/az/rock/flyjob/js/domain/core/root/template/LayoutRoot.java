@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "template_layouts", schema = "resume")
 @Entity(name = "LayoutEntity")
-public class LayoutEntity extends BaseEntity {
+public class LayoutRoot extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private LayoutType layoutType;
