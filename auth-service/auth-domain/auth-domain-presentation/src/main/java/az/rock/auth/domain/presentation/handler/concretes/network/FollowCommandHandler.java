@@ -1,0 +1,50 @@
+package az.rock.auth.domain.presentation.handler.concretes.network;
+
+import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.handler.abstracts.network.AbstractFollowCommandHandler;
+import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowCommandRepositoryAdapter;
+import az.rock.flyjob.auth.event.network.FollowRelationEvent;
+import az.rock.flyjob.auth.service.abstracts.AbstractFollowDomainService;
+import az.rock.lib.domain.id.FollowID;
+import org.springframework.stereotype.Component;
+
+@Component
+public class FollowCommandHandler implements AbstractFollowCommandHandler {
+
+    private final AbstractSecurityContextHolder securityContextHolder;
+
+    private final AbstractFollowCommandRepositoryAdapter followCommandRepositoryAdapter;
+
+    private final AbstractFollowDomainService followDomainService;
+
+    public FollowCommandHandler(AbstractSecurityContextHolder securityContextHolder, AbstractFollowCommandRepositoryAdapter followCommandRepositoryAdapter, AbstractFollowDomainService followDomainService) {
+        this.securityContextHolder = securityContextHolder;
+        this.followCommandRepositoryAdapter = followCommandRepositoryAdapter;
+        this.followDomainService = followDomainService;
+    }
+
+    @Override
+    public FollowRelationEvent handleFollow(FollowID followID) {
+        return null;
+    }
+
+    @Override
+    public FollowRelationEvent handleUnfollow(FollowID followID) {
+        return null;
+    }
+
+    @Override
+    public FollowRelationEvent handleAcceptFollowRequest(FollowID followID) {
+        return null;
+    }
+
+    @Override
+    public FollowRelationEvent handleRejectFollowRequest(FollowID followID) {
+        return null;
+    }
+
+    @Override
+    public FollowRelationEvent handleCancelFollowRequest(FollowID followID) {
+        return null;
+    }
+}
