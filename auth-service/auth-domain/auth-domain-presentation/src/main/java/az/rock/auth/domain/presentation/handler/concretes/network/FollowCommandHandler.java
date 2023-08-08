@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.concretes.network;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.handler.abstracts.network.AbstractFollowCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowQueryRepositoryAdapter;

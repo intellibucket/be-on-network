@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.concretes.user;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;

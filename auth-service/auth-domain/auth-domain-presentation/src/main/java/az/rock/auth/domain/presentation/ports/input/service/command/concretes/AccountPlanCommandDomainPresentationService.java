@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractAccountPlanUpgradeCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.outbox.abstracts.AbstractAccountPlanOutboxInputPort;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractAccountPlanCommandDomainPresentationService;
