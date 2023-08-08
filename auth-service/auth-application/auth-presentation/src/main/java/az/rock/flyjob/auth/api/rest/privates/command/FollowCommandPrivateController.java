@@ -6,9 +6,7 @@ import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.spec.auth.privates.command.FollowCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -19,9 +17,15 @@ public class FollowCommandPrivateController implements FollowCommandPrivateSpec 
 
     private AbstractFollowCommandDomainPresentationService followCommandDomainPresentationService;
 
+    public FollowCommandPrivateController(AbstractFollowCommandDomainPresentationService abstractFollowCommandDomainPresentationService){
+        this.followCommandDomainPresentationService = abstractFollowCommandDomainPresentationService;
+    }
+
     @Override
-    public ResponseEntity<JSuccessResponse> follow(UUID userID) {
-        return null;
+    @PostMapping("/follow/{uuid}")
+    public ResponseEntity<JSuccessResponse> follow(@PathVariable(name = "uuid") UUID userID) {
+        this.followCommandDomainPresentationService.follow(userID);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override

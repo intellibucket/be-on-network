@@ -21,7 +21,6 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
     private final AbstractEmailQueryRepositoryAdapter emailQueryRepositoryAdapter;
     private final AbstractEmailCommandRepositoryAdapter emailCommandRepositoryAdapter;
     private final AbstractEmailDomainService emailDomainService;
-
     private final AbstractEmailDomainMapper emailDomainMapper;
 
     public EmailUpdateCommandHandler(AbstractSecurityContextHolder securityContextHolder,
