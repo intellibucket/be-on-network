@@ -12,28 +12,17 @@ import java.time.ZonedDateTime;
 
 public class CourseRoot extends AggregateRoot<CourseID> {
     private ResumeID resume;
-
     private Integer orderNumber;
     private String courseTitle;
-
     private String institution;
-
     private Boolean isOnline;
-
     private String city;
-
     private String country;
-
     private ZonedDateTime startDate;
-
     private ZonedDateTime endDate;
-
     private String description;
-
     private String certificateFilePath;
-
     private String verificationAddress;
-
     private CourseRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.resume = builder.resume;
