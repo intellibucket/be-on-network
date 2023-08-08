@@ -12,6 +12,8 @@ import java.time.ZonedDateTime;
 
 public class LinkRoot extends AggregateRoot<LinkID> {
     private InformationID information;
+
+    private Integer orderNumber;
     private LinkType type;
 
     private String explanation;
@@ -20,10 +22,11 @@ public class LinkRoot extends AggregateRoot<LinkID> {
 
     private LinkRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        information = builder.information;
-        type = builder.type;
-        explanation = builder.explanation;
-        link = builder.link;
+        this.information = builder.information;
+        this.type = builder.type;
+        this.explanation = builder.explanation;
+        this.link = builder.link;
+        this.orderNumber = builder.orderNumber;
     }
 
 
@@ -51,6 +54,8 @@ public class LinkRoot extends AggregateRoot<LinkID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
         private InformationID information;
+
+        private Integer orderNumber;
         private LinkType type;
         private String explanation;
         private String link;

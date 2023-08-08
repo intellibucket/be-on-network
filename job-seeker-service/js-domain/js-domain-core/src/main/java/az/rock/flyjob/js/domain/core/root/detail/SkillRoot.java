@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
 public class SkillRoot extends AggregateRoot<SkillID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private String skillName;
 
     private SkillLevel skillLevel;
@@ -23,6 +24,7 @@ public class SkillRoot extends AggregateRoot<SkillID> {
     private SkillRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         resume = builder.resume;
+        orderNumber = builder.orderNumber;
         skillName = builder.skillName;
         skillLevel = builder.skillLevel;
         information = builder.information;
@@ -53,6 +55,9 @@ public class SkillRoot extends AggregateRoot<SkillID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
         private ResumeID resume;
+
+        private Integer orderNumber;
+
         private String skillName;
         private SkillLevel skillLevel;
         private String information;
@@ -95,6 +100,11 @@ public class SkillRoot extends AggregateRoot<SkillID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

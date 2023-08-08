@@ -19,6 +19,9 @@ public class SkillEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "skill_name", nullable = false)
     private String skillName;
 

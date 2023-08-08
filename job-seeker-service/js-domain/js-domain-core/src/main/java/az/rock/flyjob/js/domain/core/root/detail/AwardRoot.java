@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
 public class AwardRoot extends AggregateRoot<AwardID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private String award;
 
     private String link;
@@ -26,61 +27,41 @@ public class AwardRoot extends AggregateRoot<AwardID> {
 
     private AwardRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setAward(builder.award);
-        setLink(builder.link);
-        setIssuer(builder.issuer);
-        setDate(builder.date);
-        setDescription(builder.description);
+        this.resume = builder.resume;
+        this.award = builder.award;
+        this.link = builder.link;
+        this.issuer = builder.issuer;
+        this.date = builder.date;
+        this.description = builder.description;
+        this.orderNumber = builder.orderNumber;
     }
-
 
     public ResumeID getResume() {
         return resume;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public String getAward() {
         return award;
     }
 
-    public void setAward(String award) {
-        this.award = award;
-    }
-
     public String getLink() {
         return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
     }
 
     public String getIssuer() {
         return issuer;
     }
 
-    public void setIssuer(String issuer) {
-        this.issuer = issuer;
-    }
-
     public ZonedDateTime getDate() {
         return date;
     }
 
-    public void setDate(ZonedDateTime date) {
-        this.date = date;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public static final class Builder {
@@ -93,6 +74,8 @@ public class AwardRoot extends AggregateRoot<AwardID> {
 
 
         private ResumeID resume;
+
+        private Integer orderNumber;
         private String award;
         private String link;
         private String issuer;
@@ -138,6 +121,11 @@ public class AwardRoot extends AggregateRoot<AwardID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

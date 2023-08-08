@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 public class CourseRoot extends AggregateRoot<CourseID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private String courseTitle;
 
     private String institution;
@@ -35,106 +36,66 @@ public class CourseRoot extends AggregateRoot<CourseID> {
 
     private CourseRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setCourseTitle(builder.courseTitle);
-        setInstitution(builder.institution);
-        isOnline = builder.isOnline;
-        setCity(builder.city);
-        setCountry(builder.country);
-        setStartDate(builder.startDate);
-        setEndDate(builder.endDate);
-        setDescription(builder.description);
-        setCertificateFilePath(builder.certificateFilePath);
-        setVerificationAddress(builder.verificationAddress);
+        this.resume = builder.resume;
+        this.orderNumber = builder.orderNumber;
+        this.courseTitle = builder.courseTitle;
+        this.institution = builder.institution;
+        this.isOnline = builder.isOnline;
+        this.city = builder.city;
+        this.country = builder.country;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+        this.description = builder.description;
+        this.certificateFilePath = builder.certificateFilePath;
+        this.verificationAddress = builder.verificationAddress;
     }
-
 
     public ResumeID getResume() {
         return resume;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public String getCourseTitle() {
         return courseTitle;
     }
 
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle;
-    }
-
     public String getInstitution() {
         return institution;
-    }
-
-    public void setInstitution(String institution) {
-        this.institution = institution;
     }
 
     public Boolean getOnline() {
         return isOnline;
     }
 
-    public void setOnline(Boolean online) {
-        isOnline = online;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public ZonedDateTime getStartDate() {
         return startDate;
-    }
-
-    public void setStartDate(ZonedDateTime startDate) {
-        this.startDate = startDate;
     }
 
     public ZonedDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(ZonedDateTime endDate) {
-        this.endDate = endDate;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getCertificateFilePath() {
         return certificateFilePath;
     }
 
-    public void setCertificateFilePath(String certificateFilePath) {
-        this.certificateFilePath = certificateFilePath;
-    }
-
     public String getVerificationAddress() {
         return verificationAddress;
-    }
-
-    public void setVerificationAddress(String verificationAddress) {
-        this.verificationAddress = verificationAddress;
     }
 
     public static final class Builder {
@@ -146,6 +107,8 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         private ZonedDateTime lastModifiedDate;
 
         private ResumeID resume;
+
+        private Integer orderNumber;
         private String courseTitle;
         private String institution;
         private Boolean isOnline;
@@ -198,6 +161,11 @@ public class CourseRoot extends AggregateRoot<CourseID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

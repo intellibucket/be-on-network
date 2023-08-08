@@ -13,6 +13,7 @@ import java.util.UUID;
 public class OrganizationRoot extends AggregateRoot<OrganizationID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private String organizationName;
 
     private String position;
@@ -27,71 +28,17 @@ public class OrganizationRoot extends AggregateRoot<OrganizationID> {
 
     private OrganizationRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setOrganizationName(builder.organizationName);
-        setPosition(builder.position);
-        setStartDate(builder.startDate);
-        setEndDate(builder.endDate);
-        setCityId(builder.cityId);
-        setDescription(builder.description);
+        this.resume = builder.resume;
+        this.orderNumber = builder.orderNumber;
+        this.organizationName = builder.organizationName;
+        this.position = builder.position;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+        this.cityId = builder.cityId;
+        this.description = builder.description;
     }
 
 
-    public ResumeID getResume() {
-        return resume;
-    }
-
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
-    }
-
-    public String getOrganizationName() {
-        return organizationName;
-    }
-
-    public void setOrganizationName(String organizationName) {
-        this.organizationName = organizationName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public ZonedDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(ZonedDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public ZonedDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(ZonedDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public UUID getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(UUID cityId) {
-        this.cityId = cityId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public static final class Builder {
 
@@ -102,6 +49,7 @@ public class OrganizationRoot extends AggregateRoot<OrganizationID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
         private ResumeID resume;
+        private Integer orderNumber;
         private String organizationName;
         private String position;
         private ZonedDateTime startDate;
@@ -148,6 +96,11 @@ public class OrganizationRoot extends AggregateRoot<OrganizationID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

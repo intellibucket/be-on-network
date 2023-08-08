@@ -14,6 +14,8 @@ import java.util.UUID;
 public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
+
     private UUID languageUUID;
 
     private String additionalInfo;
@@ -22,43 +24,31 @@ public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
 
     private ResumeLanguageRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setLanguageUUID(builder.languageUUID);
-        setAdditionalInfo(builder.additionalInfo);
-        setLevel(builder.level);
+        this.resume = builder.resume;
+        this.orderNumber = builder.orderNumber;
+        this.languageUUID = builder.languageUUID;
+        this.additionalInfo = builder.additionalInfo;
+        this.level = builder.level;
     }
-
 
     public ResumeID getResume() {
         return resume;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public UUID getLanguageUUID() {
         return languageUUID;
     }
 
-    public void setLanguageUUID(UUID languageUUID) {
-        this.languageUUID = languageUUID;
-    }
-
     public String getAdditionalInfo() {
         return additionalInfo;
     }
 
-    public void setAdditionalInfo(String additionalInfo) {
-        this.additionalInfo = additionalInfo;
-    }
-
     public LanguageLevel getLevel() {
         return level;
-    }
-
-    public void setLevel(LanguageLevel level) {
-        this.level = level;
     }
 
     public static final class Builder {
@@ -68,9 +58,8 @@ public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
-
-
         private ResumeID resume;
+        private Integer orderNumber;
         private UUID languageUUID;
         private String additionalInfo;
         private LanguageLevel level;
@@ -114,6 +103,11 @@ public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

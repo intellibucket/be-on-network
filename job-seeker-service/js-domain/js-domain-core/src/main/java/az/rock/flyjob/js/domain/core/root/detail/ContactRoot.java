@@ -11,6 +11,7 @@ import java.time.ZonedDateTime;
 public class ContactRoot extends AggregateRoot<ContactID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private ContactFormatType formatType;
 
     private ContactLiveType liveType;
@@ -19,43 +20,31 @@ public class ContactRoot extends AggregateRoot<ContactID> {
 
     private ContactRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setFormatType(builder.formatType);
-        setLiveType(builder.liveType);
-        setData(builder.data);
+        this.resume = builder.resume;
+        this.formatType = builder.formatType;
+        this.liveType = builder.liveType;
+        this.data = builder.data;
+        this.orderNumber = builder.orderNumber;
     }
-
 
     public ResumeID getResume() {
         return resume;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public ContactFormatType getFormatType() {
         return formatType;
     }
 
-    public void setFormatType(ContactFormatType formatType) {
-        this.formatType = formatType;
-    }
-
     public ContactLiveType getLiveType() {
         return liveType;
     }
 
-    public void setLiveType(ContactLiveType liveType) {
-        this.liveType = liveType;
-    }
-
     public String getData() {
         return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public static final class Builder {
@@ -69,6 +58,8 @@ public class ContactRoot extends AggregateRoot<ContactID> {
 
 
         private ResumeID resume;
+
+        private Integer orderNumber;
         private ContactFormatType formatType;
         private ContactLiveType liveType;
         private String data;
@@ -113,6 +104,11 @@ public class ContactRoot extends AggregateRoot<ContactID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

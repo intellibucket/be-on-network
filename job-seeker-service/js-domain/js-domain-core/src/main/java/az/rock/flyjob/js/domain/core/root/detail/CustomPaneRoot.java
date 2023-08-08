@@ -15,6 +15,7 @@ import java.util.UUID;
 public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private String name;
 
     private PaneType type;
@@ -35,97 +36,61 @@ public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
 
     private CustomPaneRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setName(builder.name);
-        setType(builder.type);
-        setTitle(builder.title);
-        setLink(builder.link);
-        setSubtitle(builder.subtitle);
-        setCityId(builder.cityId);
-        setStartDate(builder.startDate);
-        setEndDate(builder.endDate);
-        setDescription(builder.description);
+        this.resume = builder.resume;
+        this.orderNumber = builder.orderNumber;
+        this.name = builder.name;
+        this.type = builder.type;
+        this.title = builder.title;
+        this.link = builder.link;
+        this.subtitle = builder.subtitle;
+        this.cityId = builder.cityId;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+        this.description = builder.description;
     }
-
 
     public ResumeID getResume() {
         return resume;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public PaneType getType() {
         return type;
-    }
-
-    public void setType(PaneType type) {
-        this.type = type;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getLink() {
         return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
     }
 
     public String getSubtitle() {
         return subtitle;
     }
 
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
     public UUID getCityId() {
         return cityId;
-    }
-
-    public void setCityId(UUID cityId) {
-        this.cityId = cityId;
     }
 
     public ZonedDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(ZonedDateTime startDate) {
-        this.startDate = startDate;
-    }
-
     public ZonedDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(ZonedDateTime endDate) {
-        this.endDate = endDate;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public static final class Builder {
@@ -138,6 +103,8 @@ public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
 
 
         private ResumeID resume;
+
+        private Integer orderNumber;
         private String name;
         private PaneType type;
         private String title;
@@ -187,6 +154,11 @@ public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

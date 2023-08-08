@@ -20,6 +20,9 @@ public class AwardEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "award",nullable = false)
     private String award;
 

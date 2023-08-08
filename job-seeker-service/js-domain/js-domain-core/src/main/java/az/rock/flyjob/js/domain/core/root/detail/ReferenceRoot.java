@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 public class ReferenceRoot extends AggregateRoot<ReferenceID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private String name;
 
     private String position;
@@ -24,72 +25,49 @@ public class ReferenceRoot extends AggregateRoot<ReferenceID> {
 
     private String phone;
 
+
     private ReferenceRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setName(builder.name);
-        setPosition(builder.position);
-        setJobTitle(builder.jobTitle);
-        setOrganization(builder.organization);
-        setEmail(builder.email);
-        setPhone(builder.phone);
+        this.resume = builder.resume;
+        this.orderNumber = builder.orderNumber;
+        this.name = builder.name;
+        this.position = builder.position;
+        this.jobTitle = builder.jobTitle;
+        this.organization = builder.organization;
+        this.email = builder.email;
+        this.phone = builder.phone;
     }
-
 
     public ResumeID getResume() {
         return resume;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPosition() {
         return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public String getJobTitle() {
         return jobTitle;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
     public String getOrganization() {
         return organization;
-    }
-
-    public void setOrganization(String organization) {
-        this.organization = organization;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public static final class Builder {
@@ -101,6 +79,7 @@ public class ReferenceRoot extends AggregateRoot<ReferenceID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
         private ResumeID resume;
+        private Integer orderNumber;
         private String name;
         private String position;
         private String jobTitle;
@@ -147,6 +126,11 @@ public class ReferenceRoot extends AggregateRoot<ReferenceID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

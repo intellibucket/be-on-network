@@ -21,6 +21,9 @@ public class ResumeLanguageEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "language_uuid", nullable = false)
     private UUID languageUUID;
 

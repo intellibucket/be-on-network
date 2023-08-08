@@ -10,5 +10,6 @@ public class LayoutRoot extends AggregateRoot<LayoutID> {
 
     private LayoutType layoutType;
 
+
     private LayoutColumnAlignmentType layoutColumnAlignmentType;
 }

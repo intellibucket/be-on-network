@@ -21,6 +21,9 @@ public class OrganizationEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "organization_name")
     private String organizationName;
 

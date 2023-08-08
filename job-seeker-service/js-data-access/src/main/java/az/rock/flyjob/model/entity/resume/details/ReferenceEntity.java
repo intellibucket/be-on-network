@@ -22,6 +22,9 @@ public class ReferenceEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "name", nullable = false)
     private String name;
 

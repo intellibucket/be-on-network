@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.security;
 
 import az.rock.lib.domain.id.auth.UserID;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Role;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,19 +30,18 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     @Value("${test.values.user.isAuthenticated:true}")
     private Boolean isAuthenticated ;
 
-    @Override
-    public UserID currentUser() {
-        return UserID.of(UUID.fromString(testUserUUID));
-    }
 
     @Override
     public UserID availableUser() {
-        var userID = this.currentUser();
-        var availableUser = Boolean.TRUE;
-        if (availableUser) {
-            return userID;
-        }else throw new RuntimeException("User is not available");
+        return UserID.of(UUID.fromString(this.testUserUUID));
     }
+
+    @Override
+    public ResumeID resumeID() {
+        // FIXME: 08.08.23
+        return null;
+    }
+
     @Override
     public Language currentLanguage() {
         return Language.valueOf(this.testLanguage.toUpperCase());

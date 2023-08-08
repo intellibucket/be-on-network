@@ -19,6 +19,7 @@ import java.util.UUID;
 public class EducationRoot extends AggregateRoot<EducationID> {
     private ResumeID resume;
 
+    private Integer orderNumber;
     private EducationDegree degree;
 
     private EducationState state;
@@ -39,98 +40,19 @@ public class EducationRoot extends AggregateRoot<EducationID> {
 
     private EducationRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        setDegree(builder.degree);
-        setState(builder.state);
-        setLink(builder.link);
-        setEstablishmentUUID(builder.establishmentUUID);
-        setEstablishmentName(builder.establishmentName);
-        setCityId(builder.cityId);
-        setStartDate(builder.startDate);
-        setEndDate(builder.endDate);
-        setDescription(builder.description);
+        this.resume = builder.resume;
+        this.orderNumber = builder.orderNumber;
+        this.degree = builder.degree;
+        this.state = builder.state;
+        this.link = builder.link;
+        this.establishmentUUID = builder.establishmentUUID;
+        this.establishmentName = builder.establishmentName;
+        this.cityId = builder.cityId;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+        this.description = builder.description;
     }
 
-
-    public ResumeID getResume() {
-        return resume;
-    }
-
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
-    }
-
-    public EducationDegree getDegree() {
-        return degree;
-    }
-
-    public void setDegree(EducationDegree degree) {
-        this.degree = degree;
-    }
-
-    public EducationState getState() {
-        return state;
-    }
-
-    public void setState(EducationState state) {
-        this.state = state;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public UUID getEstablishmentUUID() {
-        return establishmentUUID;
-    }
-
-    public void setEstablishmentUUID(UUID establishmentUUID) {
-        this.establishmentUUID = establishmentUUID;
-    }
-
-    public String getEstablishmentName() {
-        return establishmentName;
-    }
-
-    public void setEstablishmentName(String establishmentName) {
-        this.establishmentName = establishmentName;
-    }
-
-    public UUID getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(UUID cityId) {
-        this.cityId = cityId;
-    }
-
-    public ZonedDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(ZonedDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public ZonedDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(ZonedDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public static final class Builder {
         private EducationID id;
@@ -141,6 +63,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         private ZonedDateTime lastModifiedDate;
 
         private ResumeID resume;
+        private Integer orderNumber;
         private EducationDegree degree;
         private EducationState state;
         private String link;
@@ -190,6 +113,11 @@ public class EducationRoot extends AggregateRoot<EducationID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 

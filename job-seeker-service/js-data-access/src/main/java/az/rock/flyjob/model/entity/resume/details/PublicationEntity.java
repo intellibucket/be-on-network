@@ -20,6 +20,9 @@ public class PublicationEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "title", nullable = false)
     private String title;
 

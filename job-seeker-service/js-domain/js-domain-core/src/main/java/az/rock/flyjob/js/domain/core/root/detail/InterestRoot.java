@@ -11,52 +11,38 @@ import java.time.ZonedDateTime;
 
 public class InterestRoot extends AggregateRoot<InterestID> {
     private ResumeID resume;
-
+    private Integer orderNumber;
     private Boolean isHobby;
-
     private String name;
-
     private String description;
 
     private InterestRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        setResume(builder.resume);
-        isHobby = builder.isHobby;
-        setName(builder.name);
-        setDescription(builder.description);
+        this.resume = builder.resume;
+        this.orderNumber = builder.orderNumber;
+        this.isHobby = builder.isHobby;
+        this.name = builder.name;
+        this.description = builder.description;
     }
-
 
     public ResumeID getResume() {
         return resume;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 
     public Boolean getHobby() {
         return isHobby;
     }
 
-    public void setHobby(Boolean hobby) {
-        isHobby = hobby;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public static final class Builder {
@@ -70,6 +56,7 @@ public class InterestRoot extends AggregateRoot<InterestID> {
 
 
         private ResumeID resume;
+        private Integer orderNumber;
         private Boolean isHobby;
         private String name;
         private String description;
@@ -113,6 +100,11 @@ public class InterestRoot extends AggregateRoot<InterestID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder orderNumber(Integer val) {
+            orderNumber = val;
             return this;
         }
 
