@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/private/command/follow",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/auth/1.0/private/command/relationFollow",produces = MediaType.APPLICATION_JSON_VALUE)
 public class FollowCommandPrivateController implements FollowCommandPrivateSpec {
 
     private AbstractFollowCommandDomainPresentationService followCommandDomainPresentationService;

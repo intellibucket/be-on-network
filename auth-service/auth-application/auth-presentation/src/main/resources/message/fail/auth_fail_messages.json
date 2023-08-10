@@ -268,5 +268,14 @@
     "tr": " Bu kullanıcı adı seçilemez. Lütfen başka bir kullanıcı adı girin.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000031",
+    "az": " Bu istifadəçi artıq sizin istəkçi siyahınızda mövcuddur.",
+    "en": " This user is already in your follow list.",
+    "ru": " Этот пользователь уже есть в вашем списке подписчиков.",
+    "tr": " Bu kullanıcı takip listenizde mevcuttur.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

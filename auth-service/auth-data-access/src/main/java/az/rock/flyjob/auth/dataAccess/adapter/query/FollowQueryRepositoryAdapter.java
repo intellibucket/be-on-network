@@ -5,6 +5,7 @@ import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractFollowDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.FollowQueryJPARepository;
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.lib.domain.id.FollowID;
 import az.rock.lib.domain.id.UserID;
 import org.springframework.stereotype.Component;
 
@@ -64,5 +65,12 @@ public class FollowQueryRepositoryAdapter implements AbstractFollowQueryReposito
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
+    }
+
+    @Override
+    public Boolean isExistFollowerInFollowerList(UserID userID, FollowID followID) {
+        var optionalEntity = this.followQueryJPARepository
+                                                    .findByUuidAndAndFollowingUserId(userID.getAbsoluteID(),followID.getAbsoluteID());
+        return optionalEntity;
     }
 }
