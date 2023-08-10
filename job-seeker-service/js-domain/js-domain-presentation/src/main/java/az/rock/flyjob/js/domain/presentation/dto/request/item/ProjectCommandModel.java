@@ -1,12 +1,12 @@
-package az.rock.flyjob.js.domain.presentation.dto.request.model;
+package az.rock.flyjob.js.domain.presentation.dto.request.item;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.AbstractCommandModel;
 
 import java.time.ZonedDateTime;
 
-public class PublicationCommandModel extends AbstractCommandModel {
+public class ProjectCommandModel extends AbstractCommandModel {
     private String title;
-    private String publisher;
+    private String subtitle;
     private String link;
     private ZonedDateTime startDate;
     private ZonedDateTime endDate;

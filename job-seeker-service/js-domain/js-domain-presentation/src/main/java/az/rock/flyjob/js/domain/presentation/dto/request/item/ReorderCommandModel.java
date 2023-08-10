@@ -1,4 +1,4 @@
-package az.rock.flyjob.js.domain.presentation.dto.request.model;
+package az.rock.flyjob.js.domain.presentation.dto.request.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,10 +1,8 @@
-package az.rock.flyjob.js.domain.presentation.dto.request.model;
+package az.rock.flyjob.js.domain.presentation.dto.request.item;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.AbstractCommandModel;
 import az.rock.lib.valueObject.WorkingTimeType;
 import az.rock.lib.valueObject.WorkingType;
-import az.rock.lib.valueObject.js.EducationDegree;
-import az.rock.lib.valueObject.js.EducationState;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
