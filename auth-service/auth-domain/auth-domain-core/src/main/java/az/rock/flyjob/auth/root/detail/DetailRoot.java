@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.root.detail;
 
-import az.rock.flyjob.auth.root.RoleRoot;
+import az.rock.flyjob.auth.root.security.RoleRoot;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.auth.DetailID;
 import az.rock.lib.domain.id.auth.UserID;

@@ -2,7 +2,7 @@ package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDetailDomainMapper;
-import az.rock.flyjob.auth.root.RoleRoot;
+import az.rock.flyjob.auth.root.security.RoleRoot;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.id.auth.DetailID;
 import az.rock.lib.domain.id.auth.UserID;
