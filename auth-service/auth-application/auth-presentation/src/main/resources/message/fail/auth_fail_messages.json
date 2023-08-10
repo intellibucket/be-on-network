@@ -268,5 +268,14 @@
     "tr": " Bu kullanıcı adı seçilemez. Lütfen başka bir kullanıcı adı girin.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000031",
+    "az": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
+    "en": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
+    "ru": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
+    "tr": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

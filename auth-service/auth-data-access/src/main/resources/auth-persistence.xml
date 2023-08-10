@@ -9,12 +9,12 @@
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.AccountPlanEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.AuthorityEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.security.AuthorityEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.detail.DetailEntity</class>
 
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.RoleEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.security.RoleEntity</class>
     </persistence-unit>
 </persistence>
