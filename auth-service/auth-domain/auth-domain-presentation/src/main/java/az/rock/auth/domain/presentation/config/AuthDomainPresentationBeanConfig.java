@@ -67,4 +67,5 @@ public class AuthDomainPresentationBeanConfig {
     public AbstractFollowDomainService abstractFollowDomainService(){
         return new FollowDomainService();
     }
+
 }
