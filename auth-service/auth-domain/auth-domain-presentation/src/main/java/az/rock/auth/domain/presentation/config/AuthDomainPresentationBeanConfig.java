@@ -64,6 +64,11 @@ public class AuthDomainPresentationBeanConfig {
     }
 
     @Bean
+    public AbstractFollowDomainService abstractFollowDomainService(){
+        return new FollowDomainService();
+    }
+
+    @Bean
     public AbstractBlockRelationDomainService abstractBlockRelationDomainService(){
         return new BlockRelationDomainService();
     }

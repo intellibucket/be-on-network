@@ -16,7 +16,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "blocks", schema = "network")
+@Table(name = "block_relation", schema = "network")
 @Entity(name = "BlockRelationEntity")
 public class BlockRelationEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
