@@ -62,4 +62,14 @@ public class AuthDomainPresentationBeanConfig {
     public AbstractCoverPictureDomainService abstractCoverPictureDomainService(){
         return new CoverPictureDomainService();
     }
+
+    @Bean
+    public AbstractFollowDomainService abstractFollowDomainService(){
+        return new FollowDomainService();
+    }
+
+    @Bean
+    public AbstractBlockRelationDomainService abstractBlockRelationDomainService(){
+        return new BlockRelationDomainService();
+    }
 }
