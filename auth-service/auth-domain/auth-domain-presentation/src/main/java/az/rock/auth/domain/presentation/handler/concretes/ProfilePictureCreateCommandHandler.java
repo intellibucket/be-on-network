@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.concretes;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractProfilePictureCreateCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractProfilePictureDomainMapper;

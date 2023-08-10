@@ -20,6 +20,9 @@ public class ContactEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Enumerated(EnumType.STRING)
     private ContactFormatType formatType;
 

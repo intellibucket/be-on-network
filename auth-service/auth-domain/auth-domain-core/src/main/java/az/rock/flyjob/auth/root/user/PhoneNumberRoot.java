@@ -1,12 +1,9 @@
 package az.rock.flyjob.auth.root.user;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.PhoneNumberID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.PhoneNumberID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;

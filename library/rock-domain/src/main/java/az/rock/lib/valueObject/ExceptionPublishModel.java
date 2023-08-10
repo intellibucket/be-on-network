@@ -1,9 +1,7 @@
 package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
-import az.rock.lib.domain.id.UserID;
-
-import java.util.UUID;
+import az.rock.lib.domain.id.auth.UserID;
 
 @ValueObject
 public class ExceptionPublishModel {

@@ -56,6 +56,6 @@ public class InformationEntity extends BaseEntity {
     @OneToMany(mappedBy = "information")
     private List<LinkEntity> links;
 
-    @OneToOne
+    @OneToOne(mappedBy = "information")
     private AddressEntity address;
 }

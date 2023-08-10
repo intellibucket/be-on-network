@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.concretes;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractCoverPictureDomainMapper;
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.flyjob.auth.service.abstracts.AbstractCoverPictureDomainService;

@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.root.user;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.CoverPictureID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.CoverPictureID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;

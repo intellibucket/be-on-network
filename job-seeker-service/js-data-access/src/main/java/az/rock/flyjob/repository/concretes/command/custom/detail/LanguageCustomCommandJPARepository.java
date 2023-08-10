@@ -1,8 +1,6 @@
 package az.rock.flyjob.repository.concretes.command.custom.detail;
 
-import az.rock.flyjob.model.entity.resume.details.AwardEntity;
-import az.rock.flyjob.model.entity.resume.details.LanguageEntity;
-import az.rock.flyjob.repository.abstracts.command.custom.detail.AbstractAwardCustomCommandJPARepository;
+import az.rock.flyjob.model.entity.resume.details.ResumeLanguageEntity;
 import az.rock.flyjob.repository.abstracts.command.custom.detail.AbstractLanguageCustomCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -19,13 +17,13 @@ public class LanguageCustomCommandJPARepository implements AbstractLanguageCusto
     }
 
     @Override
-    public <S extends LanguageEntity> S persist(S entity) {
+    public <S extends ResumeLanguageEntity> S persist(S entity) {
         this.entityManager.persist(entity);
         return entity;
     }
 
     @Override
-    public <S extends LanguageEntity> S merge(S entity) {
+    public <S extends ResumeLanguageEntity> S merge(S entity) {
         return this.entityManager.merge(entity);
     }
 }

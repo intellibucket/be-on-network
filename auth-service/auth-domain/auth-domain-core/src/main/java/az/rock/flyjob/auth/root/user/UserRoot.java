@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.root.user;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.*;
 

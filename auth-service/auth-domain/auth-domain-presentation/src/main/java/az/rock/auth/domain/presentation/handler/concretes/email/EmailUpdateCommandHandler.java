@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.concretes.email;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.request.EmailChangeRequest;
 import az.rock.auth.domain.presentation.handler.abstracts.email.AbstractEmailUpdateCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractEmailDomainMapper;
@@ -10,7 +10,7 @@ import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.exception.email.EmailNotFoundException;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractEmailDomainService;
-import az.rock.lib.domain.id.EmailID;
+import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.valueObject.SwitchCase;
 import org.springframework.stereotype.Component;
 

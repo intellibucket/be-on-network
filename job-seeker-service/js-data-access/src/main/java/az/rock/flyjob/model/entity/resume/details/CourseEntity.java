@@ -21,6 +21,9 @@ public class CourseEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "course_title", nullable = false)
     private String courseTitle;
 

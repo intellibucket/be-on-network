@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.root.network;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.NetworkID;
+import az.rock.lib.domain.id.auth.NetworkID;
 import az.rock.lib.valueObject.BlockReasonStatus;
 import az.rock.lib.valueObject.NetworkStatus;
 import az.rock.lib.valueObject.ProcessStatus;

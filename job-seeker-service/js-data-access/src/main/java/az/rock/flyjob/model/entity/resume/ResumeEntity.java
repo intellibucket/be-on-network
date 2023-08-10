@@ -67,7 +67,7 @@ public class ResumeEntity extends BaseEntity {
     private List<InterestEntity> interests;
 
     @OneToMany(mappedBy = "resume")
-    private List<LanguageEntity> languages;
+    private List<ResumeLanguageEntity> languages;
 
     @OneToMany(mappedBy = "resume")
     private List<OrganizationEntity> organizations;
@@ -130,7 +130,7 @@ public class ResumeEntity extends BaseEntity {
         private List<EducationEntity> educations;
         private List<ExperienceEntity> experiences;
         private List<InterestEntity> interests;
-        private List<LanguageEntity> languages;
+        private List<ResumeLanguageEntity> languages;
         private List<OrganizationEntity> organizations;
         private List<ProjectEntity> projects;
         private List<PublicationEntity> publications;
@@ -220,7 +220,7 @@ public class ResumeEntity extends BaseEntity {
             return this;
         }
 
-        public Builder languages(List<LanguageEntity> val) {
+        public Builder languages(List<ResumeLanguageEntity> val) {
             languages = val;
             return this;
         }

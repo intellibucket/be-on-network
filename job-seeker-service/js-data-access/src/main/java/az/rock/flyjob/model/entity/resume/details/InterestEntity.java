@@ -21,6 +21,9 @@ public class InterestEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
+    @Column(name = "order_number",nullable = false)
+    private Integer orderNumber;
+
     @Column(name = "is_hobby", nullable = false)
     private Boolean isHobby;
 
