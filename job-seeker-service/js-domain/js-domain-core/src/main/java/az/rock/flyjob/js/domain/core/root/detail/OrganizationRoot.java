@@ -12,18 +12,12 @@ import java.util.UUID;
 
 public class OrganizationRoot extends AggregateRoot<OrganizationID> {
     private ResumeID resume;
-
     private Integer orderNumber;
     private String organizationName;
-
     private String position;
-
     private ZonedDateTime startDate;
-
     private ZonedDateTime endDate;
-
     private UUID cityId;
-
     private String description;
 
     private OrganizationRoot(Builder builder) {

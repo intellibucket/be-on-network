@@ -6,7 +6,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.network.FollowRelationEvent;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowDomainService;
-import az.rock.lib.domain.id.FollowID;
+import az.rock.lib.domain.id.auth.FollowID;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -55,4 +55,6 @@ public class FollowCommandHandler implements AbstractFollowCommandHandler {
     public FollowRelationEvent handleCancelFollowRequest(FollowID followID) {
         return null;
     }
+
+
 }

@@ -11,18 +11,12 @@ import java.time.ZonedDateTime;
 
 public class ProjectRoot extends AggregateRoot<ProjectID> {
     private ResumeID resume;
-
     private Integer orderNumber;
     private String title;
-
     private String subtitle;
-
     private String link;
-
     private ZonedDateTime startDate;
-
     private ZonedDateTime endDate;
-
     private String description;
 
     private ProjectRoot(Builder builder) {
