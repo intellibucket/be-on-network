@@ -5,6 +5,7 @@ import az.rock.auth.domain.presentation.handler.abstracts.network.AbstractFollow
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.network.FollowRelationEvent;
+import az.rock.flyjob.auth.exception.follow.FollowAlreadyException;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowDomainService;
 import az.rock.lib.domain.id.auth.FollowID;
 import org.springframework.stereotype.Component;
@@ -33,6 +34,14 @@ public class FollowCommandHandler implements AbstractFollowCommandHandler {
 
     @Override
     public FollowRelationEvent handleFollow(FollowID followID) {
+        var currentUserId = this.securityContextHolder.availableUser();
+        var alreadyFollowed =  this.followQueryRepositoryAdapter.isExistFollowerInFollowerList(currentUserId,followID);
+        if(alreadyFollowed) throw new FollowAlreadyException();
+
+        //var optionalFollowersList = followers.stream().filter(item -> item.getFollowingUserId().equals(followID)).findFirst();
+
+        // if(optionalFollowersList.isPresent()) throw new FollowDomainException();
+
         return null;
     }
 

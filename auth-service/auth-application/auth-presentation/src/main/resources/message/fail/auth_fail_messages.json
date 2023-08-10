@@ -271,10 +271,10 @@
   },
   {
     "code": "F0000000031",
-    "az": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
-    "en": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
-    "ru": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
-    "tr": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
+    "az": " Bu istifadəçi artıq sizin istəkçi siyahınızda mövcuddur.",
+    "en": " This user is already in your follow list.",
+    "ru": " Этот пользователь уже есть в вашем списке подписчиков.",
+    "tr": " Bu kullanıcı takip listenizde mevcuttur.",
     "hasRegex": false,
     "regex": ""
   }
