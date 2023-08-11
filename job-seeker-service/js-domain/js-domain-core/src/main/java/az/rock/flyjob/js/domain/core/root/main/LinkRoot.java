@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.core.root.main;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.InformationID;
 import az.rock.lib.domain.id.js.LinkID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -13,15 +14,16 @@ import java.time.ZonedDateTime;
 public class LinkRoot extends AggregateRoot<LinkID> {
     private InformationID information;
 
+    private AccessModifier accessModifier;
     private Integer orderNumber;
     private LinkType type;
-
     private String explanation;
 
     private String link;
 
     private LinkRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier = builder.accessModifier;
         this.information = builder.information;
         this.type = builder.type;
         this.explanation = builder.explanation;
@@ -46,6 +48,14 @@ public class LinkRoot extends AggregateRoot<LinkID> {
         return link;
     }
 
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
         private LinkID id;
         private Version version;
@@ -55,6 +65,7 @@ public class LinkRoot extends AggregateRoot<LinkID> {
         private ZonedDateTime lastModifiedDate;
         private InformationID information;
 
+        private AccessModifier accessModifier;
         private Integer orderNumber;
         private LinkType type;
         private String explanation;
@@ -94,6 +105,16 @@ public class LinkRoot extends AggregateRoot<LinkID> {
 
         public Builder lastModifiedDate(ZonedDateTime val) {
             lastModifiedDate = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
+            return this;
+        }
+
+        public Builder rowOrder(Integer val){
+            orderNumber = val;
             return this;
         }
 

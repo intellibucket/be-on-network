@@ -10,16 +10,15 @@ import java.time.ZonedDateTime;
 
 public class ContactRoot extends AggregateRoot<ContactID> {
     private ResumeID resume;
-
+    private AccessModifier accessModifier;
     private Integer orderNumber;
     private ContactFormatType formatType;
-
     private ContactLiveType liveType;
-
     private String data;
 
     private ContactRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.formatType = builder.formatType;
         this.liveType = builder.liveType;
@@ -47,6 +46,10 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         return data;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
 
         private ContactID id;
@@ -58,7 +61,7 @@ public class ContactRoot extends AggregateRoot<ContactID> {
 
 
         private ResumeID resume;
-
+        private AccessModifier accessModifier;
         private Integer orderNumber;
         private ContactFormatType formatType;
         private ContactLiveType liveType;
@@ -104,6 +107,11 @@ public class ContactRoot extends AggregateRoot<ContactID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 

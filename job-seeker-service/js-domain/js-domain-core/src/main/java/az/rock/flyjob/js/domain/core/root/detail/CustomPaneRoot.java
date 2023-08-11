@@ -17,21 +17,13 @@ public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
 
     private Integer orderNumber;
     private String name;
-
     private PaneType type;
-
     private String title;
-
     private String link;
-
     private String subtitle;
-
     private UUID cityId;
-
     private ZonedDateTime startDate;
-
     private ZonedDateTime endDate;
-
     private String description;
 
     private CustomPaneRoot(Builder builder) {
