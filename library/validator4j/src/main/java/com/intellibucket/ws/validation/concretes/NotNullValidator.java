@@ -13,6 +13,7 @@ public class NotNullValidator implements ConstraintValidator<GNotNull, Object> {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
+
     @Override
     @SneakyThrows(ValidationException.class)
     public boolean isValid(Object value, ConstraintValidatorContext context) {
