@@ -10,14 +10,10 @@ import java.util.UUID;
 
 public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
     private ResumeID resume;
-
     private AccessModifier accessModifier;
     private Integer orderNumber;
-
     private UUID languageUUID;
-
     private String additionalInfo;
-
     private LanguageLevel level;
 
     private ResumeLanguageRoot(Builder builder) {

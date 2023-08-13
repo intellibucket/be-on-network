@@ -13,19 +13,13 @@ import java.time.ZonedDateTime;
 
 public class PublicationRoot extends AggregateRoot<PublicationID> {
     private ResumeID resume;
-
     private AccessModifier accessModifier;
     private Integer orderNumber;
     private String title;
-
     private String publisher;
-
     private String link;
-
     private ZonedDateTime startDate;
-
     private ZonedDateTime endDate;
-
     private String description;
 
     private PublicationRoot(Builder builder) {

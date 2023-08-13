@@ -3,10 +3,7 @@ package az.rock.flyjob.js.domain.core.root.main;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.InformationID;
 import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.Gender;
-import az.rock.lib.valueObject.ProcessStatus;
-import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.Version;
+import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
 public class InformationRoot extends AggregateRoot<InformationID> {
 
     private ResumeID resume;
-
+    private AccessModifier accessModifier;
     private String name;
 
     private String surname;
@@ -41,6 +38,7 @@ public class InformationRoot extends AggregateRoot<InformationID> {
 
     private InformationRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier = builder.accessModifier;
         resume = builder.resume;
         name = builder.name;
         surname = builder.surname;
@@ -56,6 +54,9 @@ public class InformationRoot extends AggregateRoot<InformationID> {
         address = builder.address;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
 
     public ResumeID getResume() {
         return resume;
@@ -116,6 +117,8 @@ public class InformationRoot extends AggregateRoot<InformationID> {
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
+
+        private AccessModifier accessModifier;
         private ResumeID resume;
         private String name;
         private String surname;
@@ -169,6 +172,11 @@ public class InformationRoot extends AggregateRoot<InformationID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 

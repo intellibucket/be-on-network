@@ -30,6 +30,9 @@ public class SkillRoot extends AggregateRoot<SkillID> {
         information = builder.information;
     }
 
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
 
     public ResumeID getResume() {
         return resume;

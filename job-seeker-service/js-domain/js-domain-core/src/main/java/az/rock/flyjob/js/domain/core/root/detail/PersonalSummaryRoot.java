@@ -13,7 +13,6 @@ import java.time.ZonedDateTime;
 
 public class PersonalSummaryRoot extends AggregateRoot<PersonalSummaryID> {
     private ResumeID resume;
-
     private AccessModifier accessModifier;
     private String summary;
 
@@ -39,7 +38,6 @@ public class PersonalSummaryRoot extends AggregateRoot<PersonalSummaryID> {
     }
 
     public static final class Builder {
-
         private PersonalSummaryID id;
         private Version version;
         private ProcessStatus processStatus;

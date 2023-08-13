@@ -14,7 +14,6 @@ import java.time.ZonedDateTime;
 
 public class ResumeTemplateRoot extends AggregateRoot<ResumeTemplateID> {
     private ResumeID resume;
-
     private ResumeTemplateType resumeTemplateType;
 
     private ResumeTemplateRoot(Builder builder) {

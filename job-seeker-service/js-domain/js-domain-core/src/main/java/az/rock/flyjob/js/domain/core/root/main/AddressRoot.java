@@ -13,15 +13,10 @@ import java.time.ZonedDateTime;
 
 public class AddressRoot extends AggregateRoot<AddressID> {
     private InformationID information;
-
     private AccessModifier accessModifier;
-
     private String city;
-
     private String country;
-
     private String street;
-
     private String postalCode;
 
     private AddressRoot(Builder builder) {
