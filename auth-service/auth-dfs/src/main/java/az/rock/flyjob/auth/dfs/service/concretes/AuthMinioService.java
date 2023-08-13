@@ -43,7 +43,7 @@ public class AuthMinioService implements AbstractMinioService {
             var response = this.minioClient.getObject(
                     GetObjectArgs
                             .builder()
-                            .bucket(this.BUCKET_NAME)
+                            .bucket(BUCKET_NAME)
                             .object(path)
                             .build()
             );

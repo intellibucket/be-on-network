@@ -11,28 +11,21 @@ import java.util.UUID;
 
 public class ExperienceRoot extends AggregateRoot<ExperienceID> {
     private ResumeID resume;
-
+    private AccessModifier accessModifier;
     private Integer orderNumber;
     private String employer;
-
     private String link;
-
     private String jobTitle;
-
     private UUID cityId;
-
     private WorkingType workingType;
-
     private WorkingTimeType workingTimeType;
-
     private String description;
-
     private ZonedDateTime startDate;
-
     private ZonedDateTime endDate;
 
     private ExperienceRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
         this.employer = builder.employer;
@@ -93,6 +86,10 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
         return endDate;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
         private ExperienceID id;
         private Version version;
@@ -102,6 +99,7 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
         private ZonedDateTime lastModifiedDate;
 
         private ResumeID resume;
+        private AccessModifier accessModifier;
         private Integer orderNumber;
         private String employer;
         private String link;
@@ -152,6 +150,11 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 

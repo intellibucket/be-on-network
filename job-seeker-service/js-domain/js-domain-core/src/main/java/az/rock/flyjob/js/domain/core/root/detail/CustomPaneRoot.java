@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.core.root.detail;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.CustomPaneID;
 import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -14,28 +15,21 @@ import java.util.UUID;
 
 public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
     private ResumeID resume;
-
+    private AccessModifier accessModifier;
     private Integer orderNumber;
     private String name;
-
     private PaneType type;
-
     private String title;
-
     private String link;
-
     private String subtitle;
-
     private UUID cityId;
-
     private ZonedDateTime startDate;
-
     private ZonedDateTime endDate;
-
     private String description;
 
     private CustomPaneRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier =builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
         this.name = builder.name;
@@ -93,6 +87,10 @@ public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
         return description;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
         private CustomPaneID id;
         private Version version;
@@ -103,7 +101,7 @@ public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
 
 
         private ResumeID resume;
-
+        private AccessModifier accessModifier;
         private Integer orderNumber;
         private String name;
         private PaneType type;
@@ -154,6 +152,11 @@ public class CustomPaneRoot extends AggregateRoot<CustomPaneID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 

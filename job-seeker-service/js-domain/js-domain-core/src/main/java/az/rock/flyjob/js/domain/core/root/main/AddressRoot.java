@@ -4,6 +4,7 @@ import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.AddressID;
 import az.rock.lib.domain.id.js.AwardID;
 import az.rock.lib.domain.id.js.InformationID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -12,17 +13,15 @@ import java.time.ZonedDateTime;
 
 public class AddressRoot extends AggregateRoot<AddressID> {
     private InformationID information;
-
+    private AccessModifier accessModifier;
     private String city;
-
     private String country;
-
     private String street;
-
     private String postalCode;
 
     private AddressRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        accessModifier = builder.accessModifier;
         information = builder.information;
         city = builder.city;
         country = builder.country;
@@ -52,6 +51,10 @@ public class AddressRoot extends AggregateRoot<AddressID> {
         return postalCode;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
         private AddressID id;
         private Version version;
@@ -59,6 +62,8 @@ public class AddressRoot extends AggregateRoot<AddressID> {
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
+
+        private AccessModifier accessModifier;
         private InformationID information;
         private String city;
         private String country;
@@ -101,6 +106,12 @@ public class AddressRoot extends AggregateRoot<AddressID> {
             lastModifiedDate = val;
             return this;
         }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
+            return this;
+        }
+
 
         public Builder information(InformationID val) {
             information = val;

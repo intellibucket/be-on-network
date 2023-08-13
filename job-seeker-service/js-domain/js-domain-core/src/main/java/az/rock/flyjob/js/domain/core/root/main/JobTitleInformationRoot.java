@@ -4,6 +4,7 @@ import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.AwardID;
 import az.rock.lib.domain.id.js.InformationID;
 import az.rock.lib.domain.id.js.JobTitleInformationID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -13,12 +14,13 @@ import java.time.ZonedDateTime;
 public class JobTitleInformationRoot extends AggregateRoot<JobTitleInformationID> {
 
     private InformationID information;
-
+    private AccessModifier accessModifier;
     private String jobTitle;
 
     private JobTitleInformationRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
-        information = builder.information;
+        this.accessModifier = builder.accessModifier;
+        information = builder.informationID;
         jobTitle = builder.jobTitle;
     }
 
@@ -31,15 +33,19 @@ public class JobTitleInformationRoot extends AggregateRoot<JobTitleInformationID
         return jobTitle;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
 
     public static final class Builder {
+        private InformationID informationID;
+        private AccessModifier accessModifier;
         private JobTitleInformationID id;
         private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
-        private InformationID information;
         private String jobTitle;
 
         private Builder() {
@@ -80,7 +86,12 @@ public class JobTitleInformationRoot extends AggregateRoot<JobTitleInformationID
         }
 
         public Builder information(InformationID val) {
-            information = val;
+            informationID = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 
