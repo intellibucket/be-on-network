@@ -4,8 +4,11 @@
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/article-command-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/article-command-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/article-query-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/article-query-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/article-sync-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/article-sync-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-application/auth-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-application/auth-presentation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-application/auth-spec/src/main/java" charset="UTF-8" />
@@ -26,9 +29,11 @@
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/auth-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth-service/auth-messaging/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/authorization-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
@@ -36,28 +41,38 @@
     <file url="file://$PROJECT_DIR$/discovery-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/image-processor-service/ip-container/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-dfs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/image-processor-service/ip-dfs/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-domain/ip-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/image-processor-service/ip-domain/ip-domain-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-domain/ip-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/image-processor-service/ip-domain/ip-domain-presentation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/image-processor-service/ip-messaging/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/interview-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/interview-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/js-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/js-presentation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/js-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-application/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-container/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-data-access/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-data-access/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-dfs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-dfs/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/js-domain-presentation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/js-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-seeker-service/js-messaging/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/java" charset="UTF-8" />
@@ -69,27 +84,35 @@
     <file url="file://$PROJECT_DIR$/library/ib-kafka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-exception/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-exception/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-message/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-message/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-payload/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-payload/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-response/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-response/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-ms-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-spring-ms-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-spring-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/rock-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/spring-ms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/spring-ms/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/validator4j/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/validator4j/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notification-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notification-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/payment-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/payment-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rapid-log-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rapid-log-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stream-service/src/main/java" charset="UTF-8" />

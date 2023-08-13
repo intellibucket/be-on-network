@@ -14,19 +14,24 @@ import java.util.Optional;
 @Component
 public class FollowCommandRepositoryAdapter implements AbstractFollowCommandRepositoryAdapter {
 
-    private final AbstractFollowCommandCustomJPARepository followCommandJPARepository;
+    private final AbstractFollowCommandCustomJPARepository followCommandCustomJPARepository;
 
     private final AbstractDataAccessMapper<FollowRelationEntity,FollowRelationRoot> followDataAccessMapper;
 
 
-    public FollowCommandRepositoryAdapter(AbstractFollowCommandCustomJPARepository followCommandJPARepository,
+    public FollowCommandRepositoryAdapter(AbstractFollowCommandCustomJPARepository followCommandCustomJPARepository,
                                           FollowDataAccessMapper followDataAccessMapper){
-        this.followCommandJPARepository = followCommandJPARepository;
+        this.followCommandCustomJPARepository = followCommandCustomJPARepository;
         this.followDataAccessMapper = followDataAccessMapper;
     }
 
     @Override
     public Optional<FollowRelationRoot> create(FollowRelationRoot root) {
+        var entity = this.followDataAccessMapper.toEntity(root);
+        if (entity.isPresent()) {
+            var savedEntity = this.followCommandCustomJPARepository.persist(entity.get());
+            return this.followDataAccessMapper.toRoot(savedEntity);
+        }
         return Optional.empty();
     }
 
@@ -36,7 +41,7 @@ public class FollowCommandRepositoryAdapter implements AbstractFollowCommandRepo
 //        var optionalRoot = Optional.ofNullable(root);
 //        var optionalEntity = this.followDataAccessMapper.toEntity(optionalRoot.get());
 //        if (optionalEntity.isPresent()) {
-//            var savedEntity = this.followCommandJPARepository.persist(optionalEntity.get());
+//            var savedEntity = this.followCommandCustomJPARepository.persist(optionalEntity.get());
 //        //    return this.accountPlanDataAccessMapper.toRoot(savedEntity);
 //        }
 //        return Optional.empty();

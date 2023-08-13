@@ -68,9 +68,9 @@ public class FollowQueryRepositoryAdapter implements AbstractFollowQueryReposito
     }
 
     @Override
-    public Boolean isExistFollowerInFollowerList(UserID userID, FollowID followID) {
-        var optionalEntity = this.followQueryJPARepository
-                                                    .findByUuidAndAndFollowingUserId(userID.getAbsoluteID(),followID.getAbsoluteID());
-        return optionalEntity;
+    public Boolean isFollowerPresentInMyFollowers(UserID userID, UserID followUserID) {
+        var presentFollowerInMyFollowers = this.followQueryJPARepository
+                                                    .isFollowerPresentInMyFollowers(userID.getAbsoluteID(),followUserID.getAbsoluteID());
+        return presentFollowerInMyFollowers;
     }
 }
