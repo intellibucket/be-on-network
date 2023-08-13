@@ -4,9 +4,9 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUs
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.UserQueryJPARepository;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.compose.AbstractUserComposeQueryJPARepository;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.id.UserID;
+import az.rock.lib.valueObject.UserIdTypePair;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -37,8 +37,16 @@ public class UserQueryRepositoryAdapter implements AbstractUserQueryRepositoryAd
         return Optional.empty();
     }
 
+
+
     @Override
     public Boolean isExistByUsername(String username) {
         return this.userQueryJPARepository.existsByUsername(username);
+    }
+
+    @Override
+    public UserIdTypePair findUserTypeById(UserID userID) {
+        var userType =  this.userQueryJPARepository.findUserTypeById(userID.getAbsoluteID());
+        return new UserIdTypePair(userID,userType);
     }
 }

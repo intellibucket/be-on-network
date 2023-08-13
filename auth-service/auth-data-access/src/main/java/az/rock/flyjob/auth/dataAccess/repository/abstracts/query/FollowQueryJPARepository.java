@@ -1,7 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts.query;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,11 +11,16 @@ import java.util.UUID;
 
 @Repository
 public interface FollowQueryJPARepository extends JpaRepository<FollowRelationEntity,UUID> {
-    @Query("select f from FollowRelationEntity f where f.followedUserId = ?1" +
+/**
+ *   followedUserId - senin id
+ *   followingUserId - takib etdiyinin userId si
+*/
+
+    @Query("select f from FollowRelationEntity f where f.followingUserId = ?1" +
             "and f.followStatus = 'ACCEPTED' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllMyFollowers(UUID absoluteID);
 
-    @Query("select f from FollowRelationEntity f where f.followingUserId = ?1" +
+    @Query("select f from FollowRelationEntity f where f.followedUserId = ?1" +
             "and f.followStatus = 'ACCEPTED' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllMyFollowings(UUID absoluteID);
 
@@ -29,8 +33,8 @@ public interface FollowQueryJPARepository extends JpaRepository<FollowRelationEn
     List<FollowRelationEntity> findAllMyPendingFollowRequests(UUID absoluteID);
 
     @Query("SELECT COUNT (f) > 0  FROM FollowRelationEntity f where f.followedUserId = :userID" + //userId - senin , followId - sene atanin
-            " and f.followingUserId = :followID and f.rowStatus = 'ACTIVE'")
-    Boolean findByUuidAndAndFollowingUserId(@Param(value = "userID") UUID userID,
-                                                         @Param(value = "emailID") UUID followID);
+            " and f.followingUserId = :followUserID and f.rowStatus = 'ACTIVE'")
+    Boolean isFollowerPresentInMyFollowers(@Param(value = "userID") UUID userID,
+                                           @Param(value = "followUserID") UUID followUserID);
 }
 

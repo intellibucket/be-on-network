@@ -5,6 +5,7 @@ import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.Ab
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractFollowMessagePublisher;
 import az.rock.flyjob.auth.event.network.FollowRelationEvent;
 import az.rock.lib.domain.id.FollowID;
+import az.rock.lib.domain.id.UserID;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -24,7 +25,7 @@ public class FollowCommandDomainPresentationService implements AbstractFollowCom
 
     @Override
     public void follow(UUID uuid) {
-        FollowRelationEvent followRelationEvent = this.followCommandHandler.handleFollow(FollowID.of(uuid));
+        FollowRelationEvent followRelationEvent = this.followCommandHandler.handleFollow(UserID.of(uuid));
     }
 
     @Override
