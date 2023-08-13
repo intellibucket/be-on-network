@@ -39,7 +39,7 @@ public class UserQueryPrivateController implements UserQueryPrivateSpec {
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<List<UserAnyAccountResponse>>> getUser(List<UUID> users) {
+    public ResponseEntity<JSuccessDataResponse<List<UserAnyAccountResponse>>> getUserList(List<UUID> users) {
         return null;
     }
 

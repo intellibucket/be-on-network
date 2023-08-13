@@ -13,5 +13,5 @@ public interface UserQueryPrivateSpec {
 
     ResponseEntity<JSuccessDataResponse<UserAnyAccountResponse>> getUser(UUID userId);
 
-    ResponseEntity<JSuccessDataResponse<List<UserAnyAccountResponse>>> getUser(List<UUID> users);
+    ResponseEntity<JSuccessDataResponse<List<UserAnyAccountResponse>>> getUserList(List<UUID> users);
 }
