@@ -1,6 +1,7 @@
 package az.rock.flyjob.model.entity.resume.main;
 
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.js.LinkType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,10 @@ import lombok.Setter;
 public class LinkEntity  extends BaseEntity {
     @ManyToOne
     private InformationEntity information;
+
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
 
     @Enumerated(EnumType.STRING)
     private LinkType type;

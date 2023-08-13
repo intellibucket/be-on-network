@@ -2,6 +2,7 @@ package az.rock.flyjob.model.entity.resume.details;
 
 import az.rock.flyjob.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.WorkingTimeType;
 import az.rock.lib.valueObject.WorkingType;
 import jakarta.persistence.*;
@@ -17,11 +18,17 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "experiences", schema = "resume")
+@Table(name = "experiences", schema = "resume", indexes = {
+        @Index(name = "idx_experienceentity_resume_uuid", columnList = "resume_uuid, accessModifier")
+})
 @Entity(name = "ExperienceEntity")
 public class ExperienceEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
+
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
 
     @Column(name = "order_number",nullable = false)
     private Integer orderNumber;

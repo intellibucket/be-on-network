@@ -2,6 +2,7 @@ package az.rock.flyjob.model.entity.resume.main;
 
 import az.rock.flyjob.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,10 @@ public class InformationEntity extends BaseEntity {
 
     @OneToOne
     private ResumeEntity resume;
+
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
 
     @Column(name = "name", nullable = false)
     private String name;

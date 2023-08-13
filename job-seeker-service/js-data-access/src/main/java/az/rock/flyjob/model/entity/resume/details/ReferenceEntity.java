@@ -2,10 +2,8 @@ package az.rock.flyjob.model.entity.resume.details;
 
 import az.rock.flyjob.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import az.rock.lib.valueObject.AccessModifier;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,11 +14,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "references", schema = "resume")
+@Table(name = "references", schema = "resume", indexes = {
+        @Index(name = "idx_referenceentity_resume_uuid", columnList = "resume_uuid, accessModifier")
+})
 @Entity(name = "ReferenceEntity")
 public class ReferenceEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
+
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
 
     @Column(name = "order_number",nullable = false)
     private Integer orderNumber;

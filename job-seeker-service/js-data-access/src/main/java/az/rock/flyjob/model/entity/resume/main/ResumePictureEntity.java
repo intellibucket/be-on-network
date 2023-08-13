@@ -2,10 +2,8 @@ package az.rock.flyjob.model.entity.resume.main;
 
 import az.rock.flyjob.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import az.rock.lib.valueObject.AccessModifier;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +18,10 @@ import lombok.Setter;
 public class ResumePictureEntity extends BaseEntity {
     @OneToOne
     private ResumeEntity resume;
+
+    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Enumerated(EnumType.STRING)
+    private AccessModifier accessModifier;
 
     @Column(name = "is_current", nullable = false, columnDefinition = "boolean default false")
     private Boolean isCurrent;

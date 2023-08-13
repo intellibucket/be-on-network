@@ -19,7 +19,9 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "resumes", schema = "resume")
+@Table(name = "resumes", schema = "resume", indexes = {
+        @Index(name = "idx_resumeentity_user_id", columnList = "user_id")
+})
 @Entity(name = "ResumeEntity")
 public class ResumeEntity extends BaseEntity {
 
