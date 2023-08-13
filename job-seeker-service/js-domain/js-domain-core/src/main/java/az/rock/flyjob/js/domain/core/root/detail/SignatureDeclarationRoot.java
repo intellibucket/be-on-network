@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.core.root.detail;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.domain.id.js.SignatureDeclarationID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -11,11 +12,13 @@ import java.time.ZonedDateTime;
 
 public class SignatureDeclarationRoot extends AggregateRoot<SignatureDeclarationID> {
     private ResumeID resume;
+    private AccessModifier accessModifier;
 
     private byte[] signature;
 
     private SignatureDeclarationRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier = builder.accessModifier;
         resume = builder.resume;
         signature = builder.signature;
     }
@@ -29,6 +32,9 @@ public class SignatureDeclarationRoot extends AggregateRoot<SignatureDeclaration
         return signature;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
 
     public static final class Builder {
         private SignatureDeclarationID id;
@@ -38,6 +44,7 @@ public class SignatureDeclarationRoot extends AggregateRoot<SignatureDeclaration
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
         private ResumeID resume;
+        private AccessModifier accessModifier;
         private byte[] signature;
 
         private Builder() {
@@ -80,6 +87,11 @@ public class SignatureDeclarationRoot extends AggregateRoot<SignatureDeclaration
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 
