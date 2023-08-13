@@ -3,6 +3,6 @@
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="auth-persistence" transaction-type="RESOURCE_LOCAL">
-        <class>az.rock.flyjob.model.entity.resume.ResumeEntity</class>
+        <class>az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity</class>
     </persistence-unit>
 </persistence>
