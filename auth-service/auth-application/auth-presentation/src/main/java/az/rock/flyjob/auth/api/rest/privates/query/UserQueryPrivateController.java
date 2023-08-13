@@ -1,5 +1,6 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
+import az.rock.auth.domain.presentation.dto.response.UserAnyAccountResponse;
 import az.rock.auth.domain.presentation.dto.response.UserMyAccountResponse;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractUserQueryDomainPresentation;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -29,6 +33,15 @@ public class UserQueryPrivateController implements UserQueryPrivateSpec {
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
+    @Override
+    public ResponseEntity<JSuccessDataResponse<UserAnyAccountResponse>> getUser(UUID userId) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<JSuccessDataResponse<List<UserAnyAccountResponse>>> getUser(List<UUID> users) {
+        return null;
+    }
 
 
 }
