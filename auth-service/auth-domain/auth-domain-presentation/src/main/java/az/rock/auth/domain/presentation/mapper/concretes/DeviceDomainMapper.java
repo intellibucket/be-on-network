@@ -2,8 +2,8 @@ package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDeviceDomainMapper;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
-import az.rock.lib.domain.id.DeviceID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.DeviceID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 

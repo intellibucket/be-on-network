@@ -4,8 +4,8 @@ import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserSettingsEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserSettingsDataAccessMapper;
 import az.rock.flyjob.auth.root.user.UserSettingsRoot;
-import az.rock.lib.domain.id.UserID;
-import az.rock.lib.domain.id.UserSettingsID;
+import az.rock.lib.domain.id.auth.UserID;
+import az.rock.lib.domain.id.auth.UserSettingsID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 

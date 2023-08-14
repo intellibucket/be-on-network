@@ -6,8 +6,8 @@ import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDetailDataAccessM
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractRoleDataAccessMapper;
 import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.flyjob.auth.root.detail.DetailRoot;
-import az.rock.lib.domain.id.DetailID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.DetailID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 

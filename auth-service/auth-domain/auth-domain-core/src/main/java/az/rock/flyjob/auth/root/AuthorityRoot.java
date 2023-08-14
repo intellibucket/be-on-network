@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.root;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.AuthorityID;
+import az.rock.lib.domain.id.auth.AuthorityID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 

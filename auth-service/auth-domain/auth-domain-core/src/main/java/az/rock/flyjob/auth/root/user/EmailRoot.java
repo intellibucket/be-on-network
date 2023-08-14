@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.root.user;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.EmailID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.EmailID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.*;
 
 import java.math.BigInteger;

@@ -1,7 +1,7 @@
 package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
-import az.rock.lib.domain.id.RoleID;
+import az.rock.lib.domain.id.auth.RoleID;
 
 @ValueObject
 public enum UserRegistrationType {

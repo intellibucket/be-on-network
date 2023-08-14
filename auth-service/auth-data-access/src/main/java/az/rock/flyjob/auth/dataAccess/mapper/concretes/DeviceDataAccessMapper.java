@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDeviceDataAccessMapper;
 import az.rock.flyjob.auth.root.user.device.DeviceRoot;
-import az.rock.lib.domain.id.DeviceID;
+import az.rock.lib.domain.id.auth.DeviceID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 

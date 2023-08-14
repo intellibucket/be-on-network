@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.concretes.email;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.request.EmailCreateRequest;
 import az.rock.auth.domain.presentation.exception.EmailDomainException;
 import az.rock.auth.domain.presentation.handler.abstracts.email.AbstractEmailCreateCommandHandler;

@@ -1,11 +1,11 @@
 package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.PhoneNumberClientModelResponse;
 import az.rock.auth.domain.presentation.dto.response.PhoneNumberPrivateModelResponse;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractPhoneNumberQueryDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPhoneNumberQueryRepositoryAdapter;
-import az.rock.lib.domain.id.PhoneNumberID;
+import az.rock.lib.domain.id.auth.PhoneNumberID;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAccessMapper;
 import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
-import az.rock.lib.domain.id.PhoneNumberID;
+import az.rock.lib.domain.id.auth.PhoneNumberID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 

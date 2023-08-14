@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.api.rest.handler;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.ports.input.advice.abstracts.AbstractExceptionPublisherService;
 import az.rock.lib.jresponse.response.fail.JFailResponse;
 import org.springframework.http.ResponseEntity;

@@ -3,12 +3,7 @@ package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 import az.rock.auth.domain.presentation.dto.request.PictureQueryRequest;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractProfilePictureCreateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractProfilePictureCommandDomainPresentation;
-import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractProfilePictureMessagePublisher;
-import az.rock.flyjob.auth.event.user.ProfilePictureCreatedEvent;
-import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
-import az.rock.lib.domain.id.ProfilePictureID;
-import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Service;
 

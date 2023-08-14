@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.root.network;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.FollowID;
+import az.rock.lib.domain.id.auth.FollowID;
 import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;

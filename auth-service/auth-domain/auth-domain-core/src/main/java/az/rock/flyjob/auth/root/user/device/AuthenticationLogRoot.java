@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.root.user.device;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.AuthenticationLogID;
-import az.rock.lib.domain.id.DeviceID;
+import az.rock.lib.domain.id.auth.AuthenticationLogID;
+import az.rock.lib.domain.id.auth.DeviceID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 

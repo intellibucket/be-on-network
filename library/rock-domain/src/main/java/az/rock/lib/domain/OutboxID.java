@@ -1,7 +1,6 @@
 package az.rock.lib.domain;
 
 import az.rock.lib.annotation.ValueObject;
-import az.rock.lib.domain.id.AccountPlanID;
 import az.rock.lib.domain.id.IdReference;
 
 import java.util.UUID;

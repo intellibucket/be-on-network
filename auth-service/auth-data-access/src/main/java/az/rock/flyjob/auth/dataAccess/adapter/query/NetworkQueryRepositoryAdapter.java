@@ -5,7 +5,7 @@ import az.rock.flyjob.auth.dataAccess.model.entity.network.NetworkRelationEntity
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractNetworkDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.NetworkQueryJPARepository;
 import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

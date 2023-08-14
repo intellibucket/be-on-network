@@ -2,8 +2,8 @@ package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserSettingsDomainMapper;
 import az.rock.flyjob.auth.root.user.UserSettingsRoot;
-import az.rock.lib.domain.id.UserID;
-import az.rock.lib.domain.id.UserSettingsID;
+import az.rock.lib.domain.id.auth.UserID;
+import az.rock.lib.domain.id.auth.UserSettingsID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;

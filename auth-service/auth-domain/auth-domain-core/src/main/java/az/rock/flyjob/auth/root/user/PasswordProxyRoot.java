@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.root.user;
 
-import az.rock.lib.domain.id.PasswordID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.PasswordID;
+import az.rock.lib.domain.id.auth.UserID;
 
 public class PasswordProxyRoot extends PasswordRoot {
 

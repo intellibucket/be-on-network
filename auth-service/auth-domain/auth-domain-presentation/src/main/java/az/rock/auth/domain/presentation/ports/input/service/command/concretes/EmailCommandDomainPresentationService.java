@@ -9,7 +9,7 @@ import az.rock.auth.domain.presentation.ports.output.publisher.AbstractEmailMess
 import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
 import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.root.user.EmailRoot;
-import az.rock.lib.domain.id.EmailID;
+import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.valueObject.SagaRoot;
 import az.rock.lib.valueObject.SwitchCase;

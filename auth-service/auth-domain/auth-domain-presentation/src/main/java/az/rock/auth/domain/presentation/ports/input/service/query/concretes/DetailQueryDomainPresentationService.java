@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.DetailPrivateModelResponse;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractDetailQueryDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractDetailQueryRepositoryAdapter;
