@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts.query;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.*;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.UserIdTypePair;
 import az.rock.lib.valueObject.UserType;
