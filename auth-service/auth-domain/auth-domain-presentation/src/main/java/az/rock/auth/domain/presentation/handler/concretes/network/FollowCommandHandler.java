@@ -1,20 +1,18 @@
 package az.rock.auth.domain.presentation.handler.concretes.network;
 
-import az.rock.auth.domain.presentation.context.AbstractSecurityContextHolder;
-import az.rock.auth.domain.presentation.exception.EmailDomainException;
 import az.rock.auth.domain.presentation.exception.FollowDomainException;
 import az.rock.auth.domain.presentation.handler.abstracts.network.AbstractFollowCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractFollowDomainMapper;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
 import az.rock.flyjob.auth.event.network.FollowRelationEvent;
 import az.rock.flyjob.auth.exception.follow.FollowAlreadyException;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowDomainService;
-import az.rock.lib.domain.id.FollowID;
-import az.rock.lib.domain.id.UserID;
-import az.rock.lib.valueObject.UserIdTypePair;
+import az.rock.lib.domain.id.auth.FollowID;
+import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

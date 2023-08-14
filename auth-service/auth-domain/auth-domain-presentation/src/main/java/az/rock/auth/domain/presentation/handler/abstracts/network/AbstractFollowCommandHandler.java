@@ -1,10 +1,7 @@
 package az.rock.auth.domain.presentation.handler.abstracts.network;
 
-import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.event.network.FollowRelationEvent;
-import az.rock.lib.domain.id.EmailID;
-import az.rock.lib.domain.id.FollowID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.*;
 
 public interface AbstractFollowCommandHandler {
 

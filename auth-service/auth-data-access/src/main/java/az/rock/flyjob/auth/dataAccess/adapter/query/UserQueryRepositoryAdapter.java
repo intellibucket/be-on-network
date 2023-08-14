@@ -5,7 +5,7 @@ import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.UserQueryJPARepository;
 import az.rock.flyjob.auth.root.user.UserRoot;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.*;
 import az.rock.lib.valueObject.UserIdTypePair;
 import org.springframework.stereotype.Component;
 

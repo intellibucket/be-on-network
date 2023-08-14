@@ -4,8 +4,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractRo
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.RoleDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.RoleQueryJPARepository;
 import az.rock.flyjob.auth.root.RoleRoot;
-import az.rock.lib.domain.id.DetailID;
-import az.rock.lib.domain.id.RoleID;
+import az.rock.lib.domain.id.auth.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

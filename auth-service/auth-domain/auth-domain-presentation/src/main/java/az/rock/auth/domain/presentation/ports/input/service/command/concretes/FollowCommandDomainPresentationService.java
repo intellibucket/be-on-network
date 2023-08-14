@@ -4,8 +4,7 @@ import az.rock.auth.domain.presentation.handler.abstracts.network.AbstractFollow
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractFollowCommandDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractFollowMessagePublisher;
 import az.rock.flyjob.auth.event.network.FollowRelationEvent;
-import az.rock.lib.domain.id.FollowID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.*;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
