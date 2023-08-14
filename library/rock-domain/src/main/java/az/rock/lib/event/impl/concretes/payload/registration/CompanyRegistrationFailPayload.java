@@ -1,7 +1,4 @@
-package model.auth.registration;
+package az.rock.lib.event.impl.concretes.payload.registration;
 
-import model.auth.Payload;
-
-@Payload
 public class CompanyRegistrationFailPayload extends CompanyRegistrationPayload{
 }

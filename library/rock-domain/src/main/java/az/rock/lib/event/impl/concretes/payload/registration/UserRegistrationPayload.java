@@ -1,23 +1,23 @@
-package model.auth.registration;
+package az.rock.lib.event.impl.concretes.payload.registration;
 
-import model.auth.Payload;
+import az.rock.lib.event.impl.concretes.payload.Payload;
 
 import java.time.ZonedDateTime;
 import java.util.List;
 
-@Payload
-public abstract class CompanyRegistrationPayload {
+
+public abstract class UserRegistrationPayload implements Payload {
     private Boolean success;
     private ZonedDateTime time;
     private List<String> messages;
 
-    public CompanyRegistrationPayload(Boolean success, ZonedDateTime time, List<String> messages) {
+    public UserRegistrationPayload(Boolean success, ZonedDateTime time, List<String> messages) {
         this.success = success;
         this.time = time;
         this.messages = messages;
     }
 
-    public CompanyRegistrationPayload() {
+    public UserRegistrationPayload() {
     }
 
     public Boolean getSuccess() {

@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 @InputPort
 @Transactional
 public interface AbstractUserCommandDomainPresentationService {
-    CreateUserResponse createJobSeeker(CreateUserCommand createUserCommand);
+    void createJobSeeker(CreateUserCommand createUserCommand);
 
-    CreateUserResponse createCompany(CreateUserCommand createUserCommand);
+    void createCompany(CreateUserCommand createUserCommand);
 
     void changeFirstName(String firstName);
 

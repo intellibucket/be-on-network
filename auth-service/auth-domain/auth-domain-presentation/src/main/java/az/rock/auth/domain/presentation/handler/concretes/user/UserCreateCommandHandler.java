@@ -6,8 +6,8 @@ import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserCreat
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMapper;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractQueryRoleDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
-import az.rock.flyjob.auth.event.user.CompanyCreatedEvent;
-import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.CompanyCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.valueObject.UserType;
 import org.springframework.stereotype.Component;
@@ -34,7 +34,7 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
         var roleRoot = this.roleDomainPresentationService.findIdByName(UserType.JOB_SEEKER.asRoleName());
         var userRoot = this.userDomainMapper.registrationUserRoot(roleRoot,createUserCommand);
         var userCreatedEvent = this.userDomainService.validateAndInitializeUser(userRoot);
-        var savedUserRoot = this.userRepositoryAdapter.create(userCreatedEvent.getData());
+        var savedUserRoot = this.userRepositoryAdapter.create(userRoot);
         if (savedUserRoot.isEmpty()) throw new AuthDomainPresentationException();
         return userCreatedEvent;
     }
@@ -44,7 +44,7 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
         var roleId = this.roleDomainPresentationService.findIdByName(UserType.COMPANY.asRoleName());
         var userRoot = this.userDomainMapper.registrationUserRoot(roleId,createUserCommand);
         var companyCreatedEvent = this.userDomainService.validateAndInitializeCompany(userRoot);
-        var savedUserRoot = this.userRepositoryAdapter.create(companyCreatedEvent.getData());
+        var savedUserRoot = this.userRepositoryAdapter.create(userRoot);
         if (savedUserRoot.isEmpty()) throw new AuthDomainPresentationException();
         return companyCreatedEvent;
     }

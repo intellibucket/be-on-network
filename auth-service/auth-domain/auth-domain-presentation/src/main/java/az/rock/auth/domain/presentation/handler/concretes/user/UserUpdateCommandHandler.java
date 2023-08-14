@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.exception.AuthDomainPresentationExceptio
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
-import az.rock.flyjob.auth.event.user.UserUpdatedEvent;
+import az.rock.lib.event.impl.concretes.auth.UserUpdatedEvent;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.valueObject.Gender;
@@ -41,18 +41,13 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
         return currentUserRoot.get();
     }
 
-//    private final BiFunction<String, BiFunction<UserRoot,String,UserRoot>,UserUpdatedEvent> handle = (value, function) -> {
-//        var currentUserRoot = this.findCurrentUser();
-//        var updatedRoot = function.apply(currentUserRoot, value);
-//        return UserUpdatedEvent.of(updatedRoot);
-//    };
 
     @Override
     public UserUpdatedEvent handleFirstnameUpdated(String firstname) {
         var currentUserRoot = this.findCurrentUser();
         var updatedRoot = this.userDomainService.changeFirstName(currentUserRoot, firstname);
         this.userCommandRepositoryAdapter.update(updatedRoot);
-        return UserUpdatedEvent.of(updatedRoot);
+        return null;
     }
 
     @Override
@@ -60,7 +55,7 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
         var currentUserRoot = this.findCurrentUser();
         var updatedRoot = this.userDomainService.changeLastName(currentUserRoot, lastname);
         this.userCommandRepositoryAdapter.update(updatedRoot);
-        return UserUpdatedEvent.of(updatedRoot);
+        return null;
     }
 
     @Override
@@ -70,7 +65,7 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
         if (isExist) throw new AuthDomainPresentationException("F0000000028");
         var updatedRoot = this.userDomainService.changeUsername(currentUserRoot, username);
         this.userCommandRepositoryAdapter.update(updatedRoot);
-        return UserUpdatedEvent.of(updatedRoot);
+        return null;
     }
 
     @Override
@@ -78,7 +73,7 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
         var currentUserRoot = this.findCurrentUser();
         var updatedRoot = this.userDomainService.changeGender(currentUserRoot, gender);
         this.userCommandRepositoryAdapter.update(updatedRoot);
-        return UserUpdatedEvent.of(updatedRoot);
+        return null;
     }
 
     @Override
@@ -86,6 +81,6 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
         var currentUserRoot = this.findCurrentUser();
         var updatedRoot = this.userDomainService.changeTimezone(currentUserRoot, timezone);
         this.userCommandRepositoryAdapter.update(updatedRoot);
-        return UserUpdatedEvent.of(updatedRoot);
+        return null;
     }
 }

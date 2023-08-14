@@ -10,7 +10,7 @@ import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.Version;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.auth.UserCreatedEventPayload;
+import az.rock.lib.event.impl.concretes.payload.UserCreatedEventPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

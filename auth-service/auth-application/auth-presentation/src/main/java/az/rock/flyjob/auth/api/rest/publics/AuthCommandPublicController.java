@@ -34,16 +34,16 @@ public class AuthCommandPublicController implements AuthCommandPublicControllerS
 
     @Override
     @PostMapping(value = "/registry/user")
-    public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> userRegistry(@RequestBody @Valid CreateUserCommand credentials) {
-        var response  = this.userDomainPresentationService.createJobSeeker(credentials);
-        return ResponseEntity.ok(new JSuccessDataResponse<>(response,"Success private result"));
+    public ResponseEntity<JSuccessResponse> userRegistry(@RequestBody @Valid CreateUserCommand credentials) {
+        this.userDomainPresentationService.createJobSeeker(credentials);
+        return ResponseEntity.ok(new JSuccessResponse("Success private result"));
     }
 
     @Override
     @PostMapping(value = "/registry/company")
-    public ResponseEntity<JSuccessDataResponse<CreateUserResponse>> companyRegistry(@RequestBody @Valid CreateUserCommand credentials) {
-        var response  = this.userDomainPresentationService.createCompany(credentials);
-        return ResponseEntity.ok(new JSuccessDataResponse<>(response,"Success private result"));
+    public ResponseEntity<JSuccessResponse> companyRegistry(@RequestBody @Valid CreateUserCommand credentials) {
+        this.userDomainPresentationService.createCompany(credentials);
+        return ResponseEntity.ok(new JSuccessResponse("Success private result"));
     }
 
     @Override

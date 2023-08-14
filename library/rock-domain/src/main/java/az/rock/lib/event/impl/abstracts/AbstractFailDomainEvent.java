@@ -1,4 +1,4 @@
-package az.rock.lib.event.impl;
+package az.rock.lib.event.impl.abstracts;
 
 import az.rock.lib.event.AbstractDomainEvent;
 

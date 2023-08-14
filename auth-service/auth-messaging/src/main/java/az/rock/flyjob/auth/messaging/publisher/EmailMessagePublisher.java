@@ -5,6 +5,7 @@ import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
 import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.lib.event.AbstractDomainEvent;
+import az.rock.lib.event.trx.Saga;
 import az.rock.lib.valueObject.SagaRoot;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -18,10 +19,10 @@ public class EmailMessagePublisher implements AbstractEmailMessagePublisher {
     }
 
     @Override
-    public void publish(SagaRoot<AbstractDomainEvent<EmailRoot>> sagaRoot) {
-        var event = sagaRoot.getData();
-        if (event instanceof EmailCreatedEvent emailCreatedEvent) this.publishCreatedEvent(sagaRoot);
-        else if (event instanceof EmailUpdatedEvent emailUpdatedEvent) this.publishUpdatedEvent(sagaRoot);
+    public void publish(Saga<AbstractDomainEvent<EmailRoot>> sagaRoot) {
+//        var event = sagaRoot.getData();
+//        if (event instanceof EmailCreatedEvent emailCreatedEvent) this.publishCreatedEvent(sagaRoot);
+//        else if (event instanceof EmailUpdatedEvent emailUpdatedEvent) this.publishUpdatedEvent(sagaRoot);
     }
 
     private void publishCreatedEvent(SagaRoot<AbstractDomainEvent<EmailRoot>> sagaRoot) {

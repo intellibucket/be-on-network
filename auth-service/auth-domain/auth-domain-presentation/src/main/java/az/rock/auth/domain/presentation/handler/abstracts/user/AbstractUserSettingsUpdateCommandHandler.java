@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.abstracts.user;
 
-import az.rock.flyjob.auth.event.user.UserSettingsUpdatedEvent;
+import az.rock.lib.event.impl.concretes.auth.UserSettingsUpdatedEvent;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
 import org.springframework.transaction.annotation.Propagation;

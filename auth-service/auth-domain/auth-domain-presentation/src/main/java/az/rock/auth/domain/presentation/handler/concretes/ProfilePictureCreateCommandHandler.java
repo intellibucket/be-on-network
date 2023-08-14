@@ -7,7 +7,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractProfilePictureD
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractProfilePictureCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractProfilePictureQueryRepositoryAdapter;
-import az.rock.flyjob.auth.event.user.ProfilePictureCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.ProfilePictureCreatedEvent;
 import az.rock.flyjob.auth.service.abstracts.AbstractProfilePictureDomainService;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import org.springframework.stereotype.Component;
@@ -41,7 +41,7 @@ public class ProfilePictureCreateCommandHandler implements AbstractProfilePictur
         var savedFile = this.fileStorageService.uploadFile(profilePicture);
         var root = this.profilePictureDomainMapper.of(currentUserId, savedFile);
         var savedRoot = this.profilePictureCommandRepositoryAdapter.create(root);
-        if (savedRoot.isPresent()) return ProfilePictureCreatedEvent.of(root);
+        if (savedRoot.isPresent()) return null;
         else throw new AuthDomainPresentationException("F0000000001");
     }
 }
