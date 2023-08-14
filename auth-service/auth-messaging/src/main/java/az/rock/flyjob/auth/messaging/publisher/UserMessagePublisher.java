@@ -26,7 +26,7 @@ public class UserMessagePublisher implements AbstractUserMessagePublisher {
 
 
     private void publishToJobSeeker(SagaRoot<AbstractDomainEvent<UserRoot>> sagaRoot) {
-        var root = sagaRoot.getData().getRoot();
+        var root = sagaRoot.getData().getData();
         var payload = UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(), root.getUserType());
         var wrappedPayload = new SagaRoot<>(sagaRoot.getSagaID(),sagaRoot.getSagaStatus(),sagaRoot.getTime(),payload);
         var record =this.objectMapper.convertValue(wrappedPayload, JsonNode.class);
@@ -35,7 +35,7 @@ public class UserMessagePublisher implements AbstractUserMessagePublisher {
 
 
     public void publishCompany(SagaRoot<AbstractDomainEvent<UserRoot>> sagaRoot) {
-        var root = sagaRoot.getData().getRoot();
+        var root = sagaRoot.getData().getData();
         var payload = UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(), root.getUserType());
         var wrappedPayload = new SagaRoot<>(sagaRoot.getSagaID(),sagaRoot.getSagaStatus(),sagaRoot.getTime(),payload);
         var record =this.objectMapper.convertValue(wrappedPayload, JsonNode.class);

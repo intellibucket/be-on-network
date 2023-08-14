@@ -11,11 +11,12 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
             this.proceed(event);
         }catch (Exception exception){
             exception.printStackTrace();
-            this.error();
+            this.onError(exception,event);
         }
     }
+
     protected abstract void proceed(E event);
-    protected abstract void error();
-    protected abstract void onFail();
-    protected abstract void onSuccess();
+    protected abstract void onError(Exception exception, E event);
+    protected abstract void onFail(AbstractDomainEvent<?> domainEvent);
+    protected abstract void onSuccess(AbstractDomainEvent<?> domainEvent);
 }

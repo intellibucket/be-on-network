@@ -20,7 +20,7 @@ public class CoverPictureCommandDomainPresentation implements AbstractCoverPictu
     @Override
     public UUID uploadProfilePicture(MultipartFileWrapper file) {
         var event = this.coverPictureCreateCommandHandler.handle(file);
-        return event.getRoot().getRootID().getAbsoluteID();
+        return event.getData().getRootID().getAbsoluteID();
     }
 
     @Override
