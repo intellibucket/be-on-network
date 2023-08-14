@@ -1,8 +1,8 @@
-package az.rock.lib.event.impl.concretes.auth;
+package az.rock.lib.event.impl.concretes.auth.create;
 
 import az.rock.lib.event.Event;
 import az.rock.lib.event.impl.abstracts.AbstractStartDomainEvent;
-import az.rock.lib.event.impl.concretes.payload.registration.CompanyRegistrationPayload;
+import az.rock.lib.event.payload.registration.CompanyRegistrationPayload;
 
 @Event
 public class CompanyCreatedEvent extends AbstractStartDomainEvent<CompanyRegistrationPayload> {

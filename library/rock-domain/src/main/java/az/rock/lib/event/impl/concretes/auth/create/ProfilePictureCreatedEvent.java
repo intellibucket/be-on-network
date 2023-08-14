@@ -1,8 +1,8 @@
-package az.rock.lib.event.impl.concretes.auth;
+package az.rock.lib.event.impl.concretes.auth.create;
 
 import az.rock.lib.event.Event;
 import az.rock.lib.event.impl.abstracts.AbstractStartDomainEvent;
-import az.rock.lib.event.impl.concretes.payload.PicturePayload;
+import az.rock.lib.event.payload.PicturePayload;
 
 @Event
 public class ProfilePictureCreatedEvent extends AbstractStartDomainEvent<PicturePayload> {

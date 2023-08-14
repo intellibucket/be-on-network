@@ -1,4 +1,4 @@
-package az.rock.lib.event.impl.concretes.payload;
+package az.rock.lib.event.payload;
 
 public class PicturePayload implements Payload{
 }

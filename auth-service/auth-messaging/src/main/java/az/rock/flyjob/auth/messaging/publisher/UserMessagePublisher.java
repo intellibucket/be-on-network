@@ -1,15 +1,12 @@
 package az.rock.flyjob.auth.messaging.publisher;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
-import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.event.AbstractDomainEvent;
-import az.rock.lib.event.impl.concretes.auth.CompanyCreatedEvent;
-import az.rock.lib.event.impl.concretes.auth.JobSeekerCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.create.CompanyCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
 import az.rock.lib.event.trx.Saga;
-import az.rock.lib.valueObject.SagaRoot;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import az.rock.lib.event.impl.concretes.payload.UserCreatedEventPayload;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 

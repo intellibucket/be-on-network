@@ -1,6 +1,6 @@
-package az.rock.lib.event.impl.concretes.payload.registration;
+package az.rock.lib.event.payload.registration;
 
-import az.rock.lib.event.impl.concretes.payload.Payload;
+import az.rock.lib.event.payload.Payload;
 
 import java.time.ZonedDateTime;
 import java.util.List;

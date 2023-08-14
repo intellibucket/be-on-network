@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.service.concretes;
 
-import az.rock.lib.event.impl.concretes.auth.CompanyCreatedEvent;
-import az.rock.lib.event.impl.concretes.auth.JobSeekerCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.create.CompanyCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.exception.AuthDomainException;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;

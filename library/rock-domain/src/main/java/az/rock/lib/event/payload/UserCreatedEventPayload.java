@@ -1,4 +1,4 @@
-package az.rock.lib.event.impl.concretes.payload;
+package az.rock.lib.event.payload;
 
 import az.rock.lib.annotation.ValueObject;
 import az.rock.lib.valueObject.UserType;

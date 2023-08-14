@@ -4,7 +4,7 @@ import az.rock.lib.valueObject.SagaRoot;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.flyjob.ws.auth.ports.input.listener.abstracts.AbstractProfilePictureListener;
-import az.rock.lib.event.impl.concretes.payload.ProfilePictureCreatedPayload;
+import az.rock.lib.event.payload.ProfilePictureCreatedPayload;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 

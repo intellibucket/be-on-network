@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.ports.input.listener.abstracts.AbstractC
 import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
 import az.rock.lib.event.trx.Saga;
-import az.rock.lib.event.impl.concretes.payload.Payload;
+import az.rock.lib.event.payload.Payload;
 import org.springframework.stereotype.Component;
 
 @Component

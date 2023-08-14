@@ -2,7 +2,7 @@ package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserSettingsUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserSettingsCommandDomainPresentationService;
-import az.rock.lib.event.impl.concretes.auth.UserSettingsUpdatedEvent;
+import az.rock.lib.event.impl.concretes.auth.update.UserSettingsUpdatedEvent;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
 import org.springframework.stereotype.Service;

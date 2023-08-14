@@ -4,8 +4,8 @@ import az.rock.auth.domain.presentation.coordinator.abstracts.AbstractJobSeekerC
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
 import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
-import az.rock.lib.event.impl.concretes.auth.JobSeekerCreatedEvent;
-import az.rock.lib.event.impl.concretes.payload.Payload;
+import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
+import az.rock.lib.event.payload.Payload;
 import az.rock.lib.event.trx.Saga;
 import org.springframework.stereotype.Component;
 

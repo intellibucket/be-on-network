@@ -1,11 +1,10 @@
 package az.rock.auth.domain.presentation.handler.concretes;
 
-import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractCoverPictureCreateCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractCoverPictureDomainMapper;
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.lib.event.impl.concretes.auth.CoverPictureCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.create.CoverPictureCreatedEvent;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import org.springframework.stereotype.Component;
 

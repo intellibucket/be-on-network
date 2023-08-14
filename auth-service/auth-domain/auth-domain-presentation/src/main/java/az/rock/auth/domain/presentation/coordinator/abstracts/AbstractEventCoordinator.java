@@ -3,7 +3,7 @@ package az.rock.auth.domain.presentation.coordinator.abstracts;
 import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
-import az.rock.lib.event.impl.concretes.payload.Payload;
+import az.rock.lib.event.payload.Payload;
 import az.rock.lib.event.trx.Saga;
 import lombok.extern.slf4j.Slf4j;
 
