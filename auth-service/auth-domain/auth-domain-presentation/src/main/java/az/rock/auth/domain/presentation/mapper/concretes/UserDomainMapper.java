@@ -5,8 +5,7 @@ import az.rock.auth.domain.presentation.dto.response.CreateUserResponse;
 import az.rock.auth.domain.presentation.mapper.abstracts.*;
 import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.flyjob.auth.root.user.UserRoot;
-import az.rock.lib.domain.id.RoleID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.*;
 import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Component;
 

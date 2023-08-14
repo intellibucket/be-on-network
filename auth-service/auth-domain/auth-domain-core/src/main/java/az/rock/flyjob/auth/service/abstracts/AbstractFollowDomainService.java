@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.service.abstracts;
 
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
-import az.rock.lib.domain.id.FollowID;
+import az.rock.lib.domain.id.auth.*;
 
 import java.util.List;
 

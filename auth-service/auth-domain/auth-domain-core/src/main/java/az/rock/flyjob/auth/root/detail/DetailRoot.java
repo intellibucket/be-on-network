@@ -2,9 +2,7 @@ package az.rock.flyjob.auth.root.detail;
 
 import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.DetailID;
-import az.rock.lib.domain.id.RoleID;
-import az.rock.lib.domain.id.UserID;
+import az.rock.lib.domain.id.auth.*;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.Version;

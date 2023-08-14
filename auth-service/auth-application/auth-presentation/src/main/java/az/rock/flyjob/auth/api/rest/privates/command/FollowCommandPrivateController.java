@@ -1,8 +1,6 @@
 package az.rock.flyjob.auth.api.rest.privates.command;
 
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractFollowCommandDomainPresentationService;
-import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractFollowQueryDomainPresentationService;
-import az.rock.lib.domain.id.UserID;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.spec.auth.privates.command.FollowCommandPrivateSpec;
 import org.springframework.http.MediaType;
