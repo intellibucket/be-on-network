@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.root.security;
+package az.rock.flyjob.auth.root;
 
 import az.rock.flyjob.auth.root.detail.DetailRoot;
 import az.rock.lib.domain.AggregateRoot;

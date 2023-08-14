@@ -1,50 +1,56 @@
-package az.rock.flyjob.auth.dataAccess.model.entity.security;
+package az.rock.flyjob.auth.dataAccess.model.entity;
 
-import az.rock.flyjob.auth.dataAccess.model.entity.detail.DetailEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
 
-@Setter
+/**
+ * Example 1
+ * - Permission *.auth.account.public.read
+ * - Bütün istifadəçilərin profillərinə baxa bilmək
+ * Example 2
+ * - Permission *.auth.account.private.read
+ * - Bütün istifadəçilərin profillərinə və şəxsi məlumatlarına baxa bilmək
+ * Example 3
+ * - Permission own.auth.account.private.read
+ * - İstifadəçinin öz profil məlumatlarına detallı baxa bilməsi
+ * Example 3
+ * - Permission *.user.post.public.read
+ * - Bütün istifadəçilərin postlarına baxa bilmək
+ */
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-@Table(name = "roles", schema = "auth")
-@Entity
-public class RoleEntity extends BaseEntity {
-    private String name;
+@AllArgsConstructor
+@Table(name = "authorities", schema = "auth")
+@Entity(name = "AuthorityEntity")
+public class AuthorityEntity extends BaseEntity {
 
+    @Column(name = "permission", nullable = false, unique = true)
+    private String permission;
+
+    @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<DetailEntity> userDetails;
+    @ManyToMany(mappedBy = "authorities")
+    private Set<RoleEntity> roles;
 
-    @Singular
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "role_authority", schema = "auth",
-            joinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "UUID")},
-            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "UUID")})
-    private Set<AuthorityEntity> authorities;
-
-    public void addDetailEntity(DetailEntity entity){
-        if (this.userDetails == null) this.userDetails = Set.of(entity);
-        else this.userDetails.add(entity);
-        //entity.getRoles().add(this);
-    }
-
-    private RoleEntity(Builder builder) {
-        setName(builder.name);
+    private AuthorityEntity(Builder builder) {
+        setPermission(builder.permission);
         setDescription(builder.description);
-        setUserDetails(builder.userAccounts);
-        setAuthorities(builder.authorities);
-        setProcessStatus(builder.processStatus);
-        setRowStatus(builder.rowStatus);
+        setRoles(builder.roles);
         setUuid(builder.uuid);
         setVersion(builder.version);
         setCreatedDate(builder.createdDate);
@@ -53,10 +59,9 @@ public class RoleEntity extends BaseEntity {
 
 
     public static final class Builder {
-        private String name;
+        private String permission;
         private String description;
-        private Set<DetailEntity> userAccounts;
-        private Set<AuthorityEntity> authorities;
+        private Set<RoleEntity> roles;
         private UUID uuid;
         private Long version;
         private Timestamp createdDate;
@@ -73,8 +78,8 @@ public class RoleEntity extends BaseEntity {
             return new Builder();
         }
 
-        public Builder name(String val) {
-            name = val;
+        public Builder permission(String val) {
+            permission = val;
             return this;
         }
 
@@ -83,13 +88,8 @@ public class RoleEntity extends BaseEntity {
             return this;
         }
 
-        public Builder userAccounts(Set<DetailEntity> val) {
-            userAccounts = val;
-            return this;
-        }
-
-        public Builder authorities(Set<AuthorityEntity> val) {
-            authorities = val;
+        public Builder roles(Set<RoleEntity> val) {
+            roles = val;
             return this;
         }
 
@@ -123,8 +123,8 @@ public class RoleEntity extends BaseEntity {
             return this;
         }
 
-        public RoleEntity build() {
-            return new RoleEntity(this);
+        public AuthorityEntity build() {
+            return new AuthorityEntity(this);
         }
     }
 }
