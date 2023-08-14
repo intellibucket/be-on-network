@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.core.root.detail;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -11,6 +12,7 @@ import java.time.ZonedDateTime;
 
 public class InterestRoot extends AggregateRoot<InterestID> {
     private ResumeID resume;
+    private AccessModifier accessModifier;
     private Integer orderNumber;
     private Boolean isHobby;
     private String name;
@@ -18,6 +20,7 @@ public class InterestRoot extends AggregateRoot<InterestID> {
 
     private InterestRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
         this.isHobby = builder.isHobby;
@@ -45,6 +48,10 @@ public class InterestRoot extends AggregateRoot<InterestID> {
         return description;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
 
         private InterestID id;
@@ -56,6 +63,7 @@ public class InterestRoot extends AggregateRoot<InterestID> {
 
 
         private ResumeID resume;
+        private AccessModifier accessModifier;
         private Integer orderNumber;
         private Boolean isHobby;
         private String name;
@@ -105,6 +113,11 @@ public class InterestRoot extends AggregateRoot<InterestID> {
 
         public Builder orderNumber(Integer val) {
             orderNumber = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier =accessModifier;
             return this;
         }
 

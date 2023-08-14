@@ -4,6 +4,7 @@ import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.AwardID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.domain.id.js.ResumePictureID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -12,6 +13,8 @@ import java.time.ZonedDateTime;
 
 public class ResumePictureRoot extends AggregateRoot<ResumePictureID> {
     private ResumeID resume;
+
+    private AccessModifier accessModifier;
 
     private Boolean isCurrent;
 
@@ -25,6 +28,7 @@ public class ResumePictureRoot extends AggregateRoot<ResumePictureID> {
 
     private ResumePictureRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier = builder.accessModifier;
         resume = builder.resume;
         isCurrent = builder.isCurrent;
         region = builder.region;
@@ -58,6 +62,10 @@ public class ResumePictureRoot extends AggregateRoot<ResumePictureID> {
         return fileFormat;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
         private ResumePictureID id;
         private Version version;
@@ -65,6 +73,8 @@ public class ResumePictureRoot extends AggregateRoot<ResumePictureID> {
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
+
+        private AccessModifier accessModifier;
         private ResumeID resume;
         private Boolean isCurrent;
         private String region;
@@ -106,6 +116,11 @@ public class ResumePictureRoot extends AggregateRoot<ResumePictureID> {
 
         public Builder lastModifiedDate(ZonedDateTime val) {
             lastModifiedDate = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 

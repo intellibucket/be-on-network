@@ -3,27 +3,22 @@ package az.rock.flyjob.js.domain.core.root.detail;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.js.LanguageID;
 import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.LanguageLevel;
-import az.rock.lib.valueObject.ProcessStatus;
-import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.Version;
+import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
     private ResumeID resume;
-
+    private AccessModifier accessModifier;
     private Integer orderNumber;
-
     private UUID languageUUID;
-
     private String additionalInfo;
-
     private LanguageLevel level;
 
     private ResumeLanguageRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        this.accessModifier  =builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
         this.languageUUID = builder.languageUUID;
@@ -51,6 +46,10 @@ public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
         return level;
     }
 
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
     public static final class Builder {
         private LanguageID id;
         private Version version;
@@ -59,6 +58,7 @@ public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
         private ResumeID resume;
+        private AccessModifier accessModifier;
         private Integer orderNumber;
         private UUID languageUUID;
         private String additionalInfo;
@@ -103,6 +103,11 @@ public class ResumeLanguageRoot extends AggregateRoot<LanguageID> {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder accessModifier(AccessModifier accessModifier){
+            this.accessModifier = accessModifier;
             return this;
         }
 
