@@ -14,4 +14,5 @@ public interface AbstractFollowQueryRepositoryAdapter {
     List<FollowRelationRoot> findMyFollowPendingRequests(UserID userID);
 
     List<FollowRelationRoot> findInMyFollowPendingRequests(UserID userID);
+    Boolean isFollowerPresentInMyFollowers(UserID userID, UserID followUserID);
 }

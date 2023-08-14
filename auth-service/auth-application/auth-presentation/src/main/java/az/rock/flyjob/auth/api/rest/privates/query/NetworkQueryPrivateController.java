@@ -22,8 +22,6 @@ public class NetworkQueryPrivateController implements NetworkQueryPrivateSpec {
         this.networkQueryDomainPresentation = networkQueryDomainPresentation;
     }
 
-    //TODO Http Methods
-
     @Override
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyNetworks() {
         var response = this.networkQueryDomainPresentation.findMyNetworks();
