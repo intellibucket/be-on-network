@@ -5,7 +5,6 @@ import az.rock.flyjob.auth.dataAccess.mapper.outbox.AbstractUserOutboxDataAccess
 import az.rock.flyjob.auth.dataAccess.repository.outbox.UserOutboxJPARepository;
 import az.rock.flyjob.auth.root.UserOutboxRoot;
 import az.rock.lib.domain.SagaID;
-import az.rock.lib.event.saga.SagaStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,45 +26,30 @@ public class UserOutboxRepository implements AbstractUserOutboxRepositoryAdapter
     @Override
     public void success(SagaID sagaId) {
         var entity = repository.findBySagaId(sagaId.getRootID());
-        entity.ifPresent(e -> {
-            e.setSagaStatus(SagaStatus.SUCCEEDED);
-            repository.save(e);
-        });
+
     }
 
     @Override
     public void fail(SagaID sagaId) {
         var entity = repository.findBySagaId(sagaId.getRootID());
-        entity.ifPresent(e -> {
-            e.setSagaStatus(SagaStatus.FAILED);
-            repository.save(e);
-        });
+
     }
 
     @Override
     public void processing(SagaID sagaId) {
         var entity = repository.findBySagaId(sagaId.getRootID());
-        entity.ifPresent(e -> {
-            e.setSagaStatus(SagaStatus.PROCESSING);
-            repository.save(e);
-        });
+
     }
 
     @Override
     public void compensating(SagaID sagaId) {
         var entity = repository.findBySagaId(sagaId.getRootID());
-        entity.ifPresent(e -> {
-            e.setSagaStatus(SagaStatus.COMPENSATING);
-            repository.save(e);
-        });
+
     }
 
     @Override
     public void compensated(SagaID sagaId) {
         var entity = repository.findBySagaId(sagaId.getRootID());
-        entity.ifPresent(e -> {
-            e.setSagaStatus(SagaStatus.COMPENSATED);
-            repository.save(e);
-        });
+
     }
 }

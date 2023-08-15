@@ -7,7 +7,6 @@ import az.rock.lib.event.payload.Payload;
 import az.rock.lib.event.trx.Saga;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
 
     public final void coordinate(Saga<E> saga){
