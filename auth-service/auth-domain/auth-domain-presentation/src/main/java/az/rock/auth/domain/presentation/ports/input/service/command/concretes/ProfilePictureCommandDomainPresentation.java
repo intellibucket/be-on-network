@@ -26,7 +26,7 @@ public class ProfilePictureCommandDomainPresentation implements AbstractProfileP
     public UUID uploadProfilePicture(MultipartFileWrapper file) {
         var event = this.profilePictureCreateCommandHandler.handle(file);
         this.profilePictureMessagePublisher.publish(SagaRoot.of(event));
-        return event.getRoot().getRootID().getAbsoluteID();
+        return event.getData().getRootID().getAbsoluteID();
     }
 
     @Override

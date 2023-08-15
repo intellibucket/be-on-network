@@ -1,27 +1,26 @@
 package az.rock.lib.event;
 
-import az.rock.lib.domain.RootID;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import az.rock.lib.event.impl.JsonTypeReference;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
-public abstract class AbstractDomainEvent<R> implements DomainEvent<R> {
+public abstract class AbstractDomainEvent<D> implements DomainEvent<D> , JsonTypeReference {
     private final UUID trackingId;
     private final ZonedDateTime time;
-    private final R root;
+    private final D data;
 
-    protected AbstractDomainEvent(UUID trackingId, ZonedDateTime time, R root) {
+    protected AbstractDomainEvent(UUID trackingId, ZonedDateTime time, D data) {
         this.trackingId = trackingId;
         this.time = time;
-        this.root = root;
+        this.data = data;
     }
 
-    protected AbstractDomainEvent(R root) {
+    protected AbstractDomainEvent(D data) {
         this.trackingId = UUID.randomUUID();
         this.time = ZonedDateTime.now(ZoneId.of("UTC"));
-        this.root = root;
+        this.data = data;
     }
 
     public UUID getTrackingId() {
@@ -32,8 +31,8 @@ public abstract class AbstractDomainEvent<R> implements DomainEvent<R> {
         return time;
     }
 
-    public R getRoot() {
-        return root;
+    public D getData() {
+        return data;
     }
 
 }

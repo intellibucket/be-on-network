@@ -26,7 +26,7 @@ public class ProfilePictureMessagePublisher implements AbstractProfilePictureMes
     @Override
     public void publish(SagaRoot<AbstractDomainEvent<ProfilePictureRoot>> sagaRoot) {
         try {
-            var root = sagaRoot.getData().getRoot();
+            var root = sagaRoot.getData().getData();
             var payload = SagaRoot.of(ProfilePictureCreatedPayload.of(root.getUserID().getRootID(), root.getRootID().getRootID(), "jpg"));
             var message = objectMapper.convertValue(payload, JsonNode.class);
             this.kafkaTemplate.send("auth.profile-picture.created", message);
