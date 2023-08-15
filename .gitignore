@@ -14,7 +14,7 @@ target/
 
 
 ### Sensitive Data ###
-*/*.env.*
+**/*.env.*
 *.log
 *.txt
 *.gz
