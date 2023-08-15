@@ -70,6 +70,5 @@ public class EmailCommandDomainPresentationService implements AbstractEmailComma
 
     private void publish(AbstractDomainEvent<EmailRoot> event){
         SagaRoot<AbstractDomainEvent<EmailRoot>> sagaRoot = SagaRoot.of(event);
-        this.emailMessagePublisher.publish(sagaRoot);
     }
 }

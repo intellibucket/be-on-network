@@ -34,7 +34,6 @@ public class AccountPlanCommandDomainPresentationService implements AbstractAcco
 
     private void updatePlan(AccountPlanType planType) {
         UpgradedAccountPlanEvent event = this.accountPlanUpgradeCommandHandler.handle(planType);
-        this.accountPlanPublisher.publish(SagaRoot.of(event));
     }
 
     @Override

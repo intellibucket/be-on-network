@@ -1,13 +1,10 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.event.saga.SagaStatus;
+import az.rock.lib.event.trx.State;
 import az.rock.lib.valueObject.OutboxStatus;
-import az.rock.lib.valueObject.SagaRoot;
 import az.rock.lib.valueObject.Version;
 
-import java.sql.Timestamp;
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
 
@@ -19,7 +16,7 @@ public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
 
     private ZonedDateTime lastModifiedDate;
 
-    private SagaStatus sagaStatus;
+    private State sagaStatus;
 
     private OutboxStatus outboxStatus;
 
@@ -32,7 +29,7 @@ public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
                       Version version,
                       ZonedDateTime createdDate,
                       ZonedDateTime lastModifiedDate,
-                      SagaStatus sagaStatus,
+                      State sagaStatus,
                       OutboxStatus outboxStatus,
                       String type,
                       String payload) {
@@ -64,7 +61,7 @@ public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
         return lastModifiedDate;
     }
 
-    public SagaStatus getSagaStatus() {
+    public State getSagaStatus() {
         return sagaStatus;
     }
 

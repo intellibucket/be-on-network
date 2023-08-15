@@ -2,7 +2,7 @@ package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
 import az.rock.lib.domain.SagaID;
-import az.rock.lib.event.saga.SagaStatus;
+import az.rock.lib.event.trx.State;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.ZonedDateTime;
@@ -11,11 +11,11 @@ import java.util.UUID;
 @ValueObject
 public final class SagaRoot<D> {
     private final SagaID sagaID;
-    private final SagaStatus sagaStatus;
+    private final State sagaStatus;
     private final ZonedDateTime time;
     private final D data;
 
-    public SagaRoot(SagaID sagaID, SagaStatus sagaStatus, ZonedDateTime time, D data) {
+    public SagaRoot(SagaID sagaID, State sagaStatus, ZonedDateTime time, D data) {
         this.sagaID = sagaID;
         this.sagaStatus = sagaStatus;
         this.time = time;
@@ -24,10 +24,10 @@ public final class SagaRoot<D> {
 
     public static class SagaDetail {
         private final SagaID sagaID;
-        private final SagaStatus sagaStatus;
+        private final State sagaStatus;
         private final ZonedDateTime time;
 
-        private SagaDetail(SagaID sagaID, SagaStatus sagaStatus, ZonedDateTime time) {
+        private SagaDetail(SagaID sagaID, State sagaStatus, ZonedDateTime time) {
             this.sagaID = sagaID;
             this.sagaStatus = sagaStatus;
             this.time = time;
@@ -42,7 +42,7 @@ public final class SagaRoot<D> {
             return sagaID;
         }
 
-        public SagaStatus getSagaStatus() {
+        public State getSagaStatus() {
             return sagaStatus;
         }
 
@@ -66,7 +66,7 @@ public final class SagaRoot<D> {
         return sagaID;
     }
 
-    public SagaStatus getSagaStatus() {
+    public State getSagaStatus() {
         return sagaStatus;
     }
 
@@ -83,18 +83,18 @@ public final class SagaRoot<D> {
         return data != null;
     }
 
-    public static <D> SagaRoot<D> of(SagaID sagaID, SagaStatus sagaStatus, ZonedDateTime time, D data) {
+    public static <D> SagaRoot<D> of(SagaID sagaID, State sagaStatus, ZonedDateTime time, D data) {
         return new SagaRoot<>(sagaID, sagaStatus, time, data);
     }
 
     public static <D> SagaRoot<D> of(D data) {
-        return SagaRoot.of(SagaID.of(UUID.randomUUID()), SagaStatus.STARTED, ZonedDateTime.now(), data);
+        return SagaRoot.of(SagaID.of(UUID.randomUUID()), State.ON_PROCEED, ZonedDateTime.now(), data);
     }
 
 
     public static final class Builder<D> {
         private SagaID sagaID;
-        private SagaStatus sagaStatus;
+        private State sagaStatus;
         private ZonedDateTime time;
         private D data;
 
@@ -110,7 +110,7 @@ public final class SagaRoot<D> {
             return this;
         }
 
-        public Builder<D> sagaStatus(SagaStatus val) {
+        public Builder<D> sagaStatus(State val) {
             sagaStatus = val;
             return this;
         }

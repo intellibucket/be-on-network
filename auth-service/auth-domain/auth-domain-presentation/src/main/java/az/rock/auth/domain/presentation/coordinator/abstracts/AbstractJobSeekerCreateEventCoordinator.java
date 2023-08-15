@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.coordinator.abstracts;
 
-import az.rock.flyjob.auth.event.user.JobSeekerCreatedEvent;
+import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
 
 public abstract class AbstractJobSeekerCreateEventCoordinator extends AbstractEventCoordinator<JobSeekerCreatedEvent> {
 }

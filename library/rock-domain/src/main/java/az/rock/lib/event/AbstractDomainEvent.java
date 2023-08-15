@@ -1,6 +1,6 @@
 package az.rock.lib.event;
 
-import az.rock.lib.event.impl.JsonTypeReference;
+import az.rock.lib.event.impl.abstracts.JsonTypeReference;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

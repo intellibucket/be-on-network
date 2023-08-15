@@ -1,15 +1,15 @@
 package az.rock.lib.event.trx;
 
-import az.rock.lib.event.impl.AbstractFailDomainEvent;
-import az.rock.lib.event.impl.AbstractStartDomainEvent;
+import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
+import az.rock.lib.event.impl.abstracts.AbstractStartDomainEvent;
 
 import java.util.Objects;
 import java.util.UUID;
 
 public final class Saga<E>{
-    private final UUID transactionId;
-    private final State state;
-    private final E event;
+    private UUID transactionId;
+    private State state;
+    private E event;
 
     public Saga(UUID transactionId, State state , E event) {
         this.transactionId = transactionId;
@@ -43,6 +43,18 @@ public final class Saga<E>{
 
     public E getEvent() {
         return event;
+    }
+
+    public void setTransactionId(UUID transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public void setEvent(E event) {
+        this.event = event;
     }
 
     @Override
