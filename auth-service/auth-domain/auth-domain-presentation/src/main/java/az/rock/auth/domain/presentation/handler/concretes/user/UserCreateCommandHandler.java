@@ -34,7 +34,7 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
         var roleRoot = this.roleDomainPresentationService.findIdByName(UserType.JOB_SEEKER.asRoleName());
         var userRoot = this.userDomainMapper.registrationUserRoot(roleRoot,createUserCommand);
         var userCreatedEvent = this.userDomainService.validateAndInitializeUser(userRoot);
-        var savedUserRoot = this.userRepositoryAdapter.create(userCreatedEvent.getRoot());
+        var savedUserRoot = this.userRepositoryAdapter.create(userCreatedEvent.getData());
         if (savedUserRoot.isEmpty()) throw new AuthDomainPresentationException();
         return userCreatedEvent;
     }
@@ -44,7 +44,7 @@ public class UserCreateCommandHandler  implements AbstractUserCreateCommandHandl
         var roleId = this.roleDomainPresentationService.findIdByName(UserType.COMPANY.asRoleName());
         var userRoot = this.userDomainMapper.registrationUserRoot(roleId,createUserCommand);
         var companyCreatedEvent = this.userDomainService.validateAndInitializeCompany(userRoot);
-        var savedUserRoot = this.userRepositoryAdapter.create(companyCreatedEvent.getRoot());
+        var savedUserRoot = this.userRepositoryAdapter.create(companyCreatedEvent.getData());
         if (savedUserRoot.isEmpty()) throw new AuthDomainPresentationException();
         return companyCreatedEvent;
     }

@@ -3,6 +3,7 @@ package az.rock.auth.domain.presentation.security;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Role;
+import az.rock.lib.valueObject.UserType;
 
 public interface AbstractSecurityContextHolder {
 
@@ -21,4 +22,6 @@ public interface AbstractSecurityContextHolder {
     Boolean isAnonymous();
 
     Boolean isAuthenticated();
+
+    UserType currentUserType();
 }

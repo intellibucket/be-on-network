@@ -38,7 +38,7 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
                 this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);
         var sagaRoot= this.userOutboxInputPort.save(jobSeekerCreatedEvent);
         this.userMessagePublisher.publish(sagaRoot);
-        return CreateUserResponse.of(jobSeekerCreatedEvent.getRoot());
+        return CreateUserResponse.of(jobSeekerCreatedEvent.getData());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
         CompanyCreatedEvent userCreatedEvent = this.userCreateCommandHandler.handleCompanyCreated(createUserCommand);
         var sagaRoot= this.userOutboxInputPort.save(userCreatedEvent);
         this.userMessagePublisher.publish(sagaRoot);
-        return CreateUserResponse.of(userCreatedEvent.getRoot());
+        return CreateUserResponse.of(userCreatedEvent.getData());
     }
 
 

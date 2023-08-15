@@ -11,6 +11,7 @@ import java.util.UUID;
 @Transactional
 public interface AbstractCoverPictureCommandDomainPresentation {
 
+
     UUID uploadProfilePicture(MultipartFileWrapper file);
 
     byte[] get(PictureQueryRequest request);

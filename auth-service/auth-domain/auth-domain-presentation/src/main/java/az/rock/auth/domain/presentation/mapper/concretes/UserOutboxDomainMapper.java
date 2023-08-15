@@ -6,7 +6,6 @@ import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.SagaID;
 import az.rock.lib.event.AbstractDomainEvent;
-import az.rock.lib.event.saga.SagaStatus;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.Version;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,7 +20,7 @@ public class UserOutboxDomainMapper implements AbstractUserOutboxDomainMapper {
     @Override
     public UserOutboxRoot mapToStartedOutbox(AbstractDomainEvent<UserRoot> event) {
         var objectMapper = new ObjectMapper();
-        var root = event.getRoot();
+        var root = event.getData();
         var payload =
                 UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(),root.getUserType());
         String payloadString;
@@ -35,7 +34,6 @@ public class UserOutboxDomainMapper implements AbstractUserOutboxDomainMapper {
                 .outboxID(OutboxID.of(UUID.randomUUID()))
                 .sagaId(SagaID.of(UUID.randomUUID()))
                 .version(Version.ONE)
-                .sagaStatus(SagaStatus.STARTED)
                 .outboxStatus(OutboxStatus.STARTED)
                 .payload(payloadString)
                 .processStatus(root.getProcessStatus())

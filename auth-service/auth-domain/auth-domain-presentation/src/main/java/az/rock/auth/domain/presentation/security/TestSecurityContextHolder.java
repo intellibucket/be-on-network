@@ -3,13 +3,14 @@ package az.rock.auth.domain.presentation.security;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Role;
+import az.rock.lib.valueObject.UserType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Profile({"local","develop"})
+@Profile({"local"})
 @Component
 public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     @Value("${test.values.user.uuid}")
@@ -68,5 +69,10 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     @Override
     public Boolean isAuthenticated() {
         return this.isAuthenticated;
+    }
+
+    @Override
+    public UserType currentUserType() {
+        return UserType.JOB_SEEKER;
     }
 }
