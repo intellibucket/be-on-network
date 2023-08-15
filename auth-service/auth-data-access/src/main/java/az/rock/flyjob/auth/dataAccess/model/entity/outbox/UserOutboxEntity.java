@@ -1,7 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.model.entity.outbox;
 
 import az.rock.lib.domain.OutboxEntity;
-import az.rock.lib.event.saga.SagaStatus;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.Entity;
@@ -34,7 +33,6 @@ public class UserOutboxEntity extends OutboxEntity {
         setVersion(builder.version);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
-        setSagaStatus(builder.sagaStatus);
         setOutboxStatus(builder.outboxStatus);
         setType(builder.type);
         setPayload(builder.payload);
@@ -48,7 +46,6 @@ public class UserOutboxEntity extends OutboxEntity {
         private Long version;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
-        private SagaStatus sagaStatus;
         private OutboxStatus outboxStatus;
         private String type;
         private String payload;
@@ -87,11 +84,6 @@ public class UserOutboxEntity extends OutboxEntity {
 
         public Builder lastModifiedDate(Timestamp val) {
             lastModifiedDate = val;
-            return this;
-        }
-
-        public Builder sagaStatus(SagaStatus val) {
-            sagaStatus = val;
             return this;
         }
 

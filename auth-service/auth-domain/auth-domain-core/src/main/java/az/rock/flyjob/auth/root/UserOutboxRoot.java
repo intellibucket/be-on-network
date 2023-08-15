@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.root;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.OutboxRoot;
 import az.rock.lib.domain.SagaID;
-import az.rock.lib.event.saga.SagaStatus;
+import az.rock.lib.event.trx.State;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.SagaRoot;
@@ -22,7 +22,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
                 builder.version,
                 builder.createdDate,
                 builder.lastModifiedDate,
-                builder.sagaStatus,
+                null,
                 builder.outboxStatus,
                 builder.type,
                 builder.payload);
@@ -40,7 +40,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
         private Version version;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
-        private SagaStatus sagaStatus;
+        private State sagaStatus;
         private OutboxStatus outboxStatus;
         private String type;
         private String payload;
@@ -82,7 +82,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
             return this;
         }
 
-        public Builder sagaStatus(SagaStatus val) {
+        public Builder sagaStatus(State val) {
             sagaStatus = val;
             return this;
         }
