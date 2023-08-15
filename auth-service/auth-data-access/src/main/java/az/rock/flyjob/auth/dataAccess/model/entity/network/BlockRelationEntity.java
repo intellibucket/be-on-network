@@ -31,4 +31,5 @@ public class BlockRelationEntity extends BaseEntity {
 
     @Column(name = "description")
     private String description;
+
 }
