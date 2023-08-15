@@ -19,7 +19,7 @@ public class JobSeekerCreatedKafkaListener {
     }
 
 
-    @KafkaListener(topics = "auth.user-created-event.js.success")
+    @KafkaListener(topics = "auth.user-created-event.js.success",groupId = "auth.user-created-group")
     public void successCaseListener(JsonNode record) {
         try {
             var model = this.objectMapper.treeToValue(record, Saga.class);
@@ -31,7 +31,7 @@ public class JobSeekerCreatedKafkaListener {
         }
     }
 
-    @KafkaListener(topics = "auth.user-created-event.js.fail")
+    @KafkaListener(topics = "auth.user-created-event.js.fail",groupId = "auth.user-created-group")
     public void failCaseListener(JsonNode record) {
         try {
             var model = this.objectMapper.treeToValue(record, Saga.class);
