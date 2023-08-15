@@ -19,6 +19,7 @@ import java.util.UUID;
 @Table(name = "block_relation", schema = "network")
 @Entity(name = "BlockRelationEntity")
 public class BlockRelationEntity extends BaseEntity {
+
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
