@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.handler.abstracts.user;
 
-import az.rock.flyjob.auth.event.user.UserUpdatedEvent;
+import az.rock.lib.event.impl.concretes.auth.update.UserUpdatedEvent;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import org.springframework.transaction.annotation.Propagation;

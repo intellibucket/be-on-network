@@ -1,6 +1,6 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.event.saga.SagaStatus;
+import az.rock.lib.event.trx.State;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import jakarta.persistence.*;
@@ -39,7 +39,7 @@ public class OutboxEntity {
     private Timestamp lastModifiedDate;
 
     @Enumerated(EnumType.STRING)
-    private SagaStatus sagaStatus;
+    private State sagaStatus;
 
     @Enumerated(EnumType.STRING)
     private OutboxStatus outboxStatus;

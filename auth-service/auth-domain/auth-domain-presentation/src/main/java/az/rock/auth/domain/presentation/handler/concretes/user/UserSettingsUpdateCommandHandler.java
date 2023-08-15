@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.exception.UnknownSystemException;
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserSettingsUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserSettingsCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserSettingsQueryRepositoryAdapter;
-import az.rock.flyjob.auth.event.user.UserSettingsUpdatedEvent;
+import az.rock.lib.event.impl.concretes.auth.update.UserSettingsUpdatedEvent;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserSettingsDomainService;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
@@ -37,7 +37,7 @@ public class UserSettingsUpdateCommandHandler implements AbstractUserSettingsUpd
             var entity = optionalEntity.get();
             var changedEntity  = this.userSettingsDomainService.validateAmdChangeLanguage(currentUserID,entity,language);
             this.userSettingsCommandRepositoryAdapter.update(changedEntity);
-            return UserSettingsUpdatedEvent.of(changedEntity);
+            return null;
         }else throw new UnknownSystemException();
     }
 

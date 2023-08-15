@@ -1,4 +1,4 @@
-package model.auth;
+package az.rock.lib.event.payload;
 
 import az.rock.lib.annotation.ValueObject;
 

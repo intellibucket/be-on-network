@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @DomainOutputPort
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public interface AbstractUserMessagePublisher extends AbstractMessagePublisher<AbstractDomainEvent<UserRoot>> {
+public interface AbstractUserMessagePublisher<S extends  AbstractDomainEvent> extends AbstractMessagePublisher<S> {
 
 
 }
