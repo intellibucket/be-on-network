@@ -286,5 +286,14 @@
     "tr": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000033",
+    "az": "Özünüzə istək ata bilməzsiniz",
+    "en": "You can't follow yourself",
+    "ru": "Вы не можете следовать за собой",
+    "tr": "Kendinizi takip edemezsiniz",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

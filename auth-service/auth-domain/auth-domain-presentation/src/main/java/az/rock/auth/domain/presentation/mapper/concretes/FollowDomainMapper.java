@@ -25,7 +25,6 @@ public class FollowDomainMapper implements AbstractFollowDomainMapper {
                 .followedUserId(userID.getUserID().getAbsoluteID())
                 .followStatus(FollowStatus.ACCEPTED)
                 .blockReasonStatus(BlockReasonStatus.UNKNOWN)
-
                 .build();
     }
 }

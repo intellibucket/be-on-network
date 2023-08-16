@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.service.concretes;
 
-import az.rock.flyjob.auth.exception.follow.FollowAlreadyException;
+import az.rock.flyjob.auth.exception.follow.FollowHasAlreadyException;
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowDomainService;
 import az.rock.lib.domain.id.auth.*;
@@ -13,6 +13,6 @@ public class FollowDomainService implements AbstractFollowDomainService {
         var activeFollowerInMyFollowers = followers.stream()
                 .filter(item -> item.getFollowingUserId()
                         .equals(followID)).findFirst();
-        if (activeFollowerInMyFollowers.isPresent()) throw new FollowAlreadyException();
+        if (activeFollowerInMyFollowers.isPresent()) throw new FollowHasAlreadyException();
     }
 }
