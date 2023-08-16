@@ -53,20 +53,20 @@ services:
   #      - config-network
   #
   #
-  postgres-db:
-    container_name: flyjob_postgre_db
-    image: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456
-      PGDATA: /data/postgres
-    volumes:
-      - db:/data/postgres
-    ports:
-      - "4445:5432"
-    networks:
-      - config-network
-    restart: unless-stopped
+#  postgres-db:
+#    container_name: flyjob_postgre_db
+#    image: postgres
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: 123456
+#      PGDATA: /data/postgres
+#    volumes:
+#      - db:/data/postgres
+#    ports:
+#      - "4445:5432"
+#    networks:
+#      - config-network
+#    restart: unless-stopped
 
 #  auth-service:
 #    env_file: env/develop/auth.env.develop

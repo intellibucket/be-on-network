@@ -7,31 +7,35 @@ import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
 import az.rock.lib.event.trx.Saga;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMessagePublisher<S extends  AbstractDomainEvent<?>> implements AbstractUserMessagePublisher<S> {
+@Data
+public class UserCreatedMessagePublisher<S extends  AbstractDomainEvent<?>> implements AbstractUserMessagePublisher<S> {
+    @Value(value = "${topic.js.created.name}")
+    private String jsTopic;
+    @Value(value = "${topic.cmp.created.name}")
+    private String cmpTopic;
     private final KafkaTemplate<String, JsonNode> userCreatedEventKafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    public UserMessagePublisher(KafkaTemplate<String, JsonNode> userCreatedEventKafkaTemplate,
-                                ObjectMapper objectMapper) {
+    public UserCreatedMessagePublisher(KafkaTemplate<String, JsonNode> userCreatedEventKafkaTemplate,
+                                       ObjectMapper objectMapper) {
         this.userCreatedEventKafkaTemplate = userCreatedEventKafkaTemplate;
         this.objectMapper = objectMapper;
     }
-
 
     @Override
     public void publish(Saga<S> saga) {
         var event = saga.getEvent();
         var record = this.objectMapper.convertValue(saga,JsonNode.class);
         if (event instanceof JobSeekerCreatedEvent)
-            this.userCreatedEventKafkaTemplate
-                    .send("auth.job-seeker-created-event.start", record);
+            this.userCreatedEventKafkaTemplate.send(jsTopic, record);
         else if (event instanceof CompanyCreatedEvent)
-            this.userCreatedEventKafkaTemplate
-                    .send("auth.company-created-event.start", record);
+            this.userCreatedEventKafkaTemplate.send(cmpTopic, record);
     }
 
 }
