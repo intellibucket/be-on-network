@@ -11,12 +11,12 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMessagePublisher<S extends  AbstractDomainEvent<?>> implements AbstractUserMessagePublisher<S> {
+public class UserCreatedMessagePublisher<S extends  AbstractDomainEvent<?>> implements AbstractUserMessagePublisher<S> {
     private final KafkaTemplate<String, JsonNode> userCreatedEventKafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    public UserMessagePublisher(KafkaTemplate<String, JsonNode> userCreatedEventKafkaTemplate,
-                                ObjectMapper objectMapper) {
+    public UserCreatedMessagePublisher(KafkaTemplate<String, JsonNode> userCreatedEventKafkaTemplate,
+                                       ObjectMapper objectMapper) {
         this.userCreatedEventKafkaTemplate = userCreatedEventKafkaTemplate;
         this.objectMapper = objectMapper;
     }
@@ -28,10 +28,10 @@ public class UserMessagePublisher<S extends  AbstractDomainEvent<?>> implements 
         var record = this.objectMapper.convertValue(saga,JsonNode.class);
         if (event instanceof JobSeekerCreatedEvent)
             this.userCreatedEventKafkaTemplate
-                    .send("auth.job-seeker-created-event.start", record);
+                    .send("${topic.js.created.name}", record);
         else if (event instanceof CompanyCreatedEvent)
             this.userCreatedEventKafkaTemplate
-                    .send("auth.company-created-event.start", record);
+                    .send("${topic.cmp.created.name}", record);
     }
 
 }
