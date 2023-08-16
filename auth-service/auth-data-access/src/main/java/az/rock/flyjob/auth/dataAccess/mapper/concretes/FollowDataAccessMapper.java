@@ -52,6 +52,7 @@ public class FollowDataAccessMapper implements AbstractFollowDataAccessMapper<Fo
                             .followingUserId(root.getFollowingUserId())
                             .followingUserType(root.getFollowingUserType())
                             .followedUserType(root.getFollowerUserType())
+                            .blockReasonStatus(root.getBlockReasonStatus())
                             .build()
             );
         }

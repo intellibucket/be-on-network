@@ -26,6 +26,6 @@ public class UserID extends RootID<UUID> implements IdReference<UUID> {
         if (o == null) return false;
         if (this == o) return true;
         if (!(o instanceof UserID)) return false;
-        return this.getAbsoluteID().equals(((UserID)o).getAbsoluteID());
+        return this.getAbsoluteID().compareTo(((UserID) o).getAbsoluteID()) == 0;
     }
 }

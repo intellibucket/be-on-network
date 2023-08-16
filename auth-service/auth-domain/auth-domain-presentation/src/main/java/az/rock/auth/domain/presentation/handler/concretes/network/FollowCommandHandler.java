@@ -7,15 +7,13 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
 import az.rock.flyjob.auth.event.network.FollowRelationEvent;
-import az.rock.flyjob.auth.exception.follow.FollowAlreadyException;
+import az.rock.flyjob.auth.exception.follow.FollowHasAlreadyException;
+import az.rock.flyjob.auth.exception.follow.FollowSelfTrackingException;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowDomainService;
 import az.rock.lib.domain.id.auth.FollowID;
 import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 @Component
 public class FollowCommandHandler implements AbstractFollowCommandHandler {
@@ -49,22 +47,24 @@ public class FollowCommandHandler implements AbstractFollowCommandHandler {
         this.userQueryRepositoryAdapter = userQueryRepositoryAdapter;
     }
 
+    /**
+     * alreadyFollowed exist user - in my followers list
+     * checkTrackingSelf - user tracking self
+     */
     @Override
     public FollowRelationEvent handleFollow(UserID userID) {
-        var currentUserId = this.securityContextHolder.availableUser();
-        var currentUserType = this.userQueryRepositoryAdapter.findUserTypeById(currentUserId);
+        var currentUserIdTypePair = this.securityContextHolder.currentUserTypePair();
         var followingUserType = this.userQueryRepositoryAdapter.findUserTypeById(userID);
-        var alreadyFollowed =  this.followQueryRepositoryAdapter.isFollowerPresentInMyFollowers(currentUserId,userID);
-        if(alreadyFollowed) throw new FollowAlreadyException();
-        //block metodu yazildiqdan sonra user - in block olub olmadigini yoxla
-        var newFollowRelationRoot = this.followDomainMapper.toNewFollowRelationRoot(currentUserType,followingUserType);
+        var alreadyFollowed =  this.followQueryRepositoryAdapter.isFollowerPresentInMyFollowers(currentUserIdTypePair.getUserID(),userID);
+        if(alreadyFollowed) throw new FollowHasAlreadyException();
+        var checkTrackingSelf = currentUserIdTypePair.getUserID().equals(userID);
+        if(checkTrackingSelf) throw new FollowSelfTrackingException();
+        //TODO block metodu yazildiqdan sonra user - in block olub olmadigini yoxla
+        var newFollowRelationRoot = this.followDomainMapper.toNewFollowRelationRoot(currentUserIdTypePair,followingUserType);
         var savedRoot = this.followCommandRepositoryAdapter.create(newFollowRelationRoot);
         if (savedRoot.isEmpty()) throw new FollowDomainException("F0000000001");
         return FollowRelationEvent.of(savedRoot.get());
-
-
     }
-
     @Override
     public FollowRelationEvent handleUnfollow(UserID userID) {
         return null;
