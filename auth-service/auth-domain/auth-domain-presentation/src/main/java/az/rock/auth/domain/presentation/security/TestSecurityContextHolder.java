@@ -30,6 +30,7 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     @Value("${test.values.user.isAuthenticated:true}")
     private Boolean isAuthenticated ;
 
+
     @Override
     public UserID currentUser() {
         return UserID.of(UUID.fromString(testUserUUID));

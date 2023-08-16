@@ -1,6 +1,6 @@
 package com.intellibucket.ws.validation.concretes;
 
-import com.intellibucket.ws.exception.ValidationException;
+import com.intellibucket.ws.exception.GValidationException;
 import com.intellibucket.ws.validation.annotation.GEmail;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -19,12 +19,12 @@ public class EmailValidator implements ConstraintValidator<GEmail, String>{
     }
 
     @Override
-    @SneakyThrows(ValidationException.class)
+    @SneakyThrows(GValidationException.class)
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (Objects.isNull(value)) throw new ValidationException("Email cannot be null");
+        if (Objects.isNull(value)) throw new GValidationException("Email cannot be null");
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(value);
-        if (!matcher.find()) throw new ValidationException("Invalid email");
+        if (!matcher.find()) throw new GValidationException("Invalid email");
         return true;
     }
 }

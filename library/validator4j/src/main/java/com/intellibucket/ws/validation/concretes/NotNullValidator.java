@@ -1,6 +1,6 @@
 package com.intellibucket.ws.validation.concretes;
 
-import com.intellibucket.ws.exception.ValidationException;
+import com.intellibucket.ws.exception.GValidationException;
 import com.intellibucket.ws.validation.annotation.GNotNull;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -15,9 +15,9 @@ public class NotNullValidator implements ConstraintValidator<GNotNull, Object> {
 
 
     @Override
-    @SneakyThrows(ValidationException.class)
+    @SneakyThrows(GValidationException.class)
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        if (value == null) throw new ValidationException("Value cannot be null");
+        if (value == null) throw new GValidationException("Value cannot be null");
         return true;
     }
 }

@@ -7,9 +7,16 @@ import az.rock.lib.GPasswordEncryptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
 public class AuthDomainPresentationBeanConfig {
+
+    @Bean
+    public Validator validatorFactory() {
+        return new LocalValidatorFactoryBean();
+    }
 
     @Bean
     @Scope("prototype")

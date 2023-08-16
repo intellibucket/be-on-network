@@ -1,10 +1,9 @@
 package com.intellibucket.ws.validation.concretes;
 
-import com.intellibucket.ws.exception.ValidationException;
+import com.intellibucket.ws.exception.GValidationException;
 import com.intellibucket.ws.validation.annotation.GPattern;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import lombok.SneakyThrows;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -22,15 +21,14 @@ public class PatternValidator implements ConstraintValidator<GPattern, String>{
     }
 
     @Override
-    @SneakyThrows(ValidationException.class)
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (!Objects.isNull(value)){
             Pattern pattern = Pattern.compile(this.pattern);
             Matcher matcher = pattern.matcher(value);
-            if (!matcher.find()) throw new ValidationException(this.messageCode);
+            if (!matcher.find()) throw new GValidationException(this.messageCode);
             return true;
         }else {
-            throw new ValidationException(this.messageCode);
+            throw new GValidationException(this.messageCode);
         }
     }
 }

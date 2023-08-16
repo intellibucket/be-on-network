@@ -26,36 +26,35 @@ public class UserCommandPrivateController implements UserCommandPrivateSpec {
 
     @Override
     @PutMapping("/change-first-name")
-    public ResponseEntity<JSuccessResponse> changeFirstName(@RequestBody String firstName) {
+    public ResponseEntity<JSuccessResponse> changeFirstName(@RequestParam("firstName") String firstName) {
         this.userCommandDomainPresentationService.changeFirstName(firstName);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-last-name")
-    public ResponseEntity<JSuccessResponse> changeLastName(@RequestBody String lastName) {
+    public ResponseEntity<JSuccessResponse> changeLastName(@RequestParam("lastName") String lastName) {
         this.userCommandDomainPresentationService.changeLastName(lastName);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-username")
-    public ResponseEntity<JSuccessResponse> changeUsername
-            (@RequestBody String username) {
+    public ResponseEntity<JSuccessResponse> changeUsername(@RequestParam("username")  String username) {
         this.userCommandDomainPresentationService.changeUsername(username);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-gender")
-    public ResponseEntity<JSuccessResponse> changeGender(@RequestBody Gender gender) {
+    public ResponseEntity<JSuccessResponse> changeGender(@RequestParam("gender")  Gender gender) {
         this.userCommandDomainPresentationService.changeGender(gender);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-timezone")
-    public ResponseEntity<JSuccessResponse> changeTimezone(@RequestBody TimeZoneID timezone) {
+    public ResponseEntity<JSuccessResponse> changeTimezone(@RequestParam("timezone")  TimeZoneID timezone) {
         this.userCommandDomainPresentationService.changeTimezone(timezone);
         return ResponseEntity.ok(new JSuccessResponse());
     }
