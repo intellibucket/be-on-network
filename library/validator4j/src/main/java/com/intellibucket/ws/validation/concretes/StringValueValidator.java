@@ -1,6 +1,6 @@
 package com.intellibucket.ws.validation.concretes;
 
-import com.intellibucket.ws.exception.ValidationException;
+import com.intellibucket.ws.exception.GValidationException;
 import com.intellibucket.ws.validation.annotation.GStringValue;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -29,15 +29,15 @@ public class StringValueValidator implements ConstraintValidator<GStringValue, S
     }
 
     @Override
-    @SneakyThrows(ValidationException.class)
+    @SneakyThrows(GValidationException.class)
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        if (!this.nullable && Objects.isNull(value)) throw new ValidationException("Value of " + this.absoluteName + " cannot be null");
+        if (!this.nullable && Objects.isNull(value)) throw new GValidationException("Value of " + this.absoluteName + " cannot be null");
         if(!this.pattern.isEmpty()){
             Pattern pattern = Pattern.compile(this.pattern);
             Matcher matcher = pattern.matcher(value);
-            if (!matcher.find()) throw new ValidationException(this.absoluteName + " is invalid");
+            if (!matcher.find()) throw new GValidationException(this.absoluteName + " is invalid");
         }
-        if(value.length() < this.min || value.length() > this.max) throw new ValidationException(this.absoluteName + " length must be between " + this.min + " and " + this.max);
+        if(value.length() < this.min || value.length() > this.max) throw new GValidationException(this.absoluteName + " length must be between " + this.min + " and " + this.max);
         return true;
     }
 }

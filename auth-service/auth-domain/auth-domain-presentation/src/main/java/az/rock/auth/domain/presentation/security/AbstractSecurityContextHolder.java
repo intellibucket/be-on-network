@@ -8,6 +8,7 @@ import az.rock.lib.valueObject.UserType;
 
 public interface AbstractSecurityContextHolder {
 
+
     UserID currentUser();
 
     UserID availableUser();

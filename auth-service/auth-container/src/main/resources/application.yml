@@ -10,6 +10,12 @@ spring:
   application:
     name: auth-service
 
+  jpa:
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
 server:
   servlet:
     context-path: /auth-context
