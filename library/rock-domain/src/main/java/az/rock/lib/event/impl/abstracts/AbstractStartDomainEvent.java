@@ -6,10 +6,6 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public abstract class AbstractStartDomainEvent<R> extends AbstractDomainEvent<R> {
-    protected AbstractStartDomainEvent(UUID trackingId, ZonedDateTime time, R root) {
-        super(trackingId, time, root);
-    }
-
     protected AbstractStartDomainEvent(R root) {
         super(root);
     }

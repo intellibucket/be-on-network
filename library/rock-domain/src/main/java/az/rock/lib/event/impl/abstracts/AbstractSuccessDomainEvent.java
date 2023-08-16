@@ -6,9 +6,6 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class AbstractSuccessDomainEvent <R> extends AbstractDomainEvent<R> {
-    protected AbstractSuccessDomainEvent(UUID trackingId, ZonedDateTime time, R root) {
-        super(trackingId, time, root);
-    }
 
     protected AbstractSuccessDomainEvent(R root) {
         super(root);

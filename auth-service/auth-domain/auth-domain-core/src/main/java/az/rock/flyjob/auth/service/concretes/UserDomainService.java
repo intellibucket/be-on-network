@@ -5,6 +5,8 @@ import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.exception.AuthDomainException;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
+import az.rock.lib.event.payload.registration.CompanyRegistrationPayload;
+import az.rock.lib.event.payload.registration.JobSeekerRegistrationPayload;
 import az.rock.lib.util.GObjects;
 import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.Gender;
@@ -16,12 +18,21 @@ public class UserDomainService implements AbstractUserDomainService {
 
     @Override
     public JobSeekerCreatedEvent validateAndInitializeUser(UserRoot userRoot) {
-        return null;
+        return JobSeekerCreatedEvent.of(
+                new JobSeekerRegistrationPayload(
+                userRoot.getRootID().getAbsoluteID(),
+                userRoot.getUserType())
+        );
     }
 
     @Override
     public CompanyCreatedEvent validateAndInitializeCompany(UserRoot userRoot) {
-        return null;
+        return CompanyCreatedEvent.of(
+                new CompanyRegistrationPayload(
+                        userRoot.getRootID().getAbsoluteID(),
+                        userRoot.getUserType()) {
+                }
+        );
     }
 
     @Override
