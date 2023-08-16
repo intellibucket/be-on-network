@@ -3,21 +3,19 @@ package az.rock.lib.event.payload.registration;
 import az.rock.lib.event.payload.Payload;
 import az.rock.lib.valueObject.UserType;
 
-import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.UUID;
 
 
-public class CompanyRegistrationPayload implements Payload {
+public class JobSeekerRegistrationPayload implements Payload {
     private UUID userId;
     private UserType type;
 
-    public CompanyRegistrationPayload(UUID userId, UserType type) {
+    public JobSeekerRegistrationPayload(UUID userId, UserType type) {
         this.userId = userId;
         this.type = type;
     }
 
-    public CompanyRegistrationPayload(){}
+    public JobSeekerRegistrationPayload(){}
 
     public UserType getType() {
         return type;
