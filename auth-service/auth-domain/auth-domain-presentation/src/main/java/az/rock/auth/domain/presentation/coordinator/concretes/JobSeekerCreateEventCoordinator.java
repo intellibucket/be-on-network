@@ -11,7 +11,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEventCoordinator {
-    private AbstractUserMessagePublisher<JobSeekerCreatedEvent> userMessagePublisher;
+    private final AbstractUserMessagePublisher<JobSeekerCreatedEvent> userMessagePublisher;
+
+    public JobSeekerCreateEventCoordinator(AbstractUserMessagePublisher<JobSeekerCreatedEvent> userMessagePublisher) {
+        this.userMessagePublisher = userMessagePublisher;
+    }
 
     @Override
     protected void proceed(Saga<JobSeekerCreatedEvent> saga) {
@@ -20,7 +24,7 @@ public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEven
 
     @Override
     protected void onError(Exception exception, Saga<JobSeekerCreatedEvent> saga) {
-
+        System.err.println(exception.getMessage());
     }
 
     @Override

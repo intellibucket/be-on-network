@@ -14,8 +14,7 @@ spring:
           username: ${GIT_NAME}
           clone-on-start: false
           uri: ${GIT_ADDRESS}
-#  main:
-#    web-application-type: servlet
+          force-pull: true
 logging:
   level:
     web: debug
