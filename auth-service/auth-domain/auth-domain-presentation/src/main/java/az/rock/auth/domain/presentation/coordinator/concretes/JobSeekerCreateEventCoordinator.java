@@ -24,7 +24,7 @@ public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEven
 
     @Override
     protected void onError(Exception exception, Saga<JobSeekerCreatedEvent> saga) {
-
+        System.err.println(exception.getMessage());
     }
 
     @Override
