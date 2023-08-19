@@ -5,7 +5,6 @@ import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import az.rock.spec.auth.privates.command.UserCommandPrivateSpec;
-import com.intellibucket.ws.validation.annotation.GPattern;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -26,35 +25,36 @@ public class UserCommandPrivateController implements UserCommandPrivateSpec {
 
     @Override
     @PutMapping("/change-first-name")
-    public ResponseEntity<JSuccessResponse> changeFirstName(@RequestParam("firstName") String firstName) {
+    public ResponseEntity<JSuccessResponse> changeFirstName(@RequestBody String firstName) {
         this.userCommandDomainPresentationService.changeFirstName(firstName);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-last-name")
-    public ResponseEntity<JSuccessResponse> changeLastName(@RequestParam("lastName") String lastName) {
+    public ResponseEntity<JSuccessResponse> changeLastName(@RequestBody String lastName) {
         this.userCommandDomainPresentationService.changeLastName(lastName);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-username")
-    public ResponseEntity<JSuccessResponse> changeUsername(@RequestParam("username")  String username) {
+    public ResponseEntity<JSuccessResponse> changeUsername
+            (@RequestBody String username) {
         this.userCommandDomainPresentationService.changeUsername(username);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-gender")
-    public ResponseEntity<JSuccessResponse> changeGender(@RequestParam("gender")  Gender gender) {
+    public ResponseEntity<JSuccessResponse> changeGender(@RequestBody Gender gender) {
         this.userCommandDomainPresentationService.changeGender(gender);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-timezone")
-    public ResponseEntity<JSuccessResponse> changeTimezone(@RequestParam("timezone")  TimeZoneID timezone) {
+    public ResponseEntity<JSuccessResponse> changeTimezone(@RequestBody TimeZoneID timezone) {
         this.userCommandDomainPresentationService.changeTimezone(timezone);
         return ResponseEntity.ok(new JSuccessResponse());
     }
