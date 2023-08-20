@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class FailPayload implements Payload{
+public class FailPayload extends Payload{
     private List<String> messages;
 
     public FailPayload(){}

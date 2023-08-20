@@ -12,9 +12,12 @@ public class InformationRoot extends AggregateRoot<InformationID> {
 
     private ResumeID resume;
     private AccessModifier accessModifier;
-    private String name;
+    private String firstName;
 
-    private String surname;
+    private String lastName;
+
+    //TODO
+    private String midName;
 
     private Gender gender;
 
@@ -36,12 +39,16 @@ public class InformationRoot extends AggregateRoot<InformationID> {
 
     private AddressRoot address;
 
+    public static final InformationRoot EMPTY = new InformationRoot();
+
+    private InformationRoot(){}
+
     private InformationRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
         resume = builder.resume;
-        name = builder.name;
-        surname = builder.surname;
+        firstName = builder.name;
+        lastName = builder.surname;
         gender = builder.gender;
         jobTitleInformation = builder.jobTitleInformation;
         birthDate = builder.birthDate;
@@ -62,12 +69,12 @@ public class InformationRoot extends AggregateRoot<InformationID> {
         return resume;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public Gender getGender() {
@@ -180,12 +187,12 @@ public class InformationRoot extends AggregateRoot<InformationID> {
             return this;
         }
 
-        public Builder name(String val) {
+        public Builder firstName(String val) {
             name = val;
             return this;
         }
 
-        public Builder surname(String val) {
+        public Builder lastName(String val) {
             surname = val;
             return this;
         }

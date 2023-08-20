@@ -20,7 +20,7 @@ public class UserOutboxDomainMapper implements AbstractUserOutboxDomainMapper {
     @Override
     public UserOutboxRoot mapToStartedOutbox(AbstractDomainEvent<UserRoot> event) {
         var objectMapper = new ObjectMapper();
-        var root = event.payload();
+        var root = event.getPayload();
         var payload =
                 UserCreatedEventPayload.of(root.getRootID().getAbsoluteID(),root.getUserType());
         String payloadString;

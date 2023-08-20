@@ -4,7 +4,7 @@ import az.rock.lib.event.payload.Payload;
 
 import java.util.UUID;
 
-public class ResumeCreatedPayload implements Payload {
+public class ResumeCreatedPayload extends Payload {
     private UUID resumeId;
 
     public ResumeCreatedPayload(UUID resumeId){

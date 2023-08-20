@@ -4,6 +4,7 @@ import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractStartDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -52,18 +53,19 @@ public final class Saga<E>{
         return event;
     }
 
+    @JsonIgnore
     public Boolean isOnProceed(){
         return this.state.equals(State.ON_PROCEED);
     }
-
+    @JsonIgnore
     public Boolean isOnError(){
         return this.state.equals(State.ON_ERROR);
     }
-
+    @JsonIgnore
     public Boolean isOnFail(){
         return this.state.equals(State.ON_FAIL);
     }
-
+    @JsonIgnore
     public Boolean isOnSuccess(){
         return this.state.equals(State.ON_SUCCESS);
     }

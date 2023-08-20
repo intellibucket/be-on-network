@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class CompanyRegistrationPayload implements Payload {
+public class CompanyRegistrationPayload extends Payload {
     private UUID userId;
     private UserType type;
 

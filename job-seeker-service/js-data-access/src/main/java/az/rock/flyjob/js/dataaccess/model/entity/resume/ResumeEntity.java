@@ -32,59 +32,66 @@ public class ResumeEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
 
-    @OneToOne(mappedBy = "resume")
+    @OneToOne(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private ResumeTemplateEntity template;
 
-    @OneToOne(mappedBy = "resume")
+    @OneToOne(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private ResumePictureEntity picture;
 
-    @OneToOne(mappedBy = "resume")
+    @OneToOne(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private InformationEntity information;
 
-    @OneToOne(mappedBy = "resume")
+    @OneToOne(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private PersonalSummaryEntity personalSummary;
 
-    @OneToOne(mappedBy = "resume")
+    @OneToOne(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private SignatureDeclarationEntity signatureDeclaration;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<AwardEntity> awards;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<ContactEntity> contacts;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<CourseEntity> courses;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<CustomPaneEntity> customPanes;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<EducationEntity> educations;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<ExperienceEntity> experiences;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<InterestEntity> interests;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<ResumeLanguageEntity> languages;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<OrganizationEntity> organizations;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<ProjectEntity> projects;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<PublicationEntity> publications;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<ReferenceEntity> references;
 
-    @OneToMany(mappedBy = "resume")
+    @OneToMany(mappedBy = "resume", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<SkillEntity> skills;
+
+    public static ResumeEntity referenceOf(UUID resumeId){
+        return ResumeEntity.Builder
+                .builder()
+                .uuid(resumeId)
+                .build();
+    }
 
     private ResumeEntity(Builder builder) {
         setUserId(builder.userId);

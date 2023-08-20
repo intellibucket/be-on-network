@@ -2,9 +2,12 @@ package az.rock.flyjob.js.messaging.listeners.concretes;
 
 import az.rock.flyjob.js.domain.presentation.ports.input.listener.abstracts.AbstractJobSeekerCreatedEventListenerAdapter;
 import az.rock.flyjob.js.messaging.listeners.abstracts.AbstractUserCreatedMessageListener;
+import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
+import az.rock.lib.event.payload.Payload;
 import az.rock.lib.event.trx.Saga;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -25,11 +28,8 @@ public class UserCreatedKafkaListener implements AbstractUserCreatedMessageListe
     @Override
     @KafkaListener(topics = "auth.local.js-created.str",groupId = "auth.user-created-js-group")
     public void listenJobSeekerCreatedEvent(JsonNode node) {
-        try {
-            var eventSaga = this.objectMapper.treeToValue(node, Saga.class);
-            this.jobSeekerCreatedEventListener.consume(eventSaga);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        var eventSaga = this.objectMapper
+                .convertValue(node, new TypeReference<Saga<JobSeekerCreatedEvent>>() {});
+        this.jobSeekerCreatedEventListener.consume(eventSaga);
     }
 }

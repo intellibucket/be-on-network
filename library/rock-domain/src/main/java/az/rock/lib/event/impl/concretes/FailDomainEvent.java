@@ -1,9 +1,7 @@
 package az.rock.lib.event.impl.concretes;
 
-import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
 import az.rock.lib.event.payload.FailPayload;
-import az.rock.lib.event.payload.Payload;
 
 import java.util.List;
 
@@ -13,6 +11,10 @@ public class FailDomainEvent extends AbstractFailDomainEvent<FailPayload> {
     }
 
     public static FailDomainEvent of(List<String> message) {
+        return new FailDomainEvent(new FailPayload(message));
+    }
+
+    public static FailDomainEvent of(String message) {
         return new FailDomainEvent(new FailPayload(message));
     }
 }

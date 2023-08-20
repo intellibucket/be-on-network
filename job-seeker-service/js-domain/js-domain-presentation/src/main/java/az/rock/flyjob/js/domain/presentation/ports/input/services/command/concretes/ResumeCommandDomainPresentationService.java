@@ -8,7 +8,6 @@ import az.rock.lib.event.trx.Saga;
 import org.springframework.stereotype.Component;
 
 @Component
-@InputPort
 public class ResumeCommandDomainPresentationService implements AbstractResumeCommandDomainPresentationService {
 
     private final AbstractResumeCreateCommandHandler resumeCreateCommandHandler;

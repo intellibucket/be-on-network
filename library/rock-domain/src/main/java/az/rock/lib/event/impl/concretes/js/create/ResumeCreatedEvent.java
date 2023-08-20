@@ -7,4 +7,8 @@ public class ResumeCreatedEvent extends AbstractSuccessDomainEvent<ResumeCreated
     public ResumeCreatedEvent(ResumeCreatedPayload payload) {
         super(payload);
     }
+
+    public static ResumeCreatedEvent of(ResumeCreatedPayload payload){
+        return new ResumeCreatedEvent(payload);
+    }
 }

@@ -6,11 +6,11 @@ import az.rock.lib.valueObject.UserType;
 import java.util.UUID;
 
 
-public class JobSeekerRegistrationPayload implements Payload {
+public class JobSeekerRegistrationPayload extends Payload {
     private UUID userId;
     private UserType type;
 
-    private String userName;
+    private String firstName;
 
     private String lastName;
 
@@ -24,7 +24,7 @@ public class JobSeekerRegistrationPayload implements Payload {
     private JobSeekerRegistrationPayload(Builder builder) {
         setUserId(builder.userId);
         setType(builder.type);
-        userName = builder.userName;
+        firstName = builder.userName;
         lastName = builder.lastName;
     }
 
@@ -44,6 +44,21 @@ public class JobSeekerRegistrationPayload implements Payload {
         this.type = type;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 
     public static final class Builder {
         private UUID userId;
