@@ -17,4 +17,5 @@
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.RoleEntity</class>
     </persistence-unit>
+
 </persistence>

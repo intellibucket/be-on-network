@@ -16,6 +16,10 @@ spring:
         persistence:
           validation:
             mode: none
+  mybatis:
+    mapper-locations: classpath*:/**/*-mapper.xml
+
+
 server:
   servlet:
     context-path: /auth-context

@@ -11,5 +11,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserSimpleCompose {
-    private String userFirstName;
+    private String firstName;
+    private String lastName;
 }
