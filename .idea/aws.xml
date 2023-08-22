@@ -5,7 +5,11 @@
     <option name="recentlyUsedRegions">
       <list>
         <option value="us-east-1" />
+        <option value="eu-central-1" />
       </list>
     </option>
+  </component>
+  <component name="connectionManager">
+    <option name="activeConnectionId" value="sso;us-east-1;https://view.awsapps.com/start" />
   </component>
 </project>
