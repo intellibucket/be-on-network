@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/private/command/account-plan", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/auth/1.0/private/command/organization", produces = MediaType.APPLICATION_JSON_VALUE)
 public class OrganizationCommandPrivateController implements OrganizationCommandPrivateSpec {
     private final OrganizationCommandPrivateSpec organizationCommandPrivateSpec;
 
