@@ -53,25 +53,26 @@ public class ResumeDataAccessMapper implements AbstractResumeDataAccessMapper {
         if (optionalResumeRoot.isPresent()){
             var safetyResumeRoot = optionalResumeRoot.get();
             var informationEntity = this.informationDataAccessMapper
-                    .toEntity(safetyResumeRoot.getInformation());
-            return Optional.of(
-                    ResumeEntity.Builder
-                            .builder()
-                            .uuid(safetyResumeRoot.getRootID().getAbsoluteID())
-                            .accessModifier(safetyResumeRoot.getAccessModifier())
-                            .version(safetyResumeRoot.getVersion().value())
-                            .processStatus(safetyResumeRoot.getProcessStatus())
-                            .rowStatus(safetyResumeRoot.getRowStatus())
-                            .createdDate(GDateTime.toTimestamp(safetyResumeRoot.getCreatedDate()))
-                            .lastModifiedDate(GDateTime.toTimestamp(safetyResumeRoot.getModificationDate()))
-                            .userId(safetyResumeRoot.getUserId())
-                            //TODO tekrar duzelis olunmalidir.
-                            .information(informationEntity.orElse(InformationEntity.referenceOf(
-                                    UUID.randomUUID(),
-                                    safetyResumeRoot.getRootID().getAbsoluteID()
-                            )))
-                            .build()
-            );
+                    .toEntity(safetyResumeRoot.getInformation())
+                    .orElse(InformationEntity.referenceOf(
+                            UUID.randomUUID(),
+                            safetyResumeRoot.getRootID().getAbsoluteID()
+                    ));
+            var resumeEntity = ResumeEntity.Builder
+                    .builder()
+                    .uuid(safetyResumeRoot.getRootID().getAbsoluteID())
+                    .accessModifier(safetyResumeRoot.getAccessModifier())
+                    .version(safetyResumeRoot.getVersion().value())
+                    .processStatus(safetyResumeRoot.getProcessStatus())
+                    .rowStatus(safetyResumeRoot.getRowStatus())
+                    .createdDate(GDateTime.toTimestamp(safetyResumeRoot.getCreatedDate()))
+                    .lastModifiedDate(GDateTime.toTimestamp(safetyResumeRoot.getModificationDate()))
+                    .userId(safetyResumeRoot.getUserId())
+                    //TODO tekrar duzelis olunmalidir.
+                    .information(informationEntity)
+                    .build();
+            informationEntity.setResume(resumeEntity);
+            return Optional.of(resumeEntity);
         }else return Optional.empty();
     }
 }

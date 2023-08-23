@@ -19,9 +19,13 @@ public class UserDomainService implements AbstractUserDomainService {
     @Override
     public JobSeekerCreatedEvent validateAndInitializeUser(UserRoot userRoot) {
         return JobSeekerCreatedEvent.of(
-                new JobSeekerRegistrationPayload(
-                userRoot.getRootID().getAbsoluteID(),
-                userRoot.getUserType())
+                JobSeekerRegistrationPayload.Builder
+                        .builder()
+                        .userId(userRoot.getRootID().getAbsoluteID())
+                        .type(userRoot.getUserType())
+                        .firstName(userRoot.getFirstName())
+                        .lastName(userRoot.getLastName())
+                        .build()
         );
     }
 

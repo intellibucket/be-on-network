@@ -19,6 +19,8 @@ public class JobSeekerRegistrationPayload extends Payload {
         this.type = type;
     }
 
+
+
     public JobSeekerRegistrationPayload(){}
 
     private JobSeekerRegistrationPayload(Builder builder) {
@@ -83,7 +85,7 @@ public class JobSeekerRegistrationPayload extends Payload {
             return this;
         }
 
-        public Builder userName(String val) {
+        public Builder firstName(String val) {
             userName = val;
             return this;
         }
