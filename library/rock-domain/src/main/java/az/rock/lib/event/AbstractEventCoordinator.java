@@ -1,11 +1,9 @@
-package az.rock.auth.domain.presentation.coordinator.abstracts;
+package az.rock.lib.event;
 
-import az.rock.lib.event.AbstractDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
 import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
 import az.rock.lib.event.payload.Payload;
 import az.rock.lib.event.trx.Saga;
-import lombok.extern.slf4j.Slf4j;
 
 public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
 

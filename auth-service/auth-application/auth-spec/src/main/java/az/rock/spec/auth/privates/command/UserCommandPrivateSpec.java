@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 public interface UserCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> changeFirstName(
-            @GPattern(message = "F0000000030",pattern = "^[a-zA-Z0-9_-]{3,16}$")
+            @GPattern(message = "F0000000034",pattern = "^[a-zA-Z0-9_-]{3,16}$")
             String firstName);
     ResponseEntity<JSuccessResponse> changeLastName(
-            @GPattern(message = "F0000000030",pattern = "^[a-zA-Z0-9_-]{3,16}$")
+            @GPattern(message = "F0000000035",pattern = "^[a-zA-Z0-9_-]{3,16}$")
             String lastName);
     ResponseEntity<JSuccessResponse> changeUsername(
             @GPattern(message = "F0000000030",pattern = "^[a-zA-Z0-9_-]{3,16}$")

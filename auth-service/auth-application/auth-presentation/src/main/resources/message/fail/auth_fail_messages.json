@@ -295,5 +295,23 @@
     "tr": "Kendinizi takip edemezsiniz",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000034",
+    "az": "firstName",
+    "en": "firstName",
+    "ru": "firstName",
+    "tr": "firstName",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000035",
+    "az": "lastName",
+    "en": "lastName",
+    "ru": "lastName",
+    "tr": "lastName",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

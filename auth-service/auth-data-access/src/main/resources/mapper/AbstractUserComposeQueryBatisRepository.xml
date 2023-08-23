@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="az.rock.flyjob.auth.dataAccess.repository.abstracts.query.compose.AbstractUserComposeQueryBatisRepository" >
+
+    <select id="findUserSimpleComposeByUserId"
+            resultType="az.rock.flyjob.auth.dataAccess.model.compose.UserSimpleCompose">
+        SELECT first_name as firstName,
+               last_name as lastName
+        FROM auth.users
+        WHERE
+            uuid = ${uuid}
+    </select>
+</mapper>

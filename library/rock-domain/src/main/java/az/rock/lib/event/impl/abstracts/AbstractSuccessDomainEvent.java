@@ -7,8 +7,8 @@ import java.util.UUID;
 
 public class AbstractSuccessDomainEvent <R> extends AbstractDomainEvent<R> {
 
-    protected AbstractSuccessDomainEvent(R root) {
-        super(root);
+    protected AbstractSuccessDomainEvent(R payload) {
+        super(payload);
     }
 
     @Override

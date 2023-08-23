@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.adapter.command;
 
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowCommandRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
+import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.FollowDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.network.AbstractFollowCommandCustomJPARepository;

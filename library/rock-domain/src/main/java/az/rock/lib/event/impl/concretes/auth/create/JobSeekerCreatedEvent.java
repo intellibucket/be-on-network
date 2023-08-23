@@ -10,6 +10,10 @@ public class JobSeekerCreatedEvent extends AbstractStartDomainEvent<JobSeekerReg
         super(payload);
     }
 
+    public JobSeekerCreatedEvent(){
+        super();
+    }
+
     public static JobSeekerCreatedEvent of(JobSeekerRegistrationPayload payload) {
         return new JobSeekerCreatedEvent(payload);
     }
