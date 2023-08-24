@@ -1,6 +1,5 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.event.trx.State;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.Version;
 
@@ -29,7 +28,6 @@ public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
                       Version version,
                       ZonedDateTime createdDate,
                       ZonedDateTime lastModifiedDate,
-                      State sagaStatus,
                       OutboxStatus outboxStatus,
                       String type,
                       String payload) {
