@@ -1,6 +1,5 @@
 package com.intellibukcet.lib.payload.payload;
 
-import az.rock.lib.event.payload.Payload;
 
 import java.util.UUID;
 
@@ -21,7 +20,7 @@ public class ResumeCreatedPayload extends Payload {
         this.resumeId = resumeId;
     }
 
-    public static az.rock.lib.event.payload.js.ResumeCreatedPayload of(UUID resumeId) {
-        return new az.rock.lib.event.payload.js.ResumeCreatedPayload(resumeId);
+    public static ResumeCreatedPayload of(UUID resumeId) {
+        return new ResumeCreatedPayload(resumeId);
     }
 }

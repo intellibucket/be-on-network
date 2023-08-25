@@ -1,8 +1,8 @@
 package com.intellibukcet.lib.payload.event.create.picture;
 
-import az.rock.lib.event.Event;
-import az.rock.lib.event.impl.abstracts.AbstractStartDomainEvent;
-import az.rock.lib.event.payload.PicturePayload;
+import com.intellibukcet.lib.payload.event.abstracts.AbstractStartDomainEvent;
+import com.intellibukcet.lib.payload.event.abstracts.Event;
+import com.intellibukcet.lib.payload.payload.picture.PicturePayload;
 
 @Event
 public class CoverPictureCreatedEvent extends AbstractStartDomainEvent<PicturePayload> {

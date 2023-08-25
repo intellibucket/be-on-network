@@ -3,8 +3,8 @@ package az.rock.flyjob.auth.messaging.publisher;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractProfilePictureMessagePublisher;
 import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
-import az.rock.lib.event.AbstractDomainEvent;
-import az.rock.lib.event.trx.Saga;
+import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibukcet.lib.payload.trx.Saga;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.kafka.core.KafkaTemplate;

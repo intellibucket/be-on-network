@@ -1,8 +1,9 @@
 package com.intellibukcet.lib.payload.event.create.user;
 
-import az.rock.lib.event.Event;
-import az.rock.lib.event.impl.abstracts.AbstractStartDomainEvent;
-import az.rock.lib.event.payload.registration.JobSeekerRegistrationPayload;
+;
+import com.intellibukcet.lib.payload.event.abstracts.AbstractStartDomainEvent;
+import com.intellibukcet.lib.payload.event.abstracts.Event;
+import com.intellibukcet.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 
 @Event
 public class JobSeekerCreatedEvent extends AbstractStartDomainEvent<JobSeekerRegistrationPayload> {

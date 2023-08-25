@@ -2,11 +2,8 @@ package az.rock.flyjob.js.messaging.listeners.concretes;
 
 import az.rock.flyjob.js.domain.presentation.ports.input.listener.abstracts.AbstractJobSeekerCreatedEventListenerAdapter;
 import az.rock.flyjob.js.messaging.listeners.abstracts.AbstractUserCreatedMessageListener;
-import az.rock.lib.event.AbstractDomainEvent;
-import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
-import az.rock.lib.event.payload.Payload;
-import az.rock.lib.event.trx.Saga;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibukcet.lib.payload.trx.Saga;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

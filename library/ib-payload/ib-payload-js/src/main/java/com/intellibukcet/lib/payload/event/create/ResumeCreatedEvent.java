@@ -1,7 +1,7 @@
 package com.intellibukcet.lib.payload.event.create;
 
-import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
-import az.rock.lib.event.payload.js.ResumeCreatedPayload;
+import com.intellibukcet.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
+import com.intellibukcet.lib.payload.payload.ResumeCreatedPayload;
 
 
 public class ResumeCreatedEvent extends AbstractSuccessDomainEvent<ResumeCreatedPayload> {
@@ -9,8 +9,8 @@ public class ResumeCreatedEvent extends AbstractSuccessDomainEvent<ResumeCreated
         super(payload);
     }
 
-    public static az.rock.lib.event.impl.concretes.js.create.ResumeCreatedEvent of(ResumeCreatedPayload payload){
-        return new az.rock.lib.event.impl.concretes.js.create.ResumeCreatedEvent(payload);
+    public static ResumeCreatedEvent of(ResumeCreatedPayload payload){
+        return new ResumeCreatedEvent(payload);
     }
 }
 

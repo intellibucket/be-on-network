@@ -1,7 +1,7 @@
 package com.intellibukcet.lib.payload.payload.reg;
 
-import az.rock.lib.event.payload.Payload;
 import az.rock.lib.valueObject.UserType;
+import com.intellibukcet.lib.payload.payload.Payload;
 
 import java.util.UUID;
 
