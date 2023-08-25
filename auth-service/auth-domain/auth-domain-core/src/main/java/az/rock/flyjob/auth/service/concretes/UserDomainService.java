@@ -1,16 +1,16 @@
 package az.rock.flyjob.auth.service.concretes;
 
-import az.rock.lib.event.impl.concretes.auth.create.CompanyCreatedEvent;
-import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.exception.AuthDomainException;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
-import az.rock.lib.event.payload.registration.CompanyRegistrationPayload;
-import az.rock.lib.event.payload.registration.JobSeekerRegistrationPayload;
 import az.rock.lib.util.GObjects;
 import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
+import com.intellibukcet.lib.payload.event.create.user.CompanyCreatedEvent;
+import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibukcet.lib.payload.payload.reg.CompanyRegistrationPayload;
+import com.intellibukcet.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 
 import java.util.Objects;
 

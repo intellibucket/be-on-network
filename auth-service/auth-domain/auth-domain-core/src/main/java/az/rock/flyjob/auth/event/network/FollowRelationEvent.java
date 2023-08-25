@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.event.network;
 
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
-import az.rock.lib.event.AbstractDomainEvent;
-import az.rock.lib.event.Event;
+import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibukcet.lib.payload.event.abstracts.Event;
 
 @Event
 public class FollowRelationEvent extends AbstractDomainEvent<FollowRelationRoot> {
