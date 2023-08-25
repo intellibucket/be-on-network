@@ -15,7 +15,6 @@ public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
 
     private ZonedDateTime lastModifiedDate;
 
-    private State sagaStatus;
 
     private OutboxStatus outboxStatus;
 
@@ -36,7 +35,6 @@ public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
         this.version = version;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
-        this.sagaStatus = sagaStatus;
         this.outboxStatus = outboxStatus;
         this.type = type;
         this.payload = payload;
@@ -59,9 +57,6 @@ public abstract class OutboxRoot<D>  extends RootID<OutboxID> {
         return lastModifiedDate;
     }
 
-    public State getSagaStatus() {
-        return sagaStatus;
-    }
 
     public OutboxStatus getOutboxStatus() {
         return outboxStatus;
