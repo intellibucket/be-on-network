@@ -4,11 +4,11 @@ import az.rock.flyjob.js.domain.core.root.ResumeRoot;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractInformationDomainMapper;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractResumeDomainMapper;
 import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.event.payload.registration.JobSeekerRegistrationPayload;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
+import com.intellibukcet.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

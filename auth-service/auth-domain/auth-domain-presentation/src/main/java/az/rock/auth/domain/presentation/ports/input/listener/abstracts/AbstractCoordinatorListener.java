@@ -1,9 +1,10 @@
 package az.rock.auth.domain.presentation.ports.input.listener.abstracts;
 
-import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
-import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
-import az.rock.lib.event.trx.Saga;
-import az.rock.lib.event.payload.Payload;
+
+import com.intellibukcet.lib.payload.event.abstracts.AbstractFailDomainEvent;
+import com.intellibukcet.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
+import com.intellibukcet.lib.payload.payload.Payload;
+import com.intellibukcet.lib.payload.trx.Saga;
 
 public interface AbstractCoordinatorListener {
     void listenOnSuccess(Saga<AbstractSuccessDomainEvent<? extends Payload>> message);

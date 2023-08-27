@@ -4,8 +4,8 @@ import az.rock.auth.domain.presentation.handler.abstracts.AbstractCoverPictureCr
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractCoverPictureDomainMapper;
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.lib.event.impl.concretes.auth.create.CoverPictureCreatedEvent;
 import az.rock.lib.valueObject.MultipartFileWrapper;
+import com.intellibukcet.lib.payload.event.create.picture.CoverPictureCreatedEvent;
 import org.springframework.stereotype.Component;
 
 @Component

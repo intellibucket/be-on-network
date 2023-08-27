@@ -3,11 +3,11 @@ package az.rock.flyjob.auth.root;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.OutboxRoot;
 import az.rock.lib.domain.SagaID;
-import az.rock.lib.event.trx.State;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.SagaRoot;
 import az.rock.lib.valueObject.Version;
+import com.intellibukcet.lib.payload.trx.State;
 
 import java.time.ZonedDateTime;
 
@@ -23,7 +23,6 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
                 builder.createdDate,
                 builder.lastModifiedDate,
                 null,
-                builder.outboxStatus,
                 builder.type,
                 builder.payload);
         processStatus = builder.processStatus;

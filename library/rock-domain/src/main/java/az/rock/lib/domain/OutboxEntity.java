@@ -1,8 +1,8 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.event.trx.State;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import com.intellibukcet.lib.payload.trx.State;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

@@ -7,9 +7,9 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractProfilePictureD
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractProfilePictureCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractProfilePictureQueryRepositoryAdapter;
-import az.rock.lib.event.impl.concretes.auth.create.ProfilePictureCreatedEvent;
 import az.rock.flyjob.auth.service.abstracts.AbstractProfilePictureDomainService;
 import az.rock.lib.valueObject.MultipartFileWrapper;
+import com.intellibukcet.lib.payload.event.create.picture.ProfilePictureCreatedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
