@@ -28,9 +28,12 @@ public class FollowCommandPrivateController implements FollowCommandPrivateSpec 
     }
 
     @Override
-    public ResponseEntity<JSuccessResponse> unfollow(UUID userID) {
-        return null;
+    @PostMapping("/unfollow/{uuid}")
+    public ResponseEntity<JSuccessResponse> unfollow(@PathVariable(name = "uuid") UUID userID) {
+        this.followCommandDomainPresentationService.unfollow(userID);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
+
 
     @Override
     public ResponseEntity<JSuccessResponse> acceptFollowRequest(UUID followRelationID) {

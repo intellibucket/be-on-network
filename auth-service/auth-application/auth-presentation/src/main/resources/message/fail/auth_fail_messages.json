@@ -289,7 +289,7 @@
   },
   {
     "code": "F0000000033",
-    "az": "Özünüzə istək ata bilməzsiniz",
+    "az": "Özünüzə istək göndərə bilməzsiniz",
     "en": "You can't follow yourself",
     "ru": "Вы не можете следовать за собой",
     "tr": "Kendinizi takip edemezsiniz",
@@ -298,20 +298,12 @@
   },
   {
     "code": "F0000000034",
-    "az": "firstName",
-    "en": "firstName",
-    "ru": "firstName",
-    "tr": "firstName",
-    "hasRegex": false,
-    "regex": ""
-  },
-  {
-    "code": "F0000000035",
-    "az": "lastName",
-    "en": "lastName",
-    "ru": "lastName",
-    "tr": "lastName",
+    "az": "Özünüzü izləmədən çıxara bilməzsiniz",
+    "en": "You can't unfollow yourself",
+    "ru": "Вы не можете отписаться от себя",
+    "tr": "Kendinizi takipden çıkaramazsınız",
     "hasRegex": false,
     "regex": ""
   }
+
 ]

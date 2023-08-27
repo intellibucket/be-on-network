@@ -1,12 +1,12 @@
 package az.rock.flyjob.auth.dataAccess.adapter.command;
 
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowCommandRepositoryAdapter;
-import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.FollowDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.network.AbstractFollowCommandCustomJPARepository;
 //import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.network.FollowCommandJPARepository;
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -34,7 +34,11 @@ public class FollowCommandRepositoryAdapter implements AbstractFollowCommandRepo
         }
         return Optional.empty();
     }
-
+    @Override
+    public void update(FollowRelationRoot root) {
+        var entity = this.followDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.followCommandCustomJPARepository::update);
+    }
 
 //    @Override
 //    public Optional<FollowRelationRoot> create(FollowRelationRoot root) {
@@ -47,10 +51,7 @@ public class FollowCommandRepositoryAdapter implements AbstractFollowCommandRepo
 //        return Optional.empty();
 //    }
 
-//    @Override
-//    public void update(FollowRelationRoot root) {
-//        AbstractFollowCommandRepositoryAdapter.super.update(root);
-//    }
+
 //
 //    @Override
 //    public void updateAll(List<EmailRoot> emailRoots) {

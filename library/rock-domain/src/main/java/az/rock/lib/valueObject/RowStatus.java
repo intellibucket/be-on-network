@@ -19,4 +19,5 @@ public enum RowStatus {
         return this.equals(DELETED);
     }
 
+
 }

@@ -106,7 +106,7 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
 
     @JsonIgnore
     public Boolean isActive() {
-        return this.rowStatus.isActive();
+        return this.isActive();
     }
 
     @JsonIgnore
@@ -156,6 +156,10 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
     }
 
 
+    @JsonIgnore
+    public void inActive(){
+        this.rowStatus = RowStatus.INACTIVE;
+    }
 
 
 }

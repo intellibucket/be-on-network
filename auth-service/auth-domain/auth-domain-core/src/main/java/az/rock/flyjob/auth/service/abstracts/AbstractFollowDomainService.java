@@ -4,7 +4,10 @@ import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import az.rock.lib.domain.id.auth.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AbstractFollowDomainService {
     void validateFollowRequestAlready(List<FollowRelationRoot> followers, FollowID followID);
+
+
 }

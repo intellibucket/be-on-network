@@ -32,9 +32,20 @@ public interface FollowQueryJPARepository extends JpaRepository<FollowRelationEn
             "and f.followStatus = 'PENDING' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllMyPendingFollowRequests(UUID absoluteID);
 
+    @Query("SELECT f FROM FollowRelationEntity f where f.followedUserId = :userID" +
+            " and f.followingUserId = :followingUserID and f.rowStatus = 'ACTIVE'")
+    FollowRelationEntity findActiveRowForUserAndFollowID(UUID userID, UUID followingUserID);
+
     @Query("SELECT COUNT (f) > 0  FROM FollowRelationEntity f where f.followedUserId = :userID" + //userId - senin , followId - sene atanin
             " and f.followingUserId = :followUserID and f.rowStatus = 'ACTIVE'")
     Boolean isFollowerPresentInMyFollowers(@Param(value = "userID") UUID userID,
                                            @Param(value = "followUserID") UUID followUserID);
+//    @Query("SELECT COUNT (f) > 0  FROM FollowRelationEntity f where f.followedUserId = :userID" + //userId - senin , followId - sene atanin
+//            " and f.followingUserId = :followUserID and f.rowStatus = 'INACTIVE'")
+//    Boolean isAlreadyUnfollowed(@Param(value = "userID") UUID userID,
+//                                           @Param(value = "followUserID") UUID followUserID);
+
+
+
 }
 
