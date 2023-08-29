@@ -19,7 +19,5 @@ public interface AbstractFollowQueryRepositoryAdapter {
 
     Boolean isFollowerPresentInMyFollowers(UserID userID, UserID followUserID);
 
- //   Boolean isAlreadyUnfollowed(UserID userID, UserID unfollowUserID);
-
     Optional<FollowRelationRoot> findActiveRowForUserAndFollowID(UserID userID, UserID followingUserID);
 }
