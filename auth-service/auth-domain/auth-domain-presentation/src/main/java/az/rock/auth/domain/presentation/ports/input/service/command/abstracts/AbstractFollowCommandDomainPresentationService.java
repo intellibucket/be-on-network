@@ -13,10 +13,4 @@ public interface AbstractFollowCommandDomainPresentationService {
 
     void unfollow(UUID userID);
 
-    void acceptFollowRequest(UUID followRelationID);
-
-    void rejectFollowRequest(UUID followRelationID);
-
-    void cancelFollowRequest(UUID followRelationID);
-
 }

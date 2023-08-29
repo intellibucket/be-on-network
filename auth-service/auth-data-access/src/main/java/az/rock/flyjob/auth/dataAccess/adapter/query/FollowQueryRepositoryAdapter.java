@@ -73,12 +73,6 @@ public class FollowQueryRepositoryAdapter implements AbstractFollowQueryReposito
         return presentFollowerInMyFollowers;
     }
 
-//    @Override
-//    public Boolean isAlreadyUnfollowed(UserID userID, UserID unfollowUserID) {
-//        var alreadyUnfollowed = this.followQueryJPARepository
-//                .isAlreadyUnfollowed(userID.getAbsoluteID(),unfollowUserID.getAbsoluteID());
-//        return alreadyUnfollowed;
-//    }
 
     @Override
     public Optional<FollowRelationRoot> findActiveRowForUserAndFollowID(UserID userID, UserID followingUserID) {
