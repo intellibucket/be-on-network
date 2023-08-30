@@ -9,8 +9,8 @@ import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import com.intellibukcet.lib.payload.event.create.user.CompanyCreatedEvent;
 import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibukcet.lib.payload.payload.reg.CompanyRegistrationPayload;
-import com.intellibukcet.lib.payload.payload.reg.JobSeekerRegistrationPayload;
+import com.intellibukcet.lib.payload.event.create.user.payload.reg.CompanyRegistrationPayload;
+import com.intellibukcet.lib.payload.event.create.user.payload.reg.JobSeekerRegistrationPayload;
 
 import java.util.Objects;
 

@@ -5,6 +5,8 @@ import az.rock.lib.annotation.DomainOutputPort;
 import az.rock.lib.domain.id.auth.UserID;
 
 import java.util.List;
+import java.util.Optional;
+
 @DomainOutputPort
 public interface AbstractFollowQueryRepositoryAdapter {
     List<FollowRelationRoot> findMyFollowers(UserID userID);
@@ -14,5 +16,8 @@ public interface AbstractFollowQueryRepositoryAdapter {
     List<FollowRelationRoot> findMyFollowPendingRequests(UserID userID);
 
     List<FollowRelationRoot> findInMyFollowPendingRequests(UserID userID);
+
     Boolean isFollowerPresentInMyFollowers(UserID userID, UserID followUserID);
+
+    Optional<FollowRelationRoot> findActiveRowForUserAndFollowID(UserID userID, UserID followingUserID);
 }

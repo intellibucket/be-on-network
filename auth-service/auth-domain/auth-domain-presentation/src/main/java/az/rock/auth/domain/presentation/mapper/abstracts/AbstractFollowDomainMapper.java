@@ -6,4 +6,6 @@ import az.rock.lib.valueObject.UserIdTypePair;
 public interface AbstractFollowDomainMapper {
 
     FollowRelationRoot toNewFollowRelationRoot(UserIdTypePair userID, UserIdTypePair followUserID);
+
+    FollowRelationRoot mapToFollowRelationRoot(UserIdTypePair userID, UserIdTypePair followID);
 }

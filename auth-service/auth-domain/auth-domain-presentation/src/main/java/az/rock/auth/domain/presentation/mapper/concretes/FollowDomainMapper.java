@@ -27,5 +27,23 @@ public class FollowDomainMapper implements AbstractFollowDomainMapper {
                 .blockReasonStatus(BlockReasonStatus.UNKNOWN)
                 .build();
     }
+
+    @Override
+    public FollowRelationRoot mapToFollowRelationRoot(UserIdTypePair userID, UserIdTypePair followUserID) {
+       return FollowRelationRoot.Builder
+                .builder()
+                .followID(FollowID.of(UUID.randomUUID()))
+                .version(Version.ONE)
+                .processStatus(ProcessStatus.COMPLETED)
+                .rowStatus(RowStatus.INACTIVE)
+                .followingUserType(followUserID.getUserType())
+                .followingUserId(followUserID.getUserID().getAbsoluteID())
+                .followerUserType(userID.getUserType())
+                .followedUserId(userID.getUserID().getAbsoluteID())
+                .followStatus(FollowStatus.ACCEPTED)
+                .blockReasonStatus(BlockReasonStatus.UNKNOWN)
+                .build();
+    }
+
 }
 

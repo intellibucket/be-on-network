@@ -2,9 +2,9 @@ package az.rock.flyjob.auth.exception.follow;
 
 import az.rock.flyjob.auth.exception.AuthDomainException;
 
-public class FollowHasAlreadyException extends AuthDomainException {
+public class AlreadyFollowedException extends AuthDomainException {
 
-    public FollowHasAlreadyException() {
+    public AlreadyFollowedException() {
         super("F0000000031");
     }
 }

@@ -72,4 +72,13 @@ public class FollowQueryRepositoryAdapter implements AbstractFollowQueryReposito
                                                     .isFollowerPresentInMyFollowers(userID.getAbsoluteID(),followUserID.getAbsoluteID());
         return presentFollowerInMyFollowers;
     }
+
+
+    @Override
+    public Optional<FollowRelationRoot> findActiveRowForUserAndFollowID(UserID userID, UserID followingUserID) {
+        var optionalEntity = Optional.ofNullable(this.followQueryJPARepository
+                .findActiveRowForUserAndFollowID(userID.getAbsoluteID(), followingUserID.getAbsoluteID()));
+        if (optionalEntity.isPresent()) return this.followQueryDataAccessMapper.toRoot(optionalEntity.get());
+        else return Optional.empty();
+    }
 }
