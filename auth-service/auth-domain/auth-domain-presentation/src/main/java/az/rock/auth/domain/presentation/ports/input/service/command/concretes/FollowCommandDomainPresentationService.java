@@ -24,8 +24,8 @@ public class FollowCommandDomainPresentationService implements AbstractFollowCom
     }
 
     @Override
-    public void follow(UUID uuid) {
-        FollowRelationEvent followRelationEvent = this.followCommandHandler.handleFollow(UserID.of(uuid));
+    public void follow(UUID userID) {
+        FollowRelationEvent followRelationEvent = this.followCommandHandler.handleFollow(UserID.of(userID));
 
     }
 

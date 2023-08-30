@@ -35,18 +35,4 @@ public class FollowCommandPrivateController implements FollowCommandPrivateSpec 
     }
 
 
-    @Override
-    public ResponseEntity<JSuccessResponse> acceptFollowRequest(UUID followRelationID) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<JSuccessResponse> rejectFollowRequest(UUID followRelationID) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<JSuccessResponse> cancelFollowRequest(UUID followRelationID) {
-        return null;
-    }
 }

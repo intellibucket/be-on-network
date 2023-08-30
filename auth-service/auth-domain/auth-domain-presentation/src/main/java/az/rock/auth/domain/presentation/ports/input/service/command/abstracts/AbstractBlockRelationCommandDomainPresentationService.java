@@ -7,10 +7,9 @@ import java.util.UUID;
 
 @InputPort
 @Transactional
-public interface AbstractFollowCommandDomainPresentationService {
+public interface AbstractBlockRelationCommandDomainPresentationService {
 
-    void follow(UUID userID);
+    void block(UUID userID);
 
-    void unfollow(UUID userID);
-
+    void unblock(UUID userID);
 }
