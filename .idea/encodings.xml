@@ -152,7 +152,19 @@
     <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-query-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-query-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/vacancy-query-spec/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-messaging/src/main/java" charset="UTF-8" />
   </component>
 </project>
