@@ -34,6 +34,17 @@
     <file url="file://$PROJECT_DIR$/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-application/company-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-application/company-spec/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-dfs/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-domain/company-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-domain/company-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-service/company-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
