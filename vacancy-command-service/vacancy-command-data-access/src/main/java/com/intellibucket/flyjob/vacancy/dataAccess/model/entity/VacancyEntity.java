@@ -60,4 +60,7 @@ public class VacancyEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "vacancy")
     private List<VacancyTagEntity> vacancyTagEntities;
+
+    @OneToOne(mappedBy = "vacancy")
+    private VacancySettingEntity setting;
 }
