@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,17 +28,26 @@ public class VacancyEntity extends BaseEntity {
     @Column(name = "title",nullable = false)
     private String title;
 
-    @Column(name = "about")
+    @Column(name = "about",nullable = false)
     private String about;
 
-    @Column(name = "requeriments")
+    @Column(name = "requeriments",nullable = false)
     private String requeriments;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp startDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp endDate;
 
     @Enumerated(EnumType.STRING)
     private WorkingTimeLine workingTimeLine;
 
     @Enumerated(EnumType.STRING)
     private WorkingType workingType;
+
+    @OneToMany(mappedBy = "vacancy")
+    private List<AppliedUserEntity> appliedUsers;
 
     @OneToMany(mappedBy = "vacancy")
     private List<VacancyTagEntity> vacancyTagEntities;
