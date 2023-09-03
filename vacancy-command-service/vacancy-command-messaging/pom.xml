@@ -3,21 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>library</artifactId>
-        <groupId>az.rock.lib</groupId>
+        <artifactId>vacancy-command-service</artifactId>
+        <groupId>az.rock.flyjob</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.intellibukcet.lib.payload</groupId>
-    <artifactId>ib-payload</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>ib-payload-auth</module>
-        <module>ib-payload-js</module>
-        <module>ib-payload-core</module>
-        <module>ib-payload-vacancy</module>
-    </modules>
+    <groupId>com.intellibucket.flyjob.vacancy</groupId>
+    <artifactId>vacancy-command-messaging</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
