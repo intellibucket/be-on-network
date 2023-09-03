@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: ${PROFILE:local}
+  config:
+    fail-fast: true
+    retry:
+      maxAttempts: 200
+      maxInterval: 10000
+    import: configserver:http://localhost:8012
+  application:
+    name: vacancy-command-service
+
+  jpa:
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+  mybatis:
+    mapper-locations: classpath*:/**/*-mapper.xml
+
+
+server:
+  servlet:
+    context-path: /vacancy-command-context
+
+logging:
+  level:
+    org.springframework.transaction.interceptor: TRACE
+
