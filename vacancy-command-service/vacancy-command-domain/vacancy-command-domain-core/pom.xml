@@ -23,12 +23,6 @@
             <artifactId>rock-domain</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.intellibukcet.lib.payload</groupId>
-            <artifactId>ib-payload</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>az.rock.lib</groupId>
             <artifactId>rock-util</artifactId>
             <version>1.0-SNAPSHOT</version>

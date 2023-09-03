@@ -1,9 +1,9 @@
 package com.intellibucket.flyjob.vacancy.dataAccess.model.entity;
 
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.WorkingTimeLine;
 import az.rock.lib.valueObject.WorkingType;
+import az.rock.lib.valueObject.vacancy.VacancyStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +24,13 @@ public class VacancyEntity extends BaseEntity {
 
     @Column(name = "company_id",nullable = false,updatable = false)
     private UUID companyID;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "vacancy_status",nullable = false)
+    private VacancyStatus vacancyStatus;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp planningDate;
 
     @Column(name = "title",nullable = false)
     private String title;
@@ -60,6 +67,9 @@ public class VacancyEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "vacancy")
     private List<VacancyTagEntity> vacancyTagEntities;
+
+    @OneToMany(mappedBy = "vacancy")
+    private List<ViewerEntity> viewers;
 
     @OneToOne(mappedBy = "vacancy")
     private VacancySettingEntity setting;
