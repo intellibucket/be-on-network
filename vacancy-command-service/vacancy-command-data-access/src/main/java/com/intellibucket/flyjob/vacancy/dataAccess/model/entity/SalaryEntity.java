@@ -2,6 +2,7 @@ package com.intellibucket.flyjob.vacancy.dataAccess.model.entity;
 
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,5 +16,6 @@ import lombok.Setter;
 @Table(schema = "vacancy", name = "salaries")
 @Entity(name = "SalaryEntity")
 public class SalaryEntity extends BaseEntity {
-
+    @OneToOne
+    private VacancyEntity vacancy;
 }

@@ -46,6 +46,15 @@ public class VacancyEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private WorkingType workingType;
 
+    @OneToOne(mappedBy = "vacancy")
+    private SalaryEntity salary;
+
+    @OneToOne(mappedBy = "vacancy")
+    private LocationEntity location;
+
+    @OneToMany(mappedBy = "vacancy")
+    private List<MarkEntity> marks;
+
     @OneToMany(mappedBy = "vacancy")
     private List<AppliedUserEntity> appliedUsers;
 
