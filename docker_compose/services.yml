@@ -30,43 +30,41 @@ services:
     restart: on-failure
     links:
       - discovery-service
-  #
-  #  redis-cache:
-  #    image: redis:latest
-  #    restart: always
-  #    ports:
-  #      - '6379:6379'
-  #    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
-  #    volumes:
-  #      - cache:/data
-  #
-  #  minio:
-  #    container_name: flyjob_auth_dfs
-  #    image: 'bitnami/minio:latest'
-  #    ports:
-  #      - '9000:9000'
-  #      - '9001:9001'
-  #    environment:
-  #      - MINIO_ROOT_USER=minio-root-user
-  #      - MINIO_ROOT_PASSWORD=minio-root-password
-  #    networks:
-  #      - config-network
-  #
-  #
-#  postgres-db:
-#    container_name: flyjob_postgre_db
-#    image: postgres
-#    environment:
-#      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: 123456
-#      PGDATA: /data/postgres
-#    volumes:
-#      - db:/data/postgres
-#    ports:
-#      - "4445:5432"
-#    networks:
-#      - config-network
-#    restart: unless-stopped
+
+  redis-cache:
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
+  minio:
+    container_name: flyjob_auth_dfs
+    image: 'bitnami/minio:latest'
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password
+    networks:
+      - config-network
+  postgres-db:
+    container_name: flyjob_postgre_db
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      PGDATA: /data/postgres
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "4445:5432"
+    networks:
+      - config-network
+    restart: unless-stopped
 
 #  auth-service:
 #    env_file: env/develop/auth.env.develop
