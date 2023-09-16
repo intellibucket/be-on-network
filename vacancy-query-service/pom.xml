@@ -4,13 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
-    <modules>
-        <module>vacancy-query-data-access</module>
-        <module>vacancy-query-application</module>
-        <module>vacancy-query-domain</module>
-        <module>vacancy-query-messaging</module>
-        <module>vacancy-query-container</module>
-    </modules>
+
     <parent>
         <groupId>az.rock</groupId>
         <artifactId>flyjob</artifactId>
@@ -19,7 +13,13 @@
 
     <groupId>com.intellibucket.flyjob.vacancy</groupId>
     <artifactId>vacancy-query-service</artifactId>
-
+    <modules>
+        <module>vacancy-query-data-access</module>
+        <module>vacancy-query-application</module>
+        <module>vacancy-query-domain</module>
+        <module>vacancy-query-messaging</module>
+        <module>vacancy-query-container</module>
+    </modules>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

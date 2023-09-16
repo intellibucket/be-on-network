@@ -88,6 +88,7 @@
                 <executions>
                     <execution>
                         <goals>
+                            <goal>clearCheckSums</goal>
                             <goal>diff</goal>
                             <goal>update</goal>
                         </goals>
