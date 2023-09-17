@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -14,17 +13,8 @@
         <option value="$PROJECT_DIR$/company-service/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/auth-service/auth-data-access/auth-dfs/pom.xml" />
-        <option value="$PROJECT_DIR$/job-seeker-service/js-application/pom.xml" />
-        <option value="$PROJECT_DIR$/library/ib-kafka/pom.xml" />
-        <option value="$PROJECT_DIR$/vacancy-query-service/vacancy-domain/pom.xml" />
-        <option value="$PROJECT_DIR$/vacancy-query-service/vacancy-query-domain-presentation/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ProjectType">

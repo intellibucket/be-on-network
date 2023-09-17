@@ -40,9 +40,9 @@
         <module>job-seeker-service</module>
         <module>stream-service</module>
         <module>library</module>
-        <module>vacancy-command-service</module>
-        <module>vacancy-query-service</module>
-        <module>vacancy-sync-service</module>
+<!--        <module>vacancy-command-service</module>-->
+<!--        <module>vacancy-query-service</module>-->
+<!--        <module>vacancy-sync-service</module>-->
         <module>notification-service</module>
         <module>payment-service</module>
         <module>article-command-service</module>
@@ -99,8 +99,8 @@
     </parent>
 
 
-    <repositories>
 
+    <repositories>
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
