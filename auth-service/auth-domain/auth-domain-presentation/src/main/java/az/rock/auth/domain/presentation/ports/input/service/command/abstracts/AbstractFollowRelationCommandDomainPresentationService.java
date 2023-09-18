@@ -7,10 +7,12 @@ import java.util.UUID;
 
 @InputPort
 @Transactional
-public interface AbstractFollowCommandDomainPresentationService {
+public interface AbstractFollowRelationCommandDomainPresentationService {
 
-    void follow(UUID userID);
+    void follow(UUID targetUserId);
 
-    void unfollow(UUID userID);
+    void unfollow(UUID targetUserId);
+
+    void remove(UUID targetUserId);
 
 }

@@ -143,4 +143,16 @@ public interface CustomCommandJPARepository<T> {
             session.setJdbcBatchSize(originalSessionBatchSize);
         }
     }
+
+    default  <R> void callBatch(Session session,Runnable callback) {
+        Integer jdbcBatchSize = this.getBatchSize(session);
+        Integer originalSessionBatchSize = session.getJdbcBatchSize();
+        try {
+            if (jdbcBatchSize == null) session.setJdbcBatchSize(10);
+            callback.run();
+        } finally {
+            session.setJdbcBatchSize(originalSessionBatchSize);
+        }
+    }
+
 }

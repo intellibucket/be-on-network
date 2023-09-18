@@ -9,7 +9,7 @@ import java.util.UUID;
 @Transactional
 public interface AbstractBlockRelationCommandDomainPresentationService {
 
-    void block(UUID userID);
+    void block(UUID targetUserID);
 
     void unblock(UUID userID);
 }

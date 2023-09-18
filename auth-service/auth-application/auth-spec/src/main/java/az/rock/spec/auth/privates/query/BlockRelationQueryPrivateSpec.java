@@ -8,4 +8,11 @@ import java.util.UUID;
 
 public interface BlockRelationQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyBlockedUsers();
+
+    ResponseEntity<JSuccessDataResponse<List<UUID>>> queryWhoBlockedMe();
+
+    ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyBlockedUserById(UUID targetUserId);
+
+
+
 }

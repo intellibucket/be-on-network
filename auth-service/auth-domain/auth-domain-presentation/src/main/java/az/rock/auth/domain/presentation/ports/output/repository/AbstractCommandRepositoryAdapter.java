@@ -21,4 +21,8 @@ public interface AbstractCommandRepositoryAdapter<R> {
     default void delete(R root){
         throw new UnsupportedOperationException();
     }
+
+    default void deleteAll(List<R> roots){
+        throw new UnsupportedOperationException();
+    }
 }

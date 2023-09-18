@@ -29,7 +29,9 @@ public class BlockRelationCommandPrivateController implements BlockRelationComma
     }
 
     @Override
-    public ResponseEntity<JSuccessResponse> unblock(UUID targetUserUuid) {
-        return null;
+    @PostMapping("/unblock/{uuid}")
+    public ResponseEntity<JSuccessResponse> unblock(@PathVariable(name = "uuid") UUID targetUserUuid) {
+        this.blockRelationCommandDomainPresentationService.unblock(targetUserUuid);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 }

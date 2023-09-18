@@ -5,8 +5,9 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
 
-public interface FollowCommandPrivateSpec {
+public interface FollowRelationCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> follow(UUID userID);
     ResponseEntity<JSuccessResponse> unfollow(UUID userID);
 
+    ResponseEntity<JSuccessResponse> remove(UUID followerUserId);
 }

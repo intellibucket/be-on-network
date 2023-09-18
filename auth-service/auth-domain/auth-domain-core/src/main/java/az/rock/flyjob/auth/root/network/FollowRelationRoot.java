@@ -18,7 +18,7 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
 
     private FollowStatus followStatus;
 
-    private final BlockReasonStatus blockReasonStatus;
+    private BlockReasonStatus blockReasonStatus;
 
 
     public UUID getFollowingUserId() {
@@ -86,6 +86,16 @@ public class FollowRelationRoot extends AggregateRoot<FollowID> {
 
     public void unblock() {
         followStatus = FollowStatus.ACCEPTED;
+    }
+
+    public FollowRelationRoot blockReasonStatusByOwner(){
+         this.blockReasonStatus = BlockReasonStatus.OWNER_REQUEST;
+         return this;
+    }
+
+    public FollowRelationRoot blockReasonStatusByTarget(){
+        this.blockReasonStatus = BlockReasonStatus.TARGET_REQUEST;
+        return this;
     }
 
 
