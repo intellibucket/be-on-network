@@ -42,10 +42,6 @@ public class BaseEntity {
         this.rowStatus = RowStatus.INACTIVE;
     }
 
-
-
-
-
     private BaseEntity(Builder builder) {
         setUuid(builder.uuid);
         setVersion(builder.version);

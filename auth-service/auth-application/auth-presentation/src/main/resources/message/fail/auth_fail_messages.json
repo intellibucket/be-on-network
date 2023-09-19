@@ -304,6 +304,60 @@
     "tr": "Kendinizi takipden çıkaramazsınız",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000035",
+    "az": "Bu istifadəçini artıq blok etmisiniz",
+    "en": "You have already blocked this user",
+    "ru": "Вы уже заблокировали этого пользователя",
+    "tr": "Bu kullanıcıyı zaten engellediniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000036",
+    "az": "Özünüzü blok edə bilməzsiniz",
+    "en": "You cannot block yourself",
+    "ru": "Вы не можете заблокировать себя",
+    "tr": "Kendinizi engelleyemezsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000037",
+    "az": "Aktiv sətr tapılmadı",
+    "en": "Aktiv sətr tapılmadı",
+    "ru": "Aktiv sətr tapılmadı",
+    "tr": "Aktiv sətr tapılmadı",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000038",
+    "az": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "en": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "ru": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "tr": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000039",
+    "az": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "en": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "ru": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "tr": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000040",
+    "az": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "en": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "ru": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "tr": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "hasRegex": false,
+    "regex": ""
   }
 
 ]

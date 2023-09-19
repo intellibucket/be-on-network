@@ -24,17 +24,13 @@ public interface FollowQueryJPARepository extends JpaRepository<FollowRelationEn
             "and f.followStatus = 'ACCEPTED' and f.rowStatus = 'ACTIVE'")
     List<FollowRelationEntity> findAllMyFollowings(UUID absoluteID);
 
-    @Query("select f from FollowRelationEntity f where f.followingUserId = ?1" +
-            "and f.followStatus = 'PENDING' and f.rowStatus = 'ACTIVE'")
-    List<FollowRelationEntity> findAllInMyPendingFollowRequests(UUID absoluteID);
-
-    @Query("select f from FollowRelationEntity f where f.followedUserId = ?1" +
-            "and f.followStatus = 'PENDING' and f.rowStatus = 'ACTIVE'")
-    List<FollowRelationEntity> findAllMyPendingFollowRequests(UUID absoluteID);
-
     @Query("SELECT f FROM FollowRelationEntity f where f.followedUserId = :userID" +
             " and f.followingUserId = :followingUserID and f.rowStatus = 'ACTIVE'")
-    FollowRelationEntity findActiveRowForUserAndFollowID(UUID userID, UUID followingUserID);
+    FollowRelationEntity findByUserAndFollowingUserID(UUID userID, UUID followingUserID);
+
+    @Query("SELECT f FROM FollowRelationEntity f where (f.followedUserId = :userID  and f.followingUserId = :followingUserID) or" +
+            " (f.followedUserId = :followingUserID and f.followingUserId = :userID) and f.rowStatus = 'ACTIVE'")
+    List<FollowRelationEntity> findRelationByUsersID(UUID userID, UUID followingUserID);
 
     @Query("SELECT COUNT (f) > 0  FROM FollowRelationEntity f where f.followedUserId = :userID" + //userId - senin , followId - sene atanin
             " and f.followingUserId = :followUserID and f.rowStatus = 'ACTIVE'")

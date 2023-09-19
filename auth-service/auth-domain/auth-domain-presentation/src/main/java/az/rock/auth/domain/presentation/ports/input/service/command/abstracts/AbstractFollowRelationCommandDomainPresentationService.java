@@ -5,12 +5,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-//@InputPort
-//@Transactional
-public interface AbstractFollowCommandDomainPresentationService {
+@InputPort
+@Transactional
+public interface AbstractFollowRelationCommandDomainPresentationService {
 
-    void follow(UUID uuid);
+    void follow(UUID targetUserId);
 
-    void unfollow(UUID userID);
+    void unfollow(UUID targetUserId);
+
+    void remove(UUID targetUserId);
 
 }
