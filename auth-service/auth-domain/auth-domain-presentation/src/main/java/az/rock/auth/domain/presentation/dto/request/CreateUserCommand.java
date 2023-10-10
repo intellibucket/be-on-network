@@ -30,7 +30,7 @@ public class CreateUserCommand {
     @GStringValue(absoluteName = "lastName")
     private String lastName;
 
-    @GPattern
+    @GPattern(message = "F0000000041")
     private String password;
 
     @GNotNull

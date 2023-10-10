@@ -42,4 +42,5 @@ public interface UserQueryJPARepository extends JpaRepository<UserEntity,UUID> {
     @Query("SELECT count(row) > 0 FROM UserEntity row " +
             "WHERE (:username = row.username) and (row.rowStatus = 'ACTIVE')")
     Boolean existsByUsername(String username);
+
 }

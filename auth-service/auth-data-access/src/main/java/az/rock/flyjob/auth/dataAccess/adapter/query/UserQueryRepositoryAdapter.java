@@ -14,20 +14,16 @@ import java.util.Optional;
 @Component
 public class UserQueryRepositoryAdapter implements AbstractUserQueryRepositoryAdapter {
     private final UserQueryJPARepository userQueryJPARepository;
-    //private final AbstractUserComposeQueryJPARepository userComposeQueryJPARepository;
     private final AbstractUserDataAccessMapper<UserEntity,UserRoot> abstractUserDataAccessMapper;
 
     public UserQueryRepositoryAdapter(UserQueryJPARepository userQueryJPARepository,
-                                      //AbstractUserComposeQueryJPARepository userComposeQueryJPARepository,
                                       AbstractUserDataAccessMapper<UserEntity, UserRoot> abstractUserDataAccessMapper) {
         this.userQueryJPARepository = userQueryJPARepository;
-        //this.userComposeQueryJPARepository = userComposeQueryJPARepository;
         this.abstractUserDataAccessMapper = abstractUserDataAccessMapper;
     }
 
     @Override
     public Optional<UserRoot> findById(UserID currentUser) {
-        //var response = this.userComposeQueryJPARepository.findUserSimpleComposeByUserId(currentUser.getAbsoluteID());
         var optionalRoot =
                 this.userQueryJPARepository.findById(currentUser.getAbsoluteID());
         if (optionalRoot.isPresent()) {
