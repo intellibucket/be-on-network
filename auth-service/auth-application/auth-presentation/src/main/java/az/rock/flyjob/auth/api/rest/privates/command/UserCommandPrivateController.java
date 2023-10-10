@@ -47,15 +47,15 @@ public class UserCommandPrivateController implements UserCommandPrivateSpec {
 
     @Override
     @PutMapping("/change-gender")
-    public ResponseEntity<JSuccessResponse> changeGender(@RequestParam("gender")  Gender gender) {
+    public ResponseEntity<JSuccessResponse> changeGender(@RequestParam("gender") Gender gender) {
         this.userCommandDomainPresentationService.changeGender(gender);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/change-timezone")
-    public ResponseEntity<JSuccessResponse> changeTimezone(@RequestParam("timezone")  TimeZoneID timezone) {
-        this.userCommandDomainPresentationService.changeTimezone(timezone);
+    public ResponseEntity<JSuccessResponse> changeTimezone(@RequestParam("timezone") String timezone) {
+        this.userCommandDomainPresentationService.changeTimezone(TimeZoneID.of(timezone));
         return ResponseEntity.ok(new JSuccessResponse());
     }
 }

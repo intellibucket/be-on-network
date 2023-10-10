@@ -81,6 +81,6 @@ public class UserDomainService implements AbstractUserDomainService {
 
     @Override
     public UserRoot changeTimezone(UserRoot currentUserRoot, TimeZoneID timezone) {
-        return null;
+        return currentUserRoot.changeTimezone(timezone);
     }
 }

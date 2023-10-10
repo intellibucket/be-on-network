@@ -145,6 +145,10 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.gender = gender;
     }
 
+    public UserRoot changeTimezone(TimeZoneID timezone) {
+        this.timezone = timezone;
+        return this;
+    }
     public static final class Builder {
         private UserID id;
         private Version version;

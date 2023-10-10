@@ -18,7 +18,7 @@ public interface UserCommandPrivateSpec {
             @GPattern(message = "F0000000030",pattern = "^[a-zA-Z0-9_-]{3,16}$")
             String username);
     ResponseEntity<JSuccessResponse> changeGender(Gender gender);
-    ResponseEntity<JSuccessResponse> changeTimezone(TimeZoneID timezone);
+    ResponseEntity<JSuccessResponse> changeTimezone(String timezone);
 
 
 }
