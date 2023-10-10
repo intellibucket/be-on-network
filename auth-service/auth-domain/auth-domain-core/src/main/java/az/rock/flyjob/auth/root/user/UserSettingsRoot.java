@@ -106,9 +106,66 @@ public class UserSettingsRoot extends AggregateRoot<UserSettingsID> {
         return isVisibleResume;
     }
 
-    public void setLanguage(Language language) {
+    public UserSettingsRoot changeLanguage(Language language) {
         this.language = language;
+        return this;
     }
+
+    public UserSettingsRoot changeDarkMode(Boolean isActiveDarkMode) {
+        this.isActiveDarkMode = isActiveDarkMode;
+        return this;
+    }
+
+    public UserSettingsRoot changeEmailNotification(Boolean isActiveEmailNotification) {
+        this.isActiveEmailNotification = isActiveEmailNotification;
+        return this;
+    }
+
+    public UserSettingsRoot changeSmsNotification(Boolean isActiveSmsNotification) {
+        this.isActiveSmsNotification = isActiveSmsNotification;
+        return this;
+    }
+
+    public UserSettingsRoot changePushNotification(Boolean isActivePushNotification) {
+        this.isActivePushNotification = isActivePushNotification;
+        return this;
+    }
+
+    public UserSettingsRoot changeTwoFactorAuthentication(Boolean isActiveTwoFactorAuthentication) {
+        this.isActiveTwoFactorAuthentication = isActiveTwoFactorAuthentication;
+        return this;
+    }
+
+    public UserSettingsRoot changeLocationVisibility(Boolean isVisibleLocation) {
+        this.isVisibleLocation = isVisibleLocation;
+        return this;
+    }
+
+    public UserSettingsRoot changeOnlineStatusVisibility(Boolean isVisibleOnlineStatus) {
+        this.isVisibleOnlineStatus = isVisibleOnlineStatus;
+        return this;
+    }
+
+    public UserSettingsRoot changeLastSeenVisibility(Boolean isVisibleLastSeen) {
+        this.isVisibleLastSeen = isVisibleLastSeen;
+        return this;
+    }
+
+    public UserSettingsRoot changeProfilePictureVisibility(Boolean isVisibleProfilePicture) {
+        this.isVisibleProfilePicture = isVisibleProfilePicture;
+        return this;
+    }
+
+    public UserSettingsRoot changeEmailVisibility(Boolean isVisibleEmail) {
+        this.isVisibleEmail = isVisibleEmail;
+        return this;
+    }
+
+    public UserSettingsRoot changeResumeVisibility(Boolean isVisibleResume) {
+        this.isVisibleResume = isVisibleResume;
+        return this;
+    }
+
 
     public static class Builder {
         public UserSettingsID uuid;

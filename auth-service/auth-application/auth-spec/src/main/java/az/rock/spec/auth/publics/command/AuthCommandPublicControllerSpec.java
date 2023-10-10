@@ -14,6 +14,5 @@ public interface AuthCommandPublicControllerSpec {
 
     ResponseEntity<JSuccessResponse> companyRegistry(CreateUserCommand credentials);
 
-
     ResponseEntity<JSuccessDataResponse<?>> forgotPassword(String email);
 }
