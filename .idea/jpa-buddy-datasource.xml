@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JpbDataSourceConfig">
     <data-source-infos>
-      <data-source-info id="d1580f64-6381-46e4-8868-d4a56fac9be5" persistence-unit-name="auth-persistence" />
+      <data-source-info id="72b13a8e-734f-4a49-aea7-a1e52fdfdf07" persistence-unit-name="auth-persistence" />
       <data-source-info id="" persistence-unit-name="js-persistence" />
       <data-source-info id="" persistence-unit-name="vacancy_command_persistence" />
     </data-source-infos>

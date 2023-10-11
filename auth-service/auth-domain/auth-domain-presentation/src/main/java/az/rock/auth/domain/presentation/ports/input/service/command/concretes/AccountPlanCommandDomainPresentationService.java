@@ -1,15 +1,14 @@
 package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
-import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractAccountPlanUpgradeCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.outbox.abstracts.AbstractAccountPlanOutboxInputPort;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractAccountPlanCommandDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractAccountPlanMessagePublisher;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractAccountPlanQueryRepositoryAdapter;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.event.UpgradedAccountPlanEvent;
 import az.rock.lib.valueObject.AccountPlanType;
 import az.rock.lib.valueObject.CustomBugReport;
-import az.rock.lib.valueObject.SagaRoot;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -39,6 +38,7 @@ public class AccountPlanCommandDomainPresentationService implements AbstractAcco
     @Override
     public void updatePlanToBasic() {
         this.updatePlan(AccountPlanType.BASIC);
+
     }
 
     @Override
