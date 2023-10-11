@@ -7,11 +7,13 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractPhoneNumberDoma
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractPhoneNumberCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPhoneNumberQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.flyjob.auth.exception.number.PhoneNumberAlreadyUsedException;
 import az.rock.flyjob.auth.service.abstracts.AbstractPhoneNumberDomainService;
 import az.rock.lib.valueObject.SwitchCase;
 import com.intellibukcet.lib.payload.event.create.number.PhoneNumberCreatedEvent;
 import com.intellibukcet.lib.payload.event.update.number.PhoneNumberDeletedEvent;
 import com.intellibukcet.lib.payload.event.update.number.PhoneNumberUpdatedEvent;
+import com.intellibukcet.lib.payload.payload.PhoneNumberPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -41,8 +43,15 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
     public PhoneNumberCreatedEvent add(PhoneNumberCommandRequest request) {
         var currentUser = this.securityContextHolder.availableUser();
         var savedPhoneNumbers = this.phoneNumberQueryRepositoryAdapter.findOwnAllByID(currentUser);
-        var phoneNumberRoot = this.phoneNumberDomainMapper.toRoot(request);
-        return null;
+        var phoneNumberRoot = this.phoneNumberDomainMapper.toRoot(currentUser, request);
+        var validatedPhoneNumber = this.phoneNumberDomainService.validateNewPhoneNumber(savedPhoneNumbers, phoneNumberRoot);
+        var isExistVerifiedPhoneNumber = this.phoneNumberQueryRepositoryAdapter.isExistVerifiedPhoneNumber(currentUser);
+        if (isExistVerifiedPhoneNumber) throw new PhoneNumberAlreadyUsedException();
+        var savedNewPhoneNumber = this.phoneNumberCommandRepositoryAdapter.create(validatedPhoneNumber);
+        var payload = PhoneNumberPayload.Builder
+                .builder()
+                .build();
+        return PhoneNumberCreatedEvent.of(payload);
     }
 
     @Override

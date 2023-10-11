@@ -7,6 +7,7 @@ import az.rock.lib.valueObject.*;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
     private final UserID userID;
@@ -68,6 +69,14 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         this.verificationCodeExpireDate = verificationCodeExpireDate;
         this.verificationCodeSendDate = verificationCodeSendDate;
         this.verificationCodeSendCount = verificationCodeSendCount;
+    }
+
+    public Boolean isValid() {
+        var countryCodePatter = "^[+][0-9]{1,3}$";
+        var pattern = "^[0-9]{1,15}$";
+        return this.countryCode.matches(countryCodePatter) &&
+                this.phoneNumber.matches(pattern) &&
+                this.type != null;
     }
 
 
@@ -165,6 +174,11 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
             return this;
         }
 
+        public Builder version(Version version) {
+            this.version = version.value();
+            return this;
+        }
+
         public Builder version(Long version) {
             this.version = version;
             return this;
@@ -204,6 +218,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
     public AccessModifier getAccessModifier() {
         return accessModifier;
     }
+
     public UserID getUserID() {
         return userID;
     }
@@ -250,5 +265,19 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
 
     public BigInteger getVerificationCodeSendCount() {
         return verificationCodeSendCount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        PhoneNumberRoot that = (PhoneNumberRoot) o;
+        return Objects.equals(countryCode, that.countryCode) && Objects.equals(phoneNumber, that.phoneNumber) && type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), countryCode, phoneNumber, type);
     }
 }

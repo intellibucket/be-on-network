@@ -385,5 +385,32 @@
     "tr": "Dil seçilmedi",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000044",
+    "az": "Bu telefon nömrəsi artıq əlavə olunubdur",
+    "en": "This phone number is already added",
+    "ru": "Этот номер телефона уже добавлен",
+    "tr": "Bu telefon numarası zaten eklenmiş",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000045",
+    "az": "Əlaqə nömrəsi düzgün formatda deyil",
+    "en": "Contact number is not in correct format",
+    "ru": "Номер контакта не в правильном формате",
+    "tr": "İletişim numarası doğru formatta değil",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000046",
+    "az": "Bu əlaqə nömrəsi artıq istifadə olunur. Xahiş edirik başqa bir nömrə daxil edəsiniz",
+    "en": "This contact number is already in use. Please enter another number",
+    "ru": "Этот номер контакта уже используется. Пожалуйста, введите другой номер",
+    "tr": "Bu iletişim numarası zaten kullanılıyor. Lütfen başka bir numara girin",
+    "hasRegex": false,
+    "regex": ""
   }
 ]
