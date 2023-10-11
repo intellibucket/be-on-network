@@ -71,12 +71,17 @@ public class AuthDomainPresentationBeanConfig {
     }
 
     @Bean
-    public AbstractFollowRelationDomainService abstractFollowDomainService(){
+    public AbstractFollowRelationDomainService abstractFollowDomainService() {
         return new FollowDomainService();
     }
 
     @Bean
-    public AbstractBlockRelationDomainService abstractBlockRelationDomainService(){
+    public AbstractBlockRelationDomainService abstractBlockRelationDomainService() {
         return new BlockRelationDomainService();
+    }
+
+    @Bean
+    public AbstractPhoneNumberDomainService abstractPhoneNumberDomainService() {
+        return new PhoneNumberDomainService();
     }
 }

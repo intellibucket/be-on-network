@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.api.rest.privates.command;
 
 import az.rock.auth.domain.presentation.dto.request.PhoneNumberChangeRequest;
 import az.rock.auth.domain.presentation.dto.request.PhoneNumberCommandRequest;
+import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractPhoneNumberCommandDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.SwitchCase;
 import az.rock.spec.auth.privates.command.PhoneNumberCommandPrivateSpec;
@@ -13,8 +14,14 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/private/command/phone-number",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/auth/1.0/private/command/phone-number", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PhoneNumberCommandPrivateController implements PhoneNumberCommandPrivateSpec {
+
+    private final AbstractPhoneNumberCommandDomainPresentationService phoneNumberCommandDomainPresentationService;
+
+    public PhoneNumberCommandPrivateController(AbstractPhoneNumberCommandDomainPresentationService phoneNumberCommandDomainPresentationService) {
+        this.phoneNumberCommandDomainPresentationService = phoneNumberCommandDomainPresentationService;
+    }
 
     @Override
     @PostMapping(value = "/add")
