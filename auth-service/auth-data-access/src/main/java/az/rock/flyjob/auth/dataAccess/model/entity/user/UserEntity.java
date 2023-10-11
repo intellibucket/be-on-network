@@ -2,6 +2,7 @@ package az.rock.flyjob.auth.dataAccess.model.entity.user;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.*;
 import jakarta.persistence.*;

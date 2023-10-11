@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
-import az.rock.flyjob.auth.dataAccess.model.entity.user.UserSettingsEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserSettingsDataAccessMapper;
 import az.rock.flyjob.auth.root.user.UserSettingsRoot;
 import az.rock.lib.domain.id.auth.UserID;

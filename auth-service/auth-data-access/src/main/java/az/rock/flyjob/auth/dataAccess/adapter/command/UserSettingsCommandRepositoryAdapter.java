@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.adapter.command;
 
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserSettingsCommandRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.model.entity.user.UserSettingsEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserSettingsDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.user.AbstractUserSettingsCommandCustomJPARepository;
 import az.rock.flyjob.auth.root.user.UserSettingsRoot;

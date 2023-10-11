@@ -376,6 +376,14 @@
     "tr": "Bu kullanıcı adı zaten alınmış",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000043",
+    "az": "Hər hansı bir dil seçilməyib",
+    "en": "No language selected",
+    "ru": "Язык не выбран",
+    "tr": "Dil seçilmedi",
+    "hasRegex": false,
+    "regex": ""
   }
-
 ]

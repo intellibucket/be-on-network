@@ -1,5 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.model.entity.user;
+package az.rock.flyjob.auth.dataAccess.model.entity.user.settings;
 
+import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Language;
