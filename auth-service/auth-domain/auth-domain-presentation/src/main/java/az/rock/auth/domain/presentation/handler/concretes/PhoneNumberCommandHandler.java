@@ -85,6 +85,7 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
             var validatedPhoneNumber = this.phoneNumberDomainService.validatePhoneNumber(savedPhoneNumbers, changedRoot);
             var isExistVerifiedPhoneNumber = this.phoneNumberQueryRepositoryAdapter.isExistVerifiedPhoneNumber(validatedPhoneNumber);
             if (isExistVerifiedPhoneNumber) throw new PhoneNumberAlreadyUsedException();
+            this.phoneNumberCommandRepositoryAdapter.update(validatedPhoneNumber);
             var payload = this.toPayload(validatedPhoneNumber);
             return PhoneNumberUpdatedEvent.of(payload);
         } else throw new UnknownSystemException();
