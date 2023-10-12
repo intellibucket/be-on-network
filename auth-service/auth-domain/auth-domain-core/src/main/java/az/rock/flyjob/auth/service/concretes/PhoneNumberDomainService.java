@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PhoneNumberDomainService implements AbstractPhoneNumberDomainService {
     @Override
-    public PhoneNumberRoot validateNewPhoneNumber(List<PhoneNumberRoot> savedPhoneNumbers, PhoneNumberRoot newPhoneNumber) {
+    public PhoneNumberRoot validatePhoneNumber(List<PhoneNumberRoot> savedPhoneNumbers, PhoneNumberRoot newPhoneNumber) {
         if (savedPhoneNumbers.contains(newPhoneNumber)) throw new PhoneNumberAlreadyExistException();
         if (!newPhoneNumber.isValid()) throw new InvalidPhoneNumberException();
         return newPhoneNumber;

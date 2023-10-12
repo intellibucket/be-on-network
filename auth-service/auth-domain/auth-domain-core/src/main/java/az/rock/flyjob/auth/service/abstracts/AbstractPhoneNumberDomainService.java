@@ -5,5 +5,6 @@ import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import java.util.List;
 
 public interface AbstractPhoneNumberDomainService {
-    PhoneNumberRoot validateNewPhoneNumber(List<PhoneNumberRoot> savedPhoneNumbers, PhoneNumberRoot newPhoneNumber);
+    PhoneNumberRoot validatePhoneNumber(List<PhoneNumberRoot> savedPhoneNumbers, PhoneNumberRoot newPhoneNumber);
+
 }

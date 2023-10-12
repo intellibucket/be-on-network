@@ -7,10 +7,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface PhoneNumberQueryJPARepository extends JpaRepository<PhoneNumberEntity, UUID> {
+
+
+    @Query("SELECT row FROM PhoneNumberEntity row " +
+            "WHERE (:parentID = row.user.uuid) and (row.uuid = :rootId) and (row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
+    Optional<PhoneNumberEntity> findOwnById(UUID parentID, UUID rootId);
 
     @Query("SELECT row FROM PhoneNumberEntity row " +
             "WHERE (:userId = row.user.uuid) and (row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
