@@ -33,30 +33,35 @@ public class PhoneNumberCommandPrivateController implements PhoneNumberCommandPr
     @Override
     @DeleteMapping(value = "/delete/{phoneNumberUUID}")
     public ResponseEntity<JSuccessResponse> deletePhoneNumber(@PathVariable(name = "phoneNumberUUID") UUID phoneNumberUUID) {
-        return null;
+        this.phoneNumberCommandDomainPresentationService.delete(phoneNumberUUID);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PutMapping(value = "/change")
     public ResponseEntity<JSuccessResponse> changePhoneNumber(@RequestBody PhoneNumberChangeRequest phoneNumberChangeRequest) {
-        return null;
+        this.phoneNumberCommandDomainPresentationService.change(phoneNumberChangeRequest);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PutMapping(value = "/set-enable-sms-notification")
     public ResponseEntity<JSuccessResponse> setEnableSmsNotification(SwitchCase switchCase) {
-        return null;
+        this.phoneNumberCommandDomainPresentationService.enableSmsNotification(switchCase);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PutMapping(value = "/set-enable-whatsapp-notification")
     public ResponseEntity<JSuccessResponse> setEnableWhatsappNotification(SwitchCase switchCase) {
-        return null;
+        this.phoneNumberCommandDomainPresentationService.enableWhatsappNotification(switchCase);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PutMapping(value = "/set-primary")
     public ResponseEntity<JSuccessResponse> setPrimary(SwitchCase switchCase) {
-        return null;
+        this.phoneNumberCommandDomainPresentationService.setPrimary(switchCase);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 }

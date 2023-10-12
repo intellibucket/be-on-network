@@ -11,6 +11,7 @@ import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.number.PhoneNumberAlreadyUsedException;
 import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPhoneNumberDomainService;
+import az.rock.lib.domain.id.auth.PhoneNumberID;
 import az.rock.lib.valueObject.SwitchCase;
 import com.intellibukcet.lib.payload.event.create.number.PhoneNumberCreatedEvent;
 import com.intellibukcet.lib.payload.event.update.number.PhoneNumberDeletedEvent;
@@ -43,6 +44,7 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
     private PhoneNumberPayload toPayload(PhoneNumberRoot phoneNumberRoot) {
         return PhoneNumberPayload.Builder
                 .builder()
+                .userID(phoneNumberRoot.getUserID().getAbsoluteID())
                 .id(phoneNumberRoot.getRootID().getAbsoluteID())
                 .countryCode(phoneNumberRoot.getCountryCode())
                 .phoneNumber(phoneNumberRoot.getPhoneNumber())
@@ -52,7 +54,6 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
                 .isEnableWhatsappNotification(phoneNumberRoot.getEnableWhatsappNotification())
                 .type(phoneNumberRoot.getType())
                 .accessModifier(phoneNumberRoot.getAccessModifier())
-                .userID(phoneNumberRoot.getUserID().getAbsoluteID())
                 .build();
     }
 
@@ -61,7 +62,7 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
         var currentUser = this.securityContextHolder.availableUser();
         var savedPhoneNumbers = this.phoneNumberQueryRepositoryAdapter.findAllByPID(currentUser);
         var phoneNumberRoot = this.phoneNumberDomainMapper.toNewRoot(currentUser, request);
-        var validatedPhoneNumber = this.phoneNumberDomainService.validateNewPhoneNumber(savedPhoneNumbers, phoneNumberRoot);
+        var validatedPhoneNumber = this.phoneNumberDomainService.validatePhoneNumber(savedPhoneNumbers, phoneNumberRoot);
         var isExistVerifiedPhoneNumber = this.phoneNumberQueryRepositoryAdapter.isExistVerifiedPhoneNumber(validatedPhoneNumber);
         if (isExistVerifiedPhoneNumber) throw new PhoneNumberAlreadyUsedException();
         var optionalPhoneNumberRoot = this.phoneNumberCommandRepositoryAdapter.create(validatedPhoneNumber);
@@ -72,7 +73,21 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
 
     @Override
     public PhoneNumberUpdatedEvent change(PhoneNumberChangeRequest request) {
-        return null;
+        var currentUser = this.securityContextHolder.availableUser();
+        var savedPhoneNumbers = this.phoneNumberQueryRepositoryAdapter.findAllByPID(currentUser);
+        var optionalPhoneNumberRoot = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUser, PhoneNumberID.of(request.getPhoneNumberUUID()));
+        if (optionalPhoneNumberRoot.isPresent()) {
+            var phoneNumberRoot = optionalPhoneNumberRoot.get();
+            var changedRoot = phoneNumberRoot
+                    .changePhoneNumber(request.getPhoneNumber())
+                    .changeCountryCode(request.getCountryCode())
+                    .changeType(request.getType());
+            var validatedPhoneNumber = this.phoneNumberDomainService.validatePhoneNumber(savedPhoneNumbers, changedRoot);
+            var isExistVerifiedPhoneNumber = this.phoneNumberQueryRepositoryAdapter.isExistVerifiedPhoneNumber(validatedPhoneNumber);
+            if (isExistVerifiedPhoneNumber) throw new PhoneNumberAlreadyUsedException();
+            var payload = this.toPayload(validatedPhoneNumber);
+            return PhoneNumberUpdatedEvent.of(payload);
+        } else throw new UnknownSystemException();
     }
 
     @Override

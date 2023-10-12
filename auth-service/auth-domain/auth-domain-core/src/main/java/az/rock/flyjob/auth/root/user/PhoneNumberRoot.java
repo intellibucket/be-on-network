@@ -14,27 +14,27 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
 
     private AccessModifier accessModifier ;
 
-    private final String countryCode;
+    private String countryCode;
 
-    private final String phoneNumber;
+    private String phoneNumber;
 
-    private final PhoneNumberType type;
+    private PhoneNumberType type;
 
-    private final Boolean isEnableSmsNotification;
+    private Boolean isEnableSmsNotification;
 
-    private final Boolean isEnableWhatsappNotification;
+    private Boolean isEnableWhatsappNotification;
 
-    private final Boolean isPrimary;
+    private Boolean isPrimary;
 
-    private final Boolean isVerified;
+    private Boolean isVerified;
 
-    private final String verificationCode;
+    private String verificationCode;
 
-    private final ZonedDateTime verificationCodeExpireDate;
+    private ZonedDateTime verificationCodeExpireDate;
 
-    private final ZonedDateTime verificationCodeSendDate;
+    private ZonedDateTime verificationCodeSendDate;
 
-    private final BigInteger verificationCodeSendCount;
+    private BigInteger verificationCodeSendCount;
 
     public PhoneNumberRoot(PhoneNumberID phoneNumberID,
                            AccessModifier accessModifier,
@@ -79,6 +79,82 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
                 this.type != null;
     }
 
+    public PhoneNumberRoot enableSmsNotification() {
+        this.isEnableSmsNotification = true;
+        return this;
+    }
+
+
+    public PhoneNumberRoot disableSmsNotification() {
+        this.isEnableSmsNotification = false;
+        return this;
+    }
+
+    public PhoneNumberRoot enableWhatsappNotification() {
+        this.isEnableWhatsappNotification = true;
+        return this;
+    }
+
+    public PhoneNumberRoot disableWhatsappNotification() {
+        this.isEnableWhatsappNotification = false;
+        return this;
+    }
+
+    public PhoneNumberRoot setPrimary() {
+        this.isPrimary = true;
+        return this;
+    }
+
+    public PhoneNumberRoot setNotPrimary() {
+        this.isPrimary = false;
+        return this;
+    }
+
+    public PhoneNumberRoot setVerified() {
+        this.isVerified = true;
+        return this;
+    }
+
+    public PhoneNumberRoot setNotVerified() {
+        this.isVerified = false;
+        return this;
+    }
+
+    public PhoneNumberRoot setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+        return this;
+    }
+
+    public PhoneNumberRoot setVerificationCodeExpireDate(ZonedDateTime verificationCodeExpireDate) {
+        this.verificationCodeExpireDate = verificationCodeExpireDate;
+        return this;
+    }
+
+    public PhoneNumberRoot setVerificationCodeSendDate(ZonedDateTime verificationCodeSendDate) {
+        this.verificationCodeSendDate = verificationCodeSendDate;
+        return this;
+    }
+
+    public PhoneNumberRoot incrementVerificationCodeSendCount() {
+        this.verificationCodeSendCount = this.verificationCodeSendCount.add(BigInteger.ONE);
+        return this;
+    }
+
+    public PhoneNumberRoot changeType(PhoneNumberType type) {
+        this.type = type;
+        return this;
+    }
+
+
+    public PhoneNumberRoot changeCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+        return this;
+    }
+
+    public PhoneNumberRoot changePhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
 
     public static final class Builder {
 
