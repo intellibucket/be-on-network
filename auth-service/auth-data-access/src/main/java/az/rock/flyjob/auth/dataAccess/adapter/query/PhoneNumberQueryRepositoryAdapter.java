@@ -1,6 +1,9 @@
 package az.rock.flyjob.auth.dataAccess.adapter.query;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPhoneNumberQueryRepositoryAdapter;
+import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAccessMapper;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.PhoneNumberQueryJPARepository;
 import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.lib.domain.id.auth.PhoneNumberID;
 import az.rock.lib.domain.id.auth.UserID;
@@ -8,27 +11,37 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class PhoneNumberQueryRepositoryAdapter implements AbstractPhoneNumberQueryRepositoryAdapter {
-    @Override
-    public Optional<PhoneNumberRoot> findOwnByID(UserID userID, PhoneNumberID phoneNumberID) {
-        return Optional.empty();
+    private final PhoneNumberQueryJPARepository phoneNumberQueryJPARepository;
+    private final AbstractPhoneNumberDataAccessMapper<PhoneNumberEntity, PhoneNumberRoot> phoneNumberDataAccessMapper;
+
+    public PhoneNumberQueryRepositoryAdapter(PhoneNumberQueryJPARepository phoneNumberQueryJPARepository,
+                                             AbstractPhoneNumberDataAccessMapper<PhoneNumberEntity, PhoneNumberRoot> phoneNumberDataAccessMapper) {
+        this.phoneNumberQueryJPARepository = phoneNumberQueryJPARepository;
+        this.phoneNumberDataAccessMapper = phoneNumberDataAccessMapper;
     }
 
     @Override
-    public Optional<PhoneNumberRoot> findAnyByID(PhoneNumberID phoneNumberID) {
-        return Optional.empty();
+    public Optional<PhoneNumberRoot> findById(PhoneNumberID rootId) {
+        var entity = this.phoneNumberQueryJPARepository.findById(rootId.getAbsoluteID());
+        if (entity.isEmpty()) return Optional.empty();
+        return this.phoneNumberDataAccessMapper.toRoot(entity.get());
     }
 
     @Override
-    public List<PhoneNumberRoot> findOwnAllByID(UserID userID) {
-        return null;
+    public List<PhoneNumberRoot> findAllByPID(UserID parentID) {
+        var phoneNumberEntityList = phoneNumberQueryJPARepository.findAllByUser(parentID.getAbsoluteID());
+        return phoneNumberEntityList.stream()
+                .map(this.phoneNumberDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 
     @Override
-    public List<UUID> findOwnAllUUIDByID(UserID userID) {
-        return null;
+    public Boolean isExistVerifiedPhoneNumber(PhoneNumberRoot root) {
+        return this.phoneNumberQueryJPARepository.existsAnyIsVerified(root.getPhoneNumber(), root.getCountryCode());
     }
 }

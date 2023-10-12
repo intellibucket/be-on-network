@@ -42,10 +42,10 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
     @Override
     public PhoneNumberCreatedEvent add(PhoneNumberCommandRequest request) {
         var currentUser = this.securityContextHolder.availableUser();
-        var savedPhoneNumbers = this.phoneNumberQueryRepositoryAdapter.findOwnAllByID(currentUser);
+        var savedPhoneNumbers = this.phoneNumberQueryRepositoryAdapter.findAllByPID(currentUser);
         var phoneNumberRoot = this.phoneNumberDomainMapper.toRoot(currentUser, request);
         var validatedPhoneNumber = this.phoneNumberDomainService.validateNewPhoneNumber(savedPhoneNumbers, phoneNumberRoot);
-        var isExistVerifiedPhoneNumber = this.phoneNumberQueryRepositoryAdapter.isExistVerifiedPhoneNumber(currentUser);
+        var isExistVerifiedPhoneNumber = this.phoneNumberQueryRepositoryAdapter.isExistVerifiedPhoneNumber(validatedPhoneNumber);
         if (isExistVerifiedPhoneNumber) throw new PhoneNumberAlreadyUsedException();
         var savedNewPhoneNumber = this.phoneNumberCommandRepositoryAdapter.create(validatedPhoneNumber);
         var payload = PhoneNumberPayload.Builder

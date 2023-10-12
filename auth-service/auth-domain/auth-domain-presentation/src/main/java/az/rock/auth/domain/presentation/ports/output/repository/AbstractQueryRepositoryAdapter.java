@@ -6,8 +6,14 @@ import java.util.List;
 import java.util.Optional;
 
 @DomainOutputPort
-public interface AbstractQueryRepositoryAdapter<R,ID, PID> {
+public interface AbstractQueryRepositoryAdapter<R, ID, PID> {
     Optional<R> findById(ID rootId);
-    Optional<R> findByPID(PID parentID);
-    default List<Optional<R>> findAllByPID(PID parentID){return List.of();}
+
+    default Optional<R> findByPID(PID parentID) {
+        return Optional.empty();
+    }
+
+    default List<R> findAllByPID(PID parentID) {
+        return List.of();
+    }
 }
