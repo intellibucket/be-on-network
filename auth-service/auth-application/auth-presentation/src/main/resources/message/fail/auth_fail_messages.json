@@ -412,5 +412,15 @@
     "tr": "Bu iletişim numarası zaten kullanılıyor. Lütfen başka bir numara girin",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000047",
+    "az": "Özünüzə əlaqə istəyi göndərə  bilməzsiniz",
+    "en": "You can't send connection request yourself",
+    "ru": "Вы не можете отправить запрос на подключение самостоятельно",
+    "tr": "Kendinize bağlantı isteğini  gönderemezsiniz",
+    "hasRegex": false,
+    "regex": ""
   }
+
 ]

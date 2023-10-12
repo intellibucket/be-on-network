@@ -2,10 +2,7 @@ package az.rock.flyjob.auth.root.network;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.auth.NetworkID;
-import az.rock.lib.valueObject.BlockReasonStatus;
-import az.rock.lib.valueObject.NetworkStatus;
-import az.rock.lib.valueObject.ProcessStatus;
-import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -112,7 +109,7 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
     public static final class Builder {
 
         private NetworkID networkID;
-        private Long version;
+        private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
@@ -135,7 +132,7 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
             return this;
         }
 
-        public Builder version(Long val) {
+        public Builder version(Version val) {
             version = val;
             return this;
         }
