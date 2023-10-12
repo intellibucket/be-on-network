@@ -19,4 +19,11 @@ public class JSuccessResponse extends JResponseTransfer {
         return super.getHeader();
     }
 
+    public static JSuccessResponse success(String message) {
+        return new JSuccessResponse(message);
+    }
+
+    public static JSuccessResponse success() {
+        return new JSuccessResponse();
+    }
 }

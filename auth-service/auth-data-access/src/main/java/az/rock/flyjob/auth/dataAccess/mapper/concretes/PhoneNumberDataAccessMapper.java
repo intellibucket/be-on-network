@@ -1,9 +1,11 @@
 package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
-import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAccessMapper;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.lib.domain.id.auth.PhoneNumberID;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,7 @@ public class PhoneNumberDataAccessMapper implements AbstractPhoneNumberDataAcces
         if (optionalEntity.isEmpty()) return Optional.empty();
         return Optional.of(PhoneNumberRoot.Builder
                 .builder()
+                .user(UserID.of(entity.getUser().getUuid()))
                 .uuid(PhoneNumberID.of(entity.getUuid()))
                 .version(entity.getVersion())
                 .rowStatus(entity.getRowStatus())
@@ -45,6 +48,7 @@ public class PhoneNumberDataAccessMapper implements AbstractPhoneNumberDataAcces
         return Optional.of(PhoneNumberEntity.Builder
                 .builder()
                 .uuid(root.getRootID().getAbsoluteID())
+                .user(UserEntity.referenceObject(root.getUserID().getAbsoluteID()))
                 .version(root.getVersion().value())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())
@@ -69,7 +73,7 @@ public class PhoneNumberDataAccessMapper implements AbstractPhoneNumberDataAcces
         if (optionalRoot.isEmpty()) return Optional.empty();
         return Optional.of(PhoneNumberEntity.Builder
                 .builder()
-                .uuid(root.getRootID().getAbsoluteID())
+                .user(UserEntity.referenceObject(root.getUserID().getAbsoluteID()))
                 .version(root.getVersion().value())
                 .rowStatus(root.getRowStatus())
                 .processStatus(root.getProcessStatus())

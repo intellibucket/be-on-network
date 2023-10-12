@@ -29,10 +29,10 @@ public class PhoneNumberEntity extends BaseEntity {
     @ManyToOne
     private UserEntity user;
 
-    @Column(name = "country_code", length = 1, nullable = false)
+    @Column(name = "country_code", length = 10, nullable = false)
     private String countryCode;
 
-    @Column(name = "phone_number", length = 20, nullable = false)
+    @Column(name = "phone_number", length = 30, nullable = false)
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)

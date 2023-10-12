@@ -5,5 +5,5 @@ import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.lib.domain.id.auth.UserID;
 
 public interface AbstractPhoneNumberDomainMapper {
-    PhoneNumberRoot toRoot(UserID userID, PhoneNumberCommandRequest request);
+    PhoneNumberRoot toNewRoot(UserID userID, PhoneNumberCommandRequest request);
 }

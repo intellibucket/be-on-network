@@ -271,9 +271,10 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         PhoneNumberRoot that = (PhoneNumberRoot) o;
-        return Objects.equals(countryCode, that.countryCode) && Objects.equals(phoneNumber, that.phoneNumber) && type == that.type;
+        return Objects.requireNonNullElse(this.countryCode, "").equalsIgnoreCase(that.countryCode) &&
+                Objects.requireNonNullElse(this.phoneNumber, "").equalsIgnoreCase(that.phoneNumber) &&
+                type == that.type;
     }
 
     @Override

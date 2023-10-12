@@ -26,7 +26,8 @@ public class PhoneNumberCommandPrivateController implements PhoneNumberCommandPr
     @Override
     @PostMapping(value = "/add")
     public ResponseEntity<JSuccessResponse> addPhoneNumber(@RequestBody PhoneNumberCommandRequest phoneNumberCommandRequest) {
-        return null;
+        this.phoneNumberCommandDomainPresentationService.add(phoneNumberCommandRequest);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override

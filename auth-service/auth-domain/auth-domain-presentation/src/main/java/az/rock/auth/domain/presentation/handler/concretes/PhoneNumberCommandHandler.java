@@ -2,12 +2,14 @@ package az.rock.auth.domain.presentation.handler.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.PhoneNumberChangeRequest;
 import az.rock.auth.domain.presentation.dto.request.PhoneNumberCommandRequest;
+import az.rock.auth.domain.presentation.exception.UnknownSystemException;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractPhoneNumberCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractPhoneNumberDomainMapper;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractPhoneNumberCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPhoneNumberQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.number.PhoneNumberAlreadyUsedException;
+import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPhoneNumberDomainService;
 import az.rock.lib.valueObject.SwitchCase;
 import com.intellibukcet.lib.payload.event.create.number.PhoneNumberCreatedEvent;
@@ -38,20 +40,34 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
         this.phoneNumberDomainMapper = phoneNumberDomainMapper;
     }
 
+    private PhoneNumberPayload toPayload(PhoneNumberRoot phoneNumberRoot) {
+        return PhoneNumberPayload.Builder
+                .builder()
+                .id(phoneNumberRoot.getRootID().getAbsoluteID())
+                .countryCode(phoneNumberRoot.getCountryCode())
+                .phoneNumber(phoneNumberRoot.getPhoneNumber())
+                .isVerified(phoneNumberRoot.getVerified())
+                .isPrimary(phoneNumberRoot.getPrimary())
+                .isEnableSmsNotification(phoneNumberRoot.getEnableSmsNotification())
+                .isEnableWhatsappNotification(phoneNumberRoot.getEnableWhatsappNotification())
+                .type(phoneNumberRoot.getType())
+                .accessModifier(phoneNumberRoot.getAccessModifier())
+                .userID(phoneNumberRoot.getUserID().getAbsoluteID())
+                .build();
+    }
 
     @Override
     public PhoneNumberCreatedEvent add(PhoneNumberCommandRequest request) {
         var currentUser = this.securityContextHolder.availableUser();
         var savedPhoneNumbers = this.phoneNumberQueryRepositoryAdapter.findAllByPID(currentUser);
-        var phoneNumberRoot = this.phoneNumberDomainMapper.toRoot(currentUser, request);
+        var phoneNumberRoot = this.phoneNumberDomainMapper.toNewRoot(currentUser, request);
         var validatedPhoneNumber = this.phoneNumberDomainService.validateNewPhoneNumber(savedPhoneNumbers, phoneNumberRoot);
         var isExistVerifiedPhoneNumber = this.phoneNumberQueryRepositoryAdapter.isExistVerifiedPhoneNumber(validatedPhoneNumber);
         if (isExistVerifiedPhoneNumber) throw new PhoneNumberAlreadyUsedException();
-        var savedNewPhoneNumber = this.phoneNumberCommandRepositoryAdapter.create(validatedPhoneNumber);
-        var payload = PhoneNumberPayload.Builder
-                .builder()
-                .build();
-        return PhoneNumberCreatedEvent.of(payload);
+        var optionalPhoneNumberRoot = this.phoneNumberCommandRepositoryAdapter.create(validatedPhoneNumber);
+        if (optionalPhoneNumberRoot.isEmpty()) throw new UnknownSystemException();
+        var phoneNumberPayload = this.toPayload(optionalPhoneNumberRoot.get());
+        return PhoneNumberCreatedEvent.of(phoneNumberPayload);
     }
 
     @Override

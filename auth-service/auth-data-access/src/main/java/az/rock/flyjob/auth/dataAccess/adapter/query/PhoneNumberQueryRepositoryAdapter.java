@@ -23,6 +23,14 @@ public class PhoneNumberQueryRepositoryAdapter implements AbstractPhoneNumberQue
         this.phoneNumberDataAccessMapper = phoneNumberDataAccessMapper;
     }
 
+
+    @Override
+    public Optional<PhoneNumberRoot> findOwnByID(UserID parentID, PhoneNumberID rootId) {
+        var entity = this.phoneNumberQueryJPARepository.findOwnById(parentID.getAbsoluteID(), rootId.getAbsoluteID());
+        if (entity.isEmpty()) return Optional.empty();
+        return this.phoneNumberDataAccessMapper.toRoot(entity.get());
+    }
+
     @Override
     public Optional<PhoneNumberRoot> findById(PhoneNumberID rootId) {
         var entity = this.phoneNumberQueryJPARepository.findById(rootId.getAbsoluteID());

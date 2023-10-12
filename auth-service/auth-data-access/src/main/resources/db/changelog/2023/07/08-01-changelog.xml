@@ -411,10 +411,10 @@
             <column name="modification_date" type="DATETIME"/>
             <column defaultValue="ONLY_AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
             <column name="user_uuid" type="UUID"/>
-            <column name="country_code" type="VARCHAR(1)">
+            <column name="country_code" type="VARCHAR(10)">
                 <constraints nullable="false"/>
             </column>
-            <column name="phone_number" type="VARCHAR(20)">
+            <column name="phone_number" type="VARCHAR(30)">
                 <constraints nullable="false"/>
             </column>
             <column name="type" type="VARCHAR(255)"/>
