@@ -3,8 +3,6 @@ package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 import az.rock.auth.domain.presentation.handler.abstracts.network.AbstractNetworkRelationCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractNetworkCommandDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractNetworkRelationMessagePublisher;
-import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowRelationCommandRepositoryAdapter;
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowRelationQueryRepositoryAdapter;
 import com.intellibukcet.lib.payload.event.create.network.NetworkRelationEvent;
 import org.springframework.stereotype.Service;
 
@@ -31,22 +29,22 @@ public class NetworkCommandDomainPresentationService implements AbstractNetworkC
     }
 
     @Override
-    public void acceptRequest(UUID targetUserId) {
-
+    public void acceptRequest() {
+        NetworkRelationEvent relationEvent = this.networkCommandHandler.handleAcceptRequest();
     }
 
     @Override
     public void rejectRequest(UUID targetUserId) {
-
+        NetworkRelationEvent relationEvent = this.networkCommandHandler.handleRejectRequest(targetUserId);
     }
 
     @Override
     public void cancelRequest(UUID targetUserId) {
-
+        NetworkRelationEvent relationEvent = this.networkCommandHandler.handleCancelRequest(targetUserId);
     }
 
     @Override
     public void deleteNetwork(UUID targetUserId) {
-
+        NetworkRelationEvent relationEvent = this.networkCommandHandler.handleDeleteNetwork(targetUserId);
     }
 }

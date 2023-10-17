@@ -13,7 +13,14 @@ public interface AbstractNetworkQueryRepositoryAdapter {
     Optional<NetworkRelationRoot> findNetworkRelationByBothOfUserIDs(UserID firstUserID, UserID secondUserID);
     List<NetworkRelationRoot> findMyNetworks(UserID currentUserID);
 
+    List<NetworkRelationRoot> findMyNetworksByUIDs(UserID currentUserId, UserID targetUserId);
+
     List<NetworkRelationRoot> findInMyNetworkPendingRequests(UserID currentUserID);
 
     List<NetworkRelationRoot> findMyPendingRequests(UserID currentUserID);
+    Optional<NetworkRelationRoot> findActiveNetworkRelationOnPendingStatus(UserID currentUserId, UserID targetUserId);
+    Optional<NetworkRelationRoot> findMutualActiveNetworkRelationOnPendingStatus(UserID currentUserId, UserID targetUserId);
+
+
+
 }

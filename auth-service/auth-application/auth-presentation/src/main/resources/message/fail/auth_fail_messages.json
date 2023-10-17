@@ -421,6 +421,23 @@
     "tr": "Kendinize bağlantı isteğini  gönderemezsiniz",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000048",
+    "az": "Sizin artıq aktiv əlaqəniz mövcuddur.",
+    "en": "You have already active network relation",
+    "ru": "У вас уже есть активная сетевая связь",
+    "tr": "Zaten aktif bir ağ ilişkiniz var",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000049",
+    "az": "Network status is not correct",
+    "en": "Network status is not correct",
+    "ru": "Network status is not correct",
+    "tr": "Network status is not correct",
+    "hasRegex": false,
+    "regex": ""
   }
-
 ]

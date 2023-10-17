@@ -43,6 +43,9 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
     public Boolean isAvailableForUnblock() {
         return networkStatus == NetworkStatus.BLOCKED;
     }
+    public Boolean isAvailableForCancel() {
+        return networkStatus == NetworkStatus.CANCELLED;
+    }
 
     public Boolean hasNetwork(){
         return this.isAcceptedStatus() && this.isNonBlockedStatus();
@@ -66,6 +69,7 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
     }
 
     private NetworkRelationRoot(Builder builder) {
+        super(builder.networkID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         requestOwnerId = builder.requestOwnerId;
         requestTargetId = builder.requestTargetId;
         networkStatus = builder.networkStatus;
@@ -99,6 +103,9 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
 
     public void accept() {
         networkStatus = NetworkStatus.ACCEPTED;
+    }
+    public void cancel() {
+        networkStatus = NetworkStatus.CANCELLED;
     }
 
     public void block() {

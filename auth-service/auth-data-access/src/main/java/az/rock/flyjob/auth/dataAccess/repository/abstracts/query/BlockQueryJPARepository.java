@@ -33,8 +33,8 @@ public interface BlockQueryJPARepository extends JpaRepository<BlockRelationEnti
     Boolean unblockTargetUserAgain(@Param(value = "currentUserId") UUID currentUserId,
                                    @Param(value = "targetUserID") UUID targetUserID);
 
-    @Query("SELECT count(b) > 0 FROM BlockRelationEntity b where (b.userId = :currentUserId  and b.targetUserId = :targetUserID) " +
-            " or (b.userId = :targetUserID and b.targetUserId = :currentUserId) and b.rowStatus = 'ACTIVE'")
+    @Query("SELECT count(b) > 0 FROM BlockRelationEntity b where ((b.userId = :currentUserId  and b.targetUserId = :targetUserID) " +
+            " or (b.userId = :targetUserID and b.targetUserId = :currentUserId)) and b.rowStatus = 'ACTIVE'")
     Boolean blockRelationByUsers(@Param(value = "currentUserId") UUID currentUserId,
                                    @Param(value = "targetUserID") UUID targetUserID);
 }

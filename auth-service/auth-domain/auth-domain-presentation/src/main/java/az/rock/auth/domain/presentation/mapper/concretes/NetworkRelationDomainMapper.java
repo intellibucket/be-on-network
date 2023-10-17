@@ -14,7 +14,8 @@ import java.util.UUID;
 public class NetworkRelationDomainMapper implements AbstractNetworkRelationDomainMapper {
     @Override
     public NetworkRelationRoot toNewNetworkRelationRoot(UserID userID, UserID targetUserID) {
-        return NetworkRelationRoot.Builder.builder()
+        return NetworkRelationRoot.Builder
+                .builder()
                 .networkID(NetworkID.of(UUID.randomUUID()))
                 .version(Version.ONE)
                 .processStatus(ProcessStatus.COMPLETED)
