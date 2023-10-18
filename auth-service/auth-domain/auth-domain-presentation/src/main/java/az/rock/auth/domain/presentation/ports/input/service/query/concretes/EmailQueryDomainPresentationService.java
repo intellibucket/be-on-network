@@ -51,7 +51,7 @@ public class EmailQueryDomainPresentationService implements AbstractEmailQueryDo
                 this.queryNetworkRepositoryAdapter.findNetworkRelationByBothOfUserIDs(currentUserId, targetUserId);
         if (emailRoot.isPublic()) return response;
         else {
-            if (optionalNetwork.isPresent() && optionalNetwork.get().hasValidRelation()) return response;
+            if (optionalNetwork.size()>0 && optionalNetwork.get(0).hasValidRelation()) return response;
             else throw new AuthDomainPresentationException("F0000000015");
         }
     }

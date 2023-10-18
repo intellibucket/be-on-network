@@ -17,6 +17,12 @@ public interface NetworkQueryJPARepository extends JpaRepository<NetworkRelation
     List<NetworkRelationEntity> findMyNetworks(UUID currentUserID);
 
     @Query("select n from NetworkRelationEntity n " +
+            "where (n.requestOwnerId = :currentUserId and n.requestTargetId = :targetUserID)" +
+            "or (n.requestOwnerId = :targetUserID and n.requestTargetId = :currentUserId) " +
+            "and n.networkStatus = 'ACCEPTED' and n.rowStatus = 'ACTIVE'")
+    List<NetworkRelationEntity> findMyNetworksByUIDs(UUID currentUserId, UUID targetUserID);
+
+    @Query("select n from NetworkRelationEntity n " +
             "where n.requestTargetId = :currentUserID " +
             "and n.networkStatus = 'PENDING' and n.rowStatus = 'ACTIVE'")
     List<NetworkRelationEntity> findInMyNetworkPendingRequests(UUID currentUserID);
@@ -30,5 +36,16 @@ public interface NetworkQueryJPARepository extends JpaRepository<NetworkRelation
             "where (n.requestOwnerId = :firstUserID and n.requestTargetId = :secondUserID) " +
             "or (n.requestOwnerId = :secondUserID and n.requestTargetId = :firstUserID)" +
             "and n.rowStatus = 'ACTIVE'")
-    NetworkRelationEntity findNetworkRelationByBothOfUserIDs(UUID firstUserID, UUID secondUserID);
+    List<NetworkRelationEntity> findMutualNetworkRelation(UUID firstUserID, UUID secondUserID);
+
+    @Query("select n from NetworkRelationEntity n " +
+            "where n.requestOwnerId = :currentUserId and n.requestTargetId = :targetUserId " +
+            "and n.rowStatus = 'ACTIVE' and n.networkStatus = 'PENDING'")
+    NetworkRelationEntity findActiveNetworkRelationOnPendingStatus(UUID currentUserId, UUID targetUserId);
+
+    @Query("select n from NetworkRelationEntity n " +
+            "where (n.requestOwnerId = :currentUserId and n.requestTargetId = :targetUserId) " +
+            "or (n.requestOwnerId = :targetUserId and n.requestTargetId = :currentUserId)" +
+            "and n.rowStatus = 'ACTIVE' and n.networkStatus = 'PENDING'")
+    NetworkRelationEntity findMutualActiveNetworkRelationOnPendingStatus(UUID currentUserId, UUID targetUserId);
 }

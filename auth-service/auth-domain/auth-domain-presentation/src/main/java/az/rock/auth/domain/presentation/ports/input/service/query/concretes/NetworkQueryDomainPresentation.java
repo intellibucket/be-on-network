@@ -51,4 +51,5 @@ public class NetworkQueryDomainPresentation implements AbstractNetworkQueryDomai
                 .map(root->root.getOtherPair(currentUserID.getAbsoluteID()))
                 .toList();
     }
+
 }

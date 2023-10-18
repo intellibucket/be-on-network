@@ -6,6 +6,7 @@ import az.rock.spec.auth.privates.query.NetworkQueryPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/auth/1.0/private/query/network",produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/auth/1.0/private/query/network", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NetworkQueryPrivateController implements NetworkQueryPrivateSpec {
     private final AbstractNetworkQueryDomainPresentation networkQueryDomainPresentation;
 
@@ -23,21 +24,25 @@ public class NetworkQueryPrivateController implements NetworkQueryPrivateSpec {
     }
 
     @Override
+    @GetMapping("/my_networks")
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyNetworks() {
         var response = this.networkQueryDomainPresentation.findMyNetworks();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
+    @GetMapping("/in_my_pending_request")
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryInMyNetworkPendingRequests() {
         var response = this.networkQueryDomainPresentation.findInMyNetworkPendingRequests();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
+    @GetMapping("/my_pending_request")
     public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyPendingRequests() {
         var response = this.networkQueryDomainPresentation.findMyPendingRequests();
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
+
 
 }

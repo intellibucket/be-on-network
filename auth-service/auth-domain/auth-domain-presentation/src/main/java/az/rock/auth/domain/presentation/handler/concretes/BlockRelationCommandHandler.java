@@ -4,6 +4,7 @@ import az.rock.auth.domain.presentation.exception.FollowDomainException;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractBlockRelationCommandHandler;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractBlockRelationDomainMapper;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractFollowRelationCommandDomainInnerService;
+import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractNetworkRelationCommandDomainInnerService;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractBlockRelationCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractBlockRelationQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
@@ -36,12 +37,11 @@ public class BlockRelationCommandHandler implements AbstractBlockRelationCommand
 
     private final AbstractBlockRelationDomainService blockRelationDomainService;
 
-
-
     private final AbstractBlockRelationDomainMapper blockRelationDomainMapper;
 
     private final AbstractFollowRelationCommandDomainInnerService followRelationCommandDomainInnerService;
 
+    private final AbstractNetworkRelationCommandDomainInnerService networkRelationCommandDomainInnerService;
 
     public BlockRelationCommandHandler(AbstractSecurityContextHolder securityContextHolder,
                                        AbstractBlockRelationCommandRepositoryAdapter blockRelationCommandRepositoryAdapter,
@@ -49,7 +49,8 @@ public class BlockRelationCommandHandler implements AbstractBlockRelationCommand
                                        AbstractBlockRelationDomainMapper blockRelationDomainMapper,
                                        AbstractUserQueryRepositoryAdapter userQueryRepositoryAdapter,
                                        AbstractBlockRelationDomainService blockRelationDomainService,
-                                       AbstractFollowRelationCommandDomainInnerService followRelationCommandDomainInnerService) {
+                                       AbstractFollowRelationCommandDomainInnerService followRelationCommandDomainInnerService,
+                                       AbstractNetworkRelationCommandDomainInnerService networkRelationCommandDomainInnerService) {
         this.securityContextHolder = securityContextHolder;
         this.blockRelationCommandRepositoryAdapter = blockRelationCommandRepositoryAdapter;
         this.blockRelationQueryRepositoryAdapter = blockRelationQueryRepositoryAdapter;
@@ -57,6 +58,7 @@ public class BlockRelationCommandHandler implements AbstractBlockRelationCommand
         this.userQueryRepositoryAdapter = userQueryRepositoryAdapter;
         this.blockRelationDomainService = blockRelationDomainService;
         this.followRelationCommandDomainInnerService = followRelationCommandDomainInnerService;
+        this.networkRelationCommandDomainInnerService = networkRelationCommandDomainInnerService;
     }
 
     @Override
@@ -70,6 +72,7 @@ public class BlockRelationCommandHandler implements AbstractBlockRelationCommand
         var savedRoot = this.blockRelationCommandRepositoryAdapter.create(newBlockRelationRoot);
         if (savedRoot.isEmpty()) throw new FollowDomainException("F0000000001");
         this.followRelationCommandDomainInnerService.dumpRelation(currentUserIdTypePair.getUserID(),UserID.of(targetUserUuid));
+        this.networkRelationCommandDomainInnerService.dumpRelation(currentUserIdTypePair.getUserID(),UserID.of(targetUserUuid));
         return BlockRelationEvent.of(this.fromRoot(savedRoot.get()));
     }
     /**

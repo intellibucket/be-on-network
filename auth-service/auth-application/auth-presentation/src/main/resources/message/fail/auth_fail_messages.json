@@ -412,5 +412,32 @@
     "tr": "Bu iletişim numarası zaten kullanılıyor. Lütfen başka bir numara girin",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000047",
+    "az": "Özünüzə əlaqə istəyi göndərə  bilməzsiniz",
+    "en": "You can't send connection request yourself",
+    "ru": "Вы не можете отправить запрос на подключение самостоятельно",
+    "tr": "Kendinize bağlantı isteğini  gönderemezsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000048",
+    "az": "Sizin artıq aktiv əlaqəniz mövcuddur.",
+    "en": "You have already active network relation",
+    "ru": "У вас уже есть активная сетевая связь",
+    "tr": "Zaten aktif bir ağ ilişkiniz var",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000049",
+    "az": "Network status is not correct",
+    "en": "Network status is not correct",
+    "ru": "Network status is not correct",
+    "tr": "Network status is not correct",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

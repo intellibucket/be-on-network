@@ -84,4 +84,9 @@ public class AuthDomainPresentationBeanConfig {
     public AbstractPhoneNumberDomainService abstractPhoneNumberDomainService() {
         return new PhoneNumberDomainService();
     }
+
+    @Bean
+    public AbstractNetworkRelationDomainService abstractNetworkRelationDomainService() {
+        return new NetworkRelationDomainService();
+    }
 }
