@@ -14,7 +14,7 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
 
     private NetworkStatus networkStatus;
 
-    private final BlockReasonStatus blockReasonStatus;
+    private  BlockReasonStatus blockReasonStatus;
 
     public UUID getRequestTargetId() {
         return requestTargetId;
@@ -111,7 +111,15 @@ public class NetworkRelationRoot extends AggregateRoot<NetworkID> {
     public void block() {
         networkStatus = NetworkStatus.BLOCKED;
     }
+    public NetworkRelationRoot blockReasonStatusByOwner(){
+        this.blockReasonStatus = BlockReasonStatus.OWNER_REQUEST;
+        return this;
+    }
 
+    public NetworkRelationRoot blockReasonStatusByTarget(){
+        this.blockReasonStatus = BlockReasonStatus.TARGET_REQUEST;
+        return this;
+    }
 
     public static final class Builder {
 

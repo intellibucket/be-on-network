@@ -10,7 +10,7 @@ import java.util.Optional;
 @DomainOutputPort
 public interface AbstractNetworkQueryRepositoryAdapter {
 
-    Optional<NetworkRelationRoot> findNetworkRelationByBothOfUserIDs(UserID firstUserID, UserID secondUserID);
+    List<NetworkRelationRoot> findNetworkRelationByBothOfUserIDs(UserID firstUserID, UserID secondUserID);
     List<NetworkRelationRoot> findMyNetworks(UserID currentUserID);
 
     List<NetworkRelationRoot> findMyNetworksByUIDs(UserID currentUserId, UserID targetUserId);

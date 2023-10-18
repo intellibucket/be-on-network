@@ -36,7 +36,7 @@ public interface NetworkQueryJPARepository extends JpaRepository<NetworkRelation
             "where (n.requestOwnerId = :firstUserID and n.requestTargetId = :secondUserID) " +
             "or (n.requestOwnerId = :secondUserID and n.requestTargetId = :firstUserID)" +
             "and n.rowStatus = 'ACTIVE'")
-    NetworkRelationEntity findMutualNetworkRelation(UUID firstUserID, UUID secondUserID);
+    List<NetworkRelationEntity> findMutualNetworkRelation(UUID firstUserID, UUID secondUserID);
 
     @Query("select n from NetworkRelationEntity n " +
             "where n.requestOwnerId = :currentUserId and n.requestTargetId = :targetUserId " +
