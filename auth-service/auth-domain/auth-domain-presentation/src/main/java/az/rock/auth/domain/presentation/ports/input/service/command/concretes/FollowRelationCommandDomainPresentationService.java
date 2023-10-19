@@ -6,9 +6,9 @@ import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.Ab
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractFollowRelationMessagePublisher;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowRelationCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowRelationQueryRepositoryAdapter;
-import com.intellibukcet.lib.payload.event.create.follow.FollowRelationEvent;
-import az.rock.lib.domain.id.auth.*;
-import com.intellibukcet.lib.payload.event.create.follow.UnfollowRelationEvent;
+import az.rock.lib.domain.id.auth.UserID;
+import com.intellibucket.lib.payload.event.create.follow.FollowRelationEvent;
+import com.intellibucket.lib.payload.event.create.follow.UnfollowRelationEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

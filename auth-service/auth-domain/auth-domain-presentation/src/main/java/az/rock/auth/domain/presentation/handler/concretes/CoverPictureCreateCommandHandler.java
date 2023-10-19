@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractCoverPictureDom
 import az.rock.auth.domain.presentation.ports.output.dfs.AbstractFileStorageAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.valueObject.MultipartFileWrapper;
-import com.intellibukcet.lib.payload.event.create.picture.CoverPictureCreatedEvent;
+import com.intellibucket.lib.payload.event.create.picture.CoverPictureCreatedEvent;
 import org.springframework.stereotype.Component;
 
 @Component

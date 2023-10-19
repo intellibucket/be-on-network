@@ -13,10 +13,10 @@ import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPhoneNumberDomainService;
 import az.rock.lib.domain.id.auth.PhoneNumberID;
 import az.rock.lib.valueObject.SwitchCase;
-import com.intellibukcet.lib.payload.event.create.number.PhoneNumberCreatedEvent;
-import com.intellibukcet.lib.payload.event.update.number.PhoneNumberDeletedEvent;
-import com.intellibukcet.lib.payload.event.update.number.PhoneNumberUpdatedEvent;
-import com.intellibukcet.lib.payload.payload.PhoneNumberPayload;
+import com.intellibucket.lib.payload.event.create.number.PhoneNumberCreatedEvent;
+import com.intellibucket.lib.payload.event.update.number.PhoneNumberDeletedEvent;
+import com.intellibucket.lib.payload.event.update.number.PhoneNumberUpdatedEvent;
+import com.intellibucket.lib.payload.payload.PhoneNumberPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

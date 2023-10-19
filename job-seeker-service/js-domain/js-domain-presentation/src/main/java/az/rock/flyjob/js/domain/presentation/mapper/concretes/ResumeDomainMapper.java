@@ -8,7 +8,7 @@ import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
-import com.intellibukcet.lib.payload.payload.reg.JobSeekerRegistrationPayload;
+import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

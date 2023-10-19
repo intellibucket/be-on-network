@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserSetti
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserSettingsCommandDomainPresentationService;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
-import com.intellibukcet.lib.payload.event.update.settings.UserSettingsUpdatedEvent;
+import com.intellibucket.lib.payload.event.update.settings.UserSettingsUpdatedEvent;
 import org.springframework.stereotype.Service;
 
 @Service

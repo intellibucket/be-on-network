@@ -2,7 +2,7 @@ package az.rock.auth.domain.presentation.handler.abstracts.user;
 
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
-import com.intellibukcet.lib.payload.event.update.user.UserUpdatedEvent;
+import com.intellibucket.lib.payload.event.update.user.UserUpdatedEvent;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

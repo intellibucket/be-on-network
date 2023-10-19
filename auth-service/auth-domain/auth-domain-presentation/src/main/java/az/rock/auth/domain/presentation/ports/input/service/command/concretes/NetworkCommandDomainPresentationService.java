@@ -7,7 +7,7 @@ import az.rock.auth.domain.presentation.ports.output.publisher.AbstractNetworkRe
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractNetworkRelationCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
 import az.rock.lib.domain.id.auth.UserID;
-import com.intellibukcet.lib.payload.event.create.network.NetworkRelationEvent;
+import com.intellibucket.lib.payload.event.create.network.NetworkRelationEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

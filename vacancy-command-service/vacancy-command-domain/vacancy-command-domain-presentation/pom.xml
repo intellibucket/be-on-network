@@ -60,7 +60,7 @@
             <version>6.0.11</version>
         </dependency>
         <dependency>
-            <groupId>com.intellibukcet.lib.payload</groupId>
+            <groupId>com.intellibucket.lib.payload</groupId>
             <artifactId>ib-payload-vacancy</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

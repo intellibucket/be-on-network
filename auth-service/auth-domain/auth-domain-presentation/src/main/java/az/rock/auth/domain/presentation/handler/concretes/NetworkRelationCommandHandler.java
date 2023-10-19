@@ -10,16 +10,14 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNe
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.NoActiveRowException;
 import az.rock.flyjob.auth.exception.block.BlockRelationWhenFollowException;
-import az.rock.flyjob.auth.root.network.BlockRelationRoot;
 import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractNetworkRelationDomainService;
 import az.rock.lib.domain.id.auth.UserID;
-import com.intellibukcet.lib.payload.event.create.network.NetworkRelationEvent;
-import com.intellibukcet.lib.payload.event.create.user.payload.network.NetworkRelationPayload;
+import com.intellibucket.lib.payload.event.create.network.NetworkRelationEvent;
+import com.intellibucket.lib.payload.event.create.user.payload.network.NetworkRelationPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Component

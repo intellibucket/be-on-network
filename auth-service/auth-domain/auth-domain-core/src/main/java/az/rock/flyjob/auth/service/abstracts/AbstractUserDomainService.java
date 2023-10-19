@@ -3,8 +3,8 @@ package az.rock.flyjob.auth.service.abstracts;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
-import com.intellibukcet.lib.payload.event.create.user.CompanyCreatedEvent;
-import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
+import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
 
 public interface AbstractUserDomainService {
     JobSeekerCreatedEvent validateAndInitializeUser(UserRoot userRoot);

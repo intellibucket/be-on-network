@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.event.email;
 
 import az.rock.flyjob.auth.root.user.EmailRoot;
-import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibukcet.lib.payload.event.abstracts.Event;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.event.abstracts.Event;
 
 @Event
 public class EmailUpdatedEvent extends AbstractDomainEvent<EmailRoot> {

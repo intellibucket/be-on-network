@@ -2,8 +2,8 @@ package az.rock.flyjob.auth.messaging.publisher;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractBlockRelationMessagePublisher;
 import az.rock.flyjob.auth.root.network.BlockRelationRoot;
-import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibukcet.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.trx.Saga;
 import org.springframework.stereotype.Component;
 
 @Component

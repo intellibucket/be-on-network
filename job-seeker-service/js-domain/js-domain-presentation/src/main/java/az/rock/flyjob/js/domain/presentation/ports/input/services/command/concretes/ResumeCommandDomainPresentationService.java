@@ -2,8 +2,8 @@ package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concr
 
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractResumeCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractResumeCommandDomainPresentationService;
-import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibukcet.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibucket.lib.payload.trx.Saga;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -9,14 +9,14 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFo
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.block.BlockRelationWhenFollowException;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import az.rock.flyjob.auth.exception.follow.AlreadyFollowedException;
 import az.rock.flyjob.auth.exception.follow.UnfollowSelfException;
+import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowRelationDomainService;
 import az.rock.lib.domain.id.auth.UserID;
-import com.intellibukcet.lib.payload.event.create.follow.FollowRelationEvent;
-import com.intellibukcet.lib.payload.event.create.follow.UnfollowRelationEvent;
-import com.intellibukcet.lib.payload.event.create.user.payload.follow.FollowRelationPayload;
+import com.intellibucket.lib.payload.event.create.follow.FollowRelationEvent;
+import com.intellibucket.lib.payload.event.create.follow.UnfollowRelationEvent;
+import com.intellibucket.lib.payload.event.create.user.payload.follow.FollowRelationPayload;
 import org.springframework.stereotype.Component;
 
 @Component

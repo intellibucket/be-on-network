@@ -10,9 +10,9 @@ import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
 import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.lib.domain.id.auth.EmailID;
-import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
 import az.rock.lib.valueObject.SagaRoot;
 import az.rock.lib.valueObject.SwitchCase;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

@@ -3,12 +3,12 @@ package az.rock.flyjob.js.domain.presentation.handler.concretes;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractResumeCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractResumeDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractResumeCommandRepositoryAdapter;
-import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibukcet.lib.payload.event.concretes.FailDomainEvent;
-import com.intellibukcet.lib.payload.event.create.ResumeCreatedEvent;
-import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibukcet.lib.payload.payload.Payload;
-import com.intellibukcet.lib.payload.payload.ResumeCreatedPayload;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.event.concretes.FailDomainEvent;
+import com.intellibucket.lib.payload.event.create.ResumeCreatedEvent;
+import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibucket.lib.payload.payload.Payload;
+import com.intellibucket.lib.payload.payload.ResumeCreatedPayload;
 import org.springframework.stereotype.Component;
 
 @Component

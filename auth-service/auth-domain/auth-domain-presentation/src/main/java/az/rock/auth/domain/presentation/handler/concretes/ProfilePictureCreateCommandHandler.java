@@ -9,7 +9,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPr
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.service.abstracts.AbstractProfilePictureDomainService;
 import az.rock.lib.valueObject.MultipartFileWrapper;
-import com.intellibukcet.lib.payload.event.create.picture.ProfilePictureCreatedEvent;
+import com.intellibucket.lib.payload.event.create.picture.ProfilePictureCreatedEvent;
 import org.springframework.stereotype.Component;
 
 @Component

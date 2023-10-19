@@ -8,7 +8,7 @@ import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdat
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
-import com.intellibukcet.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.Saga;
 import org.springframework.stereotype.Service;
 
 @Service

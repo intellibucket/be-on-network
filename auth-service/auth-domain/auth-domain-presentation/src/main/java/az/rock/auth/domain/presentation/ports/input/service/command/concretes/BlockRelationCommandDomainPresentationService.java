@@ -3,9 +3,8 @@ package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractBlockRelationCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractBlockRelationCommandDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractBlockRelationMessagePublisher;
-import az.rock.lib.domain.id.auth.UserID;
-import com.intellibukcet.lib.payload.event.create.block.BlockRelationEvent;
-import com.intellibukcet.lib.payload.event.create.block.UnblockRelationEvent;
+import com.intellibucket.lib.payload.event.create.block.BlockRelationEvent;
+import com.intellibucket.lib.payload.event.create.block.UnblockRelationEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

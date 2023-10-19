@@ -14,9 +14,9 @@ import az.rock.flyjob.auth.exception.block.AlreadyUnblockedException;
 import az.rock.flyjob.auth.root.network.BlockRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractBlockRelationDomainService;
 import az.rock.lib.domain.id.auth.UserID;
-import com.intellibukcet.lib.payload.event.create.block.BlockRelationEvent;
-import com.intellibukcet.lib.payload.event.create.block.UnblockRelationEvent;
-import com.intellibukcet.lib.payload.event.create.user.payload.block.BlockRelationPayload;
+import com.intellibucket.lib.payload.event.create.block.BlockRelationEvent;
+import com.intellibucket.lib.payload.event.create.block.UnblockRelationEvent;
+import com.intellibucket.lib.payload.event.create.user.payload.block.BlockRelationPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

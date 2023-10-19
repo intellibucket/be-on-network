@@ -5,11 +5,10 @@ import az.rock.flyjob.auth.root.UserOutboxRoot;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.SagaID;
-import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
 import az.rock.lib.valueObject.OutboxStatus;
 import az.rock.lib.valueObject.Version;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

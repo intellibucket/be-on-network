@@ -51,6 +51,8 @@ services:
       - MINIO_ROOT_PASSWORD=minio-root-password
     networks:
       - config-network
+
+
   postgres-db:
     container_name: flyjob_postgre_db
     image: postgres

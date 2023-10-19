@@ -1,12 +1,10 @@
 package az.rock.flyjob.auth.messaging.publisher;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractEmailMessagePublisher;
-import az.rock.flyjob.auth.event.email.EmailCreatedEvent;
-import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.root.user.EmailRoot;
-import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibukcet.lib.payload.trx.Saga;
 import az.rock.lib.valueObject.SagaRoot;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.trx.Saga;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.coordinator.concretes;
 
 import az.rock.flyjob.js.domain.presentation.coordinator.abstracts.AbstractResumeResponsiveEventResponsiveCoordinator;
-import com.intellibukcet.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.Saga;
 
 public class ResumeResponsiveEventResponsiveCoordinator extends AbstractResumeResponsiveEventResponsiveCoordinator {
     @Override

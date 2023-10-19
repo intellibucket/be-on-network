@@ -2,9 +2,8 @@ package az.rock.auth.domain.presentation.ports.output.publisher;
 
 import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.lib.annotation.DomainOutputPort;
-import com.intellibukcet.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibukcet.lib.payload.publisher.AbstractMessagePublisher;
-import com.intellibukcet.lib.payload.publisher.AbstractMessagePublisher;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.publisher.AbstractMessagePublisher;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

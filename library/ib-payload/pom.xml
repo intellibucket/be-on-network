@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.intellibukcet.lib.payload</groupId>
+    <groupId>com.intellibucket.lib.payload</groupId>
     <artifactId>ib-payload</artifactId>
     <packaging>pom</packaging>
     <modules>

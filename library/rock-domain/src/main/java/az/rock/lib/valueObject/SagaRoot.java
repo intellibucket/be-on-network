@@ -3,7 +3,7 @@ package az.rock.lib.valueObject;
 import az.rock.lib.annotation.ValueObject;
 import az.rock.lib.domain.SagaID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.intellibukcet.lib.payload.trx.State;
+import com.intellibucket.lib.payload.trx.State;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;

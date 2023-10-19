@@ -2,11 +2,11 @@ package az.rock.flyjob.js.messaging.listeners.concretes;
 
 import az.rock.flyjob.js.domain.presentation.ports.input.listener.abstracts.AbstractJobSeekerCreatedEventListenerAdapter;
 import az.rock.flyjob.js.messaging.listeners.abstracts.AbstractUserCreatedMessageListener;
-import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibukcet.lib.payload.trx.Saga;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibucket.lib.payload.trx.Saga;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 

@@ -9,12 +9,11 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
 import az.rock.flyjob.auth.exception.UsernameAlreadyExistException;
-import az.rock.flyjob.auth.exception.email.EmailAlreadyExistException;
 import az.rock.flyjob.auth.exception.email.EmailAlreadyUsedException;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.valueObject.UserType;
-import com.intellibukcet.lib.payload.event.create.user.CompanyCreatedEvent;
-import com.intellibukcet.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
+import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
