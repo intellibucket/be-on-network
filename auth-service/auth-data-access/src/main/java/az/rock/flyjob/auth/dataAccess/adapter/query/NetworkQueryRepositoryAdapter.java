@@ -16,28 +16,35 @@ public class NetworkQueryRepositoryAdapter implements AbstractNetworkQueryReposi
 
     private final NetworkQueryJPARepository networkQueryJPARepository;
 
-    private final AbstractNetworkDataAccessMapper<NetworkRelationEntity,NetworkRelationRoot> networkDataAccessMapper;
+    private final AbstractNetworkDataAccessMapper<NetworkRelationEntity, NetworkRelationRoot> networkDataAccessMapper;
 
     public NetworkQueryRepositoryAdapter(NetworkQueryJPARepository networkQueryJPARepository,
-                                         AbstractNetworkDataAccessMapper<NetworkRelationEntity,NetworkRelationRoot> networkDataAccessMapper) {
+                                         AbstractNetworkDataAccessMapper<NetworkRelationEntity, NetworkRelationRoot> networkDataAccessMapper) {
         this.networkQueryJPARepository = networkQueryJPARepository;
         this.networkDataAccessMapper = networkDataAccessMapper;
     }
 
     @Override
-    public Optional<NetworkRelationRoot> findNetworkRelationByBothOfUserIDs(UserID firstUserID, UserID secondUserID) {
-        var networkRelationEntityOptional = Optional.ofNullable(
-                this.networkQueryJPARepository
-                .findNetworkRelationByBothOfUserIDs(firstUserID.getAbsoluteID(), secondUserID.getAbsoluteID())
-        );
-        if (networkRelationEntityOptional.isPresent())
-            return this.networkDataAccessMapper.toRoot(networkRelationEntityOptional.get());
-        return Optional.empty();
+    public List<NetworkRelationRoot> findNetworkRelationByBothOfUserIDs(UserID firstUserID, UserID secondUserID) {
+        return this.networkQueryJPARepository.findMutualNetworkRelation(firstUserID.getAbsoluteID(), secondUserID.getAbsoluteID())
+                .stream().map(this.networkDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 
     @Override
     public List<NetworkRelationRoot> findMyNetworks(UserID currentUserID) {
         return this.networkQueryJPARepository.findMyNetworks(currentUserID.getAbsoluteID())
+                .stream().map(this.networkDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
+    @Override
+    public List<NetworkRelationRoot> findMyNetworksByUIDs(UserID currentUserId, UserID targetUserId) {
+        return this.networkQueryJPARepository.findMyNetworksByUIDs(currentUserId.getAbsoluteID(),targetUserId.getAbsoluteID())
                 .stream().map(this.networkDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
@@ -61,4 +68,28 @@ public class NetworkQueryRepositoryAdapter implements AbstractNetworkQueryReposi
                 .map(Optional::get)
                 .toList();
     }
+
+    @Override
+    public Optional<NetworkRelationRoot> findActiveNetworkRelationOnPendingStatus(UserID currentUserId, UserID targetUserId) {
+        var networkRelationEntityOptional = Optional.ofNullable(
+                this.networkQueryJPARepository
+                        .findActiveNetworkRelationOnPendingStatus(currentUserId.getAbsoluteID(), targetUserId.getAbsoluteID())
+        );
+        if (networkRelationEntityOptional.isPresent())
+            return this.networkDataAccessMapper.toRoot(networkRelationEntityOptional.get());
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<NetworkRelationRoot> findMutualActiveNetworkRelationOnPendingStatus(UserID currentUserId, UserID targetUserId) {
+        var networkRelationEntityOptional = Optional.ofNullable(
+                this.networkQueryJPARepository
+                        .findMutualActiveNetworkRelationOnPendingStatus(currentUserId.getAbsoluteID(), targetUserId.getAbsoluteID())
+        );
+        if (networkRelationEntityOptional.isPresent())
+            return this.networkDataAccessMapper.toRoot(networkRelationEntityOptional.get());
+        return Optional.empty();
+    }
+
+
 }

@@ -21,4 +21,5 @@ public interface NetworkQueryPrivateSpec {
      * This method returns the list of user id who are in my network and I have sent request to them
      */
     ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyPendingRequests();
+
 }
