@@ -18,7 +18,7 @@ public class ProfilePictureDomainMapper implements AbstractProfilePictureDomainM
                 .id(ProfilePictureID.of())
                 .userID(userID)
                 .accessModifier(AccessModifier.PUBLIC)
-                .processStatus(ProcessStatus.ON_WAITING)
+                .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .version(Version.ONE)
                 .filename(fileMetaData.getObject())
