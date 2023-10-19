@@ -1,6 +1,5 @@
 package az.rock.flyjob.auth.api.rest.privates.command;
 
-import az.rock.auth.domain.presentation.dto.request.ProfilePictureCreateRequest;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractProfilePictureCommandDomainPresentation;
 import az.rock.flyjob.auth.mapper.MultipartFileWrapperMapper;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
@@ -28,10 +27,10 @@ public class ProfilePictureCommandPrivateController {
         this.multipartFileWrapperMapper = multipartFileWrapperMapper;
     }
 
-    @PostMapping(value = "/upload",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.IMAGE_PNG_VALUE,MediaType.IMAGE_JPEG_VALUE})
+    @PostMapping(value = "/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
     @Operation(summary = "Upload profile picture")
-    public ResponseEntity<JSuccessDataResponse<UUID>> uploadProfilePicture(@RequestBody ProfilePictureCreateRequest request  ) {
-        MultipartFileWrapper wrapFile = this.factoryWrapper(request.getFile());
+    public ResponseEntity<JSuccessDataResponse<UUID>> uploadProfilePicture(@RequestBody MultipartFile file) {
+        MultipartFileWrapper wrapFile = this.factoryWrapper(file);
         var response = this.profilePictureCommandDomainPresentation.uploadProfilePicture(wrapFile);
         return ResponseEntity.status(HttpStatus.CREATED).body(new JSuccessDataResponse<>(response));
     }
