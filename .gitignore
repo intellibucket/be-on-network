@@ -42,4 +42,5 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Store
+.DS_Store!/docker_compose/env/develop/config.env.develop
+!/docker_compose/env/develop/config.env.develop

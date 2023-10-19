@@ -9,16 +9,22 @@ import com.intellibukcet.lib.payload.event.update.number.PhoneNumberUpdatedEvent
 
 import java.util.UUID;
 
+/**
+ * Yalniz maksimum 3 nomresi ola biler aktiv olan.
+ */
 public interface AbstractPhoneNumberCommandHandler {
     PhoneNumberCreatedEvent add(PhoneNumberCommandRequest request);
 
     PhoneNumberUpdatedEvent change(PhoneNumberChangeRequest request);
 
+    //RowStatus Delete olunur
     PhoneNumberDeletedEvent delete(UUID uuid);
 
+    //Yalniz bir nomre ucun ola biler
     PhoneNumberUpdatedEvent enableSmsNotification(SwitchCase switchCase);
 
     PhoneNumberUpdatedEvent enableWhatsappNotification(SwitchCase switchCase);
 
+    //Yalniz bir primary ola biler
     PhoneNumberUpdatedEvent setPrimary(SwitchCase switchCase);
 }
