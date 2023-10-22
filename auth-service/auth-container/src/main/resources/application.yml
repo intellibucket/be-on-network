@@ -16,15 +16,6 @@ spring:
         persistence:
           validation:
             mode: none
-mybatis:
-  executor-type: REUSE
-  mapper-locations: classpath*:/**/*Mapper.xml
-  type-aliases-package: az.rock.flyjob.auth.dataAccess.model.compose
-  type-handlers-package: az.rock.flyjob.auth.dataAccess.config.mybatis.handlers
-  configuration:
-    map-underscore-to-camel-case: true
-    default-fetch-size: 100
-    default-statement-timeout: 30
 
 server:
   servlet:
