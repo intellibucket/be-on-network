@@ -42,8 +42,14 @@ public class BlockRelationCommandRepositoryAdapter implements AbstractBlockRelat
     }
 
     @Override
-    public void updateAll(List<EmailRoot> emailRoots) {
-        AbstractBlockRelationCommandRepositoryAdapter.super.updateAll(emailRoots);
+    public void updateAll(List<BlockRelationRoot> roots) {
+        var rootList = roots
+                .stream()
+                .map(this.blockRelationDataAccessMapper::toEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+        this.blockRelationCommandCustomJPARepository.updateAll(rootList);
     }
 
     @Override

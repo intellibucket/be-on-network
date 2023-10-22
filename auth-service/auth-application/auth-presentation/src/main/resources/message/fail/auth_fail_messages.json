@@ -439,5 +439,14 @@
     "tr": "Network status is not correct",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000050",
+    "az": "Telefon nömrəsi tapılmadı",
+    "en": "Telefon nömrəsi tapılmadı",
+    "ru": "Telefon nömrəsi tapılmadı",
+    "tr": "Telefon nömrəsi tapılmadı",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

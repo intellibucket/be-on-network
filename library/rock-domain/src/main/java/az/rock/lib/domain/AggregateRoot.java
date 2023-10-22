@@ -159,4 +159,9 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
     public void inActive(){
         this.rowStatus = RowStatus.INACTIVE;
     }
+
+    @JsonIgnore
+    public void delete(){
+        this.rowStatus = RowStatus.DELETED;
+    }
 }

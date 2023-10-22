@@ -15,7 +15,8 @@ public interface PhoneNumberQueryJPARepository extends JpaRepository<PhoneNumber
 
 
     @Query("SELECT row FROM PhoneNumberEntity row " +
-            "WHERE (:parentID = row.user.uuid) and (row.uuid = :rootId) and (row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
+            "WHERE (:parentID = row.user.uuid) and (row.uuid = :rootId) and" +
+            "(row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
     Optional<PhoneNumberEntity> findOwnById(UUID parentID, UUID rootId);
 
     @Query("SELECT row FROM PhoneNumberEntity row " +

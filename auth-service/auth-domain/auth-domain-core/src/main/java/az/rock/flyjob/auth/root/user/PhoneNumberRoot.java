@@ -7,7 +7,12 @@ import az.rock.lib.valueObject.*;
 
 import java.math.BigInteger;
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
     private final UserID userID;
@@ -69,6 +74,10 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         this.verificationCodeExpireDate = verificationCodeExpireDate;
         this.verificationCodeSendDate = verificationCodeSendDate;
         this.verificationCodeSendCount = verificationCodeSendCount;
+    }
+
+    public static Map<PhoneNumberID,PhoneNumberRoot> groupByPhoneNumberID(List<PhoneNumberRoot> phoneNumberRoots){
+        return phoneNumberRoots.stream().collect(Collectors.toMap(PhoneNumberRoot::getRootID, Function.identity()));
     }
 
     public Boolean isValid() {
@@ -155,6 +164,15 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         this.phoneNumber = phoneNumber;
         return this;
     }
+
+    public void disablePrimary() {
+        this.isPrimary = false;
+    }
+
+    public void enablePrimary() {
+        this.isPrimary = true;
+    }
+
 
     public static final class Builder {
 

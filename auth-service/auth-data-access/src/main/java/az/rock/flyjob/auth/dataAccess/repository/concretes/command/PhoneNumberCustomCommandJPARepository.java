@@ -29,7 +29,7 @@ public class PhoneNumberCustomCommandJPARepository implements AbstractPhoneNumbe
 
     @Override
     public <S extends PhoneNumberEntity> S merge(S entity) {
-        return entityManager.merge(entity);
+        return this.entityManager.merge(entity);
     }
 
     @Override

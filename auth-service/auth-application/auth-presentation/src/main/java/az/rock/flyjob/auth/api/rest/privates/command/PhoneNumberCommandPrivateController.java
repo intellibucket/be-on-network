@@ -46,21 +46,21 @@ public class PhoneNumberCommandPrivateController implements PhoneNumberCommandPr
 
     @Override
     @PutMapping(value = "/set-enable-sms-notification")
-    public ResponseEntity<JSuccessResponse> setEnableSmsNotification(SwitchCase switchCase) {
+    public ResponseEntity<JSuccessResponse> setEnableSmsNotification(@RequestBody SwitchCase switchCase) {
         this.phoneNumberCommandDomainPresentationService.enableSmsNotification(switchCase);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PutMapping(value = "/set-enable-whatsapp-notification")
-    public ResponseEntity<JSuccessResponse> setEnableWhatsappNotification(SwitchCase switchCase) {
+    public ResponseEntity<JSuccessResponse> setEnableWhatsappNotification(@RequestBody SwitchCase switchCase) {
         this.phoneNumberCommandDomainPresentationService.enableWhatsappNotification(switchCase);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PutMapping(value = "/set-primary")
-    public ResponseEntity<JSuccessResponse> setPrimary(SwitchCase switchCase) {
+    public ResponseEntity<JSuccessResponse> setPrimary(@RequestBody SwitchCase switchCase) {
         this.phoneNumberCommandDomainPresentationService.setPrimary(switchCase);
         return ResponseEntity.ok(JSuccessResponse.success());
     }

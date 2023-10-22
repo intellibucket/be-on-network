@@ -14,7 +14,7 @@ public interface AbstractCommandRepositoryAdapter<R> {
         throw new UnsupportedOperationException();
     }
 
-    default void updateAll(List<EmailRoot> emailRoots){
+    default void updateAll(List<R> emailRoots){
         throw new UnsupportedOperationException();
     }
 

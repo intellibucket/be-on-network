@@ -9,6 +9,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPhoneNumberQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.number.PhoneNumberAlreadyUsedException;
+import az.rock.flyjob.auth.exception.number.PhoneNumberNotFoundException;
 import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPhoneNumberDomainService;
 import az.rock.lib.domain.id.auth.PhoneNumberID;
@@ -93,21 +94,57 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
 
     @Override
     public PhoneNumberDeletedEvent delete(UUID uuid) {
-        return null;
+        var currentUser = this.securityContextHolder.availableUser();
+        var optionalPhoneNumber = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUser,PhoneNumberID.of(uuid));
+        if (optionalPhoneNumber.isPresent()){
+            var phoneNumber = optionalPhoneNumber.get();
+            this.phoneNumberCommandRepositoryAdapter.delete(phoneNumber);
+            return PhoneNumberDeletedEvent.of(phoneNumber.getRootID().getAbsoluteID());
+        }else throw new PhoneNumberNotFoundException();
     }
 
     @Override
     public PhoneNumberUpdatedEvent enableSmsNotification(SwitchCase switchCase) {
-        return null;
+        var currentUser = this.securityContextHolder.availableUser();
+        var optionalPhoneNumber = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUser,PhoneNumberID.of(switchCase.getUuid()));
+        if (optionalPhoneNumber.isPresent()){
+            var phoneNumber = optionalPhoneNumber.get();
+            if (switchCase.isActive()) phoneNumber.enableSmsNotification();
+            else phoneNumber.disableSmsNotification();
+            var payload = this.toPayload(phoneNumber);
+            return PhoneNumberUpdatedEvent.of(payload);
+        }else throw new PhoneNumberNotFoundException();
     }
 
     @Override
     public PhoneNumberUpdatedEvent enableWhatsappNotification(SwitchCase switchCase) {
-        return null;
+        var currentUser = this.securityContextHolder.availableUser();
+        var optionalPhoneNumber = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUser,PhoneNumberID.of(switchCase.getUuid()));
+        if (optionalPhoneNumber.isPresent()){
+            var phoneNumber = optionalPhoneNumber.get();
+            if (switchCase.isActive()) phoneNumber.enableWhatsappNotification();
+            else phoneNumber.disableWhatsappNotification();
+            var payload = this.toPayload(phoneNumber);
+            return PhoneNumberUpdatedEvent.of(payload);
+        }else throw new PhoneNumberNotFoundException();
     }
 
     @Override
     public PhoneNumberUpdatedEvent setPrimary(SwitchCase switchCase) {
-        return null;
+        var currentUser = this.securityContextHolder.availableUser();
+        var optionalPhoneNumber = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUser,PhoneNumberID.of(switchCase.getUuid()));
+        if (optionalPhoneNumber.isPresent()){
+            var phoneNumber = optionalPhoneNumber.get();
+            var savedPhoneNumbers = this.phoneNumberQueryRepositoryAdapter.findAllByPID(currentUser);
+            var map = PhoneNumberRoot.groupByPhoneNumberID(savedPhoneNumbers);
+            map.forEach((k,v)->{
+                if (k.equals(phoneNumber.getRootID())) v.enablePrimary();
+                else v.disablePrimary();
+            });
+            var updatedValues  = map.values().stream().toList();
+            this.phoneNumberCommandRepositoryAdapter.updateAll(updatedValues);
+            var payload = this.toPayload(phoneNumber);
+            return PhoneNumberUpdatedEvent.of(payload);
+        }else throw new PhoneNumberNotFoundException();
     }
 }

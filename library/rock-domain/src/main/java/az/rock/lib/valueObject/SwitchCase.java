@@ -1,8 +1,10 @@
 package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.UUID;
+import java.util.function.Consumer;
 
 @ValueObject
 public class SwitchCase {
@@ -15,6 +17,15 @@ public class SwitchCase {
     }
 
     public SwitchCase() {
+    }
+
+    public void consumeIfAbsent(Runnable runnable){
+        if (this.isActive) runnable.run();
+    }
+
+    public void consumeIfAbsentOrElse(Runnable runnable,Runnable elseRunnable){
+        if (this.isActive) runnable.run();
+        else elseRunnable.run();
     }
 
     public void setActive(Boolean active) {
@@ -37,7 +48,4 @@ public class SwitchCase {
         return isActive;
     }
 
-    public Boolean isInActive(){
-        return !isActive;
-    }
 }
