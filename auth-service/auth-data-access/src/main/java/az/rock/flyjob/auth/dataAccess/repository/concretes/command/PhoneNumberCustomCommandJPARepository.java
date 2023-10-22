@@ -29,6 +29,8 @@ public class PhoneNumberCustomCommandJPARepository implements AbstractPhoneNumbe
 
     @Override
     public <S extends PhoneNumberEntity> S merge(S entity) {
+        var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
+        entity.setUser(userEntityReference);
         return this.entityManager.merge(entity);
     }
 

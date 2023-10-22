@@ -149,15 +149,16 @@ public interface CustomCommandJPARepository<T> {
     }
 
     default Integer getBatchSize(Session session) {
-        try(var sessionFactory = session.getSessionFactory().unwrap(SessionFactoryImplementor.class);) {
+        var sessionFactory = session.getSessionFactory().unwrap(SessionFactoryImplementor.class);
+        try{
             final var jdbcServices = sessionFactory.getServiceRegistry().getService(JdbcServices.class);
             var isSupportsBatchUpdates = jdbcServices.getExtractedMetaDataSupport().supportsBatchUpdates();
             if(!isSupportsBatchUpdates) return Integer.MIN_VALUE;
+            return session.unwrap(AbstractSharedSessionContract.class).getConfiguredJdbcBatchSize();
         }catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        return session.unwrap(AbstractSharedSessionContract.class).getConfiguredJdbcBatchSize();
     }
 
     default  <R> R executeBatch(Session session,Supplier<R> callback) {
