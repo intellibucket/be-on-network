@@ -16,8 +16,8 @@ spring:
         persistence:
           validation:
             mode: none
-  mybatis:
-    mapper-locations: classpath*:/**/*Mapper.xml
+mybatis:
+  mapper-locations: classpath*:/**/*Mapper.xml
 
 
 server:
