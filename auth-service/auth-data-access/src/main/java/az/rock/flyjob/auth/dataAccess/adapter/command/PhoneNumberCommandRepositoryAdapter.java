@@ -4,7 +4,6 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPhoneNumberCommandJPARepository;
-import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import org.springframework.stereotype.Component;
 
@@ -51,6 +50,6 @@ public class PhoneNumberCommandRepositoryAdapter implements AbstractPhoneNumberC
     @Override
     public void delete(PhoneNumberRoot root) {
         var entity = this.phoneNumberDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.phoneNumberCommandJPARepository::remove);
+        entity.ifPresent(this.phoneNumberCommandJPARepository::inActive);
     }
 }

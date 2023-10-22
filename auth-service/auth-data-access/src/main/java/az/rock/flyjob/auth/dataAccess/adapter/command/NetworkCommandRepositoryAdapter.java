@@ -3,7 +3,6 @@ package az.rock.flyjob.auth.dataAccess.adapter.command;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractNetworkRelationCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.NetworkRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractNetworkRelationCommandJPARepository;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
@@ -43,6 +42,6 @@ public class NetworkCommandRepositoryAdapter implements AbstractNetworkRelationC
     @Override
     public void delete(NetworkRelationRoot root) {
         var entity = this.networkRelationDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.networkRelationCommandJPARepository::remove);
+        entity.ifPresent(this.networkRelationCommandJPARepository::inActive);
     }
 }

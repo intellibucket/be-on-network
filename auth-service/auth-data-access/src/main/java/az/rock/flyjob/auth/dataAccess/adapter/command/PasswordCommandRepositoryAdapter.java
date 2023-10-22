@@ -32,6 +32,6 @@ public class PasswordCommandRepositoryAdapter implements AbstractPasswordCommand
     @Override
     public void delete(PasswordRoot root) {
         var entity = this.passwordDataAccessMapper.toNewEntity(root);
-        entity.ifPresent(this.passwordCommandJPARepository::remove);
+        entity.ifPresent(this.passwordCommandJPARepository::inActive);
     }
 }

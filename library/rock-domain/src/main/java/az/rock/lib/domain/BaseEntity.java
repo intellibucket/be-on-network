@@ -42,6 +42,10 @@ public class BaseEntity {
         this.rowStatus = RowStatus.INACTIVE;
     }
 
+    public void delete(){
+        this.rowStatus = RowStatus.DELETED;
+    }
+
     private BaseEntity(Builder builder) {
         setUuid(builder.uuid);
         setVersion(builder.version);

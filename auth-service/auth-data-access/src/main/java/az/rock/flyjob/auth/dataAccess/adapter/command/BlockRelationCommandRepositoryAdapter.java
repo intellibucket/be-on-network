@@ -5,7 +5,6 @@ import az.rock.flyjob.auth.dataAccess.mapper.concretes.BlockRelationDataAccessMa
 import az.rock.flyjob.auth.dataAccess.model.entity.network.BlockRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractBlockRelationCommandCustomJPARepository;
 import az.rock.flyjob.auth.root.network.BlockRelationRoot;
-import az.rock.flyjob.auth.root.user.EmailRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
 
@@ -55,6 +54,6 @@ public class BlockRelationCommandRepositoryAdapter implements AbstractBlockRelat
     @Override
     public void delete(BlockRelationRoot root) {
         var entity = this.blockRelationDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.blockRelationCommandCustomJPARepository::remove);
+        entity.ifPresent(this.blockRelationCommandCustomJPARepository::inActive);
     }
 }

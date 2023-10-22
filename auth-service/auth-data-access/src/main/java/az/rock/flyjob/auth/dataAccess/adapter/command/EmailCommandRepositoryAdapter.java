@@ -41,7 +41,7 @@ public class EmailCommandRepositoryAdapter implements AbstractEmailCommandReposi
     @Override
     public void delete(EmailRoot root) {
         var entity = this.emailDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.emailCommandCustomJPARepository::remove);
+        entity.ifPresent(this.emailCommandCustomJPARepository::inActive);
     }
 
     @Override

@@ -7,7 +7,6 @@ import org.hibernate.engine.jdbc.spi.JdbcServices;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.internal.AbstractSharedSessionContract;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -52,28 +51,56 @@ public interface CustomCommandJPARepository<T> {
         });
     }
 
-    default <S extends T> void  remove(S entity){
+    default <S extends T> void inActive(S entity){
         if (entity instanceof BaseEntity baseEntity) {
             baseEntity.inActive();
             this.merge(entity);
         }else throw new UnsupportedOperationException();
     }
 
-    default <S extends T> void  removeAndFlush(S entity){
-        this.remove(entity);
+    default <S extends T> void inActiveAndFlush(S entity){
+        this.inActive(entity);
         this.flush();
     }
 
-    default <S extends T> void  removeAll(Iterable<S> entities){
+    default <S extends T> void inActiveAll(Iterable<S> entities){
         this.executeBatch(this.session(), () -> {
-            entities.forEach(this::remove);
+            entities.forEach(this::inActive);
             return null;
         });
     }
 
-    default <S extends T> void  removeAllAndFlush(Iterable<S> entities){
+    default <S extends T> void inActiveAllAndFlush(Iterable<S> entities){
         this.executeBatch(this.session(), () -> {
-            entities.forEach(this::remove);
+            entities.forEach(this::inActive);
+            this.flush();
+            return null;
+        });
+    }
+
+
+    default <S extends T> void delete(S entity){
+        if (entity instanceof BaseEntity baseEntity) {
+            baseEntity.delete();
+            this.merge(entity);
+        }else throw new UnsupportedOperationException();
+    }
+
+    default <S extends T> void deleteAndFlush(S entity){
+        this.delete(entity);
+        this.flush();
+    }
+
+    default <S extends T> void deleteAll(Iterable<S> entities){
+        this.executeBatch(this.session(), () -> {
+            entities.forEach(this::delete);
+            return null;
+        });
+    }
+
+    default <S extends T> void deleteAllAndFlush(Iterable<S> entities){
+        this.executeBatch(this.session(), () -> {
+            entities.forEach(this::delete);
             this.flush();
             return null;
         });
@@ -134,6 +161,7 @@ public interface CustomCommandJPARepository<T> {
     }
 
     default  <R> R executeBatch(Session session,Supplier<R> callback) {
+        var isOpen = session.isOpen();
         Integer jdbcBatchSize = this.getBatchSize(session);
         Integer originalSessionBatchSize = session.getJdbcBatchSize();
         try {
