@@ -111,6 +111,7 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
             var phoneNumber = optionalPhoneNumber.get();
             if (switchCase.isActive()) phoneNumber.enableSmsNotification();
             else phoneNumber.disableSmsNotification();
+            this.phoneNumberCommandRepositoryAdapter.update(phoneNumber);
             var payload = this.toPayload(phoneNumber);
             return PhoneNumberUpdatedEvent.of(payload);
         }else throw new PhoneNumberNotFoundException();
@@ -124,6 +125,7 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
             var phoneNumber = optionalPhoneNumber.get();
             if (switchCase.isActive()) phoneNumber.enableWhatsappNotification();
             else phoneNumber.disableWhatsappNotification();
+            this.phoneNumberCommandRepositoryAdapter.update(phoneNumber);
             var payload = this.toPayload(phoneNumber);
             return PhoneNumberUpdatedEvent.of(payload);
         }else throw new PhoneNumberNotFoundException();
