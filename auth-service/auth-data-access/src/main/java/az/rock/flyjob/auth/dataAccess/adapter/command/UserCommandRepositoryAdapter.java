@@ -3,12 +3,11 @@ package az.rock.flyjob.auth.dataAccess.adapter.command;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.UserDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.user.UserCommandJPARepository;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.compose.AbstractUserComposeQueryBatisRepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class UserCommandRepositoryAdapter implements AbstractUserCommandRepositoryAdapter {
