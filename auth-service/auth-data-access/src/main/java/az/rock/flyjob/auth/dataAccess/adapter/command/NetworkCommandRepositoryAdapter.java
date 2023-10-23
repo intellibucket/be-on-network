@@ -40,7 +40,7 @@ public class NetworkCommandRepositoryAdapter implements AbstractNetworkRelationC
     }
 
     @Override
-    public void delete(NetworkRelationRoot root) {
+    public void inActive(NetworkRelationRoot root) {
         var entity = this.networkRelationDataAccessMapper.toEntity(root);
         entity.ifPresent(this.networkRelationCommandJPARepository::inActive);
     }

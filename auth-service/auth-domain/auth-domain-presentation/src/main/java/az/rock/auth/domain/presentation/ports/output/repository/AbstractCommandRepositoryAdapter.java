@@ -1,6 +1,5 @@
 package az.rock.auth.domain.presentation.ports.output.repository;
 
-import az.rock.flyjob.auth.root.user.EmailRoot;
 import az.rock.lib.annotation.DomainOutputPort;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public interface AbstractCommandRepositoryAdapter<R> {
         throw new UnsupportedOperationException();
     }
 
-    default void delete(R root){
+    default void inActive(R root){
         throw new UnsupportedOperationException();
     }
 

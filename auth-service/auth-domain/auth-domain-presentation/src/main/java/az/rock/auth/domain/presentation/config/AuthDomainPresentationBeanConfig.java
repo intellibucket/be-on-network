@@ -46,7 +46,7 @@ public class AuthDomainPresentationBeanConfig {
 
     @Bean
     public AbstractPasswordDomainService abstractPasswordDomainService() {
-        return new PasswordDomainService();
+        return new PasswordDomainService(this.abstractPasswordEncryptor());
     }
 
     @Bean

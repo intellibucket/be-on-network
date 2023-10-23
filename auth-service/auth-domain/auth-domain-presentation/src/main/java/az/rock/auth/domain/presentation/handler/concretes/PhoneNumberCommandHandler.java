@@ -98,7 +98,7 @@ public class PhoneNumberCommandHandler implements AbstractPhoneNumberCommandHand
         var optionalPhoneNumber = this.phoneNumberQueryRepositoryAdapter.findOwnByID(currentUser,PhoneNumberID.of(uuid));
         if (optionalPhoneNumber.isPresent()){
             var phoneNumber = optionalPhoneNumber.get();
-            this.phoneNumberCommandRepositoryAdapter.delete(phoneNumber);
+            this.phoneNumberCommandRepositoryAdapter.inActive(phoneNumber);
             return PhoneNumberDeletedEvent.of(phoneNumber.getRootID().getAbsoluteID());
         }else throw new PhoneNumberNotFoundException();
     }

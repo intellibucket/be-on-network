@@ -41,7 +41,7 @@ public class FollowCommandRepositoryAdapter implements AbstractFollowRelationCom
     }
 
     @Override
-    public void delete(FollowRelationRoot root) {
+    public void inActive(FollowRelationRoot root) {
         var entity = this.followDataAccessMapper.toEntity(root);
         entity.ifPresent(this.followCommandCustomJPARepository::inActive);
     }

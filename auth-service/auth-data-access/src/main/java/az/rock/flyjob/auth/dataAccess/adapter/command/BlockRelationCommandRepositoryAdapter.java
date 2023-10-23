@@ -52,7 +52,7 @@ public class BlockRelationCommandRepositoryAdapter implements AbstractBlockRelat
     }
 
     @Override
-    public void delete(BlockRelationRoot root) {
+    public void inActive(BlockRelationRoot root) {
         var entity = this.blockRelationDataAccessMapper.toEntity(root);
         entity.ifPresent(this.blockRelationCommandCustomJPARepository::inActive);
     }

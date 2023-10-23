@@ -19,12 +19,6 @@ public class PasswordCommandDomainPresentationService implements AbstractPasswor
 
     @Override
     public void changePassword(PasswordChangeRequest passwordChangeRequest) {
-        try {
-            this.passwordUpdateCommandHandler.handlePasswordChanged(passwordChangeRequest);
-        } catch (UnknownSystemException e) {
-            e.printStackTrace();
-            // TODO: 28.06.23 publish event for redirect to error page
-            throw e;
-        }
+        this.passwordUpdateCommandHandler.handlePasswordChanged(passwordChangeRequest);
     }
 }

@@ -97,7 +97,7 @@ public class FollowRelationCommandHandler implements AbstractFollowRelationComma
         var isPresentActiveRelation =  this.followQueryRepositoryAdapter.findActiveRowForUserAndFollowID(sourceUserId, targetUserId);
         if(isPresentActiveRelation.isPresent()){
             var activeRowRelation = isPresentActiveRelation.get();
-            this.followRelationCommandRepositoryAdapter.delete(activeRowRelation);
+            this.followRelationCommandRepositoryAdapter.inActive(activeRowRelation);
             return UnfollowRelationEvent.of(this.fromRoot(activeRowRelation));
         }else throw new FollowDomainException("F0000000037");
     }

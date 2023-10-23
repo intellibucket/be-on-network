@@ -448,5 +448,23 @@
     "tr": "Telefon nömrəsi tapılmadı",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000051",
+    "az": "Hazırki şifrəniz yanlış daxil edilmişdir",
+    "en": "Current password is incorrect",
+    "ru": "Текущий пароль неверен",
+    "tr": "Geçerli parola yanlış",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000052",
+    "az": "Yeni şifrəniz hazırki şifrəniz ilə eyni olmamalıdır",
+    "en": "New password should not be same as current password",
+    "ru": "Новый пароль не должен совпадать с текущим паролем",
+    "tr": "Yeni parola geçerli parola ile aynı olmamalıdır",
+    "hasRegex": false,
+    "regex": ""
   }
 ]
