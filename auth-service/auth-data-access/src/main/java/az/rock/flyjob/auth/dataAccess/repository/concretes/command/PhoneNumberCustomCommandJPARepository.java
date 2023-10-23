@@ -34,9 +34,4 @@ public class PhoneNumberCustomCommandJPARepository implements AbstractPhoneNumbe
         return this.entityManager.merge(entity);
     }
 
-    @Override
-    public <S extends PhoneNumberEntity> void inActive(S entity) {
-        entity.setRowStatus(RowStatus.DELETED);
-        this.entityManager.merge(entity);
-    }
 }

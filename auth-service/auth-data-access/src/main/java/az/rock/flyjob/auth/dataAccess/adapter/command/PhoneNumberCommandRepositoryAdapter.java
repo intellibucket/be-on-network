@@ -50,6 +50,6 @@ public class PhoneNumberCommandRepositoryAdapter implements AbstractPhoneNumberC
     @Override
     public void delete(PhoneNumberRoot root) {
         var entity = this.phoneNumberDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.phoneNumberCommandJPARepository::inActive);
+        entity.ifPresent(this.phoneNumberCommandJPARepository::delete);
     }
 }
