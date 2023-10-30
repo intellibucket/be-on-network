@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Profile({"local","develop"})
+@Profile({"local","pre-develop","develop"})
 @Component
 public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     @Value("${test.values.user.uuid}")
