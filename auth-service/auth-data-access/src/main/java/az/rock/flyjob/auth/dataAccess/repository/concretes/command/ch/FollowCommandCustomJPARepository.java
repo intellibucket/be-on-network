@@ -1,16 +1,13 @@
-package az.rock.flyjob.auth.dataAccess.repository.concretes.command;
+package az.rock.flyjob.auth.dataAccess.repository.concretes.command.ch;
 
-import az.rock.flyjob.auth.dataAccess.model.entity.network.BlockRelationEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
-import az.rock.flyjob.auth.dataAccess.model.entity.network.NetworkRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractFollowRelationCommandCustomJPARepository;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractNetworkRelationCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NetworkCommandCustomJPARepository implements AbstractNetworkRelationCommandJPARepository {
+public class FollowCommandCustomJPARepository implements AbstractFollowRelationCommandCustomJPARepository {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -21,13 +18,13 @@ public class NetworkCommandCustomJPARepository implements AbstractNetworkRelatio
     }
 
     @Override
-    public <S extends NetworkRelationEntity> S persist(S entity) {
+    public <S extends FollowRelationEntity> S persist(S entity) {
         this.entityManager.persist(entity);
         return entity;
     }
 
     @Override
-    public <S extends NetworkRelationEntity> S merge(S entity) {
+    public <S extends FollowRelationEntity> S merge(S entity) {
         return this.entityManager.merge(entity);
     }
 }

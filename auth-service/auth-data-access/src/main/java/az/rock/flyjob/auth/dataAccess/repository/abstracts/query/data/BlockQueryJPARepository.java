@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.repository.abstracts.query;
+package az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.network.BlockRelationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

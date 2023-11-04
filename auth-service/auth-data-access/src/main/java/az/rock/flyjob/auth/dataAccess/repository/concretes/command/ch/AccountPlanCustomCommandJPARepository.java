@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.repository.concretes.command;
+package az.rock.flyjob.auth.dataAccess.repository.concretes.command.ch;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.user.AccountPlanEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;

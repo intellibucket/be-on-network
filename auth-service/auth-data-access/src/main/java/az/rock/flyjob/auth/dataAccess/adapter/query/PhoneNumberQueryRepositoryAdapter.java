@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.query;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPhoneNumberQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.PhoneNumberQueryJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.PhoneNumberQueryJPARepository;
 import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
 import az.rock.lib.domain.id.auth.PhoneNumberID;
 import az.rock.lib.domain.id.auth.UserID;
