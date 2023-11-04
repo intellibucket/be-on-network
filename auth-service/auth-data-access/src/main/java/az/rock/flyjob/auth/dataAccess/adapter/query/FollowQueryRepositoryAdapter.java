@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.query;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowRelationQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractFollowDataAccessMapper;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.FollowQueryJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.FollowQueryJPARepository;
 import az.rock.flyjob.auth.root.network.FollowRelationRoot;
 import az.rock.lib.domain.id.auth.*;
 import org.springframework.stereotype.Component;

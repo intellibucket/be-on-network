@@ -1,14 +1,15 @@
-package az.rock.flyjob.auth.dataAccess.repository.concretes.command;
+package az.rock.flyjob.auth.dataAccess.repository.concretes.command.ch;
 
-import az.rock.flyjob.auth.dataAccess.model.entity.user.ProfilePictureEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractProfilePictureCustomCommandJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPhoneNumberCommandJPARepository;
+import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProfilePictureCustomCommandJPARepository implements AbstractProfilePictureCustomCommandJPARepository {
+public class PhoneNumberCustomCommandJPARepository implements AbstractPhoneNumberCommandJPARepository {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -19,7 +20,7 @@ public class ProfilePictureCustomCommandJPARepository implements AbstractProfile
     }
 
     @Override
-    public <S extends ProfilePictureEntity> S persist(S entity) {
+    public <S extends PhoneNumberEntity> S persist(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         this.entityManager.persist(entity);
@@ -27,9 +28,10 @@ public class ProfilePictureCustomCommandJPARepository implements AbstractProfile
     }
 
     @Override
-    public <S extends ProfilePictureEntity> S merge(S entity) {
+    public <S extends PhoneNumberEntity> S merge(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         return this.entityManager.merge(entity);
     }
+
 }

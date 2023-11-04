@@ -1,17 +1,14 @@
-package az.rock.flyjob.auth.dataAccess.repository.concretes.command;
+package az.rock.flyjob.auth.dataAccess.repository.concretes.command.ch;
 
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
-import az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEntity;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.user.AbstractUserSettingsCommandCustomJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPasswordCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
-public class UserSettingsCommandCustomJPARepository implements AbstractUserSettingsCommandCustomJPARepository {
-
+public class PasswordCustomCommandJPARepository implements AbstractPasswordCommandJPARepository {
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -21,7 +18,7 @@ public class UserSettingsCommandCustomJPARepository implements AbstractUserSetti
     }
 
     @Override
-    public <S extends UserSettingsEntity> S persist(S entity) {
+    public <S extends PasswordEntity> S persist(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         this.entityManager.persist(entity);
@@ -29,14 +26,9 @@ public class UserSettingsCommandCustomJPARepository implements AbstractUserSetti
     }
 
     @Override
-    public <S extends UserSettingsEntity> S merge(S entity) {
+    public <S extends PasswordEntity> S merge(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         return this.entityManager.merge(entity);
-    }
-
-    @Override
-    public <S extends UserSettingsEntity> List<S> mergeAllAndFlush(Iterable<S> entities) {
-        return AbstractUserSettingsCommandCustomJPARepository.super.mergeAllAndFlush(entities);
     }
 }

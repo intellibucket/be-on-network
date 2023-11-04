@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.query;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.NetworkRelationEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractNetworkDataAccessMapper;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.NetworkQueryJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.NetworkQueryJPARepository;
 import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;
