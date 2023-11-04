@@ -1,15 +1,14 @@
-package az.rock.flyjob.auth.dataAccess.repository.concretes.command.ch;
+package az.rock.flyjob.auth.dataAccess.repository.concretes.command.hibernate;
 
-import az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.email.AbstractEmailCommandCustomJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPasswordCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmailCommandCustomJPARepository implements AbstractEmailCommandCustomJPARepository {
-
+public class PasswordCustomCommandJPARepository implements AbstractPasswordCommandJPARepository {
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -19,7 +18,7 @@ public class EmailCommandCustomJPARepository implements AbstractEmailCommandCust
     }
 
     @Override
-    public <S extends EmailEntity> S persist(S entity) {
+    public <S extends PasswordEntity> S persist(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         this.entityManager.persist(entity);
@@ -27,10 +26,9 @@ public class EmailCommandCustomJPARepository implements AbstractEmailCommandCust
     }
 
     @Override
-    public <S extends EmailEntity> S merge(S entity) {
+    public <S extends PasswordEntity> S merge(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         return this.entityManager.merge(entity);
     }
-
 }

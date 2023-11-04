@@ -1,7 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.repository.concretes.command.ch;
+package az.rock.flyjob.auth.dataAccess.repository.concretes.command.hibernate;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.network.BlockRelationEntity;
-import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractBlockRelationCommandCustomJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

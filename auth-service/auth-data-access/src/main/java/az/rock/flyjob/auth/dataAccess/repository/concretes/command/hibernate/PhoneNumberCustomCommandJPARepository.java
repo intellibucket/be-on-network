@@ -1,14 +1,15 @@
-package az.rock.flyjob.auth.dataAccess.repository.concretes.command.ch;
+package az.rock.flyjob.auth.dataAccess.repository.concretes.command.hibernate;
 
-import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPasswordCommandJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPhoneNumberCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PasswordCustomCommandJPARepository implements AbstractPasswordCommandJPARepository {
+public class PhoneNumberCustomCommandJPARepository implements AbstractPhoneNumberCommandJPARepository {
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -18,7 +19,7 @@ public class PasswordCustomCommandJPARepository implements AbstractPasswordComma
     }
 
     @Override
-    public <S extends PasswordEntity> S persist(S entity) {
+    public <S extends PhoneNumberEntity> S persist(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         this.entityManager.persist(entity);
@@ -26,9 +27,10 @@ public class PasswordCustomCommandJPARepository implements AbstractPasswordComma
     }
 
     @Override
-    public <S extends PasswordEntity> S merge(S entity) {
+    public <S extends PhoneNumberEntity> S merge(S entity) {
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         return this.entityManager.merge(entity);
     }
+
 }
