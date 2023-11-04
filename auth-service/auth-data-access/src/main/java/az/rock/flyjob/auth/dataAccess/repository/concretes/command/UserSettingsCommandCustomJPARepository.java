@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class UserSettingsCommandCustomJPARepository implements AbstractUserSettingsCommandCustomJPARepository {
 
@@ -31,5 +33,10 @@ public class UserSettingsCommandCustomJPARepository implements AbstractUserSetti
         var userEntityReference = this.entityManager.getReference(UserEntity.class, entity.getUser().getUuid());
         entity.setUser(userEntityReference);
         return this.entityManager.merge(entity);
+    }
+
+    @Override
+    public <S extends UserSettingsEntity> List<S> mergeAllAndFlush(Iterable<S> entities) {
+        return AbstractUserSettingsCommandCustomJPARepository.super.mergeAllAndFlush(entities);
     }
 }

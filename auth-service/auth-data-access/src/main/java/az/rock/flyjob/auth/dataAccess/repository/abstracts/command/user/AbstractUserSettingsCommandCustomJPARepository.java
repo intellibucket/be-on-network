@@ -4,4 +4,5 @@ import az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEnt
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.CustomCommandJPARepository;
 
 public interface AbstractUserSettingsCommandCustomJPARepository extends CustomCommandJPARepository<UserSettingsEntity> {
+
 }
