@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @DomainOutputPort
 public interface AbstractUserQueryRepositoryAdapter {
+
     Optional<UserRoot> findById(UserID currentUser);
 
     Boolean isExistByUsername(String username);
