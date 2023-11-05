@@ -3,7 +3,7 @@
 
     <jdbc>
         <driver>org.postgresql.Driver</driver>
-        <url>jdbc:postgresql://62.72.45.66:4445/auth_db</url>
+        <url>jdbc:postgresql://00.00.00.00:4445/auth_db</url>
         <user>X</user>
         <password>X</password>
     </jdbc>

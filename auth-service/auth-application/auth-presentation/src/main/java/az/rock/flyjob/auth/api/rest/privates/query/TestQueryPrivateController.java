@@ -13,7 +13,7 @@ import java.util.UUID;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/tests",produces = MediaType.APPLICATION_JSON_VALUE)
-@Profile({"local","develop"})
+@Profile({"local","pre-develop","develop"})
 public class TestQueryPrivateController implements TestQueryPrivateSpec {
 
     private final AbstractTestQueryDomainPresentationService testQueryDomainPresentationService;
