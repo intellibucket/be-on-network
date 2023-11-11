@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.service.concretes;
 
 import az.rock.flyjob.auth.exception.settings.IllegalLanguageException;
-import az.rock.flyjob.auth.root.user.UserSettingsRoot;
+import az.rock.flyjob.auth.model.root.user.UserSettingsRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserSettingsDomainService;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.Language;

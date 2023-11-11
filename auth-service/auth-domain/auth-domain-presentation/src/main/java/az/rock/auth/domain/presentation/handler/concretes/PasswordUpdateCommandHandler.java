@@ -8,7 +8,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractPasswordDomainM
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractPasswordCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPasswordQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.PasswordUpdatedEvent;
-import az.rock.flyjob.auth.root.user.PasswordProxyRoot;
+import az.rock.flyjob.auth.model.root.user.PasswordProxyRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPasswordDomainService;
 import org.springframework.stereotype.Component;
 

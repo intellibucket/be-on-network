@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.command;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractCommandRoleRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.RoleDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.RoleCommandJPARepository;
-import az.rock.flyjob.auth.root.RoleRoot;
+import az.rock.flyjob.auth.model.root.RoleRoot;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

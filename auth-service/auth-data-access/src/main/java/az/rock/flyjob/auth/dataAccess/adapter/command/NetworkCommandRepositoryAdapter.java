@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.command;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractNetworkRelationCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.NetworkRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractNetworkRelationCommandJPARepository;
-import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
+import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
 

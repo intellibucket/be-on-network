@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.service.concretes;
 import az.rock.flyjob.auth.exception.AccessDeniedDomainException;
 import az.rock.flyjob.auth.exception.password.IncorrectOldPasswordException;
 import az.rock.flyjob.auth.exception.password.SamePasswordOnChangeException;
-import az.rock.flyjob.auth.root.user.PasswordRoot;
+import az.rock.flyjob.auth.model.root.user.PasswordRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPasswordDomainService;
 import az.rock.lib.AbstractPasswordEncryptor;
 import az.rock.lib.domain.id.auth.UserID;

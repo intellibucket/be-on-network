@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.query;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractDetailQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.DetailDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.DetailQueryJPARepository;
-import az.rock.flyjob.auth.root.detail.DetailRoot;
+import az.rock.flyjob.auth.model.root.detail.DetailRoot;
 import az.rock.lib.domain.id.auth.DetailID;
 import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;

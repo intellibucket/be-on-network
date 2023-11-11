@@ -6,12 +6,12 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractFollowDomainMap
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowRelationCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractBlockRelationQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowRelationQueryRepositoryAdapter;
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.block.BlockRelationWhenFollowException;
 import az.rock.flyjob.auth.exception.follow.AlreadyFollowedException;
 import az.rock.flyjob.auth.exception.follow.UnfollowSelfException;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowRelationDomainService;
 import az.rock.lib.domain.id.auth.UserID;
 import com.intellibucket.lib.payload.event.create.follow.FollowRelationEvent;

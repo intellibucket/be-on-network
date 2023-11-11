@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import az.rock.lib.valueObject.EmailType;
 
 import java.util.UUID;

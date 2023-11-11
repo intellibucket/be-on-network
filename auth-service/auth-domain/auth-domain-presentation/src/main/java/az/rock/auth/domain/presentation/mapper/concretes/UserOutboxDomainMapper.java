@@ -1,8 +1,8 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserOutboxDomainMapper;
-import az.rock.flyjob.auth.root.UserOutboxRoot;
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.UserOutboxRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.SagaID;
 import az.rock.lib.valueObject.OutboxStatus;

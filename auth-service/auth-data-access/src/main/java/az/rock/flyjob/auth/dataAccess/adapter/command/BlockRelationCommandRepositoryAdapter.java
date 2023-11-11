@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.BlockRelationDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.BlockRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractBlockRelationCommandCustomJPARepository;
-import az.rock.flyjob.auth.root.network.BlockRelationRoot;
+import az.rock.flyjob.auth.model.root.network.BlockRelationRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
 

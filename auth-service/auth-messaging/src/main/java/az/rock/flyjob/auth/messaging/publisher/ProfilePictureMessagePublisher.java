@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.messaging.publisher;
 
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractProfilePictureMessagePublisher;
-import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
+import az.rock.flyjob.auth.model.root.user.ProfilePictureRoot;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;

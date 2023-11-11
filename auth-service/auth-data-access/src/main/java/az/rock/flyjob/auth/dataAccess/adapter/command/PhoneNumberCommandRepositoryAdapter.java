@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPhoneNumberCommandJPARepository;
-import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
+import az.rock.flyjob.auth.model.root.user.PhoneNumberRoot;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

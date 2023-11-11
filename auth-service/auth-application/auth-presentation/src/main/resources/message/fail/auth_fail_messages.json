@@ -466,5 +466,14 @@
     "tr": "Yeni parola geçerli parola ile aynı olmamalıdır",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000053",
+    "az": "Istifadəçi tapılmadı",
+    "en": "User not found",
+    "ru": "Пользователь не найден",
+    "tr": "Kullanıcı bulunamadı",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

@@ -2,14 +2,11 @@ package az.rock.flyjob.auth.service.concretes;
 
 import az.rock.flyjob.auth.exception.follow.AlreadyFollowedException;
 import az.rock.flyjob.auth.exception.follow.FollowSelfTrackingException;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractFollowRelationDomainService;
 import az.rock.lib.domain.id.auth.*;
-import az.rock.lib.valueObject.UserIdTypePair;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class FollowDomainService implements AbstractFollowRelationDomainService {
 

@@ -3,7 +3,7 @@ package az.rock.auth.domain.presentation.ports.input.outbox.concretes;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserOutboxDomainMapper;
 import az.rock.auth.domain.presentation.ports.input.outbox.abstracts.AbstractUserOutboxInputPort;
 import az.rock.auth.domain.presentation.ports.output.repository.outbox.AbstractUserOutboxRepositoryAdapter;
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.lib.domain.SagaID;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.SagaRoot;

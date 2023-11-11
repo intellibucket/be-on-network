@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.UserDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.user.UserCommandJPARepository;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository;
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

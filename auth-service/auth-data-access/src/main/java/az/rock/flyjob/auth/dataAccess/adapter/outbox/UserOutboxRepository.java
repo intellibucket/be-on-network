@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.outbox;
 import az.rock.auth.domain.presentation.ports.output.repository.outbox.AbstractUserOutboxRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.outbox.AbstractUserOutboxDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.outbox.UserOutboxJPARepository;
-import az.rock.flyjob.auth.root.UserOutboxRoot;
+import az.rock.flyjob.auth.model.root.UserOutboxRoot;
 import az.rock.lib.domain.SagaID;
 import org.springframework.stereotype.Component;
 

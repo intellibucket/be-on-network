@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserSetti
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserSettingsCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserSettingsQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.flyjob.auth.root.user.UserSettingsRoot;
+import az.rock.flyjob.auth.model.root.user.UserSettingsRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserSettingsDomainService;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;

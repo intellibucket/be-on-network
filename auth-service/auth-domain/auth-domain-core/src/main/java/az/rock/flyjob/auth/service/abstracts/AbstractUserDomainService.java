@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.service.abstracts;
 
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;

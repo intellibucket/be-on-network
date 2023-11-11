@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.command;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractEmailCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.email.AbstractEmailCommandCustomJPARepository;
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
 

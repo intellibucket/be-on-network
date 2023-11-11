@@ -3,7 +3,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractEmailDataAccessMapper;
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.util.GDateTime;

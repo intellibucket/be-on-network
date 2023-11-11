@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractAc
 import az.rock.flyjob.auth.dataAccess.model.entity.user.AccountPlanEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractAccountPlanDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.AccountPlanQueryJPARepository;
-import az.rock.flyjob.auth.root.user.AccountPlanRoot;
+import az.rock.flyjob.auth.model.root.user.AccountPlanRoot;
 import az.rock.lib.domain.id.auth.AccountPlanID;
 import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;

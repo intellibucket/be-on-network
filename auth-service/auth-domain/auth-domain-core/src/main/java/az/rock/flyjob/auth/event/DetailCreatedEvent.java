@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.event;
 
-import az.rock.flyjob.auth.root.detail.DetailRoot;
+import az.rock.flyjob.auth.model.root.detail.DetailRoot;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 
 public class DetailCreatedEvent  extends AbstractDomainEvent<DetailRoot> {

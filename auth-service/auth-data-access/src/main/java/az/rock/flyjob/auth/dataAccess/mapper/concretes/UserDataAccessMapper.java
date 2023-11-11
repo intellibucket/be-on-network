@@ -5,9 +5,9 @@ import az.rock.flyjob.auth.dataAccess.model.entity.user.*;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.*;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEntity;
-import az.rock.flyjob.auth.root.detail.DetailRoot;
-import az.rock.flyjob.auth.root.user.*;
-import az.rock.flyjob.auth.root.user.device.DeviceRoot;
+import az.rock.flyjob.auth.model.root.detail.DetailRoot;
+import az.rock.flyjob.auth.model.root.user.*;
+import az.rock.flyjob.auth.model.root.user.device.DeviceRoot;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.TimeZoneID;
@@ -30,7 +30,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
 
     private final AbstractDeviceDataAccessMapper<DeviceEntity, DeviceRoot> deviceDataAccessMapper;
 
-    private final AbstractUserSettingsDataAccessMapper<UserSettingsEntity,UserSettingsRoot> userSettingsDataAccessMapper;
+    private final AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> userSettingsDataAccessMapper;
 
 
     public UserDataAccessMapper(AbstractPasswordDataAccessMapper<PasswordEntity, PasswordRoot> passwordDataAccessMapper,

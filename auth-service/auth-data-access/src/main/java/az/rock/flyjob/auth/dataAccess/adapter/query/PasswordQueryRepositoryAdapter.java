@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPa
 import az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.PasswordQueryJPARepository;
-import az.rock.flyjob.auth.root.user.PasswordRoot;
+import az.rock.flyjob.auth.model.root.user.PasswordRoot;
 import az.rock.lib.domain.id.auth.PasswordID;
 import az.rock.lib.domain.id.auth.UserID;
 import org.springframework.stereotype.Component;

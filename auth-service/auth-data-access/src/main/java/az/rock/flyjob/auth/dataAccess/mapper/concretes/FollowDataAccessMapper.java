@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractFollowDataAccessMapper;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import az.rock.lib.domain.id.auth.FollowID;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.Version;

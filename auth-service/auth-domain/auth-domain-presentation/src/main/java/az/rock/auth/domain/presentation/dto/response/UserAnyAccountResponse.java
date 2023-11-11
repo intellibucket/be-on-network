@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 
@@ -11,7 +11,7 @@ public record UserAnyAccountResponse(UUID uuid,
                                      String lastName,
                                      String username,
                                      TimeZoneID timezone,
-                                     Gender gender) {
+                                     byte[] profileImage) {
 
     private UserAnyAccountResponse(UserRoot root){
         this(root.getRootID().getRootID(),
@@ -19,9 +19,23 @@ public record UserAnyAccountResponse(UUID uuid,
                 root.getLastName(),
                 root.getUsername(),
                 root.getTimezone(),
-                root.getGender());
+                null);
     }
+
+    private UserAnyAccountResponse(UserRoot root, byte[] profileImage){
+        this(root.getRootID().getRootID(),
+                root.getFirstName(),
+                root.getLastName(),
+                root.getUsername(),
+                root.getTimezone(),
+                profileImage);
+    }
+
     public static UserAnyAccountResponse of(UserRoot root){
         return new UserAnyAccountResponse(root);
+    }
+
+    public static UserAnyAccountResponse of(UserRoot root, byte[] profileImage){
+        return new UserAnyAccountResponse(root, profileImage);
     }
 }

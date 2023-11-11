@@ -3,8 +3,7 @@ package az.rock.flyjob.auth.dataAccess.adapter.command;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractAccountPlanCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.AccountPlanDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.account.AbstractAccountPlanCommandJPARepository;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.account.AccountPlanCommandJPARepository;
-import az.rock.flyjob.auth.root.user.AccountPlanRoot;
+import az.rock.flyjob.auth.model.root.user.AccountPlanRoot;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

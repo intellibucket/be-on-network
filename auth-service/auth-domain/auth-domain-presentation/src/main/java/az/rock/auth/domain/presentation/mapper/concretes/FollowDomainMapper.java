@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractFollowDomainMapper;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import az.rock.lib.domain.id.auth.*;
 import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Component;

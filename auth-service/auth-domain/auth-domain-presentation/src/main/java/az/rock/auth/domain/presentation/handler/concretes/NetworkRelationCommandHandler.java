@@ -11,7 +11,7 @@ import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.NoActiveRowException;
 import az.rock.flyjob.auth.exception.block.BlockRelationWhenFollowException;
 import az.rock.flyjob.auth.exception.follow.AlreadyFollowedException;
-import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
+import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractNetworkRelationDomainService;
 import az.rock.lib.domain.id.auth.UserID;
 import com.intellibucket.lib.payload.event.create.network.NetworkRelationEvent;

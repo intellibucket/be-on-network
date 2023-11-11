@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import lombok.Builder;
 
 import java.util.UUID;

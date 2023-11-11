@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.service.abstracts;
 
-import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
+import az.rock.flyjob.auth.model.root.user.PhoneNumberRoot;
 
 import java.util.List;
 

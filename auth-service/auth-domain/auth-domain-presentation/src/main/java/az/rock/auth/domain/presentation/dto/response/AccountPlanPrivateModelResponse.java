@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
-import az.rock.flyjob.auth.root.user.AccountPlanRoot;
+import az.rock.flyjob.auth.model.root.user.AccountPlanRoot;
 import az.rock.lib.valueObject.AccountPlanType;
 
 import java.time.ZonedDateTime;

@@ -7,7 +7,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractUserDomainMappe
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractQueryRoleDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserQueryRepositoryAdapter;
 import az.rock.flyjob.auth.exception.UsernameAlreadyExistException;
 import az.rock.flyjob.auth.exception.email.EmailAlreadyUsedException;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;

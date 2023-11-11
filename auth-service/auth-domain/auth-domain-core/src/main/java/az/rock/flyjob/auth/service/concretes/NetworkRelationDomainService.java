@@ -2,10 +2,8 @@ package az.rock.flyjob.auth.service.concretes;
 
 import az.rock.flyjob.auth.exception.network.AlreadyHasActiveNetworkRelationException;
 import az.rock.flyjob.auth.exception.network.ConnectItselfException;
-import az.rock.flyjob.auth.exception.network.NetworkStatusNotValidException;
-import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
+import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractNetworkRelationDomainService;
-import az.rock.lib.valueObject.NetworkStatus;
 
 import java.util.List;
 import java.util.UUID;

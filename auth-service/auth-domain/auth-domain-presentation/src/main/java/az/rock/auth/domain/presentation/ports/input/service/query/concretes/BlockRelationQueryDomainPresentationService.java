@@ -3,7 +3,7 @@ package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractBlockRelationQueryDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractBlockRelationQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.flyjob.auth.root.network.BlockRelationRoot;
+import az.rock.flyjob.auth.model.root.network.BlockRelationRoot;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

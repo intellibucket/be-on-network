@@ -1,11 +1,8 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractBlockRelationDomainMapper;
-import az.rock.flyjob.auth.root.network.BlockRelationRoot;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.BlockRelationRoot;
 import az.rock.lib.domain.id.BlockID;
-import az.rock.lib.domain.id.auth.FollowID;
-import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.service.concretes;
 
 import az.rock.flyjob.auth.exception.AuthDomainException;
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.util.GObjects;
 import az.rock.lib.util.StringUtils;

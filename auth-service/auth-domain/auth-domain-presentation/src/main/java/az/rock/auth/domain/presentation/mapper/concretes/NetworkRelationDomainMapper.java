@@ -1,8 +1,7 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractNetworkRelationDomainMapper;
-import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
-import az.rock.lib.domain.id.auth.FollowID;
+import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
 import az.rock.lib.domain.id.auth.NetworkID;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.*;

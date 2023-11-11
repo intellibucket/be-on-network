@@ -5,7 +5,7 @@ import az.rock.flyjob.auth.dataAccess.mapper.concretes.FollowDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractFollowRelationCommandCustomJPARepository;
 //import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.network.FollowCommandJPARepository;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
 

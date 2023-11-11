@@ -3,7 +3,7 @@ package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractFollowRelationQueryDomainPresentationService;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractFollowRelationQueryRepositoryAdapter;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -7,11 +7,11 @@ import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.Ab
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractNetworkRelationCommandDomainInnerService;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractBlockRelationCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractBlockRelationQueryRepositoryAdapter;
-import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserQueryRepositoryAdapter;
+import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.block.AlreadyBlockedException;
 import az.rock.flyjob.auth.exception.block.AlreadyUnblockedException;
-import az.rock.flyjob.auth.root.network.BlockRelationRoot;
+import az.rock.flyjob.auth.model.root.network.BlockRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractBlockRelationDomainService;
 import az.rock.lib.domain.id.auth.UserID;
 import com.intellibucket.lib.payload.event.create.block.BlockRelationEvent;

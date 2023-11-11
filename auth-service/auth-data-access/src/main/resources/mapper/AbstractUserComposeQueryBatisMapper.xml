@@ -21,7 +21,7 @@
 
 
     <resultMap id="user_profile_result_map"
-               type="az.rock.flyjob.auth.dataAccess.model.query.UserProfileQueryRecord">
+               type="az.rock.flyjob.auth.model.query.UserProfileQueryRecord">
         <id property="userId"
             column="uuid"
             typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
@@ -38,15 +38,6 @@
         <result property="timezone" column="timezone"/>
         <result property="followCount" column="followCount"/>
         <result property="networkCount" column="networkCount"/>
-        <!--        <collection property="emails"-->
-        <!--                    foreignColumn="user_uuid"-->
-        <!--                    fetchType="eager"-->
-        <!--                    ofType="az.rock.flyjob.auth.dataAccess.model.compose.user.EmailCompose"-->
-        <!--                    javaType="java.util.ArrayList">-->
-        <!--            <id property="uuid"-->
-        <!--                column="uuid"-->
-        <!--                typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>-->
-        <!--        </collection>-->
     </resultMap>
 
 
@@ -67,7 +58,6 @@
                               and frr.process_status = 'COMPLETED') fr
                            on fr.followed_user_id = usr.uuid
         where usr.uuid = #{userId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
-        group by usr.uuid, usr.version, usr.process_status, user_type, first_name, last_name, username,
-                 timezone;
+        group by usr.uuid, usr.version, usr.process_status, user_type, first_name, last_name, username,timezone;
     </select>
 </mapper>

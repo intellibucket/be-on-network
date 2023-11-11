@@ -2,7 +2,7 @@ package az.rock.auth.domain.presentation.mapper.abstracts;
 
 import az.rock.auth.domain.presentation.dto.request.EmailChangeRequest;
 import az.rock.auth.domain.presentation.dto.request.EmailCreateRequest;
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import az.rock.lib.domain.id.auth.UserID;
 
 public interface AbstractEmailDomainMapper {

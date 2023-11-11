@@ -1,7 +1,6 @@
 package az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis;
 
-import az.rock.flyjob.auth.dataAccess.model.compose.user.UserCompose;
-import az.rock.flyjob.auth.dataAccess.model.query.UserProfileQueryRecord;
+import az.rock.flyjob.auth.model.query.UserProfileQueryRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -2,8 +2,8 @@ package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractDetailDomainMapper;
-import az.rock.flyjob.auth.root.RoleRoot;
-import az.rock.flyjob.auth.root.detail.DetailRoot;
+import az.rock.flyjob.auth.model.root.RoleRoot;
+import az.rock.flyjob.auth.model.root.detail.DetailRoot;
 import az.rock.lib.domain.id.auth.*;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;

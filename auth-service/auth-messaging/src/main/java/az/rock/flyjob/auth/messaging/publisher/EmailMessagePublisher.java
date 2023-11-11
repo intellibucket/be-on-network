@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.messaging.publisher;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractEmailMessagePublisher;
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import az.rock.lib.valueObject.SagaRoot;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.trx.Saga;

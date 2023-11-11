@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.service.abstracts;
 
-import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
+import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
 
 import java.util.List;
 import java.util.UUID;

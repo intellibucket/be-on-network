@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.event.email;
 
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.Event;
 

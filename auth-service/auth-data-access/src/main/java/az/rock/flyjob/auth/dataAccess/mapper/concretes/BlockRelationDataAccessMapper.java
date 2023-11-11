@@ -2,7 +2,7 @@ package az.rock.flyjob.auth.dataAccess.mapper.concretes;
 
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractBlockRelationDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.BlockRelationEntity;
-import az.rock.flyjob.auth.root.network.BlockRelationRoot;
+import az.rock.flyjob.auth.model.root.network.BlockRelationRoot;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
