@@ -113,11 +113,11 @@ public class UserRoot extends AggregateRoot<UserID> {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getBiography() {
-        return biography;
+        return this.biography;
     }
     public EmailRoot getPrimaryEmail() {
         return this.emails.stream().filter(EmailRoot::isPrimary).findFirst().orElse(null);
@@ -132,6 +132,7 @@ public class UserRoot extends AggregateRoot<UserID> {
     public Gender getGender() {
         return gender;
     }
+
     public void changeFirstName(String firstName) {
         this.firstName = StringUtils.capitalize(firstName);
     }
@@ -150,11 +151,13 @@ public class UserRoot extends AggregateRoot<UserID> {
     }
 
     public UserRoot changeTitle(String title) {
+        if (title == null) return this;
         this.title = title.trim();
         return this;
     }
 
     public UserRoot changeBiography(String biography) {
+        if (biography == null) return this;
         this.biography = biography.trim();
         return this;
     }
@@ -260,11 +263,13 @@ public class UserRoot extends AggregateRoot<UserID> {
         }
 
         public Builder title(String val) {
+            if (val == null) return this;
             title = val.trim();
             return this;
         }
 
         public Builder biography(String val) {
+            if (val == null) return this;
             biography = val.trim();
             return this;
         }

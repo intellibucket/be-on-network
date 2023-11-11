@@ -69,8 +69,9 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                         .lastName(entity.getLastName())
                         .username(entity.getUsername())
                         .timezone(TimeZoneID.of(entity.getTimezone()))
+                        .gender(entity.getGender())
                         .title(entity.getTitle())
-                        .biography(entity.getBiography().trim())
+                        .biography(entity.getBiography())
                     .build());
     }
 

@@ -98,6 +98,8 @@ public class UserEntity extends BaseEntity {
         setUsername(builder.username);
         setTimezone(builder.timezone);
         setGender(builder.gender);
+        setTitle(builder.title);
+        setBiography(builder.biography);
         setPasswords(builder.passwords);
         setEmails(builder.emails);
         setPhoneNumbers(builder.phoneNumbers);

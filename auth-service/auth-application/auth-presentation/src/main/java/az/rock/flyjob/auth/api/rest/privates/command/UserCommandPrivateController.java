@@ -60,12 +60,16 @@ public class UserCommandPrivateController implements UserCommandPrivateSpec {
     }
 
     @Override
+    @PutMapping("/change-title")
     public ResponseEntity<JSuccessResponse> changeTitle(String title) {
-        return null;
+        this.userCommandDomainPresentationService.changeTitle(title);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
+    @PutMapping("/change-biography")
     public ResponseEntity<JSuccessResponse> changeBiography(String biography) {
-        return null;
+        this.userCommandDomainPresentationService.changeBiography(biography);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 }
