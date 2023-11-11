@@ -1,56 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository" >
+<mapper namespace="az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository">
 
-    <resultMap id="user_profile_compose_result"
-               type="az.rock.flyjob.auth.dataAccess.model.compose.user.UserCompose">
-        <id property="uuid"
-            column="uuid"
-            typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
-        <result property="userType"
-                column="user_type"/>
-        <result property="key"
-                column="key"
-                typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
-
-        <collection property="emails"
-                    foreignColumn="user_uuid"
-                    fetchType="eager"
-                    ofType="az.rock.flyjob.auth.dataAccess.model.compose.user.EmailCompose"
-                    javaType="java.util.ArrayList">
-            <id property="uuid"
-                column="uuid"
-                typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
-        </collection>
-
-    </resultMap>
-
-    <sql id="user_profile_compose_sql">
-        main.id as parent_id,
-               main.declaration_id,
-               main.row_order,
-               main.input_type,
-               main.full_name,
-               main.pin as emp_pin,
-                ssn.ssn as sys_ssn,
-                main.country,
-                main.passport_serial,
-                main.passport_no,
-               amount.id as amount_id,
-               amount.main_id,
-               amount.indicator,
-               amount.amount_m1,
-               amount.amount_m2,
-               amount.amount_m3,
-               amount.amount_quarter
+    <sql id="user_profile_result_sql">
+        usr.uuid as uuid,
+       usr.version as version,
+       usr.row_status as rowStatus,
+       usr.process_status as processStatus,
+       usr.first_name as firstName,
+       usr.last_name as lastName,
+       usr.username as username,
+       usr.title as title,
+       usr.biography as biography,
+       usr.gender as gender,
+       usr.user_type as userType,
+       usr.timezone as timezone,
+       count(fr.uuid) as followCount,
+       count(nr.uuid) as networkCount
     </sql>
 
 
-    <select id="findUserProfileComposeByUserId" resultMap="user_profile_compose_result">
-        select
-        <include refid="user_profile_compose_sql"/>
-        from auth.users users
-        left join auth.emails emails on users.uuid = emails.user_uuid
-        where users.uuid = #{userId, jdbcType=VARCHAR} and users.row_status='ACTIVE'
+    <resultMap id="user_profile_result_map"
+               type="az.rock.flyjob.auth.dataAccess.model.query.UserProfileQueryRecord">
+        <id property="userId"
+            column="uuid"
+            typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
+        <result property="version" column="version"/>
+        <result property="rowStatus" column="rowStatus"/>
+        <result property="processStatus" column="processStatus"/>
+        <result property="firstName" column="firstName"/>
+        <result property="lastName" column="lastName"/>
+        <result property="username" column="username"/>
+        <result property="title" column="title"/>
+        <result property="biography" column="biography"/>
+        <result property="gender" column="gender"/>
+        <result property="userType" column="userType"/>
+        <result property="timezone" column="timezone"/>
+        <result property="followCount" column="followCount"/>
+        <result property="networkCount" column="networkCount"/>
+        <!--        <collection property="emails"-->
+        <!--                    foreignColumn="user_uuid"-->
+        <!--                    fetchType="eager"-->
+        <!--                    ofType="az.rock.flyjob.auth.dataAccess.model.compose.user.EmailCompose"-->
+        <!--                    javaType="java.util.ArrayList">-->
+        <!--            <id property="uuid"-->
+        <!--                column="uuid"-->
+        <!--                typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>-->
+        <!--        </collection>-->
+    </resultMap>
+
+
+    <select id="findUserProfileById" resultMap="user_profile_result_map">
+        select <include refid="user_profile_result_sql"/>
+        from auth.users usr
+                 left join (select *
+                            from network.network_relation nrr
+                            where nrr.process_status = 'COMPLETED'
+                              and nrr.row_status = 'ACTIVE'
+                              and network_status = 'ACCEPTED'
+                              and block_reason_status = 'UNKNOWN') nr
+                           on (nr.request_owner_id = usr.uuid) or (nr.request_target_id = usr.uuid)
+                 left join (select *
+                            from network.follow_relation frr
+                            where frr.row_status = 'ACTIVE'
+                              and frr.follow_status = 'ACCEPTED'
+                              and frr.process_status = 'COMPLETED') fr
+                           on fr.followed_user_id = usr.uuid
+        where usr.uuid = #{userId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+        group by usr.uuid, usr.version, usr.process_status, user_type, first_name, last_name, username,
+                 timezone;
     </select>
 </mapper>

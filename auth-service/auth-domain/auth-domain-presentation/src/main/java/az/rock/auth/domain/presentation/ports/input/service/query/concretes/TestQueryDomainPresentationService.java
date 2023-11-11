@@ -18,6 +18,9 @@ public class TestQueryDomainPresentationService implements AbstractTestQueryDoma
 
     @Override
     public void case1(UUID userId) {
-        abstractTestQueryRepositoryAdapter.case1(userId);
+        var optional = abstractTestQueryRepositoryAdapter.case1(userId);
+        if (optional.isPresent()){
+            var response = optional.get();
+        }
     }
 }
