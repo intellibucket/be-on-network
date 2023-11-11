@@ -58,4 +58,14 @@ public class UserCommandPrivateController implements UserCommandPrivateSpec {
         this.userCommandDomainPresentationService.changeTimezone(TimeZoneID.of(timezone));
         return ResponseEntity.ok(new JSuccessResponse());
     }
+
+    @Override
+    public ResponseEntity<JSuccessResponse> changeTitle(String title) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<JSuccessResponse> changeBiography(String biography) {
+        return null;
+    }
 }

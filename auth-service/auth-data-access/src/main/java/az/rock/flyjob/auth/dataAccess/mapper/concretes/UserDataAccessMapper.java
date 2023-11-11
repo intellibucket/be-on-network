@@ -55,21 +55,23 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         var optionalUserEntity = Optional.ofNullable(entity);
         if (optionalUserEntity.isEmpty()) return Optional.empty();
         return Optional.of(UserRoot.Builder
-                .builder()
-                .id(UserID.of(entity.getUuid()))
-                .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
-                .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
-                .version(entity.getVersion())
-                .processStatus(entity.getProcessStatus())
-                .rowStatus(entity.getRowStatus())
-                .accessModifier(entity.getAccessModifier())
-                .userType(entity.getUserType())
-                .key(entity.getKey())
-                .firstName(entity.getFirstName())
-                .lastName(entity.getLastName())
-                .username(entity.getUsername())
-                .timezone(TimeZoneID.of(entity.getTimezone()))
-                .build());
+                        .builder()
+                        .id(UserID.of(entity.getUuid()))
+                        .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
+                        .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
+                        .version(entity.getVersion())
+                        .processStatus(entity.getProcessStatus())
+                        .rowStatus(entity.getRowStatus())
+                        .accessModifier(entity.getAccessModifier())
+                        .userType(entity.getUserType())
+                        .key(entity.getKey())
+                        .firstName(entity.getFirstName())
+                        .lastName(entity.getLastName())
+                        .username(entity.getUsername())
+                        .timezone(TimeZoneID.of(entity.getTimezone()))
+                        .title(entity.getTitle())
+                        .biography(entity.getBiography().trim())
+                    .build());
     }
 
     @Override
@@ -92,6 +94,8 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .timezone(root.getTimezone().getValue())
+                .title(root.getTitle())
+                .biography(root.getBiography())
                 .build());
     }
 
@@ -144,6 +148,8 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .timezone(root.getTimezone().getValue())
+                .title(root.getTitle())
+                .biography(root.getBiography())
                 .passwords(passwordEntities)
                 .gender(root.getGender())
                 .emails(emailEntities)

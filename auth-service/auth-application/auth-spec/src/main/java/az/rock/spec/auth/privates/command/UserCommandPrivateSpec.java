@@ -20,5 +20,7 @@ public interface UserCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> changeGender(Gender gender);
     ResponseEntity<JSuccessResponse> changeTimezone(String timezone);
 
+    ResponseEntity<JSuccessResponse> changeTitle(String title);
 
+    ResponseEntity<JSuccessResponse> changeBiography(String biography);
 }

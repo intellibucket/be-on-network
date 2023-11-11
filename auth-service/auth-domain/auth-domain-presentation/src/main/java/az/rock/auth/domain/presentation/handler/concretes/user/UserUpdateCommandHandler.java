@@ -41,6 +41,7 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
         return currentUserRoot.get();
     }
 
+    //TODO UserUpdatedEvent must be implemented and returned
 
     @Override
     public UserUpdatedEvent handleFirstnameUpdated(String firstname) {
@@ -80,6 +81,22 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
     public UserUpdatedEvent handleTimezoneUpdated(TimeZoneID timezone) {
         var currentUserRoot = this.findCurrentUser();
         var updatedRoot = this.userDomainService.changeTimezone(currentUserRoot, timezone);
+        this.userCommandRepositoryAdapter.update(updatedRoot);
+        return null;
+    }
+
+    @Override
+    public UserUpdatedEvent handleTitleUpdated(String title) {
+        var currentUserRoot = this.findCurrentUser();
+        var updatedRoot = this.userDomainService.changeTitle(currentUserRoot, title);
+        this.userCommandRepositoryAdapter.update(updatedRoot);
+        return null;
+    }
+
+    @Override
+    public UserUpdatedEvent handleBiographyUpdated(String biography) {
+        var currentUserRoot = this.findCurrentUser();
+        var updatedRoot = this.userDomainService.changeBiography(currentUserRoot, biography);
         this.userCommandRepositoryAdapter.update(updatedRoot);
         return null;
     }

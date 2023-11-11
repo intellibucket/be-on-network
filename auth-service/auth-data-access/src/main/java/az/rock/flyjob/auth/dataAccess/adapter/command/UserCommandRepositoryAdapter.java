@@ -29,7 +29,6 @@ public class UserCommandRepositoryAdapter implements AbstractUserCommandReposito
     public Optional<UserRoot> create(UserRoot root) {
         var entity = this.userDataAccessMapper.toNewEntity(root);
         if(entity.isPresent()) {
-            //var result = userComposeQueryJPARepository.findUserSimpleComposeByUserId(UUID.fromString("f6cfb6f2-597b-494c-8173-0e1d4157b0bc"));
             var savedEntity = this.userCommandJPARepository.saveAndFlush(entity.get());
             return this.userDataAccessMapper.toRoot(savedEntity);
         }else return Optional.empty();

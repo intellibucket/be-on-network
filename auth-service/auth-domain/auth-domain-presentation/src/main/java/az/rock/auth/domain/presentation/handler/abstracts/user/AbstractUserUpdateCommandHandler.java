@@ -14,4 +14,8 @@ public interface AbstractUserUpdateCommandHandler {
     UserUpdatedEvent handleGenderUpdated(Gender gender);
 
     UserUpdatedEvent handleTimezoneUpdated(TimeZoneID timezone);
+
+    UserUpdatedEvent handleTitleUpdated(String title);
+
+    UserUpdatedEvent handleBiographyUpdated(String biography);
 }

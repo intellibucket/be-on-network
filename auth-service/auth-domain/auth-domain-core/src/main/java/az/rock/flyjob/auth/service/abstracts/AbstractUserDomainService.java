@@ -20,4 +20,8 @@ public interface AbstractUserDomainService {
     UserRoot changeGender(UserRoot currentUserRoot, Gender gender);
 
     UserRoot changeTimezone(UserRoot currentUserRoot, TimeZoneID timezone);
+
+    UserRoot changeTitle(UserRoot currentUserRoot, String title);
+
+    UserRoot changeBiography(UserRoot currentUserRoot, String biography);
 }

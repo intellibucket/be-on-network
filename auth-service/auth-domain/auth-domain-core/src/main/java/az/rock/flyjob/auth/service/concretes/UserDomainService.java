@@ -82,4 +82,14 @@ public class UserDomainService implements AbstractUserDomainService {
     public UserRoot changeTimezone(UserRoot currentUserRoot, TimeZoneID timezone) {
         return currentUserRoot.changeTimezone(timezone);
     }
+
+    @Override
+    public UserRoot changeTitle(UserRoot currentUserRoot, String title) {
+        return currentUserRoot.changeTitle(title);
+    }
+
+    @Override
+    public UserRoot changeBiography(UserRoot currentUserRoot, String biography) {
+        return currentUserRoot.changeBiography(biography);
+    }
 }

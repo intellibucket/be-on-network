@@ -121,6 +121,9 @@ public class UserEntity extends BaseEntity {
         private @Min(value = 2, message = "Username must be at least 3 characters long") @Max(value = 30, message = "Username must be at most 20 characters long") String username;
         private @Min(value = 1, message = "Timezone must be at least 3 characters long") String timezone;
         private Gender gender;
+
+        private String title;
+        private String biography;
         private UserType userType;
         private AccessModifier accessModifier;
         private List<PasswordEntity> passwords;
@@ -175,6 +178,16 @@ public class UserEntity extends BaseEntity {
 
         public Builder gender(Gender val) {
             gender = val;
+            return this;
+        }
+
+        public Builder title(String val) {
+            title = val;
+            return this;
+        }
+
+        public Builder biography(String val) {
+            biography = val;
             return this;
         }
 

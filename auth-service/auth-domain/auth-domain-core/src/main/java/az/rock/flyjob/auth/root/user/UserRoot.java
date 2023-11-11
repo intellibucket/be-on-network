@@ -15,15 +15,15 @@ import java.util.stream.Collectors;
 
 public class UserRoot extends AggregateRoot<UserID> {
     private final UUID key;
-
     private final AccessModifier accessModifier;
-
     private final UserType userType;
     private String firstName;
     private String lastName;
     private String username;
     private TimeZoneID timezone;
     private Gender gender;
+    private String title;
+    private String biography;
     private final Set<PasswordRoot> passwords;
     private final Set<EmailRoot> emails;
     private final Set<PhoneNumberRoot> phoneNumbers;
@@ -31,8 +31,6 @@ public class UserRoot extends AggregateRoot<UserID> {
     private final Set<AccountPlanRoot> accountPlans;
     private final Set<DeviceRoot> devices;
     private final UserSettingsRoot userSettingsRoot;
-
-
     private UserRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         this.key = builder.key;
@@ -41,6 +39,8 @@ public class UserRoot extends AggregateRoot<UserID> {
         this.username = builder.username;
         this.passwords = builder.password;
         this.timezone = builder.timezone;
+        this.title = builder.title;
+        this.biography = builder.biography;
         this.emails = builder.emails;
         this.detailRoot = builder.detail;
         this.gender = builder.gender;
@@ -79,6 +79,7 @@ public class UserRoot extends AggregateRoot<UserID> {
     public Set<PasswordRoot> getInActivePasswords() {
         return passwords.stream().filter(PasswordRoot::inActivePassword).collect(Collectors.toSet());
     }
+
     public PasswordRoot getCurrentPassword() {
         return passwords.stream().filter(PasswordRoot::currentPassword).findFirst().orElse(null);
     }
@@ -111,15 +112,19 @@ public class UserRoot extends AggregateRoot<UserID> {
         return userType;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public String getBiography() {
+        return biography;
+    }
     public EmailRoot getPrimaryEmail() {
         return this.emails.stream().filter(EmailRoot::isPrimary).findFirst().orElse(null);
     }
-
     public String getAbsoluteEmail() {
         return this.getPrimaryEmail().getEmail();
     }
-
     public DetailRoot getDetailRoot() {
         return detailRoot;
     }
@@ -127,28 +132,33 @@ public class UserRoot extends AggregateRoot<UserID> {
     public Gender getGender() {
         return gender;
     }
-
-
     public void changeFirstName(String firstName) {
         this.firstName = StringUtils.capitalize(firstName);
     }
-
     public void changeLastName(String lastName) {
         this.lastName = StringUtils.capitalize(lastName);
     }
-
     public void changeUsername(String username) {
         this.username = StringUtils.lowerCase(username);
     }
-
     public void changeGender(Gender gender) {
         this.gender = gender;
     }
-
     public UserRoot changeTimezone(TimeZoneID timezone) {
         this.timezone = timezone;
         return this;
     }
+
+    public UserRoot changeTitle(String title) {
+        this.title = title.trim();
+        return this;
+    }
+
+    public UserRoot changeBiography(String biography) {
+        this.biography = biography.trim();
+        return this;
+    }
+
     public static final class Builder {
         private UserID id;
         private Version version;
@@ -157,14 +167,19 @@ public class UserRoot extends AggregateRoot<UserID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private AccessModifier accessModifier = AccessModifier.PUBLIC;
-
         private UserType userType;
         private UUID key;
         private String firstName;
         private String lastName;
         private String username;
         private TimeZoneID timezone;
+
         public Gender gender;
+
+        private String title;
+
+        private String biography;
+
         private Set<PasswordRoot> password = new HashSet<>();
         private Set<EmailRoot> emails = new HashSet<>();
         private Set<PhoneNumberRoot> phoneNumbers = new HashSet<>();
@@ -173,9 +188,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         public Set<DeviceRoot> devices  = new HashSet<>();
         public UserSettingsRoot userSettingsRoot ;
 
-
-        private Builder() {
-        }
+        private Builder() {}
 
         public static Builder builder() {
             return new Builder();
@@ -243,6 +256,16 @@ public class UserRoot extends AggregateRoot<UserID> {
 
         public Builder username(String val) {
             username = val;
+            return this;
+        }
+
+        public Builder title(String val) {
+            title = val.trim();
+            return this;
+        }
+
+        public Builder biography(String val) {
+            biography = val.trim();
             return this;
         }
 

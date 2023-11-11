@@ -68,5 +68,15 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
         var event = this.userUpdateCommandHandler.handleTimezoneUpdated(timezone);
     }
 
+    @Override
+    public void changeTitle(String title) {
+        var event = this.userUpdateCommandHandler.handleTitleUpdated(title);
+    }
+
+    @Override
+    public void changeBiography(String biography) {
+        var event = this.userUpdateCommandHandler.handleBiographyUpdated(biography);
+    }
+
 
 }

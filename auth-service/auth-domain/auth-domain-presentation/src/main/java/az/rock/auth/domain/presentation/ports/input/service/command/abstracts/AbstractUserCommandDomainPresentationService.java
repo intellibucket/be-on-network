@@ -23,4 +23,8 @@ public interface AbstractUserCommandDomainPresentationService {
     void changeGender(Gender gender);
 
     void changeTimezone(TimeZoneID timezone);
+
+    void changeTitle(String title);
+
+    void changeBiography(String biography);
 }
