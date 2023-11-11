@@ -7,5 +7,5 @@ import java.util.UUID;
 
 @JOOQRepository
 public interface AbstractUserJOOQRepository  {
-    Users findUserById(UUID uuid);
+    Users findMyUserById(UUID uuid);
 }

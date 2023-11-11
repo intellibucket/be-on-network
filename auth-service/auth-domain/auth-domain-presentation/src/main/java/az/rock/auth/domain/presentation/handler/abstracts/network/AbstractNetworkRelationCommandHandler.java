@@ -7,7 +7,7 @@ import java.util.UUID;
 public interface AbstractNetworkRelationCommandHandler {
     NetworkRelationEvent handleSendRequest(UUID targetUserId);
 
-    NetworkRelationEvent handleAcceptRequest();
+    NetworkRelationEvent handleAcceptRequest(UUID relationUUID);
 
     NetworkRelationEvent handleRejectRequest(UUID targetUserId);
 

@@ -18,7 +18,7 @@ public class UserJOOQRepository implements AbstractUserJOOQRepository {
     }
 
     @Override
-    public Users findUserById(UUID uuid) {
+    public Users findMyUserById(UUID uuid) {
         var resultSet = this.dslContext
                 .select()
                 .from(Users.USERS)

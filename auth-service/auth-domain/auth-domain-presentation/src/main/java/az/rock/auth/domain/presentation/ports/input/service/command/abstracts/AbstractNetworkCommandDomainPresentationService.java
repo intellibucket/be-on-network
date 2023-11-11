@@ -11,7 +11,7 @@ public interface AbstractNetworkCommandDomainPresentationService {
 
     void sendRequest(UUID targetUserId);
 
-    void acceptRequest();
+    void acceptRequest(UUID relationUUID);
 
     void rejectRequest(UUID targetUserId);
     void cancelRequest(UUID targetUserId);

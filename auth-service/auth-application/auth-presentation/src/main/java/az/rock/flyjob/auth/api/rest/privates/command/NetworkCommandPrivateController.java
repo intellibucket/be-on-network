@@ -28,9 +28,9 @@ public class NetworkCommandPrivateController implements NetworkCommandPrivateSpe
     }
 
     @Override
-    @PutMapping("/acceptRequest")
-    public ResponseEntity<JSuccessResponse> acceptRequest() {
-        this.abstractNetworkCommandDomainPresentationService.acceptRequest();
+    @PutMapping("/acceptRequest/{uuid}")
+    public ResponseEntity<JSuccessResponse> acceptRequest(@PathVariable(name = "uuid") UUID relationUUID) {
+        this.abstractNetworkCommandDomainPresentationService.acceptRequest(relationUUID);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 

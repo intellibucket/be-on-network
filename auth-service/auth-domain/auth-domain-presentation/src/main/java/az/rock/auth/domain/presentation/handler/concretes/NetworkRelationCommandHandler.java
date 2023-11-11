@@ -10,6 +10,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNe
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.NoActiveRowException;
 import az.rock.flyjob.auth.exception.block.BlockRelationWhenFollowException;
+import az.rock.flyjob.auth.exception.follow.AlreadyFollowedException;
 import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractNetworkRelationDomainService;
 import az.rock.lib.domain.id.auth.UserID;
@@ -56,24 +57,29 @@ public class NetworkRelationCommandHandler implements AbstractNetworkRelationCom
         var newNetworkRelationRoot = this.networkRelationDomainMapper.toNewNetworkRelationRoot(currentUserId, UserID.of(targetUserId));
         var savedRoot = this.networkRelationCommandRepositoryAdapter.create(newNetworkRelationRoot);
         if (savedRoot.isEmpty()) throw new FollowDomainException("F0000000001");
-        this.followRelationCommandHandler.handleFollow(UserID.of(targetUserId));
+        try {
+            this.followRelationCommandHandler.handleFollow(UserID.of(targetUserId));
+        }catch (AlreadyFollowedException ignored) {}
         return NetworkRelationEvent.of(this.fromRoot(savedRoot.get()));
     }
 
     @Override
-    public NetworkRelationEvent handleAcceptRequest() {
+    public NetworkRelationEvent handleAcceptRequest(UUID relationUUID) {
         var currentUserId = this.securityContextHolder.availableUser();
         var inMyNetworkPendingRequest = this.networkQueryRepositoryAdapter.findInMyNetworkPendingRequests(currentUserId);
         var myActiveNetworks = this.networkQueryRepositoryAdapter.findMyNetworks(currentUserId);
         this.networkRelationDomainService.validateActiveNetworkRelation(myActiveNetworks);
         if (inMyNetworkPendingRequest.size() > 0) {
-            var activeRowRelation = inMyNetworkPendingRequest.get(0);
-            activeRowRelation.accept();
-            this.networkRelationCommandRepositoryAdapter.update(activeRowRelation);
-            return NetworkRelationEvent.of(this.fromRoot(activeRowRelation));
-        }else {
-            throw new NoActiveRowException();
-        }
+            var optionalActiveRowRelation = inMyNetworkPendingRequest.stream()
+                    .filter(networkRelationRoot -> networkRelationRoot.getRootID().getAbsoluteID().equals(relationUUID))
+                    .findFirst();
+            if (optionalActiveRowRelation.isPresent()){
+                var activeRowRelation = optionalActiveRowRelation.get();
+                activeRowRelation.accept();
+                this.networkRelationCommandRepositoryAdapter.update(activeRowRelation);
+                return NetworkRelationEvent.of(this.fromRoot(activeRowRelation));
+            }else throw new NoActiveRowException();
+        }else throw new NoActiveRowException();
     }
 
     @Override

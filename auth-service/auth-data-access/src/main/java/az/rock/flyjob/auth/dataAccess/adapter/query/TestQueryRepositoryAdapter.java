@@ -20,7 +20,7 @@ public class TestQueryRepositoryAdapter implements AbstractTestQueryRepositoryAd
     }
 
     public Optional<UserCompose> case1(UUID userId){
-        var response1 = this.abstractUserJOOQRepository.findUserById(userId);
+        var response1 = this.abstractUserJOOQRepository.findMyUserById(userId);
         var response = abstractUserComposeQueryBatisRepository.findUserProfileComposeByUserId(userId);
         return Optional.ofNullable(response);
     }

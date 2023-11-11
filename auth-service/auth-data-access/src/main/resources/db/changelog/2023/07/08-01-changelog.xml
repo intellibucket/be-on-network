@@ -590,6 +590,16 @@
             <column name="gender" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
+    <changeSet id="1697027203285-ac-01" author="Vugar Mammadli">
+        <addColumn tableName="users" schemaName="auth">
+            <column name="title" type="VARCHAR(200)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697027203285-ac-02" author="Vugar Mammadli">
+        <addColumn tableName="users" schemaName="auth">
+            <column name="biography" type="VARCHAR(2600)"/>
+        </addColumn>
+    </changeSet>
     <changeSet id="1697027203285-20" author="Vugar Mammadli">
         <createTable schemaName="network" tableName="block_relation">
             <column name="uuid" type="UUID">

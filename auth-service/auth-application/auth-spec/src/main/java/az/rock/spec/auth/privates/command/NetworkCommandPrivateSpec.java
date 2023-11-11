@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface NetworkCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> sendRequest(UUID userID);
-    ResponseEntity<JSuccessResponse> acceptRequest();
+    ResponseEntity<JSuccessResponse> acceptRequest(UUID relationUUID);
 
     /**
      * Gelen network isteyini redd etmek isteyen userin networkID-sini gonderir

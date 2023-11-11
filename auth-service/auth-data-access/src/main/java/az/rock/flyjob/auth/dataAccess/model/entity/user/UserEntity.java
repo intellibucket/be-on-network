@@ -52,6 +52,12 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "biography")
+    private String biography;
+
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<PasswordEntity> passwords;
 

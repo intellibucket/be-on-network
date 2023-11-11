@@ -6,9 +6,11 @@ import az.rock.auth.domain.presentation.mapper.abstracts.*;
 import az.rock.flyjob.auth.root.RoleRoot;
 import az.rock.flyjob.auth.root.user.UserRoot;
 import az.rock.lib.domain.id.auth.*;
+import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
 import java.util.UUID;
 
 @Component
@@ -59,9 +61,9 @@ public class UserDomainMapper implements AbstractUserDomainMapper {
                 .accessModifier(AccessModifier.PUBLIC)
                 .userType(UserType.of(roleRoot.getName()))
                 .key(UUID.randomUUID())
-                .firstName(createUserCommand.getFirstName())
-                .lastName(createUserCommand.getLastName())
-                .username(createUserCommand.getUsername())
+                .firstName(StringUtils.capitalize(createUserCommand.getFirstName()))
+                .lastName(StringUtils.capitalize(createUserCommand.getLastName()))
+                .username(createUserCommand.getUsername().toLowerCase(Locale.ROOT))
                 .timezone(TimeZoneID.Prototype.ASIA_BAKU)
                 .gender(createUserCommand.getGender())
                 .password(passwordRoot)

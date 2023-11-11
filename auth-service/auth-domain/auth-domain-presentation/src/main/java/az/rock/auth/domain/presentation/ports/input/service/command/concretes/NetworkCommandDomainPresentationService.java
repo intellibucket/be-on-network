@@ -40,8 +40,8 @@ public class NetworkCommandDomainPresentationService implements AbstractNetworkC
     }
 
     @Override
-    public void acceptRequest() {
-        NetworkRelationEvent relationEvent = this.networkCommandHandler.handleAcceptRequest();
+    public void acceptRequest(UUID relationUUID) {
+        NetworkRelationEvent relationEvent = this.networkCommandHandler.handleAcceptRequest(relationUUID);
     }
 
     @Override
