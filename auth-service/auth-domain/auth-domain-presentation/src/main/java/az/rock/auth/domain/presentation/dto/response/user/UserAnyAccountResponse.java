@@ -1,7 +1,6 @@
-package az.rock.auth.domain.presentation.dto.response;
+package az.rock.auth.domain.presentation.dto.response.user;
 
 import az.rock.flyjob.auth.model.root.user.UserRoot;
-import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
 
 import java.util.UUID;

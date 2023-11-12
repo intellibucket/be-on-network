@@ -4,19 +4,17 @@
     <persistence-units>
       <persistence-unit name="js-persistence">
         <packages>
-          <package value="az.rock.flyjob.model.entity"/>
+          <package value="az.rock.flyjob.model.entity" />
         </packages>
       </persistence-unit>
       <persistence-unit name="vacancy_command_persistence">
         <packages>
-          <package value="com.intellibucket.flyjob.vacancy.dataAccess.model.entity"/>
+          <package value="com.intellibucket.flyjob.vacancy.dataAccess.model.entity" />
         </packages>
       </persistence-unit>
-      <persistence-unit name="auth-persistence"
-                        persistenceXmlPath="auth-service/auth-data-access/src/main/resources/auth-persistence.xml"
-                        defaultSearchScope="Project and Libraries">
+      <persistence-unit name="auth-persistence" persistenceXmlPath="auth-service/auth-data-access/src/main/resources/auth-persistence.xml">
         <packages>
-          <package value="az.rock.flyjob.auth.dataAccess.model.entity"/>
+          <package value="az.rock.flyjob.auth.dataAccess.model.entity" />
         </packages>
       </persistence-unit>
     </persistence-units>

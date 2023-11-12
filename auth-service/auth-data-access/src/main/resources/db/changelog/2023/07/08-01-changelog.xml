@@ -600,6 +600,53 @@
             <column name="biography" type="VARCHAR(2600)"/>
         </addColumn>
     </changeSet>
+    <changeSet id="0000000000001-ct-01" author="Vugar Mammadli">
+        <createTable schemaName="auth"
+                     tableName="profile_hashtags">
+            <column name="uuid"
+                    type="UUID">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_profıle_hashtags"/>
+            </column>
+            <column name="version"
+                    type="BIGINT"/>
+            <column name="process_status"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date"
+                    type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date"
+                    type="DATETIME"/>
+            <column name="user_uuid"
+                    type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hashtag"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description"
+                    type="VARCHAR(255)"/>
+            <column defaultValue="BLACK"
+                    name="color"
+                    type="varchar(64)"/>
+            <column defaultValueNumeric="0"
+                    name="order"
+                    type="int"/>
+            <column defaultValue="EN"
+                    name="national"
+                    type="varchar(64)"/>
+        </createTable>
+    </changeSet>
+
     <changeSet id="1697027203285-20" author="Vugar Mammadli">
         <createTable schemaName="network" tableName="block_relation">
             <column name="uuid" type="UUID">

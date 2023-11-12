@@ -9,7 +9,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Getter
-public class MyUserProfileResponse {
+public class AnyUserProfileResponse {
     private String firstName;
     private String lastName;
     private String username;
@@ -22,8 +22,11 @@ public class MyUserProfileResponse {
     private String timezone;
     private BigInteger followCount;
     private BigInteger networkCount;
+    private Boolean isFollowed;
 
-    public static MyUserProfileResponse of(UserProfileQueryRecord record) {
+    private Boolean hasNetwork;
+
+    public static AnyUserProfileResponse of(UserProfileQueryRecord record) {
         return Builder
                 .builder()
                 .firstName(record.getFirstName())
@@ -51,6 +54,10 @@ public class MyUserProfileResponse {
         private String timezone;
         private BigInteger followCount;
         private BigInteger networkCount;
+
+        private Boolean isFollowed;
+
+        private Boolean hasNetwork;
 
         private List<String> hashtags;
 
@@ -111,13 +118,23 @@ public class MyUserProfileResponse {
             return this;
         }
 
+        public Builder isFollowed(Boolean isFollowed) {
+            this.isFollowed = isFollowed;
+            return this;
+        }
+
+        public Builder hasNetwork(Boolean hasNetwork) {
+            this.hasNetwork = hasNetwork;
+            return this;
+        }
+
         public Builder hashtags(List<String> hashtags) {
             this.hashtags = hashtags;
             return this;
         }
 
-        public MyUserProfileResponse build() {
-            MyUserProfileResponse myUserProfileResponse = new MyUserProfileResponse();
+        public AnyUserProfileResponse build() {
+            AnyUserProfileResponse myUserProfileResponse = new AnyUserProfileResponse();
             myUserProfileResponse.title = this.title;
             myUserProfileResponse.biography = this.biography;
             myUserProfileResponse.firstName = this.firstName;
@@ -128,6 +145,8 @@ public class MyUserProfileResponse {
             myUserProfileResponse.lastName = this.lastName;
             myUserProfileResponse.timezone = this.timezone;
             myUserProfileResponse.username = this.username;
+            myUserProfileResponse.isFollowed = this.isFollowed;
+            myUserProfileResponse.hasNetwork = this.hasNetwork;
             myUserProfileResponse.hashtags = this.hashtags;
             return myUserProfileResponse;
         }
