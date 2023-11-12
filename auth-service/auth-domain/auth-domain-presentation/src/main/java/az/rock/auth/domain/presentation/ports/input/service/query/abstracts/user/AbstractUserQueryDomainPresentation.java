@@ -1,13 +1,21 @@
 package az.rock.auth.domain.presentation.ports.input.service.query.abstracts.user;
 
-import az.rock.auth.domain.presentation.dto.response.user.MyUserProfileResponse;
-import az.rock.auth.domain.presentation.dto.response.user.UserMyAccountResponse;
-import az.rock.flyjob.auth.model.query.UserProfileQueryRecord;
+import az.rock.auth.domain.presentation.dto.response.user.*;
 import az.rock.lib.annotation.InputPort;
+import az.rock.lib.valueObject.common.PageableRequest;
+
+import java.util.List;
+import java.util.UUID;
 
 @InputPort
 public interface AbstractUserQueryDomainPresentation {
-    UserMyAccountResponse myAccount();
-
     MyUserProfileResponse myProfile();
+
+    AnyUserProfileResponse anyProfile(UUID userID);
+
+    List<SimpleAnyUserProfileResponse> anyProfiles(List<UUID> userIDs);
+
+    List<SimpleFollowerUserResponse> myFollowerItems(PageableRequest request);
+
+    List<SimpleNetworkUserResponse> myNetworkItems(PageableRequest request);
 }

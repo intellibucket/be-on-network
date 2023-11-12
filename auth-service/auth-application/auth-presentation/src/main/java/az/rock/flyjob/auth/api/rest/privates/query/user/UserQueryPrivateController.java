@@ -8,10 +8,7 @@ import az.rock.lib.valueObject.common.PageableRequest;
 import az.rock.spec.auth.privates.query.UserQueryPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,26 +33,27 @@ public class UserQueryPrivateController implements UserQueryPrivateSpec {
     }
 
     @Override
-    @GetMapping("/get-any-profile")
-    public ResponseEntity<JSuccessDataResponse<AnyUserProfileResponse>> getAnyProfile(UUID userId) {
+    @GetMapping("/get-any-profile/{userId}")
+    public ResponseEntity<JSuccessDataResponse<AnyUserProfileResponse>> getAnyProfile(@PathVariable(name = "userId" ) UUID userId) {
+        var response = this.userQueryDomainPresentation.anyProfile(userId);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
+    }
+
+    @Override
+    @PostMapping("/get-user-list")
+    public ResponseEntity<JSuccessDataResponse<List<SimpleAnyUserProfileResponse>>> getUserList(@RequestBody List<UUID> users) {
         return null;
     }
 
     @Override
-    @GetMapping("/get-user-list")
-    public ResponseEntity<JSuccessDataResponse<List<SimpleAnyUserProfileResponse>>> getUserList(List<UUID> users) {
+    @PostMapping("/get-my-follower-items")
+    public ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleFollowerUserResponse>>>> getMyFollowerItems(@RequestBody PageableRequest request) {
         return null;
     }
 
     @Override
-    @GetMapping("/get-my-follower-items")
-    public ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleFollowerUserResponse>>>> getMyFollowerItems(PageableRequest request) {
-        return null;
-    }
-
-    @Override
-    @GetMapping("/get-my-networks-items")
-    public ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleNetworkUserResponse>>>> getMyNetworkItems(PageableRequest request) {
+    @PostMapping("/get-my-networks-items")
+    public ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleNetworkUserResponse>>>> getMyNetworkItems(@RequestBody PageableRequest request) {
         return null;
     }
 

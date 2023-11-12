@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response.user;
 
-import az.rock.flyjob.auth.model.query.UserProfileQueryRecord;
+import az.rock.flyjob.auth.model.query.MyProfileQueryRecord;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.UserType;
 import lombok.Getter;
@@ -23,7 +23,7 @@ public class MyUserProfileResponse {
     private BigInteger followCount;
     private BigInteger networkCount;
 
-    public static MyUserProfileResponse of(UserProfileQueryRecord record) {
+    public static MyUserProfileResponse of(MyProfileQueryRecord record) {
         return Builder
                 .builder()
                 .firstName(record.getFirstName())

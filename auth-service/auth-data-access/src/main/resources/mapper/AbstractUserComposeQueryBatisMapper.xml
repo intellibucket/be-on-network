@@ -20,8 +20,8 @@
     </sql>
 
 
-    <resultMap id="user_profile_result_map"
-               type="az.rock.flyjob.auth.model.query.UserProfileQueryRecord">
+    <resultMap id="my_profile_result_map"
+               type="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
         <id property="userId"
             column="uuid"
             typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
@@ -41,23 +41,74 @@
     </resultMap>
 
 
-    <select id="findUserProfileById" resultMap="user_profile_result_map">
-        select <include refid="user_profile_result_sql"/>
+    <select id="findUserProfileById" resultType="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
+        select
+            usr.uuid                                   as uuid,
+            usr.version                                as version,
+            usr.row_status                             as rowStatus,
+            usr.process_status                         as processStatus,
+            usr.first_name                             as firstName,
+            usr.last_name                              as lastName,
+            usr.username                               as username,
+            usr.title                                  as title,
+            usr.biography                              as biography,
+            usr.gender                                 as gender,
+            usr.user_type                              as userType,
+            usr.timezone                               as timezone,
+            (select count(frr.uuid)
+             from network.follow_relation frr
+             where frr.row_status = 'ACTIVE'
+               and frr.follow_status = 'ACCEPTED'
+               and frr.process_status = 'COMPLETED'
+               and frr.followed_user_id = usr.uuid)    as followCount,
+            (select count(nrr.uuid)
+             from network.network_relation nrr
+             where nrr.process_status = 'COMPLETED'
+                 and nrr.row_status = 'ACTIVE'
+                 and network_status = 'ACCEPTED'
+                 and block_reason_status = 'UNKNOWN'
+                 and (nrr.request_owner_id = usr.uuid)
+                or (nrr.request_target_id = usr.uuid)) as networkCount
         from auth.users usr
-                 left join (select *
-                            from network.network_relation nrr
-                            where nrr.process_status = 'COMPLETED'
-                              and nrr.row_status = 'ACTIVE'
-                              and network_status = 'ACCEPTED'
-                              and block_reason_status = 'UNKNOWN') nr
-                           on (nr.request_owner_id = usr.uuid) or (nr.request_target_id = usr.uuid)
-                 left join (select *
-                            from network.follow_relation frr
-                            where frr.row_status = 'ACTIVE'
-                              and frr.follow_status = 'ACCEPTED'
-                              and frr.process_status = 'COMPLETED') fr
-                           on fr.followed_user_id = usr.uuid
         where usr.uuid = #{userId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
-        group by usr.uuid, usr.version, usr.process_status, user_type, first_name, last_name, username,timezone;
     </select>
+
+    <select id="findAnyUserProfileById" resultType="az.rock.flyjob.auth.model.query.AnyProfileQueryRecord">
+        select
+            usr.uuid                                   as uuid,
+            usr.version                                as version,
+            usr.row_status                             as rowStatus,
+            usr.process_status                         as processStatus,
+            usr.first_name                             as firstName,
+            usr.last_name                              as lastName,
+            usr.username                               as username,
+            usr.title                                  as title,
+            usr.biography                              as biography,
+            usr.gender                                 as gender,
+            usr.user_type                              as userType,
+            usr.timezone                               as timezone,
+            (select count(frr.uuid)
+             from network.follow_relation frr
+             where frr.row_status = 'ACTIVE'
+               and frr.follow_status = 'ACCEPTED'
+               and frr.process_status = 'COMPLETED'
+               and frr.followed_user_id = usr.uuid)    as followCount,
+            (select count(nrr.uuid)
+             from network.network_relation nrr
+             where nrr.process_status = 'COMPLETED'
+                 and nrr.row_status = 'ACTIVE'
+                 and network_status = 'ACCEPTED'
+                 and block_reason_status = 'UNKNOWN'
+                 and (nrr.request_owner_id = usr.uuid)
+                or (nrr.request_target_id = usr.uuid)) as networkCount
+        from auth.users usr
+        where usr.uuid = #{targetId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+          and not exists(select *
+                         from network.block_relation br
+                         where br.row_status = 'ACTIVE'
+                           and br.user_id in (#{authId}, #{targetId}))
+          and usr.row_status = 'ACTIVE';
+    </select>
+
+
 </mapper>

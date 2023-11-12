@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.UUID;
 
 @Data
-public class UserProfileQueryRecord {
+public class MyProfileQueryRecord {
     private UUID userId;
     private Long version;
     private RowStatus rowStatus;

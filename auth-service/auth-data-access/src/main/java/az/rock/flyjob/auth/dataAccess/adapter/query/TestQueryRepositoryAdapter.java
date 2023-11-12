@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.adapter.query;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractTestQueryRepositoryAdapter;
-import az.rock.flyjob.auth.model.query.UserProfileQueryRecord;
+import az.rock.flyjob.auth.model.query.MyProfileQueryRecord;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.jooq.AbstractUserJOOQRepository;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ public class TestQueryRepositoryAdapter implements AbstractTestQueryRepositoryAd
         this.abstractUserJOOQRepository = abstractUserJOOQRepository;
     }
 
-    public Optional<UserProfileQueryRecord> case1(UUID userId){
+    public Optional<MyProfileQueryRecord> case1(UUID userId){
         var response = abstractUserComposeQueryBatisRepository.findUserProfileById(userId);
         return Optional.ofNullable(response);
     }

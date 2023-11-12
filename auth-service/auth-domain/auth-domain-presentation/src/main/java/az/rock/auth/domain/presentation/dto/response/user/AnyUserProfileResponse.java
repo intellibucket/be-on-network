@@ -1,6 +1,7 @@
 package az.rock.auth.domain.presentation.dto.response.user;
 
-import az.rock.flyjob.auth.model.query.UserProfileQueryRecord;
+import az.rock.flyjob.auth.model.query.AnyProfileQueryRecord;
+import az.rock.flyjob.auth.model.query.MyProfileQueryRecord;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.UserType;
 import lombok.Getter;
@@ -26,7 +27,7 @@ public class AnyUserProfileResponse {
 
     private Boolean hasNetwork;
 
-    public static AnyUserProfileResponse of(UserProfileQueryRecord record) {
+    public static AnyUserProfileResponse of(AnyProfileQueryRecord record) {
         return Builder
                 .builder()
                 .firstName(record.getFirstName())

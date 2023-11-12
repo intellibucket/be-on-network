@@ -2,8 +2,8 @@ package az.rock.flyjob.auth.dataAccess.adapter.query.user;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserProfileQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository;
-import az.rock.flyjob.auth.model.query.UserProfileQueryRecord;
-import az.rock.lib.annotation.DomainOutputPort;
+import az.rock.flyjob.auth.model.query.AnyProfileQueryRecord;
+import az.rock.flyjob.auth.model.query.MyProfileQueryRecord;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -18,10 +18,19 @@ public class UserProfileQueryRepositoryAdapter implements AbstractUserProfileQue
         this.abstractUserComposeQueryBatisRepository = abstractUserComposeQueryBatisRepository;
     }
 
-    public Optional<UserProfileQueryRecord> findMyProfile(UUID userID){
+    public Optional<MyProfileQueryRecord> findMyProfile(UUID userID){
         if (userID != null)
             return Optional.ofNullable(
                     this.abstractUserComposeQueryBatisRepository.findUserProfileById(userID)
+            );
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<AnyProfileQueryRecord> findAnyProfile(UUID authenticatedUserId, UUID targetUserId) {
+        if (authenticatedUserId != null && targetUserId != null)
+            return Optional.ofNullable(
+                    this.abstractUserComposeQueryBatisRepository.findAnyUserProfileById(authenticatedUserId, targetUserId)
             );
         return Optional.empty();
     }
