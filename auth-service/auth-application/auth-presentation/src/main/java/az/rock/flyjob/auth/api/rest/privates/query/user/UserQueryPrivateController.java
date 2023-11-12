@@ -1,9 +1,6 @@
 package az.rock.flyjob.auth.api.rest.privates.query.user;
 
-import az.rock.auth.domain.presentation.dto.response.user.UserAnyAccountResponse;
-import az.rock.auth.domain.presentation.dto.response.user.MyUserProfileResponse;
-import az.rock.auth.domain.presentation.dto.response.user.SimpleFollowerUserResponse;
-import az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse;
+import az.rock.auth.domain.presentation.dto.response.user.*;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.user.AbstractUserQueryDomainPresentation;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.valueObject.SimplePageable;
@@ -40,13 +37,13 @@ public class UserQueryPrivateController implements UserQueryPrivateSpec {
 
     @Override
     @GetMapping("/get-any-profile")
-    public ResponseEntity<JSuccessDataResponse<UserAnyAccountResponse>> getAnyProfile(UUID userId) {
+    public ResponseEntity<JSuccessDataResponse<AnyUserProfileResponse>> getAnyProfile(UUID userId) {
         return null;
     }
 
     @Override
     @GetMapping("/get-user-list")
-    public ResponseEntity<JSuccessDataResponse<List<UserAnyAccountResponse>>> getUserList(List<UUID> users) {
+    public ResponseEntity<JSuccessDataResponse<List<SimpleAnyUserProfileResponse>>> getUserList(List<UUID> users) {
         return null;
     }
 
