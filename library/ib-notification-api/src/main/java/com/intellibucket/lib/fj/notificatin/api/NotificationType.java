@@ -1,0 +1,25 @@
+package com.intellibucket.lib.fj.notificatin.api;
+
+public enum NotificationType {
+    NEW_FOLLOWER,
+    NEW_NETWORK_REQUEST,
+    ACCEPTED_FOLLOW_REQUEST,
+    ACCEPTED_NETWORK_REQUEST,
+
+    MY_NEW_POST,
+    MY_POST_COMMENT,
+    MY_POST_LIKE,
+    MY_COMMENT_LIKE,
+    MY_POST_REPLY,
+    MY_COMMENT_REPLY,
+
+    SUBSCRIBED_POST,
+    SUBSCRIBED_POST_COMMENT,
+    SUBSCRIBED_POST_REPLY,
+
+    NEW_MESSAGE,
+
+    VIEWED_PROFILE,
+
+    SUBSCRIBED_VACANCY,
+}

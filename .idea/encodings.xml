@@ -96,6 +96,7 @@
     <file url="file://$PROJECT_DIR$/library/ib-kafka/kafka-producer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-notification-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/ib-payload-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/ib-payload-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/ib-payload-js/src/main/java" charset="UTF-8" />

@@ -1,6 +1,7 @@
 package az.rock.auth.domain.presentation.ports.input.service.query.concretes.user;
 
 import az.rock.auth.domain.presentation.dto.response.user.MyUserProfileResponse;
+import az.rock.auth.domain.presentation.ports.output.publisher.AbstractNotificationMessagePublisher;
 import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserProfileQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.dto.response.user.UserMyAccountResponse;
@@ -18,13 +19,17 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
     private final AbstractUserQueryRepositoryAdapter userQueryRepositoryAdapter;
     private final AbstractUserProfileQueryRepositoryAdapter userProfileQueryRepositoryAdapter;
 
+    private final AbstractNotificationMessagePublisher notificationMessagePublisher;
+
 
     public UserQueryPrivateDomainPresentation(AbstractSecurityContextHolder securityContextHolder,
                                               AbstractUserQueryRepositoryAdapter userQueryRepositoryAdapter,
-                                              AbstractUserProfileQueryRepositoryAdapter userProfileQueryRepositoryAdapter) {
+                                              AbstractUserProfileQueryRepositoryAdapter userProfileQueryRepositoryAdapter,
+                                              AbstractNotificationMessagePublisher notificationMessagePublisher) {
         this.securityContextHolder = securityContextHolder;
         this.userQueryRepositoryAdapter = userQueryRepositoryAdapter;
         this.userProfileQueryRepositoryAdapter = userProfileQueryRepositoryAdapter;
+        this.notificationMessagePublisher = notificationMessagePublisher;
     }
 
     @Override

@@ -4,12 +4,14 @@ import az.rock.auth.domain.presentation.ports.output.publisher.AbstractNetworkRe
 import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.trx.Saga;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class NetworkRelationMessagePublisher implements AbstractNetworkRelationMessagePublisher {
     @Override
     public void publish(Saga<AbstractDomainEvent<NetworkRelationRoot>> saga) {
-
+        log.info("NetworkRelationMessagePublisher.publish");
     }
 }

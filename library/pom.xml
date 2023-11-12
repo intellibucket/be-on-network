@@ -25,6 +25,7 @@
         <module>validator4j</module>
         <module>ib-data-access</module>
         <module>ib-payload</module>
+        <module>ib-notification-api</module>
     </modules>
 
     <properties>
