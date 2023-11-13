@@ -4,6 +4,7 @@ import az.rock.lib.annotation.ValueObject;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Arrays;
+import java.util.List;
 
 @ValueObject
 public enum AccessModifier {
@@ -19,11 +20,15 @@ public enum AccessModifier {
         this.senstivity = senstivity;
     }
 
+
     @JsonIgnore
     public Integer getSenstivity() {
         return senstivity;
     }
 
+    public static List<AccessModifier> fetchAll() {
+        return Arrays.asList(AccessModifier.PUBLIC, AccessModifier.AUTHENTICATED, AccessModifier.ONLY_FOLLOWERS_AND_NETWORK, AccessModifier.ONLY_NETWORK, AccessModifier.PRIVATE);
+    }
     public static AccessModifier find(Integer senstivity) {
         return Arrays.stream(AccessModifier.values())
                 .filter(accessModifier -> accessModifier.getSenstivity().equals(senstivity))
