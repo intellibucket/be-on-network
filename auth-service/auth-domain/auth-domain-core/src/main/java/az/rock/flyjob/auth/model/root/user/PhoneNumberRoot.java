@@ -182,7 +182,7 @@ public class PhoneNumberRoot extends AggregateRoot<PhoneNumberID> {
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private UserID userID;
-        private AccessModifier accessModifier = AccessModifier.ONLY_AUTHENTICATED;
+        private AccessModifier accessModifier = AccessModifier.AUTHENTICATED;
         private String countryCode;
         private String phoneNumber;
         private PhoneNumberType type;
