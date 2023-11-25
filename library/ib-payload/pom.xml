@@ -12,6 +12,7 @@
     <groupId>com.intellibucket.lib.payload</groupId>
     <artifactId>ib-payload</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>ib-payload-auth</module>
         <module>ib-payload-js</module>
