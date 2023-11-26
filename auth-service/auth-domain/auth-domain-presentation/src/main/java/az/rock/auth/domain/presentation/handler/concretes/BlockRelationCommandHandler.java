@@ -13,6 +13,7 @@ import az.rock.flyjob.auth.exception.block.AlreadyBlockedException;
 import az.rock.flyjob.auth.exception.block.AlreadyUnblockedException;
 import az.rock.flyjob.auth.model.root.network.BlockRelationRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractBlockRelationDomainService;
+import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.auth.UserID;
 import com.intellibucket.lib.payload.event.create.block.BlockRelationEvent;
 import com.intellibucket.lib.payload.event.create.block.UnblockRelationEvent;
@@ -91,7 +92,7 @@ public class BlockRelationCommandHandler implements AbstractBlockRelationCommand
     }
 
     private Optional<BlockRelationRoot> changeRowStatusByUserInMyBlockedList(List<BlockRelationRoot> myBlockedList){
-        return myBlockedList.stream().peek(item->item.inActive())
+        return myBlockedList.stream().peek(AggregateRoot::inActive)
                 .peek(blockRelationCommandRepositoryAdapter::update).findFirst();
     }
     private BlockRelationPayload fromRoot(BlockRelationRoot blockRelationRoot){
