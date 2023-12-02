@@ -5,26 +5,26 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <name>FlyJob</name>
+    <name>OnNetwork</name>
     <description>Job search platform</description>
 
     <licenses>
         <license>
-            <name>Rock General Public License v3.0</name>
+            <name>IntelliBucket General Public License v3.0</name>
             <url>https://www.github.com/l00pss/licenses</url>
         </license>
     </licenses>
 
     <organization>
-        <name>FlyJob</name>
+        <name>IntelliBucket</name>
     </organization>
 
     <developers>
         <developer>
             <name>Vugar Mammadli</name>
             <email>mammadli.vugar@hotmail.com</email>
-            <organization>FlyJob</organization>
-            <organizationUrl>https://www.github.com/flyjob</organizationUrl>
+            <organization>IntelliBucket</organization>
+            <organizationUrl>https://www.github.com/intellibucket</organizationUrl>
         </developer>
     </developers>
 
