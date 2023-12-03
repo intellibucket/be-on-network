@@ -120,9 +120,11 @@
                usr.title
         from (select *
               from auth.users u
-              where u.row_status = 'ACTIVE' and u.uuid in (
-                  ''
-                  ) ) usr
+              where u.row_status = 'ACTIVE' and u.uuid in
+            <foreach item="targetUserId" collection="targetUserIds" separator="," open="(" close=")">
+                #{targetUserId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+            </foreach>
+              ) usr
         where not exists(
                 select *
                 from network.block_relation br
