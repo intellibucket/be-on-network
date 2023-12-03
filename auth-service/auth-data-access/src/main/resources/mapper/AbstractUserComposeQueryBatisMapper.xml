@@ -106,8 +106,38 @@
           and not exists(select *
                          from network.block_relation br
                          where br.row_status = 'ACTIVE'
-                           and br.user_id in (#{authId}, #{targetId}))
+                           and ((br.user_id = #{authId} and br.target_user_id =#{targetId})
+                             OR (br.target_user_id = #{authId} and br.user_id = #{targetId})))
           and usr.row_status = 'ACTIVE';
+    </select>
+
+
+    <select id="findAllAnyUserProfilesByIds" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleAnyUserProfileResponse">
+        select usr.uuid,
+               usr.username,
+               usr.first_name,
+               usr.last_name,
+               usr.title
+        from (select *
+              from auth.users u
+              where u.row_status = 'ACTIVE' and u.uuid in (
+                  ''
+                  ) ) usr
+        where not exists(
+                select *
+                from network.block_relation br
+                where br.row_status = 'ACTIVE'
+                  and ((br.user_id = #{authId} and br.target_user_id = usr.uuid)
+                    OR (br.target_user_id = #{authId} and br.user_id = usr.uuid))
+            );
+    </select>
+
+    <select id="findAllMyFollowers" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleFollowerUserResponse">
+
+    </select>
+
+    <select id="findAllMyNetworks" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
+
     </select>
 
 

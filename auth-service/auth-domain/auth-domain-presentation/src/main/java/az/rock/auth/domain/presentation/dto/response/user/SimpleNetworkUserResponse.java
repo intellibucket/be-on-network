@@ -6,7 +6,6 @@ import java.util.UUID;
 
 public class SimpleNetworkUserResponse {
     private UUID userId;
-    private byte[] profilePicture;
     private String username;
     private String firstName;
     private String lastName;

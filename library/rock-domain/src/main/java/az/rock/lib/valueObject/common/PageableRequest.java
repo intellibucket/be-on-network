@@ -1,19 +1,19 @@
 package az.rock.lib.valueObject.common;
 
 public class PageableRequest {
-    private Integer pageSize;
-    private Integer pageNumber;
+    private Integer offset;
+    private Integer limit;
 
-    public PageableRequest(Integer pageSize, Integer pageNumber) {
-        this.pageSize = pageSize;
-        this.pageNumber = pageNumber;
+    public PageableRequest(Integer offset, Integer limit) {
+        this.offset = offset;
+        this.limit = limit;
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public Integer getOffset() {
+        return offset;
     }
 
-    public Integer getPageNumber() {
-        return pageNumber;
+    public Integer getLimit() {
+        return limit;
     }
 }

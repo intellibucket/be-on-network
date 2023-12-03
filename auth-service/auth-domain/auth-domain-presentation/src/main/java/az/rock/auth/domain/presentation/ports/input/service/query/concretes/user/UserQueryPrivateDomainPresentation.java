@@ -61,6 +61,7 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
 
     @Override
     public List<SimpleAnyUserProfileResponse> anyProfiles(List<UUID> userIDs) {
+        var currentUser = this.securityContextHolder.availableUser();
         return null;
     }
 
