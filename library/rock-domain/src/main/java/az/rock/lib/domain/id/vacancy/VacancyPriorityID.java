@@ -5,8 +5,8 @@ import az.rock.lib.domain.id.IdReference;
 
 import java.util.UUID;
 
-public class VacancyID extends RootID<UUID>  implements IdReference<UUID> {
-    protected VacancyID(UUID value) {
+public class VacancyPriorityID extends RootID<UUID>  implements IdReference<UUID> {
+    protected VacancyPriorityID(UUID value) {
         super(value);
     }
     @Override

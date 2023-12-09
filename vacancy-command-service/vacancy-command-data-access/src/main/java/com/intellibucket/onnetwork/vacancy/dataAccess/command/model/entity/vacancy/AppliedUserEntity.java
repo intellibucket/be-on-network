@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity;
+package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity.vacancy;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.vacancy.AppliedStatus;

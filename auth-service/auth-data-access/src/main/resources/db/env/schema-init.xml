@@ -23,4 +23,9 @@
             CREATE SCHEMA IF NOT EXISTS outbox
         </sql>
     </changeSet>
+    <changeSet id="create-replica-schema" author="Vugar Mammadli">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS replica
+        </sql>
+    </changeSet>
 </databaseChangeLog>

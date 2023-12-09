@@ -1,8 +1,8 @@
-package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity;
+package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity.vacancy;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.Currency;
-import az.rock.lib.valueObject.vacancy.PayingType;
+import az.rock.lib.valueObject.vacancy.Payment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,9 +15,9 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "vacancy", name = "salaries")
-@Entity(name = "SalaryEntity")
-public class SalaryEntity extends BaseEntity {
+@Table(schema = "vacancy", name = "vacancy_salaries")
+@Entity(name = "VacancySalaryEntity")
+public class VacancySalaryEntity extends BaseEntity {
     @OneToOne
     private VacancyEntity vacancy;
 
@@ -37,5 +37,5 @@ public class SalaryEntity extends BaseEntity {
     private Boolean isEstimated;
 
     @Enumerated(EnumType.STRING)
-    private PayingType payingType;
+    private Payment payment;
 }

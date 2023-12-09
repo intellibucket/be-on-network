@@ -3,6 +3,6 @@ package az.rock.lib.valueObject.vacancy;
 import az.rock.lib.annotation.ValueObject;
 
 @ValueObject
-public enum PayingType {
+public enum Payment {
     MONTHLY, HALF_MONTHLY, WEEKLY, DAILY, HOURLY;
 }

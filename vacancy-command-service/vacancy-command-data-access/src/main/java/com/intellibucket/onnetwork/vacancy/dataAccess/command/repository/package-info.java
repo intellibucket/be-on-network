@@ -1,1 +1,0 @@
-package com.intellibucket.onnetwork.vacancy.dataAccess.command.repository;

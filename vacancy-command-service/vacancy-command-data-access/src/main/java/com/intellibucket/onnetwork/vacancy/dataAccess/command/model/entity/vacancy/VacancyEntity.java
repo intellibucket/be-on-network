@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity;
+package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity.vacancy;
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.WorkingTimeLine;
@@ -83,13 +83,13 @@ public class VacancyEntity extends BaseEntity {
     private WorkingType workingType;
 
     @OneToOne(mappedBy = "vacancy")
-    private SalaryEntity salary;
+    private VacancySalaryEntity salary;
 
     @OneToOne(mappedBy = "vacancy")
-    private LocationEntity location;
+    private VacancyLocationEntity location;
 
     @OneToMany(mappedBy = "vacancy")
-    private List<SaveEntity> savedUsers;
+    private List<VacancySaveUserEntity> savedUsers;
 
     @OneToMany(mappedBy = "vacancy")
     private List<AppliedUserEntity> appliedUsers;

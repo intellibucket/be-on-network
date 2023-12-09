@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity;
+package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity.vacancy;
 
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.Column;
@@ -16,9 +16,9 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "vacancy", name = "locations")
-@Entity(name = "LocationEntity")
-public class LocationEntity extends BaseEntity {
+@Table(schema = "vacancy", name = "vacancy_locations")
+@Entity(name = "VacancyLocationEntity")
+public class VacancyLocationEntity extends BaseEntity {
     @OneToOne
     private VacancyEntity vacancy;
 
