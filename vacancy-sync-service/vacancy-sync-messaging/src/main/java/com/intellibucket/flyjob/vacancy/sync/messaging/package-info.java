@@ -1,1 +1,0 @@
-package com.intellibucket.flyjob.vacancy.sync.messaging;
