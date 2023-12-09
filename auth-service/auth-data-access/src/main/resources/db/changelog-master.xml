@@ -8,4 +8,6 @@
     <include file="db/type/role/1-user-roles.xml"/>
     <include file="db/type/role/2-authority.xml"/>
     <include file="db/type/role/3-admin-roles.xml"/>
+    <include file="db/static/languages.xml"/>
+    <include file="db/static/countries.xml"/>
 </databaseChangeLog>

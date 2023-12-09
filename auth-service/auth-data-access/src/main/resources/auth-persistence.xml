@@ -32,6 +32,12 @@
 
         <class>az.rock.flyjob.auth.dataAccess.model.entity.AuthorityEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.RoleEntity</class>
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.CityEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.CountryEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.LanguageEntity</class>
+
+
     </persistence-unit>
 
 </persistence>

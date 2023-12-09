@@ -748,6 +748,85 @@
             <column name="process_status" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
+    <changeSet id="1702148675022-25" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="cities">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cıtıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="country_uuid" type="UUID"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
+            <column name="timezone" type="VARCHAR(255)"/>
+            <column name="timezone_offset" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1702148675022-26" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="countries">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_countrıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="phone_code" type="VARCHAR(255)"/>
+            <column name="currency" type="VARCHAR(255)"/>
+            <column name="currency_code" type="VARCHAR(255)"/>
+            <column name="currency_symbol" type="VARCHAR(255)"/>
+            <column name="flag" type="bytea"/>
+            <column name="flag_url" type="VARCHAR(255)"/>
+            <column name="timezone" type="VARCHAR(255)"/>
+            <column name="timezone_offset" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1702148675022-27" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="languages">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_languages"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="iso_code" type="VARCHAR(255)"/>
+            <column name="region" type="VARCHAR(255)"/>
+            <column name="script" type="VARCHAR(255)"/>
+            <column name="family" type="VARCHAR(255)"/>
+            <column name="native_name" type="VARCHAR(255)"/>
+            <column name="native_region" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
     <changeSet id="1697027203285-24" author="Vugar Mammadli">
         <addUniqueConstraint columnNames="permission" constraintName="uc_authorities_permission" schemaName="auth"
                              tableName="authorities"/>
@@ -892,6 +971,11 @@
         <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_authority" baseTableSchemaName="auth"
                                  constraintName="fk_rolaut_on_role_entity" referencedColumnNames="uuid"
                                  referencedTableName="roles" referencedTableSchemaName="auth"/>
+    </changeSet>
+    <changeSet id="1702148675022-57" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="country_uuid" baseTableName="cities" baseTableSchemaName="replica"
+                                 constraintName="FK_CITIES_ON_COUNTRY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="countries" referencedTableSchemaName="replica"/>
     </changeSet>
 
 </databaseChangeLog>
