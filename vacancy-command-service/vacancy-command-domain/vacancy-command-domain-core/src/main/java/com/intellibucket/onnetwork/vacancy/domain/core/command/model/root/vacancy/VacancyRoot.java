@@ -42,8 +42,6 @@ public class VacancyRoot extends AggregateRoot<VacancyID> {
 
     private String responsibilities;
 
-    private List<VacancySkillRoot> skills;
-
     private ZonedDateTime startDate;
 
     private ZonedDateTime endDate;
@@ -51,6 +49,8 @@ public class VacancyRoot extends AggregateRoot<VacancyID> {
     private WorkingTimeLine workingTimeLine;
 
     private WorkingType workingType;
+
+    private List<VacancySkillRoot> skills;
 
     private VacancySalaryRoot salary;
 
