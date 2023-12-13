@@ -1,4 +1,4 @@
-package az.rock.auth.domain.presentation.ports.output.repository;
+package az.rock.lib.adapter.repository;
 
 import az.rock.lib.annotation.DomainOutputPort;
 
