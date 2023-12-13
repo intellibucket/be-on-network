@@ -22,9 +22,6 @@ public class VacancyLocationEntity extends BaseEntity {
     @OneToOne
     private VacancyEntity vacancy;
 
-    @Column(name = "country_id",nullable = false)
-    private UUID countryId;
-
     @Column(name = "city_id",nullable = false)
     private UUID cityId;
 }

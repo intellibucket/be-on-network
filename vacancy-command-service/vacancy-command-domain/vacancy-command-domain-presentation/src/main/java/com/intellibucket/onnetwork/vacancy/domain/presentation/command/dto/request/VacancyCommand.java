@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -36,9 +36,9 @@ public class VacancyCommand {
 
     private List<VacancySkillCommand> skills;
 
-    private Timestamp startDate;
+    private ZonedDateTime startDate;
 
-    private Timestamp endDate;
+    private ZonedDateTime endDate;
 
     private WorkingTimeLine workingTimeLine;
 

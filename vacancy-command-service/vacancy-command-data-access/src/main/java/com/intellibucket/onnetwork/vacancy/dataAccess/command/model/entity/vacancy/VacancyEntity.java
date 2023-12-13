@@ -1,6 +1,7 @@
 package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity.vacancy;
 
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.WorkingTimeLine;
 import az.rock.lib.valueObject.WorkingType;
 import az.rock.lib.valueObject.vacancy.*;
@@ -28,6 +29,10 @@ public class VacancyEntity extends BaseEntity {
 
     @Column(name = "company_id",nullable = false,updatable = false)
     private UUID companyID;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 32, columnDefinition = "varchar(32) default 'PUBLIC'")
+    private AccessModifier accessModifier;
 
     @OneToOne(mappedBy = "vacancy")
     private VacancyPriorityEntity priority;

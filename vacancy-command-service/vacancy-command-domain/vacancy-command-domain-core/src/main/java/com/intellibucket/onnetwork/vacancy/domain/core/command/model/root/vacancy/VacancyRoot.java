@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
-import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Getter
@@ -44,9 +44,9 @@ public class VacancyRoot extends AggregateRoot<VacancyID> {
 
     private List<VacancySkillRoot> skills;
 
-    private Timestamp startDate;
+    private ZonedDateTime startDate;
 
-    private Timestamp endDate;
+    private ZonedDateTime endDate;
 
     private WorkingTimeLine workingTimeLine;
 

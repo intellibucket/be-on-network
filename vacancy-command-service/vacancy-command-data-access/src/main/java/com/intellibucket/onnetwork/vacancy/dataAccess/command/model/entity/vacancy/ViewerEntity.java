@@ -2,15 +2,13 @@ package com.intellibucket.onnetwork.vacancy.dataAccess.command.model.entity.vaca
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.vacancy.ViewerType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Getter
@@ -28,4 +26,7 @@ public class ViewerEntity extends BaseEntity {
 
     @Column(name = "viewer_type",nullable = false,updatable = false)
     private ViewerType viewerType;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp viewedAt;
 }
