@@ -7,9 +7,11 @@ import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.user.AbstractUserQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserQueryRepositoryAdapter;
+import az.rock.flyjob.auth.exception.user.MyFollowersNotFoundException;
 import az.rock.flyjob.auth.exception.user.MyUserProfileNotFoundException;
 import az.rock.flyjob.auth.exception.user.UserProfileNotFoundException;
 import az.rock.flyjob.auth.model.query.AnyProfileQueryRecord;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.common.PageableRequest;
@@ -67,7 +69,11 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
 
     @Override
     public List<SimpleFollowerUserResponse> myFollowerItems(PageableRequest request) {
-        return null;
+        var currentId = this.securityContextHolder.availableUser();
+        var listOfAllMyFollowers = userProfileQueryRepositoryAdapter.findAllMyFollowers(currentId.getAbsoluteID(), request);
+        if (listOfAllMyFollowers.size() > 0) {
+            return listOfAllMyFollowers;
+        } else throw new MyFollowersNotFoundException();
     }
 
     @Override

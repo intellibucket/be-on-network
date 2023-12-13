@@ -47,14 +47,15 @@ public class UserQueryPrivateController implements UserQueryPrivateSpec {
 
     @Override
     @PostMapping("/get-my-follower-items")
-    public ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleFollowerUserResponse>>>> getMyFollowerItems(@RequestBody PageableRequest request) {
-        return null;
+    public ResponseEntity<JSuccessDataResponse<List<SimpleFollowerUserResponse>>> getMyFollowerItems(@RequestBody PageableRequest request) {
+        List<SimpleFollowerUserResponse> response = this.userQueryDomainPresentation.myFollowerItems(request);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
-
     @Override
     @PostMapping("/get-my-networks-items")
-    public ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleNetworkUserResponse>>>> getMyNetworkItems(@RequestBody PageableRequest request) {
-        return null;
+    public ResponseEntity<JSuccessDataResponse<List<SimpleNetworkUserResponse>>> getMyNetworkItems(@RequestBody PageableRequest request) {
+        List<SimpleNetworkUserResponse> response = this.userQueryDomainPresentation.myNetworkItems(request);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
 

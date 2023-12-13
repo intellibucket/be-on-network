@@ -41,6 +41,17 @@
     </resultMap>
 
 
+    <resultMap id="followerResultMap" type="az.rock.auth.domain.presentation.dto.response.user.SimpleFollowerUserResponse">
+        <id property="authId"
+            column="uuid"
+            typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
+        <result property="username" column="username"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="title" column="title"/>
+        <!-- Add other properties as needed -->
+    </resultMap>
+
     <select id="findUserProfileById" resultType="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
         select
             usr.uuid                                   as uuid,
@@ -134,12 +145,49 @@
             );
     </select>
 
-    <select id="findAllMyFollowers" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleFollowerUserResponse">
-
+    <select id="findAllMyFollowers" resultMap="followerResultMap" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleFollowerUserResponse">
+        select usr.uuid,
+               usr.username,
+               usr.first_name,
+               usr.last_name,
+               usr.title
+        from (select use.uuid,use.username,use.last_name,use.first_name,use.title
+              from auth.users use
+                       join network.follow_relation fr on use.uuid = fr.followed_user_id
+              where use.row_status = 'ACTIVE'
+                    and fr.following_user_id =
+                        #{authId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}) usr
+        where not exists(
+        select *
+        from network.block_relation br
+        where br.row_status = 'ACTIVE'
+        and ((br.user_id = #{authId} and br.target_user_id = usr.uuid)
+        OR (br.target_user_id = #{authId} and br.user_id = usr.uuid))
+        )
     </select>
 
     <select id="findAllMyNetworks" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
-
+        select usr.uuid,
+               usr.username,
+               usr.first_name,
+               usr.last_name,
+               usr.title,
+              (select count(nrr.uuid),nrr.uuid
+               from network.network_relation nrr
+               where nrr.process_status = 'COMPLETED'
+                   and nrr.row_status = 'ACTIVE'
+                   and network_status = 'ACCEPTED'
+                   and block_reason_status = 'UNKNOWN'
+                   and (nrr.request_owner_id = usr.uuid)
+                  or (nrr.request_target_id = usr.uuid)) as networkCount
+            from auth.users usr
+        where usr.uuid = #{authId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+          and not exists(select *
+            from network.block_relation br
+            where br.row_status = 'ACTIVE'
+          and ((br.user_id = #{authId} and br.target_user_id =#{targetId})
+           OR (br.target_user_id = #{authId} and br.user_id = #{targetId})))
+          and usr.row_status = 'ACTIVE'
     </select>
 
 

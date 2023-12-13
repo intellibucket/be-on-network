@@ -16,7 +16,7 @@ public interface UserQueryPrivateSpec {
 
     ResponseEntity<JSuccessDataResponse<List<SimpleAnyUserProfileResponse>>> getUserList(List<UUID> users);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleFollowerUserResponse>>>> getMyFollowerItems(PageableRequest request);
+    ResponseEntity<JSuccessDataResponse<List<SimpleFollowerUserResponse>>> getMyFollowerItems(PageableRequest request);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageable<List<SimpleNetworkUserResponse>>>> getMyNetworkItems(PageableRequest request);
+    ResponseEntity<JSuccessDataResponse<List<SimpleNetworkUserResponse>>> getMyNetworkItems(PageableRequest request);
 }
