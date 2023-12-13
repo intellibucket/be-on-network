@@ -5,9 +5,15 @@ import az.rock.lib.domain.id.vacancy.VacancyID;
 import az.rock.lib.domain.id.vacancy.VacancySalaryID;
 import az.rock.lib.valueObject.Currency;
 import az.rock.lib.valueObject.vacancy.Payment;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
+@Getter
+@Builder
+@SuperBuilder
 public class VacancySalaryRoot extends AggregateRoot<VacancySalaryID> {
     private VacancyID vacancy;
 
