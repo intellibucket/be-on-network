@@ -6,9 +6,10 @@ import az.rock.lib.domain.id.IdReference;
 import java.util.UUID;
 
 public class VacancyPlannerID extends RootID<UUID>  implements IdReference<UUID> {
-    protected VacancyPlannerID(UUID value) {
+    public VacancyPlannerID(UUID value) {
         super(value);
     }
+
     @Override
     public UUID getAbsoluteID() {
         return super.getRootID();
