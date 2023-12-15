@@ -1,0 +1,29 @@
+[
+  {
+    "code": "S0000000001",
+    "az": " Əməliyyat uğurla yerinə yetirildi.",
+    "en": " Operation was successfully completed.",
+    "ru": " Операция успешно выполнена.",
+    "tr": " İşlem başarıyla tamamlandı.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "S0000000002",
+    "az": " Hörmətli {0} {1}, sizin hesabınızda {2} {3} qalıb.",
+    "en": " Dear {0} {1}, your account has {2} {3} left.",
+    "ru": " Уважаемый {0} {1}, на вашем счете осталось {2} {3}.",
+    "tr": " Sayın {0} {1}, hesabınızda {2} {3} kaldı.",
+    "hasRegex": true,
+    "regex": "^(\\w+)\\s(\\w+),\\s(\\d+)\\s(\\w+)\\s(\\w+)$"
+  },
+  {
+    "code": "S0000000003",
+    "az": " Məlumatlar uğurla yeniləndi.",
+    "en": " Information updated successfully.",
+    "ru": " Информация успешно обновлена.",
+    "tr": " Bilgiler başarıyla güncellendi.",
+    "hasRegex": false,
+    "regex": ""
+  }
+]

@@ -21,8 +21,6 @@ public interface VacancyCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> updateVacancyStatus(UpdateRequest<VacancyStatusCommand> request);
 
-    ResponseEntity<JSuccessResponse> updateVacancyPackageStatus(UpdateRequest<String> request);
-
     ResponseEntity<JSuccessResponse> updateSeniorityStatus(UpdateRequest<SeniorityStatus> request);
 
     ResponseEntity<JSuccessResponse> updateSectoralType(UpdateRequest<SectoralType> request);
