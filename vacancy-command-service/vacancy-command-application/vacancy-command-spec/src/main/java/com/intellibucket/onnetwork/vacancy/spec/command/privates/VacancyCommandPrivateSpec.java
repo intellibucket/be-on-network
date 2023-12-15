@@ -8,20 +8,14 @@ import com.intellibucket.onnetwork.vacancy.domain.presentation.command.dto.abstr
 import com.intellibucket.onnetwork.vacancy.domain.presentation.command.dto.abstracts.UpdateRequest;
 import com.intellibucket.onnetwork.vacancy.domain.presentation.command.dto.request.VacancyCommand;
 import com.intellibucket.onnetwork.vacancy.domain.presentation.command.dto.request.VacancyContextCommand;
-import com.intellibucket.onnetwork.vacancy.domain.presentation.command.dto.request.VacancyPriorityCommand;
 import com.intellibucket.onnetwork.vacancy.domain.presentation.command.dto.request.VacancyStatusCommand;
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface VacancyCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> createVacancy(CreateRequest<VacancyCommand> request);
-
-    ResponseEntity<JSuccessResponse> updatePriority(VacancyPriorityCommand request);
-
-    ResponseEntity<JSuccessResponse> balancePriority(List<VacancyPriorityCommand> request);
 
     ResponseEntity<JSuccessResponse> updatePublishStatus(UpdateRequest<PublishStatus> request);
 
