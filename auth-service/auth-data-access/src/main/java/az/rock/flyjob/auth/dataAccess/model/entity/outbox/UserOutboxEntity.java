@@ -43,7 +43,7 @@ public class UserOutboxEntity extends OutboxEntity {
         private ProcessStatus processStatus;
         private UUID uuid;
         private UUID sagaId;
-        private Long version;
+        private Short version;
         private Timestamp createdDate;
         private Timestamp lastModifiedDate;
         private OutboxStatus outboxStatus;
@@ -72,7 +72,7 @@ public class UserOutboxEntity extends OutboxEntity {
             return this;
         }
 
-        public Builder version(Long val) {
+        public Builder version(Short val) {
             version = val;
             return this;
         }

@@ -728,26 +728,26 @@
             <column name="block_reason_status" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1697027203285-23" author="Vugar Mammadli">
-        <createTable schemaName="outbox" tableName="user_outbox">
-            <column name="uuid" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_outbox"/>
-            </column>
-            <column name="saga_id" type="UUID">
-                <constraints nullable="false"/>
-            </column>
-            <column name="version" type="BIGINT"/>
-            <column name="created_date" type="DATETIME">
-                <constraints nullable="false"/>
-            </column>
-            <column name="modification_date" type="DATETIME"/>
-            <column name="saga_status" type="VARCHAR(255)"/>
-            <column name="outbox_status" type="VARCHAR(255)"/>
-            <column name="type" type="VARCHAR(100)"/>
-            <column name="payload" type="VARCHAR(255)"/>
-            <column name="process_status" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
+    <!--    <changeSet id="1697027203285-23" author="Vugar Mammadli">-->
+    <!--        <createTable schemaName="outbox" tableName="user_outbox">-->
+    <!--            <column name="uuid" type="UUID">-->
+    <!--                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_outbox"/>-->
+    <!--            </column>-->
+    <!--            <column name="saga_id" type="UUID">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="version" type="BIGINT"/>-->
+    <!--            <column name="created_date" type="DATETIME">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="modification_date" type="DATETIME"/>-->
+    <!--            <column name="saga_status" type="VARCHAR(255)"/>-->
+    <!--            <column name="outbox_status" type="VARCHAR(255)"/>-->
+    <!--            <column name="type" type="VARCHAR(100)"/>-->
+    <!--            <column name="payload" type="VARCHAR(255)"/>-->
+    <!--            <column name="process_status" type="VARCHAR(255)"/>-->
+    <!--        </createTable>-->
+    <!--    </changeSet>-->
     <changeSet id="1702148675022-25" author="Vugar Mammadli">
         <createTable schemaName="replica" tableName="cities">
             <column name="uuid" type="UUID">
