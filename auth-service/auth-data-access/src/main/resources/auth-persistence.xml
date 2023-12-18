@@ -9,7 +9,7 @@
         <class>az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.network.NetworkRelationEntity</class>
 
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.UserOutboxEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity</class>
 
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.AuthenticationLogEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity</class>

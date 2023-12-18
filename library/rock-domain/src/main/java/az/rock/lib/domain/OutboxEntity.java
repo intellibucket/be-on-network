@@ -1,21 +1,24 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.valueObject.OutboxStatus;
-import com.intellibucket.lib.payload.trx.State;
+import com.intellibucket.lib.payload.trx.OutboxStatus;
+import com.intellibucket.lib.payload.trx.SagaStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
-import java.util.Objects;
 import java.util.UUID;
 
 @MappedSuperclass
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class OutboxEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -38,26 +41,26 @@ public class OutboxEntity {
     private Timestamp lastModifiedDate;
 
     @Enumerated(EnumType.STRING)
-    private State state;
-
-    @Enumerated(EnumType.STRING)
+    @Column(name = "outbox_status", nullable = false)
     private OutboxStatus outboxStatus;
 
-    @Column(name = "type", length = 100)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "saga_status", nullable = false)
+    private SagaStatus sagaStatus;
 
-    @Column(name = "payload")
+    @Column(name = "process", length = 200, nullable = false)
+    private String process;
+
+    @Column(name = "topic", length = 200, nullable = false)
+    private String topic;
+
+    @Column(name = "payload", nullable = false)
     private String payload;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OutboxEntity that)) return false;
-        return getUuid().equals(that.getUuid()) && getSagaId().equals(that.getSagaId()) && getVersion().equals(that.getVersion());
-    }
+    @Column(name = "step", length = 200, nullable = false, updatable = false)
+    private String step;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getUuid(), getSagaId(), getVersion(), getCreatedDate(), getLastModifiedDate(), getState(), getOutboxStatus(), getType(), getPayload());
-    }
+    @Column(name = "retryable", nullable = false, columnDefinition = "boolean default false")
+    private Boolean retryable;
+
 }
