@@ -18,6 +18,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-embedded</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-connector-postgres</artifactId>
+        </dependency>
+        <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-domain-presentation</artifactId>
         </dependency>

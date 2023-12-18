@@ -5,9 +5,8 @@ import az.rock.flyjob.auth.dataAccess.mapper.outbox.AbstractUserOutboxDataAccess
 import az.rock.flyjob.auth.dataAccess.repository.outbox.UserOutboxJPARepository;
 import az.rock.flyjob.auth.model.root.UserOutboxRoot;
 import az.rock.lib.domain.SagaID;
-import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class UserOutboxRepository implements AbstractUserOutboxRepositoryAdapter {
     private final AbstractUserOutboxDataAccessMapper mapper;
     private final UserOutboxJPARepository repository;
@@ -20,7 +19,7 @@ public class UserOutboxRepository implements AbstractUserOutboxRepositoryAdapter
     @Override
     public void save(UserOutboxRoot outbox) {
         var entity = mapper.toNewEntity(outbox);
-        entity.ifPresent(repository::save);
+        //entity.ifPresent(repository::save);
     }
 
     @Override

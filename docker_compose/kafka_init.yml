@@ -16,7 +16,6 @@ services:
     container_name: KAFKA
     ports:
       - "9092:9092"
-#      - "29092:29092"
     expose:
       - "9093"
     volumes:
@@ -46,10 +45,9 @@ services:
     depends_on:
       - zookeeper
       - kafka
-
   debezium-connect:
-    container_name: custom-debezium-connect
-    image: custom-debezium-connect
+    image: debezium/connect:latest
+    container_name: debezium
     hostname: debezium-connect
     ports:
       - '8083:8083'
