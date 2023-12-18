@@ -16,6 +16,7 @@ public class DebeziumConfig {
         var offsetStorageTempFile = File.createTempFile("offsets_", ".dat");
         return io.debezium.config.Configuration.create()
                 .with("name", "customer_postgres_connector")
+                .with("topic.prefix", "auth")
                 .with("connector.class", "io.debezium.connector.postgresql.PostgresConnector")
                 .with("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore")
                 .with("offset.storage.file.filename", offsetStorageTempFile.getAbsolutePath())

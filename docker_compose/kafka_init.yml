@@ -45,6 +45,7 @@ services:
     depends_on:
       - zookeeper
       - kafka
+
   debezium-connect:
     image: debezium/connect:latest
     container_name: debezium
