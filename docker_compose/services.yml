@@ -60,7 +60,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
       PGDATA: /data/postgres
-      POSTGRES_INITDB_ARGS: "--wal_level=logical"
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
     volumes:
       - db:/data/postgres
     ports:

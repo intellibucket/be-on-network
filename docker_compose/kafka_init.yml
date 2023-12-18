@@ -46,21 +46,6 @@ services:
       - zookeeper
       - kafka
 
-  debezium-connect:
-    image: debezium/connect:latest
-    container_name: debezium
-    hostname: debezium-connect
-    ports:
-      - '8083:8083'
-    environment:
-      GROUP_ID: 1
-      CONFIG_STORAGE_TOPIC: debezium_connect_config
-      OFFSET_STORAGE_TOPIC: debezium_connect_offsets
-      STATUS_STORAGE_TOPIC: debezium_connect_status
-      BOOTSTRAP_SERVERS: kafka:9093
-    depends_on:
-      - kafka
-
 volumes:
   zookeeper_data:
     driver: local
