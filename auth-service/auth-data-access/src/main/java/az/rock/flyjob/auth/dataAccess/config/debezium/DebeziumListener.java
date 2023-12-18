@@ -36,6 +36,7 @@ public class DebeziumListener {
         log.info("Key = {}, Value = {}", sourceRecord.key(), sourceRecord.value());
         var sourceRecordChangeValue = (Struct) sourceRecord.value();
         log.info("SourceRecordChangeValue = '{}'", sourceRecordChangeValue);
+
         // if (sourceRecordChangeValue != null) {
         //     Operation operation = Operation.forCode((String) sourceRecordChangeValue.get(OPERATION));
 
