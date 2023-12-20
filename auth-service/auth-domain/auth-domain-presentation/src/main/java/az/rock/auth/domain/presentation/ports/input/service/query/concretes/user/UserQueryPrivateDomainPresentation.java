@@ -8,6 +8,7 @@ import az.rock.auth.domain.presentation.exception.AuthDomainPresentationExceptio
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.user.AbstractUserQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserQueryRepositoryAdapter;
 import az.rock.flyjob.auth.exception.user.MyFollowersNotFoundException;
+import az.rock.flyjob.auth.exception.user.MyNetworksNotFoundException;
 import az.rock.flyjob.auth.exception.user.MyUserProfileNotFoundException;
 import az.rock.flyjob.auth.exception.user.UserProfileNotFoundException;
 import az.rock.flyjob.auth.model.query.AnyProfileQueryRecord;
@@ -78,6 +79,10 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
 
     @Override
     public List<SimpleNetworkUserResponse> myNetworkItems(PageableRequest request) {
-        return null;
+        var currentId = this.securityContextHolder.availableUser();
+        var listOfAllMyNetworks = userProfileQueryRepositoryAdapter.findAllMyNetworks(currentId.getAbsoluteID(), request);
+        if (listOfAllMyNetworks.size() > 0) {
+            return listOfAllMyNetworks;
+        } else throw new MyNetworksNotFoundException();
     }
 }

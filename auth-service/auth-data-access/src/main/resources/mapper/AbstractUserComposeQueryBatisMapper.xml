@@ -52,6 +52,18 @@
         <!-- Add other properties as needed -->
     </resultMap>
 
+    <resultMap id="networksResultMap" type="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
+        <id property="authId"
+            column="uuid"
+            typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
+        <result property="username" column="username"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="title" column="title"/>
+        <result property="networkCount" column="networkCount"/>
+        <!-- Add other properties as needed -->
+    </resultMap>
+
     <select id="findUserProfileById" resultType="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
         select
             usr.uuid                                   as uuid,
@@ -166,7 +178,7 @@
         )
     </select>
 
-    <select id="findAllMyNetworks" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
+    <select id="findAllMyNetworks" resultMap="networksResultMap" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
         select usr.uuid,
                usr.username,
                usr.first_name,
@@ -182,13 +194,13 @@
                   or (nrr.request_target_id = usr.uuid)) as networkCount
             from auth.users usr
         where usr.uuid = #{authId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
-          and not exists(select *
+          and not exists(
+            select *
             from network.block_relation br
             where br.row_status = 'ACTIVE'
-          and ((br.user_id = #{authId} and br.target_user_id =#{targetId})
-           OR (br.target_user_id = #{authId} and br.user_id = #{targetId})))
+              and ((br.user_id = #{authId} and br.target_user_id = usr.uuid)
+                OR (br.target_user_id = #{authId} and br.user_id = usr.uuid))
+        )
           and usr.row_status = 'ACTIVE'
     </select>
-
-
 </mapper>
