@@ -42,7 +42,8 @@ public class UserQueryPrivateController implements UserQueryPrivateSpec {
     @Override
     @PostMapping("/get-user-list")
     public ResponseEntity<JSuccessDataResponse<List<SimpleAnyUserProfileResponse>>> getUserList(@RequestBody List<UUID> users) {
-        return null;
+        List<SimpleAnyUserProfileResponse> response = this.userQueryDomainPresentation.anyProfiles(users);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override

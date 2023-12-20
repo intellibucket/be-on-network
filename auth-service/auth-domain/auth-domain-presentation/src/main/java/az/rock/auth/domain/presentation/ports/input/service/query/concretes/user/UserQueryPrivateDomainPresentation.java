@@ -64,8 +64,11 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
 
     @Override
     public List<SimpleAnyUserProfileResponse> anyProfiles(List<UUID> userIDs) {
-        var currentUser = this.securityContextHolder.availableUser();
-        return null;
+        var currentId = this.securityContextHolder.availableUser();
+        var listOfAnyUserProfile = userProfileQueryRepositoryAdapter.findAllAnyProfiles(currentId.getAbsoluteID(), userIDs);
+        if (listOfAnyUserProfile.size() > 0) {
+            return listOfAnyUserProfile;
+        } else throw new MyFollowersNotFoundException();
     }
 
     @Override

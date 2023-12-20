@@ -49,10 +49,9 @@
         <result property="firstName" column="first_name"/>
         <result property="lastName" column="last_name"/>
         <result property="title" column="title"/>
-        <!-- Add other properties as needed -->
     </resultMap>
 
-    <resultMap id="networksResultMap" type="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
+    <resultMap id="networkResultMap" type="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
         <id property="authId"
             column="uuid"
             typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
@@ -60,8 +59,6 @@
         <result property="firstName" column="first_name"/>
         <result property="lastName" column="last_name"/>
         <result property="title" column="title"/>
-        <result property="networkCount" column="networkCount"/>
-        <!-- Add other properties as needed -->
     </resultMap>
 
     <select id="findUserProfileById" resultType="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
@@ -178,29 +175,55 @@
         )
     </select>
 
-    <select id="findAllMyNetworks" resultMap="networksResultMap" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
-        select usr.uuid,
-               usr.username,
-               usr.first_name,
-               usr.last_name,
-               usr.title,
-              (select count(nrr.uuid),nrr.uuid
-               from network.network_relation nrr
-               where nrr.process_status = 'COMPLETED'
-                   and nrr.row_status = 'ACTIVE'
-                   and network_status = 'ACCEPTED'
-                   and block_reason_status = 'UNKNOWN'
-                   and (nrr.request_owner_id = usr.uuid)
-                  or (nrr.request_target_id = usr.uuid)) as networkCount
-            from auth.users usr
-        where usr.uuid = #{authId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
-          and not exists(
-            select *
-            from network.block_relation br
-            where br.row_status = 'ACTIVE'
-              and ((br.user_id = #{authId} and br.target_user_id = usr.uuid)
-                OR (br.target_user_id = #{authId} and br.user_id = usr.uuid))
-        )
-          and usr.row_status = 'ACTIVE'
+    <select id="findAllMyNetworks" resultMap="networkResultMap" resultType="az.rock.auth.domain.presentation.dto.response.user.SimpleNetworkUserResponse">
+        SELECT
+            usr.uuid,
+            usr.username,
+            usr.first_name,
+            usr.last_name,
+            usr.title
+        FROM
+            auth.users usr
+        WHERE
+                usr.uuid in (
+                SELECT
+                    CASE
+                        WHEN aa.request_owner_id = #{authId} THEN aa.request_target_id
+                        WHEN aa.request_target_id = #{authId} THEN aa.request_owner_id
+                        END AS uuid
+                FROM (
+                         SELECT
+                             nrr.request_target_id,
+                             nrr.request_owner_id
+                         FROM
+                             auth.users usr
+                                 JOIN
+                             network.network_relation nrr ON nrr.request_owner_id = usr.uuid OR nrr.request_target_id = usr.uuid
+                         WHERE
+                             usr.uuid = #{authId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+                           AND nrr.process_status = 'COMPLETED'
+                           AND nrr.row_status = 'ACTIVE'
+                           AND network_status = 'ACCEPTED'
+                           AND block_reason_status = 'UNKNOWN'
+                           AND NOT EXISTS (
+                             SELECT *
+                             FROM network.block_relation br
+                             WHERE
+                                 br.row_status = 'ACTIVE'
+                               AND (
+                                     (br.user_id = #{authId} AND br.target_user_id = usr.uuid)
+                                     OR
+                                     (br.target_user_id = #{authId} AND br.user_id = usr.uuid)
+                                 )
+                         )
+                           AND usr.row_status = 'ACTIVE'
+                     ) aa
+            )
+        GROUP BY
+            usr.uuid,
+            usr.username,
+            usr.first_name,
+            usr.last_name,
+            usr.title;
     </select>
 </mapper>
