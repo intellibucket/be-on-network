@@ -1,11 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.outbox;
 
-import az.rock.flyjob.auth.dataAccess.model.entity.outbox.UserOutboxEntity;
+import az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity;
 import az.rock.flyjob.auth.model.root.UserOutboxRoot;
-import az.rock.lib.domain.OutboxID;
-import az.rock.lib.domain.SagaID;
-import az.rock.lib.util.GDateTime;
-import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -13,67 +9,31 @@ import java.util.Optional;
 @Component
 public class UserOutboxDataAccessMapper implements AbstractUserOutboxDataAccessMapper{
     @Override
-    public Optional<UserOutboxRoot> toRoot(UserOutboxEntity entity) {
+    public Optional<UserOutboxRoot> toRoot(ProcessOutboxEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
-        if (optionalEntity.isPresent()){
+        if (optionalEntity.isPresent()) {
             var outboxEntity = optionalEntity.get();
-            return Optional.of(
-                    UserOutboxRoot.Builder
-                            .builder()
-                            .outboxID(OutboxID.of(outboxEntity.getUuid()))
-                            .sagaId(SagaID.of(outboxEntity.getSagaId()))
-                            .version(Version.of(outboxEntity.getVersion()))
-                            .createdDate(GDateTime.toZonedDateTime(outboxEntity.getCreatedDate()))
-                            .lastModifiedDate(GDateTime.toZonedDateTime(outboxEntity.getLastModifiedDate()))
-                            .outboxStatus(outboxEntity.getOutboxStatus())
-                            .payload(outboxEntity.getPayload())
-                            .type(outboxEntity.getType())
-                            .processStatus(outboxEntity.getProcessStatus())
-                            .build());
+            return Optional.ofNullable(null);
         }
         return Optional.empty();
     }
 
     @Override
-    public Optional<UserOutboxEntity> toEntity(UserOutboxRoot root) {
+    public Optional<ProcessOutboxEntity> toEntity(UserOutboxRoot root) {
         var optionalRoot = Optional.ofNullable(root);
-        if (optionalRoot.isPresent()){
+        if (optionalRoot.isPresent()) {
             var outboxRoot = optionalRoot.get();
-            return Optional.of(
-                    UserOutboxEntity.Builder
-                            .builder()
-                            .uuid(outboxRoot.getRootID().getRootID())
-                            .sagaId(outboxRoot.getSagaId().getRootID())
-                            .version(outboxRoot.getVersion().value())
-                            .createdDate(GDateTime.toTimestamp(outboxRoot.getCreatedDate()))
-                            .lastModifiedDate(GDateTime.toTimestamp(outboxRoot.getLastModifiedDate()))
-                            .outboxStatus(outboxRoot.getOutboxStatus())
-                            .payload(outboxRoot.getPayload())
-                            .type(outboxRoot.getType())
-                            .processStatus(outboxRoot.getProcessStatus())
-                            .build());
+            return Optional.ofNullable(null);
         }
         return Optional.empty();
     }
 
     @Override
-    public Optional<UserOutboxEntity> toNewEntity(UserOutboxRoot root) {
+    public Optional<ProcessOutboxEntity> toNewEntity(UserOutboxRoot root) {
         var optionalRoot = Optional.ofNullable(root);
-        if (optionalRoot.isPresent()){
+        if (optionalRoot.isPresent()) {
             var outboxRoot = optionalRoot.get();
-            return Optional.of(
-                    UserOutboxEntity.Builder
-                            .builder()
-                            .uuid(outboxRoot.getRootID().getRootID())
-                            .sagaId(outboxRoot.getSagaId().getRootID())
-                            .version(outboxRoot.getVersion().value())
-                            .createdDate(GDateTime.toTimestamp(outboxRoot.getCreatedDate()))
-                            .lastModifiedDate(GDateTime.toTimestamp(outboxRoot.getLastModifiedDate()))
-                            .outboxStatus(outboxRoot.getOutboxStatus())
-                            .payload(outboxRoot.getPayload())
-                            .type(outboxRoot.getType())
-                            .processStatus(outboxRoot.getProcessStatus())
-                            .build());
+            return Optional.ofNullable(null);
         }
         return Optional.empty();
     }

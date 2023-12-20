@@ -10,12 +10,12 @@ import java.util.UUID;
 
 public final class Saga<E>{
     private UUID transactionId;
-    private State state;
+    private OutboxStatus outboxStatus;
     private E event;
 
-    public Saga(UUID transactionId, State state , E event) {
+    public Saga(UUID transactionId, OutboxStatus outboxStatus, E event) {
         this.transactionId = transactionId;
-        this.state = state;
+        this.outboxStatus = outboxStatus;
         this.event = event;
     }
 
@@ -25,27 +25,27 @@ public final class Saga<E>{
     }
 
     public  static <E extends AbstractStartDomainEvent<?>> Saga<E> onProceed(E event){
-        return new Saga<E>(UUID.randomUUID(),State.ON_PROCEED,event);
+        return new Saga<E>(UUID.randomUUID(), OutboxStatus.STARTED, event);
     }
 
-    public static <E,F extends AbstractDomainEvent> Saga<? extends E>  onError(Saga<E> saga){
-        return new Saga<E>(saga.getTransactionId(),State.ON_ERROR, saga.getEvent());
+    public static <E, F extends AbstractDomainEvent> Saga<? extends E> onError(Saga<E> saga) {
+        return new Saga<E>(saga.getTransactionId(), OutboxStatus.FAILED, saga.getEvent());
     }
 
-    public static <E,S> Saga<S> onFail(Saga<E> saga, S failEvent){
-        return new Saga<S>(saga.getTransactionId(),State.ON_FAIL, failEvent);
+    public static <E, S> Saga<S> onFail(Saga<E> saga, S failEvent) {
+        return new Saga<S>(saga.getTransactionId(), OutboxStatus.FAILED, failEvent);
     }
 
-    public static <E,S> Saga<S> onSuccess(Saga<E> saga, S successEvent){
-        return new Saga<S>(saga.getTransactionId(),State.ON_SUCCESS, successEvent);
+    public static <E, S> Saga<S> onSuccess(Saga<E> saga, S successEvent) {
+        return new Saga<S>(saga.getTransactionId(), OutboxStatus.COMPLETED, successEvent);
     }
 
     public UUID getTransactionId() {
         return transactionId;
     }
 
-    public State getState() {
-        return state;
+    public OutboxStatus getState() {
+        return outboxStatus;
     }
 
     public E getEvent() {
@@ -53,28 +53,30 @@ public final class Saga<E>{
     }
 
     @JsonIgnore
-    public Boolean isOnProceed(){
-        return this.state.equals(State.ON_PROCEED);
+    public Boolean isOnProceed() {
+        return this.outboxStatus.equals(OutboxStatus.STARTED);
     }
+
     @JsonIgnore
-    public Boolean isOnError(){
-        return this.state.equals(State.ON_ERROR);
+    public Boolean isOnError() {
+        return this.outboxStatus.equals(OutboxStatus.FAILED);
     }
     @JsonIgnore
     public Boolean isOnFail(){
-        return this.state.equals(State.ON_FAIL);
+        return this.outboxStatus.equals(OutboxStatus.FAILED);
     }
+
     @JsonIgnore
-    public Boolean isOnSuccess(){
-        return this.state.equals(State.ON_SUCCESS);
+    public Boolean isOnSuccess() {
+        return this.outboxStatus.equals(OutboxStatus.COMPLETED);
     }
 
     public void setTransactionId(UUID transactionId) {
         this.transactionId = transactionId;
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setState(OutboxStatus outboxStatus) {
+        this.outboxStatus = outboxStatus;
     }
 
     public void setEvent(E event) {
