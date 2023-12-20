@@ -1,0 +1,38 @@
+[
+  {
+    "code": "F0000000001",
+    "az": " Bir sistem xətası çıxdı. Ən yaxın zamanda yenidən cəhd edin.",
+    "en": " An error occurred. Please try again later.",
+    "ru": " Произошла ошибка. Пожалуйста, попробуйте позже.",
+    "tr": " Bir sorun oluştu. Lütfen daha sonra tekrar deneyin.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000002",
+    "az": " Sessiyanız bitdi. Xahiş edirik yenidən daxil edin.",
+    "en": " Session expired. Please login again.",
+    "ru": " Сессия истекла. Пожалуйста, войдите снова.",
+    "tr": " Oturumunuz sona erdi. Lütfen tekrar giriş yapın.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000003",
+    "az": " Giriş üçün icazəniz yoxdur.",
+    "en": " You do not have permission to log in.",
+    "ru": " У вас нет разрешения на вход.",
+    "tr": " Giriş yapmaya izniniz yok.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000004",
+    "az": " Giriş məlumatları səhvdir.",
+    "en": " Login information is incorrect.",
+    "ru": " Информация для входа неверна.",
+    "tr": " Giriş bilgileri yanlış.",
+    "hasRegex": false,
+    "regex": ""
+  }
+]
