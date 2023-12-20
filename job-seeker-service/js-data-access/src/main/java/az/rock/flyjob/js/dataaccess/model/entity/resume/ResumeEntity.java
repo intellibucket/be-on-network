@@ -9,7 +9,10 @@ import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -28,7 +31,7 @@ public class ResumeEntity extends BaseEntity {
     @Column(name = "user_id", nullable = false, unique = true, updatable = false)
     private UUID userId;
 
-    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Column(length = 32, columnDefinition = "varchar(32) default 'AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
 

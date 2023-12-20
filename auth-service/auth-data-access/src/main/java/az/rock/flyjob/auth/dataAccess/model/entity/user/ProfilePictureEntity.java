@@ -24,7 +24,7 @@ public class ProfilePictureEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 
-    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Column(length = 32, columnDefinition = "varchar(32) default 'AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
 

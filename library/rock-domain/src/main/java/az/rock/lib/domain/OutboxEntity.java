@@ -27,7 +27,7 @@ public class OutboxEntity {
     private UUID sagaId;
 
     @Version
-    private Long version;
+    private Short version;
 
     @CreationTimestamp
     @Column(name = "created_date", updatable = false, nullable = false)
@@ -38,7 +38,7 @@ public class OutboxEntity {
     private Timestamp lastModifiedDate;
 
     @Enumerated(EnumType.STRING)
-    private State sagaStatus;
+    private State state;
 
     @Enumerated(EnumType.STRING)
     private OutboxStatus outboxStatus;
@@ -58,6 +58,6 @@ public class OutboxEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUuid(), getSagaId(), getVersion(), getCreatedDate(), getLastModifiedDate(), getSagaStatus(), getOutboxStatus(), getType(), getPayload());
+        return Objects.hash(getUuid(), getSagaId(), getVersion(), getCreatedDate(), getLastModifiedDate(), getState(), getOutboxStatus(), getType(), getPayload());
     }
 }

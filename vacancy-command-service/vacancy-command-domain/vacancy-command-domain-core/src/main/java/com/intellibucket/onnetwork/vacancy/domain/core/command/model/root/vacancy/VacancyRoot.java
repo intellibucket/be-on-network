@@ -6,10 +6,16 @@ import az.rock.lib.domain.id.vacancy.VacancyID;
 import az.rock.lib.valueObject.WorkingTimeLine;
 import az.rock.lib.valueObject.WorkingType;
 import az.rock.lib.valueObject.vacancy.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
-import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.util.List;
 
+@Getter
+@Builder
+@SuperBuilder
 public class VacancyRoot extends AggregateRoot<VacancyID> {
 
     private UserID companyID;
@@ -36,15 +42,15 @@ public class VacancyRoot extends AggregateRoot<VacancyID> {
 
     private String responsibilities;
 
-    private List<VacancySkillRoot> skills;
+    private ZonedDateTime startDate;
 
-    private Timestamp startDate;
-
-    private Timestamp endDate;
+    private ZonedDateTime endDate;
 
     private WorkingTimeLine workingTimeLine;
 
     private WorkingType workingType;
+
+    private List<VacancySkillRoot> skills;
 
     private VacancySalaryRoot salary;
 
@@ -59,5 +65,6 @@ public class VacancyRoot extends AggregateRoot<VacancyID> {
     private List<ViewerRoot> viewers;
 
     private VacancySettingRoot setting;
+
 
 }

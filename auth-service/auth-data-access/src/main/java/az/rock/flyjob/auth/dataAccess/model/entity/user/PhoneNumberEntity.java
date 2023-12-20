@@ -23,7 +23,7 @@ import java.util.UUID;
 @Entity(name = "PhoneNumberEntity")
 public class PhoneNumberEntity extends BaseEntity {
 
-    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Column(length = 32, columnDefinition = "varchar(32) default 'AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
     @ManyToOne

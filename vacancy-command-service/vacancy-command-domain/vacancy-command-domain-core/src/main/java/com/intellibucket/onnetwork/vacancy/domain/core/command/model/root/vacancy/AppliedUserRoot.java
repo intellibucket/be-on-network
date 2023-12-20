@@ -9,9 +9,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+@Getter
+@Builder
+@SuperBuilder
 public class AppliedUserRoot extends AggregateRoot<AppliedUserID> {
 
     private VacancyID vacancy;
