@@ -14,9 +14,21 @@
     <groupId>az.rock.flyjob.auth</groupId>
     <artifactId>auth-data-access</artifactId>
 
-
-
     <dependencies>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-api</artifactId>
+            <version>2.4.0.Alpha1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-embedded</artifactId>
+            <version>2.4.0.Alpha1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-connector-postgres</artifactId>
+        </dependency>
         <dependency>
             <groupId>az.rock.flyjob.auth</groupId>
             <artifactId>auth-domain-presentation</artifactId>
