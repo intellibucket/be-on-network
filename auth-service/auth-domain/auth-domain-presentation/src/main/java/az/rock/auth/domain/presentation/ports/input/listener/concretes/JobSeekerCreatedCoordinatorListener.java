@@ -5,7 +5,7 @@ import az.rock.auth.domain.presentation.ports.input.listener.abstracts.AbstractC
 import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.payload.Payload;
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.SagaProcess;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,12 +17,12 @@ public class JobSeekerCreatedCoordinatorListener implements AbstractCoordinatorL
     }
 
     @Override
-    public void listenOnSuccess(Saga<AbstractSuccessDomainEvent<? extends Payload>> message) {
+    public void listenOnSuccess(SagaProcess<AbstractSuccessDomainEvent<? extends Payload>> message) {
         this.jobSeekerCreateEventCoordinator.onSuccess(message);
     }
 
     @Override
-    public void listenOnFail(Saga<AbstractFailDomainEvent<? extends Payload>> message) {
+    public void listenOnFail(SagaProcess<AbstractFailDomainEvent<? extends Payload>> message) {
         this.jobSeekerCreateEventCoordinator.onFail(message);
     }
 }

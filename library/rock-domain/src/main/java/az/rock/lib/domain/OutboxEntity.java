@@ -1,7 +1,5 @@
 package az.rock.lib.domain;
 
-import com.intellibucket.lib.payload.trx.OutboxStatus;
-import com.intellibucket.lib.payload.trx.SagaStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,13 +38,13 @@ public class OutboxEntity {
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "outbox_status", nullable = false)
-    private OutboxStatus outboxStatus;
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "outbox_status", nullable = false)
+//    private ProcessStatus processStatus;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "saga_status", nullable = false)
-    private SagaStatus sagaStatus;
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "saga_status", nullable = false)
+//    private SagaStatus sagaStatus;
 
     @Column(name = "process", length = 200, nullable = false)
     private String process;

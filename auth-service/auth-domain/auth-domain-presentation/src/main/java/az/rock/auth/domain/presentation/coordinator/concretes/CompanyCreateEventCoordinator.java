@@ -5,7 +5,7 @@ import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
 import com.intellibucket.lib.payload.payload.Payload;
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.SagaProcess;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,22 +13,22 @@ public class CompanyCreateEventCoordinator extends AbstractCompanyCreateEventCoo
 
 
     @Override
-    protected void proceed(Saga<CompanyCreatedEvent> saga) {
+    protected void proceed(SagaProcess<CompanyCreatedEvent> sagaProcess) {
 
     }
 
     @Override
-    protected void onError(Exception exception, Saga<CompanyCreatedEvent> saga) {
+    protected void onError(SagaProcess<CompanyCreatedEvent> sagaProcess, Exception exception) {
 
     }
 
     @Override
-    public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(Saga<F> saga) {
+    public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(SagaProcess<F> sagaProcess) {
 
     }
 
     @Override
-    public <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(Saga<S> saga) {
+    public <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(SagaProcess<S> sagaProcess) {
 
     }
 }

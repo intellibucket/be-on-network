@@ -1,6 +1,6 @@
 package com.intellibucket.lib.payload.trx;
 
-public enum OutboxStatus {
+public enum ProcessStatus {
     STARTED, FAILED, COMPLETED;
 
 }

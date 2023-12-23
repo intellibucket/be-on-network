@@ -2,21 +2,41 @@ package com.intellibucket.lib.payload.event.abstracts;
 
 
 import com.intellibucket.lib.payload.payload.Payload;
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.SagaProcess;
 
 public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
 
-    public final void coordinate(Saga<E> saga){
+    /**
+     * This method is used to coordinate the event which is published by the event publisher.
+     * When the event is published, the event coordinator will be notified and the coordinator will.
+     * When the event cannot be published, the coordinator will be executed the onError method.
+     */
+    public final void coordinate(SagaProcess<E> sagaProcess) {
         try {
-            this.proceed(saga);
-        }catch (Exception exception){
+            this.proceed(sagaProcess);
+        } catch (Exception exception) {
             exception.printStackTrace();
-            this.onError(exception,saga);
+            this.onError(sagaProcess, exception);
         }
     }
 
-    protected abstract void proceed(Saga<E> saga);
-    protected abstract void onError(Exception exception, Saga<E> saga);
-    public abstract <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(Saga<F> saga);
-    public abstract  <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(Saga<S> saga);
+    /**
+     * This method is used to proceed the event.
+     */
+    protected abstract void proceed(SagaProcess<E> sagaProcess);
+
+    /**
+     * This method is used to handle the error.
+     */
+    protected abstract void onError(SagaProcess<E> sagaProcess, Exception exception);
+
+    /**
+     * This method is used to handle the fail event which executed by the event listener.
+     */
+    public abstract <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(SagaProcess<F> sagaProcess);
+
+    /**
+     * This method is used to handle the success event which executed by the event listener.
+     */
+    public abstract <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(SagaProcess<S> sagaProcess);
 }

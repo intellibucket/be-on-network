@@ -4,7 +4,7 @@ import az.rock.flyjob.js.domain.presentation.ports.input.listener.abstracts.Abst
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractResumeCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.SagaProcess;
 import org.springframework.stereotype.Component;
 
 @InputPort
@@ -17,7 +17,7 @@ public class JobSeekerCreatedEventListenerAdapter implements AbstractJobSeekerCr
     }
 
     @Override
-    public void consume(Saga<JobSeekerCreatedEvent> eventSaga) {
-        this.resumeCommandDomainPresentationService.create(eventSaga);
+    public void consume(SagaProcess<JobSeekerCreatedEvent> eventSagaProcess) {
+        this.resumeCommandDomainPresentationService.create(eventSagaProcess);
     }
 }

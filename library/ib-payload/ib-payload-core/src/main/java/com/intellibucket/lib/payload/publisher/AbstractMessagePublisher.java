@@ -1,8 +1,8 @@
 package com.intellibucket.lib.payload.publisher;
 
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.SagaProcess;
 
 
 public interface AbstractMessagePublisher<E> {
-    void publish(Saga<E> saga);
+    void publish(SagaProcess<E> sagaProcess);
 }
