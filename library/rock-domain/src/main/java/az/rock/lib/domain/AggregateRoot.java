@@ -15,18 +15,6 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
     private ZonedDateTime createdDate;
     private ZonedDateTime modificationDate;
 
-    {
-        if (this.isActive()) {
-            System.out.println("RowStatus is ACTIVE");
-        } else if (this.rowStatus == RowStatus.ACTIVE && this.processStatus == ProcessStatus.ON_WAITING) {
-            System.out.println("RowStatus is ACTIVE");
-        } else if (this.rowStatus == RowStatus.DELETED) {
-
-        } else {
-
-        }
-    }
-
     @JsonIgnore
     public Boolean isNull() {
         return true;
