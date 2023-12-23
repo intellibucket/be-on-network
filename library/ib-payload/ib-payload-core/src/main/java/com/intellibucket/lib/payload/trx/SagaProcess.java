@@ -13,21 +13,23 @@ import java.util.UUID;
 public final class SagaProcess<E> {
     private UUID transactionId;
     private String step;
-    private ProcessStatus processStatus;
+    private TrxProcessStatus trxProcessStatus;
     private List<String> messages;
+
+    private Boolean mustBeRetryableStep;
     private E event;
 
-    public SagaProcess(UUID transactionId, ProcessStatus processStatus, String step, E event) {
+    public SagaProcess(UUID transactionId, TrxProcessStatus trxProcessStatus, String step, E event) {
         this.transactionId = transactionId;
-        this.processStatus = processStatus;
+        this.trxProcessStatus = trxProcessStatus;
         this.event = event;
         this.step = step;
         this.messages = List.of();
     }
 
-    public SagaProcess(UUID transactionId, ProcessStatus processStatus, String step, E event, List<String> messages) {
+    public SagaProcess(UUID transactionId, TrxProcessStatus trxProcessStatus, String step, E event, List<String> messages) {
         this.transactionId = transactionId;
-        this.processStatus = processStatus;
+        this.trxProcessStatus = trxProcessStatus;
         this.event = event;
         this.step = step;
         this.messages = messages;
@@ -40,11 +42,11 @@ public final class SagaProcess<E> {
     }
 
     public static <E extends AbstractStartDomainEvent<?>> SagaProcess<E> onProceed(Enum<?> step, E event) {
-        return new SagaProcess<E>(UUID.randomUUID(), ProcessStatus.STARTED, step.name(), event);
+        return new SagaProcess<E>(UUID.randomUUID(), TrxProcessStatus.STARTED, step.name(), event);
     }
 
     public static <E, F extends AbstractDomainEvent> SagaProcess<? extends E> onError(SagaProcess<E> sagaProcess) {
-        return new SagaProcess<E>(sagaProcess.getTransactionId(), ProcessStatus.FAILED, sagaProcess.step, sagaProcess.getEvent());
+        return new SagaProcess<E>(sagaProcess.getTransactionId(), TrxProcessStatus.FAILED, sagaProcess.step, sagaProcess.getEvent());
     }
 
     public static <E, S> SagaProcess<S> onFail(SagaProcess<E> sagaProcess, Enum<?> step, S failEvent) {
@@ -52,31 +54,31 @@ public final class SagaProcess<E> {
     }
 
     public static <E, S> SagaProcess<S> onFail(SagaProcess<E> sagaProcess, Enum<?> step, S failEvent, List<String> errors) {
-        return new SagaProcess<S>(sagaProcess.getTransactionId(), ProcessStatus.FAILED, step.name(), failEvent, errors);
+        return new SagaProcess<S>(sagaProcess.getTransactionId(), TrxProcessStatus.FAILED, step.name(), failEvent, errors);
     }
 
     public static <E, S> SagaProcess<S> onSuccess(SagaProcess<E> sagaProcess, Enum<?> step, S successEvent) {
-        return new SagaProcess<S>(sagaProcess.getTransactionId(), ProcessStatus.COMPLETED, step.name(), successEvent);
+        return new SagaProcess<S>(sagaProcess.getTransactionId(), TrxProcessStatus.COMPLETED, step.name(), successEvent);
     }
 
 
     @JsonIgnore
     public Boolean isOnProceed() {
-        return this.processStatus.equals(ProcessStatus.STARTED);
+        return this.trxProcessStatus.equals(TrxProcessStatus.STARTED);
     }
 
     @JsonIgnore
     public Boolean isOnError() {
-        return this.processStatus.equals(ProcessStatus.FAILED);
+        return this.trxProcessStatus.equals(TrxProcessStatus.FAILED);
     }
 
     @JsonIgnore
     public Boolean isOnFail(){
-        return this.processStatus.equals(ProcessStatus.FAILED);
+        return this.trxProcessStatus.equals(TrxProcessStatus.FAILED);
     }
     @JsonIgnore
     public Boolean isOnSuccess() {
-        return this.processStatus.equals(ProcessStatus.COMPLETED);
+        return this.trxProcessStatus.equals(TrxProcessStatus.COMPLETED);
     }
 
     @Override
@@ -107,12 +109,12 @@ public final class SagaProcess<E> {
         this.step = step;
     }
 
-    public ProcessStatus getProcessStatus() {
-        return processStatus;
+    public TrxProcessStatus getProcessStatus() {
+        return trxProcessStatus;
     }
 
-    public void setProcessStatus(ProcessStatus processStatus) {
-        this.processStatus = processStatus;
+    public void setProcessStatus(TrxProcessStatus trxProcessStatus) {
+        this.trxProcessStatus = trxProcessStatus;
     }
 
     public List<String> getMessages() {

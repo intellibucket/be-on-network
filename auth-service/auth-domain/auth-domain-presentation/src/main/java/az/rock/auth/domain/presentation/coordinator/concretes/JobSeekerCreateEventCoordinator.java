@@ -20,6 +20,11 @@ public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEven
     }
 
     @Override
+    protected void saveOutBox(SagaProcess<JobSeekerCreatedEvent> sagaProcess) {
+
+    }
+
+    @Override
     protected void proceed(SagaProcess<JobSeekerCreatedEvent> sagaProcess) {
         this.userMessagePublisher.publish(sagaProcess);
         log.info("User Message Published to Queue = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());

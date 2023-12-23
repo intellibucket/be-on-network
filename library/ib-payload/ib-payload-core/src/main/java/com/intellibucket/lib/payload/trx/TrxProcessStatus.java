@@ -1,6 +1,6 @@
 package com.intellibucket.lib.payload.trx;
 
-public enum ProcessStatus {
+public enum TrxProcessStatus {
     STARTED, FAILED, COMPLETED;
 
 }

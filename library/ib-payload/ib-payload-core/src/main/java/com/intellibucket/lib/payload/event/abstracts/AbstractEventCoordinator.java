@@ -6,12 +6,14 @@ import com.intellibucket.lib.payload.trx.SagaProcess;
 
 public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
 
+
     /**
      * This method is used to coordinate the event which is published by the event publisher.
      * When the event is published, the event coordinator will be notified and the coordinator will.
      * When the event cannot be published, the coordinator will be executed the onError method.
      */
     public final void coordinate(SagaProcess<E> sagaProcess) {
+        this.saveOutBox(sagaProcess);
         try {
             this.proceed(sagaProcess);
         } catch (Exception exception) {
@@ -20,15 +22,22 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
         }
     }
 
+    protected void saveOutBox(SagaProcess<E> sagaProcess) {
+
+    }
+
     /**
      * This method is used to proceed the event.
      */
     protected abstract void proceed(SagaProcess<E> sagaProcess);
 
+
     /**
-     * This method is used to handle the error.
+     * This method is used to handle the error whict cannot be proceed the event.
      */
-    protected abstract void onError(SagaProcess<E> sagaProcess, Exception exception);
+    protected void onError(SagaProcess<E> sagaProcess, Exception exception) {
+
+    }
 
     /**
      * This method is used to handle the fail event which executed by the event listener.

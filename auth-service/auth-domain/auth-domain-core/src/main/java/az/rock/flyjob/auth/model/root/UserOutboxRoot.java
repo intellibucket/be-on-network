@@ -4,7 +4,7 @@ import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.OutboxRoot;
 import az.rock.lib.domain.SagaID;
 import az.rock.lib.valueObject.Version;
-import com.intellibucket.lib.payload.trx.ProcessStatus;
+import com.intellibucket.lib.payload.trx.TrxProcessStatus;
 
 import java.time.ZonedDateTime;
 
@@ -34,7 +34,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
         private Version version;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
-        private ProcessStatus sagaStatus;
+        private TrxProcessStatus sagaStatus;
         private az.rock.lib.valueObject.OutboxStatus outboxStatus;
         private String type;
         private String payload;
@@ -76,7 +76,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
             return this;
         }
 
-        public Builder sagaStatus(ProcessStatus val) {
+        public Builder sagaStatus(TrxProcessStatus val) {
             sagaStatus = val;
             return this;
         }

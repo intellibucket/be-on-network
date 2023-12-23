@@ -11,14 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CompanyCreateEventCoordinator extends AbstractCompanyCreateEventCoordinator {
 
-
     @Override
     protected void proceed(SagaProcess<CompanyCreatedEvent> sagaProcess) {
-
-    }
-
-    @Override
-    protected void onError(SagaProcess<CompanyCreatedEvent> sagaProcess, Exception exception) {
 
     }
 
