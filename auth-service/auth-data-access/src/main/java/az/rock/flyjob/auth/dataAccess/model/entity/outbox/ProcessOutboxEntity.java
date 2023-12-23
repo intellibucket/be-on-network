@@ -48,6 +48,9 @@ public class ProcessOutboxEntity {
     @Column(name = "topic", length = 200, nullable = false)
     private String topic;
 
+    @Column(name = "process", length = 200, nullable = false)
+    private String process;
+
     @Column(name = "step", length = 200, nullable = false, updatable = false)
     private String step;
 

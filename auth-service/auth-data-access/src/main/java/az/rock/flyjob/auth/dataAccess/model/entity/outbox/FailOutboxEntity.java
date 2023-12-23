@@ -40,6 +40,9 @@ public class FailOutboxEntity {
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
 
+    @Column(name = "process", length = 200, nullable = false)
+    private String process;
+
     @Column(name = "step", length = 200, nullable = false, updatable = false)
     private String step;
 
