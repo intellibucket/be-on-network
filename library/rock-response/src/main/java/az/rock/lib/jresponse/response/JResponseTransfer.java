@@ -3,7 +3,7 @@ package az.rock.lib.jresponse.response;
 import az.rock.lib.jresponse.JTransfer;
 import az.rock.lib.jresponse.response.message.Message;
 
-public class JResponseTransfer extends JTransfer {
+public class JResponseTransfer<D> extends JTransfer {
     private final Boolean success;
     private final Message message;
 

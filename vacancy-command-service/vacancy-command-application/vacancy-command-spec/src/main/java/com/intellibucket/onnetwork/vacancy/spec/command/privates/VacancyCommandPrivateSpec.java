@@ -1,5 +1,6 @@
 package com.intellibucket.onnetwork.vacancy.spec.command.privates;
 
+import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import az.rock.lib.valueObject.vacancy.PublishStatus;
 import az.rock.lib.valueObject.vacancy.SectoralType;
@@ -15,9 +16,9 @@ import java.util.UUID;
 
 public interface VacancyCommandPrivateSpec {
 
-    ResponseEntity<JSuccessResponse> createVacancy(CreateRequest<VacancyCommand> request);
+    ResponseEntity<JSuccessDataResponse> createVacancy(CreateRequest<VacancyCommand> request);
 
-    ResponseEntity<JSuccessResponse> updatePublishStatus(UpdateRequest<PublishStatus> request);
+    ResponseEntity<JSuccessDataResponse> updatePublishStatus(UpdateRequest<PublishStatus> request);
 
     ResponseEntity<JSuccessResponse> updateVacancyStatus(UpdateRequest<VacancyStatusCommand> request);
 

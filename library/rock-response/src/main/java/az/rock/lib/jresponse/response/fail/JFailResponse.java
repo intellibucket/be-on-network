@@ -5,7 +5,7 @@ import az.rock.lib.jresponse.response.JResponseTransfer;
 import az.rock.lib.jresponse.response.message.Message;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class JFailResponse extends JResponseTransfer {
+public class JFailResponse extends JResponseTransfer<D> {
     public JFailResponse(Message message) {
         super(Boolean.FALSE, message);
     }

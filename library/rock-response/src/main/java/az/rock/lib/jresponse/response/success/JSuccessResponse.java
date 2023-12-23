@@ -4,13 +4,21 @@ import az.rock.lib.jresponse.JHeader;
 import az.rock.lib.jresponse.response.JResponseTransfer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class JSuccessResponse extends JResponseTransfer {
+public class JSuccessResponse<D> extends JResponseTransfer<D> {
     public JSuccessResponse(String message) {
         super(Boolean.TRUE, message);
     }
 
     public JSuccessResponse() {
         super(Boolean.TRUE);
+    }
+
+    public JSuccessResponse(Boolean response) {
+        super(response);
+    }
+
+    public JSuccessDataResponse(D data) {
+        super(data, Boolean.TRUE, "S0000000001");
     }
 
     @JsonIgnore

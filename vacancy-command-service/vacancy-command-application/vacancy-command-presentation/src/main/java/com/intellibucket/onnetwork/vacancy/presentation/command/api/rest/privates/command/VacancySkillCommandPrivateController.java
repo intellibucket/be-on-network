@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.vacancy.presentation.command.api.rest.privates;
+package com.intellibucket.onnetwork.vacancy.presentation.command.api.rest.privates.command;
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import com.intellibucket.onnetwork.vacancy.domain.presentation.command.dto.abstracts.CreateRequest;
