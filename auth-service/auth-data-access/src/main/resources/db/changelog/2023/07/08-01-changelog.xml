@@ -35,6 +35,68 @@
             <column name="promo_code" type="VARCHAR(100)"/>
         </createTable>
     </changeSet>
+    <changeSet id="x1703429987170-24" author="Vugar Mammadli">
+        <createTable schemaName="outbox" tableName="fail_outbox">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_faıl_outbox"/>
+            </column>
+            <column defaultValueBoolean="true" name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="SMALLINT"/>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="process" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="step" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(200)"/>
+            <column name="stack_trace" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="x1703429987170-25" author="Vugar Mammadli">
+        <createTable schemaName="outbox" tableName="process_outbox">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_process_outbox"/>
+            </column>
+            <column defaultValueBoolean="true" name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="SMALLINT"/>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="trx_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="topic" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="process" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="step" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="must_be_retryable_step" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
     <changeSet id="1697027203285-2" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="account_settings">
             <column name="uuid" type="UUID">
