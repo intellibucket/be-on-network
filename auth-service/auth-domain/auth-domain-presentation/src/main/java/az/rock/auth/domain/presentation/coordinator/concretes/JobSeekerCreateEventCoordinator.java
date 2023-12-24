@@ -14,26 +14,24 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEventCoordinator {
-    private final AbstractUserMessagePublisher<JobSeekerCreatedEvent> userMessagePublisher;
 
     @Value(value = "${topic.js.created.name}")
-    private String jsTopic;
+    private String jobSeekerCreatedTopicName;
 
 
     public JobSeekerCreateEventCoordinator(AbstractUserMessagePublisher<JobSeekerCreatedEvent> userMessagePublisher) {
-        this.userMessagePublisher = userMessagePublisher;
+        super(userMessagePublisher);
+    }
+
+    @Override
+    public String getTopic() {
+        return this.jobSeekerCreatedTopicName;
     }
 
     @Override
     protected void saveOutBox(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess) {
         log.info("Save OutBox = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
 
-    }
-
-    @Override
-    protected void proceed(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess) {
-        this.userMessagePublisher.publish(sagaProcess, jsTopic);
-        log.info("User Message Published to Queue = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 
     @Override
