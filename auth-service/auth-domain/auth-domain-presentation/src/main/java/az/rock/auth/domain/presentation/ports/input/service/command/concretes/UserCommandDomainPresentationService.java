@@ -8,7 +8,8 @@ import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdat
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.outbox.JobSeekerRegistrationSteps;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,7 +33,7 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
     @Override
     public void createJobSeeker(CreateUserCommand createUserCommand) {
         var jobSeekerCreatedEvent = this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);
-        var saga = Saga.onProceed(jobSeekerCreatedEvent);
+        var saga = AbstractSagaProcess.onProceed(JobSeekerRegistrationSteps.ON_STARTED, jobSeekerCreatedEvent);
         this.jobSeekerCreateEventCoordinator.coordinate(saga);
     }
 

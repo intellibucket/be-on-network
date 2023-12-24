@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.dataAccess.model.entity;
 
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -37,7 +37,6 @@ import java.util.UUID;
 @Table(name = "authorities", schema = "auth")
 @Entity(name = "AuthorityEntity")
 public class AuthorityEntity extends BaseEntity {
-
     @Column(name = "permission", nullable = false, unique = true)
     private String permission;
 

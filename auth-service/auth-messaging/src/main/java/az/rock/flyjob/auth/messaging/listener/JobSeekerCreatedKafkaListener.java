@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.ports.input.listener.concretes.JobSeeker
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class JobSeekerCreatedKafkaListener {
     @KafkaListener(topics = "auth.user-created-event.js.success",groupId = "auth.user-created-group")
     public void successCaseListener(JsonNode record) {
         try {
-            var model = this.objectMapper.treeToValue(record, Saga.class);
+            var model = this.objectMapper.treeToValue(record, AbstractSagaProcess.class);
             this.jobSeekerCreatedCoordinatorListener.listenOnSuccess(model);
         } catch (JsonProcessingException e) {
             //TODO
@@ -34,7 +34,7 @@ public class JobSeekerCreatedKafkaListener {
     @KafkaListener(topics = "auth.user-created-event.js.fail",groupId = "auth.user-created-group")
     public void failCaseListener(JsonNode record) {
         try {
-            var model = this.objectMapper.treeToValue(record, Saga.class);
+            var model = this.objectMapper.treeToValue(record, AbstractSagaProcess.class);
             this.jobSeekerCreatedCoordinatorListener.listenOnFail(model);
         } catch (JsonProcessingException e) {
             //TODO

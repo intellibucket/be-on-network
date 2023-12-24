@@ -6,7 +6,7 @@
         usr.uuid as uuid,
        usr.version as version,
        usr.row_status as rowStatus,
-       usr.process_status as processStatus,
+       usr.process_status as trxProcessStatus,
        usr.first_name as firstName,
        usr.last_name as lastName,
        usr.username as username,
@@ -27,7 +27,7 @@
             typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
         <result property="version" column="version"/>
         <result property="rowStatus" column="rowStatus"/>
-        <result property="processStatus" column="processStatus"/>
+        <result property="trxProcessStatus" column="trxProcessStatus"/>
         <result property="firstName" column="firstName"/>
         <result property="lastName" column="lastName"/>
         <result property="username" column="username"/>
@@ -62,21 +62,20 @@
     </resultMap>
 
     <select id="findUserProfileById" resultType="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
-        select
-            usr.uuid                                   as uuid,
-            usr.version                                as version,
-            usr.row_status                             as rowStatus,
-            usr.process_status                         as processStatus,
-            usr.first_name                             as firstName,
-            usr.last_name                              as lastName,
-            usr.username                               as username,
-            usr.title                                  as title,
-            usr.biography                              as biography,
-            usr.gender                                 as gender,
-            usr.user_type                              as userType,
-            usr.timezone                               as timezone,
-            (select count(frr.uuid)
-             from network.follow_relation frr
+        select usr.uuid                                as uuid,
+               usr.version                             as version,
+               usr.row_status                          as rowStatus,
+               usr.process_status                      as trxProcessStatus,
+               usr.first_name                          as firstName,
+               usr.last_name                           as lastName,
+               usr.username                            as username,
+               usr.title                               as title,
+               usr.biography                           as biography,
+               usr.gender                              as gender,
+               usr.user_type                           as userType,
+               usr.timezone                            as timezone,
+               (select count(frr.uuid)
+                from network.follow_relation frr
              where frr.row_status = 'ACTIVE'
                and frr.follow_status = 'ACCEPTED'
                and frr.process_status = 'COMPLETED'
@@ -94,21 +93,20 @@
     </select>
 
     <select id="findAnyUserProfileById" resultType="az.rock.flyjob.auth.model.query.AnyProfileQueryRecord">
-        select
-            usr.uuid                                   as uuid,
-            usr.version                                as version,
-            usr.row_status                             as rowStatus,
-            usr.process_status                         as processStatus,
-            usr.first_name                             as firstName,
-            usr.last_name                              as lastName,
-            usr.username                               as username,
-            usr.title                                  as title,
-            usr.biography                              as biography,
-            usr.gender                                 as gender,
-            usr.user_type                              as userType,
-            usr.timezone                               as timezone,
-            (select count(frr.uuid)
-             from network.follow_relation frr
+        select usr.uuid                                as uuid,
+               usr.version                             as version,
+               usr.row_status                          as rowStatus,
+               usr.process_status                      as trxProcessStatus,
+               usr.first_name                          as firstName,
+               usr.last_name                           as lastName,
+               usr.username                            as username,
+               usr.title                               as title,
+               usr.biography                           as biography,
+               usr.gender                              as gender,
+               usr.user_type                           as userType,
+               usr.timezone                            as timezone,
+               (select count(frr.uuid)
+                from network.follow_relation frr
              where frr.row_status = 'ACTIVE'
                and frr.follow_status = 'ACCEPTED'
                and frr.process_status = 'COMPLETED'

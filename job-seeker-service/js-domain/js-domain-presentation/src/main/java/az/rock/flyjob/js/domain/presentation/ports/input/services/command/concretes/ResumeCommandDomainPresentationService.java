@@ -3,7 +3,8 @@ package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concr
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractResumeCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractResumeCommandDomainPresentationService;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibucket.lib.payload.trx.Saga;
+import com.intellibucket.lib.payload.outbox.JobSeekerRegistrationSteps;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,9 +17,9 @@ public class ResumeCommandDomainPresentationService implements AbstractResumeCom
     }
 
     @Override
-    public void create(Saga<JobSeekerCreatedEvent> jobSeekerCreatedEventSaga) {
-        var event = jobSeekerCreatedEventSaga.getEvent();
+    public void create(AbstractSagaProcess<JobSeekerCreatedEvent> jobSeekerCreatedEventSagaProcess) {
+        var event = jobSeekerCreatedEventSagaProcess.getEvent();
         var resultEvent = this.resumeCreateCommandHandler.createResume(event);
-        var saga = Saga.of(jobSeekerCreatedEventSaga,resultEvent);
+        var sagaProcess = AbstractSagaProcess.of(jobSeekerCreatedEventSagaProcess, JobSeekerRegistrationSteps.CREATING_JOB_SEEKER_PROFILE, resultEvent);
     }
 }

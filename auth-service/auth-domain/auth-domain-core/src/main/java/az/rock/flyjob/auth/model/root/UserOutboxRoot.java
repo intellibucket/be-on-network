@@ -3,14 +3,13 @@ package az.rock.flyjob.auth.model.root;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.OutboxRoot;
 import az.rock.lib.domain.SagaID;
-import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.Version;
-import com.intellibucket.lib.payload.trx.OutboxStatus;
+import com.intellibucket.lib.payload.trx.TrxProcessStatus;
 
 import java.time.ZonedDateTime;
 
 public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
-    private final ProcessStatus processStatus;
+    private final az.rock.lib.valueObject.ProcessStatus processStatus;
 
 
 
@@ -28,14 +27,14 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
 
 
     public static final class Builder {
-        private ProcessStatus processStatus;
+        private az.rock.lib.valueObject.ProcessStatus processStatus;
 
         private OutboxID outboxID;
         private SagaID sagaId;
         private Version version;
         private ZonedDateTime createdDate;
         private ZonedDateTime lastModifiedDate;
-        private OutboxStatus sagaStatus;
+        private TrxProcessStatus sagaStatus;
         private az.rock.lib.valueObject.OutboxStatus outboxStatus;
         private String type;
         private String payload;
@@ -47,7 +46,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
             return new Builder();
         }
 
-        public Builder processStatus(ProcessStatus val) {
+        public Builder processStatus(az.rock.lib.valueObject.ProcessStatus val) {
             processStatus = val;
             return this;
         }
@@ -77,7 +76,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
             return this;
         }
 
-        public Builder sagaStatus(OutboxStatus val) {
+        public Builder sagaStatus(TrxProcessStatus val) {
             sagaStatus = val;
             return this;
         }
@@ -102,7 +101,7 @@ public class UserOutboxRoot extends OutboxRoot<UserOutboxRoot> {
         }
     }
 
-    public ProcessStatus getProcessStatus() {
+    public az.rock.lib.valueObject.ProcessStatus getProcessStatus() {
         return processStatus;
     }
 }

@@ -3,7 +3,7 @@ package az.rock.lib.valueObject;
 import az.rock.lib.annotation.ValueObject;
 import az.rock.lib.domain.SagaID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.intellibucket.lib.payload.trx.OutboxStatus;
+import com.intellibucket.lib.payload.trx.TrxProcessStatus;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -11,11 +11,11 @@ import java.util.UUID;
 @ValueObject
 public final class SagaRoot<D> {
     private final SagaID sagaID;
-    private final OutboxStatus sagaStatus;
+    private final TrxProcessStatus sagaStatus;
     private final ZonedDateTime time;
     private final D data;
 
-    public SagaRoot(SagaID sagaID, OutboxStatus sagaStatus, ZonedDateTime time, D data) {
+    public SagaRoot(SagaID sagaID, TrxProcessStatus sagaStatus, ZonedDateTime time, D data) {
         this.sagaID = sagaID;
         this.sagaStatus = sagaStatus;
         this.time = time;
@@ -24,10 +24,10 @@ public final class SagaRoot<D> {
 
     public static class SagaDetail {
         private final SagaID sagaID;
-        private final OutboxStatus sagaStatus;
+        private final TrxProcessStatus sagaStatus;
         private final ZonedDateTime time;
 
-        private SagaDetail(SagaID sagaID, OutboxStatus sagaStatus, ZonedDateTime time) {
+        private SagaDetail(SagaID sagaID, TrxProcessStatus sagaStatus, ZonedDateTime time) {
             this.sagaID = sagaID;
             this.sagaStatus = sagaStatus;
             this.time = time;
@@ -42,7 +42,7 @@ public final class SagaRoot<D> {
             return sagaID;
         }
 
-        public OutboxStatus getSagaStatus() {
+        public TrxProcessStatus getSagaStatus() {
             return sagaStatus;
         }
 
@@ -66,7 +66,7 @@ public final class SagaRoot<D> {
         return sagaID;
     }
 
-    public OutboxStatus getSagaStatus() {
+    public TrxProcessStatus getSagaStatus() {
         return sagaStatus;
     }
 
@@ -83,18 +83,18 @@ public final class SagaRoot<D> {
         return data != null;
     }
 
-    public static <D> SagaRoot<D> of(SagaID sagaID, OutboxStatus sagaStatus, ZonedDateTime time, D data) {
+    public static <D> SagaRoot<D> of(SagaID sagaID, TrxProcessStatus sagaStatus, ZonedDateTime time, D data) {
         return new SagaRoot<>(sagaID, sagaStatus, time, data);
     }
 
     public static <D> SagaRoot<D> of(D data) {
-        return SagaRoot.of(SagaID.of(UUID.randomUUID()), OutboxStatus.STARTED, ZonedDateTime.now(), data);
+        return SagaRoot.of(SagaID.of(UUID.randomUUID()), TrxProcessStatus.STARTED, ZonedDateTime.now(), data);
     }
 
 
     public static final class Builder<D> {
         private SagaID sagaID;
-        private OutboxStatus sagaStatus;
+        private TrxProcessStatus sagaStatus;
         private ZonedDateTime time;
         private D data;
 
@@ -110,7 +110,7 @@ public final class SagaRoot<D> {
             return this;
         }
 
-        public Builder<D> sagaStatus(OutboxStatus val) {
+        public Builder<D> sagaStatus(TrxProcessStatus val) {
             sagaStatus = val;
             return this;
         }
