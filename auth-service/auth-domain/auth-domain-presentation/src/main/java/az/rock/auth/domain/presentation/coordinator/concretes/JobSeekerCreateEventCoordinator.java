@@ -8,12 +8,17 @@ import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
 import com.intellibucket.lib.payload.payload.Payload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
 public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEventCoordinator {
     private final AbstractUserMessagePublisher<JobSeekerCreatedEvent> userMessagePublisher;
+
+    @Value(value = "${topic.js.created.name}")
+    private String jsTopic;
+
 
     public JobSeekerCreateEventCoordinator(AbstractUserMessagePublisher<JobSeekerCreatedEvent> userMessagePublisher) {
         this.userMessagePublisher = userMessagePublisher;
@@ -26,7 +31,7 @@ public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEven
 
     @Override
     protected void proceed(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess) {
-        this.userMessagePublisher.publish(sagaProcess);
+        this.userMessagePublisher.publish(sagaProcess, jsTopic);
         log.info("User Message Published to Queue = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 

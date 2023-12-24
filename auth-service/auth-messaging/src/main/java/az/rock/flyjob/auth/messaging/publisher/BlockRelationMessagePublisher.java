@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BlockRelationMessagePublisher implements AbstractBlockRelationMessagePublisher {
+
     @Override
-    public void publish(AbstractSagaProcess<AbstractDomainEvent<BlockRelationRoot>> sagaProcess) {
+    public void publish(AbstractSagaProcess<AbstractDomainEvent<BlockRelationRoot>> sagaProcess, String topic) {
 
     }
+
 }

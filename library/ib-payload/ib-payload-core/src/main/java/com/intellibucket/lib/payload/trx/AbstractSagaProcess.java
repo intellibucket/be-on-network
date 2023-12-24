@@ -3,6 +3,8 @@ package com.intellibucket.lib.payload.trx;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractStartDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
@@ -22,6 +24,8 @@ import java.util.UUID;
 })
 public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         permits SagaStartedProcess, SagaFailedProcess, SagaCompletedProcess {
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     private UUID transactionId;
     private String process;
     private Enum<?> step;
@@ -68,6 +72,15 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         return new SagaCompletedProcess<>(sagaProcess.getTransactionId(), step, successEvent);
     }
 
+    @JsonIgnore
+    public JsonNode toJsonNode() {
+        return toJsonNode(OBJECT_MAPPER);
+    }
+
+    @JsonIgnore
+    public JsonNode toJsonNode(ObjectMapper objectMapper) {
+        return objectMapper.convertValue(this, JsonNode.class);
+    }
 
     @JsonIgnore
     public Boolean isOnProceed() {
@@ -99,6 +112,7 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
     public int hashCode() {
         return Objects.hash(this.getTransactionId());
     }
+
     public UUID getTransactionId() {
         return transactionId;
     }
@@ -106,7 +120,6 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
     public void setTransactionId(UUID transactionId) {
         this.transactionId = transactionId;
     }
-
     public Enum<?> getStep() {
         return step;
     }

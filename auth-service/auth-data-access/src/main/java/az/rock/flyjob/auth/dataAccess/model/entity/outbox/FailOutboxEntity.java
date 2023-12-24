@@ -1,9 +1,9 @@
 package az.rock.flyjob.auth.dataAccess.model.entity.outbox;
 
-import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,11 +11,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@Data
-@Builder
-@NoArgsConstructor
-@Table(name = "fail_outbox", schema = "outbox")
-@Entity(name = "FailOutboxEntity")
+//@Data
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Table(name = "fail_outbox", schema = "outbox")
+//@Entity(name = "FailOutboxEntity")
 public class FailOutboxEntity {
     @Id
     @GeneratedValue(generator = "uuid2")
