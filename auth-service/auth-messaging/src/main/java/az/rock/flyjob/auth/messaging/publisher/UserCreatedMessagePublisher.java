@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibucket.lib.payload.trx.SagaProcess;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -29,7 +29,7 @@ public class UserCreatedMessagePublisher<S extends AbstractDomainEvent<?>> imple
     }
 
     @Override
-    public void publish(SagaProcess<S> sagaProcess) {
+    public void publish(AbstractSagaProcess<S> sagaProcess) {
         var event = sagaProcess.getEvent();
         var record = this.objectMapper.convertValue(sagaProcess, JsonNode.class);
         if (event instanceof JobSeekerCreatedEvent)

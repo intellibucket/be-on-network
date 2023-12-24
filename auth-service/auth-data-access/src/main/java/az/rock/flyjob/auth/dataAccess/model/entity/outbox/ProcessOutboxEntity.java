@@ -42,8 +42,8 @@ public class ProcessOutboxEntity {
     private Timestamp lastModifiedDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "trx_outbox_status", nullable = false)
-    private TrxProcessStatus trxProcessStatus;
+    @Column(name = "trx_status", nullable = false)
+    private TrxProcessStatus trxStatus;
 
     @Column(name = "topic", length = 200, nullable = false)
     private String topic;

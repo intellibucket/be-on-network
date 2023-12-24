@@ -6,7 +6,7 @@ import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
 import com.intellibucket.lib.payload.payload.Payload;
-import com.intellibucket.lib.payload.trx.SagaProcess;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -20,28 +20,28 @@ public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEven
     }
 
     @Override
-    protected void saveOutBox(SagaProcess<JobSeekerCreatedEvent> sagaProcess) {
+    protected void saveOutBox(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess) {
 
     }
 
     @Override
-    protected void proceed(SagaProcess<JobSeekerCreatedEvent> sagaProcess) {
+    protected void proceed(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess) {
         this.userMessagePublisher.publish(sagaProcess);
         log.info("User Message Published to Queue = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 
     @Override
-    protected void onError(SagaProcess<JobSeekerCreatedEvent> sagaProcess, Exception exception) {
+    protected void onError(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess, Exception exception) {
         log.error("System Error = >  occurred while publishing message to user queue", exception);
     }
 
     @Override
-    public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(SagaProcess<F> sagaProcess) {
-        log.error("Exception = > occurred while publishing message to user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus(), sagaProcess.getMessages());
+    public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(AbstractSagaProcess<F> sagaProcess) {
+        log.error("Exception = > occurred while publishing message to user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 
     @Override
-    public <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(SagaProcess<S> sagaProcess) {
+    public <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(AbstractSagaProcess<S> sagaProcess) {
         log.info("Success = > response from user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 

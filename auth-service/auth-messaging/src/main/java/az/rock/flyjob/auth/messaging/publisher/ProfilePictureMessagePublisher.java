@@ -6,7 +6,7 @@ import az.rock.flyjob.auth.model.root.user.ProfilePictureRoot;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibucket.lib.payload.trx.SagaProcess;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ public class ProfilePictureMessagePublisher implements AbstractProfilePictureMes
 
 
     @Override
-    public void publish(SagaProcess<AbstractDomainEvent<ProfilePictureRoot>> sagaProcessRoot) {
+    public void publish(AbstractSagaProcess<AbstractDomainEvent<ProfilePictureRoot>> sagaProcessRoot) {
 //        try {
 //            var root = sagaRoot.getData().getData();
 //            var payload = SagaRoot.of(ProfilePictureCreatedPayload.of(root.getUserID().getRootID(), root.getRootID().getRootID(), "jpg"));
