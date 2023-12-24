@@ -3,12 +3,14 @@ package az.rock.auth.domain.presentation.dto.response.user;
 import az.rock.flyjob.auth.model.query.MyProfileQueryRecord;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.UserType;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
 import java.math.BigInteger;
 import java.util.List;
 
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class MyUserProfileResponse {
     private String firstName;
     private String lastName;
