@@ -3,8 +3,8 @@ package az.rock.flyjob.auth.dataAccess.adapter.outbox;
 import az.rock.auth.domain.presentation.ports.output.repository.outbox.AbstractUserOutboxRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.outbox.AbstractUserOutboxDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.outbox.UserOutboxJPARepository;
-import az.rock.flyjob.auth.model.root.UserOutboxRoot;
-import az.rock.lib.domain.SagaID;
+import az.rock.lib.domain.TransactionID;
+import az.rock.lib.domain.outbox.ProcessOutboxRoot;
 
 //@Component
 public class UserOutboxRepository implements AbstractUserOutboxRepositoryAdapter {
@@ -17,38 +17,38 @@ public class UserOutboxRepository implements AbstractUserOutboxRepositoryAdapter
     }
 
     @Override
-    public void save(UserOutboxRoot outbox) {
+    public void save(ProcessOutboxRoot outbox) {
         var entity = mapper.toNewEntity(outbox);
         //entity.ifPresent(repository::save);
     }
 
     @Override
-    public void success(SagaID sagaId) {
-        var entity = repository.findBySagaId(sagaId.getRootID());
+    public void success(TransactionID transactionId) {
+        var entity = repository.findBySagaId(transactionId.getRootID());
 
     }
 
     @Override
-    public void fail(SagaID sagaId) {
-        var entity = repository.findBySagaId(sagaId.getRootID());
+    public void fail(TransactionID transactionId) {
+        var entity = repository.findBySagaId(transactionId.getRootID());
 
     }
 
     @Override
-    public void processing(SagaID sagaId) {
-        var entity = repository.findBySagaId(sagaId.getRootID());
+    public void processing(TransactionID transactionId) {
+        var entity = repository.findBySagaId(transactionId.getRootID());
 
     }
 
     @Override
-    public void compensating(SagaID sagaId) {
-        var entity = repository.findBySagaId(sagaId.getRootID());
+    public void compensating(TransactionID transactionId) {
+        var entity = repository.findBySagaId(transactionId.getRootID());
 
     }
 
     @Override
-    public void compensated(SagaID sagaId) {
-        var entity = repository.findBySagaId(sagaId.getRootID());
+    public void compensated(TransactionID transactionId) {
+        var entity = repository.findBySagaId(transactionId.getRootID());
 
     }
 }

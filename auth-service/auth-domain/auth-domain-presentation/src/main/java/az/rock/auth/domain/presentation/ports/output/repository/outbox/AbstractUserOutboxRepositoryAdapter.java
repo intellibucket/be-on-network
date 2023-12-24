@@ -1,13 +1,21 @@
 package az.rock.auth.domain.presentation.ports.output.repository.outbox;
 
-import az.rock.flyjob.auth.model.root.UserOutboxRoot;
-import az.rock.lib.domain.SagaID;
+import az.rock.lib.domain.RootID;
+import az.rock.lib.domain.TransactionID;
+import az.rock.lib.domain.outbox.ProcessOutboxRoot;
+
+import java.util.UUID;
 
 public interface AbstractUserOutboxRepositoryAdapter {
-    void save(UserOutboxRoot outbox);
-    void success(SagaID sagaId);
-    void fail(SagaID sagaId);
-    void processing(SagaID sagaId);
-    void compensating(SagaID sagaId);
-    void compensated(SagaID sagaId);
+    void save(ProcessOutboxRoot<RootID<UUID>> outbox);
+
+    void success(TransactionID transactionId);
+
+    void fail(TransactionID transactionId);
+
+    void processing(TransactionID transactionId);
+
+    void compensating(TransactionID transactionId);
+
+    void compensated(TransactionID transactionId);
 }

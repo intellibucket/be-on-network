@@ -1,7 +1,7 @@
 package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
-import az.rock.lib.domain.SagaID;
+import az.rock.lib.domain.TransactionID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.intellibucket.lib.payload.trx.TrxProcessStatus;
 
@@ -10,25 +10,25 @@ import java.util.UUID;
 
 @ValueObject
 public final class SagaRoot<D> {
-    private final SagaID sagaID;
+    private final TransactionID transactionID;
     private final TrxProcessStatus sagaStatus;
     private final ZonedDateTime time;
     private final D data;
 
-    public SagaRoot(SagaID sagaID, TrxProcessStatus sagaStatus, ZonedDateTime time, D data) {
-        this.sagaID = sagaID;
+    public SagaRoot(TransactionID transactionID, TrxProcessStatus sagaStatus, ZonedDateTime time, D data) {
+        this.transactionID = transactionID;
         this.sagaStatus = sagaStatus;
         this.time = time;
         this.data = data;
     }
 
     public static class SagaDetail {
-        private final SagaID sagaID;
+        private final TransactionID transactionID;
         private final TrxProcessStatus sagaStatus;
         private final ZonedDateTime time;
 
-        private SagaDetail(SagaID sagaID, TrxProcessStatus sagaStatus, ZonedDateTime time) {
-            this.sagaID = sagaID;
+        private SagaDetail(TransactionID transactionID, TrxProcessStatus sagaStatus, ZonedDateTime time) {
+            this.transactionID = transactionID;
             this.sagaStatus = sagaStatus;
             this.time = time;
         }
@@ -38,8 +38,8 @@ public final class SagaRoot<D> {
         }
 
 
-        public SagaID getSagaID() {
-            return sagaID;
+        public TransactionID getSagaID() {
+            return transactionID;
         }
 
         public TrxProcessStatus getSagaStatus() {
@@ -56,14 +56,14 @@ public final class SagaRoot<D> {
     }
 
     private SagaRoot(Builder<D> builder) {
-        sagaID = builder.sagaID;
+        transactionID = builder.transactionID;
         sagaStatus = builder.sagaStatus;
         time = builder.time;
         data = builder.data;
     }
 
-    public SagaID getSagaID() {
-        return sagaID;
+    public TransactionID getSagaID() {
+        return transactionID;
     }
 
     public TrxProcessStatus getSagaStatus() {
@@ -83,17 +83,17 @@ public final class SagaRoot<D> {
         return data != null;
     }
 
-    public static <D> SagaRoot<D> of(SagaID sagaID, TrxProcessStatus sagaStatus, ZonedDateTime time, D data) {
-        return new SagaRoot<>(sagaID, sagaStatus, time, data);
+    public static <D> SagaRoot<D> of(TransactionID transactionID, TrxProcessStatus sagaStatus, ZonedDateTime time, D data) {
+        return new SagaRoot<>(transactionID, sagaStatus, time, data);
     }
 
     public static <D> SagaRoot<D> of(D data) {
-        return SagaRoot.of(SagaID.of(UUID.randomUUID()), TrxProcessStatus.STARTED, ZonedDateTime.now(), data);
+        return SagaRoot.of(TransactionID.of(UUID.randomUUID()), TrxProcessStatus.STARTED, ZonedDateTime.now(), data);
     }
 
 
     public static final class Builder<D> {
-        private SagaID sagaID;
+        private TransactionID transactionID;
         private TrxProcessStatus sagaStatus;
         private ZonedDateTime time;
         private D data;
@@ -105,8 +105,8 @@ public final class SagaRoot<D> {
             return new Builder<D>();
         }
 
-        public Builder<D> sagaID(SagaID val) {
-            sagaID = val;
+        public Builder<D> sagaID(TransactionID val) {
+            transactionID = val;
             return this;
         }
 

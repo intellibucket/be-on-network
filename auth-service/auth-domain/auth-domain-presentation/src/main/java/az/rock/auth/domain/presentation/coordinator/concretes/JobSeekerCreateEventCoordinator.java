@@ -26,6 +26,7 @@ public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEven
 
     @Override
     protected void saveOutBox(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess) {
+        log.info("Save OutBox = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
 
     }
 

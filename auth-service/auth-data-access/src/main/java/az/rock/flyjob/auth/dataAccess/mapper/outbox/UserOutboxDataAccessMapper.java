@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.mapper.outbox;
 
 import az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity;
-import az.rock.flyjob.auth.model.root.UserOutboxRoot;
+import az.rock.lib.domain.outbox.ProcessOutboxRoot;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -9,7 +9,7 @@ import java.util.Optional;
 @Component
 public class UserOutboxDataAccessMapper implements AbstractUserOutboxDataAccessMapper{
     @Override
-    public Optional<UserOutboxRoot> toRoot(ProcessOutboxEntity entity) {
+    public Optional<ProcessOutboxRoot> toRoot(ProcessOutboxEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
         if (optionalEntity.isPresent()) {
             var outboxEntity = optionalEntity.get();
@@ -19,7 +19,7 @@ public class UserOutboxDataAccessMapper implements AbstractUserOutboxDataAccessM
     }
 
     @Override
-    public Optional<ProcessOutboxEntity> toEntity(UserOutboxRoot root) {
+    public Optional<ProcessOutboxEntity> toEntity(ProcessOutboxRoot root) {
         var optionalRoot = Optional.ofNullable(root);
         if (optionalRoot.isPresent()) {
             var outboxRoot = optionalRoot.get();
@@ -29,7 +29,7 @@ public class UserOutboxDataAccessMapper implements AbstractUserOutboxDataAccessM
     }
 
     @Override
-    public Optional<ProcessOutboxEntity> toNewEntity(UserOutboxRoot root) {
+    public Optional<ProcessOutboxEntity> toNewEntity(ProcessOutboxRoot root) {
         var optionalRoot = Optional.ofNullable(root);
         if (optionalRoot.isPresent()) {
             var outboxRoot = optionalRoot.get();
