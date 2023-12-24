@@ -2,6 +2,10 @@ package az.rock.flyjob.auth.dataAccess.model.entity.outbox;
 
 import com.intellibucket.lib.payload.trx.TrxProcessStatus;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -9,11 +13,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-//@Data
-//@Builder
-//@NoArgsConstructor
-//@Table(name = "process_outbox", schema = "outbox")
-//@Entity(name = "ProcessOutboxEntity")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@Table(name = "process_outbox", schema = "outbox")
+@Entity(name = "ProcessOutboxEntity")
 public class ProcessOutboxEntity {
     @Id
     @GeneratedValue(generator = "uuid2")

@@ -37,6 +37,9 @@
         <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.CountryEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.LanguageEntity</class>
 
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.FailOutboxEntity</class>
+
 
     </persistence-unit>
 
