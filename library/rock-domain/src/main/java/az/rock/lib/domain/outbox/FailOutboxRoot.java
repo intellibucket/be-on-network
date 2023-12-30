@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 @Getter
 @Setter
 @Builder
-public abstract class FailOutboxRoot<D> extends RootID<OutboxID> {
+public class FailOutboxRoot<D> extends RootID<OutboxID> {
     private Boolean isActive;
     private TransactionID transactionId;
     private Version version;

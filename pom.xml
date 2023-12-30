@@ -40,8 +40,8 @@
         <module>job-seeker-service</module>
         <module>stream-service</module>
         <module>library</module>
-        <module>vacancy-command-service</module>
-        <module>vacancy-query-service</module>
+        <module>company-command-service</module>
+        <module>company-query-service</module>
         <module>vacancy-sync-service</module>
         <module>notification-service</module>
         <module>payment-service</module>
@@ -52,7 +52,6 @@
         <module>authorization-service</module>
         <module>rapid-log-service</module>
         <module>image-processor-service</module>
-        <module>company-service</module>
     </modules>
 
     <properties>
