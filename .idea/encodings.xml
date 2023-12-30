@@ -34,6 +34,20 @@
     <file url="file://$PROJECT_DIR$/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/company-command-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/company-command-spec/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-messaging/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/company-application/company-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/company-application/company-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/company-application/src/main/java" charset="UTF-8" />
@@ -141,19 +155,6 @@
     <file url="file://$PROJECT_DIR$/stream-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-application/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-application/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-application/vacancy-command-presentation/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-application/vacancy-command-spec/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-container/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-data-access/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-domain/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-domain/vacancy-command-domain-core/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-domain/vacancy-command-domain-presentation/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-command-service/vacancy-command-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-query-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-query-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-domain/src/main/java" charset="UTF-8" />
