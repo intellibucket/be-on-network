@@ -16,27 +16,27 @@ import org.springframework.stereotype.Component;
 public class CompanyCreateEventCoordinator extends AbstractCompanyCreateEventCoordinator {
 
     @Value(value = "${topic.cmp.created.name}")
-    private String cmpTopic;
+    private String companyCreatedTopicName;
 
-    private final AbstractUserMessagePublisher<CompanyCreatedEvent> userMessagePublisher;
 
-    public CompanyCreateEventCoordinator(AbstractUserMessagePublisher<CompanyCreatedEvent> userMessagePublisher) {
-        this.userMessagePublisher = userMessagePublisher;
+    public CompanyCreateEventCoordinator(AbstractUserMessagePublisher<CompanyCreatedEvent> userMessagePublisher1) {
+        super(userMessagePublisher1);
     }
 
     @Override
-    protected void proceed(AbstractSagaProcess<CompanyCreatedEvent> sagaProcess) {
-        this.userMessagePublisher.publish(sagaProcess, cmpTopic);
-        log.info("User Message Published to Queue = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
+    public String getTopic() {
+        return this.companyCreatedTopicName;
     }
 
     @Override
     public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(AbstractSagaProcess<F> sagaProcess) {
+
         log.error("Exception = > occurred while publishing message to user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 
     @Override
     public <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(AbstractSagaProcess<S> sagaProcess) {
+
         log.info("Success = > response from user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 }

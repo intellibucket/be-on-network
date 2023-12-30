@@ -6,7 +6,6 @@ import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 
 public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
 
-
     /**
      * This method is used to coordinate the event which is published by the event publisher.
      * When the event is published, the event coordinator will be notified and the coordinator will.
