@@ -48,6 +48,24 @@
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-messaging/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-application/company-query-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-application/company-query-presentation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-application/company-query-spec/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-application/company-query-spec/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-container/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-data-access/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-messaging/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/vacancy-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/vacancy-query-domain-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/company-application/company-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/company-application/company-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-service/company-application/src/main/java" charset="UTF-8" />
@@ -155,21 +173,6 @@
     <file url="file://$PROJECT_DIR$/stream-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/vacancy-query-presentation/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/vacancy-query-presentation/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/vacancy-query-spec/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-application/vacancy-query-spec/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-container/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-data-access/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-data-access/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-domain-presentation/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-domain/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/vacancy-query-service/vacancy-query-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-container/src/main/java" charset="UTF-8" />

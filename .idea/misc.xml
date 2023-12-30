@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/employer-service/pom.xml" />
         <option value="$PROJECT_DIR$/company-service/pom.xml" />
         <option value="$PROJECT_DIR$/company-command-service/company-command-messaging/pom.xml" />
+        <option value="$PROJECT_DIR$/company-query-service/pom.xml" />
       </list>
     </option>
   </component>
