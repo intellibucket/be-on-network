@@ -59,7 +59,7 @@ public class VacancyCommandPrivateController implements VacancyCommandPrivateSpe
     }
 
     @Override
-    @PutMapping("/update-seniority-status")
+    @PutMapping("/update-sectorial-type")
     public ResponseEntity<JSuccessResponse> updateSectoralType(@RequestBody UpdateRequest<SectoralType> request) {
         this.vacancyCommandDomainPresentationService.updateSectoralType(request);
         return ResponseEntity.ok(JSuccessResponse.success());
