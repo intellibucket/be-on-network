@@ -5,6 +5,7 @@
       <data-source-info id="6baae153-29ce-4e05-81b0-ee85b9146b2c" persistence-unit-name="auth-persistence" />
       <data-source-info id="" persistence-unit-name="js-persistence" />
       <data-source-info id="" persistence-unit-name="vacancy_command_persistence" />
+      <data-source-info id="6baae153-29ce-4e05-81b0-ee85b9146b2c" persistence-unit-name="company-command-persistence" />
     </data-source-infos>
   </component>
 </project>

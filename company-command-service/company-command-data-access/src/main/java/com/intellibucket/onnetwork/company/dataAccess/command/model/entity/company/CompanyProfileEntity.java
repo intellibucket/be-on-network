@@ -5,10 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -16,6 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "CompanyProfileEntity")
 @Table(schema = "company", name = "profiles")
+@AllArgsConstructor
 public class CompanyProfileEntity extends BaseEntity {
 
     @OneToOne

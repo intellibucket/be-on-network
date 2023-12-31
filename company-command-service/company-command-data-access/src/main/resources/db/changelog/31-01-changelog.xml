@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1704012975788-1" author="Vugar Mammadli">
+        <createTable schemaName="company" tableName="companies">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_companıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="company_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-2" author="Vugar Mammadli">
+        <createTable schemaName="company" tableName="emails">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_emaıls"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="company_uuid" type="UUID"/>
+            <column name="access_modifier" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_primary" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verification_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verification_request_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verification_response_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-3" author="Vugar Mammadli">
+        <createTable schemaName="company" tableName="profiles">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_profıles"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="company_uuid" type="UUID"/>
+            <column name="is_hiring" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-4" author="Vugar Mammadli">
+        <createTable schemaName="company" tableName="verifications">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_verıfıcatıons"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="company_uuid" type="UUID"/>
+            <column defaultValueBoolean="false" name="is_verified" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verification_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verification_request_date" type="DATETIME"/>
+            <column name="verification_response_date" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-5" author="Vugar Mammadli">
+        <createTable schemaName="company" tableName="websites">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_websıtes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="company_uuid" type="UUID"/>
+            <column name="website" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verification_request_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verification_response_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-6" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="cities">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cıtıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="country_uuid" type="UUID"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
+            <column name="timezone" type="VARCHAR(255)"/>
+            <column name="timezone_offset" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-7" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="countries">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_countrıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="phone_code" type="VARCHAR(255)"/>
+            <column name="currency" type="VARCHAR(255)"/>
+            <column name="currency_code" type="VARCHAR(255)"/>
+            <column name="currency_symbol" type="VARCHAR(255)"/>
+            <column name="flag" type="bytea"/>
+            <column name="flag_url" type="VARCHAR(255)"/>
+            <column name="timezone" type="VARCHAR(255)"/>
+            <column name="timezone_offset" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-8" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="languages">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_languages"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="iso_code" type="VARCHAR(255)"/>
+            <column name="region" type="VARCHAR(255)"/>
+            <column name="script" type="VARCHAR(255)"/>
+            <column name="family" type="VARCHAR(255)"/>
+            <column name="native_name" type="VARCHAR(255)"/>
+            <column name="native_region" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-9" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="applied_users">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_applıed_users"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="job_seeker_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="applied_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-10" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="tags">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tags"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="tag" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-11" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancies">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="company_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="PUBLIC" name="access_modifier" type="varchar(32)"/>
+            <column defaultValue="DRAFT" name="vacancy_status" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="STANDARD" name="publish_status" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="STANDARD" name="package_status" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="UNDEFINED" name="seniority_status" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="UNDEFINED" name="sectoral_type" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="requeriments" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="responsibilities" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="DATETIME"/>
+            <column name="end_date" type="DATETIME"/>
+            <column name="working_time_line" type="VARCHAR(255)"/>
+            <column name="working_type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-12" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancy_locations">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy_locatıons"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="city_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-13" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancy_planners">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy_planners"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="planning_date" type="DATETIME"/>
+            <column defaultValueBoolean="false" name="is_done" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="notify_me_when_is_done" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-14" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancy_priorities">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy_prıorıtıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column defaultValueNumeric="0" name="priority" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-15" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancy_salaries">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy_salarıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="has_salary" type="BOOLEAN"/>
+            <column name="currency" type="INT"/>
+            <column name="start_amount" type="DECIMAL"/>
+            <column name="end_amount" type="DECIMAL"/>
+            <column defaultValueBoolean="false" name="is_estimated" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-16" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancy_saved_users">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy_saved_users"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-17" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancy_settings">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy_settıngs"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column defaultValueBoolean="true" name="enable_push_notification" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="enable_email_notification" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="only_one_apply_chance_per_candidate" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="push_notify_when_vacancy_changed" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-18" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="vacancy_skills">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vacancy_skılls"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="skill_type" type="VARCHAR(255)"/>
+            <column name="skill" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-19" author="Vugar Mammadli">
+        <createTable schemaName="vacancy" tableName="viewers">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_vıewers"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="vacancy_uuid" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="viewer_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="viewed_at" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1704012975788-20" author="Vugar Mammadli">
+        <createIndex indexName="ıdx_vacancyentity" schemaName="vacancy" tableName="vacancies">
+            <column name="vacancy_status"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1704012975788-21" author="Vugar Mammadli">
+        <createIndex indexName="ıdx_vacancyentity_process_and_row_status" schemaName="vacancy" tableName="vacancies">
+            <column name="process_status"/>
+            <column name="row_status"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1704012975788-22" author="Vugar Mammadli">
+        <createIndex indexName="ıdx_vacancyentity_title" schemaName="vacancy" tableName="vacancies">
+            <column name="title"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1704012975788-23" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="company_uuid" baseTableName="emails" baseTableSchemaName="company"
+                                 constraintName="FK_EMAILS_ON_COMPANY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="companies" referencedTableSchemaName="company"/>
+    </changeSet>
+    <changeSet id="1704012975788-24" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="company_uuid" baseTableName="profiles" baseTableSchemaName="company"
+                                 constraintName="FK_PROFILES_ON_COMPANY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="companies" referencedTableSchemaName="company"/>
+    </changeSet>
+    <changeSet id="1704012975788-25" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="company_uuid" baseTableName="verifications"
+                                 baseTableSchemaName="company" constraintName="FK_VERIFICATIONS_ON_COMPANY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="companies"
+                                 referencedTableSchemaName="company"/>
+    </changeSet>
+    <changeSet id="1704012975788-26" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="company_uuid" baseTableName="websites" baseTableSchemaName="company"
+                                 constraintName="FK_WEBSITES_ON_COMPANY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="companies" referencedTableSchemaName="company"/>
+    </changeSet>
+    <changeSet id="1704012975788-27" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="country_uuid" baseTableName="cities" baseTableSchemaName="replica"
+                                 constraintName="FK_CITIES_ON_COUNTRY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="countries" referencedTableSchemaName="replica"/>
+    </changeSet>
+    <changeSet id="1704012975788-28" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="applied_users"
+                                 baseTableSchemaName="vacancy" constraintName="FK_APPLIED_USERS_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-29" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="tags" baseTableSchemaName="vacancy"
+                                 constraintName="FK_TAGS_ON_VACANCY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="vacancies" referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-30" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="vacancy_locations"
+                                 baseTableSchemaName="vacancy" constraintName="FK_VACANCY_LOCATIONS_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-31" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="vacancy_planners"
+                                 baseTableSchemaName="vacancy" constraintName="FK_VACANCY_PLANNERS_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-32" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="vacancy_priorities"
+                                 baseTableSchemaName="vacancy" constraintName="FK_VACANCY_PRIORITIES_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-33" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="vacancy_salaries"
+                                 baseTableSchemaName="vacancy" constraintName="FK_VACANCY_SALARIES_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-34" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="vacancy_saved_users"
+                                 baseTableSchemaName="vacancy" constraintName="FK_VACANCY_SAVED_USERS_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-35" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="vacancy_settings"
+                                 baseTableSchemaName="vacancy" constraintName="FK_VACANCY_SETTINGS_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-36" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="vacancy_skills"
+                                 baseTableSchemaName="vacancy" constraintName="FK_VACANCY_SKILLS_ON_VACANCY_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="vacancies"
+                                 referencedTableSchemaName="vacancy"/>
+    </changeSet>
+    <changeSet id="1704012975788-37" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="vacancy_uuid" baseTableName="viewers" baseTableSchemaName="vacancy"
+                                 constraintName="FK_VIEWERS_ON_VACANCY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="vacancies" referencedTableSchemaName="vacancy"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -6,10 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
 
@@ -17,6 +14,7 @@ import java.sql.Timestamp;
 @Setter
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "VerificationEntity")
 @Table(schema = "company", name = "verifications")
 public class VerificationEntity extends BaseEntity {

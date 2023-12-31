@@ -3,7 +3,7 @@
   <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="postgres">
     <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
-    <option name="sourceModelValue" value="auth-persistence" />
+    <option name="sourceModelValue" value="company-command-persistence" />
     <option name="targetDbValue" value="6baae153-29ce-4e05-81b0-ee85b9146b2c" />
     <option name="snapshotDbValue" value="6baae153-29ce-4e05-81b0-ee85b9146b2c" />
     <option name="updateChangeLogPath" value="" />

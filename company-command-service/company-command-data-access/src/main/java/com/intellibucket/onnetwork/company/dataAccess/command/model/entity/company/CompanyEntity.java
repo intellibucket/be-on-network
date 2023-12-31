@@ -3,10 +3,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.model.entity.comp
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity(name = "CompanyEntity")
 @Table(schema = "company", name = "companies")
+@AllArgsConstructor
 public class CompanyEntity extends BaseEntity {
 
     @Column(name = "company_id", nullable = false, updatable = false)
