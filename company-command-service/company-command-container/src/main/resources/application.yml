@@ -8,7 +8,7 @@ spring:
       maxInterval: 10000
     import: configserver:http://62.72.45.66:8012
   application:
-    name: vacancy-command-service
+    name: company-command-service
 
   jpa:
     properties:
@@ -22,7 +22,7 @@ spring:
 
 server:
   servlet:
-    context-path: /vacancy-command-context
+    context-path: /company-command-context
 
 logging:
   level:

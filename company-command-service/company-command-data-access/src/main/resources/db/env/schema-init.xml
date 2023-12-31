@@ -8,4 +8,14 @@
             CREATE SCHEMA IF NOT EXISTS vacancy
         </sql>
     </changeSet>
+    <changeSet id="create-company-schema" author="Vugar Mammadli">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS company
+        </sql>
+    </changeSet>
+    <changeSet id="create-replica-schema" author="Vugar Mammadli">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS replica
+        </sql>
+    </changeSet>
 </databaseChangeLog>
