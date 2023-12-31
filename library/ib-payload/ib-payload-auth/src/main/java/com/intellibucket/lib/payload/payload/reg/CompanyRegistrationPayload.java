@@ -32,4 +32,12 @@ public class CompanyRegistrationPayload extends Payload {
     public void setType(UserType type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "CompanyRegistrationPayload{" +
+                "userId=" + userId +
+                ", type=" + type +
+                "}\n";
+    }
 }

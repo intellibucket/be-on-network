@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.domain.presentation.command.dto.request;
+package com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy;
 
 import az.rock.lib.valueObject.WorkingTimeLine;
 import az.rock.lib.valueObject.WorkingType;

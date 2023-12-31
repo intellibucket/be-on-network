@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.domain.presentation.command.dto.request;
+package com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

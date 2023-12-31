@@ -20,14 +20,24 @@ public class JobSeekerRegistrationPayload extends Payload {
     }
 
 
-
-    public JobSeekerRegistrationPayload(){}
+    public JobSeekerRegistrationPayload() {
+    }
 
     private JobSeekerRegistrationPayload(Builder builder) {
         setUserId(builder.userId);
         setType(builder.type);
         firstName = builder.userName;
         lastName = builder.lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "JobSeekerRegistrationPayload{" +
+                "userId=" + userId +
+                ", type=" + type +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                "}\n";
     }
 
     public UserType getType() {
@@ -99,4 +109,6 @@ public class JobSeekerRegistrationPayload extends Payload {
             return new JobSeekerRegistrationPayload(this);
         }
     }
+
+
 }

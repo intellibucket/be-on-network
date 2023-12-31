@@ -7,9 +7,9 @@ import az.rock.lib.valueObject.vacancy.SectoralType;
 import az.rock.lib.valueObject.vacancy.SeniorityStatus;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.abstracts.CreateRequest;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.abstracts.UpdateRequest;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.VacancyCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.VacancyContextCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.VacancyStatusCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyContextCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyStatusCommand;
 
 public interface AbstractVacancyCommandDomainPresentationService {
     void createVacancy(CreateRequest<VacancyCommand> request);

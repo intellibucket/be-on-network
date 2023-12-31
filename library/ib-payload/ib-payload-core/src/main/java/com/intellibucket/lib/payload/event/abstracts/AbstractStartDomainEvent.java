@@ -7,10 +7,18 @@ public abstract class AbstractStartDomainEvent<R> extends AbstractDomainEvent<R>
         super(root);
     }
 
-    public AbstractStartDomainEvent(){}
+    public AbstractStartDomainEvent() {
+    }
 
     @Override
     public String getEventType() {
         return EventType.START.name();
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + "{" +
+                "root=" + super.getPayload() +
+                '}';
     }
 }

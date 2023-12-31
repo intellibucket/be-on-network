@@ -8,11 +8,20 @@ import java.util.UUID;
 public final class SagaFailedProcess<T> extends AbstractSagaProcess<T> {
     private List<String> messages;
 
+    public SagaFailedProcess() {
+        super();
+    }
+
     public SagaFailedProcess(UUID transactionId, Enum<?> step, T event) {
         this(transactionId, step, event, List.of());
     }
 
     public SagaFailedProcess(UUID transactionId, Enum<?> step, T event, List<String> messages) {
+        super(transactionId, TrxProcessStatus.FAILED, step, event);
+        this.messages = messages;
+    }
+
+    public SagaFailedProcess(UUID transactionId, String step, T event, List<String> messages) {
         super(transactionId, TrxProcessStatus.FAILED, step, event);
         this.messages = messages;
     }

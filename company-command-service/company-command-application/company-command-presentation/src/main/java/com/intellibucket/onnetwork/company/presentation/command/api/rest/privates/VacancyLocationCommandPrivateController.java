@@ -2,7 +2,7 @@ package com.intellibucket.onnetwork.company.presentation.command.api.rest.privat
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.abstracts.UpdateRequest;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.VacancyLocationCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyLocationCommand;
 import com.intellibucket.onnetwork.company.spec.command.privates.VacancyLocationCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -22,7 +22,7 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
     }
 
     protected void saveOutBox(AbstractSagaProcess<E> sagaProcess) {
-
+        System.out.println("Save Outbox");
     }
 
     /**
@@ -35,7 +35,7 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
      * This method is used to handle the error whict cannot be proceed the event.
      */
     protected void onError(AbstractSagaProcess<E> sagaProcess, Exception exception) {
-
+        System.out.println("Error");
     }
 
     /**

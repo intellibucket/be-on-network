@@ -24,16 +24,27 @@ import java.util.UUID;
 })
 public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         permits SagaStartedProcess, SagaFailedProcess, SagaCompletedProcess {
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    protected static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private UUID transactionId;
     private String process;
-    private Enum<?> step;
+    private String step;
     private TrxProcessStatus processStatus;
     private Boolean mustBeRetryableStep;
     private E event;
 
+    public AbstractSagaProcess() {
+    }
+
     public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, Enum<?> step, E event) {
+        this.transactionId = transactionId;
+        this.processStatus = processStatus;
+        this.event = event;
+        this.process = event.getClass().getSimpleName();
+        this.step = step.name();
+    }
+
+    public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, String step, E event) {
         this.transactionId = transactionId;
         this.processStatus = processStatus;
         this.event = event;
@@ -47,6 +58,7 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
             return AbstractSagaProcess.onSuccess(sagaProcess, step, domainEvent);
         else return AbstractSagaProcess.onFail(sagaProcess, step, domainEvent);
     }
+
 
     public static <E extends AbstractStartDomainEvent<?>> AbstractSagaProcess<E> onProceed(Enum<?> step, E event) {
         return new SagaStartedProcess<>(UUID.randomUUID(), step, event);
@@ -120,11 +132,12 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
     public void setTransactionId(UUID transactionId) {
         this.transactionId = transactionId;
     }
-    public Enum<?> getStep() {
+
+    public String getStep() {
         return step;
     }
 
-    public void setStep(Enum<?> step) {
+    public void setStep(String step) {
         this.step = step;
     }
 
@@ -158,5 +171,18 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
 
     public void setMustBeRetryableStep(Boolean mustBeRetryableStep) {
         this.mustBeRetryableStep = mustBeRetryableStep;
+    }
+
+
+    @Override
+    public String toString() {
+        return this.getClassTypeReference() + "{" +
+                "transactionId=" + transactionId +
+                ", process='" + process + '\'' +
+                ", step='" + step + '\'' +
+                ", processStatus=" + processStatus +
+                ", mustBeRetryableStep=" + mustBeRetryableStep +
+                ", event=" + event +
+                "}\n";
     }
 }
