@@ -2,7 +2,7 @@ package az.rock.auth.domain.presentation.coordinator.abstracts;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibucket.lib.payload.event.abstracts.AbstractEventCoordinator;
+import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventCoordinator;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Propagation;

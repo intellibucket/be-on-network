@@ -1,6 +1,9 @@
-package com.intellibucket.lib.payload.event.abstracts;
+package com.intellibucket.lib.payload.event.abstracts.coordinator;
 
 
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
+import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.payload.Payload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 
@@ -22,7 +25,6 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
     }
 
     protected void saveOutBox(AbstractSagaProcess<E> sagaProcess) {
-        System.out.println("Save Outbox");
     }
 
     /**
@@ -41,10 +43,12 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
     /**
      * This method is used to handle the fail event which executed by the event listener.
      */
-    public abstract <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(AbstractSagaProcess<F> sagaProcess);
+    public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(AbstractSagaProcess<F> sagaProcess) {
+    }
 
     /**
      * This method is used to handle the success event which executed by the event listener.
      */
-    public abstract <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(AbstractSagaProcess<S> sagaProcess);
+    public <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(AbstractSagaProcess<S> sagaProcess) {
+    }
 }
