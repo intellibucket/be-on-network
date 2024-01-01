@@ -6,6 +6,7 @@ import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import com.intellibucket.lib.payload.trx.SagaStartedProcess;
 import com.intellibucket.onnetwork.company.domain.presentation.command.coordinator.abstracts.AbstractCompanyCreatedResponseEventCoordinator;
+import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractCompanyCommandDomainPresentationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,12 @@ import org.springframework.stereotype.Component;
 public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreatedResponseEventCoordinator {
     @Value(value = "${topic.cmp.created.name}")
     private String companyCreatedTopicName;
+
+    private final AbstractCompanyCommandDomainPresentationService companyCommandDomainPresentationService;
+
+    public CompanyCreatedResponseEventCoordinator(AbstractCompanyCommandDomainPresentationService companyCommandDomainPresentationService) {
+        this.companyCommandDomainPresentationService = companyCommandDomainPresentationService;
+    }
 
 
     public String getSuccessTopic() {
@@ -27,14 +34,10 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
 
 
     @Override
-    protected void createCompany(SagaStartedProcess<CompanyCreatedEvent> request) {
-        CompanyRegistrationPayload payload = request.getEvent().getPayload();
-        log.info("Company created event received: {}", payload.toString());
-    }
-
-    @Override
     public void apply(SagaStartedProcess<CompanyCreatedEvent> sagaProcess) throws JDomainException {
-
+        log.info("Company created event received: {}", sagaProcess.getEvent().getPayload().toString());
+        CompanyRegistrationPayload payload = sagaProcess.getEvent().getPayload();
+        this.companyCommandDomainPresentationService.createCompany(payload);
     }
 
     @Override

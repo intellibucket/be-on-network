@@ -11,10 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 public abstract class AbstractCompanyCreatedResponseEventCoordinator extends AbstractEventResponseCoordinator<CompanyRegistrationPayload, CompanyCreatedEvent> {
-    protected abstract void createCompany(SagaStartedProcess<CompanyCreatedEvent> request);
-
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public abstract void apply(SagaStartedProcess<CompanyCreatedEvent> sagaProcess) throws JDomainException;
 
     @Override

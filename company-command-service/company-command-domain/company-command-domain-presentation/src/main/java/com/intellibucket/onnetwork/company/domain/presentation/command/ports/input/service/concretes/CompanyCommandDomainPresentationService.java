@@ -2,8 +2,8 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.ports.in
 
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.domain.id.company.CompanyID;
-import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
-import com.intellibucket.lib.payload.trx.SagaStartedProcess;
+import az.rock.lib.jexception.JDomainException;
+import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCreateCompanyCommandHandler;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractCompanyCommandDomainPresentationService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +21,9 @@ public class CompanyCommandDomainPresentationService implements AbstractCompanyC
     }
 
     @Override
-    public void createCompany(SagaStartedProcess<CompanyCreatedEvent> request) {
+    public void createCompany(CompanyRegistrationPayload payload) throws JDomainException {
         log.info("CompanyCommandDomainPresentationService.createCompany");
-        try {
-            this.createCompanyCommandHandler.createCompany(request.getEvent().getPayload());
-        } catch (Exception e) {
-            log.error("CompanyCommandDomainPresentationService.createCompany", e);
-        }
+        this.createCompanyCommandHandler.createCompany(payload);
     }
 
     @Override
