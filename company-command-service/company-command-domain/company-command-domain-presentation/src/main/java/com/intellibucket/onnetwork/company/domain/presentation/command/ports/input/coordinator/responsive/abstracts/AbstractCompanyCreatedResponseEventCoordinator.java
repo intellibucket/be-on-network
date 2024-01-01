@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.domain.presentation.command.coordinator.abstracts;
+package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.coordinator.responsive.abstracts;
 
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventResponseCoordinator;

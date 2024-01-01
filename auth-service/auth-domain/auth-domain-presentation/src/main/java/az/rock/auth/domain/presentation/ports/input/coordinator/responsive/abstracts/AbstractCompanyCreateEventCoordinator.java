@@ -1,4 +1,4 @@
-package az.rock.auth.domain.presentation.coordinator.abstracts;
+package az.rock.auth.domain.presentation.ports.input.coordinator.responsive.abstracts;
 
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;

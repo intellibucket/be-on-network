@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.ports.input.listener.concretes;
 
-import az.rock.auth.domain.presentation.coordinator.abstracts.AbstractJobSeekerCreateEventCoordinator;
+import az.rock.auth.domain.presentation.ports.input.coordinator.responsive.abstracts.AbstractJobSeekerCreateEventCoordinator;
 import az.rock.auth.domain.presentation.ports.input.listener.abstracts.AbstractCoordinatorListener;
 import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;

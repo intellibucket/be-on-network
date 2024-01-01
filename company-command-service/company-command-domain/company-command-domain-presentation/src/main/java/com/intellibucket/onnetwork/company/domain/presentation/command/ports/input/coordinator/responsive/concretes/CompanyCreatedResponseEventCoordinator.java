@@ -1,11 +1,11 @@
-package com.intellibucket.onnetwork.company.domain.presentation.command.coordinator.concretes;
+package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.coordinator.responsive.concretes;
 
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import com.intellibucket.lib.payload.trx.SagaStartedProcess;
-import com.intellibucket.onnetwork.company.domain.presentation.command.coordinator.abstracts.AbstractCompanyCreatedResponseEventCoordinator;
+import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.coordinator.responsive.abstracts.AbstractCompanyCreatedResponseEventCoordinator;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractCompanyCommandDomainPresentationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
 import com.intellibucket.lib.payload.trx.SagaStartedProcess;
-import com.intellibucket.onnetwork.company.domain.presentation.command.coordinator.abstracts.AbstractCompanyCreatedResponseEventCoordinator;
+import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.coordinator.responsive.abstracts.AbstractCompanyCreatedResponseEventCoordinator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;

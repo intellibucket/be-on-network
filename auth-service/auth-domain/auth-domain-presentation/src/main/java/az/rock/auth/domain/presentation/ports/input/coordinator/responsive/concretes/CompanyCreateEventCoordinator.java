@@ -1,6 +1,6 @@
-package az.rock.auth.domain.presentation.coordinator.concretes;
+package az.rock.auth.domain.presentation.ports.input.coordinator.responsive.concretes;
 
-import az.rock.auth.domain.presentation.coordinator.abstracts.AbstractCompanyCreateEventCoordinator;
+import az.rock.auth.domain.presentation.ports.input.coordinator.responsive.abstracts.AbstractCompanyCreateEventCoordinator;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
 import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
