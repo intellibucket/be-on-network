@@ -11,9 +11,19 @@ import java.util.List;
 
 public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDomainEvent<? super P>> {
 
+    protected abstract String getTopic();
+
+    protected String getSuccessTopic() {
+        return this.getTopic().replace(".str", ".success");
+    }
+
+    protected String getFailTopic() {
+        return this.getTopic().replace(".str", ".fail");
+    }
+
     public final void coordinate(SagaStartedProcess<E> sagaProcess) {
         try {
-            this.apply(sagaProcess);
+            this.execute(sagaProcess);
         } catch (JDomainException exception) {
             exception.printStackTrace();
             this.onFail(sagaProcess, exception);
@@ -33,5 +43,5 @@ public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDoma
         this.onFail(failSagaProcess, new JDomainException("Failed to process saga process on : " + sagaProcess.getTransactionId()));
     }
 
-    public abstract void apply(SagaStartedProcess<E> sagaProcess) throws JDomainException;
+    public abstract void execute(SagaStartedProcess<E> sagaProcess) throws JDomainException;
 }

@@ -1,6 +1,7 @@
 package com.intellibucket.lib.payload.event.abstracts;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.intellibucket.lib.payload.event.EventType;
 
 public abstract class AbstractDomainEvent<D> implements DomainEvent<D>, JsonTypeReference {
@@ -20,6 +21,11 @@ public abstract class AbstractDomainEvent<D> implements DomainEvent<D>, JsonType
 
     public void setPayload(D payload) {
         this.payload = payload;
+    }
+
+    @JsonIgnore
+    public Boolean hasPayload() {
+        return payload != null;
     }
 
     @Override

@@ -5,9 +5,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractStartDomainEvent;
-import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,11 +36,7 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
     }
 
     public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, Enum<?> step, E event) {
-        this.transactionId = transactionId;
-        this.processStatus = processStatus;
-        this.event = event;
-        this.process = event.getClass().getSimpleName();
-        this.step = step.name();
+        this(transactionId, processStatus, step.name(), event);
     }
 
     public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, String step, E event) {
@@ -50,15 +45,8 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         this.event = event;
         this.process = event.getClass().getSimpleName();
         this.step = step;
+        this.mustBeRetryableStep = false;
     }
-
-
-    public static <E> AbstractSagaProcess<E> of(AbstractSagaProcess<? extends AbstractDomainEvent<?>> sagaProcess, Enum<?> step, E domainEvent) {
-        if (domainEvent instanceof AbstractSuccessDomainEvent<?>)
-            return AbstractSagaProcess.onSuccess(sagaProcess, step, domainEvent);
-        else return AbstractSagaProcess.onFail(sagaProcess, step, domainEvent);
-    }
-
 
     public static <E extends AbstractStartDomainEvent<?>> AbstractSagaProcess<E> onProceed(Enum<?> step, E event) {
         return new SagaStartedProcess<>(UUID.randomUUID(), step, event);
@@ -72,11 +60,15 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         return new SagaFailedProcess<>(sagaProcess.getTransactionId(), sagaProcess.step, sagaProcess.getEvent(), errors);
     }
 
-    public static <E, S> AbstractSagaProcess<S> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step, S failEvent) {
+    public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step) {
+        return AbstractSagaProcess.onFail(sagaProcess, step, new AbstractFailDomainEvent<>(), List.of());
+    }
+
+    public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step, AbstractFailDomainEvent<?> failEvent) {
         return AbstractSagaProcess.onFail(sagaProcess, step, failEvent, List.of());
     }
 
-    public static <E, S> AbstractSagaProcess<S> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step, S failEvent, List<String> errors) {
+    public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step, AbstractFailDomainEvent<?> failEvent, List<String> errors) {
         return new SagaFailedProcess<>(sagaProcess.getTransactionId(), step, failEvent, errors);
     }
 
@@ -105,9 +97,10 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
     }
 
     @JsonIgnore
-    public Boolean isOnFail(){
+    public Boolean isOnFail() {
         return this.processStatus.equals(TrxProcessStatus.FAILED);
     }
+
     @JsonIgnore
     public Boolean isOnSuccess() {
         return this.processStatus.equals(TrxProcessStatus.COMPLETED);

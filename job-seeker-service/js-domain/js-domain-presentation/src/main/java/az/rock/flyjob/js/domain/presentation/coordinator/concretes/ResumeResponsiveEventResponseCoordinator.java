@@ -8,6 +8,11 @@ import com.intellibucket.lib.payload.trx.SagaStartedProcess;
 public class ResumeResponsiveEventResponseCoordinator extends AbstractResumeResponsiveEventResponseCoordinator {
 
     @Override
+    protected String getTopic() {
+        return null;
+    }
+
+    @Override
     protected void onError(AbstractSagaProcess sagaProcess, Throwable throwable) {
 
     }
@@ -18,7 +23,7 @@ public class ResumeResponsiveEventResponseCoordinator extends AbstractResumeResp
     }
 
     @Override
-    public void apply(SagaStartedProcess sagaProcess) throws JDomainException {
+    public void execute(SagaStartedProcess sagaProcess) throws JDomainException {
 
     }
 }
