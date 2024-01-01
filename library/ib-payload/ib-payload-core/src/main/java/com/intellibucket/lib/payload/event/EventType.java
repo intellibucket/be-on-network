@@ -1,5 +1,5 @@
 package com.intellibucket.lib.payload.event;
 
 public enum EventType {
-    START,FAIL,SUCCESS;
+    START, FAIL, SUCCESS, NONE;
 }

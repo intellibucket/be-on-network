@@ -8,6 +8,7 @@ import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 
 @Event
 public class JobSeekerCreatedEvent extends AbstractStartDomainEvent<JobSeekerRegistrationPayload> {
+
     protected JobSeekerCreatedEvent(JobSeekerRegistrationPayload payload) {
         super(payload);
     }

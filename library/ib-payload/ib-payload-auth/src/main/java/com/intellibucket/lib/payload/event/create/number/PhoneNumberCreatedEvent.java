@@ -6,6 +6,9 @@ import com.intellibucket.lib.payload.payload.PhoneNumberPayload;
 
 @Event
 public class PhoneNumberCreatedEvent extends AbstractStartDomainEvent<PhoneNumberPayload> {
+    public PhoneNumberCreatedEvent() {
+    }
+
     private PhoneNumberCreatedEvent(PhoneNumberPayload root) {
         super(root);
     }

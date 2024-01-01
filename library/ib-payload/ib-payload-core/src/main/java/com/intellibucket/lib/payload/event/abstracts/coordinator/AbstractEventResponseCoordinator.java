@@ -4,10 +4,14 @@ package com.intellibucket.lib.payload.event.abstracts.coordinator;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
+import com.intellibucket.lib.payload.trx.SagaFailedProcess;
+import com.intellibucket.lib.payload.trx.SagaStartedProcess;
 
-public abstract class AbstractEventResponseCoordinator<E extends AbstractDomainEvent> {
+import java.util.List;
 
-    public final void coordinate(AbstractSagaProcess<E> sagaProcess) {
+public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDomainEvent<? super P>> {
+
+    public final void coordinate(SagaStartedProcess<E> sagaProcess) {
         try {
             this.apply(sagaProcess);
         } catch (JDomainException exception) {
@@ -22,9 +26,12 @@ public abstract class AbstractEventResponseCoordinator<E extends AbstractDomainE
 
     protected abstract void onError(AbstractSagaProcess<E> sagaProcess, Throwable throwable);
 
-    protected abstract <F> void onFail(AbstractSagaProcess<F> sagaProcess, JDomainException exception);
+    protected abstract void onFail(AbstractSagaProcess<E> sagaProcess, JDomainException exception);
 
-    protected abstract <F> void onFail(AbstractSagaProcess<F> sagaProcess);
+    protected void onFail(AbstractSagaProcess<E> sagaProcess) {
+        var failSagaProcess = new SagaFailedProcess<>(sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getEvent(), List.of());
+        this.onFail(failSagaProcess, new JDomainException("Failed to process saga process on : " + sagaProcess.getTransactionId()));
+    }
 
-    public abstract <S> void apply(AbstractSagaProcess<S> sagaProcess) throws JDomainException;
+    public abstract void apply(SagaStartedProcess<E> sagaProcess) throws JDomainException;
 }

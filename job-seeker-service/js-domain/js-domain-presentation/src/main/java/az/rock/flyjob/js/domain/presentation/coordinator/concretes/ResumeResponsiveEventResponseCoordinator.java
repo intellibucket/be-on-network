@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.presentation.coordinator.concretes;
 import az.rock.flyjob.js.domain.presentation.coordinator.abstracts.AbstractResumeResponsiveEventResponseCoordinator;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
+import com.intellibucket.lib.payload.trx.SagaStartedProcess;
 
 public class ResumeResponsiveEventResponseCoordinator extends AbstractResumeResponsiveEventResponseCoordinator {
 
@@ -12,17 +13,12 @@ public class ResumeResponsiveEventResponseCoordinator extends AbstractResumeResp
     }
 
     @Override
-    public void apply(AbstractSagaProcess sagaProcess) throws JDomainException {
+    protected void onFail(AbstractSagaProcess sagaProcess, JDomainException exception) {
 
     }
 
     @Override
-    public void onFail(AbstractSagaProcess sagaProcess) {
-
-    }
-
-    @Override
-    public void onFail(AbstractSagaProcess sagaProcess, JDomainException exception) {
+    public void apply(SagaStartedProcess sagaProcess) throws JDomainException {
 
     }
 }

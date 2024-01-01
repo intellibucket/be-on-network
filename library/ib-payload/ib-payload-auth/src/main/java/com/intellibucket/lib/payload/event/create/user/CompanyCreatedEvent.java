@@ -6,6 +6,9 @@ import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 
 @Event
 public class CompanyCreatedEvent extends AbstractStartDomainEvent<CompanyRegistrationPayload> {
+    public CompanyCreatedEvent() {
+    }
+
     protected CompanyCreatedEvent(CompanyRegistrationPayload root) {
         super(root);
     }

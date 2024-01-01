@@ -7,6 +7,9 @@ import com.intellibucket.lib.payload.payload.picture.PicturePayload;
 
 @Event
 public class ProfilePictureCreatedEvent extends AbstractStartDomainEvent<PicturePayload> {
+    public ProfilePictureCreatedEvent() {
+    }
+
     protected ProfilePictureCreatedEvent(PicturePayload root) {
         super(root);
     }

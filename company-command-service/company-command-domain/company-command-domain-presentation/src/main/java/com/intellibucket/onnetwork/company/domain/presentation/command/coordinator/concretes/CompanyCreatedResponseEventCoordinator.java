@@ -27,30 +27,23 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
 
 
     @Override
-    public <S> void apply(AbstractSagaProcess<S> sagaProcess) {
-        log.info("Company created event received: {}", sagaProcess.getEvent().toString());
-        this.createCompany((SagaStartedProcess<CompanyCreatedEvent>) sagaProcess);
-    }
-
-    @Override
     protected void createCompany(SagaStartedProcess<CompanyCreatedEvent> request) {
         CompanyRegistrationPayload payload = request.getEvent().getPayload();
         log.info("Company created event received: {}", payload.toString());
     }
 
     @Override
+    public void apply(SagaStartedProcess<CompanyCreatedEvent> sagaProcess) throws JDomainException {
+
+    }
+
+    @Override
+    protected void onFail(AbstractSagaProcess<CompanyCreatedEvent> sagaProcess, JDomainException exception) {
+
+    }
+
+    @Override
     protected void onError(AbstractSagaProcess<CompanyCreatedEvent> sagaProcess, Throwable throwable) {
-        log.error("Error occurred while creating company: {}", throwable.getMessage());
-    }
 
-    @Override
-    protected <F> void onFail(AbstractSagaProcess<F> sagaProcess) {
-        log.error("Fail occurred while creating company: ");
-    }
-
-
-    @Override
-    protected <F> void onFail(AbstractSagaProcess<F> sagaProcess, JDomainException exception) {
-        log.error("Fail occurred while creating company: {}", exception.getMessage());
     }
 }

@@ -1,5 +1,6 @@
 package com.intellibucket.onnetwork.company.messaging.command.listeners;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
@@ -24,7 +25,8 @@ public class CompanyCreatedListener {
     @KafkaListener(topics = "${topic.cmp.created.name}", groupId = "company-command-consumer")
     public void consume(JsonNode node) {
         log.info("Company created event received: {}", node.toString());
-        SagaStartedProcess<CompanyCreatedEvent> process = OBJECT_MAPPER.convertValue(node, SagaStartedProcess.class);
+        SagaStartedProcess<CompanyCreatedEvent> process = OBJECT_MAPPER.convertValue(node, new TypeReference<SagaStartedProcess<CompanyCreatedEvent>>() {
+        });
         this.companyCreatedResponseEventCoordinator.coordinate(process);
     }
 

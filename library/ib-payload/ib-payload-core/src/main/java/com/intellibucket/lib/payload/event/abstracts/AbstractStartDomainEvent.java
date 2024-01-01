@@ -8,12 +8,9 @@ public abstract class AbstractStartDomainEvent<R> extends AbstractDomainEvent<R>
     }
 
     public AbstractStartDomainEvent() {
+        this.eventType = EventType.START;
     }
 
-    @Override
-    public String getEventType() {
-        return EventType.START.name();
-    }
 
     @Override
     public String toString() {
