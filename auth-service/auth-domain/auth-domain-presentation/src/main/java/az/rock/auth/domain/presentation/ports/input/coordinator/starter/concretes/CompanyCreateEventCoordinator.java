@@ -30,7 +30,6 @@ public class CompanyCreateEventCoordinator extends AbstractCompanyCreateEventCoo
 
     @Override
     public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(AbstractSagaProcess<F> sagaProcess) {
-
         log.error("Exception = > occurred while publishing message to user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 
