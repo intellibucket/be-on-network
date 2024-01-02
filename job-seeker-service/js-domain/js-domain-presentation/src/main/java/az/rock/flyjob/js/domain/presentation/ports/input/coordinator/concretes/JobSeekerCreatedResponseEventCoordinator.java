@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.concretes;
 
 import az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts.AbstractJobSeekerCreatedResponseEventCoordinator;
+import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractResumeCommandDomainPresentationService;
 import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerFailResponseMessagePublisher;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
@@ -19,16 +20,19 @@ public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerC
     @Value(value = "${topic.js.created.name}")
     private String jobSeekerCreatedTopicName;
 
+    private final AbstractResumeCommandDomainPresentationService jsCommandDomainPresentationService;
 
-    protected JobSeekerCreatedResponseEventCoordinator(AbstractJobSeekerFailResponseMessagePublisher jobSeekerFailResponseMessagePublisher) {
+    protected JobSeekerCreatedResponseEventCoordinator(AbstractJobSeekerFailResponseMessagePublisher jobSeekerFailResponseMessagePublisher,
+                                                       AbstractResumeCommandDomainPresentationService jsCommandDomainPresentationService) {
         super(jobSeekerFailResponseMessagePublisher);
+        this.jsCommandDomainPresentationService = jsCommandDomainPresentationService;
     }
 
     @Override
     public void execute(SagaStartedProcess<JobSeekerCreatedEvent> sagaProcess) throws JDomainException {
         log.info("Company created event received: {}", sagaProcess.getEvent().getPayload().toString());
         JobSeekerRegistrationPayload payload = sagaProcess.getEvent().getPayload();
-        //this.jsCommandDomainPresentationService.createResume(payload);
+        this.jsCommandDomainPresentationService.create(payload);
     }
 
     @Override

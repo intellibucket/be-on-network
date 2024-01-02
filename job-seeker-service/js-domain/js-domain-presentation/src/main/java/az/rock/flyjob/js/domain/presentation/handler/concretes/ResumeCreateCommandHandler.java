@@ -6,9 +6,9 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.Abs
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.concretes.FailDomainEvent;
 import com.intellibucket.lib.payload.event.create.ResumeCreatedEvent;
-import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
 import com.intellibucket.lib.payload.payload.Payload;
 import com.intellibucket.lib.payload.payload.ResumeCreatedPayload;
+import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,12 +24,11 @@ public class ResumeCreateCommandHandler implements AbstractResumeCreateCommandHa
 
     @Override
     @SuppressWarnings("all")
-    public AbstractDomainEvent<? extends Payload> createResume(JobSeekerCreatedEvent event){
-        var payload = event.getPayload();
+    public AbstractDomainEvent<? extends Payload> createResume(JobSeekerRegistrationPayload payload) {
         try {
             var newResumeRoot = this.resumeDomainMapper.createNewResume(payload);
             var optionalResumeRoot = this.resumeCommandRepositoryAdapter.create(newResumeRoot);
-            if (optionalResumeRoot.isPresent()){
+            if (optionalResumeRoot.isPresent()) {
                 return ResumeCreatedEvent.of(
                         ResumeCreatedPayload.of(
                                 optionalResumeRoot
