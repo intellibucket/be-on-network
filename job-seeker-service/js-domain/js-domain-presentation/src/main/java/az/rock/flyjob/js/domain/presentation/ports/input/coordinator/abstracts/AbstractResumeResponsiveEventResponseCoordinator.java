@@ -1,4 +1,4 @@
-package az.rock.flyjob.js.domain.presentation.coordinator.abstracts;
+package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts;
 
 import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventResponseCoordinator;
 

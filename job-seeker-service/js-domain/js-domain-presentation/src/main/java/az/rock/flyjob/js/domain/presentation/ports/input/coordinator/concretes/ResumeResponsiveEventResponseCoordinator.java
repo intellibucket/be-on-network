@@ -1,6 +1,6 @@
-package az.rock.flyjob.js.domain.presentation.coordinator.concretes;
+package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.concretes;
 
-import az.rock.flyjob.js.domain.presentation.coordinator.abstracts.AbstractResumeResponsiveEventResponseCoordinator;
+import az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts.AbstractResumeResponsiveEventResponseCoordinator;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import com.intellibucket.lib.payload.trx.SagaStartedProcess;
