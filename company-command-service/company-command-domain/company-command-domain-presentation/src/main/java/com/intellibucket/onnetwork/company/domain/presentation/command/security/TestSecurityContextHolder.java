@@ -16,6 +16,9 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder 
     @Value("${test.values.user.uuid}")
     private String testUserUUID;
 
+    @Value("${test.values.user.type.uuid}")
+    private String userTypeId;
+
     @Value("${test.values.user.language:EN}")
     private String testLanguage;
 
@@ -42,6 +45,11 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder 
         if (availableUser) {
             return userID;
         } else throw new RuntimeException("User is not available");
+    }
+
+    @Override
+    public UUID currentUserTypeId() {
+        return UUID.fromString(this.userTypeId);
     }
 
     @Override

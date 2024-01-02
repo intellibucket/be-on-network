@@ -6,12 +6,16 @@ import az.rock.lib.valueObject.Role;
 import az.rock.lib.valueObject.UserIdTypePair;
 import az.rock.lib.valueObject.UserType;
 
+import java.util.UUID;
+
 public interface AbstractSecurityContextHolder {
 
 
     UserID currentUser();
 
     UserID availableUser();
+
+    UUID currentUserTypeId();
 
     default UserIdTypePair currentUserTypePair() {
         return new UserIdTypePair(this.currentUser(), this.currentUserType());
@@ -30,4 +34,5 @@ public interface AbstractSecurityContextHolder {
     Boolean isAuthenticated();
 
     UserType currentUserType();
+
 }

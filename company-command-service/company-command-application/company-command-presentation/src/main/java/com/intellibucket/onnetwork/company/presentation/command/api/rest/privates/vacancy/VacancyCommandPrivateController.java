@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.presentation.command.api.rest.privates;
+package com.intellibucket.onnetwork.company.presentation.command.api.rest.privates.vacancy;
 
 import az.rock.lib.domain.id.vacancy.VacancyID;
 import az.rock.lib.domain.id.vacancy.VacancyPlannerID;

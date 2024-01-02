@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.presentation.command.api.rest.privates;
+package com.intellibucket.onnetwork.company.presentation.command.api.rest.privates.vacancy;
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyPriorityCommand;
