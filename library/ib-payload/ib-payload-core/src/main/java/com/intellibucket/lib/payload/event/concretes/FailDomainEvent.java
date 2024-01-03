@@ -6,7 +6,7 @@ import com.intellibucket.lib.payload.payload.FailPayload;
 import java.util.List;
 
 public class FailDomainEvent extends AbstractFailDomainEvent<FailPayload> {
-    protected FailDomainEvent(FailPayload payload) {
+    public FailDomainEvent(FailPayload payload) {
         super(payload);
     }
 
