@@ -17,8 +17,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CompanyEntity extends BaseEntity {
 
-    @Column(name = "company_id", nullable = false, updatable = false)
-    private UUID companyID;
+    @Column(name = "user_uuid", nullable = false, updatable = false)
+    private UUID userUUID;
 
     @Column(name = "name")
     @Max(100)
