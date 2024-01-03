@@ -49,7 +49,7 @@ public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerC
     }
 
     @Override
-    protected BiConsumer<String, AbstractSagaProcess<?>> consumer() {
+    protected BiConsumer<String, AbstractSagaProcess<?>> endAction() {
         return null;
     }
 

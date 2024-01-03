@@ -22,7 +22,6 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
 
     @Value(value = "${topic.cmp.created.name}")
     private String companyCreatedTopicName;
-
     private final AbstractCompanyCommandDomainPresentationService companyCommandDomainPresentationService;
     private final AbstractCompanyResponseMessagePublisher companyResponseMessagePublisher;
 
@@ -43,7 +42,7 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
     }
 
     @Override
-    protected BiConsumer<String, AbstractSagaProcess<?>> consumer() {
+    protected BiConsumer<String, AbstractSagaProcess<?>> endAction() {
         return companyResponseMessagePublisher::publish;
     }
 
@@ -53,7 +52,5 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
         CompanyRegistrationPayload payload = sagaProcess.getEvent().getPayload();
         return this.companyCommandDomainPresentationService.createCompany(payload);
     }
-
-
 
 }
