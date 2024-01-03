@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1704012975788-1" author="Vugar Mammadli">
+    <changeSet id="1704012975788-1" author="Suleyman Mehdiyev">
         <createTable schemaName="company" tableName="companies">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_companıes"/>
@@ -21,7 +21,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="modification_date" type="DATETIME"/>
-            <column name="company_id" type="UUID">
+            <column name="user_uuid" type="UUID">
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
