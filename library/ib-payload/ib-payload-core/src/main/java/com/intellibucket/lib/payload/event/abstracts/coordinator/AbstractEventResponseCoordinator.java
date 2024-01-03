@@ -32,19 +32,19 @@ public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDoma
     protected abstract BiConsumer<String, AbstractSagaProcess<?>> endAction();
 
     public final void coordinate(SagaStartedProcess<E> sagaProcess) {
-        log.info("Started to coordinate saga process on : " + sagaProcess.getTransactionId() + " on step : " + sagaProcess.getStep());
+        log.info("Started to coordinate saga process on : " + sagaProcess.getTransactionId() + " on step : " + this.getStep());
         try {
             var successEvent = this.execute(sagaProcess);
             this.onSuccess(sagaProcess, successEvent);
         } catch (JDomainException exception) {
-            log.error("Failed to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + sagaProcess.getStep(), exception);
+            log.error("Failed to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + this.getStep(), exception);
             this.onFail(sagaProcess, exception);
         } catch (Exception exception) {
-            log.error("Error to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + sagaProcess.getStep(), exception);
+            log.error("Error to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + this.getStep(), exception);
             this.onFail(sagaProcess);
             this.onError(sagaProcess, exception);
         }
-        log.info("Finished to coordinate saga process on : " + sagaProcess.getTransactionId() + " on step : " + sagaProcess.getStep());
+        log.info("Finished to coordinate saga process on : " + sagaProcess.getTransactionId() + " on step : " + this.getStep());
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
@@ -52,7 +52,7 @@ public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDoma
         var successSagaProcess =
                 AbstractSagaProcess.onSuccess(sagaProcess, this.getStep(), successEvent);
         this.endAction().accept(this.getSuccessTopic(), successSagaProcess);
-        log.info("Successfully coordinated saga process on : " + sagaProcess.getTransactionId() + " on step : " + sagaProcess.getStep());
+        log.info("Successfully coordinated saga process on : " + sagaProcess.getTransactionId() + " on step : " + this.getStep());
     }
 
     protected void onError(AbstractSagaProcess<E> sagaProcess, Throwable throwable) {
@@ -61,12 +61,12 @@ public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDoma
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     protected void onFail(AbstractSagaProcess<E> sagaProcess, JDomainException exception) {
         log.error("Failed to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + sagaProcess.getStep(), exception);
-        var failSagaProcess = new SagaFailedProcess<>(sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getEvent(), List.of());
+        var failSagaProcess = new SagaFailedProcess<>(sagaProcess.getTransactionId(), this.getStep(), sagaProcess.getEvent(), List.of());
         this.endAction().accept(this.getFailTopic(), failSagaProcess);
     }
 
     protected void onFail(AbstractSagaProcess<E> sagaProcess) {
-        var message = "Failed to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + sagaProcess.getStep();
+        var message = "Failed to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + this.getStep();
         this.onFail(sagaProcess, new JDomainException(message));
     }
 
