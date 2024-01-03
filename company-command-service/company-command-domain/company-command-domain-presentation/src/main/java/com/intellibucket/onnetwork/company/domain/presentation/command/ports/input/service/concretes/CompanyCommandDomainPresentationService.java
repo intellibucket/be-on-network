@@ -24,8 +24,7 @@ public class CompanyCommandDomainPresentationService implements AbstractCompanyC
     @Override
     public AbstractSuccessDomainEvent<?> createCompany(CompanyRegistrationPayload payload) throws JDomainException {
         log.info("CompanyCommandDomainPresentationService.createCompany");
-        throw new JDomainException("CompanyCommandDomainPresentationService.createCompany");
-        //return this.createCompanyCommandHandler.createCompany(payload);
+        return this.createCompanyCommandHandler.createCompany(payload);
     }
 
     @Override
