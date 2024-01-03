@@ -2,7 +2,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.adapter.command;
 
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.command.AbstractCompanyCommandCustomJPARepository;
+import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandCustomJPARepository;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyCommandRepositoryAdapter;
 import org.springframework.stereotype.Component;

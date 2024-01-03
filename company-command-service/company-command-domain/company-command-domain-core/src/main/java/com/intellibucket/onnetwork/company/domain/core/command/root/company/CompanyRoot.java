@@ -1,14 +1,10 @@
 package com.intellibucket.onnetwork.company.domain.core.command.root.company;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.id.BlockID;
-import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.UserType;
 import az.rock.lib.valueObject.Version;
-import lombok.Builder;
 import lombok.Getter;
 
 import java.time.ZonedDateTime;
@@ -24,31 +20,23 @@ public class CompanyRoot extends AggregateRoot<CompanyID> {
     private String description;
 
 
-//    private CompanyProfileRoot profile;
-//
-//    private List<VerificationRoot> verifications;
-//
-//    private List<EmailRoot> emails;
-//
-//    private WebsiteRoot websites;
+    private CompanyProfileRoot profile;
+
+    private List<VerificationRoot> verifications;
+
+    private List<EmailRoot> emails;
+
+    private WebsiteRoot websites;
 
     private CompanyRoot(Builder builder) {
         super(builder.companyID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
         userID = builder.userID;
         name = builder.name;
         description = builder.description;
-    }
-
-    public UUID getUserID() {
-        return userID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
+        profile = builder.profile;
+        verifications = builder.verifications;
+        emails = builder.emails;
+        websites = builder.websites;
     }
 
     public static final class Builder{
@@ -70,6 +58,13 @@ public class CompanyRoot extends AggregateRoot<CompanyID> {
 
         private String description;
 
+        private CompanyProfileRoot profile;
+
+        private List<VerificationRoot> verifications;
+
+        private List<EmailRoot> emails;
+
+        private WebsiteRoot websites;
 
         private Builder() {
         }
@@ -130,6 +125,25 @@ public class CompanyRoot extends AggregateRoot<CompanyID> {
 
         public Builder description(String val) {
             description = val;
+            return this;
+        }
+
+        public Builder profile(CompanyProfileRoot val) {
+            profile = val;
+            return this;
+        }
+
+        public Builder verification(List<VerificationRoot> val) {
+            verifications = val;
+            return this;
+        }
+
+        public Builder email(List<EmailRoot> val) {
+            emails = val;
+            return this;
+        }
+        public Builder website(WebsiteRoot val) {
+            websites = val;
             return this;
         }
 

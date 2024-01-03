@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.dataAccess.command.repository;
+package com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts;
 
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.EntityManager;

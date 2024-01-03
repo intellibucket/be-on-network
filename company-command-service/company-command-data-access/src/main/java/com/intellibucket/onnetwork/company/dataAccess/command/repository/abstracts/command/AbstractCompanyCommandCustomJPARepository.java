@@ -1,7 +1,7 @@
-package com.intellibucket.onnetwork.company.dataAccess.command.repository.command;
+package com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command;
 
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.CustomCommandJPARepository;
+import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.CustomCommandJPARepository;
 
 public interface AbstractCompanyCommandCustomJPARepository extends CustomCommandJPARepository<CompanyEntity> {
 }
