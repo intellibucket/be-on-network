@@ -2,6 +2,7 @@ package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts;
 
 import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerFailResponseMessagePublisher;
 import az.rock.lib.jexception.JDomainException;
+import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventResponseCoordinator;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
 import com.intellibucket.lib.payload.outbox.CompanyRegistrationSteps;
@@ -21,7 +22,7 @@ public abstract class AbstractJobSeekerCreatedResponseEventCoordinator extends A
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
-    public abstract void execute(SagaStartedProcess<JobSeekerCreatedEvent> sagaProcess) throws JDomainException;
+    public abstract AbstractSuccessDomainEvent<?> execute(SagaStartedProcess<JobSeekerCreatedEvent> sagaProcess) throws JDomainException;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)

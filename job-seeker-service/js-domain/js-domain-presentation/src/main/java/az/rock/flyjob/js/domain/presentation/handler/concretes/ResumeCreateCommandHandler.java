@@ -3,10 +3,9 @@ package az.rock.flyjob.js.domain.presentation.handler.concretes;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractResumeCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractResumeDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractResumeCommandRepositoryAdapter;
-import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibucket.lib.payload.event.concretes.FailDomainEvent;
+import az.rock.lib.jexception.JRuntimeException;
+import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.create.ResumeCreatedEvent;
-import com.intellibucket.lib.payload.payload.Payload;
 import com.intellibucket.lib.payload.payload.ResumeCreatedPayload;
 import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import org.springframework.stereotype.Component;
@@ -24,23 +23,18 @@ public class ResumeCreateCommandHandler implements AbstractResumeCreateCommandHa
 
     @Override
     @SuppressWarnings("all")
-    public AbstractDomainEvent<? extends Payload> createResume(JobSeekerRegistrationPayload payload) {
-        try {
-            var newResumeRoot = this.resumeDomainMapper.createNewResume(payload);
-            var optionalResumeRoot = this.resumeCommandRepositoryAdapter.create(newResumeRoot);
-            if (optionalResumeRoot.isPresent()) {
-                return ResumeCreatedEvent.of(
-                        ResumeCreatedPayload.of(
-                                optionalResumeRoot
-                                        .get()
-                                        .getRootID()
-                                        .getAbsoluteID()
-                        )
-                );
-            }else return FailDomainEvent.of("F0000000001");
-        }catch (Exception exception){
-            exception.printStackTrace();
-         return FailDomainEvent.of(exception.getMessage());
-        }
+    public AbstractSuccessDomainEvent<ResumeCreatedPayload> createResume(JobSeekerRegistrationPayload payload) {
+        var newResumeRoot = this.resumeDomainMapper.createNewResume(payload);
+        var optionalResumeRoot = this.resumeCommandRepositoryAdapter.create(newResumeRoot);
+        if (optionalResumeRoot.isPresent()) {
+            return ResumeCreatedEvent.of(
+                    ResumeCreatedPayload.of(
+                            optionalResumeRoot
+                                    .get()
+                                    .getRootID()
+                                    .getAbsoluteID()
+                    )
+            );
+        } else throw new JRuntimeException("Resume cannot created");
     }
 }
