@@ -72,7 +72,7 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         return new SagaFailedProcess<>(sagaProcess.getTransactionId(), step, failEvent, errors);
     }
 
-    public static <E, S> AbstractSagaProcess<S> onSuccess(AbstractSagaProcess<E> sagaProcess, Enum<?> step, S successEvent) {
+    public static <E, S> SagaCompletedProcess<S> onSuccess(AbstractSagaProcess<E> sagaProcess, Enum<?> step, S successEvent) {
         return new SagaCompletedProcess<>(sagaProcess.getTransactionId(), step, successEvent);
     }
 

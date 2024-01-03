@@ -3,6 +3,7 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.ports.in
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.jexception.JDomainException;
+import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCreateCompanyCommandHandler;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractCompanyCommandDomainPresentationService;
@@ -21,9 +22,9 @@ public class CompanyCommandDomainPresentationService implements AbstractCompanyC
     }
 
     @Override
-    public void createCompany(CompanyRegistrationPayload payload) throws JDomainException {
+    public AbstractSuccessDomainEvent<?> createCompany(CompanyRegistrationPayload payload) throws JDomainException {
         log.info("CompanyCommandDomainPresentationService.createCompany");
-        this.createCompanyCommandHandler.createCompany(payload);
+        return this.createCompanyCommandHandler.createCompany(payload);
     }
 
     @Override

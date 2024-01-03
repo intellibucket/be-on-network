@@ -12,4 +12,5 @@ public class AbstractSuccessDomainEvent<R> extends AbstractDomainEvent<R> {
         super(payload);
         this.eventType = EventType.SUCCESS;
     }
+
 }
