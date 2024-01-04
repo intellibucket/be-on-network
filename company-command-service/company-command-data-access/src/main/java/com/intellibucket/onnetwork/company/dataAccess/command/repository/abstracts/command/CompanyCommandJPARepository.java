@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository
-public interface AbstractCompanyCommandJPARepository extends JpaRepository<CompanyEntity, UUID> {
+@Repository("CompanyCommandJPARepository")
+public interface CompanyCommandJPARepository extends JpaRepository<CompanyEntity, UUID> {
 }
