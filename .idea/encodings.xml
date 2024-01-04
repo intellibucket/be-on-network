@@ -35,13 +35,19 @@
     <file url="file://$PROJECT_DIR$/authorization-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/company-command-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/company-command-presentation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/company-command-spec/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/company-command-spec/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-application/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-container/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-data-access/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-data-access/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-presentation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-presentation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-messaging/src/main/java" charset="UTF-8" />
@@ -122,6 +128,7 @@
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/authorization-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/authorization-client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-data-access/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/kafka-config-data/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/kafka-consumer/src/main/java" charset="UTF-8" />
@@ -130,6 +137,7 @@
     <file url="file://$PROJECT_DIR$/library/ib-kafka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-notification-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-notification-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/ib-payload-auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/ib-payload-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/ib-payload-js/src/main/java" charset="UTF-8" />
@@ -137,6 +145,7 @@
     <file url="file://$PROJECT_DIR$/library/ib-payload/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-exception/src/main/java" charset="UTF-8" />
@@ -176,7 +185,10 @@
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-container/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-container/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-messaging/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-messaging/src/main/resources" charset="UTF-8" />
   </component>
 </project>

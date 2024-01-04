@@ -14,7 +14,7 @@ public class CompanyCommandCustomJPARepository implements AbstractCompanyCommand
 
     @Override
     public EntityManager entityManager() {
-        return entityManager;
+        return this.entityManager;
     }
 
     @Override

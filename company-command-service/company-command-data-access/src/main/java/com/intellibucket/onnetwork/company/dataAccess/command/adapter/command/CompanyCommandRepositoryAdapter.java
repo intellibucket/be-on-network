@@ -1,7 +1,6 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.adapter.command;
 
-import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
-import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
+import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractCompanyDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandCustomJPARepository;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyCommandRepositoryAdapter;
@@ -15,11 +14,11 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
 
     private final AbstractCompanyCommandCustomJPARepository companyCommandCustomJPARepository;
 
-    private final AbstractDataAccessMapper<CompanyEntity, CompanyRoot> companyDataAccessMapper;
+    private final AbstractCompanyDataAccessMapper companyDataAccessMapper;
 
 
     public CompanyCommandRepositoryAdapter(AbstractCompanyCommandCustomJPARepository companyCommandCustomJPARepository,
-                                           AbstractDataAccessMapper<CompanyEntity, CompanyRoot> companyDataAccessMapper) {
+                                           AbstractCompanyDataAccessMapper companyDataAccessMapper) {
         this.companyCommandCustomJPARepository = companyCommandCustomJPARepository;
         this.companyDataAccessMapper = companyDataAccessMapper;
     }

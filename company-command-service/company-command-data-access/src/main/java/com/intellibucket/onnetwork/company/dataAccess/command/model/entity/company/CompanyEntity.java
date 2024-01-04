@@ -1,15 +1,18 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company;
 
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Getter
@@ -44,6 +47,7 @@ public class CompanyEntity extends BaseEntity {
     private WebsiteEntity websites;
 
     private CompanyEntity(Builder builder) {
+        setUuid(builder.uuid);
         setUserUUID(builder.userID);
         setName(builder.name);
         setDescription(builder.description);
@@ -52,15 +56,15 @@ public class CompanyEntity extends BaseEntity {
         setRowStatus(builder.rowStatus);
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
-//        setVerifications(builder.verifications);
-//        setEmails(builder.emails);
-//        setVerifications(builder.verifications);
-//        setWebsites(builder.websites);
-//        setProfile(builder.profile);
+        setVerifications(builder.verifications);
+        setEmails(builder.emails);
+        setVerifications(builder.verifications);
+        setWebsites(builder.websites);
+        setProfile(builder.profile);
     }
 
     public static final class Builder {
-        private CompanyID companyID;
+        private UUID uuid;
 
         private Long version;
 
@@ -90,31 +94,27 @@ public class CompanyEntity extends BaseEntity {
         private Builder() {
         }
 
-        public static CompanyEntity.Builder builder() {
-            return new CompanyEntity.Builder();
+        public static Builder builder() {
+            return new Builder();
         }
 
-        public CompanyEntity.Builder uuid(UUID uuid) {
-            this.companyID = CompanyID.of(uuid);
+        public Builder uuid(UUID uuid) {
+            this.uuid = uuid;
             return this;
         }
 
-        public CompanyEntity.Builder uuid(CompanyID companyID) {
-            this.companyID = companyID;
-            return this;
-        }
 
         public Builder version(Long val) {
             version = val;
             return this;
         }
 
-        public CompanyEntity.Builder processStatus(ProcessStatus val) {
+        public Builder processStatus(ProcessStatus val) {
             processStatus = val;
             return this;
         }
 
-        public CompanyEntity.Builder rowStatus(RowStatus val) {
+        public Builder rowStatus(RowStatus val) {
             rowStatus = val;
             return this;
         }
@@ -129,12 +129,12 @@ public class CompanyEntity extends BaseEntity {
             return this;
         }
 
-        public CompanyEntity.Builder userId(UUID val) {
+        public Builder userId(UUID val) {
             userID = val;
             return this;
         }
 
-        public CompanyEntity.Builder name(String val) {
+        public Builder name(String val) {
             name = val;
             return this;
         }
@@ -149,6 +149,11 @@ public class CompanyEntity extends BaseEntity {
             return this;
         }
 
+        public Builder profile(Optional<CompanyProfileEntity> val) {
+            val.ifPresent((companyProfileEntity) -> Builder.this.profile = companyProfileEntity);
+            return this;
+        }
+
         public Builder verification(List<VerificationEntity> val) {
             verifications = val;
             return this;
@@ -158,8 +163,14 @@ public class CompanyEntity extends BaseEntity {
             emails = val;
             return this;
         }
-        public CompanyEntity.Builder website(WebsiteEntity val) {
+
+        public Builder website(WebsiteEntity val) {
             websites = val;
+            return this;
+        }
+
+        public Builder website(Optional<WebsiteEntity> val) {
+            val.ifPresent((websiteEntity) -> Builder.this.websites = websiteEntity);
             return this;
         }
 
