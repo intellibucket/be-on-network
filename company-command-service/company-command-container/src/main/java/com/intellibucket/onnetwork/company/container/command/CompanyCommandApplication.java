@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
                 "com.intellibucket.onnetwork.company.presentation.command",
                 "com.intellibucket.onnetwork.company.domain.presentation.command",
                 "com.intellibucket.onnetwork.company.domain.core.command",
-                "com.intellibucket.onnetwork.company.dataAccess.command",
+                "com.intellibucket.onnetwork.company.dataAccess.command.*",
                 "com.intellibucket.onnetwork.company.messaging.command"}
 )
 @ServletComponentScan
