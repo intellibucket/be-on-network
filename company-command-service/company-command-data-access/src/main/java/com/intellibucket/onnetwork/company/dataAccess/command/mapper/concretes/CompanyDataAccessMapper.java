@@ -41,7 +41,7 @@ public class CompanyDataAccessMapper implements AbstractCompanyDataAccessMapper 
                             .rowStatus(entity.getRowStatus())
                             .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
                             .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
-                            .userId(entity.getUserUUID())
+                            .userId(entity.getUserUuid())
                             .name(entity.getName())
                             .description(entity.getDescription())
                             .build()

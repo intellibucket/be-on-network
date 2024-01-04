@@ -16,9 +16,7 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
 
     private final AbstractCompanyDataAccessMapper companyDataAccessMapper;
 
-
-    public CompanyCommandRepositoryAdapter(AbstractCompanyCommandJPARepository companyCommandJPARepository,
-                                           AbstractCompanyDataAccessMapper companyDataAccessMapper) {
+    public CompanyCommandRepositoryAdapter(AbstractCompanyCommandJPARepository companyCommandJPARepository, AbstractCompanyDataAccessMapper companyDataAccessMapper) {
         this.companyCommandJPARepository = companyCommandJPARepository;
         this.companyDataAccessMapper = companyDataAccessMapper;
     }
