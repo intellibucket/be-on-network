@@ -1,7 +1,7 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.adapter.command;
 
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractCompanyDataAccessMapper;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandCustomJPARepository;
+import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandJPARepository;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyCommandRepositoryAdapter;
 import org.springframework.stereotype.Component;
@@ -12,14 +12,14 @@ import java.util.Optional;
 @Component
 public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRepositoryAdapter {
 
-    private final AbstractCompanyCommandCustomJPARepository companyCommandCustomJPARepository;
+    private final AbstractCompanyCommandJPARepository companyCommandJPARepository;
 
     private final AbstractCompanyDataAccessMapper companyDataAccessMapper;
 
 
-    public CompanyCommandRepositoryAdapter(AbstractCompanyCommandCustomJPARepository companyCommandCustomJPARepository,
+    public CompanyCommandRepositoryAdapter(AbstractCompanyCommandJPARepository companyCommandJPARepository,
                                            AbstractCompanyDataAccessMapper companyDataAccessMapper) {
-        this.companyCommandCustomJPARepository = companyCommandCustomJPARepository;
+        this.companyCommandJPARepository = companyCommandJPARepository;
         this.companyDataAccessMapper = companyDataAccessMapper;
     }
 
@@ -28,15 +28,16 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
     public Optional<CompanyRoot> create(CompanyRoot root) {
         var entity = this.companyDataAccessMapper.toEntity(root);
         if (entity.isPresent()) {
-            var savedEntity = this.companyCommandCustomJPARepository.persist(entity.get());
+            var savedEntity = this.companyCommandJPARepository.saveAndFlush(entity.get());
             return this.companyDataAccessMapper.toRoot(savedEntity);
         }
         return Optional.empty();
     }
+
     @Override
     public void update(CompanyRoot root) {
         var entity = this.companyDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.companyCommandCustomJPARepository::update);
+        entity.ifPresent(this.companyCommandJPARepository::saveAndFlush);
     }
 
     @Override
@@ -47,12 +48,7 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
-        this.companyCommandCustomJPARepository.updateAll(rootList);
+        this.companyCommandJPARepository.saveAll(rootList);
     }
 
-    @Override
-    public void inActive(CompanyRoot root) {
-        var entity = this.companyDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.companyCommandCustomJPARepository::inActive);
-    }
 }
