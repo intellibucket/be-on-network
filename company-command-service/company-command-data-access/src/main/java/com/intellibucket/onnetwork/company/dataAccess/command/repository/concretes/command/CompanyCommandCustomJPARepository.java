@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CompanyCommandCustomJPARepository implements AbstractCompanyCommandCustomJPARepository {
 
+
     @PersistenceContext
     private EntityManager entityManager;
 

@@ -1,15 +1,12 @@
 package az.rock.flyjob.auth;
 
 
-import org.jooq.codegen.GenerationTool;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 @EnableDiscoveryClient
 @SpringBootApplication(
@@ -24,6 +21,7 @@ import java.nio.file.Path;
                 az.rock.flyjob.auth.config.PresentationBeanConfig.class
         })
 @ServletComponentScan
+@EntityScan(basePackages = {"az.rock.flyjob.auth.dataAccess.model.entity"})
 @MapperScan(value = {"az/rock/flyjob/auth/dataAccess/repository/abstracts/query/batis"})
 public class AuthServiceApplication {
     public static void main(String[] args) {
