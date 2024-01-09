@@ -16,5 +16,9 @@ public class WebsiteID extends RootID<UUID> implements IdReference<UUID> {
         return super.getRootID();
     }
 
+    public static WebsiteID of(UUID value){
+        return new WebsiteID(value);
+    }
+
 }
 

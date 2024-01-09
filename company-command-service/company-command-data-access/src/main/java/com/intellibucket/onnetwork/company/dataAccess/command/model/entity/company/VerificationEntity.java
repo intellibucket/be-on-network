@@ -2,10 +2,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.model.entity.comp
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.vacancy.CompanyVerificationType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
@@ -18,7 +15,7 @@ import java.sql.Timestamp;
 @Entity(name = "VerificationEntity")
 @Table(schema = "company", name = "verifications")
 public class VerificationEntity extends BaseEntity {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private CompanyEntity company;
 
     @Column(name = "is_verified", nullable = false, columnDefinition = "boolean default false")
