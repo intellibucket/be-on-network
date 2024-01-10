@@ -2,10 +2,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.model.entity.comp
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccessModifier;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
@@ -19,7 +16,7 @@ import java.sql.Timestamp;
 @Entity(name = "EmailEntity")
 @Table(schema = "company", name = "emails")
 public class EmailEntity extends BaseEntity {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private CompanyEntity company;
 
     @Column(name = "access_modifier", nullable = false)
