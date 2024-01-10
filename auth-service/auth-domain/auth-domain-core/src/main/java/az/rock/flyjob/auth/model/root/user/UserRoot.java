@@ -184,7 +184,7 @@ public class UserRoot extends AggregateRoot<UserID> {
         private String biography;
 
         private Set<PasswordRoot> password = new HashSet<>();
-        private Set<EmailRoot> emails = new HashSet<>();
+        private Set<EmailRoot>  emails = new HashSet<>();
         private Set<PhoneNumberRoot> phoneNumbers = new HashSet<>();
         private DetailRoot detail;
         public Set<AccountPlanRoot> accountPlans = new HashSet<>();

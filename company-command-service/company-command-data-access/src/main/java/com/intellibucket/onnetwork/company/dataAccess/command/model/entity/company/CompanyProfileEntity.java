@@ -1,10 +1,7 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company;
 
 import az.rock.lib.domain.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -16,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 public class CompanyProfileEntity extends BaseEntity {
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private CompanyEntity company;
 
     @Column(name = "is_hiring", nullable = false)
