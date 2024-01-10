@@ -106,6 +106,7 @@ public class WebsiteRoot extends AggregateRoot<WebsiteID> {
             return this;
         }
 
+
         public Builder verificationRequestDate(ZonedDateTime verificationRequestDate){
             this.verificationRequestDate = verificationRequestDate;
             return this;
