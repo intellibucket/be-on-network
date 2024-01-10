@@ -17,6 +17,7 @@ public class WebsiteRoot extends AggregateRoot<WebsiteID> {
 
     private String website;
 
+
     private Boolean isVerified;
 
     private ZonedDateTime verificationRequestDate;
@@ -105,6 +106,7 @@ public class WebsiteRoot extends AggregateRoot<WebsiteID> {
             this.isVerified = isVerified;
             return this;
         }
+
 
         public Builder verificationRequestDate(ZonedDateTime verificationRequestDate){
             this.verificationRequestDate = verificationRequestDate;
