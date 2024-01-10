@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class EmailRoot extends AggregateRoot<EmailID> {
-    private UUID companyID;
+    private CompanyID companyID;
 
     private AccessModifier accessModifier;
 
@@ -45,7 +45,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
 
     public static final class Builder {
         private EmailID emailID;
-        private UUID companyID;
+        private CompanyID companyID;
         private AccessModifier accessModifier;
         private String email;
         private Boolean isPrimary;
@@ -67,7 +67,7 @@ public class EmailRoot extends AggregateRoot<EmailID> {
             return new Builder();
         }
 
-        public Builder companyID(UUID companyID) {
+        public Builder companyID(CompanyID companyID) {
             this.companyID = companyID;
             return this;
         }

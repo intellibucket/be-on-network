@@ -14,7 +14,7 @@ import java.util.UUID;
 
 
 public class CompanyProfileRoot extends AggregateRoot<CompanyProfileID> {
-    private UUID companyID;
+    private CompanyID companyID;
 
     private Boolean isHiring;
 
@@ -26,7 +26,7 @@ public class CompanyProfileRoot extends AggregateRoot<CompanyProfileID> {
 
     public static final class Builder {
         private CompanyProfileID companyProfileID;
-        private UUID companyID;
+        private CompanyID companyID;
         private Boolean isHiring;
         private Version version;
         private ProcessStatus processStatus;
@@ -41,7 +41,7 @@ public class CompanyProfileRoot extends AggregateRoot<CompanyProfileID> {
             return new Builder();
         }
 
-        public Builder companyID(UUID companyID) {
+        public Builder companyID(CompanyID companyID) {
             this.companyID = companyID;
             return this;
         }

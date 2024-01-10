@@ -14,7 +14,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class VerificationRoot extends AggregateRoot<VerificationID> {
-    private UUID companyID;
+    private CompanyID companyID;
 
     private Boolean isVerified;
 
@@ -37,7 +37,7 @@ public class VerificationRoot extends AggregateRoot<VerificationID> {
     public static final class Builder {
         private VerificationID verificationUuid;
 
-        private UUID companyID;
+        private CompanyID companyID;
         private Boolean isVerified;
         private CompanyVerificationType verificationType;
         private ZonedDateTime verificationRequestDate;
@@ -56,7 +56,7 @@ public class VerificationRoot extends AggregateRoot<VerificationID> {
             return new Builder();
         }
 
-        public Builder companyID(UUID companyID) {
+        public Builder companyID(CompanyID companyID) {
             this.companyID = companyID;
             return this;
         }
