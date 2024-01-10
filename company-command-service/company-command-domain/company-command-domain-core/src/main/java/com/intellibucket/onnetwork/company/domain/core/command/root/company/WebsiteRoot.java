@@ -17,6 +17,7 @@ public class WebsiteRoot extends AggregateRoot<WebsiteID> {
 
     private String website;
 
+
     private Boolean isVerified;
 
     private ZonedDateTime verificationRequestDate;
