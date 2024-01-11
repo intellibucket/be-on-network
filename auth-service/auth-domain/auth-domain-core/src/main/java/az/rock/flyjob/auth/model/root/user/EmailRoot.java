@@ -173,26 +173,26 @@ public class EmailRoot extends AggregateRoot<EmailID> {
     }
 
     public static final class Builder {
-        private UserID userID;
-        private EmailType type;
-        private String email;
-
-        private AccessModifier accessModifier = AccessModifier.PRIVATE;
-        private Boolean isEnableNotification;
-        private Boolean isPrimary;
-        private Boolean isVerified;
-        private String verificationCode;
-        private ZonedDateTime verificationCodeExpireDate;
-        private ZonedDateTime verificationCodeSendDate;
-        private BigInteger verificationCodeSendCount;
-        private Boolean isSubscribedPromotions;
-        private ZonedDateTime subscribedDate;
         private Version version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
         private ZonedDateTime modificationDate;
         private EmailID emailID;
+        private AccessModifier accessModifier = AccessModifier.PRIVATE;
+        private UserID userID;
+        private EmailType type;
+        private String email;
+        private Boolean isEnableNotification;
+        private Boolean isPrimary = Boolean.FALSE;
+        private Boolean isVerified = Boolean.FALSE;
+        private String verificationCode;
+        private ZonedDateTime verificationCodeExpireDate;
+        private ZonedDateTime verificationCodeSendDate;
+        private BigInteger verificationCodeSendCount;
+        private Boolean isSubscribedPromotions = Boolean.FALSE;
+        private ZonedDateTime subscribedDate;
+
 
         private Builder() {
         }
