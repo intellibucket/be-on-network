@@ -2,6 +2,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.adapter.command;
 
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractCompanyDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandCustomJPARepository;
+import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.CompanyCommandJPARepository;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyCommandRepositoryAdapter;
 import org.springframework.stereotype.Component;
@@ -16,10 +17,13 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
 
     private final AbstractCompanyDataAccessMapper companyDataAccessMapper;
 
+    private final CompanyCommandJPARepository test;
+
     public CompanyCommandRepositoryAdapter(AbstractCompanyCommandCustomJPARepository companyCommandJPARepository,
-                                           AbstractCompanyDataAccessMapper companyDataAccessMapper) {
+                                           AbstractCompanyDataAccessMapper companyDataAccessMapper, CompanyCommandJPARepository test) {
         this.companyCommandJPARepository = companyCommandJPARepository;
         this.companyDataAccessMapper = companyDataAccessMapper;
+        this.test = test;
     }
 
 
