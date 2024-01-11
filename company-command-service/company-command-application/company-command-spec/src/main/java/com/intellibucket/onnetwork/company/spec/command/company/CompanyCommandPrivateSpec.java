@@ -5,5 +5,5 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.dto.reque
 import org.springframework.http.ResponseEntity;
 
 public interface CompanyCommandPrivateSpec {
-    ResponseEntity<JSuccessResponse> fillCompanyInfo(CompanyFilledCommand command);
+    ResponseEntity<JSuccessResponse> fillCompanyInfo(CompanyFilledCommand command) ;
 }

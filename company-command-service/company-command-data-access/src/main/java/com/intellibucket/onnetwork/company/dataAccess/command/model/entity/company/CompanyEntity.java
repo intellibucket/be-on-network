@@ -19,7 +19,9 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity(name = "CompanyEntity")
-@Table(schema = "company", name = "companies")
+@Table(schema = "company", name = "companies",indexes = {
+        @Index(name = "idx_companies_userUuid",columnList = "user_uuid")
+})
 @AllArgsConstructor
 public class CompanyEntity extends BaseEntity {
 

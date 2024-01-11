@@ -1040,4 +1040,5 @@
                                  referencedTableName="countries" referencedTableSchemaName="replica"/>
     </changeSet>
 
+
 </databaseChangeLog>

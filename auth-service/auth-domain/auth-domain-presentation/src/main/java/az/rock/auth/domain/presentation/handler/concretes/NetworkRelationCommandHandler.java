@@ -8,7 +8,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractBlockRelationQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.flyjob.auth.exception.NoActiveRowException;
+import az.rock.lib.jexception.NoActiveRowException;
 import az.rock.flyjob.auth.exception.block.BlockRelationWhenFollowException;
 import az.rock.flyjob.auth.exception.follow.AlreadyFollowedException;
 import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
@@ -64,7 +64,7 @@ public class NetworkRelationCommandHandler implements AbstractNetworkRelationCom
     }
 
     @Override
-    public NetworkRelationEvent handleAcceptRequest(UUID relationUUID) {
+    public NetworkRelationEvent handleAcceptRequest(UUID relationUUID) throws NoActiveRowException {
         var currentUserId = this.securityContextHolder.availableUser();
         var inMyNetworkPendingRequest = this.networkQueryRepositoryAdapter.findInMyNetworkPendingRequests(currentUserId);
         var myActiveNetworks = this.networkQueryRepositoryAdapter.findMyNetworks(currentUserId);
@@ -83,7 +83,7 @@ public class NetworkRelationCommandHandler implements AbstractNetworkRelationCom
     }
 
     @Override
-    public NetworkRelationEvent handleRejectRequest(UUID targetUserId) {
+    public NetworkRelationEvent handleRejectRequest(UUID targetUserId) throws NoActiveRowException {
         var currentUserId = this.securityContextHolder.availableUser();
         var findNetworkRelationByBothOfUserIDs =
                 this.networkQueryRepositoryAdapter.findMutualActiveNetworkRelationOnPendingStatus(currentUserId, UserID.of(targetUserId));
@@ -100,7 +100,7 @@ public class NetworkRelationCommandHandler implements AbstractNetworkRelationCom
     }
 
     @Override
-    public NetworkRelationEvent handleCancelRequest(UUID targetUserId) {
+    public NetworkRelationEvent handleCancelRequest(UUID targetUserId) throws NoActiveRowException {
         var currentUserId = this.securityContextHolder.availableUser();
         var networkRelation = this.networkQueryRepositoryAdapter.findActiveNetworkRelationOnPendingStatus(currentUserId,UserID.of(targetUserId));
         if (networkRelation.isPresent()) {
@@ -116,7 +116,7 @@ public class NetworkRelationCommandHandler implements AbstractNetworkRelationCom
 
     //TODO NETWORK STATUS NE OLMALIDIR
     @Override
-    public NetworkRelationEvent handleDeleteNetwork(UUID targetUserId) {
+    public NetworkRelationEvent handleDeleteNetwork(UUID targetUserId) throws NoActiveRowException {
         var currentUserId = this.securityContextHolder.availableUser();
         var activeNetworkRelation = this.networkQueryRepositoryAdapter.findMyNetworksByUIDs(currentUserId,UserID.of(targetUserId));
         if(activeNetworkRelation.size() > 0){

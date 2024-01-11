@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 @NoRepositoryBean
 @Transactional
-public interface CustomCommandJPARepository<T> {
+public interface AbstractCustomCommandJPARepository<T> {
 
     EntityManager entityManager();
 
