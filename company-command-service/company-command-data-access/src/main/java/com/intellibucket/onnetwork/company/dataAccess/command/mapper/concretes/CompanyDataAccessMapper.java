@@ -1,5 +1,6 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.mapper.concretes;
 
+import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.util.GDateTime;
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.*;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
@@ -35,7 +36,7 @@ public class CompanyDataAccessMapper implements AbstractCompanyDataAccessMapper 
         if (optionalEntity.isPresent()) {
             return Optional.of(
                     CompanyRoot.Builder.builder()
-                            .uuid(entity.getUuid())
+                            .uuid(CompanyID.of(entity.getUuid()))
                             .version(entity.getVersion())
                             .processStatus(entity.getProcessStatus())
                             .rowStatus(entity.getRowStatus())

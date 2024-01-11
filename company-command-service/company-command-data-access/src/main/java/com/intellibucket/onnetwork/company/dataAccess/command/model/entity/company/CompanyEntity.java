@@ -63,6 +63,11 @@ public class CompanyEntity extends BaseEntity {
         setProfile(builder.profile);
     }
 
+    public static CompanyEntity referenceObject(UUID uuid){
+        return CompanyEntity.Builder.builder().uuid(uuid).build();
+    }
+
+
     public static final class Builder {
         private UUID uuid;
 
@@ -89,6 +94,7 @@ public class CompanyEntity extends BaseEntity {
         private List<EmailEntity> emails;
 
         private WebsiteEntity websites;
+
 
 
         private Builder() {

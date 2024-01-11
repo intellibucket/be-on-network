@@ -7,11 +7,10 @@ import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
-import lombok.Builder;
-import lombok.Getter;
+
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
+
 
 public class EmailRoot extends AggregateRoot<EmailID> {
     private CompanyID companyID;
@@ -141,4 +140,39 @@ public class EmailRoot extends AggregateRoot<EmailID> {
            return new EmailRoot(this);
         }
     }
+
+    public CompanyID getCompanyID() {
+        return companyID;
+    }
+
+
+    public AccessModifier getAccessModifier() {
+        return accessModifier;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Boolean getPrimary() {
+        return isPrimary;
+    }
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public ZonedDateTime getVerificationRequestDate() {
+        return verificationRequestDate;
+    }
+
+    public ZonedDateTime getVerificationResponseDate() {
+        return verificationResponseDate;
+    }
+
 }

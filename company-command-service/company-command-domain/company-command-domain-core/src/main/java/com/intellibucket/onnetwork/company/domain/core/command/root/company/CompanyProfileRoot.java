@@ -6,11 +6,10 @@ import az.rock.lib.domain.id.company.CompanyProfileID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
-import lombok.Builder;
-import lombok.Getter;
+
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
+
 
 
 public class CompanyProfileRoot extends AggregateRoot<CompanyProfileID> {
@@ -84,5 +83,13 @@ public class CompanyProfileRoot extends AggregateRoot<CompanyProfileID> {
         public CompanyProfileRoot build() {
             return new CompanyProfileRoot(this);
         }
+    }
+
+    public CompanyID getCompanyID() {
+        return companyID;
+    }
+
+    public Boolean getHiring() {
+        return isHiring;
     }
 }
