@@ -7,11 +7,9 @@ import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 import az.rock.lib.valueObject.vacancy.CompanyVerificationType;
-import lombok.Builder;
-import lombok.Getter;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
+
 
 public class VerificationRoot extends AggregateRoot<VerificationID> {
     private CompanyID companyID;
@@ -114,5 +112,25 @@ public class VerificationRoot extends AggregateRoot<VerificationID> {
         public VerificationRoot build() {
            return new VerificationRoot(this);
         }
+    }
+
+    public CompanyID getCompanyID() {
+        return companyID;
+    }
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public CompanyVerificationType getVerificationType() {
+        return verificationType;
+    }
+
+    public ZonedDateTime getVerificationRequestDate() {
+        return verificationRequestDate;
+    }
+
+    public ZonedDateTime getVerificationResponseDate() {
+        return verificationResponseDate;
     }
 }

@@ -16,5 +16,14 @@ public class CompanyProfileID extends RootID<UUID> implements IdReference<UUID> 
         return super.getRootID();
     }
 
+    public static CompanyProfileID of(UUID value){
+        return new CompanyProfileID(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
 }
 

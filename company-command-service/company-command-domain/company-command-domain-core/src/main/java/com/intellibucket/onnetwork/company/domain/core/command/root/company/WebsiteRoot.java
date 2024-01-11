@@ -6,8 +6,6 @@ import az.rock.lib.domain.id.company.WebsiteID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
-import lombok.Builder;
-import lombok.Getter;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -120,5 +118,25 @@ public class WebsiteRoot extends AggregateRoot<WebsiteID> {
         public WebsiteRoot build() {
             return new WebsiteRoot(this);
         }
+    }
+
+    public CompanyID getCompanyID() {
+        return companyID;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public Boolean getVerified() {
+        return isVerified;
+    }
+
+    public ZonedDateTime getVerificationRequestDate() {
+        return verificationRequestDate;
+    }
+
+    public ZonedDateTime getVerificationResponseDate() {
+        return verificationResponseDate;
     }
 }
