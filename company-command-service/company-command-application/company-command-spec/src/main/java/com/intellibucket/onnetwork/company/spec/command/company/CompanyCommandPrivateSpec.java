@@ -1,9 +1,10 @@
 package com.intellibucket.onnetwork.company.spec.command.company;
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
+import com.intellibucket.onnetwork.company.domain.core.command.exception.NoActiveRowException;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyFilledCommand;
 import org.springframework.http.ResponseEntity;
 
 public interface CompanyCommandPrivateSpec {
-    ResponseEntity<JSuccessResponse> fillCompanyInfo(CompanyFilledCommand command);
+    ResponseEntity<JSuccessResponse> fillCompanyInfo(CompanyFilledCommand command) throws NoActiveRowException;
 }

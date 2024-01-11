@@ -1,12 +1,10 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command;
 
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
+import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.CustomCommandJPARepository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository
-public interface CompanyCommandJPARepository extends JpaRepository<CompanyEntity, UUID> {
-
+public interface AbstractCompanyCommandJPARepository extends CustomCommandJPARepository<CompanyEntity>  {
 }

@@ -2,6 +2,7 @@ package com.intellibucket.onnetwork.company.domain.core.command.root.company;
 
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.company.CompanyID;
+import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
@@ -37,6 +38,12 @@ public class CompanyRoot extends AggregateRoot<CompanyID> {
         verifications = builder.verifications;
         emails = builder.emails;
         websites = builder.websites;
+    }
+
+    public CompanyRoot fillNameAndDescription(String name,String description) {
+        this.name = name;
+        this.description = description;
+        return this;
     }
 
     public static final class Builder{
