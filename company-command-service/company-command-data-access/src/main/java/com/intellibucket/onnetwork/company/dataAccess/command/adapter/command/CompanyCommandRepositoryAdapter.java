@@ -13,17 +13,18 @@ import java.util.Optional;
 @Component
 public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRepositoryAdapter {
 
-    private final AbstractCompanyCommandCustomJPARepository companyCommandJPARepository;
+    private final AbstractCompanyCommandCustomJPARepository companyCommandCustomJPARepository;
 
     private final AbstractCompanyDataAccessMapper companyDataAccessMapper;
 
-    private final CompanyCommandJPARepository test;
+    private final CompanyCommandJPARepository companyCommandJPARepository;
 
-    public CompanyCommandRepositoryAdapter(AbstractCompanyCommandCustomJPARepository companyCommandJPARepository,
-                                           AbstractCompanyDataAccessMapper companyDataAccessMapper, CompanyCommandJPARepository test) {
-        this.companyCommandJPARepository = companyCommandJPARepository;
+    public CompanyCommandRepositoryAdapter(AbstractCompanyCommandCustomJPARepository companyCommandCustomJPARepository,
+                                           AbstractCompanyDataAccessMapper companyDataAccessMapper,
+                                           CompanyCommandJPARepository companyCommandJPARepository) {
+        this.companyCommandCustomJPARepository = companyCommandCustomJPARepository;
         this.companyDataAccessMapper = companyDataAccessMapper;
-        this.test = test;
+        this.companyCommandJPARepository = companyCommandJPARepository;
     }
 
 
@@ -31,7 +32,7 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
     public Optional<CompanyRoot> create(CompanyRoot root) {
         var entity = this.companyDataAccessMapper.toEntity(root);
         if (entity.isPresent()) {
-            var savedEntity = this.companyCommandJPARepository.persist(entity.get());
+            var savedEntity = this.companyCommandCustomJPARepository.persist(entity.get());
             return this.companyDataAccessMapper.toRoot(savedEntity);
         }
         return Optional.empty();
@@ -40,7 +41,7 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
     @Override
     public void update(CompanyRoot root) {
         var entity = this.companyDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.companyCommandJPARepository::persist);
+        entity.ifPresent(this.companyCommandCustomJPARepository::persist);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
-        this.companyCommandJPARepository.persistAll(rootList);
+        this.companyCommandCustomJPARepository.persistAll(rootList);
     }
 
 }
