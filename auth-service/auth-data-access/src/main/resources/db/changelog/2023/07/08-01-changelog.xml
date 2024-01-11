@@ -941,11 +941,6 @@
         </createIndex>
     </changeSet>
     <changeSet id="1697027203285-35" author="Vugar Mammadli">
-        <createIndex indexName="idx_companies_userUuid" schemaName="company" tableName="xcompanies">
-            <column name="user_uuid"/>
-        </createIndex>
-    </changeSet>
-    <changeSet id="1697027203285-35" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="account_plan" baseTableSchemaName="auth"
                                  constraintName="FK_ACCOUNT_PLAN_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>

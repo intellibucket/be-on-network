@@ -2,7 +2,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.adapter.command.c
 
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandJPARepository;
+import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCustomCompanyCommandJPARepository;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyCommandRepositoryAdapter;
 import org.springframework.stereotype.Component;
@@ -11,11 +11,11 @@ import java.util.Optional;
 
 @Component
 public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRepositoryAdapter {
-    private final AbstractCompanyCommandJPARepository companyCommandJPARepository;
+    private final AbstractCustomCompanyCommandJPARepository companyCommandJPARepository;
 
     private final AbstractDataAccessMapper<CompanyEntity, CompanyRoot> companyDataAccessMapper;
 
-    public CompanyCommandRepositoryAdapter(AbstractCompanyCommandJPARepository companyCommandJPARepository,
+    public CompanyCommandRepositoryAdapter(AbstractCustomCompanyCommandJPARepository companyCommandJPARepository,
                                            AbstractDataAccessMapper<CompanyEntity, CompanyRoot> companyDataAccessMapper) {
         this.companyCommandJPARepository = companyCommandJPARepository;
         this.companyDataAccessMapper = companyDataAccessMapper;

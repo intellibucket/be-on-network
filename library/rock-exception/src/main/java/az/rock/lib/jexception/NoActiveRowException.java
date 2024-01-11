@@ -1,8 +1,8 @@
 package az.rock.lib.jexception;
 
-public class NoActiveRowException extends JException {
+public class NoActiveRowException extends JRuntimeException {
 
     public NoActiveRowException() {
-        super("F0000000037");
+        super("Can not find row.");
     }
 }

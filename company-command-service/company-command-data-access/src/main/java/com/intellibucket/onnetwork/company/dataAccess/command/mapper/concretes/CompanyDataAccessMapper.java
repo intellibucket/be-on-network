@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-public class CompanyDataAccessMapper implements AbstractCompanyDataAccessMapper<CompanyEntity, CompanyRoot> {
+public class CompanyDataAccessMapper implements AbstractCompanyDataAccessMapper {
     private final AbstractWebsiteDataAccessMapper websiteDataAccessMapper;
     private final AbstractCompanyProfileDataAccessMapper companyProfileDataAccessMapper;
     private final AbstractCompanyEmailDataAccessMapper companyEmailDataAccessMapper;

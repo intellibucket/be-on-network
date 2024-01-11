@@ -15,7 +15,7 @@ public class CompanyQueryRepositoryAdapter implements AbstractCompanyQueryReposi
 
     private final CompanyQueryJPARepository companyQueryJPARepository;
 
-    private final AbstractCompanyDataAccessMapper<CompanyEntity, CompanyRoot> companyDataAccessMapper;
+    private final AbstractCompanyDataAccessMapper companyDataAccessMapper;
 
     public CompanyQueryRepositoryAdapter(CompanyQueryJPARepository companyQueryJPARepository,
                                          AbstractCompanyDataAccessMapper companyDataAccessMapper) {

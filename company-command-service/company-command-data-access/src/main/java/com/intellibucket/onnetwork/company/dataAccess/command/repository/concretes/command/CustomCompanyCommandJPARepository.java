@@ -1,15 +1,13 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.repository.concretes.command;
 
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandCustomJPARepository;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCompanyCommandJPARepository;
-import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
+import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCustomCompanyCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CompanyCommandCustomJPARepository implements AbstractCompanyCommandJPARepository {
+public class CustomCompanyCommandJPARepository implements AbstractCustomCompanyCommandJPARepository {
 
 
     @PersistenceContext

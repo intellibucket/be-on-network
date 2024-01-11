@@ -542,6 +542,11 @@
             <column name="title"/>
         </createIndex>
     </changeSet>
+    <changeSet id="D704012975788-38" author="Suleyman Mehdiyev">
+        <createIndex indexName="idx_companies_userUuid" schemaName="company" tableName="companies">
+            <column name="user_uuid"/>
+        </createIndex>
+    </changeSet>
     <changeSet id="1704012975788-23" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="company_uuid" baseTableName="emails" baseTableSchemaName="company"
                                  constraintName="FK_EMAILS_ON_COMPANY_UUID" referencedColumnNames="uuid"
