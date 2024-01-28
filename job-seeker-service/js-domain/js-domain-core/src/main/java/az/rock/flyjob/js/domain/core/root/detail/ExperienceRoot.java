@@ -18,7 +18,7 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
     private String jobTitle;
     private UUID cityId;
     private WorkingType workingType;
-    private WorkingTimeLine workingTimeLine;
+    private WorkingTimeLineType workingTimeLine;
     private String description;
     private ZonedDateTime startDate;
     private ZonedDateTime endDate;
@@ -70,7 +70,7 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
         return workingType;
     }
 
-    public WorkingTimeLine getWorkingTimeType() {
+    public WorkingTimeLineType getWorkingTimeType() {
         return workingTimeLine;
     }
 
@@ -106,7 +106,7 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
         private String jobTitle;
         private UUID cityId;
         private WorkingType workingType;
-        private WorkingTimeLine workingTimeLine;
+        private WorkingTimeLineType workingTimeLine;
         private String description;
         private ZonedDateTime startDate;
         private ZonedDateTime endDate;
@@ -188,7 +188,7 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
             return this;
         }
 
-        public Builder workingTimeType(WorkingTimeLine val) {
+        public Builder workingTimeType(WorkingTimeLineType val) {
             workingTimeLine = val;
             return this;
         }

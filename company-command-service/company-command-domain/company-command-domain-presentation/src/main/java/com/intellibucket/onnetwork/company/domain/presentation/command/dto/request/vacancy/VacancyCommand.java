@@ -1,6 +1,6 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy;
 
-import az.rock.lib.valueObject.WorkingTimeLine;
+import az.rock.lib.valueObject.WorkingTimeLineType;
 import az.rock.lib.valueObject.WorkingType;
 import az.rock.lib.valueObject.vacancy.PublishStatus;
 import az.rock.lib.valueObject.vacancy.SectoralType;
@@ -40,7 +40,7 @@ public class VacancyCommand {
 
     private ZonedDateTime endDate;
 
-    private WorkingTimeLine workingTimeLine;
+    private WorkingTimeLineType workingTimeLine;
 
     private WorkingType workingType;
 

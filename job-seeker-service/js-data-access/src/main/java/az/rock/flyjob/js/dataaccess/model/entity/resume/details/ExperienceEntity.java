@@ -3,7 +3,7 @@ package az.rock.flyjob.js.dataaccess.model.entity.resume.details;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccessModifier;
-import az.rock.lib.valueObject.WorkingTimeLine;
+import az.rock.lib.valueObject.WorkingTimeLineType;
 import az.rock.lib.valueObject.WorkingType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -49,7 +49,7 @@ public class ExperienceEntity extends BaseEntity {
     private WorkingType workingType;
 
     @Enumerated(EnumType.STRING)
-    private WorkingTimeLine workingTimeLine;
+    private WorkingTimeLineType workingTimeType;
 
     @Column(name = "description")
     private String description;

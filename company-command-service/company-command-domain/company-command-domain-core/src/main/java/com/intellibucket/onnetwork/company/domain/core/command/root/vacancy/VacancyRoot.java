@@ -3,7 +3,7 @@ package com.intellibucket.onnetwork.company.domain.core.command.root.vacancy;
 import az.rock.lib.domain.AggregateRoot;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.domain.id.vacancy.VacancyID;
-import az.rock.lib.valueObject.WorkingTimeLine;
+import az.rock.lib.valueObject.WorkingTimeLineType;
 import az.rock.lib.valueObject.WorkingType;
 import az.rock.lib.valueObject.vacancy.*;
 import lombok.Builder;
@@ -44,7 +44,7 @@ public class VacancyRoot extends AggregateRoot<VacancyID> {
 
     private ZonedDateTime endDate;
 
-    private WorkingTimeLine workingTimeLine;
+    private WorkingTimeLineType workingTimeLine;
 
     private WorkingType workingType;
 
