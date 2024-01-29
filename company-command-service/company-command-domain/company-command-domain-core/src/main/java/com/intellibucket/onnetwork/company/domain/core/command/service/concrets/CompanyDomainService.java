@@ -7,6 +7,7 @@ public class CompanyDomainService implements AbstractsCompanyDomainService {
     @Override
     public CompanyRoot fillNameAndDescription(CompanyRoot companyRoot, String name, String description) {
         companyRoot.fillNameAndDescription(name,description);
+        companyRoot.changeProcessStatusToCompleted();
         return companyRoot;
     }
 }

@@ -34,11 +34,6 @@ public class CompanyCommandDomainPresentationService implements AbstractCompanyC
     }
 
     @Override
-    public void deleteCompany(CompanyID id) {
-
-    }
-
-    @Override
     public void filled(CompanyFilledCommand companyFilledCommand){
         this.createCompanyCommandHandler.filled(companyFilledCommand);
     }

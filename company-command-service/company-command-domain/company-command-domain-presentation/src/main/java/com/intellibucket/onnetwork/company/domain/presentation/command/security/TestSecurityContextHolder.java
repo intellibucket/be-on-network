@@ -1,6 +1,7 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.security;
 
 import az.rock.lib.domain.id.auth.UserID;
+import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Role;
 import az.rock.lib.valueObject.UserType;
@@ -32,6 +33,8 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder 
     private Boolean isAnonymous;
     @Value("${test.values.user.isAuthenticated:true}")
     private Boolean isAuthenticated;
+    @Value("${test.values.user.company.testCompanyUUID}")
+    private String testCompanyUUID;
 
     @Override
     public UserID currentUser() {
@@ -45,6 +48,11 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder 
         if (availableUser) {
             return userID;
         } else throw new RuntimeException("User is not available");
+    }
+
+    @Override
+    public CompanyID currentCompany() {
+        return CompanyID.of(UUID.fromString(testCompanyUUID));
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.dto.reque
 public interface AbstractCompanyCommandDomainPresentationService {
     AbstractSuccessDomainEvent<?> createCompany(CompanyRegistrationPayload request) throws JDomainException;
 
-    void deleteCompany(CompanyID id);
+//    void deleteCompany(CompanyID id);
 
     void filled(CompanyFilledCommand companyFilledCommand);
 }
