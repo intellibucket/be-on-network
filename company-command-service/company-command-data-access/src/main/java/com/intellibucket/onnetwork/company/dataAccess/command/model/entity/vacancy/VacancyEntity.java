@@ -2,7 +2,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vaca
 
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccessModifier;
-import az.rock.lib.valueObject.WorkingTimeLine;
+import az.rock.lib.valueObject.WorkingTimeLineType;
 import az.rock.lib.valueObject.WorkingType;
 import az.rock.lib.valueObject.vacancy.*;
 import jakarta.persistence.*;
@@ -82,7 +82,7 @@ public class VacancyEntity extends BaseEntity {
     private Timestamp endDate;
 
     @Enumerated(EnumType.STRING)
-    private WorkingTimeLine workingTimeLine;
+    private WorkingTimeLineType workingTimeLine;
 
     @Enumerated(EnumType.STRING)
     private WorkingType workingType;

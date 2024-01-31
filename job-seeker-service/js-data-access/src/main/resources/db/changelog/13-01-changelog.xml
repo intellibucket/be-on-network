@@ -1018,4 +1018,10 @@
                                  referencedTableName="resumes" referencedTableSchemaName="resume"/>
     </changeSet>
 
+    <changeSet id="1691910391397-AC-01" author="Vugar Mammadli">
+        <addColumn tableName="educations" schemaName="resume">
+            <column name="state" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

@@ -2,6 +2,7 @@ package az.rock.flyjob.js;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
@@ -16,6 +17,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
                 "az.rock.flyjob.js.domain.presentation",
                 "az.rock.flyjob.js.messaging"})
 @ServletComponentScan
+@EntityScan(basePackages = {"az.rock.flyjob.js.dataaccess.model.entity"})
 public class JobSeekerApplication {
     public static void main(String[] args) {
         SpringApplication.run(JobSeekerApplication.class,args);

@@ -1,10 +1,11 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.mapper.concretes;
 
-import az.rock.lib.domain.id.BlockID;
 import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
+import com.intellibucket.lib.event.create.CompanyProfileCreatedEvent;
+import com.intellibucket.lib.payload.CompanyProfileCreatedPayload;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.mapper.abstracts.AbstractsCompanyDomainMapper;
@@ -17,7 +18,7 @@ public class CompanyDomainMapper implements AbstractsCompanyDomainMapper {
 
     @Override
     public CompanyRoot toNewCompanyRoot(CompanyRegistrationPayload payload) {
-            return CompanyRoot.Builder.builder()
+        return CompanyRoot.Builder.builder()
                 .uuid(CompanyID.of(UUID.randomUUID()))
                 .version(Version.ONE)
                 .processStatus(ProcessStatus.ON_WAITING)
@@ -26,5 +27,11 @@ public class CompanyDomainMapper implements AbstractsCompanyDomainMapper {
                 .name(null)
                 .description(null)
                 .build();
+    }
+
+    @Override
+    public CompanyProfileCreatedEvent toCompanyProfileCreatedEvent(CompanyRoot companyRoot) {
+        var payload = new CompanyProfileCreatedPayload(companyRoot.getRootID().getAbsoluteID());
+        return new CompanyProfileCreatedEvent(payload);
     }
 }

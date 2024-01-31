@@ -1,6 +1,6 @@
 package az.rock.lib.valueObject;
 
-public enum WorkingTimeLine {
+public enum WorkingTimeLineType {
     FULL_TIME,
     PART_TIME,
     SHIFT,
