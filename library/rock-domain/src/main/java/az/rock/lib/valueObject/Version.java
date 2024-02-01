@@ -13,12 +13,21 @@ public record Version(Long value) {
         return new Version(value);
     }
 
+    public static Version of(Short value) {
+        if (value == null || value < 1L) return ONE;
+        return new Version(value.longValue());
+    }
+
+    public Short toShort() {
+        return value.shortValue();
+    }
+
     public Version increment() {
         return new Version(value + 1L);
     }
 
     public Version decrement() {
-         return new Version(value - 1L);
+        return new Version(value - 1L);
     }
 
     public Version reset() {

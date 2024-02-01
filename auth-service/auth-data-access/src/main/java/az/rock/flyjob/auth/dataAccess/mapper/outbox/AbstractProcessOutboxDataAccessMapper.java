@@ -4,5 +4,5 @@ import az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity;
 import az.rock.lib.domain.outbox.ProcessOutboxRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 
-public interface AbstractUserOutboxDataAccessMapper extends AbstractDataAccessMapper<ProcessOutboxEntity, ProcessOutboxRoot> {
+public interface AbstractProcessOutboxDataAccessMapper extends AbstractDataAccessMapper<ProcessOutboxEntity, ProcessOutboxRoot> {
 }
