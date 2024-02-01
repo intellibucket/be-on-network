@@ -1,6 +1,7 @@
 package az.rock.flyjob.auth.dataAccess.model.entity.outbox;
 
 import az.rock.lib.domain.OutboxEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -16,4 +17,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class ProcessStepEntity extends OutboxEntity {
 
+    @Column(name = "is_successful", nullable = false, columnDefinition = "boolean default false")
+    private Boolean isSuccessful;
 }
