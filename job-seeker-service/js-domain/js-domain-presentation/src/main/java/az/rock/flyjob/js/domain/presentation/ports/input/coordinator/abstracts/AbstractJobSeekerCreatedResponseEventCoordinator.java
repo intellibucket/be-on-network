@@ -1,6 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts;
 
-import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerFailResponseMessagePublisher;
+import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerResponseMessagePublisher;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventResponseCoordinator;
@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 public abstract class AbstractJobSeekerCreatedResponseEventCoordinator extends AbstractEventResponseCoordinator<JobSeekerRegistrationPayload, JobSeekerCreatedEvent> {
-    private final AbstractJobSeekerFailResponseMessagePublisher jobSeekerFailResponseMessagePublisher;
+    private final AbstractJobSeekerResponseMessagePublisher jobSeekerFailResponseMessagePublisher;
 
-    protected AbstractJobSeekerCreatedResponseEventCoordinator(AbstractJobSeekerFailResponseMessagePublisher jobSeekerFailResponseMessagePublisher) {
+    protected AbstractJobSeekerCreatedResponseEventCoordinator(AbstractJobSeekerResponseMessagePublisher jobSeekerFailResponseMessagePublisher) {
         this.jobSeekerFailResponseMessagePublisher = jobSeekerFailResponseMessagePublisher;
     }
 
@@ -34,4 +34,8 @@ public abstract class AbstractJobSeekerCreatedResponseEventCoordinator extends A
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     protected abstract void onError(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess, Throwable throwable);
+
+    public AbstractJobSeekerResponseMessagePublisher getJobSeekerFailResponseMessagePublisher() {
+        return jobSeekerFailResponseMessagePublisher;
+    }
 }

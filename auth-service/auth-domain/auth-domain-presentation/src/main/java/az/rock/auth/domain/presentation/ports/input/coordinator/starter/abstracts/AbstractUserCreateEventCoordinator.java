@@ -17,11 +17,11 @@ public abstract class AbstractUserCreateEventCoordinator<E extends AbstractDomai
         this.userMessagePublisher = userMessagePublisher;
     }
 
-    public abstract String getTopic();
+    public abstract String getStartTopic();
 
     @Override
     protected void proceed(AbstractSagaProcess<E> sagaProcess) {
-        this.userMessagePublisher.publish(sagaProcess, this.getTopic());
+        this.userMessagePublisher.publish(sagaProcess, this.getStartTopic());
         log.info("User Message Published to Queue = > {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
     }
 }

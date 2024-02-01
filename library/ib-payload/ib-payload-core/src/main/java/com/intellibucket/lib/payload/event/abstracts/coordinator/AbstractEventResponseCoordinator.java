@@ -20,17 +20,14 @@ import java.util.function.BiConsumer;
 @Slf4j
 public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDomainEvent<? super P>> {
 
-    protected abstract String getTopic();
+    protected abstract String getStartTopic();
+
+    protected abstract String getSuccessTopic();
+
+    protected abstract String getFailTopic();
 
     protected abstract Enum<?> getStep();
 
-    protected String getSuccessTopic() {
-        return this.getTopic().replace(".str", ".success");
-    }
-
-    protected String getFailTopic() {
-        return this.getTopic().replace(".str", ".fail");
-    }
 
     protected abstract BiConsumer<String, AbstractSagaProcess<?>> endAction();
 

@@ -2,10 +2,11 @@ package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.concretes;
 
 import az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts.AbstractJobSeekerCreatedResponseEventCoordinator;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractResumeCommandDomainPresentationService;
-import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerFailResponseMessagePublisher;
+import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerResponseMessagePublisher;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibucket.lib.payload.outbox.JobSeekerRegistrationSteps;
 import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import com.intellibucket.lib.payload.trx.SagaStartedProcess;
@@ -20,12 +21,19 @@ import java.util.function.BiConsumer;
 public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerCreatedResponseEventCoordinator {
 
 
-    @Value(value = "${topic.js.created.name}")
-    private String jobSeekerCreatedTopicName;
+    @Value(value = "${topic.js.created.start}")
+    private String jobSeekerStartCreatedTopicName;
+
+    @Value(value = "${topic.js.created.success}")
+    private String jobSeekerSuccessCreatedTopicName;
+
+    @Value(value = "${topic.js.created.fail}")
+    private String jobSeekerFailCreatedTopicName;
 
     private final AbstractResumeCommandDomainPresentationService jsCommandDomainPresentationService;
 
-    protected JobSeekerCreatedResponseEventCoordinator(AbstractJobSeekerFailResponseMessagePublisher jobSeekerFailResponseMessagePublisher,
+
+    protected JobSeekerCreatedResponseEventCoordinator(AbstractJobSeekerResponseMessagePublisher jobSeekerFailResponseMessagePublisher,
                                                        AbstractResumeCommandDomainPresentationService jsCommandDomainPresentationService) {
         super(jobSeekerFailResponseMessagePublisher);
         this.jsCommandDomainPresentationService = jsCommandDomainPresentationService;
@@ -39,22 +47,33 @@ public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerC
     }
 
     @Override
-    protected String getTopic() {
-        return this.jobSeekerCreatedTopicName;
+    protected void onError(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess, Throwable throwable) {
+
+    }
+
+    @Override
+    protected String getStartTopic() {
+        return this.jobSeekerStartCreatedTopicName;
+    }
+
+    @Override
+    protected String getSuccessTopic() {
+        return this.jobSeekerSuccessCreatedTopicName;
+    }
+
+    @Override
+    protected String getFailTopic() {
+        return this.jobSeekerFailCreatedTopicName;
     }
 
     @Override
     protected Enum<?> getStep() {
-        return null;
+        return JobSeekerRegistrationSteps.CREATING_JOB_SEEKER_PROFILE;
     }
 
     @Override
     protected BiConsumer<String, AbstractSagaProcess<?>> endAction() {
-        return null;
+        return this.getJobSeekerFailResponseMessagePublisher()::publish;
     }
 
-    @Override
-    protected void onError(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess, Throwable throwable) {
-
-    }
 }

@@ -20,8 +20,15 @@ import java.util.function.BiConsumer;
 @Slf4j
 public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreatedResponseEventCoordinator {
 
-    @Value(value = "${topic.cmp.created.name}")
-    private String companyCreatedTopicName;
+    @Value(value = "${topic.cmp.created.start}")
+    private String companyStartCreatedTopicName;
+
+    @Value(value = "${topic.cmp.created.success}")
+    private String companySuccessCreatedTopicName;
+
+    @Value(value = "${topic.cmp.created.fail}")
+    private String companyFailCreatedTopicName;
+
     private final AbstractCompanyCommandDomainPresentationService companyCommandDomainPresentationService;
     private final AbstractCompanyResponseMessagePublisher companyResponseMessagePublisher;
 
@@ -32,8 +39,18 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
     }
 
     @Override
-    protected String getTopic() {
-        return this.companyCreatedTopicName;
+    protected String getStartTopic() {
+        return this.companyStartCreatedTopicName;
+    }
+
+    @Override
+    protected String getSuccessTopic() {
+        return this.companySuccessCreatedTopicName;
+    }
+
+    @Override
+    protected String getFailTopic() {
+        return this.companyFailCreatedTopicName;
     }
 
     @Override

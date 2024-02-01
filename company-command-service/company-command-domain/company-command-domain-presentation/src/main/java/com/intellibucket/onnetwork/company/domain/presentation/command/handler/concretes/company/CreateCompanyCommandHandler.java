@@ -1,8 +1,11 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.handler.concretes.company;
 
+import az.rock.lib.jexception.JDomainException;
+import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.event.create.CompanyFilledEvent;
 import com.intellibucket.lib.event.create.CompanyProfileCreatedEvent;
+import com.intellibucket.lib.payload.CompanyProfileCreatedPayload;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.onnetwork.company.domain.core.command.service.concrets.CompanyDomainService;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyFilledCommand;
@@ -41,12 +44,11 @@ public class CreateCompanyCommandHandler implements AbstractCreateCompanyCommand
     }
 
     @Override
-    public CompanyProfileCreatedEvent createCompany(CompanyRegistrationPayload payload) {
+    public CompanyProfileCreatedEvent createCompany(CompanyRegistrationPayload payload) throws JDomainException {
         var newCompanyRoot = this.companyDomainMapper.toNewCompanyRoot(payload);
         var savedRoot = this.companyCommandRepositoryAdapter.create(newCompanyRoot);
-        //TODO duzgun prosesi return et
-//        if (savedRoot.isEmpty()) throw new FollowDomainException("F0000000001");
-    return null;
+        if (savedRoot.isEmpty()) throw new JRuntimeException("F0000000001");
+        return new CompanyProfileCreatedEvent(new CompanyProfileCreatedPayload(savedRoot.get().getRootID().getAbsoluteID()));
     }
 
     @Override

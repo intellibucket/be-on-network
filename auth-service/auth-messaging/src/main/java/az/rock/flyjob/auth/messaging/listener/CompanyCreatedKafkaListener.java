@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.messaging.listener;
 
-import az.rock.auth.domain.presentation.ports.input.listener.concretes.JobSeekerCreatedCoordinatorListener;
+import az.rock.auth.domain.presentation.ports.input.listener.concretes.CompanyCreatedCoordinatorListener;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,32 +11,32 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class JobSeekerCreatedKafkaListener {
+public class CompanyCreatedKafkaListener {
     private final ObjectMapper objectMapper;
-    private final JobSeekerCreatedCoordinatorListener jobSeekerCreatedCoordinatorListener;
+    private final CompanyCreatedCoordinatorListener companyCreatedCoordinatorListener;
 
-    public JobSeekerCreatedKafkaListener(ObjectMapper objectMapper, JobSeekerCreatedCoordinatorListener jobSeekerCreatedCoordinatorListener) {
+    public CompanyCreatedKafkaListener(ObjectMapper objectMapper, CompanyCreatedCoordinatorListener companyCreatedCoordinatorListener) {
         this.objectMapper = objectMapper;
-        this.jobSeekerCreatedCoordinatorListener = jobSeekerCreatedCoordinatorListener;
+        this.companyCreatedCoordinatorListener = companyCreatedCoordinatorListener;
     }
 
 
-    @KafkaListener(topics = "${topic.js.created.success}", groupId = "auth.user-created-group")
+    @KafkaListener(topics = "${topic.cmp.created.success}", groupId = "auth.user-created-group")
     public void successCaseListener(JsonNode record) {
         try {
             var model = this.objectMapper.treeToValue(record, AbstractSagaProcess.class);
-            this.jobSeekerCreatedCoordinatorListener.listenOnSuccess(model);
+            this.companyCreatedCoordinatorListener.listenOnSuccess(model);
         } catch (JsonProcessingException e) {
             log.error("Error while parsing json to object", e);
             throw new RuntimeException(e);
         }
     }
 
-    @KafkaListener(topics = "${topic.js.created.fail}", groupId = "auth.user-created-group")
+    @KafkaListener(topics = "${topic.cmp.created.fail}", groupId = "auth.user-created-group")
     public void failCaseListener(JsonNode record) {
         try {
             var model = this.objectMapper.treeToValue(record, AbstractSagaProcess.class);
-            this.jobSeekerCreatedCoordinatorListener.listenOnFail(model);
+            this.companyCreatedCoordinatorListener.listenOnFail(model);
         } catch (JsonProcessingException e) {
             log.error("Error while parsing json to object", e);
             throw new RuntimeException(e);

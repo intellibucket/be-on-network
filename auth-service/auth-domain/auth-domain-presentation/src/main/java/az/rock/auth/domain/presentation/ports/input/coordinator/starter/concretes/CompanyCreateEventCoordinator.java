@@ -2,11 +2,7 @@ package az.rock.auth.domain.presentation.ports.input.coordinator.starter.concret
 
 import az.rock.auth.domain.presentation.ports.input.coordinator.starter.abstracts.AbstractCompanyCreateEventCoordinator;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
-import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
-import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
-import com.intellibucket.lib.payload.payload.Payload;
-import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class CompanyCreateEventCoordinator extends AbstractCompanyCreateEventCoordinator {
 
-    @Value(value = "${topic.cmp.created.name}")
+    @Value(value = "${topic.cmp.created.start}")
     private String companyCreatedTopicName;
 
 
@@ -24,18 +20,9 @@ public class CompanyCreateEventCoordinator extends AbstractCompanyCreateEventCoo
     }
 
     @Override
-    public String getTopic() {
+    public String getStartTopic() {
         return this.companyCreatedTopicName;
     }
 
-    @Override
-    public <F extends AbstractFailDomainEvent<? extends Payload>> void onFail(AbstractSagaProcess<F> sagaProcess) {
-        log.error("Exception = > occurred while publishing message to user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
-    }
-
-    @Override
-    public <S extends AbstractSuccessDomainEvent<? extends Payload>> void onSuccess(AbstractSagaProcess<S> sagaProcess) {
-
-        log.info("Success = > response from user queue {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
-    }
+    //TODO: If required it can Implement this method onSuccess and onFail
 }
