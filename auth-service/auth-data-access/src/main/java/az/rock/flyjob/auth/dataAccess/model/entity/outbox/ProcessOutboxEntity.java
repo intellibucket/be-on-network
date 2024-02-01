@@ -1,45 +1,22 @@
 package az.rock.flyjob.auth.dataAccess.model.entity.outbox;
 
+import az.rock.lib.domain.OutboxEntity;
 import com.intellibucket.lib.payload.trx.TrxProcessStatus;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.sql.Timestamp;
-import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "process_outbox", schema = "outbox")
 @Entity(name = "ProcessOutboxEntity")
-public class ProcessOutboxEntity {
-    @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(length = 36, updatable = false, nullable = false)
-    private UUID uuid;
-
-    @Column(name = "is_active", nullable = false, columnDefinition = "boolean default true")
-    private Boolean isActive;
-
-    @Column(name = "transaction_id", length = 36, updatable = false, nullable = false)
-    private UUID transactionId;
-
-    @Version
-    private Short version;
-
-    @CreationTimestamp
-    @Column(name = "created_date", updatable = false, nullable = false)
-    private Timestamp createdDate;
-
-    @Column(name = "modification_date")
-    @UpdateTimestamp
-    private Timestamp lastModifiedDate;
+public class ProcessOutboxEntity extends OutboxEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "trx_status", nullable = false)
@@ -56,7 +33,6 @@ public class ProcessOutboxEntity {
 
     @Column(name = "event", nullable = false)
     private String event;
-
     /**
      * This field is used for must be retryable current step
      */

@@ -39,6 +39,7 @@
 
         <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.FailOutboxEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessStepEntity</class>
 
 
     </persistence-unit>
