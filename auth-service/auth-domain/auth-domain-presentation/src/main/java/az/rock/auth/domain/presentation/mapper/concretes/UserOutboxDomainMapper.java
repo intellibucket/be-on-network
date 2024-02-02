@@ -14,7 +14,6 @@ public class UserOutboxDomainMapper implements AbstractUserOutboxDomainMapper {
         var objectMapper = new ObjectMapper();
         var root = event.getPayload();
 
-        return ProcessOutboxRoot.builder()
-                .build();
+        return null;
     }
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserOutboxJPARepository extends JpaRepository<ProcessOutboxEntity, UUID> {
+public interface ProcessOutboxJPARepository extends JpaRepository<ProcessOutboxEntity, UUID> {
     @Query("select u from ProcessOutboxEntity u where u.transactionId =: transactionId")
     Optional<ProcessOutboxEntity> findByTransactionId(@Param("transactionId") UUID transactionId);
 }

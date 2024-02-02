@@ -4,7 +4,7 @@ import az.rock.lib.domain.TransactionID;
 import az.rock.lib.domain.outbox.ProcessOutboxRoot;
 
 public interface AbstractProcessOutboxRepositoryAdapter {
-    void save(ProcessOutboxRoot outbox);
+    void persist(ProcessOutboxRoot outbox);
 
     void complete(TransactionID transactionId, String step);
 

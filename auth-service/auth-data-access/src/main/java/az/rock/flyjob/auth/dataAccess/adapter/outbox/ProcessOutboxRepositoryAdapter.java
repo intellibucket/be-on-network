@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.dataAccess.adapter.outbox;
 
 import az.rock.auth.domain.presentation.ports.output.repository.outbox.AbstractProcessOutboxRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.mapper.outbox.AbstractProcessOutboxDataAccessMapper;
-import az.rock.flyjob.auth.dataAccess.repository.outbox.UserOutboxJPARepository;
+import az.rock.flyjob.auth.dataAccess.mapper.outbox.abstracts.AbstractProcessOutboxDataAccessMapper;
+import az.rock.flyjob.auth.dataAccess.repository.outbox.ProcessOutboxJPARepository;
 import az.rock.lib.domain.TransactionID;
 import az.rock.lib.domain.outbox.ProcessOutboxRoot;
 import az.rock.lib.jexception.JRuntimeException;
@@ -14,15 +14,15 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ProcessOutboxRepositoryAdapter implements AbstractProcessOutboxRepositoryAdapter {
     private final AbstractProcessOutboxDataAccessMapper mapper;
-    private final UserOutboxJPARepository repository;
+    private final ProcessOutboxJPARepository repository;
 
-    public ProcessOutboxRepositoryAdapter(AbstractProcessOutboxDataAccessMapper mapper, UserOutboxJPARepository repository) {
+    public ProcessOutboxRepositoryAdapter(AbstractProcessOutboxDataAccessMapper mapper, ProcessOutboxJPARepository repository) {
         this.mapper = mapper;
         this.repository = repository;
     }
 
     @Override
-    public void save(ProcessOutboxRoot outbox) {
+    public void persist(ProcessOutboxRoot outbox) {
         var entity = mapper.toEntity(outbox);
         entity.ifPresentOrElse(repository::save, () -> {
             throw new JRuntimeException("Outbox entity not found");
@@ -32,9 +32,8 @@ public class ProcessOutboxRepositoryAdapter implements AbstractProcessOutboxRepo
     @Override
     public void complete(TransactionID transactionId, String step) {
         var entity = repository.findByTransactionId(transactionId.getRootID());
-
         entity.ifPresentOrElse(outbox -> {
-            if (outbox.isOnStarted()) {
+            if (outbox.isOnStarted() || outbox.isOnRestarted()) {
                 outbox.setStep(step);
                 outbox.setTrxStatus(TrxProcessStatus.COMPLETED);
                 repository.save(outbox);

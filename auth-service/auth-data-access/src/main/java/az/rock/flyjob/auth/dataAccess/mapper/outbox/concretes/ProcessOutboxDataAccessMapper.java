@@ -1,5 +1,6 @@
-package az.rock.flyjob.auth.dataAccess.mapper.outbox;
+package az.rock.flyjob.auth.dataAccess.mapper.outbox.concretes;
 
+import az.rock.flyjob.auth.dataAccess.mapper.outbox.abstracts.AbstractProcessOutboxDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.TransactionID;

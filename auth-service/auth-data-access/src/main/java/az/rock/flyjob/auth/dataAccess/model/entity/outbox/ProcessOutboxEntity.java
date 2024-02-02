@@ -50,4 +50,8 @@ public class ProcessOutboxEntity extends OutboxEntity {
     public Boolean isOnStarted() {
         return this.trxStatus.equals(TrxProcessStatus.STARTED);
     }
+
+    public Boolean isOnRestarted() {
+        return this.trxStatus.equals(TrxProcessStatus.RESTARTED);
+    }
 }

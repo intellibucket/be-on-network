@@ -4,6 +4,7 @@ import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.RootID;
 import az.rock.lib.domain.TransactionID;
 import az.rock.lib.valueObject.Version;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,8 @@ import java.time.ZonedDateTime;
 
 @Getter
 @Setter
-public class FailOutboxRoot extends RootID<OutboxID> {
+@Builder
+public class ProcessStepRoot extends RootID<OutboxID> {
     private Boolean isActive;
     private TransactionID transactionId;
     private Version version;
@@ -19,10 +21,9 @@ public class FailOutboxRoot extends RootID<OutboxID> {
     private ZonedDateTime lastModifiedDate;
     private String process;
     private String step;
-    private String message;
-    private String stackTrace;
+    private Boolean isSuccessful;
 
-    private FailOutboxRoot(Builder builder) {
+    private ProcessStepRoot(Builder builder) {
         super(builder.uuid);
         setIsActive(builder.isActive);
         setTransactionId(builder.transactionId);
@@ -31,8 +32,7 @@ public class FailOutboxRoot extends RootID<OutboxID> {
         setLastModifiedDate(builder.lastModifiedDate);
         setProcess(builder.process);
         setStep(builder.step);
-        setMessage(builder.message);
-        setStackTrace(builder.stackTrace);
+        setIsSuccessful(builder.isSuccessful);
     }
 
 
@@ -45,8 +45,7 @@ public class FailOutboxRoot extends RootID<OutboxID> {
         private ZonedDateTime lastModifiedDate;
         private String process;
         private String step;
-        private String message;
-        private String stackTrace;
+        private Boolean isSuccessful;
 
         private Builder() {
         }
@@ -95,18 +94,13 @@ public class FailOutboxRoot extends RootID<OutboxID> {
             return this;
         }
 
-        public Builder message(String val) {
-            message = val;
+        public Builder isSuccessful(Boolean val) {
+            isSuccessful = val;
             return this;
         }
 
-        public Builder stackTrace(String val) {
-            stackTrace = val;
-            return this;
-        }
-
-        public FailOutboxRoot build() {
-            return new FailOutboxRoot(this);
+        public ProcessStepRoot build() {
+            return new ProcessStepRoot(this);
         }
     }
 }
