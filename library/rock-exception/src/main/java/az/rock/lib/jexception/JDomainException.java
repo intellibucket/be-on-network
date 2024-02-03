@@ -8,4 +8,6 @@ public class JDomainException extends JException {
     public JDomainException() {
         super("F0000000001");
     }
+
+
 }

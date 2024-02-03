@@ -39,6 +39,10 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         this(transactionId, processStatus, step.name(), event);
     }
 
+    public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, String process, Enum<?> step, E event) {
+        this(transactionId, processStatus, process, step.name(), event);
+    }
+
     public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, String step, E event) {
         this.transactionId = transactionId;
         this.processStatus = processStatus;
@@ -48,8 +52,21 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         this.mustBeRetryableStep = false;
     }
 
+    public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, String process, String step, E event) {
+        this.transactionId = transactionId;
+        this.processStatus = processStatus;
+        this.event = event;
+        this.process = process;
+        this.step = step;
+        this.mustBeRetryableStep = false;
+    }
+
     public static <E extends AbstractStartDomainEvent<?>> AbstractSagaProcess<E> onProceed(Enum<?> step, E event) {
         return new SagaStartedProcess<>(UUID.randomUUID(), step, event);
+    }
+
+    public static <E extends AbstractStartDomainEvent<?>> AbstractSagaProcess<E> onProceed(String process, Enum<?> step, E event) {
+        return new SagaStartedProcess<>(UUID.randomUUID(), process, step, event);
     }
 
     public static <E> AbstractSagaProcess<? extends E> onError(AbstractSagaProcess<E> sagaProcess) {
@@ -60,20 +77,38 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         return new SagaFailedProcess<>(sagaProcess.getTransactionId(), sagaProcess.step, sagaProcess.getEvent(), errors);
     }
 
+
     public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step) {
         return AbstractSagaProcess.onFail(sagaProcess, step, new AbstractFailDomainEvent<>(), List.of());
+    }
+
+    public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, String process, String step) {
+        return AbstractSagaProcess.onFail(sagaProcess, process, step, new AbstractFailDomainEvent<>(), List.of());
     }
 
     public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step, AbstractFailDomainEvent<?> failEvent) {
         return AbstractSagaProcess.onFail(sagaProcess, step, failEvent, List.of());
     }
 
+    public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, String process, String step, AbstractFailDomainEvent<?> failEvent, List<String> errors) {
+        return new SagaFailedProcess<>(sagaProcess.getTransactionId(), process, step, failEvent, errors);
+    }
+
     public static <E> SagaFailedProcess<AbstractFailDomainEvent<?>> onFail(AbstractSagaProcess<E> sagaProcess, Enum<?> step, AbstractFailDomainEvent<?> failEvent, List<String> errors) {
         return new SagaFailedProcess<>(sagaProcess.getTransactionId(), step, failEvent, errors);
     }
 
+
     public static <E, S> SagaCompletedProcess<S> onSuccess(AbstractSagaProcess<E> sagaProcess, Enum<?> step, S successEvent) {
         return new SagaCompletedProcess<>(sagaProcess.getTransactionId(), step, successEvent);
+    }
+
+    public static <E, S> SagaCompletedProcess<S> onSuccess(AbstractSagaProcess<E> sagaProcess, String process, Enum<?> step, S successEvent) {
+        return new SagaCompletedProcess<>(sagaProcess.getTransactionId(), process, step, successEvent);
+    }
+
+    public static <E, S> SagaCompletedProcess<S> onSuccess(AbstractSagaProcess<E> sagaProcess, String process, String step, S successEvent) {
+        return new SagaCompletedProcess<>(sagaProcess.getTransactionId(), process, step, successEvent);
     }
 
     @JsonIgnore

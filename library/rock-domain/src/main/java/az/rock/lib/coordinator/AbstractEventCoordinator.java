@@ -19,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
 
 @Transactional
@@ -48,7 +47,7 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
         }
     }
 
-    public abstract List<String> allSteps();
+    public abstract ProcessProperty getProcess();
 
     private String writeValueAsString(E event) {
         try {
@@ -70,7 +69,7 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
                 .isActive(true)
                 .topic("unknown-topic")
                 .trxStatus(sagaProcess.getProcessStatus())
-                .process(sagaProcess.getProcess())
+                .process(this.getProcess().processName())
                 .step(sagaProcess.getStep())
                 .event(eventAsJson)
                 .mustBeRetryableStep(true)
@@ -94,11 +93,11 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
                 .transactionId(TransactionID.of(sagaProcess.getTransactionId()))
                 .version(Version.ONE)
                 .isActive(true)
-                .process(sagaProcess.getProcess())
+                .process(this.getProcess().processName())
                 .step(sagaProcess.getStep())
                 .isSuccessful(true)
                 .build();
-        this.outboxProcess.successOutboxProcess(processStepOutboxRoot, allSteps());
+        this.outboxProcess.successOutboxProcess(processStepOutboxRoot, this.getProcess().steps());
         this.onSuccess(sagaProcess);
     }
 
@@ -111,7 +110,7 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
                 .transactionId(TransactionID.of(sagaProcess.getTransactionId()))
                 .version(Version.ONE)
                 .isActive(true)
-                .process(sagaProcess.getProcess())
+                .process(this.getProcess().processName())
                 .step(sagaProcess.getStep())
                 .stackTrace("unknown-stack-trace")
                 .message("unknown-message")

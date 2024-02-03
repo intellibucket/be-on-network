@@ -34,14 +34,22 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
     @Override
     public void createJobSeeker(CreateUserCommand createUserCommand) {
         var jobSeekerCreatedEvent = this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);
-        var saga = AbstractSagaProcess.onProceed(JobSeekerRegistrationSteps.ON_STARTED_STEP, jobSeekerCreatedEvent);
+        var step = JobSeekerRegistrationSteps.ON_STARTED_STEP;
+        var saga = AbstractSagaProcess.onProceed(
+                step.getProcessName(),
+                step,
+                jobSeekerCreatedEvent);
         this.jobSeekerCreateEventCoordinator.coordinate(saga);
     }
 
     @Override
     public void createCompany(CreateUserCommand createUserCommand) {
         var companyCreatedEvent = this.userCreateCommandHandler.handleCompanyCreated(createUserCommand);
-        var saga = AbstractSagaProcess.onProceed(CompanyRegistrationSteps.ON_STARTED_STEP, companyCreatedEvent);
+        var step = CompanyRegistrationSteps.ON_STARTED_STEP;
+        var saga = AbstractSagaProcess.onProceed(
+                step.getProcessName(),
+                step,
+                companyCreatedEvent);
         this.companyCreateEventCoordinator.coordinate(saga);
     }
 

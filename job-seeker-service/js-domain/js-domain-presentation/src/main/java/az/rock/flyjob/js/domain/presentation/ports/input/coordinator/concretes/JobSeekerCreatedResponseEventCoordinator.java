@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.concretes;
 import az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts.AbstractJobSeekerCreatedResponseEventCoordinator;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractResumeCommandDomainPresentationService;
 import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerResponseMessagePublisher;
+import az.rock.lib.coordinator.ProcessProperty;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.function.BiConsumer;
 
 @Component
@@ -67,8 +69,11 @@ public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerC
     }
 
     @Override
-    protected Enum<?> getStep() {
-        return JobSeekerRegistrationSteps.JOB_SEEKER_PROFILE_CREATING_STEP;
+    protected ProcessProperty getProcessProperty() {
+        return new ProcessProperty(
+                JobSeekerRegistrationSteps.JOB_SEEKER_PROFILE_CREATING_STEP.getProcessName(),
+                JobSeekerRegistrationSteps.JOB_SEEKER_PROFILE_CREATING_STEP.name(),
+                Arrays.stream(JobSeekerRegistrationSteps.values()).map(Enum::name).toList());
     }
 
     @Override
