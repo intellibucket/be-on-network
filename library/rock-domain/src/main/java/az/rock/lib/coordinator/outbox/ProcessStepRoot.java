@@ -1,10 +1,9 @@
-package az.rock.lib.domain.outbox;
+package az.rock.lib.coordinator.outbox;
 
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.RootID;
 import az.rock.lib.domain.TransactionID;
 import az.rock.lib.valueObject.Version;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,6 @@ import java.time.ZonedDateTime;
 
 @Getter
 @Setter
-@Builder
 public class ProcessStepRoot extends RootID<OutboxID> {
     private Boolean isActive;
     private TransactionID transactionId;

@@ -1,4 +1,4 @@
-package az.rock.lib.domain.outbox;
+package az.rock.lib.coordinator.outbox;
 
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.RootID;
@@ -109,4 +109,5 @@ public class FailOutboxRoot extends RootID<OutboxID> {
             return new FailOutboxRoot(this);
         }
     }
+
 }

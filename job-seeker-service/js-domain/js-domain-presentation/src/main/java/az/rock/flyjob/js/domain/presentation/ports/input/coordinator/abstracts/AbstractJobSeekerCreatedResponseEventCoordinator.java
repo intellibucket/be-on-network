@@ -1,11 +1,11 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts;
 
 import az.rock.flyjob.js.domain.presentation.ports.output.publisher.AbstractJobSeekerResponseMessagePublisher;
+import az.rock.lib.coordinator.AbstractEventResponseCoordinator;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
-import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventResponseCoordinator;
 import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
-import com.intellibucket.lib.payload.outbox.CompanyRegistrationSteps;
+import com.intellibucket.lib.payload.outbox.JobSeekerRegistrationSteps;
 import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import com.intellibucket.lib.payload.trx.SagaFailedProcess;
@@ -27,7 +27,7 @@ public abstract class AbstractJobSeekerCreatedResponseEventCoordinator extends A
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     protected void onFail(AbstractSagaProcess<JobSeekerCreatedEvent> sagaProcess, JDomainException exception) {
-        var failedSagaProcess = SagaFailedProcess.onFail(sagaProcess, CompanyRegistrationSteps.CREATING_COMPANY_PROFILE);
+        var failedSagaProcess = SagaFailedProcess.onFail(sagaProcess, JobSeekerRegistrationSteps.JOB_SEEKER_PROFILE_CREATING_STEP);
         this.jobSeekerFailResponseMessagePublisher.publish(this.getFailTopic(), failedSagaProcess);
     }
 

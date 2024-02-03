@@ -55,7 +55,7 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
 
     @Override
     protected Enum<?> getStep() {
-        return CompanyRegistrationSteps.CREATING_COMPANY_PROFILE;
+        return CompanyRegistrationSteps.COMPANY_PROFILE_CREATING_STEP;
     }
 
     @Override

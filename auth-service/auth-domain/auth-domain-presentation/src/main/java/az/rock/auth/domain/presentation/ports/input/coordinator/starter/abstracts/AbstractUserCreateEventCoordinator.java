@@ -1,8 +1,9 @@
 package az.rock.auth.domain.presentation.ports.input.coordinator.starter.abstracts;
 
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractUserMessagePublisher;
+import az.rock.lib.coordinator.AbstractEventCoordinator;
+import az.rock.lib.coordinator.outbox.AbstractOutboxInputPort;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventCoordinator;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 public abstract class AbstractUserCreateEventCoordinator<E extends AbstractDomainEvent> extends AbstractEventCoordinator<E> {
     private final AbstractUserMessagePublisher<E> userMessagePublisher;
 
-    protected AbstractUserCreateEventCoordinator(AbstractUserMessagePublisher<E> userMessagePublisher) {
+    protected AbstractUserCreateEventCoordinator(AbstractUserMessagePublisher<E> userMessagePublisher,
+                                                 AbstractOutboxInputPort outboxProcess) {
+        super(outboxProcess);
         this.userMessagePublisher = userMessagePublisher;
     }
 

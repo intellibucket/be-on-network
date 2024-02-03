@@ -1,6 +1,6 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.coordinator.responsive.abstracts;
 
-import com.intellibucket.lib.payload.event.abstracts.coordinator.AbstractEventResponseCoordinator;
+import az.rock.lib.coordinator.AbstractEventResponseCoordinator;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 

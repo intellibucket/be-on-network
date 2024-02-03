@@ -2,9 +2,9 @@ package az.rock.flyjob.auth.dataAccess.mapper.outbox.concretes;
 
 import az.rock.flyjob.auth.dataAccess.mapper.outbox.abstracts.AbstractProcessOutboxDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity;
+import az.rock.lib.coordinator.outbox.ProcessOutboxRoot;
 import az.rock.lib.domain.OutboxID;
 import az.rock.lib.domain.TransactionID;
-import az.rock.lib.domain.outbox.ProcessOutboxRoot;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;

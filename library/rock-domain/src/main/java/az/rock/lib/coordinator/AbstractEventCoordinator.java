@@ -1,6 +1,15 @@
-package com.intellibucket.lib.payload.event.abstracts.coordinator;
+package az.rock.lib.coordinator;
 
 
+import az.rock.lib.coordinator.outbox.AbstractOutboxInputPort;
+import az.rock.lib.coordinator.outbox.FailOutboxRoot;
+import az.rock.lib.coordinator.outbox.ProcessOutboxRoot;
+import az.rock.lib.coordinator.outbox.ProcessStepRoot;
+import az.rock.lib.domain.OutboxID;
+import az.rock.lib.domain.TransactionID;
+import az.rock.lib.valueObject.Version;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
@@ -10,9 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.UUID;
+
 @Transactional
 @Slf4j
 public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
+
+    private final AbstractOutboxInputPort outboxProcess;
+
+    protected AbstractEventCoordinator(AbstractOutboxInputPort outboxProcess) {
+        this.outboxProcess = outboxProcess;
+    }
 
     /**
      * This method is used to coordinate the event which is published by the event publisher.
@@ -30,9 +48,34 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
         }
     }
 
+    public abstract List<String> allSteps();
+
+    private String writeValueAsString(E event) {
+        try {
+            return new ObjectMapper().writeValueAsString(event);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     protected void saveOutBox(AbstractSagaProcess<E> sagaProcess) {
         log.info("Save Outbox {} {} {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
+        var eventAsJson = this.writeValueAsString(sagaProcess.getEvent());
+        var proceddOutboxRoot = ProcessOutboxRoot.Builder
+                .builder()
+                .uuid(OutboxID.of(UUID.randomUUID()))
+                .transactionId(TransactionID.of(sagaProcess.getTransactionId()))
+                .version(Version.ONE)
+                .isActive(true)
+                .topic("unknown-topic")
+                .trxStatus(sagaProcess.getProcessStatus())
+                .process(sagaProcess.getProcess())
+                .step(sagaProcess.getStep())
+                .event(eventAsJson)
+                .mustBeRetryableStep(true)
+                .build();
+        this.outboxProcess.startOutboxProcess(proceddOutboxRoot);
     }
 
     /**
@@ -45,14 +88,35 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void successProcess(AbstractSagaProcess<? extends AbstractSuccessDomainEvent<? extends Payload>> sagaProcess) {
         log.info("Success Process {} {} {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
-        //TODO: Save Outbox
+        var processStepOutboxRoot = ProcessStepRoot.Builder
+                .builder()
+                .uuid(OutboxID.of(UUID.randomUUID()))
+                .transactionId(TransactionID.of(sagaProcess.getTransactionId()))
+                .version(Version.ONE)
+                .isActive(true)
+                .process(sagaProcess.getProcess())
+                .step(sagaProcess.getStep())
+                .isSuccessful(true)
+                .build();
+        this.outboxProcess.successOutboxProcess(processStepOutboxRoot, allSteps());
         this.onSuccess(sagaProcess);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void failProcess(AbstractSagaProcess<? extends AbstractFailDomainEvent<? extends Payload>> sagaProcess) {
         log.info("Fail Process {} {} {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
-        //TODO: Save Outbox
+        var failOutboxRoot = FailOutboxRoot.Builder
+                .builder()
+                .uuid(OutboxID.of(UUID.randomUUID()))
+                .transactionId(TransactionID.of(sagaProcess.getTransactionId()))
+                .version(Version.ONE)
+                .isActive(true)
+                .process(sagaProcess.getProcess())
+                .step(sagaProcess.getStep())
+                .stackTrace("unknown-stack-trace")
+                .message("unknown-message")
+                .build();
+        this.outboxProcess.failOutboxProcess(failOutboxRoot);
         this.onFail(sagaProcess);
     }
 

@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.ports.output.repository.outbox;
 
+import az.rock.lib.coordinator.outbox.ProcessOutboxRoot;
 import az.rock.lib.domain.TransactionID;
-import az.rock.lib.domain.outbox.ProcessOutboxRoot;
 
 public interface AbstractProcessOutboxRepositoryAdapter {
     void persist(ProcessOutboxRoot outbox);

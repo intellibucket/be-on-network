@@ -1,12 +1,12 @@
 package az.rock.auth.domain.presentation.ports.output.repository.outbox;
 
+import az.rock.lib.coordinator.outbox.FailOutboxRoot;
 import az.rock.lib.domain.TransactionID;
-import az.rock.lib.domain.outbox.FailOutboxRoot;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface AbstractFailOutboxRepositoryAdapter {
     void persist(FailOutboxRoot root);
 
-    Optional<FailOutboxRoot> findByTransactionId(TransactionID transactionId);
+    List<FailOutboxRoot> findByTransactionId(TransactionID transactionId);
 }

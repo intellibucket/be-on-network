@@ -1,4 +1,4 @@
-package com.intellibucket.lib.payload.event.abstracts.coordinator;
+package az.rock.lib.coordinator;
 
 
 import az.rock.lib.jexception.JDomainException;
