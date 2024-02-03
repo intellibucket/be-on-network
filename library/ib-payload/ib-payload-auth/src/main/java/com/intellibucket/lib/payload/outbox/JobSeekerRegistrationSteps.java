@@ -1,5 +1,5 @@
 package com.intellibucket.lib.payload.outbox;
 
 public enum JobSeekerRegistrationSteps {
-    ON_STARTED, CREATING_JOB_SEEKER_PROFILE;
+    ON_STARTED_STEP, JOB_SEEKER_PROFILE_CREATING_STEP;
 }

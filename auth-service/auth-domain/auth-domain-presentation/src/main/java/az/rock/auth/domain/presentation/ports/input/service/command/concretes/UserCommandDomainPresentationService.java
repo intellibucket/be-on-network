@@ -8,6 +8,7 @@ import az.rock.auth.domain.presentation.ports.input.coordinator.starter.abstract
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
+import com.intellibucket.lib.payload.outbox.CompanyRegistrationSteps;
 import com.intellibucket.lib.payload.outbox.JobSeekerRegistrationSteps;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Service;
@@ -33,14 +34,14 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
     @Override
     public void createJobSeeker(CreateUserCommand createUserCommand) {
         var jobSeekerCreatedEvent = this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);
-        var saga = AbstractSagaProcess.onProceed(JobSeekerRegistrationSteps.ON_STARTED, jobSeekerCreatedEvent);
+        var saga = AbstractSagaProcess.onProceed(JobSeekerRegistrationSteps.ON_STARTED_STEP, jobSeekerCreatedEvent);
         this.jobSeekerCreateEventCoordinator.coordinate(saga);
     }
 
     @Override
     public void createCompany(CreateUserCommand createUserCommand) {
         var companyCreatedEvent = this.userCreateCommandHandler.handleCompanyCreated(createUserCommand);
-        var saga = AbstractSagaProcess.onProceed(JobSeekerRegistrationSteps.ON_STARTED, companyCreatedEvent);
+        var saga = AbstractSagaProcess.onProceed(CompanyRegistrationSteps.ON_STARTED_STEP, companyCreatedEvent);
         this.companyCreateEventCoordinator.coordinate(saga);
     }
 

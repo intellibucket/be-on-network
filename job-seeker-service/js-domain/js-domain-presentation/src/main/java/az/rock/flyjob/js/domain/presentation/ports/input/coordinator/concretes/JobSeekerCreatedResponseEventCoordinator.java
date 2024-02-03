@@ -68,7 +68,7 @@ public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerC
 
     @Override
     protected Enum<?> getStep() {
-        return JobSeekerRegistrationSteps.CREATING_JOB_SEEKER_PROFILE;
+        return JobSeekerRegistrationSteps.JOB_SEEKER_PROFILE_CREATING_STEP;
     }
 
     @Override
