@@ -33,12 +33,13 @@ public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerC
     private String jobSeekerFailCreatedTopicName;
 
     private final AbstractResumeCommandDomainPresentationService jsCommandDomainPresentationService;
+    private final AbstractJobSeekerResponseMessagePublisher jobSeekerFailResponseMessagePublisher;
 
 
     protected JobSeekerCreatedResponseEventCoordinator(AbstractJobSeekerResponseMessagePublisher jobSeekerFailResponseMessagePublisher,
                                                        AbstractResumeCommandDomainPresentationService jsCommandDomainPresentationService) {
-        super(jobSeekerFailResponseMessagePublisher);
         this.jsCommandDomainPresentationService = jsCommandDomainPresentationService;
+        this.jobSeekerFailResponseMessagePublisher = jobSeekerFailResponseMessagePublisher;
     }
 
     @Override
@@ -78,7 +79,7 @@ public class JobSeekerCreatedResponseEventCoordinator extends AbstractJobSeekerC
 
     @Override
     protected BiConsumer<String, AbstractSagaProcess<?>> endAction() {
-        return this.getJobSeekerFailResponseMessagePublisher()::publish;
+        return this.jobSeekerFailResponseMessagePublisher::publish;
     }
 
 }

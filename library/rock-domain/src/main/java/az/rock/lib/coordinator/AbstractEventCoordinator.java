@@ -1,6 +1,7 @@
 package az.rock.lib.coordinator;
 
 
+import az.rock.lib.coordinator.exception.CannotBeFinishedOutboxProcessException;
 import az.rock.lib.coordinator.outbox.AbstractOutboxInputPort;
 import az.rock.lib.coordinator.outbox.FailOutboxRoot;
 import az.rock.lib.coordinator.outbox.ProcessOutboxRoot;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
+import com.intellibucket.lib.payload.payload.FailPayload;
 import com.intellibucket.lib.payload.payload.Payload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import lombok.extern.slf4j.Slf4j;
@@ -36,13 +38,13 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
      * When the event is published, the event coordinator will be notified and the coordinator will.
      * When the event cannot be published, the coordinator will be executed the onError method.
      */
-    @Transactional(propagation = Propagation.REQUIRES_NEW, noRollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = CannotBeFinishedOutboxProcessException.class)
     public void coordinate(AbstractSagaProcess<E> sagaProcess) {
         this.saveOutBox(sagaProcess);
         try {
             this.proceed(sagaProcess);
         } catch (Exception exception) {
-            exception.printStackTrace();
+            log.error("Error while proceeding the event {}", exception.getMessage());
             this.onError(sagaProcess, exception);
         }
     }
@@ -74,7 +76,12 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
                 .event(eventAsJson)
                 .mustBeRetryableStep(true)
                 .build();
-        this.outboxProcess.startOutboxProcess(proceddOutboxRoot);
+        try {
+            this.outboxProcess.startOutboxProcess(proceddOutboxRoot);
+        } catch (Exception e) {
+            log.error("Error while saving outbox {}", e.getMessage());
+            throw new CannotBeFinishedOutboxProcessException(e);
+        }
     }
 
     /**
@@ -104,6 +111,7 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void failProcess(AbstractSagaProcess<? extends AbstractFailDomainEvent<? extends Payload>> sagaProcess) {
         log.info("Fail Process {} {} {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
+        var payload = (FailPayload) sagaProcess.getEvent().getPayload();
         var failOutboxRoot = FailOutboxRoot.Builder
                 .builder()
                 .uuid(OutboxID.of(UUID.randomUUID()))
@@ -112,8 +120,8 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
                 .isActive(true)
                 .process(this.getProcess().processName())
                 .step(sagaProcess.getStep())
-                .stackTrace("unknown-stack-trace")
-                .message("unknown-message")
+                .stackTrace(payload.getStackTrace())
+                .message(payload.getMessages().stream().reduce("", (a, b) -> a + " " + b))
                 .build();
         this.outboxProcess.failOutboxProcess(failOutboxRoot);
         this.onFail(sagaProcess);

@@ -43,6 +43,12 @@ public final class SagaFailedProcess<T> extends AbstractSagaProcess<T> {
         this.stackTrace = stackTrace;
     }
 
+    public SagaFailedProcess(UUID transactionId, String process, String step, T event, List<String> messages, String stackTrace, Boolean mustBeRetryable) {
+        super(transactionId, TrxProcessStatus.FAILED, process, step, event, mustBeRetryable);
+        this.messages = messages;
+        this.stackTrace = stackTrace;
+    }
+
     public SagaFailedProcess(UUID transactionId, String step, T event, List<String> messages) {
         super(transactionId, TrxProcessStatus.FAILED, step, event);
         this.messages = messages;

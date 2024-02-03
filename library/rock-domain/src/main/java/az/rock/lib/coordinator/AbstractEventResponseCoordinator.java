@@ -44,7 +44,7 @@ public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDoma
             this.onFail(sagaProcess, exception);
         } catch (Exception exception) {
             log.error("Error to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + processProperty.currentStep(), exception);
-            this.onFail(sagaProcess);
+            this.onFail(sagaProcess, exception);
             this.onError(sagaProcess, exception);
         }
         log.info("Finished to coordinate saga process on : " + sagaProcess.getTransactionId() + " on step : " + processProperty.currentStep());
@@ -67,29 +67,27 @@ public abstract class AbstractEventResponseCoordinator<P, E extends AbstractDoma
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    protected void onFail(AbstractSagaProcess<E> sagaProcess, JDomainException exception) {
+    protected void onFail(AbstractSagaProcess<E> sagaProcess, Exception exception) {
         var processProperty = this.getProcessProperty();
         log.error("Failed to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + processProperty.currentStep(), exception);
-        var failEvent = new FailDomainEvent(new FailPayload(List.of(exception.getMessage())));
+        var failEvent = this.factoryFailEvent(exception);
+        var mustBeRetryable = !(exception instanceof JDomainException);
         var failSagaProcess = new SagaFailedProcess<>(
                 sagaProcess.getTransactionId(),
                 this.getProcessProperty().processName(),
                 this.getProcessProperty().currentStep(),
                 failEvent,
                 List.of(exception.getMessage()),
-                Arrays.toString(exception.getStackTrace())
+                Arrays.toString(exception.getStackTrace()),
+                mustBeRetryable
         );
         this.endAction().accept(this.getFailTopic(), failSagaProcess);
     }
 
-    protected void onFail(AbstractSagaProcess<E> sagaProcess) {
-        var processProperty = this.getProcessProperty();
-        var message = "Failed to process saga process on : " + sagaProcess.getTransactionId() + " on step : " + processProperty.currentStep();
-        this.onFail(sagaProcess, new JDomainException(message));
-    }
 
-    protected void onFail(AbstractSagaProcess<E> sagaProcess, Exception exception) {
-        this.onFail(sagaProcess, new RuntimeException(exception));
+    private FailDomainEvent factoryFailEvent(Exception exception) {
+        var stackTrace = exception instanceof JDomainException ? "" : Arrays.toString(exception.getStackTrace());
+        return new FailDomainEvent(new FailPayload(List.of(exception.getMessage()), stackTrace));
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)

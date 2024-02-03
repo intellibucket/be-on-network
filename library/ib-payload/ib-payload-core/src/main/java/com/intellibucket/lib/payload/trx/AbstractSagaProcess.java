@@ -61,6 +61,15 @@ public abstract sealed class AbstractSagaProcess<E> implements SagaTypeReference
         this.mustBeRetryableStep = false;
     }
 
+    public AbstractSagaProcess(UUID transactionId, TrxProcessStatus processStatus, String process, String step, E event, Boolean mustBeRetryableStep) {
+        this.transactionId = transactionId;
+        this.processStatus = processStatus;
+        this.event = event;
+        this.process = process;
+        this.step = step;
+        this.mustBeRetryableStep = mustBeRetryableStep;
+    }
+
     public static <E extends AbstractStartDomainEvent<?>> AbstractSagaProcess<E> onProceed(Enum<?> step, E event) {
         return new SagaStartedProcess<>(UUID.randomUUID(), step, event);
     }
