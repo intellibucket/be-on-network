@@ -14,9 +14,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
-import com.intellibucket.lib.payload.payload.FailPayload;
+import com.intellibucket.lib.payload.event.concretes.FailDomainEvent;
 import com.intellibucket.lib.payload.payload.Payload;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
+import com.intellibucket.lib.payload.trx.SagaFailedProcess;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -111,7 +112,9 @@ public abstract class AbstractEventCoordinator<E extends AbstractDomainEvent> {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void failProcess(AbstractSagaProcess<? extends AbstractFailDomainEvent<? extends Payload>> sagaProcess) {
         log.info("Fail Process {} {} {}", sagaProcess.getTransactionId(), sagaProcess.getStep(), sagaProcess.getProcessStatus());
-        var payload = (FailPayload) sagaProcess.getEvent().getPayload();
+        @SuppressWarnings("unchecked")
+        var failedSagaProcess = (SagaFailedProcess<FailDomainEvent>) sagaProcess;
+        var payload = failedSagaProcess.getEvent().getPayload();
         var failOutboxRoot = FailOutboxRoot.Builder
                 .builder()
                 .uuid(OutboxID.of(UUID.randomUUID()))
