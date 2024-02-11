@@ -22,7 +22,7 @@ public class CompanyCreatedListener {
     }
 
 
-    @KafkaListener(topics = "${topic.cmp.created.name}", groupId = "company-command-consumer")
+    @KafkaListener(topics = "${topic.cmp.created.start}", groupId = "company-command-consumer")
     public void consume(JsonNode node) {
         log.info("Company created event received: {}", node.toString());
         SagaStartedProcess<CompanyCreatedEvent> process = OBJECT_MAPPER.convertValue(node, new TypeReference<SagaStartedProcess<CompanyCreatedEvent>>() {

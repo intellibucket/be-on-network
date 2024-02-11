@@ -61,6 +61,37 @@
             <column name="stack_trace" type="VARCHAR(200)"/>
         </createTable>
     </changeSet>
+    <changeSet id="x2703429987170-24" author="Vugar Mammadli">
+        <createTable schemaName="outbox" tableName="process_steps">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_process_steps"/>
+            </column>
+            <column defaultValueBoolean="true" name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="SMALLINT"/>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="process" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="step" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="ACx2703429987170-01" author="Vugar Mammadli">
+        <addColumn schemaName="outbox" tableName="process_steps">
+            <column name="is_successful" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
     <changeSet id="x1703429987170-25" author="Vugar Mammadli">
         <createTable schemaName="outbox" tableName="process_outbox">
             <column name="uuid" type="UUID">

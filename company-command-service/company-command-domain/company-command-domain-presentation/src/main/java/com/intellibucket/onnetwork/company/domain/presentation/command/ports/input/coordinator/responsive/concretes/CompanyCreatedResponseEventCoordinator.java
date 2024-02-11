@@ -1,5 +1,6 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.coordinator.responsive.concretes;
 
+import az.rock.lib.coordinator.ProcessProperty;
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
@@ -14,14 +15,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.function.BiConsumer;
 
 @Component
 @Slf4j
 public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreatedResponseEventCoordinator {
 
-    @Value(value = "${topic.cmp.created.name}")
-    private String companyCreatedTopicName;
+    @Value(value = "${topic.cmp.created.start}")
+    private String companyStartCreatedTopicName;
+
+    @Value(value = "${topic.cmp.created.success}")
+    private String companySuccessCreatedTopicName;
+
+    @Value(value = "${topic.cmp.created.fail}")
+    private String companyFailCreatedTopicName;
+
     private final AbstractCompanyCommandDomainPresentationService companyCommandDomainPresentationService;
     private final AbstractCompanyResponseMessagePublisher companyResponseMessagePublisher;
 
@@ -32,13 +41,26 @@ public class CompanyCreatedResponseEventCoordinator extends AbstractCompanyCreat
     }
 
     @Override
-    protected String getTopic() {
-        return this.companyCreatedTopicName;
+    protected String getStartTopic() {
+        return this.companyStartCreatedTopicName;
     }
 
     @Override
-    protected Enum<?> getStep() {
-        return CompanyRegistrationSteps.CREATING_COMPANY_PROFILE;
+    protected String getSuccessTopic() {
+        return this.companySuccessCreatedTopicName;
+    }
+
+    @Override
+    protected String getFailTopic() {
+        return this.companyFailCreatedTopicName;
+    }
+
+    @Override
+    protected ProcessProperty getProcessProperty() {
+        return new ProcessProperty(
+                CompanyRegistrationSteps.COMPANY_PROFILE_CREATING_STEP.getProcessName(),
+                CompanyRegistrationSteps.COMPANY_PROFILE_CREATING_STEP.name(),
+                Arrays.stream(CompanyRegistrationSteps.values()).map(Enum::name).toList());
     }
 
     @Override
