@@ -1,5 +1,6 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.security;
 
+import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.valueObject.Language;

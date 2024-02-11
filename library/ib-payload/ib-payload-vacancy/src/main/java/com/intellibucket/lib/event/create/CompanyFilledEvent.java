@@ -4,4 +4,8 @@ import com.intellibucket.lib.payload.CompanyProfileCreatedPayload;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 
 public class CompanyFilledEvent extends AbstractSuccessDomainEvent<CompanyProfileCreatedPayload> {
+    public CompanyFilledEvent(CompanyProfileCreatedPayload payload) {
+        super(payload);
+    }
+
 }

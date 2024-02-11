@@ -1,5 +1,6 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.security;
 
+import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.valueObject.Language;
@@ -36,6 +37,7 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder 
     @Value("${test.values.user.company.testCompanyUUID}")
     private String testCompanyUUID;
 
+
     @Override
     public UserID currentUser() {
         return UserID.of(UUID.fromString(testUserUUID));
@@ -54,6 +56,7 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder 
     public CompanyID currentCompany() {
         return CompanyID.of(UUID.fromString(testCompanyUUID));
     }
+
 
     @Override
     public UUID currentUserTypeId() {

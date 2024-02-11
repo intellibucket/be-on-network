@@ -34,5 +34,23 @@
     "tr": " Giriş bilgileri yanlış.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000005",
+    "az": " Email sayi 3den cox ola bilmez.",
+    "en": " Email sayi 3den cox ola bilmez.",
+    "ru": " Email sayi 3den cox ola bilmez.",
+    "tr": " Email sayi 3den cox ola bilmez.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000006",
+    "az": " Email yeniden istifade olunur.",
+    "en": " Email yeniden istifade olunur.",
+    "ru": " Email yeniden istifade olunur.",
+    "tr": " Email yeniden istifade olunur.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

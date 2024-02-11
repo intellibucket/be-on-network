@@ -1,15 +1,12 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.concretes;
 
 import az.rock.lib.annotation.InputPort;
-import az.rock.lib.jexception.JDomainException;
-import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
-import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyEmailCreateCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyFilledCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCreateCompanyCommandHandler;
-import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCreateCompanyEmailHandler;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailChangedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailCreatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.email.AbstractCreateCompanyEmailHandler;
+import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.email.AbstractUpdateCompanyEmailHandler;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractCompanyEmailCommandDomainPresentationService;
-import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyCommandRepositoryAdapter;
+import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyEmailCommandRepositoryAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +16,26 @@ import org.springframework.stereotype.Service;
 public class CompanyEmailCommandDomainPresentationService implements AbstractCompanyEmailCommandDomainPresentationService {
 
     private final AbstractCreateCompanyEmailHandler createCompanyEmailHandler;
+    private final AbstractUpdateCompanyEmailHandler updateCompanyEmailHandler;
 
-    private final AbstractCompanyCommandRepositoryAdapter companyCommandRepositoryAdapter;
+    private final AbstractCompanyEmailCommandRepositoryAdapter companyEmailCommandRepositoryAdapter;
 
     public CompanyEmailCommandDomainPresentationService(AbstractCreateCompanyEmailHandler createCompanyEmailHandler,
-                                                        AbstractCompanyCommandRepositoryAdapter companyCommandRepositoryAdapter) {
+                                                        AbstractUpdateCompanyEmailHandler updateCompanyEmailHandler,
+                                                        AbstractCompanyEmailCommandRepositoryAdapter companyEmailCommandRepositoryAdapter) {
         this.createCompanyEmailHandler = createCompanyEmailHandler;
-        this.companyCommandRepositoryAdapter = companyCommandRepositoryAdapter;
+        this.updateCompanyEmailHandler = updateCompanyEmailHandler;
+        this.companyEmailCommandRepositoryAdapter = companyEmailCommandRepositoryAdapter;
     }
 
 
     @Override
-    public void createEmailCompany(CompanyEmailCreateCommand request) {
+    public void createEmailCompany(CompanyEmailCreatedCommand request) {
+         this.createCompanyEmailHandler.create(request);
+    }
 
+    @Override
+    public void changeEmailCompany(CompanyEmailChangedCommand request) {
+        this.updateCompanyEmailHandler.changeEmail(request);
     }
 }

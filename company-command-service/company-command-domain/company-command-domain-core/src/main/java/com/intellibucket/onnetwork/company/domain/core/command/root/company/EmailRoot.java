@@ -42,6 +42,21 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         verificationResponseDate = builder.verificationResponseDate;
     }
 
+    public EmailRoot setPrimary() {
+        this.isPrimary = Boolean.TRUE;
+        return this;
+    }
+    public Boolean isPrimary() {
+        return isPrimary;
+    }
+
+    public Boolean isVerified() {
+        return isVerified;
+    }
+
+
+
+
     public static final class Builder {
         private EmailID emailID;
         private CompanyID companyID;
