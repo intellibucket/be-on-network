@@ -155,6 +155,9 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
     }
 
     @JsonIgnore
+    public void changeProcessStatusToCompleted(){this.processStatus = ProcessStatus.COMPLETED; }
+
+    @JsonIgnore
     public void inActive(){
         this.rowStatus = RowStatus.INACTIVE;
     }

@@ -22,26 +22,27 @@ public class EmailEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private CompanyEntity company;
 
-    @Column(name = "access_modifier", nullable = false)
+    @Column(name = "access_modifier")
+    @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
 
     @Email
-    @Column(name = "email", nullable = false, updatable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "is_primary", nullable = false)
+    @Column(name = "is_primary")
     private Boolean isPrimary;
 
-    @Column(name = "is_verified", nullable = false)
+    @Column(name = "is_verified")
     private Boolean isVerified;
 
-    @Column(name = "verification_code", nullable = false)
+    @Column(name = "verification_code")
     private String verificationCode;
 
-    @Column(name = "verification_request_date", nullable = false)
+    @Column(name = "verification_request_date")
     private Timestamp verificationRequestDate;
 
-    @Column(name = "verification_response_date", nullable = false)
+    @Column(name = "verification_response_date")
     private Timestamp verificationResponseDate;
 
     private EmailEntity(Builder builder) {

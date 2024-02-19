@@ -1,6 +1,6 @@
 package az.rock.flyjob.js.domain.core.root.main;
 
-import az.rock.lib.domain.AggregateRoot;
+import az.rock.lib.domain.oot;
 import az.rock.lib.domain.id.js.AwardID;
 import az.rock.lib.domain.id.js.InformationID;
 import az.rock.lib.domain.id.js.JobTitleInformationID;

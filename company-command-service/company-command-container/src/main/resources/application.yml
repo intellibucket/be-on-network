@@ -16,6 +16,8 @@ spring:
         persistence:
           validation:
             mode: none
+      hibernate:
+    open-in-view: false
   mybatis:
     mapper-locations: classpath*:/**/*-mapper.xml
 

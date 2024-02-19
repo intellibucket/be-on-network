@@ -1,6 +1,8 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.security;
 
+import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.domain.id.auth.UserID;
+import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Role;
 import az.rock.lib.valueObject.UserIdTypePair;
@@ -14,6 +16,8 @@ public interface AbstractSecurityContextHolder {
     UserID currentUser();
 
     UserID availableUser();
+
+    CompanyID currentCompany();
 
     UUID currentUserTypeId();
 
