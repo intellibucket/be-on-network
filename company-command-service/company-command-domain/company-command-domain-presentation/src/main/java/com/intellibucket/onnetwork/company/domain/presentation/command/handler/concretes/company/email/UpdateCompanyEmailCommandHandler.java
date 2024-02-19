@@ -62,7 +62,6 @@ public class UpdateCompanyEmailCommandHandler implements AbstractUpdateCompanyEm
         EmailRoot findCurrentCompanyEmail = findCurrentCompanyEmail(emailUUID);
         this.companyEmailDomainService.validateForDeleteEmail(currentCompanyId, findCurrentCompanyEmail);
         this.companyEmailCommandRepositoryAdapter.inActive(findCurrentCompanyEmail);
-//        this.companyEmailCommandRepositoryAdapter.update(findCurrentCompanyEmail);
         if (findCurrentCompanyEmail.getIsPrimary()) {
             changePrimaryStateFirstEmailByCreatedDate(currentCompanyId);
         }
