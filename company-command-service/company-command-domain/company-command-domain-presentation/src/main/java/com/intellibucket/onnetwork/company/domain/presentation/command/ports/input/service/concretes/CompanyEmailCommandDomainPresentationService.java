@@ -10,6 +10,8 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.ports.out
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @InputPort
 @Slf4j
@@ -31,11 +33,21 @@ public class CompanyEmailCommandDomainPresentationService implements AbstractCom
 
     @Override
     public void createEmailCompany(CompanyEmailCreatedCommand request) {
-         this.createCompanyEmailHandler.create(request);
+         this.createCompanyEmailHandler.createEmailCompany(request);
     }
 
     @Override
     public void changeEmailCompany(CompanyEmailChangedCommand request) {
-        this.updateCompanyEmailHandler.changeEmail(request);
+        this.updateCompanyEmailHandler.changeEmailCompany(request);
+    }
+
+    @Override
+    public void deleteEmailCompany(UUID emailUUID) {
+        this.updateCompanyEmailHandler.deleteEmailCompany(emailUUID);
+    }
+
+    @Override
+    public void setPrimaryEmail(UUID emailUUID) {
+        this.updateCompanyEmailHandler.setPrimaryEmail(emailUUID);
     }
 }

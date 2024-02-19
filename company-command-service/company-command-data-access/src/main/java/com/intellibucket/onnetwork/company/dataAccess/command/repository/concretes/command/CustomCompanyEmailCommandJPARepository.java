@@ -2,7 +2,6 @@ package com.intellibucket.onnetwork.company.dataAccess.command.repository.concre
 
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.EmailEntity;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCustomCompanyCommandJPARepository;
 import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCustomCompanyEmailCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -22,12 +21,17 @@ public class CustomCompanyEmailCommandJPARepository implements AbstractCustomCom
 
     @Override
     public <S extends EmailEntity> S persist(S entity) {
+        var companyEntityReference = this.entityManager.getReference(CompanyEntity.class, entity.getCompany().getUuid());
+        entity.setCompany(companyEntityReference);
         this.entityManager.persist(entity);
         return entity;
     }
 
     @Override
     public <S extends EmailEntity> S merge(S entity) {
-        return this.entityManager.merge(entity);
+        var companyEntityReference = this.entityManager.getReference(CompanyEntity.class, entity.getCompany().getUuid());
+        entity.setCompany(companyEntityReference);
+        this.entityManager.merge(entity);
+        return entity;
     }
 }

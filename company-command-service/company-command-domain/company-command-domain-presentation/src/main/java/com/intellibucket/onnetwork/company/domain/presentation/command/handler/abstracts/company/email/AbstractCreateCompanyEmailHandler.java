@@ -8,6 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
 public interface AbstractCreateCompanyEmailHandler {
 
-    CompanyEmailCreatedEvent create(CompanyEmailCreatedCommand companyEmailChangedCommand);
+    CompanyEmailCreatedEvent createEmailCompany(CompanyEmailCreatedCommand companyEmailChangedCommand);
 
 }

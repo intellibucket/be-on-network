@@ -2,13 +2,19 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.handler.
 
 import com.intellibucket.lib.event.create.email.CompanyEmailUpdatedEvent;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailChangedCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailCreatedCommand;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
 public interface AbstractUpdateCompanyEmailHandler {
 
-    CompanyEmailUpdatedEvent changeEmail(CompanyEmailChangedCommand companyEmailChangedCommand);
+    CompanyEmailUpdatedEvent changeEmailCompany(CompanyEmailChangedCommand companyEmailChangedCommand);
+
+    CompanyEmailUpdatedEvent deleteEmailCompany(UUID emailUUID);
+
+    CompanyEmailUpdatedEvent setPrimaryEmail(UUID emailUUID);
+
 
 }

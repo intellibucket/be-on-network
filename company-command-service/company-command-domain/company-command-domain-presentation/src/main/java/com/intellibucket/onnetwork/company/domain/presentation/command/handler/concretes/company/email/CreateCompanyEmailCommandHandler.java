@@ -2,7 +2,7 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.handler.
 
 import com.intellibucket.lib.event.create.email.CompanyEmailCreatedEvent;
 import com.intellibucket.lib.payload.email.CompanyEmailCreatedPayload;
-import com.intellibucket.onnetwork.company.domain.core.command.exception.EmailAlreadyUsedException;
+import com.intellibucket.onnetwork.company.domain.core.command.exception.email.EmailAlreadyUsedException;
 import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractsCompanyEmailDomainService;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailCreatedCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.exception.EmailDomainException;
@@ -11,6 +11,7 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.mapper.ab
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyEmailCommandRepositoryAdapter;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.query.AbstractCompanyEmailQueryRepositoryAdapter;
 import com.intellibucket.onnetwork.company.domain.presentation.command.security.AbstractSecurityContextHolder;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -34,9 +35,9 @@ public class CreateCompanyEmailCommandHandler implements AbstractCreateCompanyEm
     }
 
     @Override
-    public CompanyEmailCreatedEvent create(CompanyEmailCreatedCommand companyEmailChangedCommand) {
+    public CompanyEmailCreatedEvent createEmailCompany(CompanyEmailCreatedCommand companyEmailChangedCommand) {
         var currentCompanyId = this.securityContextHolder.currentCompany();
-        var activeEmails = this.companyEmailQueryRepositoryAdapter.getCompanyEmailsByCompanyUuid(currentCompanyId);
+        var activeEmails = this.companyEmailQueryRepositoryAdapter.fetchCompanyEmailsByCompanyUuid(currentCompanyId);
         abstractsCompanyEmailDomainService.validateMaxEmailCount(activeEmails);
         var newEmailRoot = this.companyEmailDomainMapper.toNewCompanyEmailRoot(companyEmailChangedCommand,currentCompanyId);
         var alreadyUsed = this.companyEmailQueryRepositoryAdapter.isExistEmailAsActive(newEmailRoot.getEmail());
@@ -44,7 +45,5 @@ public class CreateCompanyEmailCommandHandler implements AbstractCreateCompanyEm
         var savedRoot = this.companyEmailCommandRepositoryAdapter.create(newEmailRoot);
         if (savedRoot.isEmpty()) throw new EmailDomainException("F0000000001");
         return CompanyEmailCreatedEvent.of(new CompanyEmailCreatedPayload());
-
-
     }
 }

@@ -10,6 +10,8 @@ import az.rock.lib.valueObject.Version;
 
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
+import java.util.function.Predicate;
 
 
 public class EmailRoot extends AggregateRoot<EmailID> {
@@ -29,6 +31,9 @@ public class EmailRoot extends AggregateRoot<EmailID> {
 
     private ZonedDateTime verificationResponseDate;
 
+    public Predicate<EmailRoot> emailIdEqualityPredicate(){
+        return (emailRoot -> emailRoot.getRootID().getAbsoluteID().equals(this.getRootID().getAbsoluteID()));
+    }
 
     private EmailRoot(Builder builder){
         super(builder.emailID, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.modificationDate);
@@ -42,19 +47,19 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         verificationResponseDate = builder.verificationResponseDate;
     }
 
-    public EmailRoot setPrimary() {
+    public EmailRoot changeUnPrimary() {
+        this.isPrimary = Boolean.FALSE;
+        return this;
+    }
+
+    public EmailRoot changePrimary() {
         this.isPrimary = Boolean.TRUE;
         return this;
     }
-    public Boolean isPrimary() {
-        return isPrimary;
+
+    public Boolean isOwned(CompanyID companyID) {
+        return this.companyID.equals(companyID);
     }
-
-    public Boolean isVerified() {
-        return isVerified;
-    }
-
-
 
 
     public static final class Builder {
@@ -170,11 +175,11 @@ public class EmailRoot extends AggregateRoot<EmailID> {
         return email;
     }
 
-    public Boolean getPrimary() {
+    public Boolean getIsPrimary() {
         return isPrimary;
     }
 
-    public Boolean getVerified() {
+    public Boolean getIsVerified() {
         return isVerified;
     }
 

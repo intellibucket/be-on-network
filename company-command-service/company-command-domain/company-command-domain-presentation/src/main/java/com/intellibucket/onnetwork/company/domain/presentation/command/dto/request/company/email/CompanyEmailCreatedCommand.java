@@ -1,18 +1,14 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.UUID;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CompanyEmailCreatedCommand {
-
-    private final String email;
-
-    public CompanyEmailCreatedCommand(String email) {
-        this.email = email;
-
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+    private String email;
 }

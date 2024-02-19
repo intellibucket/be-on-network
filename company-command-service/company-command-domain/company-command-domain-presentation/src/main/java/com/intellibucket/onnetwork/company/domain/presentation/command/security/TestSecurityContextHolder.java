@@ -34,7 +34,7 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder 
     private Boolean isAnonymous;
     @Value("${test.values.user.isAuthenticated:true}")
     private Boolean isAuthenticated;
-    @Value("${test.values.user.company.testCompanyUUID}")
+    @Value("${test.values.user.testCompanyUUID}")
     private String testCompanyUUID;
 
 

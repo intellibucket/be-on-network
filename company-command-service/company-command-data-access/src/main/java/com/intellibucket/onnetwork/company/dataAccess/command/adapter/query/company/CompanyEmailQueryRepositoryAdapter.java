@@ -25,7 +25,7 @@ public class CompanyEmailQueryRepositoryAdapter implements AbstractCompanyEmailQ
 
 
     @Override
-    public List<EmailRoot> getCompanyEmailsByCompanyUuid(CompanyID companyID) {
+    public List<EmailRoot> fetchCompanyEmailsByCompanyUuid(CompanyID companyID) {
         var companyEmailEntityOptional = Optional.ofNullable(
                 this.companyEmailQueryJPARepository.findEmailEntityByCompanyUuid(companyID.getAbsoluteID())
         );
@@ -44,14 +44,21 @@ public class CompanyEmailQueryRepositoryAdapter implements AbstractCompanyEmailQ
     }
 
     @Override
-    public List<EmailRoot> findAllMyEmails(CompanyID companyID) {
+    public List<EmailRoot> findAllEmails(CompanyID companyID) {
         var entities = this.companyEmailQueryJPARepository.findAllByCompanyId(companyID.getAbsoluteID());
         return entities.stream().map(this.companyEmailDataAccessMapper::toRoot).filter(Optional::isPresent).map(Optional::get).toList();
     }
 
     @Override
     public Optional<EmailRoot> findEmailById(EmailID emailID) {
-       var optionalEntity = Optional.ofNullable(this.companyEmailQueryJPARepository.findEmailById(emailID.getAbsoluteID()));
+        var optionalEntity = Optional.ofNullable(this.companyEmailQueryJPARepository.findEmailById(emailID.getAbsoluteID()));
+        if (optionalEntity.isPresent()) return this.companyEmailDataAccessMapper.toRoot(optionalEntity.get());
+        else return Optional.empty();
+    }
+
+    @Override
+    public Optional<EmailRoot> findFirstEmailByCreatedDate(CompanyID companyID) {
+        var optionalEntity = Optional.ofNullable(this.companyEmailQueryJPARepository.findFirstEmailByCreatedDate(companyID.getAbsoluteID()));
         if (optionalEntity.isPresent()) return this.companyEmailDataAccessMapper.toRoot(optionalEntity.get());
         else return Optional.empty();
     }

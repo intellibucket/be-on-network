@@ -45,27 +45,15 @@
             </column>
             <column name="modification_date" type="DATETIME"/>
             <column name="company_uuid" type="UUID"/>
-            <column name="access_modifier" type="INT">
-                <constraints nullable="false"/>
-            </column>
+            <column defaultValue="PUBLIC" name="access_modifier" type="varchar(32)"/>
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_primary" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_verified" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="verification_code" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="verification_request_date" type="DATETIME">
-                <constraints nullable="false"/>
-            </column>
-            <column name="verification_response_date" type="DATETIME">
-                <constraints nullable="false"/>
-            </column>
+            <column name="is_primary" type="BOOLEAN"/>
+            <column name="is_verified" type="BOOLEAN"/>
+            <column name="verification_code" type="VARCHAR(255)"/>
+            <column name="verification_request_date" type="DATETIME"/>
+            <column name="verification_response_date" type="DATETIME"/>
         </createTable>
     </changeSet>
     <changeSet id="1704012975788-3" author="Vugar Mammadli">

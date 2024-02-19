@@ -8,12 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AbstractCompanyEmailQueryRepositoryAdapter {
-  List<EmailRoot> getCompanyEmailsByCompanyUuid(CompanyID companyID);
+  List<EmailRoot> fetchCompanyEmailsByCompanyUuid(CompanyID companyID);
 
   Boolean isExistEmailAsActive(String email);
 
-  List<EmailRoot> findAllMyEmails(CompanyID companyID);
+  List<EmailRoot> findAllEmails(CompanyID companyID);
 
   Optional<EmailRoot> findEmailById(EmailID emailID);
+  Optional<EmailRoot> findFirstEmailByCreatedDate(CompanyID companyID);
 
 }

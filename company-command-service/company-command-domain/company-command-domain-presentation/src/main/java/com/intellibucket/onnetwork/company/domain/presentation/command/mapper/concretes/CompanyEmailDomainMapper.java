@@ -12,7 +12,6 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.dto.reque
 import com.intellibucket.onnetwork.company.domain.presentation.command.mapper.abstracts.AbstractCompanyEmailDomainMapper;
 import org.springframework.stereotype.Component;
 
-import java.math.BigInteger;
 import java.util.UUID;
 
 @Component
@@ -23,7 +22,7 @@ public class CompanyEmailDomainMapper implements AbstractCompanyEmailDomainMappe
         return EmailRoot.Builder.builder()
                 .uuid(EmailID.of(UUID.randomUUID()))
                 .version(Version.ONE)
-                .processStatus(ProcessStatus.ON_WAITING)
+                .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .companyID(companyUuid)
                 .accessModifier(AccessModifier.PUBLIC)
@@ -35,17 +34,20 @@ public class CompanyEmailDomainMapper implements AbstractCompanyEmailDomainMappe
 
     @Override
     public EmailRoot mapToEmailRoot(EmailRoot oldEmail , CompanyEmailChangedCommand companyEmailChangedCommand) {
-        //FIXME 20240209 ISVERIFIED
-
         return EmailRoot.Builder
                 .builder()
                 .uuid(oldEmail.getRootID())
-                .version(oldEmail.getVersion())
+                .version(Version.ONE)
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
+                .accessModifier(oldEmail.getAccessModifier())
+                .companyID(oldEmail.getCompanyID())
                 .email(companyEmailChangedCommand.getEmail())
-                .isPrimary(oldEmail.isPrimary())
-                .isVerified(oldEmail.isVerified())
+                .isPrimary(oldEmail.getIsPrimary())
+                .isVerified(false)
+                .verificationRequestDate(null)
+                .verificationResponseDate(null)
+                .verificationCode(null)
                 .build();
     }
 }
