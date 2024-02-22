@@ -1,6 +1,7 @@
 version: "3.7"
 
 services:
+
   redis-cache:
     image: redis:latest
     restart: always
@@ -11,7 +12,7 @@ services:
       - cache:/data
 
   minio:
-    container_name: flyjob_auth_dfs
+    container_name: onnetwork_auth_dfs
     image: 'bitnami/minio:latest'
     ports:
       - '9000:9000'
@@ -24,7 +25,7 @@ services:
 
 
   postgres-db:
-    container_name: flyjob_postgre_db
+    container_name: onnetwork_postgre_db
     image: postgres
     environment:
       POSTGRES_USER: postgres
@@ -53,6 +54,7 @@ services:
       - "7017:27017"
     volumes:
       - db:/data/db
+
   mongo-express:
     image: mongo-express
     restart: always
