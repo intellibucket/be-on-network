@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @EnableDiscoveryClient
 @SpringBootApplication(
@@ -18,6 +19,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
         }
 )
 @ServletComponentScan
+@EnableMongoRepositories(basePackages = {"com.intellibucket.onnetwork.company.dataaccess.query"})
 @EntityScan(basePackages = {"com.intellibucket.onnetwork.company.dataaccess.query"})
 public class CompanyQueryApplication {
     public static void main(String[] args) {

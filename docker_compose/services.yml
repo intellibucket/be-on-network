@@ -66,7 +66,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
-      ME_CONFIG_MONGODB_URL: mongodb://host.docker.internal:27017
+      ME_CONFIG_MONGODB_URL: mongodb://62.72.45.66:27017/company_query_mdb
     networks:
       - config-network
 
