@@ -52,6 +52,7 @@
         <module>authorization-service</module>
         <module>rapid-log-service</module>
         <module>image-processor-service</module>
+        <module>email-service</module>
     </modules>
 
     <properties>
