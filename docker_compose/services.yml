@@ -55,6 +55,8 @@ services:
       - "7017:27017"
     volumes:
       - db:/data/db
+    networks:
+      - config-network
 
   mongo-express:
     image: mongo-express
