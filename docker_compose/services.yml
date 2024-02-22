@@ -71,7 +71,27 @@ services:
     networks:
       - config-network
     restart: unless-stopped
-
+  mongo_db:
+    image: mongo:latest
+    container_name: company_query_mongo
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_DATABASE=company_query_mdb
+    ports:
+      - "7017:27017"
+    volumes:
+      - db:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
+      ME_CONFIG_MONGODB_URL: mongodb://root:123456@company_query_mdb:27017/
 #  redpanda:
 #    image: docker.redpanda.com/redpandadata/redpanda:latest
 #    container_name: redpanda-1
