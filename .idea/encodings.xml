@@ -48,6 +48,7 @@
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-command-domain-presentation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/company-query-domain-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-command-service/company-command-messaging/src/main/java" charset="UTF-8" />
@@ -64,6 +65,9 @@
     <file url="file://$PROJECT_DIR$/company-query-service/company-query-container/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-query-service/company-query-data-access/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-query-service/company-query-data-access/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-domain/company-query-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-domain/company-query-domain-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/company-query-service/company-query-domain/company-query-domain-presentation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-query-service/company-query-domain/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-query-service/company-query-domain/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/company-query-service/company-query-messaging/src/main/java" charset="UTF-8" />

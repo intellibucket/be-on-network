@@ -11,7 +11,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.intellibucket.flyjob.company</groupId>
+    <groupId>com.intellibucket.onnetwork.company</groupId>
     <artifactId>company-query-service</artifactId>
     <modules>
         <module>company-query-data-access</module>
@@ -26,4 +26,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>az.rock.spring</groupId>
+                <artifactId>rock-spring-ms-core</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>3.0.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.6.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
