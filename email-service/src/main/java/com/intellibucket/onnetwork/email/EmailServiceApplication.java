@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork;
+package com.intellibucket.onnetwork.email;
 
 public class EmailServiceApplication {
     public static void main(String[] args) {
