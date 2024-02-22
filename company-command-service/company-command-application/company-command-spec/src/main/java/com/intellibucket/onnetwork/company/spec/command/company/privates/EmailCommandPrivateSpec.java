@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.spec.command.company;
+package com.intellibucket.onnetwork.company.spec.command.company.privates;
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailChangedCommand;

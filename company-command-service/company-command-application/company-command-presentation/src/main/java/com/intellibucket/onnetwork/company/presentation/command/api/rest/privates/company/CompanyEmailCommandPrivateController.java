@@ -4,7 +4,7 @@ import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailChangedCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailCreatedCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractCompanyEmailCommandDomainPresentationService;
-import com.intellibucket.onnetwork.company.spec.command.company.EmailCommandPrivateSpec;
+import com.intellibucket.onnetwork.company.spec.command.company.privates.EmailCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

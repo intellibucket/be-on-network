@@ -2,7 +2,7 @@ package com.intellibucket.onnetwork.company.presentation.command.api.rest.privat
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyPriorityCommand;
-import com.intellibucket.onnetwork.company.spec.command.privates.VacancyPriorityCommandPrivateSpec;
+import com.intellibucket.onnetwork.company.spec.command.vacancy.privates.VacancyPriorityCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

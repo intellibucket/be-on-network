@@ -12,7 +12,7 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.dto.reque
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyContextCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyStatusCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractVacancyCommandDomainPresentationService;
-import com.intellibucket.onnetwork.company.spec.command.privates.VacancyCommandPrivateSpec;
+import com.intellibucket.onnetwork.company.spec.command.vacancy.privates.VacancyCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
