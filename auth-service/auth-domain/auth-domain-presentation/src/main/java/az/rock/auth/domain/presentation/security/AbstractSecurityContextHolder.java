@@ -14,7 +14,7 @@ public interface AbstractSecurityContextHolder {
     UserID availableUser();
 
     default UserIdTypePair  currentUserTypePair(){
-        return new UserIdTypePair(this.currentUser(),this.currentUserType());
+        return new UserIdTypePair(this.availableUser(), this.currentUserType());
     }
 
     Language currentLanguage();
