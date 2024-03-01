@@ -95,6 +95,7 @@
 
 
 
+
     <select id="findAnyUserProfileById" resultType="az.rock.flyjob.auth.model.query.AnyProfileQueryRecord">
         select usr.uuid                                as uuid,
                usr.version                             as version,
