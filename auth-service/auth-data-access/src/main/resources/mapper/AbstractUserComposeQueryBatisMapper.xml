@@ -92,6 +92,9 @@
         where usr.uuid = #{userId, typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
     </select>
 
+
+
+
     <select id="findAnyUserProfileById" resultType="az.rock.flyjob.auth.model.query.AnyProfileQueryRecord">
         select usr.uuid                                as uuid,
                usr.version                             as version,
