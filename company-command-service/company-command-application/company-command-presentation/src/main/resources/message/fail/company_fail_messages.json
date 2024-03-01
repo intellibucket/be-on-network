@@ -52,5 +52,41 @@
     "tr": " Email yeniden istifade olunur.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000007",
+    "az": " Məlumat tapılmadı.",
+    "en": " Məlumat tapılmadı.",
+    "ru": " Məlumat tapılmadı.",
+    "tr": " Məlumat tapılmadı.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000008",
+    "az": " The status you want to change is the same as the status in the database.",
+    "en": " The status you want to change is the same as the status in the database.",
+    "ru": " The status you want to change is the same as the status in the database.",
+    "tr": " The status you want to change is the same as the status in the database.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000009",
+    "az": " You cannot add more than one website.",
+    "en": " You cannot add more than one website.",
+    "ru": " You cannot add more than one website.",
+    "tr": " You cannot add more than one website.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000010",
+    "az": " The current website and the website you want to change are the same.",
+    "en": " The current website and the website you want to change are the same.",
+    "ru": " The current website and the website you want to change are the same.",
+    "tr": " The current website and the website you want to change are the same.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

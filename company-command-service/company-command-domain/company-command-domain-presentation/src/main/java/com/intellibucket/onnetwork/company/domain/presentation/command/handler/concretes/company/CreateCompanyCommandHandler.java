@@ -4,9 +4,10 @@ import az.rock.lib.jexception.JDomainException;
 import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.event.create.CompanyFilledEvent;
-import com.intellibucket.lib.event.create.CompanyProfileCreatedEvent;
+import com.intellibucket.lib.event.create.companyprofile.CompanyProfileCreatedEvent;
 import com.intellibucket.lib.payload.CompanyProfileCreatedPayload;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
+import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractsCompanyDomainService;
 import com.intellibucket.onnetwork.company.domain.core.command.service.concrets.CompanyDomainService;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyFilledCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCreateCompanyCommandHandler;
@@ -25,7 +26,7 @@ public class CreateCompanyCommandHandler implements AbstractCreateCompanyCommand
 
     private final AbstractCompanyCommandRepositoryAdapter companyCommandRepositoryAdapter;
 
-    private final CompanyDomainService changeDomainService;
+    private final AbstractsCompanyDomainService companyDomainService;
 
     private final AbstractCompanyQueryRepositoryAdapter companyQueryRepositoryAdapter;
 
@@ -34,12 +35,12 @@ public class CreateCompanyCommandHandler implements AbstractCreateCompanyCommand
     public CreateCompanyCommandHandler(AbstractSecurityContextHolder securityContextHolder,
                                        AbstractsCompanyDomainMapper companyDomainMapper,
                                        AbstractCompanyCommandRepositoryAdapter companyCommandRepositoryAdapter,
-                                       CompanyDomainService changeDomainService,
+                                       AbstractsCompanyDomainService companyDomainService,
                                        AbstractCompanyQueryRepositoryAdapter companyQueryRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;
         this.companyDomainMapper = companyDomainMapper;
         this.companyCommandRepositoryAdapter = companyCommandRepositoryAdapter;
-        this.changeDomainService = changeDomainService;
+        this.companyDomainService = companyDomainService;
         this.companyQueryRepositoryAdapter = companyQueryRepositoryAdapter;
     }
 
@@ -58,7 +59,7 @@ public class CreateCompanyCommandHandler implements AbstractCreateCompanyCommand
 
         if (optionalCompanyById.isPresent()) {
             var companyRoot = optionalCompanyById.get();
-            companyRoot = changeDomainService.fillNameAndDescription(companyRoot,
+            companyRoot = companyDomainService.fillNameAndDescription(companyRoot,
                                                        companyFilledCommand.getName(),
                                                        companyFilledCommand.getDescription());
 

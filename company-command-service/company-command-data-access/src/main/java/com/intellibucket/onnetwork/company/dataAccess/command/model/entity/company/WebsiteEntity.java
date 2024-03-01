@@ -21,16 +21,16 @@ public class WebsiteEntity extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY)
     private CompanyEntity company;
 
-    @Column(name = "website", nullable = false, updatable = false)
+    @Column(name = "website", nullable = false)
     private String website;
 
-    @Column(name = "is_verified", nullable = false)
+    @Column(name = "is_verified")
     private Boolean isVerified;
 
-    @Column(name = "verification_request_date", nullable = false)
+    @Column(name = "verification_request_date")
     private Timestamp verificationRequestDate;
 
-    @Column(name = "verification_response_date", nullable = false)
+    @Column(name = "verification_response_date")
     private Timestamp verificationResponseDate;
 
     private WebsiteEntity(Builder builder) {

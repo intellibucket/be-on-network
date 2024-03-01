@@ -1,4 +1,4 @@
-package com.intellibucket.lib.event.create;
+package com.intellibucket.lib.event.create.companyprofile;
 
 import com.intellibucket.lib.payload.CompanyProfileCreatedPayload;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
@@ -7,4 +7,6 @@ public class CompanyProfileCreatedEvent extends AbstractSuccessDomainEvent<Compa
     public CompanyProfileCreatedEvent(CompanyProfileCreatedPayload payload) {
         super(payload);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.concretes;
+package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.concretes.vacancy;
 
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.domain.id.vacancy.VacancyID;
@@ -11,7 +11,7 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.dto.abstr
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyContextCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.vacancy.VacancyStatusCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractVacancyCommandDomainPresentationService;
+import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.vacancy.AbstractVacancyCommandDomainPresentationService;
 import org.springframework.stereotype.Service;
 
 @Service

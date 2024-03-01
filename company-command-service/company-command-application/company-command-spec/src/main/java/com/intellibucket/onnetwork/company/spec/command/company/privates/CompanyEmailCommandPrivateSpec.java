@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
 
-public interface EmailCommandPrivateSpec {
+public interface CompanyEmailCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> createEmailByCompany(CompanyEmailCreatedCommand command) ;
     ResponseEntity<JSuccessResponse> changeEmailByCompany(CompanyEmailChangedCommand command) ;
-    ResponseEntity<JSuccessResponse> deleteEmailCompany(UUID emailUUID) ;
+    void deleteEmailCompany(UUID emailUUID) ;
     ResponseEntity<JSuccessResponse> setPrimaryEmail(UUID emailUUID) ;
 
 }

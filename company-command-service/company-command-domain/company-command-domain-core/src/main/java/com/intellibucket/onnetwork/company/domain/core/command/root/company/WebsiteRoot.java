@@ -55,8 +55,8 @@ public class WebsiteRoot extends AggregateRoot<WebsiteID> {
             return new Builder();
         }
 
-        public Builder uuid(UUID uuid){
-            this.websiteID = WebsiteID.of(uuid);
+        public Builder uuid(WebsiteID uuid){
+            this.websiteID = uuid;
             return this;
         }
 
@@ -90,8 +90,8 @@ public class WebsiteRoot extends AggregateRoot<WebsiteID> {
             return this;
         }
 
-        public Builder companyId(UUID val) {
-            companyID = CompanyID.of(val);
+        public Builder companyID(CompanyID companyID) {
+            this.companyID = companyID;
             return this;
         }
 

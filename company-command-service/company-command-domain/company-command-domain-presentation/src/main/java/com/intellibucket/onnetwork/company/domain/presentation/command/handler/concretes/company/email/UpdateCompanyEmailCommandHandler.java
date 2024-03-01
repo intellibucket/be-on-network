@@ -2,9 +2,9 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.handler.
 
 import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.domain.id.company.CompanyID;
+import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.event.create.email.CompanyEmailUpdatedEvent;
 import com.intellibucket.lib.payload.email.CompanyEmailUpdatedPayload;
-import com.intellibucket.onnetwork.company.domain.core.command.exception.email.EmailNotFoundException;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.EmailRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractsCompanyEmailDomainService;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailChangedCommand;
@@ -16,10 +16,8 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.security.
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Predicate;
 
 @Component
 public class UpdateCompanyEmailCommandHandler implements AbstractUpdateCompanyEmailHandler {
@@ -90,14 +88,14 @@ public class UpdateCompanyEmailCommandHandler implements AbstractUpdateCompanyEm
     private EmailRoot findCurrentCompanyEmail(UUID emailUUID) {
         return this.companyEmailQueryRepositoryAdapter
                 .findEmailById(EmailID.of(emailUUID))
-                .orElseThrow(EmailNotFoundException::new);
+                .orElseThrow(() -> new NoActiveRowException());
     }
 
     private EmailRoot findCurrentCompanyEmailFromEmailList(List<EmailRoot> emailRootList) {
         return emailRootList.stream()
                 .filter(emailRoot -> emailRoot.emailIdEqualityPredicate().test(emailRoot))
                 .findAny()
-                .orElseThrow(EmailNotFoundException::new);
+                .orElseThrow(() -> new NoActiveRowException());
     }
     private void updatePrimaryEmail(List<EmailRoot> emails) {
         var changedPrimaryEmail = emails.stream()

@@ -4,6 +4,7 @@ import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.util.GDateTime;
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.*;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
+import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyProfileRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.EmailRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.VerificationRoot;

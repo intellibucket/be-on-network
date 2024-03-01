@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts;
+package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.vacancy;
 
 import az.rock.lib.domain.id.vacancy.VacancyID;
 import az.rock.lib.domain.id.vacancy.VacancyPlannerID;

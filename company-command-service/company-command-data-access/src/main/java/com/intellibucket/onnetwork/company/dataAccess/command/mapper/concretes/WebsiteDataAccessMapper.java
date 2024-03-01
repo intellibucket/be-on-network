@@ -1,5 +1,7 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.mapper.concretes;
 
+import az.rock.lib.domain.id.company.CompanyID;
+import az.rock.lib.domain.id.company.WebsiteID;
 import az.rock.lib.util.GDateTime;
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractWebsiteDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
@@ -17,14 +19,14 @@ public class WebsiteDataAccessMapper implements AbstractWebsiteDataAccessMapper 
         if (optionalEntity.isPresent()) {
             return Optional.of(
                     WebsiteRoot.Builder.builder()
-                            .uuid(entity.getUuid())
+                            .uuid(WebsiteID.of(entity.getUuid()))
                             .version(entity.getVersion())
                             .processStatus(entity.getProcessStatus())
                             .rowStatus(entity.getRowStatus())
                             .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
                             .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
                             .website(entity.getWebsite())
-                            .companyId(entity.getCompany().getUuid())
+                            .companyID(CompanyID.of(entity.getCompany().getUuid()))
                             .isVerified(entity.getIsVerified())
                             .verificationRequestDate(GDateTime.toZonedDateTime(entity.getVerificationRequestDate()))
                             .verificationResponseDate(GDateTime.toZonedDateTime(entity.getVerificationResponseDate()))
