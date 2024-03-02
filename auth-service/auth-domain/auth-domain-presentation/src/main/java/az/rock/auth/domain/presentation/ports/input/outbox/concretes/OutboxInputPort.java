@@ -51,8 +51,8 @@ public class OutboxInputPort implements AbstractOutboxInputPort {
     @Override
     public void successOutboxProcess(ProcessStepRoot root, List<String> steps) {
         this.processStepRepositoryAdapter.persist(root);
-        var isCompleted = this.processStepRepositoryAdapter.isCompleted(root.getTransactionId(), steps);
-        if (isCompleted) {
+        var isCompletedProcess = this.processStepRepositoryAdapter.isCompleted(root.getTransactionId(), steps);
+        if (isCompletedProcess) {
             this.processOutboxRepositoryAdapter.complete(root.getTransactionId(), root.getStep());
         }
     }

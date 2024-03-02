@@ -17,6 +17,10 @@ public abstract class AbstractJobSeekerCreateEventCoordinator extends AbstractUs
 
     @Override
     public ProcessProperty getProcess() {
-        return new ProcessProperty(JobSeekerRegistrationSteps.ON_STARTED_STEP.getProcessName(), JobSeekerRegistrationSteps.ON_STARTED_STEP.name(), Arrays.stream(CompanyRegistrationSteps.values()).map(Enum::name).toList());
+        return new ProcessProperty(
+                JobSeekerRegistrationSteps.ON_STARTED_STEP.getProcessName(),
+                JobSeekerRegistrationSteps.ON_STARTED_STEP.name(),
+                Arrays.stream(CompanyRegistrationSteps.values()).map(Enum::name).toList()
+        );
     }
 }

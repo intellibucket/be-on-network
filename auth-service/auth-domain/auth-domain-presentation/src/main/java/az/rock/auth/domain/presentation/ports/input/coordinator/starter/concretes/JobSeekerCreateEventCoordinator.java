@@ -26,4 +26,6 @@ public class JobSeekerCreateEventCoordinator extends AbstractJobSeekerCreateEven
         return this.jobSeekerCreatedTopicName;
     }
 
+    //TODO: If required it can Implement this method onSuccess and onFail
+
 }
