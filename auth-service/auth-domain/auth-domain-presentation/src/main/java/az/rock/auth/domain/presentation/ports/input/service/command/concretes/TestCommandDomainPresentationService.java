@@ -25,7 +25,7 @@ public class TestCommandDomainPresentationService implements AbstractTestCommand
 
     @Override
     public void testRollbackForUser(UUID userId) {
-        this.userQueryRepositoryAdapter.findById(UserID.of(userId))
+        this.userQueryRepositoryAdapter.fetchById(UserID.of(userId))
                 .ifPresentOrElse(
                         this.userCommandRepositoryAdapter::rollback,
                         () -> log.error("User Root is empty")

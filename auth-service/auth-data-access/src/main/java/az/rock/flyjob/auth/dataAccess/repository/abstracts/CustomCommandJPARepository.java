@@ -15,20 +15,21 @@ import java.util.function.Supplier;
 
 @NoRepositoryBean
 @Transactional
-public interface CustomCommandJPARepository<T> {
+public interface CustomCommandJPARepository<T extends BaseEntity> {
 
     EntityManager entityManager();
 
-    default Session session(){
+    default Session session() {
         return this.entityManager().unwrap(Session.class);
     }
-    default void flush(){
+
+    default void flush() {
         this.entityManager().flush();
     }
 
-    <S extends T > S persist(S entity);
+    <S extends T> S persist(S entity);
 
-    default <S extends T> S persistAndFlush(S entity){
+    default <S extends T> S persistAndFlush(S entity) {
         var savedEntity = this.persist(entity);
         this.flush();
         return savedEntity;
@@ -52,17 +53,13 @@ public interface CustomCommandJPARepository<T> {
     }
 
     default <S extends T> void inActive(S entity) {
-        if (entity instanceof BaseEntity baseEntity) {
-            baseEntity.inActive();
-            this.merge(entity);
-        } else throw new UnsupportedOperationException();
+        entity.inActive();
+        this.merge(entity);
     }
 
     default <S extends T> void rollback(S entity) {
-        if (entity instanceof BaseEntity baseEntity) {
-            baseEntity.rollback();
-            this.merge(entity);
-        } else throw new UnsupportedOperationException();
+        entity.rollback();
+        this.merge(entity);
     }
 
     default <S extends T> void rollbackAndFlush(S entity) {
@@ -82,7 +79,7 @@ public interface CustomCommandJPARepository<T> {
         });
     }
 
-    default <S extends T> void inActiveAllAndFlush(Iterable<S> entities){
+    default <S extends T> void inActiveAllAndFlush(Iterable<S> entities) {
         this.executeBatch(this.session(), () -> {
             entities.forEach(this::inActive);
             this.flush();
@@ -91,19 +88,17 @@ public interface CustomCommandJPARepository<T> {
     }
 
 
-    default <S extends T> void delete(S entity){
-        if (entity instanceof BaseEntity baseEntity) {
-            baseEntity.delete();
-            this.merge(entity);
-        }else throw new UnsupportedOperationException();
+    default <S extends T> void delete(S entity) {
+        entity.delete();
+        this.merge(entity);
     }
 
-    default <S extends T> void deleteAndFlush(S entity){
+    default <S extends T> void deleteAndFlush(S entity) {
         this.delete(entity);
         this.flush();
     }
 
-    default <S extends T> void deleteAll(Iterable<S> entities){
+    default <S extends T> void deleteAll(Iterable<S> entities) {
         this.executeBatch(this.session(), () -> {
             entities.forEach(this::delete);
             return null;
