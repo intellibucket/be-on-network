@@ -17,6 +17,10 @@ public abstract class AbstractCompanyCreateEventCoordinator extends AbstractUser
 
     @Override
     public ProcessProperty getProcess() {
-        return new ProcessProperty(CompanyRegistrationSteps.ON_STARTED_STEP.getProcessName(), CompanyRegistrationSteps.ON_STARTED_STEP.name(), Arrays.stream(CompanyRegistrationSteps.values()).map(Enum::name).toList());
+        return new ProcessProperty(
+                CompanyRegistrationSteps.ON_STARTED_STEP.getProcessName(),
+                CompanyRegistrationSteps.ON_STARTED_STEP.name(),
+                Arrays.stream(CompanyRegistrationSteps.values()).map(Enum::name).toList()
+        );
     }
 }
