@@ -15,10 +15,9 @@ public interface ProcessStepJPARepository extends JpaRepository<ProcessStepEntit
     @Query("SELECT CASE WHEN COUNT(p) > 0 THEN TRUE ELSE FALSE END FROM ProcessStepEntity p WHERE p.transactionId = :transactionId AND p.step = :step and p.isActive = true")
     Boolean existByTransactionIdAndStep(@Param("transactionId") UUID transactionId, @Param("step") String step);
 
-
     @Query("SELECT p FROM ProcessStepEntity p WHERE p.transactionId = :transactionId AND p.step IN :steps and p.isActive = true")
-    List<ProcessStepEntity> isCompletedByTransactionIdInAllSteps(@Param("transactionId") UUID transactionId, List<String> steps);
+    List<ProcessStepEntity> findAllByTransactionIdInAllSteps(@Param("transactionId") UUID transactionId, List<String> steps);
 
     @Query("SELECT p FROM ProcessStepEntity p WHERE p.transactionId = :transactionId and p.isActive = true")
-    List<ProcessStepEntity> findByTransactionId(@Param("transactionId") UUID transactionId);
+    List<ProcessStepEntity> findAllByTransactionId(@Param("transactionId") UUID transactionId);
 }
