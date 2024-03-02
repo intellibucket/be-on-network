@@ -11,11 +11,11 @@ import java.util.Map;
 
 @Configuration
 public class PayPalConfig {
-    @Value("${paypal.client.id}")
+    @Value("${payment-client.paypal.client.id}")
     private String clientId;
-    @Value("${paypal.client.secret}")
+    @Value("${payment-client.paypal.client.secret}")
     private String clientSecret;
-    @Value("${paypal.mode}")
+    @Value("${payment-client.paypal.mode}")
     private String mode;
 
     @Bean

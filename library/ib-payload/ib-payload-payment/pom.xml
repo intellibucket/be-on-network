@@ -3,23 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>library</artifactId>
-        <groupId>az.rock.lib</groupId>
+        <artifactId>ib-payload</artifactId>
+        <groupId>com.intellibucket.lib.payload</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.intellibucket.lib.payload</groupId>
-    <artifactId>ib-payload</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>ib-payload-auth</module>
-        <module>ib-payload-js</module>
-        <module>ib-payload-core</module>
-        <module>ib-payload-vacancy</module>
-        <module>ib-payload-payment</module>
-    </modules>
+    <artifactId>ib-payload-payment</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
