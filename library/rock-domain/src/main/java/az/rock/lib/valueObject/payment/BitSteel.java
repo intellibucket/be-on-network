@@ -1,64 +1,66 @@
 package az.rock.lib.valueObject.payment;
 
+import az.rock.lib.valueObject.DecimalValue;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
-public final class BitStell implements Comparable<BitStell> {
-    public static final BitStell ZERO = new BitStell(BigDecimal.ZERO);
+public final class BitSteel implements Comparable<BitSteel>, DecimalValue {
+    public static final BitSteel ZERO = new BitSteel(BigDecimal.ZERO);
 
-    public static final BitStell ONE = new BitStell(BigDecimal.ONE);
+    public static final BitSteel ONE = new BitSteel(BigDecimal.ONE);
 
-    public static final BitStell FIVE = new BitStell(BigDecimal.valueOf(5));
+    public static final BitSteel FIVE = new BitSteel(BigDecimal.valueOf(5));
 
-    public static final BitStell TEN = new BitStell(BigDecimal.TEN);
+    public static final BitSteel TEN = new BitSteel(BigDecimal.TEN);
 
     private final AtomicReference<BigDecimal> value;
 
-    public BitStell(BigDecimal value) {
+    public BitSteel(BigDecimal value) {
         this.value = new AtomicReference<>(value);
     }
 
-    public BitStell of(BigDecimal value) {
+    public BitSteel of(BigDecimal value) {
         Objects.requireNonNull(value);
-        return new BitStell(value);
+        return new BitSteel(value);
     }
 
     private BigDecimal decimal() {
         return this.value.get();
     }
 
-    public BitStell add(BitStell other) {
-        return new BitStell(this.decimal().add(other.decimal()));
+    public BitSteel add(BitSteel other) {
+        return new BitSteel(this.decimal().add(other.decimal()));
     }
 
-    public BitStell substract(BitStell other) {
-        return new BitStell(this.decimal().subtract(other.decimal()));
+    public BitSteel substract(BitSteel other) {
+        return new BitSteel(this.decimal().subtract(other.decimal()));
     }
 
     public Boolean isZero() {
         return this.isEquals(ONE);
     }
 
-    public Boolean isEquals(BitStell other) {
+    public Boolean isEquals(BitSteel other) {
         Objects.requireNonNull(other);
         return this.equals(other);
     }
 
-    public Boolean isGreaterThan(BitStell other) {
+    public Boolean isGreaterThan(BitSteel other) {
         Objects.requireNonNull(other);
         return this.decimal().compareTo(other.decimal()) > 0;
     }
 
-    public Boolean isGreaterOrEqualsThan(BitStell other) {
+    public Boolean isGreaterOrEqualsThan(BitSteel other) {
         return this.isEquals(other) || this.isGreaterThan(other);
     }
 
     public Boolean isGreaterThanZero() {
-        return this.isGreaterThan(BitStell.ZERO);
+        return this.isGreaterThan(BitSteel.ZERO);
     }
 
-    public Boolean isLessThan(BitStell other) {
+    public Boolean isLessThan(BitSteel other) {
         Objects.requireNonNull(other);
         return this.decimal().compareTo(other.decimal()) < 0;
     }
@@ -67,7 +69,7 @@ public final class BitStell implements Comparable<BitStell> {
         return this.isLessThan(ZERO);
     }
 
-    public Boolean isLessOrEqualsThan(BitStell other) {
+    public Boolean isLessOrEqualsThan(BitSteel other) {
         return this.isLessThan(other) || this.isEquals(other);
     }
 
@@ -78,8 +80,8 @@ public final class BitStell implements Comparable<BitStell> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof BitStell bitStell)) return false;
-        return this.decimal().compareTo(((BitStell) o).decimal()) == 0;
+        if (!(o instanceof BitSteel bitSteel)) return false;
+        return this.decimal().compareTo(((BitSteel) o).decimal()) == 0;
     }
 
     @Override
@@ -88,7 +90,7 @@ public final class BitStell implements Comparable<BitStell> {
     }
 
     @Override
-    public int compareTo(BitStell o) {
+    public int compareTo(BitSteel o) {
         Objects.requireNonNull(o);
         return this.decimal().compareTo(o.decimal());
     }
@@ -96,5 +98,10 @@ public final class BitStell implements Comparable<BitStell> {
     @Override
     public String toString() {
         return this.decimal().toString().concat(" BSL");
+    }
+
+    @Override
+    public BigDecimal toDecimal() {
+        return this.decimal();
     }
 }
