@@ -3,6 +3,7 @@ package az.rock.lib.adapter.repository;
 import az.rock.lib.annotation.DomainOutputPort;
 import az.rock.lib.jexception.UnsupportedOperationJException;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,10 @@ public interface AbstractCommandRepositoryAdapter<R> {
 
     default void deleteAll(List<R> roots) {
         throw new UnsupportedOperationJException("Delete All");
+    }
+
+    default void rollback(Collection<R> roots) {
+        roots.forEach(this::rollback);
     }
 
     default void rollback(R root) {

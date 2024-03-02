@@ -51,19 +51,31 @@ public interface CustomCommandJPARepository<T> {
         });
     }
 
-    default <S extends T> void inActive(S entity){
+    default <S extends T> void inActive(S entity) {
         if (entity instanceof BaseEntity baseEntity) {
             baseEntity.inActive();
             this.merge(entity);
-        }else throw new UnsupportedOperationException();
+        } else throw new UnsupportedOperationException();
     }
 
-    default <S extends T> void inActiveAndFlush(S entity){
+    default <S extends T> void rollback(S entity) {
+        if (entity instanceof BaseEntity baseEntity) {
+            baseEntity.rollback();
+            this.merge(entity);
+        } else throw new UnsupportedOperationException();
+    }
+
+    default <S extends T> void rollbackAndFlush(S entity) {
+        this.rollback(entity);
+        this.flush();
+    }
+
+    default <S extends T> void inActiveAndFlush(S entity) {
         this.inActive(entity);
         this.flush();
     }
 
-    default <S extends T> void inActiveAll(Iterable<S> entities){
+    default <S extends T> void inActiveAll(Iterable<S> entities) {
         this.executeBatch(this.session(), () -> {
             entities.forEach(this::inActive);
             return null;
