@@ -31,18 +31,18 @@ public class ProcessOutboxRepositoryAdapter implements AbstractProcessOutboxRepo
 
     @Override
     public void complete(TransactionID transactionId, String step) {
-        var entity = repository.findByTransactionId(transactionId.getRootID());
-        entity.ifPresentOrElse(outbox -> {
-            if (outbox.isOnStarted() || outbox.isOnRestarted()) {
-                outbox.setStep(step);
-                outbox.setTrxStatus(TrxProcessStatus.COMPLETED);
-                repository.save(outbox);
-            } else {
-                log.warn("Process transaction alraedy on {}", outbox.getTrxStatus());
-            }
-        }, () -> {
-            throw new JRuntimeException("Outbox entity not found");
-        });
+        repository.findByTransactionId(transactionId.getRootID())
+                .ifPresentOrElse(outbox -> {
+                    if (outbox.isOnAnyStarted()) {
+                        outbox.setStep(step);
+                        outbox.setTrxStatus(TrxProcessStatus.COMPLETED);
+                        repository.save(outbox);
+                    } else {
+                        log.warn("Process transaction alraedy on {}", outbox.getTrxStatus());
+                    }
+                }, () -> {
+                    throw new JRuntimeException("Outbox entity not found");
+                });
     }
 
     @Override
