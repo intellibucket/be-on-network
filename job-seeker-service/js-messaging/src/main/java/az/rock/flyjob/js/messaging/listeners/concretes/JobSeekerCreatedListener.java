@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.messaging.listeners.concretes;
 
+import az.rock.flyjob.js.domain.presentation.ports.input.coordinator.abstracts.AbstractJobSeekerCreatedResponseEventCoordinator;
 import az.rock.flyjob.js.messaging.listeners.abstracts.AbstractUserCreatedMessageListener;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,18 +15,22 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class JobSeekerCreatedListener implements AbstractUserCreatedMessageListener {
+
+    private final AbstractJobSeekerCreatedResponseEventCoordinator jobSeekerCreatedResponseEventCoordinator;
     private final ObjectMapper objectMapper;
 
-    public JobSeekerCreatedListener(ObjectMapper objectMapper) {
+    public JobSeekerCreatedListener(AbstractJobSeekerCreatedResponseEventCoordinator jobSeekerCreatedResponseEventCoordinator,
+                                    ObjectMapper objectMapper) {
+        this.jobSeekerCreatedResponseEventCoordinator = jobSeekerCreatedResponseEventCoordinator;
         this.objectMapper = objectMapper;
     }
 
     @Override
-    @KafkaListener(topics = "${topic.js.created.name}", groupId = "company-command-consumer")
+    @KafkaListener(topics = "${topic.js.created.start}", groupId = "js-command-consumer")
     public void listenJobSeekerCreatedEvent(JsonNode node) {
         log.info("Job seeker created event received: {}", node.toString());
         SagaStartedProcess<JobSeekerCreatedEvent> process = this.objectMapper.convertValue(node, new TypeReference<SagaStartedProcess<JobSeekerCreatedEvent>>() {
         });
-
+        this.jobSeekerCreatedResponseEventCoordinator.coordinate(process);
     }
 }

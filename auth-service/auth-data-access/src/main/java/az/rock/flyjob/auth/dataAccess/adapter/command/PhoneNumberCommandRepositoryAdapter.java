@@ -5,12 +5,14 @@ import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractPhoneNumberDataAc
 import az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractPhoneNumberCommandJPARepository;
 import az.rock.flyjob.auth.model.root.user.PhoneNumberRoot;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class PhoneNumberCommandRepositoryAdapter implements AbstractPhoneNumberCommandRepositoryAdapter {
     private final AbstractPhoneNumberCommandJPARepository phoneNumberCommandJPARepository;
     private final AbstractPhoneNumberDataAccessMapper<PhoneNumberEntity, PhoneNumberRoot> phoneNumberDataAccessMapper;
@@ -51,5 +53,14 @@ public class PhoneNumberCommandRepositoryAdapter implements AbstractPhoneNumberC
     public void inActive(PhoneNumberRoot root) {
         var entity = this.phoneNumberDataAccessMapper.toEntity(root);
         entity.ifPresent(this.phoneNumberCommandJPARepository::delete);
+    }
+
+    @Override
+    public void rollback(PhoneNumberRoot root) {
+        var optionalEntity = this.phoneNumberDataAccessMapper.toEntity(root);
+        optionalEntity.ifPresentOrElse(
+                this.phoneNumberCommandJPARepository::rollback,
+                () -> log.error("User cannot rollback because of entity is null")
+        );
     }
 }

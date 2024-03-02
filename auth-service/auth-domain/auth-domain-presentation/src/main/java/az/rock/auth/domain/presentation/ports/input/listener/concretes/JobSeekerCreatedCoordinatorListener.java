@@ -18,11 +18,11 @@ public class JobSeekerCreatedCoordinatorListener implements AbstractCoordinatorL
 
     @Override
     public void listenOnSuccess(AbstractSagaProcess<AbstractSuccessDomainEvent<? extends Payload>> message) {
-        this.jobSeekerCreateEventCoordinator.onSuccess(message);
+        this.jobSeekerCreateEventCoordinator.successProcess(message);
     }
 
     @Override
     public void listenOnFail(AbstractSagaProcess<AbstractFailDomainEvent<? extends Payload>> message) {
-        this.jobSeekerCreateEventCoordinator.onFail(message);
+        this.jobSeekerCreateEventCoordinator.failProcess(message);
     }
 }

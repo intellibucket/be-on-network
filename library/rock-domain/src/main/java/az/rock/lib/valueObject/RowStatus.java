@@ -6,7 +6,9 @@ import az.rock.lib.annotation.ValueObject;
 public enum RowStatus {
     ACTIVE,
     INACTIVE,
-    DELETED;
+    DELETED,
+    ROLLBACK;
+
     public Boolean isActive() {
         return this.equals(ACTIVE);
     }
@@ -17,6 +19,10 @@ public enum RowStatus {
 
     public Boolean isDeleted() {
         return this.equals(DELETED);
+    }
+
+    public Boolean isRollback() {
+        return this.equals(ROLLBACK);
     }
 
 

@@ -5,12 +5,14 @@ import az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.email.AbstractEmailCommandCustomJPARepository;
 import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class EmailCommandRepositoryAdapter implements AbstractEmailCommandRepositoryAdapter {
 
     private final AbstractEmailCommandCustomJPARepository emailCommandCustomJPARepository;
@@ -52,5 +54,14 @@ public class EmailCommandRepositoryAdapter implements AbstractEmailCommandReposi
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .forEach(this.emailCommandCustomJPARepository::update);
+    }
+
+    @Override
+    public void rollback(EmailRoot root) {
+        var optionalEntity = this.emailDataAccessMapper.toEntity(root);
+        optionalEntity.ifPresentOrElse(
+                this.emailCommandCustomJPARepository::rollback,
+                () -> log.error("User cannot rollback because of entity is null")
+        );
     }
 }

@@ -45,14 +45,17 @@ public class ProcessStepRepositoryAdapter implements AbstractProcessStepReposito
     }
 
     @Override
-    public Boolean isCompleted(TransactionID transactionID, List<String> step) {
-        var result = processStepRepository.isCompletedByTransactionIdInAllSteps(transactionID.getAbsoluteID(), step);
-        return result.stream().map(OutboxEntity::getStep).allMatch(step::contains);
+    public Boolean isCompleted(TransactionID transactionID, List<String> steps) {
+        return processStepRepository
+                .findAllByTransactionIdInAllSteps(transactionID.getAbsoluteID(), steps)
+                .stream()
+                .map(OutboxEntity::getStep)
+                .allMatch(steps::contains);
     }
 
     @Override
     public List<ProcessStepRoot> findByTransactionId(TransactionID transactionId) {
-        return processStepRepository.findByTransactionId(transactionId.getAbsoluteID())
+        return processStepRepository.findAllByTransactionId(transactionId.getAbsoluteID())
                 .stream()
                 .map(processStepDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
