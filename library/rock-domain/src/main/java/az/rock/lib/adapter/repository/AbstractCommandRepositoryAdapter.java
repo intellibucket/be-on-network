@@ -1,6 +1,7 @@
 package az.rock.lib.adapter.repository;
 
 import az.rock.lib.annotation.DomainOutputPort;
+import az.rock.lib.jexception.UnsupportedOperationJException;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,18 +11,22 @@ public interface AbstractCommandRepositoryAdapter<R> {
     Optional<R> create(R root);
 
     default void update(R root){
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationJException("Update");
     }
 
     default void updateAll(List<R> emailRoots){
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationJException("Update All");
     }
 
-    default void inActive(R root){
-        throw new UnsupportedOperationException();
+    default void inActive(R root) {
+        throw new UnsupportedOperationJException("Inactive");
     }
 
-    default void deleteAll(List<R> roots){
-        throw new UnsupportedOperationException();
+    default void deleteAll(List<R> roots) {
+        throw new UnsupportedOperationJException("Delete All");
+    }
+
+    default void rollback(R root) {
+        throw new UnsupportedOperationException("Rollback");
     }
 }
