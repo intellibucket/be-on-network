@@ -5,10 +5,10 @@ import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.event.create.CompanyFilledEvent;
 import com.intellibucket.lib.event.create.companyprofile.CompanyProfileCreatedEvent;
-import com.intellibucket.lib.payload.CompanyProfileCreatedPayload;
+import com.intellibucket.lib.payload.CompanyFilledPayload;
+import com.intellibucket.lib.payload.companyprofile.CompanyProfileCreatedPayload;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractsCompanyDomainService;
-import com.intellibucket.onnetwork.company.domain.core.command.service.concrets.CompanyDomainService;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyFilledCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCreateCompanyCommandHandler;
 import com.intellibucket.onnetwork.company.domain.presentation.command.mapper.abstracts.AbstractsCompanyDomainMapper;
@@ -18,7 +18,7 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.security.
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateCompanyCommandHandler implements AbstractCreateCompanyCommandHandler {
+public class CompanyCommandHandler implements AbstractCreateCompanyCommandHandler {
 
     private final AbstractSecurityContextHolder securityContextHolder;
 
@@ -32,11 +32,11 @@ public class CreateCompanyCommandHandler implements AbstractCreateCompanyCommand
 
     //TODO query cagirilmalidir
 
-    public CreateCompanyCommandHandler(AbstractSecurityContextHolder securityContextHolder,
-                                       AbstractsCompanyDomainMapper companyDomainMapper,
-                                       AbstractCompanyCommandRepositoryAdapter companyCommandRepositoryAdapter,
-                                       AbstractsCompanyDomainService companyDomainService,
-                                       AbstractCompanyQueryRepositoryAdapter companyQueryRepositoryAdapter) {
+    public CompanyCommandHandler(AbstractSecurityContextHolder securityContextHolder,
+                                 AbstractsCompanyDomainMapper companyDomainMapper,
+                                 AbstractCompanyCommandRepositoryAdapter companyCommandRepositoryAdapter,
+                                 AbstractsCompanyDomainService companyDomainService,
+                                 AbstractCompanyQueryRepositoryAdapter companyQueryRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;
         this.companyDomainMapper = companyDomainMapper;
         this.companyCommandRepositoryAdapter = companyCommandRepositoryAdapter;
@@ -54,20 +54,16 @@ public class CreateCompanyCommandHandler implements AbstractCreateCompanyCommand
 
     @Override
     public CompanyFilledEvent filled(CompanyFilledCommand companyFilledCommand)  {
-        var currentUserId = this.securityContextHolder.availableUser();
-        var optionalCompanyById = this.companyQueryRepositoryAdapter.getCompanyRootByUserId(currentUserId);//this...(currentUserId.getAbsoluteID(), targetUserId);
+        var currentCompany = this.securityContextHolder.currentCompany();
+        var optionalCompanyById = this.companyQueryRepositoryAdapter.getCompanyRoot(currentCompany);
 
-        if (optionalCompanyById.isPresent()) {
-            var companyRoot = optionalCompanyById.get();
+        return optionalCompanyById.map(companyRoot -> {
             companyRoot = companyDomainService.fillNameAndDescription(companyRoot,
-                                                       companyFilledCommand.getName(),
-                                                       companyFilledCommand.getDescription());
-
+                    companyFilledCommand.getName(),
+                    companyFilledCommand.getDescription());
             this.companyCommandRepositoryAdapter.update(companyRoot);
-//            return CompanyFilledEvent.of(this.fromRoot(networkRelationRoot));
-        }else {
-            throw new NoActiveRowException();
-        }
-        return null;
+            return CompanyFilledEvent.of(new CompanyFilledPayload());
+        }).orElseThrow(NoActiveRowException::new);
+
     }
 }

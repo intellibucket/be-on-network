@@ -14,11 +14,11 @@ import java.util.UUID;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/company/1.0/private/command/company/email", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CompanyCompanyEmailCommandPrivateController implements CompanyEmailCommandPrivateSpec {
+public class CompanyEmailCommandPrivateController implements CompanyEmailCommandPrivateSpec {
 
     private AbstractCompanyEmailCommandDomainPresentationService abstractCompanyEmailCommandDomainPresentationService;
 
-    public CompanyCompanyEmailCommandPrivateController(AbstractCompanyEmailCommandDomainPresentationService abstractCompanyEmailCommandDomainPresentationService) {
+    public CompanyEmailCommandPrivateController(AbstractCompanyEmailCommandDomainPresentationService abstractCompanyEmailCommandDomainPresentationService) {
         this.abstractCompanyEmailCommandDomainPresentationService = abstractCompanyEmailCommandDomainPresentationService;
     }
 
@@ -37,8 +37,9 @@ public class CompanyCompanyEmailCommandPrivateController implements CompanyEmail
 
     @DeleteMapping("/{uuid}/delete")
     @Override
-    public void deleteEmailCompany(@PathVariable(name = "uuid") UUID emailUUID) {
+    public ResponseEntity<JSuccessResponse> deleteEmailCompany(@PathVariable(name = "uuid") UUID emailUUID) {
         this.abstractCompanyEmailCommandDomainPresentationService.deleteEmailCompany(emailUUID);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
     @PatchMapping("/{uuid}/set-primary")
     @Override

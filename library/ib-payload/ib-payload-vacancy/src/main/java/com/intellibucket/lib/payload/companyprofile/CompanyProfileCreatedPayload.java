@@ -1,4 +1,4 @@
-package com.intellibucket.lib.payload;
+package com.intellibucket.lib.payload.companyprofile;
 
 import com.intellibucket.lib.payload.payload.Payload;
 
