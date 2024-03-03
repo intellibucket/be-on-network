@@ -5,6 +5,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
+import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.valueObject.MultipartFileWrapper;
@@ -18,9 +19,19 @@ import java.util.UUID;
 @Slf4j
 public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService{
 
+    private AbstractCourseCreateCommandHandler courseCreateCommandHandler;
+
+    public CourseCommandDomainPresentationService(AbstractCourseCreateCommandHandler courseCreateCommandHandler) {
+        this.courseCreateCommandHandler = courseCreateCommandHandler;
+    }
+
+    //    private final AbstractCourseUpdateCommandHandler userUpdateCommandHandler;
+//    private final AbstractJobSeekerCreateEventCoordinator jobSeekerCreateEventCoordinator;
+//    private final AbstractCompanyCreateEventCoordinator companyCreateEventCoordinator;
+
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-
+        courseCreateCommandHandler.createCourse();
     }
 
     @Override
