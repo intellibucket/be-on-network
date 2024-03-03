@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,10 +29,10 @@ public class CityEntity extends BaseEntity {
     private String region;
 
     @Column(name = "latitude")
-    private String latitude;
+    private BigDecimal latitude;
 
     @Column(name = "longitude")
-    private String longitude;
+    private BigDecimal longitude;
 
     @Column(name = "city_state_code")
     private String stateCode;
