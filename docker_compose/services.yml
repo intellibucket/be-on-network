@@ -35,7 +35,6 @@ services:
       - "postgres"
       - "-c"
       - "wal_level=logical"
-      - "postgres -c 'max_connections=1000'"
     volumes:
       - db:/data/postgres
     ports:
