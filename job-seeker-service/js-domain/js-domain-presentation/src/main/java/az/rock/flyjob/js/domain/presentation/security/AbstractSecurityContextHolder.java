@@ -9,7 +9,7 @@ public interface AbstractSecurityContextHolder {
 
     UserID availableUser();
 
-    ResumeID resumeID();
+    ResumeID availableResumeID();
 
     Language currentLanguage();
 
