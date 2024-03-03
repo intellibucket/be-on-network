@@ -1,4 +1,4 @@
-package az.rock.flyjob.js.dataaccess.repository.abstracts.query;
+package az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa;
 
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.OrganizationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
