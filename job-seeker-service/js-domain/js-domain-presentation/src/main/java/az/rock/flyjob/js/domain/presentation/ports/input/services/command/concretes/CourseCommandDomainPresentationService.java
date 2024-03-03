@@ -34,9 +34,6 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
     public void create(CreateRequest<CourseCommandModel> command) {
         var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
         var courseCreatedEvent = courseCreateCommandHandler.createCourse(courseCommandModel);
-
-
-
     }
 
     @Override
@@ -52,11 +49,11 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
 
     @Override
     public void reorder(ReorderCommandModel request) {
-
+        //TODO reorderi sorus
     }
 
     @Override
     public void uploadCertificate(UUID courseId, MultipartFileWrapper file) {
-
+        var courseFileUploadEvent = courseCreateCommandHandler.uploadCertificate(courseId,file);
     }
 }

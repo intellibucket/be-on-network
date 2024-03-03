@@ -48,7 +48,7 @@ public class CourseCommandPrivateController implements CourseCommandPrivateSpec 
     }
 
     @Override
-    @PutMapping("/reorder")
+    @PatchMapping("/reorder")
     public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
         this.courseCommandDomainPresentationService.reorder(request);
         return ResponseEntity.ok(new JSuccessResponse());
