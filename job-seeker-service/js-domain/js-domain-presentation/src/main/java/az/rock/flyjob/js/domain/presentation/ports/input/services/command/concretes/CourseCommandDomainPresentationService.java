@@ -1,7 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concretes;
 
 
-import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
