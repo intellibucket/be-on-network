@@ -54,6 +54,7 @@
         <module>image-processor-service</module>
         <module>email-service</module>
         <module>payment-service</module>
+        <module>notification-service</module>
     </modules>
 
     <properties>
