@@ -12,13 +12,14 @@ import az.rock.lib.valueObject.MultipartFileWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @InputPort
 @Slf4j
 public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService{
-
+    //TODO ADD SAGA
     private AbstractCourseCreateCommandHandler courseCreateCommandHandler;
 
     public CourseCommandDomainPresentationService(AbstractCourseCreateCommandHandler courseCreateCommandHandler) {
@@ -31,17 +32,22 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        courseCreateCommandHandler.createCourse();
+        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
+        var courseCreatedEvent = courseCreateCommandHandler.createCourse(courseCommandModel);
+
+
+
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-
+        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
+        var courseUpdatedEvent = courseCreateCommandHandler.updateCourse(courseCommandModel);
     }
 
     @Override
     public void delete(UUID courseId) {
-
+        var courseDeleteEvent = courseCreateCommandHandler.deleteCourse(courseId);
     }
 
     @Override
