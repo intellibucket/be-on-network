@@ -20,16 +20,16 @@ public class CityEntity extends BaseEntity {
     @ManyToOne
     private CountryEntity country;
 
-    @Column(name = "city_name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "city_region")
+    @Column(name = "region")
     private String region;
 
-    @Column(name = "city_latitude")
+    @Column(name = "latitude")
     private String latitude;
 
-    @Column(name = "city_longitude")
+    @Column(name = "longitude")
     private String longitude;
 
     @Column(name = "city_state_code")
