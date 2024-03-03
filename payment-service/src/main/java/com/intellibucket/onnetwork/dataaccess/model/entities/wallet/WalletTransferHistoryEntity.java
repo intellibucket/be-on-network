@@ -18,12 +18,14 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "wallet_transfer_histories", schema = "wallet", uniqueConstraints =
-        {
+@Table(name = "wallet_transfer_histories", schema = "wallet",
+        uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"transfer_status", "source_wallet_id"})
-        }, indexes = {
-        @Index(name = "idx_wallet_transfer_histories_by_transaction_id", columnList = "transaction_id"),
-})
+        },
+        indexes = {
+                @Index(name = "idx_wallet_transfer_histories_by_transaction_id", columnList = "transaction_id"),
+        }
+)
 @Entity(name = "WalletTransferHistoryEntity")
 public class WalletTransferHistoryEntity extends BaseEntity {
 
