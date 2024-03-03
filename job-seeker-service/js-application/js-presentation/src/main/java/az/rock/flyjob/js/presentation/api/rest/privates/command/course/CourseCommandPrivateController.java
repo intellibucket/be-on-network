@@ -22,8 +22,7 @@ public class CourseCommandPrivateController implements CourseCommandPrivateSpec 
     //TODO requestlerin url-lerin duzelt
     private final AbstractCourseCommandDomainPresentationService courseCommandDomainPresentationService;
 
-    public CourseCommandPrivateController(AbstractCourseCommandDomainPresentationService
-                                                  courseCommandDomainPresentationService) {
+    public CourseCommandPrivateController(AbstractCourseCommandDomainPresentationService courseCommandDomainPresentationService) {
         this.courseCommandDomainPresentationService = courseCommandDomainPresentationService;
     }
 
