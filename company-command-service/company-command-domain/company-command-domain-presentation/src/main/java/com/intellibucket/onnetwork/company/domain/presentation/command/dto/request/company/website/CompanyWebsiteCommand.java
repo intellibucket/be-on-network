@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyWebsiteUpdatedCommand {
+public class CompanyWebsiteCommand {
    private String website;
+
 }

@@ -4,7 +4,7 @@ import com.intellibucket.lib.event.create.website.CompanyWebsiteCreatedEvent;
 import com.intellibucket.lib.event.create.website.CompanyWebsiteDeletedEvent;
 import com.intellibucket.lib.event.create.website.CompanyWebsiteUpdatedEvent;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCreatedCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteUpdatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCompanyWebsiteCommandHandler;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.company.AbstractCompanyWebsiteCommandDomainPresentationService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +21,12 @@ public class CompanyWebsiteCommandDomainPresentationService implements AbstractC
     }
 
     @Override
-    public void createWebsiteByCompany(CompanyWebsiteCreatedCommand command) {
+    public void createWebsiteByCompany(CompanyWebsiteCommand command) {
         CompanyWebsiteCreatedEvent event = this.companyWebsiteHandler.createWebsiteByCompany(command);
     }
 
     @Override
-    public void changeWebsiteByCompany(CompanyWebsiteUpdatedCommand command) {
+    public void changeWebsiteByCompany(CompanyWebsiteCommand command) {
         CompanyWebsiteUpdatedEvent event = this.companyWebsiteHandler.changeWebsiteByCompany(command);
     }
 

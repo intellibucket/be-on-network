@@ -3,14 +3,13 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.handler.
 import com.intellibucket.lib.event.create.website.CompanyWebsiteCreatedEvent;
 import com.intellibucket.lib.event.create.website.CompanyWebsiteDeletedEvent;
 import com.intellibucket.lib.event.create.website.CompanyWebsiteUpdatedEvent;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCreatedCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteUpdatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCommand;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
 public interface AbstractCompanyWebsiteCommandHandler {
-    CompanyWebsiteCreatedEvent createWebsiteByCompany(CompanyWebsiteCreatedCommand command) ;
-    CompanyWebsiteUpdatedEvent changeWebsiteByCompany(CompanyWebsiteUpdatedCommand command) ;
+    CompanyWebsiteCreatedEvent createWebsiteByCompany(CompanyWebsiteCommand command) ;
+    CompanyWebsiteUpdatedEvent changeWebsiteByCompany(CompanyWebsiteCommand command) ;
     CompanyWebsiteDeletedEvent deleteWebsiteCompany() ;
 }

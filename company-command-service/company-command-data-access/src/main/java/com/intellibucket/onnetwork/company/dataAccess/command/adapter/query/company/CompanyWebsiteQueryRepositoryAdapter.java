@@ -1,9 +1,7 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.adapter.query.company;
 
 import az.rock.lib.domain.id.company.CompanyID;
-import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractCompanyProfileDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractWebsiteDataAccessMapper;
-import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.query.CompanyProfileQueryJPARepository;
 import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.query.CompanyWebsiteQueryJPARepository;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.WebsiteRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.query.AbstractCompanyWebsiteQueryRepositoryAdapter;
@@ -27,7 +25,7 @@ public class CompanyWebsiteQueryRepositoryAdapter implements AbstractCompanyWebs
     @Override
     public Optional<WebsiteRoot> findCompanyWebsiteByCompanyId(CompanyID companyID) {
         var optionalEntity = Optional.ofNullable(this.companyWebsiteQueryJPARepository
-                                     .findCompanyWebsiteEntityByCompanyUuid(companyID.getAbsoluteID()));
+                                     .findWebsiteEntityByCompanyUuid(companyID.getAbsoluteID()));
         if (optionalEntity.isPresent()) return this.companyWebsiteDataAccessMapper.toRoot(optionalEntity.get());
         else return Optional.empty();
     }

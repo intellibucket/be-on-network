@@ -68,4 +68,14 @@ public class CompanyWebsiteCommandRepositoryAdapter implements AbstractCompanyWe
                 );
     }
 
+    @Override
+    public void delete(WebsiteRoot root) {
+        this.companyWebsiteDataAccessMapper.toEntity(root)
+                .ifPresentOrElse(
+                        deletedEntity -> {
+                            this.companyWebsiteCommandJPARepository.delete(deletedEntity);
+                            log.info("Entity deleted successfully: {} ", deletedEntity.getUuid());
+                        },
+                        () -> log.warn("Entity is absent. Handle this case.{}",root.getRootID())
+                );    }
 }
