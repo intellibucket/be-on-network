@@ -2,7 +2,6 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.ports.in
 
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.valueObject.Switch;
-import org.springframework.transaction.annotation.Transactional;
 
 @InputPort
 public interface AbstractCompanyProfileCommandDomainPresentationService {

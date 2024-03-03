@@ -2,6 +2,7 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.ports.in
 
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.jexception.JDomainException;
+import com.intellibucket.lib.event.create.CompanyFilledEvent;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyFilledCommand;
@@ -33,7 +34,7 @@ public class CompanyCommandDomainPresentationService implements AbstractCompanyC
 
     @Override
     public void filled(CompanyFilledCommand companyFilledCommand){
-        this.createCompanyCommandHandler.filled(companyFilledCommand);
+        CompanyFilledEvent event = this.createCompanyCommandHandler.filled(companyFilledCommand);
     }
 
 }

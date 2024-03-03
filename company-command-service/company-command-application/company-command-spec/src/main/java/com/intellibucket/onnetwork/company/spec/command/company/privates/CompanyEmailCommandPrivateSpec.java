@@ -11,7 +11,7 @@ public interface CompanyEmailCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> createEmailByCompany(CompanyEmailCreatedCommand command) ;
     ResponseEntity<JSuccessResponse> changeEmailByCompany(CompanyEmailChangedCommand command) ;
-    void deleteEmailCompany(UUID emailUUID) ;
+    ResponseEntity<JSuccessResponse> deleteEmailCompany(UUID emailUUID) ;
     ResponseEntity<JSuccessResponse> setPrimaryEmail(UUID emailUUID) ;
 
 }

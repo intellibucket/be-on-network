@@ -9,6 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.ToStringExclude;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -37,15 +40,19 @@ public class CompanyEntity extends BaseEntity {
     private String description;
 
     @OneToOne(mappedBy = "company",cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)
+    @ToStringExclude
     private CompanyProfileEntity profile;
 
     @OneToMany(mappedBy = "company", cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)
+    @ToStringExclude
     private List<VerificationEntity> verifications;
 
     @OneToMany(mappedBy = "company", cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)
+    @ToStringExclude
     private List<EmailEntity> emails;
 
     @OneToOne(mappedBy = "company", cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)
+    @ToStringExclude
     private WebsiteEntity websites;
 
     private CompanyEntity(Builder builder) {

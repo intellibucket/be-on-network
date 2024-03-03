@@ -3,6 +3,7 @@ package com.intellibucket.onnetwork.company.dataAccess.command.mapper.concretes;
 import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.domain.id.company.WebsiteID;
 import az.rock.lib.util.GDateTime;
+import az.rock.lib.valueObject.Version;
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractWebsiteDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.WebsiteEntity;
@@ -20,7 +21,7 @@ public class WebsiteDataAccessMapper implements AbstractWebsiteDataAccessMapper 
             return Optional.of(
                     WebsiteRoot.Builder.builder()
                             .uuid(WebsiteID.of(entity.getUuid()))
-                            .version(entity.getVersion())
+                            .version(Version.of(entity.getVersion()))
                             .processStatus(entity.getProcessStatus())
                             .rowStatus(entity.getRowStatus())
                             .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))

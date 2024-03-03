@@ -3,7 +3,9 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.handler.
 import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.domain.id.company.CompanyID;
 import az.rock.lib.jexception.NoActiveRowException;
+import com.intellibucket.lib.event.create.email.CompanyEmailDeletedEvent;
 import com.intellibucket.lib.event.create.email.CompanyEmailUpdatedEvent;
+import com.intellibucket.lib.payload.email.CompanyEmailDeletedPayload;
 import com.intellibucket.lib.payload.email.CompanyEmailUpdatedPayload;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.EmailRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractsCompanyEmailDomainService;
@@ -55,7 +57,7 @@ public class UpdateCompanyEmailCommandHandler implements AbstractUpdateCompanyEm
     }
 
     @Override
-    public CompanyEmailUpdatedEvent deleteEmailCompany(UUID emailUUID) {
+    public CompanyEmailDeletedEvent deleteEmailCompany(UUID emailUUID) {
         var currentCompanyId = this.securityContextHolder.currentCompany();
         EmailRoot findCurrentCompanyEmail = findCurrentCompanyEmail(emailUUID);
         this.companyEmailDomainService.validateForDeleteEmail(currentCompanyId, findCurrentCompanyEmail);
@@ -63,7 +65,7 @@ public class UpdateCompanyEmailCommandHandler implements AbstractUpdateCompanyEm
         if (findCurrentCompanyEmail.getIsPrimary()) {
             changePrimaryStateFirstEmailByCreatedDate(currentCompanyId);
         }
-        return CompanyEmailUpdatedEvent.of(new CompanyEmailUpdatedPayload());
+        return CompanyEmailDeletedEvent.of(new CompanyEmailDeletedPayload());
     }
 
     @Override

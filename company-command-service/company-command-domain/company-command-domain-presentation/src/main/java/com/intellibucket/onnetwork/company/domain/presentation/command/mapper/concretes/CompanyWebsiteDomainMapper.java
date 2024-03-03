@@ -6,7 +6,8 @@ import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.WebsiteRoot;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyWebsiteCreatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCreatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteUpdatedCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.mapper.abstracts.AbstractCompanyWebsiteDomainMapper;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Component
 public class CompanyWebsiteDomainMapper implements AbstractCompanyWebsiteDomainMapper {
     @Override
-    public WebsiteRoot toNewCompanyEmailRoot(CompanyWebsiteCreatedCommand companyWebsiteChangedCommand, CompanyID companyID) {
+    public WebsiteRoot toNewCompanyWebsiteRoot(CompanyWebsiteCreatedCommand companyWebsiteChangedCommand, CompanyID companyID) {
        return WebsiteRoot.Builder.builder()
                 .uuid(WebsiteID.of(UUID.randomUUID()))
                 .version(Version.ONE)
@@ -28,7 +29,7 @@ public class CompanyWebsiteDomainMapper implements AbstractCompanyWebsiteDomainM
     }
 
     @Override
-    public WebsiteRoot mapToWebsiteRoot(WebsiteRoot oldWebsiteRoot, CompanyWebsiteCreatedCommand companyWebsiteChangedCommand) {
+    public WebsiteRoot mapToWebsiteRoot(WebsiteRoot oldWebsiteRoot, CompanyWebsiteUpdatedCommand companyWebsiteChangedCommand) {
         return WebsiteRoot.Builder.builder()
                 .uuid(oldWebsiteRoot.getRootID())
                 .version(Version.ONE)

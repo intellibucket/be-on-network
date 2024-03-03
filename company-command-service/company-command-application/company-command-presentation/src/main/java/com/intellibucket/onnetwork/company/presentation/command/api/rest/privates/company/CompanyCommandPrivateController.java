@@ -20,7 +20,7 @@ public class CompanyCommandPrivateController implements CompanyCommandPrivateSpe
     }
 
     @Override
-    @PostMapping("/filled")
+    @PatchMapping("/filled")
     public ResponseEntity<JSuccessResponse> fillCompanyInfo(@RequestBody CompanyFilledCommand command) {
         this.companyCommandDomainPresentationService.filled(command);
         return ResponseEntity.ok(new JSuccessResponse());

@@ -1,10 +1,16 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.handler.concretes.company;
 
 import az.rock.lib.jexception.NoActiveRowException;
+import com.intellibucket.lib.event.create.website.CompanyWebsiteCreatedEvent;
+import com.intellibucket.lib.event.create.website.CompanyWebsiteDeletedEvent;
+import com.intellibucket.lib.event.create.website.CompanyWebsiteUpdatedEvent;
+import com.intellibucket.lib.payload.website.CompanyWebsiteCreatedPayload;
+import com.intellibucket.lib.payload.website.CompanyWebsiteDeletedPayload;
+import com.intellibucket.lib.payload.website.CompanyWebsiteUpdatedPayload;
 import com.intellibucket.onnetwork.company.domain.core.command.exception.FoundMoreThanOneActiveRow;
-import com.intellibucket.onnetwork.company.domain.core.command.root.company.WebsiteRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractCompanyWebsiteDomainService;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyWebsiteCreatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCreatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteUpdatedCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.exception.DomainException;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCompanyWebsiteCommandHandler;
 import com.intellibucket.onnetwork.company.domain.presentation.command.mapper.abstracts.AbstractCompanyWebsiteDomainMapper;
@@ -12,8 +18,6 @@ import com.intellibucket.onnetwork.company.domain.presentation.command.ports.out
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.query.AbstractCompanyWebsiteQueryRepositoryAdapter;
 import com.intellibucket.onnetwork.company.domain.presentation.command.security.AbstractSecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CompanyWebsiteCommandHandler implements AbstractCompanyWebsiteCommandHandler {
@@ -41,31 +45,34 @@ public class CompanyWebsiteCommandHandler implements AbstractCompanyWebsiteComma
     }
 
     @Override
-    public void createWebsiteByCompany(CompanyWebsiteCreatedCommand command) {
+    public CompanyWebsiteCreatedEvent createWebsiteByCompany(CompanyWebsiteCreatedCommand command) {
         var currentCompany = this.securityContextHolder.currentCompany();
         var websiteRoot = this.companyWebsiteQueryRepositoryAdapter.findCompanyWebsiteByCompanyId(currentCompany);
         if(!websiteRoot.isPresent()) {
-            var newEmailRoot = this.companyWebsiteDomainMapper.toNewCompanyEmailRoot(command,currentCompany);
+            var newEmailRoot = this.companyWebsiteDomainMapper.toNewCompanyWebsiteRoot(command,currentCompany);
             var savedRoot = this.companyWebsiteCommandRepositoryAdapter.create(newEmailRoot);
             if (savedRoot.isEmpty()) throw new DomainException("F0000000001");
+            return CompanyWebsiteCreatedEvent.of(new CompanyWebsiteCreatedPayload());
         }else{
             throw new FoundMoreThanOneActiveRow("F0000000009");
         }
     }
 
     @Override
-    public void changeWebsiteByCompany(CompanyWebsiteCreatedCommand command) {
+    public CompanyWebsiteUpdatedEvent changeWebsiteByCompany(CompanyWebsiteUpdatedCommand command) {
         var currentCompany = this.securityContextHolder.currentCompany();
         var optionalWebsiteRoot = this.companyWebsiteQueryRepositoryAdapter.findCompanyWebsiteByCompanyId(currentCompany);
-        optionalWebsiteRoot.ifPresent(oldWebsiteRoot -> {
+        optionalWebsiteRoot.ifPresentOrElse(oldWebsiteRoot -> {
             this.companyWebsiteDomainService.validateIsSameWebsite(oldWebsiteRoot, command.getWebsite());
             var newWebsiteRoot = this.companyWebsiteDomainMapper.mapToWebsiteRoot(oldWebsiteRoot, command);
             this.companyWebsiteCommandRepositoryAdapter.update(newWebsiteRoot);
+        }, () -> {throw new NoActiveRowException();
         });
+        return CompanyWebsiteUpdatedEvent.of(new CompanyWebsiteUpdatedPayload());
     }
 
     @Override
-    public void deleteWebsiteCompany() {
+    public CompanyWebsiteDeletedEvent deleteWebsiteCompany() {
         var currentCompany = this.securityContextHolder.currentCompany();
         var optionalWebsiteRoot = this.companyWebsiteQueryRepositoryAdapter.findCompanyWebsiteByCompanyId(currentCompany);
         optionalWebsiteRoot.ifPresentOrElse(
@@ -74,5 +81,7 @@ public class CompanyWebsiteCommandHandler implements AbstractCompanyWebsiteComma
                     throw new NoActiveRowException();
                 }
         );
+        return CompanyWebsiteDeletedEvent.of(new CompanyWebsiteDeletedPayload());
+
     }
 }

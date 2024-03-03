@@ -1,4 +1,4 @@
-package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts;
+package com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.company;
 
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;

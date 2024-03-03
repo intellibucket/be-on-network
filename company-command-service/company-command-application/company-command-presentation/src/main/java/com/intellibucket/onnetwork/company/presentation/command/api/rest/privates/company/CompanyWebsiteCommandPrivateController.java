@@ -1,14 +1,13 @@
 package com.intellibucket.onnetwork.company.presentation.command.api.rest.privates.company;
 
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
-import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyWebsiteCreatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCreatedCommand;
+import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteUpdatedCommand;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.company.AbstractCompanyWebsiteCommandDomainPresentationService;
 import com.intellibucket.onnetwork.company.spec.command.company.privates.CompanyWebsiteCommandPrivateSpec;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -32,7 +31,7 @@ public class CompanyWebsiteCommandPrivateController implements CompanyWebsiteCom
 
     @PatchMapping("/update")
     @Override
-    public ResponseEntity<JSuccessResponse> changeWebsiteByCompany(@RequestBody CompanyWebsiteCreatedCommand command) {
+    public ResponseEntity<JSuccessResponse> changeWebsiteByCompany(@RequestBody CompanyWebsiteUpdatedCommand command) {
         this.companyWebsiteCommandDomainPresentationService.changeWebsiteByCompany(command);
         return ResponseEntity.ok(new JSuccessResponse());
     }

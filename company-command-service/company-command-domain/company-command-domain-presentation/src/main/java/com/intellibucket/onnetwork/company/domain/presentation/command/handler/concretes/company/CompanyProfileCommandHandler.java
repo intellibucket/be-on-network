@@ -1,7 +1,10 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.handler.concretes.company;
 
 import az.rock.lib.valueObject.Switch;
+import com.intellibucket.lib.event.create.companyprofile.CompanyProfileDeletedEvent;
 import com.intellibucket.lib.event.create.companyprofile.CompanyProfileUpdatedEvent;
+import com.intellibucket.lib.payload.companyprofile.CompanyProfileDeletedPayload;
+import com.intellibucket.lib.payload.companyprofile.CompanyProfileUpdatedPayload;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyProfileRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractCompanyProfileDomainService;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.AbstractCompanyProfileCommandHandler;
@@ -32,17 +35,19 @@ public class CompanyProfileCommandHandler implements AbstractCompanyProfileComma
     }
 
     @Override
-    public void changeHiringStatus(Switch switcher) {
+    public CompanyProfileUpdatedEvent changeHiringStatus(Switch switcher) {
         var companyProfile = fetchCompanyProfile();
         CompanyProfileRoot profileRoot =  this.companyProfileDomainService
                                                     .validateAndChangeHiringStatus(companyProfile,switcher);
         this.companyProfileCommandRepositoryAdapter.update(profileRoot);
+        return CompanyProfileUpdatedEvent.of(new CompanyProfileUpdatedPayload());
     }
 
     @Override
-    public void deleteCompanyProfile() {
+    public CompanyProfileDeletedEvent deleteCompanyProfile() {
         var companyProfile = fetchCompanyProfile();
         companyProfile.ifPresent(companyProfileRoot -> companyProfileCommandRepositoryAdapter.inActive(companyProfileRoot));
+        return CompanyProfileDeletedEvent.of(new CompanyProfileDeletedPayload());
     }
 
     private Optional<CompanyProfileRoot> fetchCompanyProfile(){
@@ -50,4 +55,5 @@ public class CompanyProfileCommandHandler implements AbstractCompanyProfileComma
         var companyProfile = this.companyProfileQueryRepositoryAdapter.findCompanyProfileByCompanyId(companyUUID);
         return companyProfile;
     }
+
 }
