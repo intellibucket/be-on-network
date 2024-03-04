@@ -26,14 +26,14 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
         this.courseCreateCommandHandler = courseCreateCommandHandler;
     }
 
-    //    private final AbstractCourseUpdateCommandHandler userUpdateCommandHandler;
+//      private final AbstractCourseUpdateCommandHandler userUpdateCommandHandler;
 //    private final AbstractJobSeekerCreateEventCoordinator jobSeekerCreateEventCoordinator;
 //    private final AbstractCompanyCreateEventCoordinator companyCreateEventCoordinator;
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
         var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
-        var courseCreatedEvent = courseCreateCommandHandler.createCourse(courseCommandModel);
+        var courseCreatedEvent = courseCreateCommandHandler.mergeCourse(courseCommandModel);
 
 
 
@@ -42,7 +42,7 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
         var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
-        var courseUpdatedEvent = courseCreateCommandHandler.updateCourse(courseCommandModel);
+        var courseUpdatedEvent = courseCreateCommandHandler.mergeCourse(courseCommandModel);
     }
 
     @Override
