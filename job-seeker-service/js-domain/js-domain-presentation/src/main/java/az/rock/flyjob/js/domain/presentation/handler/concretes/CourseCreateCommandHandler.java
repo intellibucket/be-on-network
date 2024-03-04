@@ -21,7 +21,7 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
 //    private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
     @Override
     public CourseCreatedEvent createCourse(CourseCommandModel command) {
-
+        return null;
     }
 
     @Override
