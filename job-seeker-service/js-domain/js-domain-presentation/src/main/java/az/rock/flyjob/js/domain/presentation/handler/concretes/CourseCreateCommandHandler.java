@@ -43,6 +43,7 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
 
     @Override
     public CourseDeleteEvent deleteCourse(UUID id) {
+
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.delete(id);
         return CourseDeleteEvent.of(
                 CourseDeletedPayload.of(
