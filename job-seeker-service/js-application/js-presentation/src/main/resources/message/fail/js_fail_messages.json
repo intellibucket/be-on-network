@@ -1,0 +1,11 @@
+[
+  {
+    "code": "F0000000001",
+    "az": " Bir sistem xətası çıxdı. Ən yaxın zamanda yenidən cəhd edin.",
+    "en": " An error occurred. Please try again later.",
+    "ru": " Произошла ошибка. Пожалуйста, попробуйте позже.",
+    "tr": " Bir sorun oluştu. Lütfen daha sonra tekrar deneyin.",
+    "hasRegex": false,
+    "regex": ""
+  }
+]

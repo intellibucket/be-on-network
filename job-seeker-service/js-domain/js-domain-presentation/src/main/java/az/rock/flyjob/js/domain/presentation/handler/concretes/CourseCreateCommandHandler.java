@@ -1,9 +1,13 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
+import az.rock.flyjob.js.domain.core.service.abstracts.AbstractCourseDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
+import az.rock.flyjob.js.domain.presentation.exception.CourseDomainException;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
+import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
+import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractResumeQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
@@ -18,13 +22,16 @@ import java.util.UUID;
 @Component
 public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHandler {
 
-
+    private final AbstractCourseDomainService courseDomainService;
+    private final AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter;
     private final AbstractCourseDomainMapper courseDomainMapper;
     private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
 
     private final AbstractSecurityContextHolder securityContextHolder;
 
-    public CourseCreateCommandHandler(AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractSecurityContextHolder securityContextHolder) {
+    public CourseCreateCommandHandler(AbstractCourseDomainService courseDomainService, AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter, AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractSecurityContextHolder securityContextHolder) {
+        this.courseDomainService = courseDomainService;
+        this.courseQueryRepositoryAdapter = courseQueryRepositoryAdapter;
         this.courseDomainMapper = courseDomainMapper;
         this.courseCommandRepositoryAdapter = courseCommandRepositoryAdapter;
         this.securityContextHolder = securityContextHolder;
@@ -34,11 +41,11 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
     public CourseMergeEvent mergeCourse(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command,securityContextHolder.availableResumeID());
         //TODO CHECK COURSE FOR SAME NAME IN SAME RESUME
-//        validateCourse();
+        this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID());
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.merge(newCourseRoot);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(
-                        optionalCourseRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()
+                        optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()
                 )
         );
     }
@@ -49,7 +56,7 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.delete(id);
         return CourseDeleteEvent.of(
                 CourseDeletedPayload.of(
-                        optionalCourseRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()
+                        optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()
                 )
         );
     }
