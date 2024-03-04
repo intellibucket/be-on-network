@@ -19,33 +19,33 @@ import java.util.UUID;
 @InputPort
 @Slf4j
 public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService{
-    //TODO ADD SAGA
-    private AbstractCourseCreateCommandHandler courseCreateCommandHandler;
+    //TODO ADD SAGA,XUSUSI ERROR
+    private AbstractCourseCreateCommandHandler courseMergeCommandHandler;
 
-    public CourseCommandDomainPresentationService(AbstractCourseCreateCommandHandler courseCreateCommandHandler) {
-        this.courseCreateCommandHandler = courseCreateCommandHandler;
+    public CourseCommandDomainPresentationService(AbstractCourseCreateCommandHandler courseMergeCommandHandler) {
+        this.courseMergeCommandHandler = courseMergeCommandHandler;
     }
 
-//      private final AbstractCourseUpdateCommandHandler userUpdateCommandHandler;
+//    private final AbstractCourseUpdateCommandHandler userUpdateCommandHandler;
 //    private final AbstractJobSeekerCreateEventCoordinator jobSeekerCreateEventCoordinator;
 //    private final AbstractCompanyCreateEventCoordinator companyCreateEventCoordinator;
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
-        var courseCreatedEvent = courseCreateCommandHandler.mergeCourse(courseCommandModel);
+        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
+        var courseCreatedEvent = courseMergeCommandHandler.mergeCourse(courseCommandModel);
 
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
-        var courseUpdatedEvent = courseCreateCommandHandler.mergeCourse(courseCommandModel);
+        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
+        var courseUpdatedEvent = courseMergeCommandHandler.mergeCourse(courseCommandModel);
     }
 
     @Override
     public void delete(UUID courseId) {
-        var courseDeleteEvent = courseCreateCommandHandler.deleteCourse(courseId);
+        var courseDeleteEvent = courseMergeCommandHandler.deleteCourse(courseId);
     }
 
     @Override

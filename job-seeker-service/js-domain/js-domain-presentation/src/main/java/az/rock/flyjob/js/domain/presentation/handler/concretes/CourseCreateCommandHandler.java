@@ -19,7 +19,7 @@ import java.util.UUID;
 public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHandler {
 
 
-    private final AbstractCourseDomainMapper courseDomainMapper;  //todo
+    private final AbstractCourseDomainMapper courseDomainMapper;
     private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
 
     private final AbstractSecurityContextHolder securityContextHolder;
@@ -33,7 +33,9 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
     @Override
     public CourseMergeEvent mergeCourse(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command,securityContextHolder.availableResumeID());
-        var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
+        //TODO CHECK COURSE FOR SAME NAME IN SAME RESUME
+//        validateCourse();
+        var optionalCourseRoot = this.courseCommandRepositoryAdapter.merge(newCourseRoot);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(
                         optionalCourseRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()

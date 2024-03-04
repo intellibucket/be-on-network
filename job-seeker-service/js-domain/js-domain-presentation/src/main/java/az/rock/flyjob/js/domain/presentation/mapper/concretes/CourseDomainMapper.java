@@ -19,25 +19,19 @@ public class CourseDomainMapper implements AbstractCourseDomainMapper {
     @Override
     public CourseRoot toRoot(CourseCommandModel courseCommandModel, ResumeID resumeId) {
         var courseId = CourseID.of(UUID.randomUUID());
-
-      // TODO: 04.03.2024
-
         return CourseRoot.Builder.builder()
                 .courseTitle(courseCommandModel.getCourseTitle())
                 .description(courseCommandModel.getDescription())
                 .id(courseId)
                 .country(courseCommandModel.getCountry())
                 .city(courseCommandModel.getCity())
-//                .createdDate()
                 .startDate(courseCommandModel.getStartDate())
                 .endDate(courseCommandModel.getEndDate())
-//                .certificateFilePath()
                 .isOnline(true)
                 .rowStatus(RowStatus.ACTIVE)
                 .version(Version.ONE)
                 .verificationAddress(courseCommandModel.getVerificationAddress())
                 .accessModifier(AccessModifier.PUBLIC)
-//                .lastModifiedDate(COM)
                 .processStatus(ProcessStatus.COMPLETED)
                 .resume(resumeId)
                 .institution(courseCommandModel.getInstitution())
