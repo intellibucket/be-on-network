@@ -8,6 +8,7 @@ import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.EducationDeletedEvent;
 import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
 
+
 import java.util.UUID;
 
 public interface AbstractEducationCommandHandler {
