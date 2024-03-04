@@ -5,4 +5,6 @@
 
     <include file="db/env/schema-init.xml"/>
     <include file="db/changelog/13-01-changelog.xml"/>
+    <include file="db/static/countries.xml"/>
+    <include file="db/static/languages.xml"/>
 </databaseChangeLog>

@@ -10,11 +10,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Profile({"local", "develop"})
+@Profile({"local", "develop", "pre-develop"})
 @Component
-public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
+public class TestSecurityContextHolder implements AbstractSecurityContextHolder {
     @Value("${test.values.user.uuid}")
     private String testUserUUID;
+
+    @Value("${test.values.resume.uuid}")
+    private String testResumeUUID;
 
     @Value("${test.values.user.language:EN}")
     private String testLanguage;
@@ -27,6 +30,7 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
 
     @Value("${test.values.user.isAnonymous:false}")
     private Boolean isAnonymous ;
+
     @Value("${test.values.user.isAuthenticated:true}")
     private Boolean isAuthenticated ;
 
@@ -37,9 +41,8 @@ public class TestSecurityContextHolder implements AbstractSecurityContextHolder{
     }
 
     @Override
-    public ResumeID resumeID() {
-        // FIXME: 08.08.23
-        return null;
+    public ResumeID availableResumeID() {
+        return ResumeID.of(UUID.fromString(this.testResumeUUID));
     }
 
     @Override

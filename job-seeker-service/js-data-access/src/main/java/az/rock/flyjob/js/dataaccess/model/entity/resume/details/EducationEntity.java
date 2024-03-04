@@ -30,7 +30,7 @@ public class EducationEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
 
-    @Column(name = "order_number",nullable = false)
+    @Column(name = "order_number", nullable = false)
     private Integer orderNumber;
 
     @Enumerated(EnumType.STRING)

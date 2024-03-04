@@ -1,8 +1,6 @@
 package az.rock.flyjob.js.domain.core.root.detail;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.domain.id.js.AwardID;
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
@@ -12,13 +10,16 @@ import az.rock.lib.valueObject.Version;
 import az.rock.lib.valueObject.js.EducationDegree;
 import az.rock.lib.valueObject.js.EducationState;
 
-import java.sql.Timestamp;
 import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 public class EducationRoot extends AggregateRoot<EducationID> {
-    private ResumeID resume;
+    private final ResumeID resumeID;
     private AccessModifier accessModifier;
     private Integer orderNumber;
     private EducationDegree degree;
@@ -32,9 +33,9 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private String description;
 
     private EducationRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
-        this.resume = builder.resume;
+        this.resumeID = builder.resume;
         this.orderNumber = builder.orderNumber;
         this.degree = builder.degree;
         this.state = builder.state;
@@ -47,8 +48,12 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         this.description = builder.description;
     }
 
-    public ResumeID getResume() {
-        return resume;
+    public static Map<EducationID, EducationRoot> groupByPhoneNumberID(List<EducationRoot> educationRoots) {
+        return educationRoots.stream().collect(Collectors.toMap(EducationRoot::getRootID, Function.identity()));
+    }
+
+    public ResumeID getResumeID() {
+        return resumeID;
     }
 
     public AccessModifier getAccessModifier() {
@@ -123,7 +128,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return new Builder();
         }
 
-        public Builder id(EducationID val) {
+        public Builder uuid(EducationID val) {
             id = val;
             return this;
         }
@@ -158,7 +163,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return this;
         }
 
-        public Builder accessModifier(AccessModifier accessModifier){
+        public Builder accessModifier(AccessModifier accessModifier) {
             this.accessModifier = accessModifier;
             return this;
         }

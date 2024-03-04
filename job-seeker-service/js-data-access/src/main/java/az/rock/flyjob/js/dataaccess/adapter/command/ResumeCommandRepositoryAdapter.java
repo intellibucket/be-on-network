@@ -2,7 +2,6 @@ package az.rock.flyjob.js.dataaccess.adapter.command;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractResumeDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractResumeCommandJPARepository;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.AbstractResumeCustomCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.ResumeRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractResumeCommandRepositoryAdapter;
 import org.springframework.stereotype.Component;
