@@ -6,6 +6,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Component
 public class ContactCustomCommandJPARepository implements AbstractContactCustomCommandJPARepository {
     @PersistenceContext
@@ -22,8 +25,21 @@ public class ContactCustomCommandJPARepository implements AbstractContactCustomC
         return entity;
     }
 
+
+
+
     @Override
     public <S extends ContactEntity> S merge(S entity) {
         return this.entityManager.merge(entity);
+    }
+
+    @Override
+    public Optional<ContactEntity> findById(UUID contactId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void delete(ContactEntity contactEntity) {
+
     }
 }

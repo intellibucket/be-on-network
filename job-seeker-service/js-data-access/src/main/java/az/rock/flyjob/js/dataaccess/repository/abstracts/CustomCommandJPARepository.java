@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.dataaccess.repository.abstracts;
 
+import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -10,6 +11,8 @@ import org.hibernate.internal.AbstractSharedSessionContract;
 import org.springframework.data.repository.NoRepositoryBean;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 @NoRepositoryBean
@@ -141,4 +144,9 @@ public interface CustomCommandJPARepository<T> {
             session.setJdbcBatchSize(originalSessionBatchSize);
         }
     }
+
+    Optional<ContactEntity> findById(UUID contactId);
+
+    void delete(ContactEntity contactEntity);
+
 }
