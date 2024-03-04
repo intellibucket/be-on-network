@@ -28,26 +28,28 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
     @Override
     @PostMapping("/create")
     public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<ContactCommandModel> request) {
-        return contactCommandPrivateService.create(request);
+        this.abstractContactCommmandDomainPresentationService.create(request);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/update")
     public ResponseEntity<JSuccessResponse> update(UpdateRequest<ContactCommandModel> request) {
-        return contactCommandPrivateService.update(request);
+        this.abstractContactCommmandDomainPresentationService.update(request);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<JSuccessResponse> delete(@PathVariable("id") UUID contactId) {
-
-        return contactCommandPrivateService.delete(contactId);
+        this.abstractContactCommmandDomainPresentationService.delete(contactId);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PatchMapping("/reorder")
     public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
-
-        return contactCommandPrivateService.reorder(request);
+        this.abstractContactCommmandDomainPresentationService.reorder(request);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 }

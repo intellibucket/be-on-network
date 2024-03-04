@@ -18,6 +18,4 @@ public interface AbstractContactCommandHandler {
 
     ContactDeleteEvent deleteContact(UID uid);
 
-
-
 }

@@ -1,10 +1,18 @@
 package az.rock.flyjob.js.domain.presentation.ports.output.repository.command;
 
 import az.rock.flyjob.js.domain.core.root.ResumeRoot;
+import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
+import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
+import org.springframework.stereotype.Component;
 
+import java.rmi.server.UID;
 import java.util.Optional;
-
+import java.util.UUID;
+@Component
 public interface AbstractContactCommandRepositoryAdapter {
-    Optional<ResumeRoot> create(ResumeRoot root);
+    Optional<ContactRoot> create(ContactRoot root);
+    Optional<ContactRoot> update(ContactRoot root);
+    Optional<ContactRoot> delete(UUID id);
 
+    Optional<ContactRoot> delete(UID id);
 }

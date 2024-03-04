@@ -5,11 +5,10 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandMode
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractContactCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractContactCommmandDomainPresentationService;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.rmi.server.UID;
+import java.util.Optional;
 
 @Component
 public class ContactCommandDomainPresentationService implements AbstractContactCommmandDomainPresentationService {
@@ -23,17 +22,19 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
 
     @Override
     public void create(CreateRequest<ContactCommandModel> request) {
-
+        var contactCommandModel = Optional.of(request.getModel()).orElseThrow(()->new RuntimeException(""));
+        var courseCreatedEvent = abstractContactCommandHandler.createContact(contactCommandModel);
     }
 
     @Override
     public void update(UpdateRequest<ContactCommandModel> request) {
-
+        var contactCommandModel = Optional.of(request.getModel()).orElseThrow(()->new RuntimeException(""));
+        var courseUpdatedEvent = abstractContactCommandHandler.updateContact(contactCommandModel);
     }
 
     @Override
-    public void delete(UUID contactId) {
-
+    public void delete(UID contactId) {
+        var contactDeleteEvent = abstractContactCommandHandler.deleteContact(contactId);
     }
 
     @Override
