@@ -7,10 +7,10 @@ import az.rock.lib.domain.id.auth.UserID;
 import com.intellibucket.lib.payload.payload.CourseFilePayload;
 import org.springframework.stereotype.Component;
 
-
+@Component
 public interface AbstractCourseDomainMapper {
 
-    CourseRoot toRoot(CourseCommandModel command);
+    CourseRoot toRoot(CourseCommandModel courseCommandModel);
 
     CourseRoot filePayload(UserID userID, CourseFilePayload courseFilePayload);
 }
