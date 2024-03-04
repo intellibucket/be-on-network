@@ -14,11 +14,7 @@
         <option value="$PROJECT_DIR$/company-service/pom.xml" />
         <option value="$PROJECT_DIR$/company-command-service/company-command-messaging/pom.xml" />
         <option value="$PROJECT_DIR$/company-query-service/pom.xml" />
-        <option value="$PROJECT_DIR$/job-seeker-service/js-data-access/pom.xml" />
-        <option value="$PROJECT_DIR$/job-seeker-service/js-application/pom.xml" />
-        <option value="$PROJECT_DIR$/job-seeker-service/js-application/js-presentation/pom.xml" />
-        <option value="$PROJECT_DIR$/job-seeker-service/js-container/pom.xml" />
-        <option value="$PROJECT_DIR$/job-seeker-service/js-messaging/pom.xml" />
+        <option value="$PROJECT_DIR$/notification-service/pom.xml" />
       </list>
     </option>
   </component>

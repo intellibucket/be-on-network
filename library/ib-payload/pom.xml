@@ -18,6 +18,7 @@
         <module>ib-payload-js</module>
         <module>ib-payload-core</module>
         <module>ib-payload-vacancy</module>
+        <module>ib-payload-payment</module>
     </modules>
 
     <properties>

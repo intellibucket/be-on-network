@@ -1,10 +1,9 @@
 package az.rock.lib.domain;
 
-import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
@@ -31,19 +30,28 @@ public class BaseEntity {
     private RowStatus rowStatus;
 
     @CreationTimestamp
-    @Column(name = "created_date", updatable = false,nullable = false)
+    @Column(name = "created_date", updatable = false, nullable = false)
     private Timestamp createdDate;
 
     @Column(name = "modification_date")
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
 
-    public void inActive(){
+
+    public void active() {
+        this.rowStatus = RowStatus.ACTIVE;
+    }
+
+    public void inActive() {
         this.rowStatus = RowStatus.INACTIVE;
     }
 
-    public void delete(){
+    public void delete() {
         this.rowStatus = RowStatus.DELETED;
+    }
+
+    public void rollback() {
+        this.rowStatus = RowStatus.ROLLBACK;
     }
 
     private BaseEntity(Builder builder) {

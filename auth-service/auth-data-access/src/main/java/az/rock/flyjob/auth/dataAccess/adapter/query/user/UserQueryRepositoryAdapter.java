@@ -1,11 +1,11 @@
 package az.rock.flyjob.auth.dataAccess.adapter.query.user;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserQueryRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractUserDataAccessMapper;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.UserQueryJPARepository;
 import az.rock.flyjob.auth.model.root.user.UserRoot;
-import az.rock.lib.domain.id.auth.*;
+import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.UserIdTypePair;
 import org.springframework.stereotype.Component;
 
@@ -24,13 +24,17 @@ public class UserQueryRepositoryAdapter implements AbstractUserQueryRepositoryAd
 
     @Override
     public Optional<UserRoot> findById(UserID currentUser) {
-        var optionalRoot =
-                this.userQueryJPARepository.findById(currentUser.getAbsoluteID());
+        var optionalRoot = this.userQueryJPARepository
+                .findById(currentUser.getAbsoluteID());
         if (optionalRoot.isPresent()) {
             var userEntity = optionalRoot.get();
             return this.abstractUserDataAccessMapper.toRoot(userEntity);
-        }
-        return Optional.empty();
+        } else return Optional.empty();
+    }
+
+    @Override
+    public Optional<UserRoot> fetchById(UserID currentUser) {
+        return AbstractUserQueryRepositoryAdapter.super.fetchById(currentUser);
     }
 
     @Override
@@ -40,7 +44,7 @@ public class UserQueryRepositoryAdapter implements AbstractUserQueryRepositoryAd
 
     @Override
     public UserIdTypePair findUserTypeById(UserID userID) {
-        var userType =  this.userQueryJPARepository.findUserTypeById(userID.getAbsoluteID());
-        return new UserIdTypePair(userID,userType);
+        var userType = this.userQueryJPARepository.findUserTypeById(userID.getAbsoluteID());
+        return new UserIdTypePair(userID, userType);
     }
 }
