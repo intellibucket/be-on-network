@@ -1,7 +1,6 @@
 package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.lib.domain.id.js.ResumeID;
@@ -9,7 +8,6 @@ import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
-import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Component
