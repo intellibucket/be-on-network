@@ -17,7 +17,7 @@ import java.util.UUID;
 public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHandler {
 
 
-    private final AbstractCourseDomainMapper courseDomainMapper;
+    private final AbstractCourseDomainMapper courseDomainMapper;  //todo
     private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
 
     public CourseCreateCommandHandler(AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter) {
