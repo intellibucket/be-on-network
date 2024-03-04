@@ -35,8 +35,6 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
         var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));//TODO SPECIAL ERROR
         var courseCreatedEvent = courseCreateCommandHandler.mergeCourse(courseCommandModel);
 
-
-
     }
 
     @Override
