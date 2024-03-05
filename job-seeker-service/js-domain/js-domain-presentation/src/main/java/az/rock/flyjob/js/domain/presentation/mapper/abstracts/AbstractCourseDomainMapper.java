@@ -8,7 +8,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import com.intellibucket.lib.payload.payload.CourseFilePayload;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public interface AbstractCourseDomainMapper {
 
     CourseRoot toRoot(CourseCommandModel courseCommandModel, ResumeID resumeID);

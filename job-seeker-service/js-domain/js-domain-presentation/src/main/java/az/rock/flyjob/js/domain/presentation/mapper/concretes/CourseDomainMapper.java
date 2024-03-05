@@ -11,9 +11,11 @@ import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 import com.intellibucket.lib.payload.payload.CourseFilePayload;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 public class CourseDomainMapper implements AbstractCourseDomainMapper {
 
     @Override

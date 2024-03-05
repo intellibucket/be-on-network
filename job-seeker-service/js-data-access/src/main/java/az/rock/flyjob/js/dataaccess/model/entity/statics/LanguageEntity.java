@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+//TODO ISLESIN DIE COMMENTE ALINIB
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,11 +17,11 @@ import lombok.Setter;
 @Table(name = "languages", schema = "replica")
 @Entity(name = "LanguageEntity")
 public class LanguageEntity extends BaseEntity {
-    @ManyToOne
-    private CountryEntity country;
+//    @ManyToOne
+//    private CountryEntity country;
 
     private String name;
-    private String iso639_1;
-    private String iso639_2_T;
-    private String nativeName;
+//    private String iso639_1;
+//    private String iso639_2_T;
+//    private String nativeName;
 }
