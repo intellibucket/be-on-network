@@ -1,5 +1,5 @@
 package az.rock.lib.valueObject.payment;
 
-public enum CryptoWalletType {
+public enum Crypto {
     BITSTEEL;
 }
