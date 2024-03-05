@@ -111,9 +111,10 @@
                 <executions>
                     <execution>
                         <configuration>
+                            <failOnError>true</failOnError>
                             <enableLazyInitialization>true</enableLazyInitialization>
                             <enableDirtyTracking>true</enableDirtyTracking>
-                            <enableAssociationManagement>true</enableAssociationManagement>
+                            <enableAssociationManagement>false</enableAssociationManagement>
                             <enableExtendedEnhancement>false</enableExtendedEnhancement>
                         </configuration>
                         <goals>

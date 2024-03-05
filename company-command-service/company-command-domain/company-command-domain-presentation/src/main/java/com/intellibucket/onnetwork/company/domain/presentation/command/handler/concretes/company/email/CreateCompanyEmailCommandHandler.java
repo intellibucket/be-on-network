@@ -5,13 +5,12 @@ import com.intellibucket.lib.payload.email.CompanyEmailCreatedPayload;
 import com.intellibucket.onnetwork.company.domain.core.command.exception.email.EmailAlreadyUsedException;
 import com.intellibucket.onnetwork.company.domain.core.command.service.abstracts.AbstractsCompanyEmailDomainService;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailCreatedCommand;
-import com.intellibucket.onnetwork.company.domain.presentation.command.exception.EmailDomainException;
+import com.intellibucket.onnetwork.company.domain.presentation.command.exception.DomainException;
 import com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.email.AbstractCreateCompanyEmailHandler;
 import com.intellibucket.onnetwork.company.domain.presentation.command.mapper.abstracts.AbstractCompanyEmailDomainMapper;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyEmailCommandRepositoryAdapter;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.query.AbstractCompanyEmailQueryRepositoryAdapter;
 import com.intellibucket.onnetwork.company.domain.presentation.command.security.AbstractSecurityContextHolder;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -43,7 +42,7 @@ public class CreateCompanyEmailCommandHandler implements AbstractCreateCompanyEm
         var alreadyUsed = this.companyEmailQueryRepositoryAdapter.isExistEmailAsActive(newEmailRoot.getEmail());
         if (alreadyUsed) throw new EmailAlreadyUsedException();
         var savedRoot = this.companyEmailCommandRepositoryAdapter.create(newEmailRoot);
-        if (savedRoot.isEmpty()) throw new EmailDomainException("F0000000001");
+        if (savedRoot.isEmpty()) throw new DomainException("F0000000001");
         return CompanyEmailCreatedEvent.of(new CompanyEmailCreatedPayload());
     }
 }

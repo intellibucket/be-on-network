@@ -1,6 +1,7 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.adapter.query.company;
 
 import az.rock.lib.domain.id.auth.UserID;
+import az.rock.lib.domain.id.company.CompanyID;
 import com.intellibucket.onnetwork.company.dataAccess.command.mapper.abstracts.AbstractCompanyDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
 import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.query.CompanyQueryJPARepository;
@@ -25,10 +26,10 @@ public class CompanyQueryRepositoryAdapter implements AbstractCompanyQueryReposi
 
 
     @Override
-    public Optional<CompanyRoot> getCompanyRootByUserId(UserID currentUserId) {
+    public Optional<CompanyRoot> getCompanyRoot(CompanyID companyID) {
         var companyEntityOptional = Optional.ofNullable(
                 this.companyQueryJPARepository
-                        .findCompanyEntityByUserUuid(currentUserId.getAbsoluteID())
+                        .findCompanyEntity(companyID.getAbsoluteID())
         );
         if (companyEntityOptional.isPresent())
             return this.companyDataAccessMapper.toRoot(companyEntityOptional.get());
