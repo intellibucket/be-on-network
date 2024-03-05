@@ -28,14 +28,14 @@ public class CourseCommandPrivateController implements CourseCommandPrivateSpec 
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<JSuccessResponse> create(CreateRequest<CourseCommandModel> request) {
+    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<CourseCommandModel> request) {
         this.courseCommandDomainPresentationService.create(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<JSuccessResponse> update(UpdateRequest<CourseCommandModel> request) {
+    public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<CourseCommandModel> request) {
         this.courseCommandDomainPresentationService.update(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }
@@ -49,7 +49,7 @@ public class CourseCommandPrivateController implements CourseCommandPrivateSpec 
 
     @Override
     @PatchMapping("/reorder")
-    public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
+    public ResponseEntity<JSuccessResponse> reorder(@RequestBody ReorderCommandModel request) {
         this.courseCommandDomainPresentationService.reorder(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }

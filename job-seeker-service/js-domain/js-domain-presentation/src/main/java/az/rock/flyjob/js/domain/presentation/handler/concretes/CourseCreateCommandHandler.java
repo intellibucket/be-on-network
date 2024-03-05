@@ -18,13 +18,14 @@ import java.util.UUID;
 @Component
 public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHandler {
 
-
-    private final AbstractCourseDomainMapper courseDomainMapper;  //todo
+    private final AbstractCourseDomainMapper courseDomainMapper;
     private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
 
     private final AbstractSecurityContextHolder securityContextHolder;
 
-    public CourseCreateCommandHandler(AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractSecurityContextHolder securityContextHolder) {
+    public CourseCreateCommandHandler(AbstractCourseDomainMapper courseDomainMapper,
+                                      AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter,
+                                      AbstractSecurityContextHolder securityContextHolder) {
         this.courseDomainMapper = courseDomainMapper;
         this.courseCommandRepositoryAdapter = courseCommandRepositoryAdapter;
         this.securityContextHolder = securityContextHolder;
@@ -32,11 +33,13 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
 
     @Override
     public CourseMergeEvent mergeCourse(CourseCommandModel command) {
-        var newCourseRoot = this.courseDomainMapper.toRoot(command,securityContextHolder.availableResumeID());
-        var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
+        var newCourseRoot = this.courseDomainMapper.toRoot(command, securityContextHolder.availableResumeID());
+        //TODO CHECK COURSE FOR SAME NAME IN SAME RESUME
+//        validateCourse();
+        var optionalCourseRoot = this.courseCommandRepositoryAdapter.merge(newCourseRoot);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(
-                        optionalCourseRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()
+                        optionalCourseRoot.orElseThrow(() -> new RuntimeException()).getRootID().getRootID()
                 )
         );
     }
@@ -47,7 +50,7 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.delete(id);
         return CourseDeleteEvent.of(
                 CourseDeletedPayload.of(
-                        optionalCourseRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()
+                        optionalCourseRoot.orElseThrow(() -> new RuntimeException()).getRootID().getRootID()
                 )
         );
     }
