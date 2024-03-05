@@ -7,5 +7,14 @@
     "tr": " Bir sorun oluştu. Lütfen daha sonra tekrar deneyin.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000002",
+    "az": "Bu başlıq artıq istifadə olunub. Başlığı dəyişdirin, xahiş edirəm.",
+    "en": "This title is already used. Please change the title.",
+    "ru": "Этот заголовок уже используется. Пожалуйста, измените заголовок.",
+    "tr": "Bu başlık zaten kullanılmış. Lütfen başlığı değiştirin.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

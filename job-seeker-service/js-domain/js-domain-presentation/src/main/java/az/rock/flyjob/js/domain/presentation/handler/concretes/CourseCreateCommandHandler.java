@@ -22,15 +22,14 @@ import java.util.UUID;
 @Component
 public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHandler {
 
-    private final AbstractCourseDomainService courseDomainService;
+//    private final AbstractCourseDomainService courseDomainService;
     private final AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter;
     private final AbstractCourseDomainMapper courseDomainMapper;
     private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
 
     private final AbstractSecurityContextHolder securityContextHolder;
 
-    public CourseCreateCommandHandler(AbstractCourseDomainService courseDomainService, AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter, AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractSecurityContextHolder securityContextHolder) {
-        this.courseDomainService = courseDomainService;
+    public CourseCreateCommandHandler(AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter, AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractSecurityContextHolder securityContextHolder) {
         this.courseQueryRepositoryAdapter = courseQueryRepositoryAdapter;
         this.courseDomainMapper = courseDomainMapper;
         this.courseCommandRepositoryAdapter = courseCommandRepositoryAdapter;
@@ -40,8 +39,8 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
     @Override
     public CourseMergeEvent mergeCourse(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command,securityContextHolder.availableResumeID());
-        //TODO CHECK COURSE FOR SAME NAME IN SAME RESUME
-        this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID());
+        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID()))
+            throw new CourseDomainException("F0000000002");
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.merge(newCourseRoot);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(
