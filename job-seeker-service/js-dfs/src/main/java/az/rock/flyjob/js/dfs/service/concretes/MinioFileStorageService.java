@@ -1,8 +1,8 @@
-package az.rock.flyjob.auth.dfs.service.concretes;
+package az.rock.flyjob.js.dfs.service.concretes;
 
 
-import az.rock.flyjob.auth.dfs.mapper.FileMetaDataMapper;
-import az.rock.flyjob.auth.dfs.service.abstracts.AbstractMinioService;
+import az.rock.flyjob.js.dfs.mapper.FileMetaDataMapper;
+import az.rock.flyjob.js.dfs.service.abstracts.AbstractMinioService;
 import az.rock.flyjob.js.domain.presentation.ports.dfs.AbstractFileStorageAdapter;
 import az.rock.lib.valueObject.FileMetaData;
 import az.rock.lib.valueObject.MultipartFileWrapper;
