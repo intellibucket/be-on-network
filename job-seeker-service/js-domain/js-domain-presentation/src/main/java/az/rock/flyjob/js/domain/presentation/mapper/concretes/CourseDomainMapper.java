@@ -3,13 +3,9 @@ package az.rock.flyjob.js.domain.presentation.mapper.concretes;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
-import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.AccessModifier;
-import az.rock.lib.valueObject.ProcessStatus;
-import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.Version;
+import az.rock.lib.valueObject.*;
 import com.intellibucket.lib.payload.payload.CourseFilePayload;
 import org.springframework.stereotype.Component;
 
@@ -42,8 +38,9 @@ public class CourseDomainMapper implements AbstractCourseDomainMapper {
 
     }
 
-    @Override
-    public CourseRoot filePayload(UserID userID, CourseFilePayload courseFilePayload) {
-        return null;
-    }
+//    @Override
+//    public CourseRoot filePayload(CourseRoot course, FileMetaData courseFilePayload) {
+//        return CourseRoot.Builder.builder()
+//                .build();
+//    }
 }
