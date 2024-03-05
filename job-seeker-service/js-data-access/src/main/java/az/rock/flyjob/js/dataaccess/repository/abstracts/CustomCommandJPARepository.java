@@ -145,8 +145,4 @@ public interface CustomCommandJPARepository<T> {
         }
     }
 
-    Optional<ContactEntity> findById(UUID contactId);
-
-    void delete(ContactEntity contactEntity);
-
 }

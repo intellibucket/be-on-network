@@ -7,6 +7,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandMode
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.ResponseEntity;
 
+import java.rmi.server.UID;
 import java.util.UUID;
 
 public interface ContactCommandPrivateSpec {

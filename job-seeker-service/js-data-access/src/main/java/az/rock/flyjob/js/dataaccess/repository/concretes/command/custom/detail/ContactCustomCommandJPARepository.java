@@ -35,11 +35,11 @@ public class ContactCustomCommandJPARepository implements AbstractContactCustomC
 
     @Override
     public Optional<ContactEntity> findById(UUID contactId) {
-        return Optional.empty();
+        return Optional.of(entityManager.find(ContactEntity.class, contactId));
     }
 
     @Override
     public void delete(ContactEntity contactEntity) {
-
+        entityManager.remove(contactEntity);
     }
 }

@@ -13,6 +13,4 @@ public interface AbstractContactCommandRepositoryAdapter {
     Optional<ContactRoot> create(ContactRoot root);
     Optional<ContactRoot> update(ContactRoot root);
     Optional<ContactRoot> delete(UUID id);
-
-    Optional<ContactRoot> delete(UID id);
 }

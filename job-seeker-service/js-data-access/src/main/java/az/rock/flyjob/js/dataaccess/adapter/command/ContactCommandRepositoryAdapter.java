@@ -3,14 +3,11 @@ package az.rock.flyjob.js.dataaccess.adapter.command;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractContactDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractContactCommandJPARepository;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractResumeCommandJPARepository;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractContactCustomCommandJPARepository;
-import az.rock.flyjob.js.domain.core.root.ResumeRoot;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
-import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractContactCommandDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractContactCommandRepositoryAdapter;
 import org.springframework.stereotype.Component;
 
+import java.rmi.server.UID;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,17 +23,25 @@ public class ContactCommandRepositoryAdapter implements AbstractContactCommandRe
 
     @Override
     public Optional<ContactRoot> create(ContactRoot root) {
-        var optional = this.abstractContactDataAccessMapper.toEntity(root);
-        if(optional.isEmpty())return Optional.empty();
-        else return this.abstractContactDataAccessMapper.toRoot(
-                repository.saveAndFlush(optional.get())
-        );    }
+        var optionalEntity = this.abstractContactDataAccessMapper.toEntity(root);
+        if (optionalEntity.isPresent()) {
+            var savedEntity = this.repository.save(optionalEntity.get());
+            return this.abstractContactDataAccessMapper.toRoot(savedEntity);
+        } else  {
+            return Optional.empty();
+        }
+    }
+
     @Override
     public Optional<ContactRoot> update(ContactRoot root) {
         var optionalEntity = this.abstractContactDataAccessMapper.toEntity(root);
         if (optionalEntity.isEmpty()) {
             return Optional.empty();
+
+
         }
+
+        // findbyid, if not throw exc, if have map root to entity and update data
 //
 //        ContactEntity entityToUpdate = optionalEntity.get();
 //
@@ -53,7 +58,11 @@ public class ContactCommandRepositoryAdapter implements AbstractContactCommandRe
         Optional<ContactEntity> optionalContactEntity = repository.findById(id);
         if (optionalContactEntity.isPresent()) {
             repository.delete(optionalContactEntity.get());
+            return abstractContactDataAccessMapper.toRoot(optionalContactEntity.get());
+        }else {
+            return Optional.empty();
         }
-        return Optional.empty();
     }
+
+
 }

@@ -12,11 +12,11 @@ import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
 import com.intellibucket.lib.payload.payload.ContactDeletePayload;
 import com.intellibucket.lib.payload.payload.ContactMergePayload;
-import org.hibernate.validator.constraints.UUID;
 import org.springframework.stereotype.Component;
 
 import java.rmi.server.UID;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class ContactCommandPresentationHandler implements AbstractContactCommandHandler {
@@ -32,23 +32,28 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
 
     @Override
     public ContactCreatedEvent createContact(ContactCommandModel commandModel) //Create ve Update qalib onlar yazilmalidi yazacam
-    {
-     return null;
+    { return null;
+//     return abstractContactCommandRepositoryAdapter.create(contactCommandDomainMapper.toRoot(commandModel));
     }
 
     @Override
     public ContactUpdateEvent updateContact(ContactCommandModel commandModel) {
+        //todo mapper 'CommandModel' to  'ContactRoot'
+
+//       return abstractContactCommandRepositoryAdapter.update();
        return null;
     }
 
     @Override
-    public ContactDeleteEvent deleteContact(UID id) {
+    public ContactDeleteEvent deleteContact(UUID id) {
         var optionalContactRoot = this.abstractContactCommandRepositoryAdapter.delete(id);
-        return ContactDeleteEvent.of(
-                ContactDeletePayload.of(
-                        optionalContactRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()
-                )
-        );
+//        return ContactDeleteEvent.of(
+//                ContactDeletePayload.of(
+//                        optionalContactRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()
+//                )
+//        );
+
+        return  null;
     }
 
 }

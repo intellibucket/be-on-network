@@ -8,10 +8,10 @@ public class ContactDeletePayload extends Payload{
         this.courseId = courseId;
     }
     public ContactDeletePayload(){}
-    public UUID getCourseId() {
+    public UUID getContactId() {
         return courseId;
     }
-    public void setCourseId(UUID courseId) {
+    public void setContactId(UUID courseId) {
         this.courseId = courseId;
     }
 

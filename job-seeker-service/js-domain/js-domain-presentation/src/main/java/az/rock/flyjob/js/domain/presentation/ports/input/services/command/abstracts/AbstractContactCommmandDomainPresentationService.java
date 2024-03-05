@@ -6,10 +6,11 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandMode
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 
 import java.rmi.server.UID;
+import java.util.UUID;
 
 public interface AbstractContactCommmandDomainPresentationService {
     void create(CreateRequest<ContactCommandModel> request);
     void update(UpdateRequest<ContactCommandModel> request);
-    void delete(UID contactId);
+    void delete(UUID contactId);
     void reorder(ReorderCommandModel request);
 }

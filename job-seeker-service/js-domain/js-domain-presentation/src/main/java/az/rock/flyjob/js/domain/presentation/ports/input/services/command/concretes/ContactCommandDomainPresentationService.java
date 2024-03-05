@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.rmi.server.UID;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class ContactCommandDomainPresentationService implements AbstractContactCommmandDomainPresentationService {
@@ -33,7 +34,7 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
     }
 
     @Override
-    public void delete(UID contactId) {
+    public void delete(UUID contactId) {
         var contactDeleteEvent = abstractContactCommandHandler.deleteContact(contactId);
     }
 

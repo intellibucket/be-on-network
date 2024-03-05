@@ -7,9 +7,10 @@ import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
-
+@Component
 public class ContactCommandDomainMapper implements AbstractContactCommandDomainMapper {
 
     @Override
