@@ -10,17 +10,18 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractEducationD
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractEducationCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.EducationDeletedEvent;
-import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
 import com.intellibucket.lib.payload.payload.EducationPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Component
-public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<EducationPayload>> {
+public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<?>> {
 
     private final AbstractSecurityContextHolder securityContextHolder;
     private final AbstractEducationDomainService abstractEducationDomainService;
@@ -41,11 +42,10 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
     public AbstractDomainEvent<EducationPayload> create(CreateRequest<EducationCommandModel> request) {
         var resumeID = this.securityContextHolder.availableResumeID();
         var educationRoot = this.abstractEducationDomainMapper.toNewRoot(resumeID, request.getModel());
-        var validatedEducation = this.abstractEducationDomainService.validateEducation(resumeID, educationRoot);
-        var optionalEducationRoot = this.abstractEducationCommandRepositoryAdapter.create(validatedEducation)
+        var optionalEducationRoot = this.abstractEducationCommandRepositoryAdapter.create(educationRoot)
                 .orElseThrow(NoActiveRowException::new);
         var educationPayload = this.abstractEducationDomainMapper.toPayload(optionalEducationRoot);
-        return AbstractSuccessDomainEventEducationCreatedEvent.of(educationPayload);
+        return EducationCreatedEvent.of(educationPayload);
     }
 
     @Override
@@ -54,12 +54,21 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
     }
 
     @Override
-    public AbstractDomainEvent delete(UUID educationId) {
-        return null;
+    public AbstractDomainEvent<UUID> delete(UUID educationId) {
+        var optionalEducation = abstractEducationQueryRepositoryAdapter.findById(EducationID.of(educationId));
+        if (optionalEducation.isPresent()) {
+            var education = optionalEducation.get();
+            this.abstractEducationCommandRepositoryAdapter.inActive(education);
+            return EducationDeletedEvent.of(education.getRootID().getAbsoluteID());
+        } else {
+            throw new NoActiveRowException();
+        }
+
     }
 
+
     @Override
-    public EducationUpdatedEvent reorder(ReorderCommandModel request) {
+    public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) {
         return null;
     }
 }
