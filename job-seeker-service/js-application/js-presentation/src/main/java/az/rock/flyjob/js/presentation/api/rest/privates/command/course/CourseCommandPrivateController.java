@@ -27,7 +27,7 @@ public class CourseCommandPrivateController implements CourseCommandPrivateSpec 
 
     private final MultipartFileWrapperMapper multipartFileWrapperMapper;
 
-    public CourseCommandPrivateController(AbstractCourseCommandDomainPresentationService courseCommandDomainPresentationService, MultipartFileWrapperMapper multipartFileWrapperMapperl) {
+    public CourseCommandPrivateController(AbstractCourseCommandDomainPresentationService courseCommandDomainPresentationService, MultipartFileWrapperMapper multipartFileWrapperMapper) {
         this.courseCommandDomainPresentationService = courseCommandDomainPresentationService;
         this.multipartFileWrapperMapper = multipartFileWrapperMapper;
     }

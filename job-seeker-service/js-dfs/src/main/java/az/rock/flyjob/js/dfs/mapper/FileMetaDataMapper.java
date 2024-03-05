@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dfs.mapper;
+package az.rock.flyjob.js.dfs.mapper;
 
 
 import az.rock.lib.valueObject.FileMetaData;

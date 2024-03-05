@@ -18,8 +18,9 @@ import com.intellibucket.lib.payload.payload.CourseMergePayload;
 import com.intellibucket.lib.payload.payload.CourseDeletedPayload;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
-
+//TODO DELETE I BURDAN CIXART
 @Component
 public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHandler {
     private final AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter;
@@ -40,8 +41,8 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
     @Override
     public CourseMergeEvent mergeCourse(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command,securityContextHolder.availableResumeID());
-        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID()))
-            throw new CourseDomainException("F0000000002");
+//        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID()))
+//            throw new CourseDomainException("F0000000002");
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.merge(newCourseRoot);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(

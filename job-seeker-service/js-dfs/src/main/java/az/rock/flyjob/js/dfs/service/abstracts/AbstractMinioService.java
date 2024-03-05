@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dfs.service.abstracts;
+package az.rock.flyjob.js.dfs.service.abstracts;
 
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import io.minio.ObjectWriteResponse;
