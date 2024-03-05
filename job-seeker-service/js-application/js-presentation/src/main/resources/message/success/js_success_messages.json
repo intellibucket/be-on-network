@@ -1,0 +1,11 @@
+[
+  {
+    "code": "S0000000001",
+    "az": " Əməliyyat uğurla yerinə yetirildi.",
+    "en": " Operation was successfully completed.",
+    "ru": " Операция успешно выполнена.",
+    "tr": " İşlem başarıyla tamamlandı.",
+    "hasRegex": false,
+    "regex": ""
+  }
+]
