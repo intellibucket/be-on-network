@@ -11,9 +11,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+//TODO DATABASE DE END DATE DATE DI BURDA TIMESTAMP java.lang.IllegalArgumentException: Can not set java.sql.Timestamp field az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity.endDate to java.sql.Date
 @Getter
 @Setter
 @NoArgsConstructor
@@ -65,6 +67,12 @@ public class CourseEntity extends BaseEntity {
 
 
     public CourseEntity(Builder builder) {
+        setUuid(builder.uuid);
+        setVersion(builder.version);
+        setCreatedDate(builder.createdDate);
+        setLastModifiedDate(builder.lastModifiedDate);
+        setProcessStatus(builder.processStatus);
+        setRowStatus(builder.rowStatus);
         setResume(builder.resume);
         setAccessModifier(builder.accessModifier);
         setOrderNumber(builder.orderNumber);

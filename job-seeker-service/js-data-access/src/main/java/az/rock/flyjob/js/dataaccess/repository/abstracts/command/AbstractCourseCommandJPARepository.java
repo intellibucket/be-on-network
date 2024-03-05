@@ -17,4 +17,12 @@ public interface AbstractCourseCommandJPARepository extends JpaRepository<Course
     @Modifying
     @Query("UPDATE CourseEntity c SET c.rowStatus = :rowStatus WHERE c.uuid = :uuid")
     CourseEntity setRowStatusById(UUID uuid, RowStatus rowStatus);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE CourseEntity c SET c.certificateFilePath = :newFilePath WHERE c.uuid = :uuid")
+    CourseEntity setCourseCertificatePath(UUID uuid,String newFilePath);
+
+
+
 }

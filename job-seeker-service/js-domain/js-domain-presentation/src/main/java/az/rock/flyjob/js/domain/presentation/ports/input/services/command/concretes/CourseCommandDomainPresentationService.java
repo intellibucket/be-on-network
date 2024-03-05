@@ -50,11 +50,12 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
 
     @Override
     public void reorder(ReorderCommandModel request) {
-
+        //TODO REORDER YAZILMALIDI
     }
 
     @Override
     public void uploadCertificate(UUID courseId, MultipartFileWrapper file) {
+        var certificateEvent = courseMergeCommandHandler.uploadCertificate(courseId, file);
 
     }
 }

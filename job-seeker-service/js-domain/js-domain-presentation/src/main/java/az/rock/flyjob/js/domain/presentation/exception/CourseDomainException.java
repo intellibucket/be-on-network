@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.exception;
 
+
 import az.rock.lib.jexception.JRuntimeException;
 
 public class CourseDomainException extends JRuntimeException {

@@ -5,13 +5,16 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseCommandDomainPresentationService;
+import az.rock.flyjob.js.presentation.mapper.MultipartFileWrapperMapper;
 import az.rock.flyjob.js.spec.privates.command.resume.detail.CourseCommandPrivateSpec;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
+import az.rock.lib.valueObject.MultipartFileWrapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 
@@ -22,8 +25,11 @@ public class CourseCommandPrivateController implements CourseCommandPrivateSpec 
     //TODO requestlerin url-lerin duzelt
     private final AbstractCourseCommandDomainPresentationService courseCommandDomainPresentationService;
 
-    public CourseCommandPrivateController(AbstractCourseCommandDomainPresentationService courseCommandDomainPresentationService) {
+    private final MultipartFileWrapperMapper multipartFileWrapperMapper;
+
+    public CourseCommandPrivateController(AbstractCourseCommandDomainPresentationService courseCommandDomainPresentationService, MultipartFileWrapperMapper multipartFileWrapperMapper) {
         this.courseCommandDomainPresentationService = courseCommandDomainPresentationService;
+        this.multipartFileWrapperMapper = multipartFileWrapperMapper;
     }
 
     @Override
@@ -59,6 +65,19 @@ public class CourseCommandPrivateController implements CourseCommandPrivateSpec 
     public ResponseEntity<JSuccessResponse> uploadCertificate(@PathVariable UUID courseId, @RequestBody MultipartFile file) {
         //TODO MultipartFileWrapperMapper class-ni static e cevirmek? or yene ele bir compananent yazmaq?InputSourceStream?
 //        this.courseCommandDomainPresentationService.uploadCertificate(courseId,file);
+        MultipartFileWrapper wrapFile = this.factoryWrapper(file);
+        this.courseCommandDomainPresentationService.uploadCertificate(courseId,wrapFile);
+
         return ResponseEntity.ok(new JSuccessResponse());
+    }
+
+    private MultipartFileWrapper factoryWrapper(MultipartFile file) {
+        MultipartFileWrapper wrapFile;
+        try {
+            wrapFile = this.multipartFileWrapperMapper.map(file);
+        } catch (IOException e) {
+            throw new RuntimeException("F0000000017");
+        }
+        return wrapFile;
     }
 }

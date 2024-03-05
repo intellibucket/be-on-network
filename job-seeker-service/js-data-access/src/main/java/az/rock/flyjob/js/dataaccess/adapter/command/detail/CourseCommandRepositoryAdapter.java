@@ -5,6 +5,7 @@ import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractCourseCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
+import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.common.PageableRequest;
 import org.springframework.stereotype.Component;
@@ -36,5 +37,10 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
     @Override
     public Optional<CourseRoot> delete(UUID id) {
         return this.abstractCourseDataAccessMapper.toRoot(this.repository.setRowStatusById(id,RowStatus.DELETED));
+    }
+
+    @Override
+    public Optional<CourseRoot> updateCertificatePath(UUID id,String newFilePath) {
+        return this.abstractCourseDataAccessMapper.toRoot(this.repository.setCourseCertificatePath(id,newFilePath));
     }
 }
