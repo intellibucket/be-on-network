@@ -1,6 +1,11 @@
 package az.rock.flyjob.js.domain.core.service.abstracts;
 
-public interface AbstractEducationDomainService {
+import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
+import az.rock.lib.domain.id.js.ResumeID;
 
-    //todo EducationRoot validateEducation
+import java.util.Optional;
+
+public interface AbstractEducationDomainService {
+    EducationRoot validateEducation(ResumeID resumeID, EducationRoot educationRoot);
+
 }

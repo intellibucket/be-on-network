@@ -9,6 +9,7 @@ import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
+import com.intellibucket.lib.payload.payload.EducationPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .resume(resumeID)
-//                .orderNumber() //todo
+//                .orderNumber(UUID.)
                 .degree(educationCommandModel.getDegree())
                 .state(educationCommandModel.getState())
                 .link(educationCommandModel.getLink())
@@ -36,5 +37,16 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .endDate(educationCommandModel.getEndDate())
                 .description(educationCommandModel.getDescription())
                 .build();
+    }
+
+    @Override
+    public EducationPayload toPayload(EducationRoot educationRoot) {
+        return EducationPayload
+                .builder()
+                .id(educationRoot.getRootID().getAbsoluteID())
+                .resumeId(educationRoot.getResumeID().getRootID())
+                .accessModifier(educationRoot.getAccessModifier())
+                .build();
+
     }
 }

@@ -4,20 +4,21 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.EducationCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
-import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
-import com.intellibucket.lib.payload.event.delete.EducationDeletedEvent;
-import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
-
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.payload.EducationPayload;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-public interface AbstractEducationCommandHandler {
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public interface AbstractEducationCommandHandler<E extends AbstractDomainEvent<EducationPayload>> {
 
-    EducationCreatedEvent create(CreateRequest<EducationCommandModel> request);
+    E create(CreateRequest<EducationCommandModel> request);
 
-    EducationUpdatedEvent update(UpdateRequest<EducationCommandModel> request);
+    E update(UpdateRequest<EducationCommandModel> request);
 
-    EducationDeletedEvent delete(UUID educationId);
+    E delete(UUID educationId);
 
-    EducationUpdatedEvent reorder(ReorderCommandModel request);
+    E reorder(ReorderCommandModel request);
 }
