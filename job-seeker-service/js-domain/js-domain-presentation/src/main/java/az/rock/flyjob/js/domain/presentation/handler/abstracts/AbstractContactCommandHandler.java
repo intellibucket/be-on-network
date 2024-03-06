@@ -1,10 +1,12 @@
 package az.rock.flyjob.js.domain.presentation.handler.abstracts;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
+import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,5 +22,7 @@ public interface AbstractContactCommandHandler {
     ContactUpdateEvent updateContact (UpdateRequest<ContactCommandModel> commandModel);
 
     ContactDeleteEvent deleteContact(UUID uid);
+
+    ContactReorderEvent reoderContact(ReorderRequest<ContactCommandModel> commandModel);
 
 }
