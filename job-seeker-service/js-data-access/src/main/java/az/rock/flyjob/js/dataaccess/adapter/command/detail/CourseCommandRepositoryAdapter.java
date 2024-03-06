@@ -3,8 +3,10 @@ package az.rock.flyjob.js.dataaccess.adapter.command.detail;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.CustomCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractCourseCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractResumeCommandJPARepository;
+import az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail.CourseCustomCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
 import az.rock.lib.domain.id.js.CourseID;
@@ -23,10 +25,13 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
 
     private final AbstractCourseCommandJPARepository repository;
 
+    private final CourseCustomCommandJPARepository customCommandJPARepository;
 
-    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, AbstractCourseCommandJPARepository repository) {
+
+    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, AbstractCourseCommandJPARepository repository, CourseCustomCommandJPARepository customCommandJPARepository) {
         this.abstractCourseDataAccessMapper = abstractCourseDataAccessMapper;
         this.repository = repository;
+        this.customCommandJPARepository = customCommandJPARepository;
     }
 
     //TODO bunu sorus
@@ -36,7 +41,7 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
         if(optional.isEmpty())return Optional.empty();
         var courseEntity = optional.get();
         return this.abstractCourseDataAccessMapper.toRoot(
-                repository.saveAndFlush(courseEntity)
+                customCommandJPARepository.persist(courseEntity)
         );
     }
     @Override
@@ -44,7 +49,7 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
         if(optional.isEmpty())return;
         var courseEntity = optional.get();
-        repository.save(courseEntity);
+        customCommandJPARepository.merge(courseEntity);
     }
 
     @Override
