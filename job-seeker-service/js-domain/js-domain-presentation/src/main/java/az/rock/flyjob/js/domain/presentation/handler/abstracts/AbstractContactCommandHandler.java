@@ -1,5 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.abstracts;
 
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
@@ -13,9 +15,9 @@ import java.util.UUID;
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public interface AbstractContactCommandHandler {
 
-    ContactCreatedEvent createContact (ContactCommandModel commandModel);
+    ContactCreatedEvent createContact (CreateRequest<ContactCommandModel> commandModel);
 
-    ContactUpdateEvent updateContact (ContactCommandModel commandModel);
+    ContactUpdateEvent updateContact (UpdateRequest<ContactCommandModel> commandModel);
 
     ContactDeleteEvent deleteContact(UUID uid);
 

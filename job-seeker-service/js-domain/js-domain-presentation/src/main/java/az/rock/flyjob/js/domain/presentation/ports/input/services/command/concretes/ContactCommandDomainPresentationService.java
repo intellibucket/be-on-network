@@ -29,8 +29,7 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
 
     @Override
     public void update(UpdateRequest<ContactCommandModel> request) {
-        var contactCommandModel = Optional.of(request.getModel()).orElseThrow(()->new RuntimeException(""));
-        var courseUpdatedEvent = abstractContactCommandHandler.updateContact(contactCommandModel);
+        var courseUpdatedEvent = abstractContactCommandHandler.updateContact(request);
     }
 
     @Override
