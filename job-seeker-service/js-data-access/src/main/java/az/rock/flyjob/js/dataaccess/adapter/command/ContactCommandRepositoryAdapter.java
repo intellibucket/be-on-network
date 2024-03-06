@@ -5,13 +5,18 @@ import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractContactCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractContactCommandRepositoryAdapter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.rmi.server.UID;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class ContactCommandRepositoryAdapter implements AbstractContactCommandRepositoryAdapter {
     private final AbstractContactDataAccessMapper abstractContactDataAccessMapper;
     private final AbstractContactCommandJPARepository repository;
@@ -21,48 +26,61 @@ public class ContactCommandRepositoryAdapter implements AbstractContactCommandRe
         this.repository = repository;
     }
 
+
     @Override
     public Optional<ContactRoot> create(ContactRoot root) {
-        var optionalEntity = this.abstractContactDataAccessMapper.toEntity(root);
-        if (optionalEntity.isPresent()) {
-            var savedEntity = this.repository.save(optionalEntity.get());
-            return this.abstractContactDataAccessMapper.toRoot(savedEntity);
-        } else  {
-            return Optional.empty();
-        }
+        var entity = this.abstractContactDataAccessMapper.toEntity(root);
+        if (entity.isEmpty()) return Optional.empty();
+        var savedEntity = this.repository.persist(entity.get());
+        return this.abstractContactDataAccessMapper.toRoot(savedEntity);
     }
 
     @Override
-    public Optional<ContactRoot> update(ContactRoot root) {
-        var optionalEntity = this.abstractContactDataAccessMapper.toEntity(root);
-        if (optionalEntity.isEmpty()) {
-            return Optional.empty();
-
-
-        }
-
-        // findbyid, if not throw exc, if have map root to entity and update data
-//
-//        ContactEntity entityToUpdate = optionalEntity.get();
-//
-//        entityToUpdate.setFieldToUpdate(root.getFieldToUpdate());
-//
-//        ContactEntity updatedEntity = repository.flush(entityToUpdate);
-//
-//        return this.abstractContactDataAccessMapper.toRoot(updatedEntity);
-        return null;
+    public void update(ContactRoot root) {
+        var entity = this.abstractContactDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.repository::merge);
     }
 
     @Override
-    public Optional<ContactRoot> delete(UUID id) {
-        Optional<ContactEntity> optionalContactEntity = repository.findById(id);
-        if (optionalContactEntity.isPresent()) {
-            repository.delete(optionalContactEntity.get());
-            return abstractContactDataAccessMapper.toRoot(optionalContactEntity.get());
-        }else {
-            return Optional.empty();
-        }
+    public void delete(ContactRoot root) {
+        var entity = this.abstractContactDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.repository::delete);
     }
 
+    @Override
+    public void updateAll(List<ContactRoot> contactRoots) {
+        var entityList = contactRoots
+                .stream()
+                .map(this.abstractContactDataAccessMapper::toEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+        this.repository.updateAll(entityList);
+    }
+
+    @Override
+    public void inActive(ContactRoot root) {
+        var entity = this.abstractContactDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.repository::delete);
+    }
+
+    @Override
+    public void deleteAll(List<ContactRoot> roots) {
+        var entityList = roots
+                .stream()
+                .map(ContactRoot::getRootID)
+                .collect(Collectors.toList());
+        repository.deleteAllById(entityList);
+    }
+
+
+    @Override
+    public void rollback(Collection<ContactRoot> contactRoots) {
+        var optionalEntity = this.abstractContactDataAccessMapper.toEntity((ContactRoot) contactRoots);
+        optionalEntity.ifPresentOrElse(
+                this.repository::rollback,
+                () -> log.error("User cannot rollback because of entity is null")
+        );
+    }
 
 }
