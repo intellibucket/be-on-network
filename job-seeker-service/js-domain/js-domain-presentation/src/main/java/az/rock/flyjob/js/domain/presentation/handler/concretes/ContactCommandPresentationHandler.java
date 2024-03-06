@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.ContactAlreadyExistException;
+import az.rock.flyjob.js.domain.core.exception.ContactNotFoundException;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractContactDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
@@ -13,6 +14,7 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractContactCom
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractContactCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactCommandQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
 import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
@@ -78,14 +80,13 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
     @Override
     public ContactDeleteEvent deleteContact(UUID id) {
-        var optionalContactRoot = this.abstractContactCommandRepositoryAdapter.delete(id);
-//        return ContactDeleteEvent.of(
-//                ContactDeletePayload.of(
-//                        optionalContactRoot.orElseThrow(()->new RuntimeException()).getRootID().getRootID()
-//                )
-//        );
-
-        return null;
+        var currentContact = this.contextHolder.availableResumeID();
+        var optionalContact = this.commandQueryRepositoryAdapter.findOwnByID(currentContact, ContactID.of(id));
+        if (optionalContact.isPresent()){
+            var contactIDNumber = optionalContact.get();
+            this.abstractContactCommandRepositoryAdapter.inActive(contactIDNumber);
+            return ContactDeleteEvent.of(new ContactDeletePayload());
+        } else throw new ContactNotFoundException();
     }
 
     @Override

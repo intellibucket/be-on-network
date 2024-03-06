@@ -50,7 +50,8 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
     @Override
     @PatchMapping("/reorder")
     public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
-        this.abstractContactCommmandDomainPresentationService.reorder(request);
-        return ResponseEntity.ok(new JSuccessResponse());
+//        this.abstractContactCommmandDomainPresentationService.reorder(request);
+//        return ResponseEntity.ok(new JSuccessResponse());
+        return null;
     }
 }
