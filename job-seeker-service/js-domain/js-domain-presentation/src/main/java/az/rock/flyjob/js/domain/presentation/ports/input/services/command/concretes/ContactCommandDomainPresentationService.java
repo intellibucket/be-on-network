@@ -23,8 +23,7 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
 
     @Override
     public void create(CreateRequest<ContactCommandModel> request) {
-        var contactCommandModel = Optional.of(request.getModel()).orElseThrow(()->new RuntimeException(""));
-        var courseCreatedEvent = abstractContactCommandHandler.createContact(contactCommandModel);
+        var courseCreatedEvent = abstractContactCommandHandler.createContact(request);
     }
 
     @Override
@@ -37,8 +36,4 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
         var contactDeleteEvent = abstractContactCommandHandler.deleteContact(contactId);
     }
 
-    @Override
-    public void reorder(ReorderCommandModel request) {
-
-    }
 }
