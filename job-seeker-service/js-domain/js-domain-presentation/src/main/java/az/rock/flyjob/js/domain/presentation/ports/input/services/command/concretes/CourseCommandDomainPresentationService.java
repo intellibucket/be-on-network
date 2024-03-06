@@ -33,14 +33,14 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
         var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
-        var courseCreatedEvent = courseMergeCommandHandler.mergeCourse(courseCommandModel);
+        var courseCreatedEvent = courseMergeCommandHandler.createCourse(courseCommandModel);
 
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
         var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
-        var courseUpdatedEvent = courseMergeCommandHandler.mergeCourse(courseCommandModel);
+        var courseUpdatedEvent = courseMergeCommandHandler.updateCourse(courseCommandModel,command.getTargetId());
     }
 
     @Override

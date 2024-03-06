@@ -14,7 +14,9 @@ import java.util.UUID;
 @Transactional(propagation = Propagation.REQUIRES_NEW)//TODO rollback ?
 public interface AbstractCourseCreateCommandHandler {
 
-    CourseMergeEvent mergeCourse(CourseCommandModel command);
+    CourseMergeEvent createCourse(CourseCommandModel command);
+
+    CourseMergeEvent updateCourse(CourseCommandModel command,UUID id);
 
     CourseDeleteEvent deleteCourse(UUID id);
 

@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 
+import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.exception.CourseDomainException;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
@@ -9,6 +10,8 @@ import az.rock.flyjob.js.domain.presentation.ports.dfs.AbstractFileStorageAdapte
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.js.CourseID;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
 import com.intellibucket.lib.payload.event.create.CourseFileEvent;
@@ -20,9 +23,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
-//TODO DELETE I BURDAN CIXART
+
 @Component
-public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHandler {
+public class CourseCommandHandler implements AbstractCourseCreateCommandHandler {
     private final AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter;
     private final AbstractCourseDomainMapper courseDomainMapper;
     private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
@@ -30,7 +33,7 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
     private final AbstractFileStorageAdapter fileStorageService;
     private final AbstractSecurityContextHolder securityContextHolder;
 
-    public CourseCreateCommandHandler(AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter, AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractFileStorageAdapter fileStorageService, AbstractSecurityContextHolder securityContextHolder) {
+    public CourseCommandHandler(AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter, AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractFileStorageAdapter fileStorageService, AbstractSecurityContextHolder securityContextHolder) {
         this.courseQueryRepositoryAdapter = courseQueryRepositoryAdapter;
         this.courseDomainMapper = courseDomainMapper;
         this.courseCommandRepositoryAdapter = courseCommandRepositoryAdapter;
@@ -39,10 +42,15 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
     }
 
     @Override
-    public CourseMergeEvent mergeCourse(CourseCommandModel command) {
-        var newCourseRoot = this.courseDomainMapper.toRoot(command,securityContextHolder.availableResumeID());
-//        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID()))
-//            throw new CourseDomainException("F0000000002");
+    public CourseMergeEvent createCourse(CourseCommandModel command) {
+        var newCourseRoot = this.courseDomainMapper.toRoot(command,
+//                securityContextHolder.availableResumeID()
+                ResumeID.of(UUID.fromString("e66d06d5-d2f6-41d0-b7ed-3466f079bdbc"))
+        );
+
+        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID()))
+            throw new CourseDomainException("F0000000002");
+
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.merge(newCourseRoot);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(
@@ -50,6 +58,20 @@ public class CourseCreateCommandHandler implements AbstractCourseCreateCommandHa
                 )
         );
     }
+    @Override
+    public CourseMergeEvent updateCourse(CourseCommandModel command,UUID id) {
+        var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id));
+        if(oldCourse.isEmpty())throw new RuntimeException("");
+        var course = courseDomainMapper.toRoot(command,oldCourse.get());
+        var optionalCourseRoot = courseCommandRepositoryAdapter.merge(course);
+        return CourseMergeEvent.of(
+                CourseMergePayload.of(
+                        optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()
+                )
+        );
+    }
+
+
 
     @Override
     public CourseDeleteEvent deleteCourse(UUID id) {

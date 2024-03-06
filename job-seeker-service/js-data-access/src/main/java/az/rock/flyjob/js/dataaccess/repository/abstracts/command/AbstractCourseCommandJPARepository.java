@@ -25,4 +25,6 @@ public interface AbstractCourseCommandJPARepository extends JpaRepository<Course
 
 
 
+
+
 }

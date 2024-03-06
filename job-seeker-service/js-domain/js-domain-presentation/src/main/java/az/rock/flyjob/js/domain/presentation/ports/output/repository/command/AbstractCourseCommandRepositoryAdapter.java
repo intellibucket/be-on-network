@@ -13,4 +13,5 @@ public interface AbstractCourseCommandRepositoryAdapter {
 
     Optional<CourseRoot> updateCertificatePath(UUID id,String newFilePath);
 
+
 }
