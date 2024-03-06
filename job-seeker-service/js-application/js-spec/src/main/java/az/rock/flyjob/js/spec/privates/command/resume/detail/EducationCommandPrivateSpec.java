@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface EducationCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<EducationCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<EducationCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID educationId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }
