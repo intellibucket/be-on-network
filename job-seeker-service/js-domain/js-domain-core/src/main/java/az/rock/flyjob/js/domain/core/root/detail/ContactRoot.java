@@ -30,6 +30,19 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         return resume;
     }
 
+    public ContactRoot changeFormatType(ContactFormatType formatType){
+        this.formatType=formatType;
+        return this;
+    }
+    public ContactRoot changeLiveType(ContactLiveType liveAType){
+        this.liveType=liveType;
+        return this;
+    }
+    public ContactRoot changeData(String data){
+        this.data=data;
+        return this;
+    }
+
     public Integer getOrderNumber() {
         return orderNumber;
     }
@@ -66,6 +79,7 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         private ContactFormatType formatType;
         private ContactLiveType liveType;
         private String data;
+
 
         private Builder() {
         }
