@@ -3,7 +3,7 @@ package com.intellibucket.onnetwork.company.presentation.command.api.rest.privat
 import az.rock.lib.jexception.JDomainException;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
-import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.AbstractCompanyCommandDomainPresentationService;
+import com.intellibucket.onnetwork.company.domain.presentation.command.ports.input.service.abstracts.company.AbstractCompanyCommandDomainPresentationService;
 import com.intellibucket.onnetwork.company.spec.command.company.TestCompanyPrivateSpec;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;

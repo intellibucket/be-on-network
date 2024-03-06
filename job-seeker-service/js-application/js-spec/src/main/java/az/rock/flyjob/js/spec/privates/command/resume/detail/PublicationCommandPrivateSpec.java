@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface PublicationCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<PublicationCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<PublicationCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID publicationId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

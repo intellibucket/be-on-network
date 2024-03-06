@@ -13,6 +13,7 @@ import com.intellibucket.onnetwork.company.domain.core.command.root.company.Comp
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class CompanyProfileDataAccessMapper implements AbstractCompanyProfileDataAccessMapper {
