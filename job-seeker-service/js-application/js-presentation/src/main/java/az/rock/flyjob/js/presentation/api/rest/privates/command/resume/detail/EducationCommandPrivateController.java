@@ -26,7 +26,7 @@ public class EducationCommandPrivateController implements EducationCommandPrivat
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<JSuccessResponse> create(CreateRequest<EducationCommandModel> request) {
+    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<EducationCommandModel> request) {
         this.abstractEducationCommandDomainPresentationsService.create(request);
         return ResponseEntity.ok(JSuccessResponse.success());
 
@@ -34,15 +34,15 @@ public class EducationCommandPrivateController implements EducationCommandPrivat
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<JSuccessResponse> update(UpdateRequest<EducationCommandModel> request) {
+    public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<EducationCommandModel> request) {
         this.abstractEducationCommandDomainPresentationsService.update(request);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<JSuccessResponse> delete(UUID educationId) {
-        this.abstractEducationCommandDomainPresentationsService.delete(educationId);
+    public ResponseEntity<JSuccessResponse> delete(@PathVariable UUID id) {
+        this.abstractEducationCommandDomainPresentationsService.delete(id);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 

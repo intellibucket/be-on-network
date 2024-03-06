@@ -26,15 +26,13 @@ import java.util.UUID;
 public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<?>> {
 
     private final AbstractSecurityContextHolder securityContextHolder;
-    private final AbstractEducationDomainService abstractEducationDomainService;
-    private final AbstractEducationQueryRepositoryAdapter abstractEducationQueryRepositoryAdapter;
+//    private final AbstractEducationDomainService abstractEducationDomainService;
+//    private final AbstractEducationQueryRepositoryAdapter abstractEducationQueryRepositoryAdapter;
     private final AbstractEducationCommandRepositoryAdapter abstractEducationCommandRepositoryAdapter;
     private final AbstractEducationDomainMapper abstractEducationDomainMapper;
 
-    public EducationCommandHandler(AbstractSecurityContextHolder securityContextHolder, AbstractEducationDomainService abstractEducationDomainService, AbstractEducationQueryRepositoryAdapter abstractEducationQueryRepositoryAdapter, AbstractEducationCommandRepositoryAdapter abstractEducationCommandRepositoryAdapter, AbstractEducationDomainMapper abstractEducationDomainMapper) {
+    public EducationCommandHandler(AbstractSecurityContextHolder securityContextHolder, AbstractEducationCommandRepositoryAdapter abstractEducationCommandRepositoryAdapter, AbstractEducationDomainMapper abstractEducationDomainMapper) {
         this.securityContextHolder = securityContextHolder;
-        this.abstractEducationDomainService = abstractEducationDomainService;
-        this.abstractEducationQueryRepositoryAdapter = abstractEducationQueryRepositoryAdapter;
         this.abstractEducationCommandRepositoryAdapter = abstractEducationCommandRepositoryAdapter;
         this.abstractEducationDomainMapper = abstractEducationDomainMapper;
     }
