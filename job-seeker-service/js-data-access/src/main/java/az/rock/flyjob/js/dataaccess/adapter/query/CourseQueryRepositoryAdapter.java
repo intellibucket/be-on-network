@@ -34,7 +34,7 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     @Override
     public Optional<CourseRoot> findById(CourseID courseID){
         var courseEntity = courseQueryJPARepository.findById(courseID.getAbsoluteID());
-        if(courseID.isEmpty())return Optional.empty();
+        if(courseEntity.isEmpty())return Optional.empty();
         return courseDataAccessMapper.toRoot(courseEntity.get());
     }
 }

@@ -37,6 +37,8 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
                             .version(Version.of(safetyResumeEntity.getVersion()))
                             .resume(ResumeID.of(safetyResumeEntity.getResume().getUuid()))
                             .startDate(GDateTime.toZonedDateTime(safetyResumeEntity.getStartDate()))
+                            .institution(safetyResumeEntity.getInstitution())
+                            .isOnline(safetyResumeEntity.getIsOnline())
                             .build()
             );
         }else return Optional.empty();

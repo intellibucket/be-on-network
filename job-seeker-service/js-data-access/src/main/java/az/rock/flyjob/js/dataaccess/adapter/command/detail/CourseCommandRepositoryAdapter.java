@@ -3,8 +3,10 @@ package az.rock.flyjob.js.dataaccess.adapter.command.detail;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.CustomCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractCourseCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractResumeCommandJPARepository;
+import az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail.CourseCustomCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
 import az.rock.lib.domain.id.js.CourseID;
@@ -23,34 +25,40 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
 
     private final AbstractCourseCommandJPARepository repository;
 
-    private final AbstractResumeCommandJPARepository resumeCommandJPARepository;
+    private final CourseCustomCommandJPARepository customCommandJPARepository;
 
-    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, AbstractCourseCommandJPARepository repository, AbstractResumeCommandJPARepository resumeCommandJPARepository) {
+
+    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, AbstractCourseCommandJPARepository repository, CourseCustomCommandJPARepository customCommandJPARepository) {
         this.abstractCourseDataAccessMapper = abstractCourseDataAccessMapper;
         this.repository = repository;
-        this.resumeCommandJPARepository = resumeCommandJPARepository;
+        this.customCommandJPARepository = customCommandJPARepository;
     }
-
 
     //TODO bunu sorus
     @Override
-    public Optional<CourseRoot> merge(CourseRoot root) {
+    public Optional<CourseRoot> create(CourseRoot root) {
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
         if(optional.isEmpty())return Optional.empty();
         var courseEntity = optional.get();
-        var resume = resumeCommandJPARepository.findById(root.getResume().getAbsoluteID());
-        if(resume.isEmpty())return Optional.empty();
-        courseEntity.setResume(
-                resume.get()
-        );
         return this.abstractCourseDataAccessMapper.toRoot(
-                repository.saveAndFlush(courseEntity)
+                customCommandJPARepository.persist(courseEntity)
         );
+    }
+    @Override
+    public void update(CourseRoot root) {
+        var optional = this.abstractCourseDataAccessMapper.toEntity(root);
+        if(optional.isEmpty())return;
+        var courseEntity = optional.get();
+        customCommandJPARepository.merge(courseEntity);
     }
 
     @Override
-    public Optional<CourseRoot> delete(UUID id) {
-        return this.abstractCourseDataAccessMapper.toRoot(this.repository.setRowStatusById(id,RowStatus.DELETED));
+    public void inActive(CourseRoot root) {
+        var optional = this.abstractCourseDataAccessMapper.toEntity(root);
+        if(optional.isEmpty())return;
+        optional.get().inActive();
+        this.repository.save(optional.get());
+
     }
 
     @Override
