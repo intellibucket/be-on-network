@@ -38,9 +38,17 @@ public class CourseDomainMapper implements AbstractCourseDomainMapper {
 
     }
 
-//    @Override
-//    public CourseRoot filePayload(CourseRoot course, FileMetaData courseFilePayload) {
-//        return CourseRoot.Builder.builder()
-//                .build();
-//    }
+    public CourseRoot toRoot(CourseCommandModel courseCommandModel, CourseRoot courseRoot){
+        courseRoot.setCourseTitle(courseCommandModel.getCourseTitle());
+        courseRoot.setInstitution(courseCommandModel.getInstitution());
+        courseRoot.setOnline(courseCommandModel.getIsOnline());
+        courseRoot.setCity(courseCommandModel.getCity());
+        courseRoot.setCountry(courseCommandModel.getCountry());
+        courseRoot.setStartDate(courseCommandModel.getStartDate());
+        courseRoot.setEndDate(courseCommandModel.getEndDate());
+        courseRoot.setDescription(courseCommandModel.getDescription());
+        courseRoot.setVerificationAddress(courseCommandModel.getVerificationAddress());
+        return courseRoot;
+    }
+
 }

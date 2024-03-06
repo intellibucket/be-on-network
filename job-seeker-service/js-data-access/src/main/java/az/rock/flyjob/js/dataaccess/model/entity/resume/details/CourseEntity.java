@@ -2,6 +2,7 @@ package az.rock.flyjob.js.dataaccess.model.entity.resume.details;
 
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
+import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
@@ -13,6 +14,7 @@ import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.UUID;
 
 //TODO DATABASE DE END DATE DATE DI BURDA TIMESTAMP java.lang.IllegalArgumentException: Can not set java.sql.Timestamp field az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity.endDate to java.sql.Date
@@ -51,10 +53,10 @@ public class CourseEntity extends BaseEntity {
     private String country;
 
     @Temporal(value = TemporalType.DATE)
-    private Timestamp startDate;
+    private Date startDate;
 
     @Temporal(value = TemporalType.DATE)
-    private Timestamp endDate;
+    private Date endDate;
 
     @Column(name = "is_continue")
     private String description;
@@ -87,6 +89,15 @@ public class CourseEntity extends BaseEntity {
         setCertificateFilePath(builder.certificateFilePath);
         setVerificationAddress(builder.verificationAddress);
     }
+
+    public Timestamp getStartDate() {
+        return new Timestamp(startDate.getTime());
+    }
+
+    public Timestamp getEndDate() {
+        return new Timestamp(endDate.getTime());
+    }
+
     public static final class Builder{
 
         private UUID uuid;
@@ -103,8 +114,8 @@ public class CourseEntity extends BaseEntity {
         private Boolean isOnline;
         private String city;
         private String country;
-        private Timestamp startDate;
-        private Timestamp endDate;
+        private Date startDate;
+        private Date endDate;
         private String description;
         private String certificateFilePath;
         private String verificationAddress;
@@ -187,12 +198,12 @@ public class CourseEntity extends BaseEntity {
         }
 
         public Builder setStartDate(Timestamp startDate) {
-            this.startDate = startDate;
+            this.startDate = Date.valueOf(startDate.toLocalDateTime().toLocalDate());
             return this;
         }
 
         public Builder setEndDate(Timestamp endDate) {
-            this.endDate = endDate;
+            this.endDate = Date.valueOf(endDate.toLocalDateTime().toLocalDate());
             return this;
         }
 
@@ -210,6 +221,7 @@ public class CourseEntity extends BaseEntity {
             this.verificationAddress = verificationAddress;
             return this;
         }
+
 
         public CourseEntity build() {
             return new CourseEntity(this);
