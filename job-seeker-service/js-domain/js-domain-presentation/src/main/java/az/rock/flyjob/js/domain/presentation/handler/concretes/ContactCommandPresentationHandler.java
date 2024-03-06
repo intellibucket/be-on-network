@@ -32,7 +32,9 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
 
     @Override
     public ContactCreatedEvent createContact(ContactCommandModel commandModel) //Create ve Update qalib onlar yazilmalidi yazacam
-    { return null;
+    {
+
+        return null;
 //     return abstractContactCommandRepositoryAdapter.create(contactCommandDomainMapper.toRoot(commandModel));
     }
 
