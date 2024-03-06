@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @ValueObject
-public class SimplePageable<T> {
+public class SimplePageableResponse<T> {
 
     private final Integer pageSize;
 
@@ -15,7 +15,7 @@ public class SimplePageable<T> {
 
     private final List<T> data;
 
-    public SimplePageable(Integer pageSize, Integer pageNumber, List<T> data) {
+    public SimplePageableResponse(Integer pageSize, Integer pageNumber, List<T> data) {
         this.pageSize = Objects.requireNonNullElse(pageSize, 10);
         this.pageNumber = Objects.requireNonNullElse(pageNumber, 1);
         this.data = Objects.requireNonNullElse(data, Collections.emptyList());
