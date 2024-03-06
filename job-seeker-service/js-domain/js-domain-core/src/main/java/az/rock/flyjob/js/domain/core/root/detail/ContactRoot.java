@@ -106,6 +106,102 @@ public class ContactRoot extends AggregateRoot<ContactID> {
             return this;
         }
 
+        public ContactID getId() {
+            return id;
+        }
+
+        public void setId(ContactID id) {
+            this.id = id;
+        }
+
+        public Version getVersion() {
+            return version;
+        }
+
+        public void setVersion(Version version) {
+            this.version = version;
+        }
+
+        public ProcessStatus getProcessStatus() {
+            return processStatus;
+        }
+
+        public void setProcessStatus(ProcessStatus processStatus) {
+            this.processStatus = processStatus;
+        }
+
+        public RowStatus getRowStatus() {
+            return rowStatus;
+        }
+
+        public void setRowStatus(RowStatus rowStatus) {
+            this.rowStatus = rowStatus;
+        }
+
+        public ZonedDateTime getCreatedDate() {
+            return createdDate;
+        }
+
+        public void setCreatedDate(ZonedDateTime createdDate) {
+            this.createdDate = createdDate;
+        }
+
+        public ZonedDateTime getLastModifiedDate() {
+            return lastModifiedDate;
+        }
+
+        public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+            this.lastModifiedDate = lastModifiedDate;
+        }
+
+        public ResumeID getResume() {
+            return resume;
+        }
+
+        public void setResume(ResumeID resume) {
+            this.resume = resume;
+        }
+
+        public AccessModifier getAccessModifier() {
+            return accessModifier;
+        }
+
+        public void setAccessModifier(AccessModifier accessModifier) {
+            this.accessModifier = accessModifier;
+        }
+
+        public Integer getOrderNumber() {
+            return orderNumber;
+        }
+
+        public void setOrderNumber(Integer orderNumber) {
+            this.orderNumber = orderNumber;
+        }
+
+        public ContactFormatType getFormatType() {
+            return formatType;
+        }
+
+        public void setFormatType(ContactFormatType formatType) {
+            this.formatType = formatType;
+        }
+
+        public ContactLiveType getLiveType() {
+            return liveType;
+        }
+
+        public void setLiveType(ContactLiveType liveType) {
+            this.liveType = liveType;
+        }
+
+        public String getData() {
+            return data;
+        }
+
+        public void setData(String data) {
+            this.data = data;
+        }
+
         public Builder processStatus(ProcessStatus val) {
             processStatus = val;
             return this;
