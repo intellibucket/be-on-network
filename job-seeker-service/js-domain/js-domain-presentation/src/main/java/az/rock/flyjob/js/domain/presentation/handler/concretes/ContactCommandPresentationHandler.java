@@ -30,6 +30,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
         this.contextHolder = contextHolder;
     }
 
+
     @Override
     public ContactCreatedEvent createContact(ContactCommandModel commandModel) //Create ve Update qalib onlar yazilmalidi yazacam
     {
