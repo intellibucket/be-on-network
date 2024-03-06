@@ -17,7 +17,6 @@ import java.util.UUID;
 @RequestMapping(value = "/js/1.0/private/command/contact", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContactCommandPrivateController implements ContactCommandPrivateSpec {
 
-
     @Override
     @PostMapping("/create")
     public ResponseEntity<JSuccessResponse> create(CreateRequest<ContactCommandModel> request) {
