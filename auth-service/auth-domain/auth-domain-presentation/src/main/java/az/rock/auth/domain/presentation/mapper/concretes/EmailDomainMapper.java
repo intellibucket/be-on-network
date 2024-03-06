@@ -3,7 +3,7 @@ package az.rock.auth.domain.presentation.mapper.concretes;
 import az.rock.auth.domain.presentation.dto.request.EmailChangeRequest;
 import az.rock.auth.domain.presentation.dto.request.EmailCreateRequest;
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractEmailDomainMapper;
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.EmailType;
@@ -13,6 +13,7 @@ import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
+import java.util.Locale;
 import java.util.UUID;
 @Component
 public class EmailDomainMapper implements AbstractEmailDomainMapper {
@@ -26,7 +27,7 @@ public class EmailDomainMapper implements AbstractEmailDomainMapper {
                 .rowStatus(RowStatus.ACTIVE)
                 .user(userID)
                 .type(EmailType.PERSONAL)
-                .email(email)
+                .email(email.toLowerCase(Locale.ROOT))
                 .isEnableNotification(Boolean.FALSE)
                 .isPrimary(Boolean.TRUE)
                 .isVerified(Boolean.FALSE)

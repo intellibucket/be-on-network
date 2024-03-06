@@ -14,4 +14,7 @@ public interface AbstractNetworkQueryDomainPresentation {
     List<UUID> findInMyNetworkPendingRequests();
 
     List<UUID> findMyPendingRequests();
+
+
+
 }

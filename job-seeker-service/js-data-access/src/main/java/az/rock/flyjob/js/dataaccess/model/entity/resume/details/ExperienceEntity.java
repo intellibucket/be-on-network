@@ -3,7 +3,7 @@ package az.rock.flyjob.js.dataaccess.model.entity.resume.details;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.lib.domain.BaseEntity;
 import az.rock.lib.valueObject.AccessModifier;
-import az.rock.lib.valueObject.WorkingTimeType;
+import az.rock.lib.valueObject.WorkingTimeLineType;
 import az.rock.lib.valueObject.WorkingType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class ExperienceEntity extends BaseEntity {
     @ManyToOne
     private ResumeEntity resume;
 
-    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Column(length = 32, columnDefinition = "varchar(32) default 'AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
 
@@ -49,7 +49,7 @@ public class ExperienceEntity extends BaseEntity {
     private WorkingType workingType;
 
     @Enumerated(EnumType.STRING)
-    private WorkingTimeType workingTimeType;
+    private WorkingTimeLineType workingTimeType;
 
     @Column(name = "description")
     private String description;

@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.api.rest.privates.query;
 
-import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractFollowQueryDomainPresentationService;
+import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractFollowRelationQueryDomainPresentationService;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.spec.auth.privates.query.FollowQueryPrivateSpec;
 import org.springframework.http.MediaType;
@@ -17,9 +17,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/auth/1.0/private/query/follow",produces = MediaType.APPLICATION_JSON_VALUE)
 public class FollowQueryPrivateController implements FollowQueryPrivateSpec {
-    private final AbstractFollowQueryDomainPresentationService followQueryDomainPresentationService;
+    private final AbstractFollowRelationQueryDomainPresentationService followQueryDomainPresentationService;
 
-    public FollowQueryPrivateController(AbstractFollowQueryDomainPresentationService followQueryDomainPresentationService) {
+    public FollowQueryPrivateController(AbstractFollowRelationQueryDomainPresentationService followQueryDomainPresentationService) {
         this.followQueryDomainPresentationService = followQueryDomainPresentationService;
     }
 
@@ -37,17 +37,4 @@ public class FollowQueryPrivateController implements FollowQueryPrivateSpec {
         return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
     }
 
-    @Override
-    @GetMapping("/my-follow-pending-requests")
-    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyFollowPendingRequests() {
-        List<UUID> entitiesId = this.followQueryDomainPresentationService.findMyFollowPendingRequests();
-        return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
-    }
-
-    @Override
-    @GetMapping("/in-my-follow-pending-requests")
-    public ResponseEntity<JSuccessDataResponse<List<UUID>>> queryInMyFollowPendingRequests() {
-        List<UUID> entitiesId = this.followQueryDomainPresentationService.findInMyFollowPendingRequests();
-        return ResponseEntity.ok(new JSuccessDataResponse<>(entitiesId));
-    }
 }

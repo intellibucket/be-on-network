@@ -2,8 +2,8 @@ package az.rock.flyjob.auth.dataAccess.adapter.query;
 
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractRoleQueryRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.RoleDataAccessMapper;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.RoleQueryJPARepository;
-import az.rock.flyjob.auth.root.RoleRoot;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.query.data.RoleQueryJPARepository;
+import az.rock.flyjob.auth.model.root.RoleRoot;
 import az.rock.lib.domain.id.auth.*;
 import org.springframework.stereotype.Component;
 

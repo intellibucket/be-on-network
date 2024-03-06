@@ -12,14 +12,10 @@
         <option value="$PROJECT_DIR$/job-seeker/pom.xml" />
         <option value="$PROJECT_DIR$/employer-service/pom.xml" />
         <option value="$PROJECT_DIR$/company-service/pom.xml" />
+        <option value="$PROJECT_DIR$/company-command-service/company-command-messaging/pom.xml" />
+        <option value="$PROJECT_DIR$/company-query-service/pom.xml" />
+        <option value="$PROJECT_DIR$/notification-service/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/auth-service/auth-data-access/auth-dfs/pom.xml" />
-        <option value="$PROJECT_DIR$/job-seeker-service/js-application/pom.xml" />
-        <option value="$PROJECT_DIR$/library/ib-kafka/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">

@@ -1,14 +1,16 @@
 package az.rock.auth.domain.presentation.ports.input.service.command.concretes;
 
-import az.rock.auth.domain.presentation.coordinator.abstracts.AbstractCompanyCreateEventCoordinator;
-import az.rock.auth.domain.presentation.coordinator.abstracts.AbstractJobSeekerCreateEventCoordinator;
 import az.rock.auth.domain.presentation.dto.request.CreateUserCommand;
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserCreateCommandHandler;
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserUpdateCommandHandler;
+import az.rock.auth.domain.presentation.ports.input.coordinator.starter.abstracts.AbstractCompanyCreateEventCoordinator;
+import az.rock.auth.domain.presentation.ports.input.coordinator.starter.abstracts.AbstractJobSeekerCreateEventCoordinator;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractUserCommandDomainPresentationService;
-import az.rock.lib.event.trx.Saga;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
+import com.intellibucket.lib.payload.outbox.CompanyRegistrationSteps;
+import com.intellibucket.lib.payload.outbox.JobSeekerRegistrationSteps;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,13 +34,23 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
     @Override
     public void createJobSeeker(CreateUserCommand createUserCommand) {
         var jobSeekerCreatedEvent = this.userCreateCommandHandler.handleJobSeekerCreated(createUserCommand);
-        var saga = Saga.onProceed(jobSeekerCreatedEvent);
+        var step = JobSeekerRegistrationSteps.ON_STARTED_STEP;
+        var saga = AbstractSagaProcess.onProceed(
+                step.getProcessName(),
+                step,
+                jobSeekerCreatedEvent);
         this.jobSeekerCreateEventCoordinator.coordinate(saga);
     }
 
     @Override
     public void createCompany(CreateUserCommand createUserCommand) {
-        var userCreatedEvent = this.userCreateCommandHandler.handleCompanyCreated(createUserCommand);
+        var companyCreatedEvent = this.userCreateCommandHandler.handleCompanyCreated(createUserCommand);
+        var step = CompanyRegistrationSteps.ON_STARTED_STEP;
+        var saga = AbstractSagaProcess.onProceed(
+                step.getProcessName(),
+                step,
+                companyCreatedEvent);
+        this.companyCreateEventCoordinator.coordinate(saga);
     }
 
 
@@ -66,6 +78,16 @@ public class UserCommandDomainPresentationService implements AbstractUserCommand
     @Override
     public void changeTimezone(TimeZoneID timezone) {
         var event = this.userUpdateCommandHandler.handleTimezoneUpdated(timezone);
+    }
+
+    @Override
+    public void changeTitle(String title) {
+        var event = this.userUpdateCommandHandler.handleTitleUpdated(title);
+    }
+
+    @Override
+    public void changeBiography(String biography) {
+        var event = this.userUpdateCommandHandler.handleBiographyUpdated(biography);
     }
 
 

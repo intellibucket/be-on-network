@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
-import az.rock.flyjob.auth.root.detail.DetailRoot;
+import az.rock.flyjob.auth.model.root.detail.DetailRoot;
 
 import java.util.UUID;
 

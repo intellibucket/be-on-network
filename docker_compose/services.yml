@@ -1,65 +1,40 @@
 version: "3.7"
 
 services:
-  discovery-service:
-    build:
-      context: ../discovery-service
-      dockerfile: ./Dockerfile
-    env_file: env/develop/discovery.env.develop
-    container_name: flyjob_discovery_service
+
+  redis-cache:
+    image: redis:latest
     restart: always
     ports:
-      - "8761:8761"
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
+  minio:
+    container_name: onnetwork_auth_dfs
+    image: 'bitnami/minio:latest'
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password
     networks:
       - config-network
 
-  config-service:
-    env_file: env/develop/config.env.develop
-    build:
-      context: ../config-service
-      dockerfile: ./Dockerfile
-    container_name: flyjob_config_service
-    depends_on:
-      - discovery-service
-    ports:
-      - "8012:8012"
-    expose:
-      - "8012"
-    networks:
-      - config-network
-    restart: on-failure
-    links:
-      - discovery-service
-  #
-  #  redis-cache:
-  #    image: redis:latest
-  #    restart: always
-  #    ports:
-  #      - '6379:6379'
-  #    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
-  #    volumes:
-  #      - cache:/data
-  #
-  #  minio:
-  #    container_name: flyjob_auth_dfs
-  #    image: 'bitnami/minio:latest'
-  #    ports:
-  #      - '9000:9000'
-  #      - '9001:9001'
-  #    environment:
-  #      - MINIO_ROOT_USER=minio-root-user
-  #      - MINIO_ROOT_PASSWORD=minio-root-password
-  #    networks:
-  #      - config-network
-  #
-  #
+
   postgres-db:
-    container_name: flyjob_postgre_db
+    container_name: onnetwork_postgre_db
     image: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
       PGDATA: /data/postgres
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
     volumes:
       - db:/data/postgres
     ports:
@@ -67,6 +42,90 @@ services:
     networks:
       - config-network
     restart: unless-stopped
+
+  mongo_db:
+    image: mongo:latest
+    container_name: company_query_mongo
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_DATABASE=company_query_mdb
+    ports:
+      - "7017:27017"
+    volumes:
+      - db:/data/db
+    networks:
+      - config-network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
+      ME_CONFIG_MONGODB_URL: mongodb://62.72.45.66:27017/company_query_mdb
+    networks:
+      - config-network
+
+  #  discovery-service:
+  #    build:
+  #      context: ../discovery-service
+  #      dockerfile: ./Dockerfile
+  #    env_file: env/develop/discovery.env.develop
+  #    container_name: flyjob_discovery_service
+  #    restart: always
+  #    ports:
+  #      - "8761:8761"
+  #    networks:
+  #      - config-network
+  #
+  #  config-service:
+  #    env_file: env/develop/config.env.develop
+  #    build:
+  #      context: ../config-service
+  #      dockerfile: ./Dockerfile
+  #    container_name: flyjob_config_service
+  #    depends_on:
+  #      - discovery-service
+  #    ports:
+  #      - "8012:8012"
+  #    expose:
+  #      - "8012"
+  #    networks:
+  #      - config-network
+  #    restart: on-failure
+  #    links:
+  #      - discovery-service
+#  redpanda:
+#    image: docker.redpanda.com/redpandadata/redpanda:latest
+#    container_name: redpanda-1
+#    command:
+#      - redpanda
+#      - start
+#      - --smp
+#      - '1'
+#      - --reserve-memory
+#      - 0M
+#      - --overprovisioned
+#      - --node-id
+#      - '0'
+#      - --kafka-addr
+#      - PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
+#      - --advertise-kafka-addr
+#      - PLAINTEXT://redpanda:29092,OUTSIDE://localhost:9092
+#      - --pandaproxy-addr
+#      - PLAINTEXT://0.0.0.0:28082,OUTSIDE://0.0.0.0:8082
+#      - --advertise-pandaproxy-addr
+#      - PLAINTEXT://redpanda:28082,OUTSIDE://localhost:8082
+#    ports:
+#      - 8081:8081
+#      - 8082:8082
+#      - 9092:9092
+#      - 28082:28082
+#      - 29092:29092
 
 #  auth-service:
 #    env_file: env/develop/auth.env.develop

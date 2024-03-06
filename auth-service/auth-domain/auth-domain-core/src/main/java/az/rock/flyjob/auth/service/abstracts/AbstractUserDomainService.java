@@ -1,10 +1,10 @@
 package az.rock.flyjob.auth.service.abstracts;
 
-import az.rock.lib.event.impl.concretes.auth.create.CompanyCreatedEvent;
-import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
+import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
+import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
 
 public interface AbstractUserDomainService {
     JobSeekerCreatedEvent validateAndInitializeUser(UserRoot userRoot);
@@ -20,4 +20,8 @@ public interface AbstractUserDomainService {
     UserRoot changeGender(UserRoot currentUserRoot, Gender gender);
 
     UserRoot changeTimezone(UserRoot currentUserRoot, TimeZoneID timezone);
+
+    UserRoot changeTitle(UserRoot currentUserRoot, String title);
+
+    UserRoot changeBiography(UserRoot currentUserRoot, String biography);
 }

@@ -3,18 +3,45 @@
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="auth-persistence" transaction-type="JTA">
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.UserSettingsEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.GeoPositionEntity</class>
-
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.AccountPlanEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.AuthorityEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity</class>
-        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.detail.DetailEntity</class>
 
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.network.BlockRelationEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.network.NetworkRelationEntity</class>
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity</class>
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.AuthenticationLogEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.device.GeoPositionEntity</class>
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.settings.AccountSettingsEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.settings.ActionSettingsEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.settings.NotificationSettingsEntity</class>
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.AccountPlanEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.CoverPictureEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.EmailEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.PasswordEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.user.PhoneNumberEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.ProfileHashtag</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.ProfilePictureEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.user.UserEntity</class>
+
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.AuthorityEntity</class>
         <class>az.rock.flyjob.auth.dataAccess.model.entity.RoleEntity</class>
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.CityEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.CountryEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.replica.LanguageEntity</class>
+
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessOutboxEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.FailOutboxEntity</class>
+        <class>az.rock.flyjob.auth.dataAccess.model.entity.outbox.ProcessStepEntity</class>
+
+
     </persistence-unit>
+
 </persistence>

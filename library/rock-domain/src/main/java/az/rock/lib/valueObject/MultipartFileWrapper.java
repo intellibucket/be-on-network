@@ -1,6 +1,7 @@
 package az.rock.lib.valueObject;
 
 import java.io.InputStream;
+import java.util.UUID;
 
 public final class MultipartFileWrapper {
 
@@ -30,7 +31,14 @@ public final class MultipartFileWrapper {
     }
 
     public String getAbsolutePath() {
-        return contentType.getValue().concat(absolutePath);
+        var currentMillis = System.currentTimeMillis();
+        return contentType.getValue()
+                .concat("/")
+                .concat(UUID.randomUUID().toString())
+                .concat("_")
+                .concat(String.valueOf(currentMillis))
+                .concat("_")
+                .concat(absolutePath);
     }
 
     public ContentType getContentType() {

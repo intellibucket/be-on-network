@@ -15,7 +15,6 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
     private ZonedDateTime createdDate;
     private ZonedDateTime modificationDate;
 
-
     @JsonIgnore
     public Boolean isNull() {
         return true;
@@ -106,7 +105,7 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
 
     @JsonIgnore
     public Boolean isActive() {
-        return this.rowStatus.isActive();
+        return this.rowStatus.isActive() && this.processStatus.isOnWaiting();
     }
 
     @JsonIgnore
@@ -155,7 +154,16 @@ public class AggregateRoot<ID> extends SimpleAggregateRoot<ID> implements NullVa
         return this.processStatus.isCancelling();
     }
 
+    @JsonIgnore
+    public void changeProcessStatusToCompleted(){this.processStatus = ProcessStatus.COMPLETED; }
 
+    @JsonIgnore
+    public void inActive(){
+        this.rowStatus = RowStatus.INACTIVE;
+    }
 
-
+    @JsonIgnore
+    public void delete(){
+        this.rowStatus = RowStatus.DELETED;
+    }
 }

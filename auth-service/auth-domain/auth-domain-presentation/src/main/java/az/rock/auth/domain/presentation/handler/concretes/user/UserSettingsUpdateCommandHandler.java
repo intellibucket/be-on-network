@@ -1,14 +1,15 @@
 package az.rock.auth.domain.presentation.handler.concretes.user;
 
-import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.exception.UnknownSystemException;
 import az.rock.auth.domain.presentation.handler.abstracts.user.AbstractUserSettingsUpdateCommandHandler;
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractUserSettingsCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractUserSettingsQueryRepositoryAdapter;
-import az.rock.lib.event.impl.concretes.auth.update.UserSettingsUpdatedEvent;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.flyjob.auth.model.root.user.UserSettingsRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserSettingsDomainService;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
+import com.intellibucket.lib.payload.event.update.settings.UserSettingsUpdatedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -41,59 +42,146 @@ public class UserSettingsUpdateCommandHandler implements AbstractUserSettingsUpd
         }else throw new UnknownSystemException();
     }
 
-    // TODO: 29.06.23 must be implement other methods
     @Override
     public UserSettingsUpdatedEvent handleChangeDarkMode(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeDarkMode(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeEmailNotification(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeEmailNotification(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeSmsNotification(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeSmsNotification(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangePushNotification(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangePushNotification(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeTwoFactorAuthentication(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeTwoFactorAuthentication(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeVisibleLocation(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeVisibleLocation(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeVisibleOnlineStatus(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeVisibleOnlineStatus(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeVisibleLastSeen(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeVisibleLastSeen(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeVisibleProfilePicture(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()) {
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeVisibleProfilePicture(currentUserID, root, switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeVisibleEmail(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if (optionalRoot.isPresent()){
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeVisibleEmail(currentUserID,root,switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 
     @Override
     public UserSettingsUpdatedEvent handleChangeVisibleResume(Switch switcher) {
-        return null;
+        var currentUserID = this.securityContextHolder.availableUser();
+        var optionalRoot = this.userSettingsQueryRepositoryAdapter.findByPID(currentUserID);
+        if(optionalRoot.isPresent()){
+            var root = optionalRoot.get();
+            UserSettingsRoot changedRoot =
+                    this.userSettingsDomainService.validateAndChangeVisibleResume(currentUserID,root,switcher);
+            this.userSettingsCommandRepositoryAdapter.update(changedRoot);
+            return null;
+        }else throw new UnknownSystemException();
     }
 }

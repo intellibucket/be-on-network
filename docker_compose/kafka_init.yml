@@ -2,6 +2,7 @@ version: '3.7'
 services:
   zookeeper:
     image: "docker.io/bitnami/zookeeper:latest"
+    restart: always
     container_name: ZOOKEEPER
     ports:
       - "2181:2181"
@@ -18,6 +19,7 @@ services:
       - "9092:9092"
     expose:
       - "9093"
+    restart: always
     volumes:
       - "kafka_data:/bitnami"
     environment:
@@ -39,7 +41,7 @@ services:
       - "9090:8080"
     restart: always
     environment:
-      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_NAME=develop
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9093
       - KAFKA_CLUSTERS_0_ZOOKEEPER=localhost:2181
     depends_on:

@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractProfilePictureDomainMapper;
-import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
+import az.rock.flyjob.auth.model.root.user.ProfilePictureRoot;
 import az.rock.lib.domain.id.auth.ProfilePictureID;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.*;
@@ -18,7 +18,7 @@ public class ProfilePictureDomainMapper implements AbstractProfilePictureDomainM
                 .id(ProfilePictureID.of())
                 .userID(userID)
                 .accessModifier(AccessModifier.PUBLIC)
-                .processStatus(ProcessStatus.ON_WAITING)
+                .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .version(Version.ONE)
                 .filename(fileMetaData.getObject())

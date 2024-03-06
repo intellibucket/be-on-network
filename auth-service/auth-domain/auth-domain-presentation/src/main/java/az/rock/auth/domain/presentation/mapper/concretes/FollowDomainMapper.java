@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractFollowDomainMapper;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
 import az.rock.lib.domain.id.auth.*;
 import az.rock.lib.valueObject.*;
 import org.springframework.stereotype.Component;
@@ -25,8 +25,25 @@ public class FollowDomainMapper implements AbstractFollowDomainMapper {
                 .followedUserId(userID.getUserID().getAbsoluteID())
                 .followStatus(FollowStatus.ACCEPTED)
                 .blockReasonStatus(BlockReasonStatus.UNKNOWN)
-
                 .build();
     }
+
+    @Override
+    public FollowRelationRoot mapToFollowRelationRoot(UserIdTypePair userID, UserIdTypePair followUserID) {
+       return FollowRelationRoot.Builder
+                .builder()
+                .followID(FollowID.of(UUID.randomUUID()))
+                .version(Version.ONE)
+                .processStatus(ProcessStatus.COMPLETED)
+                .rowStatus(RowStatus.INACTIVE)
+                .followingUserType(followUserID.getUserType())
+                .followingUserId(followUserID.getUserID().getAbsoluteID())
+                .followerUserType(userID.getUserType())
+                .followedUserId(userID.getUserID().getAbsoluteID())
+                .followStatus(FollowStatus.ACCEPTED)
+                .blockReasonStatus(BlockReasonStatus.UNKNOWN)
+                .build();
+    }
+
 }
 

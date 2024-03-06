@@ -8,7 +8,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractEmailQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.email.EmailUpdatedEvent;
 import az.rock.flyjob.auth.exception.email.EmailNotFoundException;
-import az.rock.flyjob.auth.root.user.EmailRoot;
+import az.rock.flyjob.auth.model.root.user.EmailRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractEmailDomainService;
 import az.rock.lib.domain.id.auth.EmailID;
 import az.rock.lib.valueObject.SwitchCase;
@@ -55,7 +55,7 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
         var email = this.emailQueryRepositoryAdapter.findMyEmailByID(currentUserId,emailID);
         if(email.isPresent()) {
             this.emailDomainService.validateForDeleteEmail(currentUserId,email.get());
-            this.emailCommandRepositoryAdapter.delete(email.get());
+            this.emailCommandRepositoryAdapter.inActive(email.get());
             return EmailUpdatedEvent.of(email.get());
         }else throw new EmailNotFoundException();
     }

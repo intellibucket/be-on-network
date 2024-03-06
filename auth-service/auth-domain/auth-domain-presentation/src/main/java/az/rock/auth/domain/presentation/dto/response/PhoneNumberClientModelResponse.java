@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
-import az.rock.flyjob.auth.root.user.PhoneNumberRoot;
+import az.rock.flyjob.auth.model.root.user.PhoneNumberRoot;
 import az.rock.lib.valueObject.PhoneNumberType;
 
 import java.util.UUID;

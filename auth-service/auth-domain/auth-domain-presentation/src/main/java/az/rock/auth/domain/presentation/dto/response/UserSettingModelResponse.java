@@ -1,6 +1,6 @@
 package az.rock.auth.domain.presentation.dto.response;
 
-import az.rock.flyjob.auth.root.user.UserSettingsRoot;
+import az.rock.flyjob.auth.model.root.user.UserSettingsRoot;
 import az.rock.lib.valueObject.Language;
 
 public record UserSettingModelResponse(Language language,

@@ -1,6 +1,7 @@
 package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Locale;
 import java.util.TimeZone;
@@ -31,6 +32,7 @@ public class TimeZoneID {
         return timezone;
     }
 
+    @JsonIgnore
     public Boolean isAzerbaijan(){
         return isTimezone("Asia/Baku");
     }

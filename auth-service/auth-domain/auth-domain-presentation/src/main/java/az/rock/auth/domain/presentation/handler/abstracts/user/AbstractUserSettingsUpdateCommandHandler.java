@@ -1,8 +1,8 @@
 package az.rock.auth.domain.presentation.handler.abstracts.user;
 
-import az.rock.lib.event.impl.concretes.auth.update.UserSettingsUpdatedEvent;
 import az.rock.lib.valueObject.Language;
 import az.rock.lib.valueObject.Switch;
+import com.intellibucket.lib.payload.event.update.settings.UserSettingsUpdatedEvent;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -29,10 +29,11 @@
             <column name="country" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691910391397-2" author="Vugar Mammadli">
+
+    <changeSet id="1702148675022-25" author="Vugar Mammadli">
         <createTable schemaName="replica" tableName="cities">
             <column name="uuid" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cities"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cıtıes"/>
             </column>
             <column name="version" type="BIGINT"/>
             <column name="process_status" type="VARCHAR(255)">
@@ -46,20 +47,20 @@
             </column>
             <column name="modification_date" type="DATETIME"/>
             <column name="country_uuid" type="UUID"/>
-            <column name="city_name" type="VARCHAR(255)"/>
-            <column name="city_region" type="VARCHAR(255)"/>
-            <column name="city_latitude" type="VARCHAR(255)"/>
-            <column name="city_longitude" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="region" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
             <column name="city_state_code" type="VARCHAR(255)"/>
             <column name="city_timezone" type="VARCHAR(255)"/>
             <column name="city_flag" type="bytea"/>
             <column name="city_wiki_data_id" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691910391397-3" author="Vugar Mammadli">
+    <changeSet id="1702148675022-26" author="Vugar Mammadli">
         <createTable schemaName="replica" tableName="countries">
             <column name="uuid" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_countries"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_countrıes"/>
             </column>
             <column name="version" type="BIGINT"/>
             <column name="process_status" type="VARCHAR(255)">
@@ -72,13 +73,21 @@
                 <constraints nullable="false"/>
             </column>
             <column name="modification_date" type="DATETIME"/>
-            <column name="country_code" type="VARCHAR(255)"/>
-            <column name="country_phone_code" type="VARCHAR(255)"/>
-            <column name="country_name" type="VARCHAR(255)"/>
-            <column name="country_capital" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="phone_code" type="VARCHAR(255)"/>
+            <column name="currency" type="VARCHAR(255)"/>
+            <column name="currency_code" type="VARCHAR(255)"/>
+            <column name="currency_symbol" type="VARCHAR(255)"/>
+            <column name="flag" type="bytea"/>
+            <column name="flag_url" type="VARCHAR(255)"/>
+            <column name="timezone" type="VARCHAR(255)"/>
+            <column name="timezone_offset" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691910391397-4" author="Vugar Mammadli">
+    <changeSet id="1702148675022-27" author="Vugar Mammadli">
         <createTable schemaName="replica" tableName="languages">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_languages"/>
@@ -94,13 +103,17 @@
                 <constraints nullable="false"/>
             </column>
             <column name="modification_date" type="DATETIME"/>
-            <column name="country_uuid" type="UUID"/>
             <column name="name" type="VARCHAR(255)"/>
-            <column name="iso639_1" type="VARCHAR(255)"/>
-            <column name="iso639_2_t" type="VARCHAR(255)"/>
+            <column name="iso_code" type="VARCHAR(255)"/>
+            <column name="region" type="VARCHAR(255)"/>
+            <column name="script" type="VARCHAR(255)"/>
+            <column name="family" type="VARCHAR(255)"/>
             <column name="native_name" type="VARCHAR(255)"/>
+            <column name="native_region" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
+
+
     <changeSet id="1691910391397-5" author="Vugar Mammadli">
         <createTable schemaName="resume" tableName="addresses">
             <column name="uuid" type="UUID">
@@ -286,7 +299,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="degree" type="VARCHAR(255)"/>
-            <column name="state" type="VARCHAR(255)"/>
+            <column name="trxProcessStatus" type="VARCHAR(255)"/>
             <column name="link" type="VARCHAR(255)"/>
             <column name="establishment_uuid" type="UUID"/>
             <column name="establishment_name" type="VARCHAR(255)">
@@ -1016,6 +1029,12 @@
         <addForeignKeyConstraint baseColumnNames="resume_uuid" baseTableName="skills" baseTableSchemaName="resume"
                                  constraintName="FK_SKILLS_ON_RESUME_UUID" referencedColumnNames="uuid"
                                  referencedTableName="resumes" referencedTableSchemaName="resume"/>
+    </changeSet>
+
+    <changeSet id="1691910391397-AC-01" author="Vugar Mammadli">
+        <addColumn tableName="educations" schemaName="resume">
+            <column name="state" type="varchar(255)"/>
+        </addColumn>
     </changeSet>
 
 </databaseChangeLog>

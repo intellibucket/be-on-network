@@ -4,9 +4,10 @@ import az.rock.flyjob.auth.dataAccess.model.entity.detail.DetailEntity;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.*;
 import az.rock.flyjob.auth.dataAccess.model.entity.user.device.DeviceEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.*;
-import az.rock.flyjob.auth.root.detail.DetailRoot;
-import az.rock.flyjob.auth.root.user.*;
-import az.rock.flyjob.auth.root.user.device.DeviceRoot;
+import az.rock.flyjob.auth.dataAccess.model.entity.user.settings.UserSettingsEntity;
+import az.rock.flyjob.auth.model.root.detail.DetailRoot;
+import az.rock.flyjob.auth.model.root.user.*;
+import az.rock.flyjob.auth.model.root.user.device.DeviceRoot;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.TimeZoneID;
@@ -29,7 +30,7 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
 
     private final AbstractDeviceDataAccessMapper<DeviceEntity, DeviceRoot> deviceDataAccessMapper;
 
-    private final AbstractUserSettingsDataAccessMapper<UserSettingsEntity,UserSettingsRoot> userSettingsDataAccessMapper;
+    private final AbstractUserSettingsDataAccessMapper<UserSettingsEntity, UserSettingsRoot> userSettingsDataAccessMapper;
 
 
     public UserDataAccessMapper(AbstractPasswordDataAccessMapper<PasswordEntity, PasswordRoot> passwordDataAccessMapper,
@@ -54,21 +55,24 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
         var optionalUserEntity = Optional.ofNullable(entity);
         if (optionalUserEntity.isEmpty()) return Optional.empty();
         return Optional.of(UserRoot.Builder
-                .builder()
-                .id(UserID.of(entity.getUuid()))
-                .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
-                .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
-                .version(entity.getVersion())
-                .processStatus(entity.getProcessStatus())
-                .rowStatus(entity.getRowStatus())
-                .accessModifier(entity.getAccessModifier())
-                .userType(entity.getUserType())
-                .key(entity.getKey())
-                .firstName(entity.getFirstName())
-                .lastName(entity.getLastName())
-                .username(entity.getUsername())
-                .timezone(TimeZoneID.of(entity.getTimezone()))
-                .build());
+                        .builder()
+                        .id(UserID.of(entity.getUuid()))
+                        .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
+                        .modificationDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
+                        .version(entity.getVersion())
+                        .processStatus(entity.getProcessStatus())
+                        .rowStatus(entity.getRowStatus())
+                        .accessModifier(entity.getAccessModifier())
+                        .userType(entity.getUserType())
+                        .key(entity.getKey())
+                        .firstName(entity.getFirstName())
+                        .lastName(entity.getLastName())
+                        .username(entity.getUsername())
+                        .timezone(TimeZoneID.of(entity.getTimezone()))
+                        .gender(entity.getGender())
+                        .title(entity.getTitle())
+                        .biography(entity.getBiography())
+                    .build());
     }
 
     @Override
@@ -91,6 +95,8 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .timezone(root.getTimezone().getValue())
+                .title(root.getTitle())
+                .biography(root.getBiography())
                 .build());
     }
 
@@ -143,6 +149,8 @@ public class UserDataAccessMapper implements AbstractUserDataAccessMapper<UserEn
                 .lastName(root.getLastName())
                 .username(root.getUsername())
                 .timezone(root.getTimezone().getValue())
+                .title(root.getTitle())
+                .biography(root.getBiography())
                 .passwords(passwordEntities)
                 .gender(root.getGender())
                 .emails(emailEntities)

@@ -5,5 +5,4 @@ public class FollowDomainException extends RuntimeException{
         super(message);
     }
 
-    public FollowDomainException() {}
 }

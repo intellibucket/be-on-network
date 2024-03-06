@@ -27,7 +27,7 @@ public class ProfilePictureCommandPrivateController {
         this.multipartFileWrapperMapper = multipartFileWrapperMapper;
     }
 
-    @PostMapping(value = "/upload",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.IMAGE_PNG_VALUE,MediaType.IMAGE_JPEG_VALUE})
+    @PostMapping(value = "/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
     @Operation(summary = "Upload profile picture")
     public ResponseEntity<JSuccessDataResponse<UUID>> uploadProfilePicture(@RequestBody MultipartFile file) {
         MultipartFileWrapper wrapFile = this.factoryWrapper(file);

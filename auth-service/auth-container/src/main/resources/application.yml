@@ -1,14 +1,21 @@
 spring:
   profiles:
-    active: ${PROFILE:local}
+    active: ${PROFILE:pre-develop}
   config:
     fail-fast: true
     retry:
       maxAttempts: 200
       maxInterval: 10000
-    import: configserver:http://localhost:8012
+    import: configserver:http://62.72.45.66:8012
   application:
     name: auth-service
+
+  jpa:
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
 
 server:
   servlet:

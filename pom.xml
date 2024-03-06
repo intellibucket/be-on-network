@@ -5,26 +5,26 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <name>FlyJob</name>
+    <name>OnNetwork</name>
     <description>Job search platform</description>
 
     <licenses>
         <license>
-            <name>Rock General Public License v3.0</name>
+            <name>IntelliBucket General Public License v3.0</name>
             <url>https://www.github.com/l00pss/licenses</url>
         </license>
     </licenses>
 
     <organization>
-        <name>FlyJob</name>
+        <name>IntelliBucket</name>
     </organization>
 
     <developers>
         <developer>
             <name>Vugar Mammadli</name>
             <email>mammadli.vugar@hotmail.com</email>
-            <organization>FlyJob</organization>
-            <organizationUrl>https://www.github.com/flyjob</organizationUrl>
+            <organization>IntelliBucket</organization>
+            <organizationUrl>https://www.github.com/intellibucket</organizationUrl>
         </developer>
     </developers>
 
@@ -40,8 +40,8 @@
         <module>job-seeker-service</module>
         <module>stream-service</module>
         <module>library</module>
-        <module>vacancy-command-service</module>
-        <module>vacancy-query-service</module>
+        <module>company-command-service</module>
+        <module>company-query-service</module>
         <module>vacancy-sync-service</module>
         <module>notification-service</module>
         <module>payment-service</module>
@@ -52,17 +52,17 @@
         <module>authorization-service</module>
         <module>rapid-log-service</module>
         <module>image-processor-service</module>
+        <module>email-service</module>
+        <module>payment-service</module>
+        <module>notification-service</module>
     </modules>
 
     <properties>
         <java.version>17</java.version>
         <postgresql.version>42.6.0</postgresql.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-
         <twitter4j.version>4.0.7</twitter4j.version>
-
         <lombok.version>1.18.22</lombok.version>
-
         <spring-boot.version>3.0.4</spring-boot.version>
         <spring-kafka.version>2.8.6</spring-kafka.version>
         <spring-retry.version>1.3.3</spring-retry.version>
@@ -119,19 +119,40 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.intellibucket.ws.authorization</groupId>
+                <artifactId>authorization-service</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.intellibucket.lib.payload</groupId>
+                <artifactId>ib-payload</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-netty</artifactId>
+                <version>1.16.1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-protobuf</artifactId>
+                <version>1.16.1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-stub</artifactId>
+                <version>1.16.1</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework.kafka</groupId>
                 <artifactId>spring-kafka</artifactId>
                 <version>3.0.4</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>3.0.1</version>
-            </dependency>
-            <dependency>
                 <groupId>org.hibernate.orm</groupId>
                 <artifactId>hibernate-spatial</artifactId>
-                <version>6.2.4.Final</version>
+                <version>6.2.2.Final</version>
             </dependency>
             <dependency>
                 <groupId>com.maxmind.geoip2</groupId>
@@ -233,22 +254,32 @@
                 <version>${spring-boot.version}</version>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.kafka</groupId>-->
-<!--                <artifactId>spring-kafka</artifactId>-->
-<!--                <version>${spring-kafka.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.kafka</groupId>-->
+            <!--                <artifactId>spring-kafka</artifactId>-->
+            <!--                <version>${spring-kafka.version}</version>-->
+            <!--            </dependency>-->
 
+            <dependency>
+                <groupId>io.debezium</groupId>
+                <artifactId>debezium-embedded</artifactId>
+                <version>2.4.0.Alpha1</version>
+            </dependency>
+            <dependency>
+                <groupId>io.debezium</groupId>
+                <artifactId>debezium-connector-postgres</artifactId>
+                <version>2.4.0.Alpha1</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.retry</groupId>
                 <artifactId>spring-retry</artifactId>
                 <version>${spring-retry.version}</version>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-data-redis-reactive</artifactId>-->
-<!--                <version>${spring-boot.version}</version>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter-data-redis-reactive</artifactId>-->
+            <!--                <version>${spring-boot.version}</version>-->
 <!--            </dependency>-->
 
             <dependency>

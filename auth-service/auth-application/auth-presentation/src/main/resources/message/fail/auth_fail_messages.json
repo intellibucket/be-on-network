@@ -286,5 +286,194 @@
     "tr": "Bu istifadəçi tərəfinizdən artıq bloklanmışdır",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000033",
+    "az": "Özünüzə istək göndərə bilməzsiniz",
+    "en": "You can't follow yourself",
+    "ru": "Вы не можете следовать за собой",
+    "tr": "Kendinizi takip edemezsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000034",
+    "az": "Özünüzü izləmədən çıxara bilməzsiniz",
+    "en": "You can't unfollow yourself",
+    "ru": "Вы не можете отписаться от себя",
+    "tr": "Kendinizi takipden çıkaramazsınız",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000035",
+    "az": "Bu istifadəçini artıq blok etmisiniz",
+    "en": "You have already blocked this user",
+    "ru": "Вы уже заблокировали этого пользователя",
+    "tr": "Bu kullanıcıyı zaten engellediniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000036",
+    "az": "Özünüzü blok edə bilməzsiniz",
+    "en": "You cannot block yourself",
+    "ru": "Вы не можете заблокировать себя",
+    "tr": "Kendinizi engelleyemezsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000037",
+    "az": "Aktiv sətr tapılmadı",
+    "en": "Aktiv sətr tapılmadı",
+    "ru": "Aktiv sətr tapılmadı",
+    "tr": "Aktiv sətr tapılmadı",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000038",
+    "az": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "en": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "ru": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "tr": "Blokdan çıxardığınız istifadəçini yenidən blokdan çıxarda bilməzsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000039",
+    "az": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "en": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "ru": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "tr": "Özünüzü blokdan çıxarda bilməzsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000040",
+    "az": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "en": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "ru": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "tr": "Blok olunduğunuz və ya blok etdiyiz üçün istək ata bilməzsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000041",
+    "az": "Şifrə düzgün deyildir",
+    "en": "Password is incorrect",
+    "ru": "Пароль неверен",
+    "tr": "Parola yanlış",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000042",
+    "az": "Bu istifadəçi adı istifadə olunub",
+    "en": "This username is already taken",
+    "ru": "Это имя пользователя уже занято",
+    "tr": "Bu kullanıcı adı zaten alınmış",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000043",
+    "az": "Hər hansı bir dil seçilməyib",
+    "en": "No language selected",
+    "ru": "Язык не выбран",
+    "tr": "Dil seçilmedi",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000044",
+    "az": "Bu telefon nömrəsi artıq əlavə olunubdur",
+    "en": "This phone number is already added",
+    "ru": "Этот номер телефона уже добавлен",
+    "tr": "Bu telefon numarası zaten eklenmiş",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000045",
+    "az": "Əlaqə nömrəsi düzgün formatda deyil",
+    "en": "Contact number is not in correct format",
+    "ru": "Номер контакта не в правильном формате",
+    "tr": "İletişim numarası doğru formatta değil",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000046",
+    "az": "Bu əlaqə nömrəsi artıq istifadə olunur. Xahiş edirik başqa bir nömrə daxil edəsiniz",
+    "en": "This contact number is already in use. Please enter another number",
+    "ru": "Этот номер контакта уже используется. Пожалуйста, введите другой номер",
+    "tr": "Bu iletişim numarası zaten kullanılıyor. Lütfen başka bir numara girin",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000047",
+    "az": "Özünüzə əlaqə istəyi göndərə  bilməzsiniz",
+    "en": "You can't send connection request yourself",
+    "ru": "Вы не можете отправить запрос на подключение самостоятельно",
+    "tr": "Kendinize bağlantı isteğini  gönderemezsiniz",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000048",
+    "az": "Sizin artıq aktiv əlaqəniz mövcuddur.",
+    "en": "You have already active network relation",
+    "ru": "У вас уже есть активная сетевая связь",
+    "tr": "Zaten aktif bir ağ ilişkiniz var",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000049",
+    "az": "Network status is not correct",
+    "en": "Network status is not correct",
+    "ru": "Network status is not correct",
+    "tr": "Network status is not correct",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000050",
+    "az": "Telefon nömrəsi tapılmadı",
+    "en": "Telefon nömrəsi tapılmadı",
+    "ru": "Telefon nömrəsi tapılmadı",
+    "tr": "Telefon nömrəsi tapılmadı",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000051",
+    "az": "Hazırki şifrəniz yanlış daxil edilmişdir",
+    "en": "Current password is incorrect",
+    "ru": "Текущий пароль неверен",
+    "tr": "Geçerli parola yanlış",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000052",
+    "az": "Yeni şifrəniz hazırki şifrəniz ilə eyni olmamalıdır",
+    "en": "New password should not be same as current password",
+    "ru": "Новый пароль не должен совпадать с текущим паролем",
+    "tr": "Yeni parola geçerli parola ile aynı olmamalıdır",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000053",
+    "az": "Istifadəçi tapılmadı",
+    "en": "User not found",
+    "ru": "Пользователь не найден",
+    "tr": "Kullanıcı bulunamadı",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

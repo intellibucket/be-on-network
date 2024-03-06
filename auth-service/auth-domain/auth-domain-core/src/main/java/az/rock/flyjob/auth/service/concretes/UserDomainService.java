@@ -1,14 +1,16 @@
 package az.rock.flyjob.auth.service.concretes;
 
-import az.rock.lib.event.impl.concretes.auth.create.CompanyCreatedEvent;
-import az.rock.lib.event.impl.concretes.auth.create.JobSeekerCreatedEvent;
 import az.rock.flyjob.auth.exception.AuthDomainException;
-import az.rock.flyjob.auth.root.user.UserRoot;
+import az.rock.flyjob.auth.model.root.user.UserRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractUserDomainService;
 import az.rock.lib.util.GObjects;
 import az.rock.lib.util.StringUtils;
 import az.rock.lib.valueObject.Gender;
 import az.rock.lib.valueObject.TimeZoneID;
+import com.intellibucket.lib.payload.event.create.user.CompanyCreatedEvent;
+import com.intellibucket.lib.payload.event.create.user.JobSeekerCreatedEvent;
+import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
+import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 
 import java.util.Objects;
 
@@ -16,12 +18,25 @@ public class UserDomainService implements AbstractUserDomainService {
 
     @Override
     public JobSeekerCreatedEvent validateAndInitializeUser(UserRoot userRoot) {
-        return null;
+        return JobSeekerCreatedEvent.of(
+                JobSeekerRegistrationPayload.Builder
+                        .builder()
+                        .userId(userRoot.getRootID().getAbsoluteID())
+                        .type(userRoot.getUserType())
+                        .firstName(userRoot.getFirstName())
+                        .lastName(userRoot.getLastName())
+                        .build()
+        );
     }
 
     @Override
     public CompanyCreatedEvent validateAndInitializeCompany(UserRoot userRoot) {
-        return null;
+        return CompanyCreatedEvent.of(
+                new CompanyRegistrationPayload(
+                        userRoot.getRootID().getAbsoluteID(),
+                        userRoot.getUserType()) {
+                }
+        );
     }
 
     @Override
@@ -65,6 +80,16 @@ public class UserDomainService implements AbstractUserDomainService {
 
     @Override
     public UserRoot changeTimezone(UserRoot currentUserRoot, TimeZoneID timezone) {
-        return null;
+        return currentUserRoot.changeTimezone(timezone);
+    }
+
+    @Override
+    public UserRoot changeTitle(UserRoot currentUserRoot, String title) {
+        return currentUserRoot.changeTitle(title);
+    }
+
+    @Override
+    public UserRoot changeBiography(UserRoot currentUserRoot, String biography) {
+        return currentUserRoot.changeBiography(biography);
     }
 }

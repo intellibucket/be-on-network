@@ -1,7 +1,7 @@
 package az.rock.auth.domain.presentation.mapper.concretes;
 
 import az.rock.auth.domain.presentation.mapper.abstracts.AbstractCoverPictureDomainMapper;
-import az.rock.flyjob.auth.root.user.CoverPictureRoot;
+import az.rock.flyjob.auth.model.root.user.CoverPictureRoot;
 import az.rock.lib.domain.id.auth.CoverPictureID;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.*;

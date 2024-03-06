@@ -3,7 +3,7 @@ package az.rock.auth.domain.presentation.ports.input.service.query.concretes;
 import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.AbstractNetworkQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractNetworkQueryRepositoryAdapter;
-import az.rock.flyjob.auth.root.network.NetworkRelationRoot;
+import az.rock.flyjob.auth.model.root.network.NetworkRelationRoot;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,4 +51,5 @@ public class NetworkQueryDomainPresentation implements AbstractNetworkQueryDomai
                 .map(root->root.getOtherPair(currentUserID.getAbsoluteID()))
                 .toList();
     }
+
 }

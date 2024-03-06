@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="company-command-persistence" transaction-type="JTA">
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.replica.CityEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.replica.CountryEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.replica.LanguageEntity</class>
+
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyProfileEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.VerificationEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.EmailEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.WebsiteEntity</class>
+
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancyEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.AppliedUserEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancyLocationEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancyPlannerEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancyPriorityEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancySalaryEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancySaveUserEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.ViewerEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancyTagEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancySkillEntity</class>
+        <class>com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy.VacancySettingEntity</class>
+
+    </persistence-unit>
+
+</persistence>

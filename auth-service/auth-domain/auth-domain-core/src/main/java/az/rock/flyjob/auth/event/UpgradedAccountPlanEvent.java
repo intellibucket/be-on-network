@@ -1,8 +1,8 @@
 package az.rock.flyjob.auth.event;
 
-import az.rock.flyjob.auth.root.user.AccountPlanRoot;
-import az.rock.lib.event.AbstractDomainEvent;
-import az.rock.lib.event.Event;
+import az.rock.flyjob.auth.model.root.user.AccountPlanRoot;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import com.intellibucket.lib.payload.event.abstracts.Event;
 
 @Event
 public class UpgradedAccountPlanEvent extends AbstractDomainEvent<AccountPlanRoot> {

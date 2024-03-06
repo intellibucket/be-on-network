@@ -23,7 +23,7 @@ public class AuthMinioService implements AbstractMinioService {
     }
 
     @Override
-    public ObjectWriteResponse upload(MultipartFileWrapper multipartFileWrapper)  throws MinioException {
+    public ObjectWriteResponse upload(MultipartFileWrapper multipartFileWrapper) {
         try {
             var args = PutObjectArgs
                     .builder()

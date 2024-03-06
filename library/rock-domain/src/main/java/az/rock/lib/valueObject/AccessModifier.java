@@ -1,77 +1,70 @@
 package az.rock.lib.valueObject;
 
 import az.rock.lib.annotation.ValueObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Arrays;
+import java.util.List;
 
 @ValueObject
 public enum AccessModifier {
-    PUBLIC,
-    ONLY_AUTHENTICATED,
-    ONLY_FOLLOWERS,
-    ONLY_NETWORK,
-    PRIVATE,
+    PUBLIC(0),
+    AUTHENTICATED(1),
+    ONLY_FOLLOWERS_AND_NETWORK(2),
+    ONLY_NETWORK(3),
+    PRIVATE(4),
+    UNKNOWN(5);
+    private final Integer senstivity;
+    private
+    AccessModifier(Integer senstivity) {
+        this.senstivity = senstivity;
+    }
 
-    UNKNOWN;
 
+    @JsonIgnore
+    public Integer getSenstivity() {
+        return senstivity;
+    }
+
+    public static List<AccessModifier> fetchAll() {
+        return Arrays.asList(AccessModifier.PUBLIC, AccessModifier.AUTHENTICATED, AccessModifier.ONLY_FOLLOWERS_AND_NETWORK, AccessModifier.ONLY_NETWORK, AccessModifier.PRIVATE);
+    }
+    public static AccessModifier find(Integer senstivity) {
+        return Arrays.stream(AccessModifier.values())
+                .filter(accessModifier -> accessModifier.getSenstivity().equals(senstivity))
+                .findFirst()
+                .orElse(UNKNOWN);
+    }
+
+    @JsonIgnore
     public boolean isPublic() {
         return this == PUBLIC;
     }
 
-    public boolean isOnlyAuthenticated() {
-        return this == ONLY_AUTHENTICATED;
+    @JsonIgnore
+    public boolean isAuthenticated() {
+        return this == AUTHENTICATED;
     }
 
+    @JsonIgnore
     public boolean isOnlyNetwork() {
         return this == ONLY_NETWORK;
     }
 
-    public boolean isOnlyFollowers() {
-        return this == ONLY_FOLLOWERS;
+    @JsonIgnore
+    public boolean isOnlyFollowersAndNetworks() {
+        return this == ONLY_FOLLOWERS_AND_NETWORK;
     }
 
+    @JsonIgnore
     public boolean isPrivate() {
         return this == PRIVATE;
     }
 
+    @JsonIgnore
     public boolean isUnknown() {
         return this == UNKNOWN;
     }
 
-    public boolean isPublicOrOnlyAuthenticated() {
-        return isPublic() || isOnlyAuthenticated();
-    }
-
-    public boolean isPublicOrOnlyAuthenticatedOrOnlyNetwork() {
-        return isPublic() || isOnlyAuthenticated() || isOnlyNetwork();
-    }
-
-    public boolean isPublicOrOnlyAuthenticatedOrOnlyNetworkOrOnlyFollowers() {
-        return isPublic() || isOnlyAuthenticated() || isOnlyNetwork() || isOnlyFollowers();
-    }
-
-    public boolean isPublicOrOnlyAuthenticatedOrOnlyNetworkOrOnlyFollowersOrPrivate() {
-        return isPublic() || isOnlyAuthenticated() || isOnlyNetwork() || isOnlyFollowers() || isPrivate();
-    }
-
-
-    public boolean isOnlyAuthenticatedOrOnlyNetwork() {
-        return isOnlyAuthenticated() || isOnlyNetwork();
-    }
-
-    public boolean isOnlyAuthenticatedOrOnlyNetworkOrOnlyFollowers() {
-        return isOnlyAuthenticated() || isOnlyNetwork() || isOnlyFollowers();
-    }
-
-    public boolean isOnlyAuthenticatedOrOnlyNetworkOrOnlyFollowersOrPrivate() {
-        return isOnlyAuthenticated() || isOnlyNetwork() || isOnlyFollowers() || isPrivate();
-    }
-
-
-    public boolean isOnlyNetworkOrOnlyFollowers() {
-        return isOnlyNetwork() || isOnlyFollowers();
-    }
-
-    public boolean isOnlyNetworkOrOnlyFollowersOrPrivate() {
-        return isOnlyNetwork() || isOnlyFollowers() || isPrivate();
-    }
 
 }

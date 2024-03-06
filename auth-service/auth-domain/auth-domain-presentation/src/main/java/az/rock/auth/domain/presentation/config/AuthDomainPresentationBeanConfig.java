@@ -7,9 +7,16 @@ import az.rock.lib.GPasswordEncryptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
 public class AuthDomainPresentationBeanConfig {
+
+    @Bean
+    public Validator validatorFactory() {
+        return new LocalValidatorFactoryBean();
+    }
 
     @Bean
     @Scope("prototype")
@@ -39,7 +46,7 @@ public class AuthDomainPresentationBeanConfig {
 
     @Bean
     public AbstractPasswordDomainService abstractPasswordDomainService() {
-        return new PasswordDomainService();
+        return new PasswordDomainService(this.abstractPasswordEncryptor());
     }
 
     @Bean
@@ -64,12 +71,22 @@ public class AuthDomainPresentationBeanConfig {
     }
 
     @Bean
-    public AbstractFollowDomainService abstractFollowDomainService(){
+    public AbstractFollowRelationDomainService abstractFollowDomainService() {
         return new FollowDomainService();
     }
 
     @Bean
-    public AbstractBlockRelationDomainService abstractBlockRelationDomainService(){
+    public AbstractBlockRelationDomainService abstractBlockRelationDomainService() {
         return new BlockRelationDomainService();
+    }
+
+    @Bean
+    public AbstractPhoneNumberDomainService abstractPhoneNumberDomainService() {
+        return new PhoneNumberDomainService();
+    }
+
+    @Bean
+    public AbstractNetworkRelationDomainService abstractNetworkRelationDomainService() {
+        return new NetworkRelationDomainService();
     }
 }

@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-    <changeSet id="1691655430519-1" author="Vugar Mammadli">
+    <changeSet id="1697027203285-1" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="account_plan">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_account_plan"/>
@@ -35,7 +35,165 @@
             <column name="promo_code" type="VARCHAR(100)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-2" author="Vugar Mammadli">
+    <changeSet id="x1703429987170-24" author="Vugar Mammadli">
+        <createTable schemaName="outbox" tableName="fail_outbox">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_faıl_outbox"/>
+            </column>
+            <column defaultValueBoolean="true" name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="SMALLINT"/>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="process" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="step" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(200)"/>
+            <column name="stack_trace" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="x2703429987170-24" author="Vugar Mammadli">
+        <createTable schemaName="outbox" tableName="process_steps">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_process_steps"/>
+            </column>
+            <column defaultValueBoolean="true" name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="SMALLINT"/>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="process" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="step" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="ACx2703429987170-01" author="Vugar Mammadli">
+        <addColumn schemaName="outbox" tableName="process_steps">
+            <column name="is_successful" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="x1703429987170-25" author="Vugar Mammadli">
+        <createTable schemaName="outbox" tableName="process_outbox">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_process_outbox"/>
+            </column>
+            <column defaultValueBoolean="true" name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="SMALLINT"/>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="trx_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="topic" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="process" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="step" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="false" name="must_be_retryable_step" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1697027203285-2" author="Vugar Mammadli">
+        <createTable schemaName="auth" tableName="account_settings">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_account_settings"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="user_uuid" type="UUID"/>
+            <column name="is_possible_to_find_me_by_email" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_possible_to_find_me_by_phone_number" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_possible_to_find_me_by_user_name" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_possible_to_find_me_by_full_name" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_possible_to_find_me_by_location" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1697027203285-3" author="Vugar Mammadli">
+        <createTable schemaName="auth" tableName="action_settings">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_action_settings"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="user_uuid" type="UUID"/>
+            <column name="share_updates_when_i_do_something" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_me_when_somebody_speaks_about_me" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_me_when_somebody_speaks_about_my_posts" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="who_can_follow_me" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1697027203285-4" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="authentication_logs">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_authentication_logs"/>
@@ -57,7 +215,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-3" author="Vugar Mammadli">
+    <changeSet id="1697027203285-5" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="authorities">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_authorities"/>
@@ -81,7 +239,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-4" author="Vugar Mammadli">
+    <changeSet id="1697027203285-6" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="cover_pictures">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cover_pictures"/>
@@ -98,7 +256,7 @@
             </column>
             <column name="modification_date" type="DATETIME"/>
             <column name="user_uuid" type="UUID"/>
-            <column defaultValue="ONLY_AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
+            <column defaultValue="AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
             <column defaultValueBoolean="false" name="is_current" type="boolean">
                 <constraints nullable="false"/>
             </column>
@@ -120,7 +278,7 @@
             <column defaultValue="#ffffff" name="header_line_color" type="varchar(14)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-5" author="Vugar Mammadli">
+    <changeSet id="1697027203285-7" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="detail_role">
             <column name="detail_uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_detail_role"/>
@@ -130,7 +288,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-6" author="Vugar Mammadli">
+    <changeSet id="1697027203285-8" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="details">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_details"/>
@@ -167,7 +325,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-7" author="Vugar Mammadli">
+    <changeSet id="1697027203285-9" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="devices">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_devices"/>
@@ -205,7 +363,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-8" author="Vugar Mammadli">
+    <changeSet id="1697027203285-10" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="emails">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_emails"/>
@@ -221,7 +379,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="modification_date" type="DATETIME"/>
-            <column defaultValue="ONLY_AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
+            <column defaultValue="AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
             <column name="user_uuid" type="UUID"/>
             <column name="type" type="VARCHAR(255)"/>
             <column name="email" type="VARCHAR(255)">
@@ -246,7 +404,7 @@
             <column name="subscribed_date" type="DATETIME"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-9" author="Vugar Mammadli">
+    <changeSet id="1697027203285-11" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="geo_positions">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_geo_positions"/>
@@ -272,7 +430,38 @@
             <column name="gmt" type="VARCHAR(10)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-10" author="Vugar Mammadli">
+    <changeSet id="1697027203285-12" author="Vugar Mammadli">
+        <createTable schemaName="auth" tableName="notification_settings">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_notification_settings"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="user_uuid" type="UUID"/>
+            <column name="notify_me_when_somebody_speaks_about_me" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_me_when_somebody_speaks_about_me_on_posts" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_me_when_somebody_speaks_about_me_on_comments" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_me_when_somebody_speaks_about_my_replies" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1697027203285-13" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="passwords">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_passwords"/>
@@ -297,7 +486,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-11" author="Vugar Mammadli">
+    <changeSet id="1697027203285-14" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="phone_numbers">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_phone_numbers"/>
@@ -313,12 +502,12 @@
                 <constraints nullable="false"/>
             </column>
             <column name="modification_date" type="DATETIME"/>
-            <column defaultValue="ONLY_AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
+            <column defaultValue="AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
             <column name="user_uuid" type="UUID"/>
-            <column name="country_code" type="VARCHAR(1)">
+            <column name="country_code" type="VARCHAR(10)">
                 <constraints nullable="false"/>
             </column>
-            <column name="phone_number" type="VARCHAR(20)">
+            <column name="phone_number" type="VARCHAR(30)">
                 <constraints nullable="false"/>
             </column>
             <column name="type" type="VARCHAR(255)"/>
@@ -340,7 +529,7 @@
             <column name="verification_code_send_count" type="DECIMAL"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-12" author="Vugar Mammadli">
+    <changeSet id="1697027203285-15" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="profile_pictures">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_profile_pictures"/>
@@ -357,7 +546,7 @@
             </column>
             <column name="modification_date" type="DATETIME"/>
             <column name="user_uuid" type="UUID"/>
-            <column defaultValue="ONLY_AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
+            <column defaultValue="AUTHENTICATED" name="access_modifier" type="varchar(32)"/>
             <column defaultValueBoolean="false" name="is_current" type="boolean">
                 <constraints nullable="false"/>
             </column>
@@ -383,7 +572,7 @@
             <column name="file_url_webp" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-13" author="Vugar Mammadli">
+    <changeSet id="1697027203285-16" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="role_authority">
             <column name="authority_id" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_role_authority"/>
@@ -393,7 +582,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-14" author="Vugar Mammadli">
+    <changeSet id="1697027203285-17" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="roles">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles"/>
@@ -413,7 +602,7 @@
             <column name="description" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-15" author="Vugar Mammadli">
+    <changeSet id="1697027203285-18" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="user_settings">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_settings"/>
@@ -456,7 +645,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-16" author="Vugar Mammadli">
+    <changeSet id="1697027203285-19" author="Vugar Mammadli">
         <createTable schemaName="auth" tableName="users">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
@@ -494,7 +683,64 @@
             <column name="gender" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-17" author="Vugar Mammadli">
+    <changeSet id="1697027203285-ac-01" author="Vugar Mammadli">
+        <addColumn tableName="users" schemaName="auth">
+            <column name="title" type="VARCHAR(200)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1697027203285-ac-02" author="Vugar Mammadli">
+        <addColumn tableName="users" schemaName="auth">
+            <column name="biography" type="VARCHAR(2600)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="0000000000001-ct-01" author="Vugar Mammadli">
+        <createTable schemaName="auth"
+                     tableName="profile_hashtags">
+            <column name="uuid"
+                    type="UUID">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_profıle_hashtags"/>
+            </column>
+            <column name="version"
+                    type="BIGINT"/>
+            <column name="process_status"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date"
+                    type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date"
+                    type="DATETIME"/>
+            <column name="user_uuid"
+                    type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hashtag"
+                    type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description"
+                    type="VARCHAR(255)"/>
+            <column defaultValue="BLACK"
+                    name="color"
+                    type="varchar(64)"/>
+            <column defaultValueNumeric="0"
+                    name="order"
+                    type="int"/>
+            <column defaultValue="EN"
+                    name="national"
+                    type="varchar(64)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1697027203285-20" author="Vugar Mammadli">
         <createTable schemaName="network" tableName="block_relation">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_block_relation"/>
@@ -521,7 +767,7 @@
             <column name="description" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-18" author="Vugar Mammadli">
+    <changeSet id="1697027203285-21" author="Vugar Mammadli">
         <createTable schemaName="network" tableName="follow_relation">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_follow_relation"/>
@@ -549,7 +795,7 @@
             <column name="block_reason_status" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-19" author="Vugar Mammadli">
+    <changeSet id="1697027203285-22" author="Vugar Mammadli">
         <createTable schemaName="network" tableName="network_relation">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_network_relation"/>
@@ -575,154 +821,255 @@
             <column name="block_reason_status" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-20" author="Vugar Mammadli">
-        <createTable schemaName="outbox" tableName="user_outbox">
+    <!--    <changeSet id="1697027203285-23" author="Vugar Mammadli">-->
+    <!--        <createTable schemaName="outbox" tableName="user_outbox">-->
+    <!--            <column name="uuid" type="UUID">-->
+    <!--                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_outbox"/>-->
+    <!--            </column>-->
+    <!--            <column name="saga_id" type="UUID">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="version" type="BIGINT"/>-->
+    <!--            <column name="created_date" type="DATETIME">-->
+    <!--                <constraints nullable="false"/>-->
+    <!--            </column>-->
+    <!--            <column name="modification_date" type="DATETIME"/>-->
+    <!--            <column name="saga_status" type="VARCHAR(255)"/>-->
+    <!--            <column name="outbox_status" type="VARCHAR(255)"/>-->
+    <!--            <column name="type" type="VARCHAR(100)"/>-->
+    <!--            <column name="payload" type="VARCHAR(255)"/>-->
+    <!--            <column name="process_status" type="VARCHAR(255)"/>-->
+    <!--        </createTable>-->
+    <!--    </changeSet>-->
+    <changeSet id="1702148675022-25" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="cities">
             <column name="uuid" type="UUID">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_outbox"/>
-            </column>
-            <column name="saga_id" type="UUID">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cıtıes"/>
             </column>
             <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="created_date" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
             <column name="modification_date" type="DATETIME"/>
-            <column name="saga_status" type="VARCHAR(255)"/>
-            <column name="outbox_status" type="VARCHAR(255)"/>
-            <column name="type" type="VARCHAR(100)"/>
-            <column name="payload" type="VARCHAR(255)"/>
-            <column name="process_status" type="VARCHAR(255)"/>
+            <column name="country_uuid" type="UUID"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
+            <column name="timezone" type="VARCHAR(255)"/>
+            <column name="timezone_offset" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1691655430519-21" author="Vugar Mammadli">
+    <changeSet id="1702148675022-26" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="countries">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_countrıes"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="phone_code" type="VARCHAR(255)"/>
+            <column name="currency" type="VARCHAR(255)"/>
+            <column name="currency_code" type="VARCHAR(255)"/>
+            <column name="currency_symbol" type="VARCHAR(255)"/>
+            <column name="flag" type="bytea"/>
+            <column name="flag_url" type="VARCHAR(255)"/>
+            <column name="timezone" type="VARCHAR(255)"/>
+            <column name="timezone_offset" type="VARCHAR(255)"/>
+            <column name="latitude" type="DECIMAL"/>
+            <column name="longitude" type="DECIMAL"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1702148675022-27" author="Vugar Mammadli">
+        <createTable schemaName="replica" tableName="languages">
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_languages"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="process_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="row_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="DATETIME"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="iso_code" type="VARCHAR(255)"/>
+            <column name="region" type="VARCHAR(255)"/>
+            <column name="script" type="VARCHAR(255)"/>
+            <column name="family" type="VARCHAR(255)"/>
+            <column name="native_name" type="VARCHAR(255)"/>
+            <column name="native_region" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1697027203285-24" author="Vugar Mammadli">
         <addUniqueConstraint columnNames="permission" constraintName="uc_authorities_permission" schemaName="auth"
                              tableName="authorities"/>
     </changeSet>
-    <changeSet id="1691655430519-22" author="Vugar Mammadli">
+    <changeSet id="1697027203285-25" author="Vugar Mammadli">
         <addUniqueConstraint columnNames="email" constraintName="uc_emails_email" schemaName="auth" tableName="emails"/>
     </changeSet>
-    <changeSet id="1691655430519-23" author="Vugar Mammadli">
+    <changeSet id="1697027203285-26" author="Vugar Mammadli">
         <addUniqueConstraint columnNames="key" constraintName="uc_users_key" schemaName="auth" tableName="users"/>
     </changeSet>
-    <changeSet id="1691655430519-24" author="Vugar Mammadli">
+    <changeSet id="1697027203285-27" author="Vugar Mammadli">
         <addUniqueConstraint columnNames="username" constraintName="uc_users_username" schemaName="auth"
                              tableName="users"/>
     </changeSet>
-    <changeSet id="1691655430519-25" author="Vugar Mammadli">
+    <changeSet id="1697027203285-28" author="Vugar Mammadli">
         <createIndex indexName="idx_users_username" schemaName="auth" tableName="users">
             <column name="username"/>
         </createIndex>
     </changeSet>
-    <changeSet id="1691655430519-26" author="Vugar Mammadli">
-        <createIndex indexName="ıdx_emailentity_row_status" schemaName="auth" tableName="emails">
+    <changeSet id="1697027203285-29" author="Vugar Mammadli">
+        <createIndex indexName="?dx_emailentity_row_status" schemaName="auth" tableName="emails">
             <column name="row_status"/>
         </createIndex>
     </changeSet>
-    <changeSet id="1691655430519-27" author="Vugar Mammadli">
-        <createIndex indexName="ıdx_users_row_status" schemaName="auth" tableName="users">
+    <changeSet id="1697027203285-30" author="Vugar Mammadli">
+        <createIndex indexName="?dx_users_row_status" schemaName="auth" tableName="users">
             <column name="row_status"/>
         </createIndex>
     </changeSet>
-    <changeSet id="1691655430519-28" author="Vugar Mammadli">
-        <createIndex indexName="ıdx_users_usertype" schemaName="auth" tableName="users">
+    <changeSet id="1697027203285-31" author="Vugar Mammadli">
+        <createIndex indexName="?dx_users_usertype" schemaName="auth" tableName="users">
             <column name="user_type"/>
         </createIndex>
     </changeSet>
-    <changeSet id="1691655430519-29" author="Vugar Mammadli">
-        <createIndex indexName="ıdx_following_id" schemaName="network" tableName="follow_relation">
+    <changeSet id="1697027203285-32" author="Vugar Mammadli">
+        <createIndex indexName="?dx_following_id" schemaName="network" tableName="follow_relation">
             <column name="following_user_id"/>
         </createIndex>
     </changeSet>
-    <changeSet id="1691655430519-30" author="Vugar Mammadli">
-        <createIndex indexName="ıdx_followrelationentity_row_status" schemaName="network" tableName="follow_relation">
+    <changeSet id="1697027203285-33" author="Vugar Mammadli">
+        <createIndex indexName="?dx_followrelationentity_row_status" schemaName="network" tableName="follow_relation">
             <column name="row_status"/>
         </createIndex>
     </changeSet>
-    <changeSet id="1691655430519-31" author="Vugar Mammadli">
-        <createIndex indexName="ıdx_networkrelationentity" schemaName="network" tableName="network_relation">
+    <changeSet id="1697027203285-34" author="Vugar Mammadli">
+        <createIndex indexName="?dx_networkrelationentity" schemaName="network" tableName="network_relation">
             <column name="request_target_id"/>
             <column name="request_owner_id"/>
             <column name="network_status"/>
         </createIndex>
     </changeSet>
-    <changeSet id="1691655430519-32" author="Vugar Mammadli">
+    <changeSet id="1697027203285-35" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="account_plan" baseTableSchemaName="auth"
                                  constraintName="FK_ACCOUNT_PLAN_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-33" author="Vugar Mammadli">
+    <changeSet id="1697027203285-36" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="account_settings" baseTableSchemaName="auth"
+                                 constraintName="FK_ACCOUNT_SETTINGS_ON_USER_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="users" referencedTableSchemaName="auth"/>
+    </changeSet>
+    <changeSet id="1697027203285-37" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="action_settings" baseTableSchemaName="auth"
+                                 constraintName="FK_ACTION_SETTINGS_ON_USER_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="users" referencedTableSchemaName="auth"/>
+    </changeSet>
+    <changeSet id="1697027203285-38" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="device_uuid" baseTableName="authentication_logs"
                                  baseTableSchemaName="auth" constraintName="FK_AUTHENTICATION_LOGS_ON_DEVICE_UUID"
                                  referencedColumnNames="uuid" referencedTableName="devices"
                                  referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-34" author="Vugar Mammadli">
+    <changeSet id="1697027203285-39" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="cover_pictures" baseTableSchemaName="auth"
                                  constraintName="FK_COVER_PICTURES_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-35" author="Vugar Mammadli">
+    <changeSet id="1697027203285-40" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="details" baseTableSchemaName="auth"
                                  constraintName="FK_DETAILS_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-36" author="Vugar Mammadli">
+    <changeSet id="1697027203285-41" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="devices" baseTableSchemaName="auth"
                                  constraintName="FK_DEVICES_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-37" author="Vugar Mammadli">
+    <changeSet id="1697027203285-42" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="emails" baseTableSchemaName="auth"
                                  constraintName="FK_EMAILS_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-38" author="Vugar Mammadli">
+    <changeSet id="1697027203285-43" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="device_entity_uuid" baseTableName="geo_positions"
                                  baseTableSchemaName="auth" constraintName="FK_GEO_POSITIONS_ON_DEVICEENTITY_UUID"
                                  referencedColumnNames="uuid" referencedTableName="devices"
                                  referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-39" author="Vugar Mammadli">
+    <changeSet id="1697027203285-44" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="notification_settings"
+                                 baseTableSchemaName="auth" constraintName="FK_NOTIFICATION_SETTINGS_ON_USER_UUID"
+                                 referencedColumnNames="uuid" referencedTableName="users"
+                                 referencedTableSchemaName="auth"/>
+    </changeSet>
+    <changeSet id="1697027203285-45" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="passwords" baseTableSchemaName="auth"
                                  constraintName="FK_PASSWORDS_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-40" author="Vugar Mammadli">
+    <changeSet id="1697027203285-46" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="phone_numbers" baseTableSchemaName="auth"
                                  constraintName="FK_PHONE_NUMBERS_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-41" author="Vugar Mammadli">
+    <changeSet id="1697027203285-47" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="profile_pictures" baseTableSchemaName="auth"
                                  constraintName="FK_PROFILE_PICTURES_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-42" author="Vugar Mammadli">
+    <changeSet id="1697027203285-48" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="user_uuid" baseTableName="user_settings" baseTableSchemaName="auth"
                                  constraintName="FK_USER_SETTINGS_ON_USER_UUID" referencedColumnNames="uuid"
                                  referencedTableName="users" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-43" author="Vugar Mammadli">
+    <changeSet id="1697027203285-49" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="detail_uuid" baseTableName="detail_role" baseTableSchemaName="auth"
                                  constraintName="fk_detrol_on_detail_entity" referencedColumnNames="uuid"
                                  referencedTableName="details" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-44" author="Vugar Mammadli">
+    <changeSet id="1697027203285-50" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="role_uuid" baseTableName="detail_role" baseTableSchemaName="auth"
                                  constraintName="fk_detrol_on_role_entity" referencedColumnNames="uuid"
                                  referencedTableName="roles" referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-45" author="Vugar Mammadli">
+    <changeSet id="1697027203285-51" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="authority_id" baseTableName="role_authority"
                                  baseTableSchemaName="auth" constraintName="fk_rolaut_on_authority_entity"
                                  referencedColumnNames="uuid" referencedTableName="authorities"
                                  referencedTableSchemaName="auth"/>
     </changeSet>
-    <changeSet id="1691655430519-46" author="Vugar Mammadli">
+    <changeSet id="1697027203285-52" author="Vugar Mammadli">
         <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_authority" baseTableSchemaName="auth"
                                  constraintName="fk_rolaut_on_role_entity" referencedColumnNames="uuid"
                                  referencedTableName="roles" referencedTableSchemaName="auth"/>
     </changeSet>
+    <changeSet id="1702148675022-57" author="Vugar Mammadli">
+        <addForeignKeyConstraint baseColumnNames="country_uuid" baseTableName="cities" baseTableSchemaName="replica"
+                                 constraintName="FK_CITIES_ON_COUNTRY_UUID" referencedColumnNames="uuid"
+                                 referencedTableName="countries" referencedTableSchemaName="replica"/>
+    </changeSet>
+
 
 </databaseChangeLog>

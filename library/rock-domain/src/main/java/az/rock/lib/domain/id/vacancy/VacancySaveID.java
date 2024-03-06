@@ -1,0 +1,16 @@
+package az.rock.lib.domain.id.vacancy;
+
+import az.rock.lib.domain.RootID;
+import az.rock.lib.domain.id.IdReference;
+
+import java.util.UUID;
+
+public class VacancySaveID extends RootID<UUID>  implements IdReference<UUID> {
+    protected VacancySaveID(UUID value) {
+        super(value);
+    }
+    @Override
+    public UUID getAbsoluteID() {
+        return super.getRootID();
+    }
+}

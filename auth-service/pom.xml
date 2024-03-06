@@ -12,6 +12,7 @@
     <groupId>az.rock.flyjob</groupId>
     <artifactId>auth-service</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>auth-application</module>
         <module>auth-messaging</module>

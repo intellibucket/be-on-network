@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.ports.output.repository.command.Abstract
 import az.rock.flyjob.auth.dataAccess.model.entity.user.ProfilePictureEntity;
 import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractProfilePictureDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractProfilePictureCustomCommandJPARepository;
-import az.rock.flyjob.auth.root.user.ProfilePictureRoot;
+import az.rock.flyjob.auth.model.root.user.ProfilePictureRoot;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

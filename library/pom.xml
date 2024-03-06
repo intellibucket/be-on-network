@@ -23,6 +23,11 @@
         <module>rock-message</module>
         <module>rock-domain</module>
         <module>validator4j</module>
+        <module>ib-data-access</module>
+        <module>ib-payload</module>
+        <module>ib-notification-api</module>
+        <module>authorization-client</module>
+        <module>ib-security</module>
     </modules>
 
     <properties>

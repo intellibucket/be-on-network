@@ -5,5 +5,7 @@ public enum NetworkStatus {
     REJECTED,
     PENDING,
     BLOCKED,
+
+    CANCELLED,
     UNKNOWN;
 }

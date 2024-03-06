@@ -14,7 +14,7 @@ target/
 
 
 ### Sensitive Data ###
-**/*.env.*
+**/**.env.*
 *.log
 *.txt
 *.gz
@@ -42,4 +42,5 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Store
+.DS_Store!/docker_compose/env/develop/config.env.develop
+!/docker_compose/env/develop/config.env.develop

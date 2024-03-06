@@ -23,16 +23,16 @@ import java.util.UUID;
 @Entity(name = "PhoneNumberEntity")
 public class PhoneNumberEntity extends BaseEntity {
 
-    @Column(length = 32, columnDefinition = "varchar(32) default 'ONLY_AUTHENTICATED'")
+    @Column(length = 32, columnDefinition = "varchar(32) default 'AUTHENTICATED'")
     @Enumerated(EnumType.STRING)
     private AccessModifier accessModifier;
     @ManyToOne
     private UserEntity user;
 
-    @Column(name = "country_code", length = 1, nullable = false)
+    @Column(name = "country_code", length = 10, nullable = false)
     private String countryCode;
 
-    @Column(name = "phone_number", length = 20, nullable = false)
+    @Column(name = "phone_number", length = 30, nullable = false)
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)

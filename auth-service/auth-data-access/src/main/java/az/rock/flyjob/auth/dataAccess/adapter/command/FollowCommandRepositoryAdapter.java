@@ -1,25 +1,25 @@
 package az.rock.flyjob.auth.dataAccess.adapter.command;
 
-import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowCommandRepositoryAdapter;
-import az.rock.flyjob.auth.dataAccess.mapper.abstracts.AbstractDataAccessMapper;
+import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractFollowRelationCommandRepositoryAdapter;
 import az.rock.flyjob.auth.dataAccess.mapper.concretes.FollowDataAccessMapper;
 import az.rock.flyjob.auth.dataAccess.model.entity.network.FollowRelationEntity;
-import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.network.AbstractFollowCommandCustomJPARepository;
+import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.AbstractFollowRelationCommandCustomJPARepository;
 //import az.rock.flyjob.auth.dataAccess.repository.abstracts.command.network.FollowCommandJPARepository;
-import az.rock.flyjob.auth.root.network.FollowRelationRoot;
+import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
+import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class FollowCommandRepositoryAdapter implements AbstractFollowCommandRepositoryAdapter {
+public class FollowCommandRepositoryAdapter implements AbstractFollowRelationCommandRepositoryAdapter {
 
-    private final AbstractFollowCommandCustomJPARepository followCommandCustomJPARepository;
+    private final AbstractFollowRelationCommandCustomJPARepository followCommandCustomJPARepository;
 
     private final AbstractDataAccessMapper<FollowRelationEntity,FollowRelationRoot> followDataAccessMapper;
 
 
-    public FollowCommandRepositoryAdapter(AbstractFollowCommandCustomJPARepository followCommandCustomJPARepository,
+    public FollowCommandRepositoryAdapter(AbstractFollowRelationCommandCustomJPARepository followCommandCustomJPARepository,
                                           FollowDataAccessMapper followDataAccessMapper){
         this.followCommandCustomJPARepository = followCommandCustomJPARepository;
         this.followDataAccessMapper = followDataAccessMapper;
@@ -34,31 +34,17 @@ public class FollowCommandRepositoryAdapter implements AbstractFollowCommandRepo
         }
         return Optional.empty();
     }
+    @Override
+    public void update(FollowRelationRoot root) {
+        var entity = this.followDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.followCommandCustomJPARepository::update);
+    }
+
+    @Override
+    public void inActive(FollowRelationRoot root) {
+        var entity = this.followDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.followCommandCustomJPARepository::inActive);
+    }
 
 
-//    @Override
-//    public Optional<FollowRelationRoot> create(FollowRelationRoot root) {
-//        var optionalRoot = Optional.ofNullable(root);
-//        var optionalEntity = this.followDataAccessMapper.toEntity(optionalRoot.get());
-//        if (optionalEntity.isPresent()) {
-//            var savedEntity = this.followCommandCustomJPARepository.persist(optionalEntity.get());
-//        //    return this.accountPlanDataAccessMapper.toRoot(savedEntity);
-//        }
-//        return Optional.empty();
-//    }
-
-//    @Override
-//    public void update(FollowRelationRoot root) {
-//        AbstractFollowCommandRepositoryAdapter.super.update(root);
-//    }
-//
-//    @Override
-//    public void updateAll(List<EmailRoot> emailRoots) {
-//        AbstractFollowCommandRepositoryAdapter.super.updateAll(emailRoots);
-//    }
-//
-//    @Override
-//    public void delete(FollowRelationRoot root) {
-//        AbstractFollowCommandRepositoryAdapter.super.delete(root);
-//    }
 }

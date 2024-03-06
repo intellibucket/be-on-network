@@ -1,0 +1,18 @@
+package az.rock.lib.domain.id.payment;
+
+import az.rock.lib.domain.RootID;
+import az.rock.lib.domain.id.IdReference;
+
+import java.util.UUID;
+
+public class CreditCardID extends RootID<UUID> implements IdReference<UUID> {
+
+    public CreditCardID(UUID value) {
+        super(value);
+    }
+
+    @Override
+    public UUID getAbsoluteID() {
+        return super.getRootID();
+    }
+}

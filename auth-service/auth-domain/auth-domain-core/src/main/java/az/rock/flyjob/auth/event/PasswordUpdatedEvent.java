@@ -1,7 +1,7 @@
 package az.rock.flyjob.auth.event;
 
-import az.rock.flyjob.auth.root.user.PasswordRoot;
-import az.rock.lib.event.AbstractDomainEvent;
+import az.rock.flyjob.auth.model.root.user.PasswordRoot;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 
 public class PasswordUpdatedEvent extends AbstractDomainEvent<PasswordRoot> {
     protected PasswordUpdatedEvent(PasswordRoot root) {

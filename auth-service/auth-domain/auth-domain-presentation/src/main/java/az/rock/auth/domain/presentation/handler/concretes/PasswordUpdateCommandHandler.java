@@ -8,7 +8,7 @@ import az.rock.auth.domain.presentation.mapper.abstracts.AbstractPasswordDomainM
 import az.rock.auth.domain.presentation.ports.output.repository.command.AbstractPasswordCommandRepositoryAdapter;
 import az.rock.auth.domain.presentation.ports.output.repository.query.AbstractPasswordQueryRepositoryAdapter;
 import az.rock.flyjob.auth.event.PasswordUpdatedEvent;
-import az.rock.flyjob.auth.root.user.PasswordProxyRoot;
+import az.rock.flyjob.auth.model.root.user.PasswordProxyRoot;
 import az.rock.flyjob.auth.service.abstracts.AbstractPasswordDomainService;
 import org.springframework.stereotype.Component;
 
@@ -38,14 +38,13 @@ public class PasswordUpdateCommandHandler implements AbstractPasswordUpdateComma
 
     @Override
     public PasswordUpdatedEvent handlePasswordChanged(PasswordChangeRequest passwordChangeRequest) {
-        // FIXME: 28.06.23
         var currentUserId = this.securityContextHolder.availableUser();
         var currentPassword = this.passwordQueryRepositoryAdapter.findByPID(currentUserId);
         if (currentPassword.isPresent()) {
             var passwordRoot = currentPassword.get();
             var newPassword  = this.passwordDomainMapper.generatePasswordRoot(currentUserId,passwordChangeRequest.newPassword());
-            this.passwordDomainService.validateAndInitialize(currentUserId,passwordRoot, newPassword);
-            this.passwordCommandRepositoryAdapter.delete(passwordRoot);
+            this.passwordDomainService.validateAndInitialize(currentUserId,passwordRoot, newPassword , passwordChangeRequest.oldPassword());
+            this.passwordCommandRepositoryAdapter.inActive(passwordRoot);
             this.passwordCommandRepositoryAdapter.create(newPassword);
             return PasswordUpdatedEvent.of(PasswordProxyRoot.of(newPassword));
         }else throw new UnknownSystemException();

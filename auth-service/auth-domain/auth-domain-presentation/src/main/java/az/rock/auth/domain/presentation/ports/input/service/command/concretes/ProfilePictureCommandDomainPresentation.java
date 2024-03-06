@@ -4,7 +4,7 @@ import az.rock.auth.domain.presentation.dto.request.PictureQueryRequest;
 import az.rock.auth.domain.presentation.handler.abstracts.AbstractProfilePictureCreateCommandHandler;
 import az.rock.auth.domain.presentation.ports.input.service.command.abstracts.AbstractProfilePictureCommandDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractProfilePictureMessagePublisher;
-import az.rock.lib.valueObject.*;
+import az.rock.lib.valueObject.MultipartFileWrapper;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -23,6 +23,11 @@ public class ProfilePictureCommandDomainPresentation implements AbstractProfileP
     }
 
     @Override
+    /**
+     * DFS e yazilandan somnra hemin path goturulur. Profile Pictuere Root yaranir ve isdifadecinin user id si
+     * vurulur usdune. Onnan sonra insert gedir bazaya. Bazada eger evvelce profile picture root lar varsa onlar onactive edilir.
+     *
+     */
     public UUID uploadProfilePicture(MultipartFileWrapper file) {
         var event = this.profilePictureCreateCommandHandler.handle(file);
         return null;

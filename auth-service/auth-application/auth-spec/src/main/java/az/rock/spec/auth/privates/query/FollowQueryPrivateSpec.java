@@ -11,7 +11,4 @@ public interface FollowQueryPrivateSpec {
 
     ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyFollowings();
 
-    ResponseEntity<JSuccessDataResponse<List<UUID>>> queryMyFollowPendingRequests();
-
-    ResponseEntity<JSuccessDataResponse<List<UUID>>> queryInMyFollowPendingRequests();
 }

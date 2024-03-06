@@ -1,11 +1,11 @@
 package az.rock.auth.domain.presentation.ports.input.listener.concretes;
 
-import az.rock.auth.domain.presentation.coordinator.abstracts.AbstractJobSeekerCreateEventCoordinator;
+import az.rock.auth.domain.presentation.ports.input.coordinator.starter.abstracts.AbstractJobSeekerCreateEventCoordinator;
 import az.rock.auth.domain.presentation.ports.input.listener.abstracts.AbstractCoordinatorListener;
-import az.rock.lib.event.impl.abstracts.AbstractFailDomainEvent;
-import az.rock.lib.event.impl.abstracts.AbstractSuccessDomainEvent;
-import az.rock.lib.event.trx.Saga;
-import az.rock.lib.event.payload.Payload;
+import com.intellibucket.lib.payload.event.abstracts.AbstractFailDomainEvent;
+import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
+import com.intellibucket.lib.payload.payload.Payload;
+import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,12 +17,12 @@ public class JobSeekerCreatedCoordinatorListener implements AbstractCoordinatorL
     }
 
     @Override
-    public void listenOnSuccess(Saga<AbstractSuccessDomainEvent<? extends Payload>> message) {
-        this.jobSeekerCreateEventCoordinator.onSuccess(message);
+    public void listenOnSuccess(AbstractSagaProcess<AbstractSuccessDomainEvent<? extends Payload>> message) {
+        this.jobSeekerCreateEventCoordinator.successProcess(message);
     }
 
     @Override
-    public void listenOnFail(Saga<AbstractFailDomainEvent<? extends Payload>> message) {
-        this.jobSeekerCreateEventCoordinator.onFail(message);
+    public void listenOnFail(AbstractSagaProcess<AbstractFailDomainEvent<? extends Payload>> message) {
+        this.jobSeekerCreateEventCoordinator.failProcess(message);
     }
 }
