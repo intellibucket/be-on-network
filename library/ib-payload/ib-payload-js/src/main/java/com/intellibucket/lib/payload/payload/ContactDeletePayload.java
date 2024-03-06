@@ -3,19 +3,19 @@ package com.intellibucket.lib.payload.payload;
 import java.util.UUID;
 
 public class ContactDeletePayload extends Payload{
-    private UUID courseId;
-    public ContactDeletePayload(UUID courseId){
-        this.courseId = courseId;
+    private UUID Id;
+    public ContactDeletePayload(UUID Id){
+        this.Id = Id;
     }
     public ContactDeletePayload(){}
     public UUID getContactId() {
-        return courseId;
+        return Id;
     }
     public void setContactId(UUID courseId) {
-        this.courseId = courseId;
+        this.Id = courseId;
     }
 
-    public static ContactDeletePayload of(UUID courseId) {
-        return new ContactDeletePayload(courseId);
+    public static ContactDeletePayload of(UUID Id) {
+        return new ContactDeletePayload(Id);
     }
 }
