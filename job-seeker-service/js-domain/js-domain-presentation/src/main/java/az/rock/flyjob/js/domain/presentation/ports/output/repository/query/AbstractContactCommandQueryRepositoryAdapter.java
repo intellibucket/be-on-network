@@ -9,5 +9,5 @@ import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
 
 public interface AbstractContactCommandQueryRepositoryAdapter  extends AbstractQueryRepositoryAdapter<ContactRoot, ContactID, ResumeID> {
-
+    Boolean isExistContact(ContactRoot contactRoot);
 }
