@@ -1,7 +1,6 @@
 package az.rock.flyjob.js.dataaccess.repository.abstracts;
 
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.valueObject.RowStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GJpaRepository<E extends BaseEntity, ID> extends JpaRepository<E, ID> {
@@ -31,7 +30,7 @@ public interface GJpaRepository<E extends BaseEntity, ID> extends JpaRepository<
     default void rollback(ID id) {
         var optionalEntity = this.findById(id);
         optionalEntity.ifPresent((entity) -> {
-            entity.setActive(RowStatus.ROLLBACK);
+            entity.rollback();
             this.save(entity);
         });
     }
