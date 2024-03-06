@@ -14,6 +14,14 @@ import java.util.Optional;
 
 @Component
 public class EducationDataAccessMapper implements AbstractEducationDataAccessMapper {
+
+
+    private Integer orderNumber() {
+        Integer orderNumber = 0;
+        orderNumber++;
+        return orderNumber;
+    }
+
     @Override
     public Optional<EducationRoot> toRoot(EducationEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
@@ -24,7 +32,7 @@ public class EducationDataAccessMapper implements AbstractEducationDataAccessMap
                 .cityId(entity.getCityId())
                 .establishmentUUID(entity.getEstablishmentUUID())
                 .establishmentName(entity.getEstablishmentName())
-                .orderNumber(entity.getOrderNumber())
+                .orderNumber(orderNumber())
                 .startDate(GDateTime.toZonedDateTime(entity.getStartDate()))
                 .endDate(GDateTime.toZonedDateTime(entity.getEndDate()))
                 .accessModifier(entity.getAccessModifier())

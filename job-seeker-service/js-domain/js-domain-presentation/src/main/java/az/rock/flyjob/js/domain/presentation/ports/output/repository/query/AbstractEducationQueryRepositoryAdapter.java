@@ -5,8 +5,15 @@ import az.rock.lib.adapter.repository.AbstractQueryRepositoryAdapter;
 import az.rock.lib.annotation.DomainOutputPort;
 import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.domain.id.js.EducationID;
-@DomainOutputPort
-public interface AbstractEducationQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<EducationRoot, EducationID, UserID> {
+import az.rock.lib.domain.id.js.ResumeID;
 
-    //todo isExistVerifiedEducation?
+import java.util.Optional;
+import java.util.UUID;
+
+@DomainOutputPort
+public interface AbstractEducationQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<EducationRoot, EducationID, ResumeID> {
+
+    Optional<EducationRoot> findByResumeAndUuidAndRowStatusTrue(ResumeID resumeID, UUID educationId);
+
+
 }
