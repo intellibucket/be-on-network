@@ -50,10 +50,12 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
         return ContactPayload.Builder
                 .builder()
                 .id(contactRoot.getRootID().getAbsoluteID())
-                .data(contactRoot.getData().)
+                .data(contactRoot.getData())
+                .orderNumber(contactRoot.getOrderNumber())
+                .build();
     }
 
-    @Override
+    @Override //todo Metin create qalib ve reorder
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest)
     {
         return null;
@@ -76,6 +78,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
             this.abstractContactCommandRepositoryAdapter.update(validatedContact);
             var payload =this.toPayload(validatedContact);
             return ContactUpdateEvent.of(payload);
+
         } else throw new UnknownSystemException();
     }
     @Override
@@ -85,7 +88,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
         if (optionalContact.isPresent()){
             var contactIDNumber = optionalContact.get();
             this.abstractContactCommandRepositoryAdapter.inActive(contactIDNumber);
-            return ContactDeleteEvent.of(new ContactDeletePayload());
+            return ContactDeleteEvent.of(toPayload(contactIDNumber));
         } else throw new ContactNotFoundException();
     }
 

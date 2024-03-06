@@ -50,6 +50,9 @@ public class ContactPayload {
             data=val;
             return this;
         }
+
+        public ContactPayload build() { return new ContactPayload(this);
+        }
     }
 }
 
