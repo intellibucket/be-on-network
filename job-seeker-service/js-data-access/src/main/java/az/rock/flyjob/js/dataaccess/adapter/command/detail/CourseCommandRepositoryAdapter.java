@@ -23,18 +23,14 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
 
     private final AbstractCourseDataAccessMapper abstractCourseDataAccessMapper;
 
-    private final AbstractCourseCommandJPARepository repository;
-
     private final CourseCustomCommandJPARepository customCommandJPARepository;
 
 
-    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, AbstractCourseCommandJPARepository repository, CourseCustomCommandJPARepository customCommandJPARepository) {
+    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, CourseCustomCommandJPARepository customCommandJPARepository) {
         this.abstractCourseDataAccessMapper = abstractCourseDataAccessMapper;
-        this.repository = repository;
         this.customCommandJPARepository = customCommandJPARepository;
     }
 
-    //TODO bunu sorus
     @Override
     public Optional<CourseRoot> create(CourseRoot root) {
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
@@ -57,13 +53,12 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
         if(optional.isEmpty())return;
         optional.get().inActive();
-        this.repository.save(optional.get());
-
+        this.customCommandJPARepository.merge(optional.get());
     }
 
     @Override
-    public Optional<CourseRoot> updateCertificatePath(UUID id,String newFilePath) {
-        return this.abstractCourseDataAccessMapper.toRoot(this.repository.setCourseCertificatePath(id,newFilePath));
+    public void updateCertificatePath(UUID id,String newFilePath) {
+        this.customCommandJPARepository.setCourseCertificatePath(id,newFilePath);
     }
 
 }

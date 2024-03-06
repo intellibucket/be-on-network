@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class CourseCustomCommandJPARepository implements AbstractCourseCustomCommandJPARepository {
     @PersistenceContext
@@ -30,5 +32,12 @@ public class CourseCustomCommandJPARepository implements AbstractCourseCustomCom
         var resumeReference = entityManager.getReference(ResumeEntity.class,entity.getResume().getUuid());
         entity.setResume(resumeReference);
         return this.entityManager.merge(entity);
+    }
+
+    public void setCourseCertificatePath(UUID uuid, String newFilePath){
+        var namedQuery = entityManager.createNamedQuery("UPDATE CourseEntity c SET c.certificateFilePath = :newFilePath WHERE c.uuid = :uuid");
+        namedQuery.setParameter("newFilePath",newFilePath);
+        namedQuery.setParameter("uuid",uuid);
+        namedQuery.executeUpdate();
     }
 }

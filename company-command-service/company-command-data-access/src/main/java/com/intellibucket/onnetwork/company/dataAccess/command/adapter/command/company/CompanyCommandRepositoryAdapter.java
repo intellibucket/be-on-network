@@ -3,13 +3,16 @@ package com.intellibucket.onnetwork.company.dataAccess.command.adapter.command.c
 import com.intellibucket.lib.fj.dataaccess.AbstractDataAccessMapper;
 import com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.CompanyEntity;
 import com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCustomCompanyCommandJPARepository;
+import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyProfileRoot;
 import com.intellibucket.onnetwork.company.domain.core.command.root.company.CompanyRoot;
 import com.intellibucket.onnetwork.company.domain.presentation.command.ports.output.repository.command.AbstractCompanyCommandRepositoryAdapter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRepositoryAdapter {
     private final AbstractCustomCompanyCommandJPARepository companyCommandJPARepository;
 
@@ -21,25 +24,43 @@ public class CompanyCommandRepositoryAdapter implements AbstractCompanyCommandRe
         this.companyDataAccessMapper = companyDataAccessMapper;
     }
 
+
     @Override
     public Optional<CompanyRoot> create(CompanyRoot root) {
-        var entity = this.companyDataAccessMapper.toEntity(root);
-        if (entity.isPresent()) {
-            var savedEntity = this.companyCommandJPARepository.persist(entity.get());
+        var optionalEntity = this.companyDataAccessMapper.toEntity(root);
+        if (optionalEntity.isPresent()) {
+            var entity = optionalEntity.get();
+            var savedEntity = this.companyCommandJPARepository.persist(entity);
+            log.info("Entity saved successfully: {}", savedEntity.getUuid());
             return this.companyDataAccessMapper.toRoot(savedEntity);
+        }else{
+            log.warn("Entity is absent. Handle this case: {}", root.getRootID());
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 
     @Override
     public void update(CompanyRoot root) {
-        var entity = this.companyDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.companyCommandJPARepository::update);
+        this.companyDataAccessMapper.toEntity(root)
+                .ifPresentOrElse(
+                        updatedEntity -> {
+                            this.companyCommandJPARepository.update(updatedEntity);
+                            log.info("Entity updated successfully: {} ", updatedEntity.getUuid());
+                        },
+                        () -> log.warn("Entity is absent. Handle this case.{}",root.getRootID())
+                );
+
     }
 
     @Override
     public void inActive(CompanyRoot root) {
-        var entity = this.companyDataAccessMapper.toEntity(root);
-        entity.ifPresent(this.companyCommandJPARepository::inActive);
+        this.companyDataAccessMapper.toEntity(root)
+                .ifPresentOrElse(
+                        updatedEntity -> {
+                            this.companyCommandJPARepository.inActive(updatedEntity);
+                            log.info("Entity inactive successfully: {} ", updatedEntity.getUuid());
+                        },
+                        () -> log.warn("Entity is absent. Handle this case.{}",root.getRootID())
+                );
     }
 }

@@ -1,7 +1,5 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
-
-import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.exception.CourseDomainException;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
@@ -88,7 +86,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
     @Override
     public CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) {
         var savedFile = fileStorageService.uploadFile(file);
-        var root = courseCommandRepositoryAdapter.updateCertificatePath(courseId, savedFile.getObject());
+        courseCommandRepositoryAdapter.updateCertificatePath(courseId, savedFile.getObject());
         return CourseFileEvent.of(CourseFilePayload.of(courseId));
     }
 }

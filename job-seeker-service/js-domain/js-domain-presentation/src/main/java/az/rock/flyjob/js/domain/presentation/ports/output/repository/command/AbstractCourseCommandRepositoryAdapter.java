@@ -12,6 +12,6 @@ import java.util.UUID;
 
 public interface AbstractCourseCommandRepositoryAdapter extends AbstractCommandRepositoryAdapter<CourseRoot> {
 
-    Optional<CourseRoot> updateCertificatePath(UUID id,String newFilePath);
+    void updateCertificatePath(UUID id,String newFilePath);
 
 }

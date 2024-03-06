@@ -19,6 +19,7 @@ import java.util.UUID;
 public class CompanyProfileEntity extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_uuid")
     private CompanyEntity company;
 
     @Column(name = "is_hiring", nullable = false)

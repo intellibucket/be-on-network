@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface CustomPaneCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<CustomPaneCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<CustomPaneCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID customPaneId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface SkillCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<SkillCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<SkillCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID skillId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }
