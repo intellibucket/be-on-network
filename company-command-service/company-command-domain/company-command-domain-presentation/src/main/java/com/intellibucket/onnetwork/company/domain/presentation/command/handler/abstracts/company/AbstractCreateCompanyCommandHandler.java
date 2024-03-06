@@ -2,7 +2,7 @@ package com.intellibucket.onnetwork.company.domain.presentation.command.handler.
 
 import az.rock.lib.jexception.JDomainException;
 import com.intellibucket.lib.event.create.CompanyFilledEvent;
-import com.intellibucket.lib.event.create.CompanyProfileCreatedEvent;
+import com.intellibucket.lib.event.create.companyprofile.CompanyProfileCreatedEvent;
 import com.intellibucket.lib.payload.payload.reg.CompanyRegistrationPayload;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.CompanyFilledCommand;
 import org.springframework.transaction.annotation.Propagation;
