@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface ReferenceCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<ReferenceCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<ReferenceCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID referenceId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }
