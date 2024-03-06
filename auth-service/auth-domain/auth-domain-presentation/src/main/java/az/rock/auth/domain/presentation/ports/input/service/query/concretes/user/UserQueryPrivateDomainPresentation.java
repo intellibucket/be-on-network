@@ -66,7 +66,7 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
     public List<SimpleAnyUserProfileResponse> anyProfiles(List<UUID> userIDs) {
         var currentId = this.securityContextHolder.availableUser();
         var listOfAnyUserProfile = userProfileQueryRepositoryAdapter.findAllAnyProfiles(currentId.getAbsoluteID(), userIDs);
-        if (listOfAnyUserProfile.size() > 0) {
+        if (!listOfAnyUserProfile.isEmpty()) {
             return listOfAnyUserProfile;
         } else throw new MyFollowersNotFoundException();
     }
@@ -75,7 +75,7 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
     public List<SimpleFollowerUserResponse> myFollowerItems(PageableRequest request) {
         var currentId = this.securityContextHolder.availableUser();
         var listOfAllMyFollowers = userProfileQueryRepositoryAdapter.findAllMyFollowers(currentId.getAbsoluteID(), request);
-        if (listOfAllMyFollowers.size() > 0) {
+        if (!listOfAllMyFollowers.isEmpty()) {
             return listOfAllMyFollowers;
         } else throw new MyFollowersNotFoundException();
     }
@@ -84,7 +84,7 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
     public List<SimpleNetworkUserResponse> myNetworkItems(PageableRequest request) {
         var currentId = this.securityContextHolder.availableUser();
         var listOfAllMyNetworks = userProfileQueryRepositoryAdapter.findAllMyNetworks(currentId.getAbsoluteID(), request);
-        if (listOfAllMyNetworks.size() > 0) {
+        if (!listOfAllMyNetworks.isEmpty()) {
             return listOfAllMyNetworks;
         } else throw new MyNetworksNotFoundException();
     }

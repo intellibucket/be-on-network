@@ -105,7 +105,7 @@
             <column name="verification_response_date" type="DATETIME"/>
         </createTable>
     </changeSet>
-    <changeSet id="1704012975788-5" author="Vugar Mammadli">
+    <changeSet id="1704012975788-5" author="Suleyman Mehdiyev">
         <createTable schemaName="company" tableName="websites">
             <column name="uuid" type="UUID">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_websıtes"/>
@@ -125,15 +125,9 @@
             <column name="website" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_verified" type="BOOLEAN">
-                <constraints nullable="false"/>
-            </column>
-            <column name="verification_request_date" type="DATETIME">
-                <constraints nullable="false"/>
-            </column>
-            <column name="verification_response_date" type="DATETIME">
-                <constraints nullable="false"/>
-            </column>
+            <column name="is_verified" type="BOOLEAN"/>
+            <column name="verification_request_date" type="DATETIME"/>
+            <column name="verification_response_date" type="DATETIME"/>
         </createTable>
     </changeSet>
     <changeSet id="1704012975788-6" author="Vugar Mammadli">
