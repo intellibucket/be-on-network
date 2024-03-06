@@ -99,6 +99,58 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         return accessModifier;
     }
 
+    public void setResume(ResumeID resume) {
+        this.resume = resume;
+    }
+
+    public void setAccessModifier(AccessModifier accessModifier) {
+        this.accessModifier = accessModifier;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
+    }
+
+    public void setInstitution(String institution) {
+        this.institution = institution;
+    }
+
+    public void setOnline(Boolean online) {
+        isOnline = online;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setStartDate(ZonedDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(ZonedDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCertificateFilePath(String certificateFilePath) {
+        this.certificateFilePath = certificateFilePath;
+    }
+
+    public void setVerificationAddress(String verificationAddress) {
+        this.verificationAddress = verificationAddress;
+    }
+
     public static final class Builder {
         private CourseID id;
         private Version version;

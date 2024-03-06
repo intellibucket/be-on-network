@@ -6,6 +6,7 @@ import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.CustomCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractCourseCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractResumeCommandJPARepository;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractCourseCustomCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail.CourseCustomCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
@@ -23,7 +24,7 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
 
     private final AbstractCourseDataAccessMapper abstractCourseDataAccessMapper;
 
-    private final CourseCustomCommandJPARepository customCommandJPARepository;
+    private final AbstractCourseCustomCommandJPARepository customCommandJPARepository;
 
 
     public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, CourseCustomCommandJPARepository customCommandJPARepository) {

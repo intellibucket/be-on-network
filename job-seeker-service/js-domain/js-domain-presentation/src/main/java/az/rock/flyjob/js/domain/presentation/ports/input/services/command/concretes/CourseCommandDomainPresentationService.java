@@ -8,6 +8,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandMode
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
+import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,14 +33,14 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
+        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new JRuntimeException("Payload is empty"));
         var courseCreatedEvent = courseMergeCommandHandler.createCourse(courseCommandModel);
 
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
+        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new JRuntimeException("Payload is empty"));
         var courseUpdatedEvent = courseMergeCommandHandler.updateCourse(courseCommandModel,command.getTargetId());
     }
 

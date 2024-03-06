@@ -18,8 +18,6 @@ import com.intellibucket.lib.payload.payload.CourseFilePayload;
 import com.intellibucket.lib.payload.payload.CourseMergePayload;
 import com.intellibucket.lib.payload.payload.CourseDeletedPayload;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -59,7 +57,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
     @Override
     public CourseMergeEvent updateCourse(CourseCommandModel command,UUID id) {
         var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id));
-        if(oldCourse.isEmpty())throw new RuntimeException("");
+        if(oldCourse.isEmpty())throw new CourseDomainException("F0000000003");
         var course = courseDomainMapper.toRoot(command,oldCourse.get());
         courseCommandRepositoryAdapter.update(course);
         return CourseMergeEvent.of(
@@ -74,7 +72,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
     @Override
     public CourseDeleteEvent deleteCourse(UUID id) {
         var optional = courseQueryRepositoryAdapter.findById(CourseID.of(id));
-        if(optional.isEmpty())throw new RuntimeException("");
+        if(optional.isEmpty())throw new CourseDomainException("F0000000003");
         this.courseCommandRepositoryAdapter.inActive(optional.get());
         return CourseDeleteEvent.of(
                 CourseDeletedPayload.of(
