@@ -13,10 +13,6 @@ import java.util.UUID;
 
 @Repository
 public interface AbstractCourseCommandJPARepository extends JpaRepository<CourseEntity, UUID> {
-    @Transactional
-    @Modifying
-    @Query("UPDATE CourseEntity c SET c.rowStatus = :rowStatus WHERE c.uuid = :uuid")
-    CourseEntity setRowStatusById(UUID uuid, RowStatus rowStatus);
 
     @Transactional
     @Modifying

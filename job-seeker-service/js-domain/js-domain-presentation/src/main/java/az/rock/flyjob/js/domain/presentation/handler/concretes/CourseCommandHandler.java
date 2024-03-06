@@ -51,7 +51,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
         if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID()))
             throw new CourseDomainException("F0000000002");
 
-        var optionalCourseRoot = this.courseCommandRepositoryAdapter.merge(newCourseRoot);
+        var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(
                         optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()
@@ -63,10 +63,10 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
         var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id));
         if(oldCourse.isEmpty())throw new RuntimeException("");
         var course = courseDomainMapper.toRoot(command,oldCourse.get());
-        var optionalCourseRoot = courseCommandRepositoryAdapter.merge(course);
+        courseCommandRepositoryAdapter.update(course);
         return CourseMergeEvent.of(
                 CourseMergePayload.of(
-                        optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()
+                       id
                 )
         );
     }
@@ -75,11 +75,12 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
 
     @Override
     public CourseDeleteEvent deleteCourse(UUID id) {
-
-        var optionalCourseRoot = this.courseCommandRepositoryAdapter.delete(id);
+        var optional = courseQueryRepositoryAdapter.findById(CourseID.of(id));
+        if(optional.isEmpty())throw new RuntimeException("");
+        this.courseCommandRepositoryAdapter.inActive(optional.get());
         return CourseDeleteEvent.of(
                 CourseDeletedPayload.of(
-                        optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()
+                        id
                 )
         );
     }

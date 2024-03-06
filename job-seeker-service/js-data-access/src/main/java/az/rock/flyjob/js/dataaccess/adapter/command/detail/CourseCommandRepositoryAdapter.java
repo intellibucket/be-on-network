@@ -23,34 +23,37 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
 
     private final AbstractCourseCommandJPARepository repository;
 
-    private final AbstractResumeCommandJPARepository resumeCommandJPARepository;
 
-    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, AbstractCourseCommandJPARepository repository, AbstractResumeCommandJPARepository resumeCommandJPARepository) {
+    public CourseCommandRepositoryAdapter(AbstractCourseDataAccessMapper abstractCourseDataAccessMapper, AbstractCourseCommandJPARepository repository) {
         this.abstractCourseDataAccessMapper = abstractCourseDataAccessMapper;
         this.repository = repository;
-        this.resumeCommandJPARepository = resumeCommandJPARepository;
     }
-
 
     //TODO bunu sorus
     @Override
-    public Optional<CourseRoot> merge(CourseRoot root) {
+    public Optional<CourseRoot> create(CourseRoot root) {
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
         if(optional.isEmpty())return Optional.empty();
         var courseEntity = optional.get();
-        var resume = resumeCommandJPARepository.findById(root.getResume().getAbsoluteID());
-        if(resume.isEmpty())return Optional.empty();
-        courseEntity.setResume(
-                resume.get()
-        );
         return this.abstractCourseDataAccessMapper.toRoot(
                 repository.saveAndFlush(courseEntity)
         );
     }
+    @Override
+    public void update(CourseRoot root) {
+        var optional = this.abstractCourseDataAccessMapper.toEntity(root);
+        if(optional.isEmpty())return;
+        var courseEntity = optional.get();
+        repository.save(courseEntity);
+    }
 
     @Override
-    public Optional<CourseRoot> delete(UUID id) {
-        return this.abstractCourseDataAccessMapper.toRoot(this.repository.setRowStatusById(id,RowStatus.DELETED));
+    public void inActive(CourseRoot root) {
+        var optional = this.abstractCourseDataAccessMapper.toEntity(root);
+        if(optional.isEmpty())return;
+        optional.get().inActive();
+        this.repository.save(optional.get());
+
     }
 
     @Override
