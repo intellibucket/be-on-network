@@ -24,4 +24,16 @@ public class InterestCommandModel extends AbstractCommandModel {
     public String getDescription() {
         return description;
     }
+
+    public void setHobby(Boolean hobby) {
+        isHobby = hobby;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

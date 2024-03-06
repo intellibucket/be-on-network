@@ -9,5 +9,5 @@ import java.util.List;
 @InputPort
 @Transactional
 public interface AbstractInterestCommandDomainPresentationService {
-    void createInterest(InterestCommandModel newInterestCommandModel);
+    void create(InterestCommandModel newInterestCommandModel);
 }

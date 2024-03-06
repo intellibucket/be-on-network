@@ -6,12 +6,12 @@ import com.intellibucket.lib.payload.event.abstracts.Event;
 import com.intellibucket.lib.payload.payload.InterestCreatedPayload;
 
 @Event
-public class InterestCreatedEvent extends AbstractStartDomainEvent<InterestCreatedPayload> {
-    protected InterestCreatedEvent(InterestCreatedPayload payload) {
+public class InterestCreateEvent extends AbstractStartDomainEvent<InterestCreatedPayload> {
+    protected InterestCreateEvent(InterestCreatedPayload payload) {
         super(payload);
     }
 
-    public static InterestCreatedEvent of(InterestCreatedPayload payload) {
-        return new InterestCreatedEvent(payload);
+    public static InterestCreateEvent of(InterestCreatedPayload payload) {
+        return new InterestCreateEvent(payload);
     }
 }

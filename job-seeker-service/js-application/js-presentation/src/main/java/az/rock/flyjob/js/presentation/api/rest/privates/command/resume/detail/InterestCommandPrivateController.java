@@ -27,8 +27,8 @@ public class InterestCommandPrivateController implements InterestCommandPrivateS
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<JSuccessResponse> create(CreateRequest<InterestCommandModel> request) {
-        this.abstractInterestCommandDomainPresentationService.createInterest(request.getModel());
+    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<InterestCommandModel> request) {
+        this.abstractInterestCommandDomainPresentationService.create(request.getModel());
         return ResponseEntity.ok(new JSuccessResponse());
     }
 

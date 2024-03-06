@@ -17,7 +17,7 @@ public class InterestCommandDomainPresentationService implements AbstractInteres
     }
 
     @Override
-    public void createInterest(InterestCommandModel interestCommandModel) {
+    public void create(InterestCommandModel interestCommandModel) {
         var interestCreatedEvent = this.interestCreateCommandHandler.add(interestCommandModel);
         var step = InterestRegistrationSteps.ON_STARTED_STEP;
         var saga = AbstractSagaProcess.onProceed(

@@ -7,10 +7,7 @@ import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstra
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractInterestCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
-import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
-import com.intellibucket.lib.payload.event.create.InterestCreatedEvent;
-import com.intellibucket.lib.payload.event.create.number.PhoneNumberCreatedEvent;
-import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
+import com.intellibucket.lib.payload.event.create.InterestCreateEvent;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -31,7 +28,9 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     }
 
     @Override
-    public InterestCreatedEvent add(InterestCommandModel interestCommandModel) {
+    public InterestCreateEvent add(InterestCommandModel interestCommandModel) {
+        var currentResume=this.securityContextHolder.availableResumeID();
+        var savedInterest=this.interestQueryRepositoryAdapter.findAllByPID(currentResume);
 
         return null;
     }

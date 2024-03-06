@@ -8,5 +8,5 @@ import az.rock.lib.domain.id.js.ResumeID;
 
 @DomainOutputPort
 public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<InterestRoot, InterestID, ResumeID> {
-    Boolean isExistInterestName(InterestRoot interestRoot);
+    Boolean existByResumeIDAndName(ResumeID resumeID,InterestRoot interestRoot);
 }
