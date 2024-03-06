@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concretes;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
@@ -23,8 +24,7 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
 
     @Override
     public void create(CreateRequest<ContactCommandModel> request) {
-        var contactCommandModel = Optional.of(request.getModel()).orElseThrow(()->new RuntimeException(""));
-        var courseCreatedEvent = abstractContactCommandHandler.createContact(contactCommandModel);
+        var courseCreatedEvent = abstractContactCommandHandler.createContact(request);
     }
 
     @Override
@@ -38,7 +38,9 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
     }
 
     @Override
-    public void reorder(ReorderCommandModel request) {
+    public void reorder(ReorderRequest<ContactCommandModel> request) {
+        var contactDeleteEvent = abstractContactCommandHandler.reoderContact(request);
 
     }
+
 }

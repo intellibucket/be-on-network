@@ -43,6 +43,14 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         return this;
     }
 
+    public Boolean isValid() {
+        var contactPattern = "^[+][0-9]{1,3}$";
+        var pattern = "^[0-9]{1,15}$";
+        return this.formatType.equals(contactPattern) &&
+                this.liveType.equals(pattern) &&
+                this.data != null;
+    }
+
     public Integer getOrderNumber() {
         return orderNumber;
     }
