@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
+import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractEducationDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
@@ -15,6 +16,7 @@ import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.EducationDeletedEvent;
+import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
 import com.intellibucket.lib.payload.payload.EducationPayload;
 import org.springframework.stereotype.Component;
 
@@ -45,24 +47,25 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
         var optionalEducationRoot = this.abstractEducationCommandRepositoryAdapter.create(educationRoot)
                 .orElseThrow(NoActiveRowException::new);
         var educationPayload = this.abstractEducationDomainMapper.toPayload(optionalEducationRoot);
-        return EducationCreatedEvent.of(educationPayload);
+        return EducationCreatedEvent.of(educationPayload); //todo failedEvent
     }
 
     @Override
     public AbstractDomainEvent<EducationPayload> update(UpdateRequest<EducationCommandModel> request) {
-        return null;
+        var resumeId = this.securityContextHolder.availableResumeID();
+        var educationRoot = this.abstractEducationDomainMapper.toNewRoot(resumeId, request.getModel());
+        abstractEducationCommandRepositoryAdapter.update(educationRoot);
+        var educationPayload = this.abstractEducationDomainMapper.toPayload(educationRoot);
+        return EducationUpdatedEvent.of(educationPayload);
     }
 
     @Override
     public AbstractDomainEvent<UUID> delete(UUID educationId) {
-        var optionalEducation = abstractEducationQueryRepositoryAdapter.findById(EducationID.of(educationId));
-        if (optionalEducation.isPresent()) {
-            var education = optionalEducation.get();
-            this.abstractEducationCommandRepositoryAdapter.inActive(education);
-            return EducationDeletedEvent.of(education.getRootID().getAbsoluteID());
-        } else {
-            throw new NoActiveRowException();
-        }
+        abstractEducationCommandRepositoryAdapter.inActive(EducationRoot.Builder
+                .builder()
+                .uuid(EducationID.of(educationId))
+                .build());
+        return EducationDeletedEvent.of(educationId);
 
     }
 

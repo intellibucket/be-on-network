@@ -22,17 +22,17 @@ public class EducationCommandDomainPresentationService implements AbstractEducat
 
     @Override
     public void create(CreateRequest<EducationCommandModel> request) {
-
+        abstractEducationCommandHandler.create(request);
     }
 
     @Override
     public void update(UpdateRequest<EducationCommandModel> request) {
-
+        abstractEducationCommandHandler.update(request);
     }
 
     @Override
     public void delete(UUID educationId) {
-
+        abstractEducationCommandHandler.delete(educationId);
     }
 
     @Override

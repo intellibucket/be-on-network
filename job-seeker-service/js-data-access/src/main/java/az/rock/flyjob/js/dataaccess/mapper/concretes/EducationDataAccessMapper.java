@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class EducationDataAccessMapper implements AbstractEducationDataAccessMapper<EducationEntity, EducationRoot> {
+public class EducationDataAccessMapper implements AbstractEducationDataAccessMapper {
     @Override
     public Optional<EducationRoot> toRoot(EducationEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
@@ -60,5 +60,34 @@ public class EducationDataAccessMapper implements AbstractEducationDataAccessMap
                 .processStatus(root.getProcessStatus())
                 .rowStatus(root.getRowStatus())
                 .build());
+    }
+
+    @Override
+    public Optional<EducationEntity> setRootToExistEntity(EducationEntity entity, EducationRoot educationRoot) {
+        var optionalEntity = Optional.ofNullable(entity);
+        var optionalRoot = Optional.ofNullable(educationRoot);
+        if (optionalRoot.isEmpty() || optionalEntity.isPresent()) return Optional.empty();
+
+        return optionalEntity.map(tempEntity -> {
+                    var root = optionalRoot.get();
+                    tempEntity.setUuid(root.getRootID().getAbsoluteID());
+                    tempEntity.setResume(ResumeEntity.referenceOf(root.getResumeID().getAbsoluteID()));
+                    tempEntity.setCityId(root.getCityId());
+                    tempEntity.setEstablishmentUUID(root.getEstablishmentUUID());
+                    tempEntity.setEstablishmentName(root.getEstablishmentName());
+                    tempEntity.setOrderNumber(root.getOrderNumber());
+                    tempEntity.setStartDate(GDateTime.toTimestamp(root.getStartDate()));
+                    tempEntity.setEndDate(GDateTime.toTimestamp(root.getEndDate()));
+                    tempEntity.setAccessModifier(root.getAccessModifier());
+                    tempEntity.setDescription(root.getDescription());
+                    tempEntity.setLink(root.getLink());
+                    tempEntity.setState(root.getState());
+                    tempEntity.setDegree(root.getDegree());
+                    tempEntity.setProcessStatus(root.getProcessStatus());
+                    tempEntity.setRowStatus(root.getRowStatus());
+                    return tempEntity;
+                }
+        );
+
     }
 }

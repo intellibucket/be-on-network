@@ -9,6 +9,7 @@ import az.rock.flyjob.js.spec.privates.command.resume.detail.EducationCommandPri
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
