@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface ExperienceCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<ExperienceCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<ExperienceCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID experienceId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

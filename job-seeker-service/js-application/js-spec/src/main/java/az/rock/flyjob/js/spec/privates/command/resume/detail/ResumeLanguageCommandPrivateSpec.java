@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface ResumeLanguageCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<ResumeLanguageCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<ResumeLanguageCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID resumeLanguageId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

@@ -23,6 +23,11 @@ public class CompanyProfileRoot extends AggregateRoot<CompanyProfileID> {
         isHiring = builder.isHiring;
     }
 
+    public CompanyProfileRoot changeHiringStatus(Boolean isHiring) {
+        this.isHiring = isHiring;
+        return this;
+    }
+
     public static final class Builder {
         private CompanyProfileID companyProfileID;
         private CompanyID companyID;

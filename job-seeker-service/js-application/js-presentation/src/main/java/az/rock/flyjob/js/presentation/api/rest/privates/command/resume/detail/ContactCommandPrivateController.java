@@ -37,6 +37,12 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
     }
 
     @Override
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<JSuccessResponse> deleteAll() {
+        return null;
+    }
+
+    @Override
     @PatchMapping("/reorder")
     public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
         return null;
