@@ -38,13 +38,13 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
     }
 
     @Override
-    public CourseMergeEvent createCourse(CourseCommandModel command) {
+    public CourseMergeEvent create(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command,
 //                securityContextHolder.availableResumeID()
                 ResumeID.of(UUID.fromString("e66d06d5-d2f6-41d0-b7ed-3466f079bdbc"))
         );
 
-        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume().getAbsoluteID()))
+        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume()))
             throw new CourseDomainException("F0000000002");
 
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
@@ -55,7 +55,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
         );
     }
     @Override
-    public CourseMergeEvent updateCourse(CourseCommandModel command,UUID id) {
+    public CourseMergeEvent merge(CourseCommandModel command,UUID id) {
         var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id));
         if(oldCourse.isEmpty())throw new CourseDomainException("F0000000003");
         var course = courseDomainMapper.toRoot(command,oldCourse.get());
@@ -70,7 +70,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
 
 
     @Override
-    public CourseDeleteEvent deleteCourse(UUID id) {
+    public CourseDeleteEvent delete(UUID id) {
         var optional = courseQueryRepositoryAdapter.findById(CourseID.of(id));
         if(optional.isEmpty())throw new CourseDomainException("F0000000003");
         this.courseCommandRepositoryAdapter.inActive(optional.get());

@@ -1,18 +1,10 @@
 package az.rock.flyjob.js.dataaccess.adapter.command.detail;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.CustomCommandJPARepository;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractCourseCommandJPARepository;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractResumeCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractCourseCustomCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail.CourseCustomCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
-import az.rock.lib.domain.id.js.CourseID;
-import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.common.PageableRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

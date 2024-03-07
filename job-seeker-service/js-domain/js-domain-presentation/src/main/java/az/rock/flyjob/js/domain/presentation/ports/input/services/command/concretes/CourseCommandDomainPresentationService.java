@@ -10,6 +10,7 @@ import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstra
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
+import com.intellibucket.ws.validation.annotation.GNotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -33,20 +34,17 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new JRuntimeException("Payload is empty"));
-        var courseCreatedEvent = courseMergeCommandHandler.createCourse(courseCommandModel);
-
+        var courseCreatedEvent = courseMergeCommandHandler.create(command.getModel());
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new JRuntimeException("Payload is empty"));
-        var courseUpdatedEvent = courseMergeCommandHandler.updateCourse(courseCommandModel,command.getTargetId());
+        var courseUpdatedEvent = courseMergeCommandHandler.merge(command.getModel(),command.getTargetId());
     }
 
     @Override
     public void delete(UUID courseId) {
-        var courseDeleteEvent = courseMergeCommandHandler.deleteCourse(courseId);
+        var courseDeleteEvent = courseMergeCommandHandler.delete(courseId);
     }
 
     @Override

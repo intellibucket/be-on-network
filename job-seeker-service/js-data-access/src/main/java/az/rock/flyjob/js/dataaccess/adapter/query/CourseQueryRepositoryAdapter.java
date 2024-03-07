@@ -5,6 +5,7 @@ import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCours
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.CourseID;
+import az.rock.lib.domain.id.js.ResumeID;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -24,8 +25,8 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public Boolean existsByTitleAndResume(String courseName, UUID resumeID) {
-        return courseQueryJPARepository.existsByTitleAndResume(courseName, resumeID);
+    public Boolean existsByTitleAndResume(String courseName, ResumeID resumeID) {
+        return courseQueryJPARepository.existsByTitleAndResume(courseName, resumeID.getRootID());
     }
 
     @Override
