@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
+import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractInterestCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractInterestDomainMapper;
@@ -8,6 +9,7 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.Abs
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import com.intellibucket.lib.payload.event.create.InterestCreateEvent;
+import com.intellibucket.lib.payload.payload.InterestCreatePayload;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,6 +27,19 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
         this.interestQueryRepositoryAdapter = interestQueryRepositoryAdapter;
         this.interestCommandRepositoryAdapter = interestCommandRepositoryAdapter;
         this.interestDomainMapper = interestDomainMapper;
+    }
+
+    private InterestCreatePayload toPayload(InterestRoot interestRoot) {
+        return InterestCreatePayload.Builder
+                .builder()
+                .resumeId(interestRoot.getResume().getAbsoluteID())
+                .interestId(interestRoot.getRootID().getAbsoluteID())
+                .isHobby(interestRoot.getHobby())
+                .name(interestRoot.getName())
+                .description(interestRoot.getDescription())
+                .orderNumber(interestRoot.getOrderNumber())
+                .accessModifier(interestRoot.getAccessModifier())
+                .build();
     }
 
     @Override
