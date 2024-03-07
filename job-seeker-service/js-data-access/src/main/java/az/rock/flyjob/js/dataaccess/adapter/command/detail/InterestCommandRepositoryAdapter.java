@@ -31,7 +31,8 @@ public class InterestCommandRepositoryAdapter implements AbstractInterestCommand
 
     @Override
     public void update(InterestRoot root) {
-        AbstractInterestCommandRepositoryAdapter.super.update(root);
+        var entity = this.interestDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.interestCustomCommandJPARepository::merge);
     }
 
     @Override

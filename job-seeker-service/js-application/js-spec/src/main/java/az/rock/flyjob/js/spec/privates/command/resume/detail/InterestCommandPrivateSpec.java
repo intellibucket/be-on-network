@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface InterestCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<InterestCommandModel> request);
 
-    ResponseEntity<JSuccessResponse> update(UpdateRequest<InterestCommandModel> request);
+    ResponseEntity<JSuccessResponse> update(UpdateRequest<InterestCommandModel> request) throws Exception;
 
     ResponseEntity<JSuccessResponse> delete(UUID interestId);
 

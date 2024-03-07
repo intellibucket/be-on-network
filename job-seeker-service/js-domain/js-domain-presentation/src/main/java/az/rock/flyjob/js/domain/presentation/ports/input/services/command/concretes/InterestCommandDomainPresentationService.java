@@ -1,11 +1,15 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concretes;
 
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractInterestCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractInterestCommandDomainPresentationService;
 import com.intellibucket.lib.payload.outbox.InterestRegistrationSteps;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 public class InterestCommandDomainPresentationService implements AbstractInterestCommandDomainPresentationService {
@@ -25,6 +29,21 @@ public class InterestCommandDomainPresentationService implements AbstractInteres
                 step,
                 interestCreatedEvent
         );
+    }
+
+    @Override
+    public void update(UpdateRequest<InterestCommandModel> updateRequest) throws Exception {
+       var interestUpdateEvent= this.interestCreateCommandHandler.update(updateRequest);
+    }
+
+    @Override
+    public void delete(UUID interestId) {
+
+    }
+
+    @Override
+    public void reorder(ReorderCommandModel request) {
+
     }
 
 }

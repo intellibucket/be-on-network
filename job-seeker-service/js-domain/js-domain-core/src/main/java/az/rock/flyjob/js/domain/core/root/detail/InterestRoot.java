@@ -28,6 +28,20 @@ public class InterestRoot extends AggregateRoot<InterestID> {
         this.description = builder.description;
     }
 
+    public InterestRoot changeName(String name){
+        this.name=name;
+        return this;
+    }
+    public InterestRoot changeHobby(Boolean isHobby){
+        this.isHobby=isHobby;
+        return this;
+    }
+    public InterestRoot changeDescription(String name){
+        this.description=description;
+        return this;
+    }
+
+
     public ResumeID getResume() {
         return resume;
     }

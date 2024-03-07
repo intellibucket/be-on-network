@@ -34,8 +34,9 @@ public class InterestCommandPrivateController implements InterestCommandPrivateS
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<JSuccessResponse> update(UpdateRequest<InterestCommandModel> request) {
-        return null;
+    public ResponseEntity<JSuccessResponse> update(UpdateRequest<InterestCommandModel> request) throws Exception {
+        this.abstractInterestCommandDomainPresentationService.update(request);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
