@@ -11,7 +11,14 @@ import java.util.UUID;
 
 public interface AwardCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<AwardCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<AwardCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID awardId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

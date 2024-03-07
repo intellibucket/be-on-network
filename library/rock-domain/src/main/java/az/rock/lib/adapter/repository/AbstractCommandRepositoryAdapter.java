@@ -15,6 +15,11 @@ public interface AbstractCommandRepositoryAdapter<R> {
         throw new UnsupportedOperationJException("Update");
     }
 
+    default void delete(R root){
+        throw new UnsupportedOperationJException("Delete");
+    }
+
+
     default void updateAll(List<R> emailRoots){
         throw new UnsupportedOperationJException("Update All");
     }

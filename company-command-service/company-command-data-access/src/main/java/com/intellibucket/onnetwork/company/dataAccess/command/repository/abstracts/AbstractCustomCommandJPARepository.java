@@ -7,6 +7,8 @@ import org.hibernate.engine.jdbc.spi.JdbcServices;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.internal.AbstractSharedSessionContract;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.function.Supplier;
 
 @NoRepositoryBean
 @Transactional
-public interface AbstractCustomCommandJPARepository<T> {
+public interface AbstractCustomCommandJPARepository<T extends BaseEntity> {
 
     EntityManager entityManager();
 
@@ -52,10 +54,8 @@ public interface AbstractCustomCommandJPARepository<T> {
     }
 
     default <S extends T> void inActive(S entity){
-        if (entity instanceof BaseEntity baseEntity) {
-            baseEntity.inActive();
-            this.merge(entity);
-        }else throw new UnsupportedOperationException();
+        entity.inActive();
+        this.merge(entity);
     }
 
     default <S extends T> void inActiveAndFlush(S entity){
@@ -80,10 +80,8 @@ public interface AbstractCustomCommandJPARepository<T> {
 
 
     default <S extends T> void delete(S entity){
-        if (entity instanceof BaseEntity baseEntity) {
-            baseEntity.delete();
-            this.merge(entity);
-        }else throw new UnsupportedOperationException();
+        entity.delete();
+        this.merge(entity);
     }
 
     default <S extends T> void deleteAndFlush(S entity){

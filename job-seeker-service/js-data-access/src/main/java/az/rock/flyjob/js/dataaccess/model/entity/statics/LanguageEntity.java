@@ -2,26 +2,26 @@ package az.rock.flyjob.js.dataaccess.model.entity.statics;
 
 import az.rock.lib.domain.BaseEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//TODO ISLESIN DIE COMMENTE ALINIB
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "languages", schema = "replica")
+@Table(schema = "replica", name = "languages")
 @Entity(name = "LanguageEntity")
 public class LanguageEntity extends BaseEntity {
-//    @ManyToOne
-//    private CountryEntity country;
 
-    private String name;
-//    private String iso639_1;
-//    private String iso639_2_T;
-//    private String nativeName;
+    private String name; // The name of the language (Example, "Türkçe", "English" )
+    private String isoCode; // The Language ISO 639-1 code (Example, "tr", "en" )
+    private String region; // The region where the language is spoken (Example, "Türkiye", "United States" )
+    private String script; // The script used for the language (Example, "Latin", "Cyrillic" )
+    private String family; // The language family (Example, "Turkic", "Indo-European" )
+    private String nativeName; // The language name in the language itself (Example, "Türkçe", "English" )
+    private String nativeRegion; // The region where the language is spoken in the language itself (Example, "Türkiye", "United States" )
+
 }

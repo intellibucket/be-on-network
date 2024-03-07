@@ -54,6 +54,7 @@
         <module>image-processor-service</module>
         <module>email-service</module>
         <module>payment-service</module>
+        <module>notification-service</module>
     </modules>
 
     <properties>
@@ -147,11 +148,6 @@
                 <groupId>org.springframework.kafka</groupId>
                 <artifactId>spring-kafka</artifactId>
                 <version>3.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>3.0.1</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate.orm</groupId>

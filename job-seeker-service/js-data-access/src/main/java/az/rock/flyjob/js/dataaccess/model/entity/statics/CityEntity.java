@@ -10,7 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//TODO ISLESIN DIE COMMENTE ALINIB
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,17 +22,17 @@ public class CityEntity extends BaseEntity {
     @ManyToOne
     private CountryEntity country;
 
-//    @Column(name = "city_name")
+    @Column(name = "name")
     private String name;
 
-//    @Column(name = "city_region")
+    @Column(name = "region")
     private String region;
 
-//    @Column(name = "city_latitude")
-//    private String latitude;
+    @Column(name = "latitude")
+    private BigDecimal latitude;
 
-//    @Column(name = "city_longitude")
-//    private String longitude;
+    @Column(name = "longitude")
+    private BigDecimal longitude;
 
     @Column(name = "city_state_code")
     private String stateCode;

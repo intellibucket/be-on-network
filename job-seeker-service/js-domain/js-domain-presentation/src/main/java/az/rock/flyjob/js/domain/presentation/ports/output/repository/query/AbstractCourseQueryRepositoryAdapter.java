@@ -13,7 +13,7 @@ import java.util.UUID;
 @DomainOutputPort
 public interface AbstractCourseQueryRepositoryAdapter {
 
-    Boolean existsByTitleAndResume(String courseName, UUID resumeID);
+    Boolean existsByTitleAndResume(String courseName, ResumeID resumeID);
 
     Optional<CourseRoot> findById(CourseID courseID);
 }

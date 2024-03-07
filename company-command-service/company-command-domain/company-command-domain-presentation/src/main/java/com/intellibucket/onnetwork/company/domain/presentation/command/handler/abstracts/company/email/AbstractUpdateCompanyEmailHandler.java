@@ -1,5 +1,6 @@
 package com.intellibucket.onnetwork.company.domain.presentation.command.handler.abstracts.company.email;
 
+import com.intellibucket.lib.event.create.email.CompanyEmailDeletedEvent;
 import com.intellibucket.lib.event.create.email.CompanyEmailUpdatedEvent;
 import com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.email.CompanyEmailChangedCommand;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,7 +13,7 @@ public interface AbstractUpdateCompanyEmailHandler {
 
     CompanyEmailUpdatedEvent changeEmailCompany(CompanyEmailChangedCommand companyEmailChangedCommand);
 
-    CompanyEmailUpdatedEvent deleteEmailCompany(UUID emailUUID);
+    CompanyEmailDeletedEvent deleteEmailCompany(UUID emailUUID);
 
     CompanyEmailUpdatedEvent setPrimaryEmail(UUID emailUUID);
 

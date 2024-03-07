@@ -1,6 +1,6 @@
 package com.intellibucket.onnetwork.dataaccess.model.entities.wallet;
 
-import az.rock.lib.valueObject.payment.CryptoWalletType;
+import az.rock.lib.valueObject.payment.Crypto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -15,5 +15,5 @@ import lombok.Setter;
 @Table(name = "crypto_wallets", schema = "wallet")
 @Entity(name = "CryptoWalletEntity")
 public class CryptoWalletEntity extends BaseWalletEntity {
-    private CryptoWalletType cryptoWallet;
+    private Crypto cryptoWallet;
 }

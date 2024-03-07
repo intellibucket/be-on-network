@@ -14,11 +14,11 @@ import java.util.UUID;
 @Transactional(propagation = Propagation.REQUIRES_NEW)//TODO rollback ?
 public interface AbstractCourseCreateCommandHandler {
 
-    CourseMergeEvent createCourse(CourseCommandModel command);
+    CourseMergeEvent create(CourseCommandModel command);
 
-    CourseMergeEvent updateCourse(CourseCommandModel command,UUID id);
+    CourseMergeEvent merge(CourseCommandModel command,UUID id);
 
-    CourseDeleteEvent deleteCourse(UUID id);
+    CourseDeleteEvent delete(UUID id);
 
     CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file);
 }
