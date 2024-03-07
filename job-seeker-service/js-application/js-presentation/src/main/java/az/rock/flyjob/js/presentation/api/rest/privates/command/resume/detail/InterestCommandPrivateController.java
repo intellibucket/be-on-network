@@ -4,6 +4,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
+import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractInterestCommandDomainPresentationService;
 import az.rock.flyjob.js.spec.privates.command.resume.detail.InterestCommandPrivateSpec;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.MediaType;
@@ -16,10 +17,19 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/js/1.0/private/command/interest", produces = MediaType.APPLICATION_JSON_VALUE)
 public class InterestCommandPrivateController implements InterestCommandPrivateSpec {
+
+    private final AbstractInterestCommandDomainPresentationService abstractInterestCommandDomainPresentationService;
+
+    public InterestCommandPrivateController(AbstractInterestCommandDomainPresentationService abstractInterestCommandDomainPresentationService) {
+        this.abstractInterestCommandDomainPresentationService = abstractInterestCommandDomainPresentationService;
+    }
+
+
     @Override
     @PostMapping("/create")
-    public ResponseEntity<JSuccessResponse> create(CreateRequest<InterestCommandModel> request) {
-        return null;
+    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<InterestCommandModel> request) {
+        this.abstractInterestCommandDomainPresentationService.create(request.getModel());
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
