@@ -29,7 +29,6 @@ public class EducationCommandPrivateController implements EducationCommandPrivat
     public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<EducationCommandModel> request) {
         this.abstractEducationCommandDomainPresentationsService.create(request);
         return ResponseEntity.ok(JSuccessResponse.success());
-
     }
 
     @Override

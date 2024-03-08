@@ -25,8 +25,6 @@ import java.util.UUID;
 public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<?>> {
 
     private final AbstractSecurityContextHolder securityContextHolder;
-    //    private final AbstractEducationDomainService abstractEducationDomainService;
-//    private final AbstractEducationQueryRepositoryAdapter abstractEducationQueryRepositoryAdapter;
     private final AbstractEducationCommandRepositoryAdapter abstractEducationCommandRepositoryAdapter;
     private final AbstractEducationDomainMapper abstractEducationDomainMapper;
 

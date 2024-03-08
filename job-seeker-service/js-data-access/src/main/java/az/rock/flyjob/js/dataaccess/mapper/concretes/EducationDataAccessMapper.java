@@ -10,6 +10,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.Optional;
 
 @Component
@@ -58,8 +59,8 @@ public class EducationDataAccessMapper implements AbstractEducationDataAccessMap
                 .establishmentUUID(root.getEstablishmentUUID())
                 .establishmentName(root.getEstablishmentName())
                 .orderNumber(root.getOrderNumber())
-                .startDate(GDateTime.toTimestamp(root.getStartDate()))
-                .endDate(GDateTime.toTimestamp(root.getEndDate()))
+                .startDate(Timestamp.valueOf(root.getStartDate().toLocalDateTime()))
+                .endDate(Timestamp.valueOf(root.getEndDate().toLocalDateTime()))
                 .accessModifier(root.getAccessModifier())
                 .description(root.getDescription())
                 .link(root.getLink())

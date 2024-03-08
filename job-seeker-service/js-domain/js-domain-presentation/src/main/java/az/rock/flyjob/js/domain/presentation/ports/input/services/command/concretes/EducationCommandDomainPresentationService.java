@@ -7,16 +7,18 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandMode
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractEducationCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractEducationCommandDomainPresentationsService;
 import az.rock.lib.annotation.InputPort;
+import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+
 @InputPort
 @Service
 public class EducationCommandDomainPresentationService implements AbstractEducationCommandDomainPresentationsService {
 
-    private final AbstractEducationCommandHandler abstractEducationCommandHandler;
+    private final AbstractEducationCommandHandler<AbstractDomainEvent<?>> abstractEducationCommandHandler;
 
-    public EducationCommandDomainPresentationService(AbstractEducationCommandHandler abstractEducationCommandHandler) {
+    public EducationCommandDomainPresentationService(AbstractEducationCommandHandler<AbstractDomainEvent<?>> abstractEducationCommandHandler) {
         this.abstractEducationCommandHandler = abstractEducationCommandHandler;
     }
 

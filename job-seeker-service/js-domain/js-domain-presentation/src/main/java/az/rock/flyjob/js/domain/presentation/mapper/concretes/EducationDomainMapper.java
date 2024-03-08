@@ -17,11 +17,6 @@ import java.util.UUID;
 @Component
 public class EducationDomainMapper implements AbstractEducationDomainMapper {
 
-    private Integer orderNumber() {
-        Integer orderNumber = 0;
-        orderNumber++;
-        return orderNumber;
-    }
 
     @Override
     public EducationRoot toNewRoot(ResumeID resumeID, EducationCommandModel educationCommandModel) {
@@ -33,7 +28,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .resume(resumeID)
-                .orderNumber(orderNumber())
+                .orderNumber(1)
                 .degree(educationCommandModel.getDegree())
                 .state(educationCommandModel.getState())
                 .link(educationCommandModel.getLink())
