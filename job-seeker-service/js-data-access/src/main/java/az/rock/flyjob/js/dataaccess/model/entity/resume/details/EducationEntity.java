@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -51,11 +51,11 @@ public class EducationEntity extends BaseEntity {
     @Column(name = "city_id")
     private UUID cityId;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp startDate;
+    @Column(name = "start_date", columnDefinition = "DATE")
+    private LocalDate startDate;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp endDate;
+    @Column(name = "end_date", columnDefinition = "DATE")
+    private LocalDate endDate;
 
     @Column(name = "description")
     private String description;
