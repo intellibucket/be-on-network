@@ -5,16 +5,12 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
-import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
+import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
-import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
-import com.intellibucket.ws.validation.annotation.GNotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,39 +18,36 @@ import java.util.UUID;
 @Slf4j
 public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService{
     //TODO ADD SAGA
-    private AbstractCourseCreateCommandHandler courseMergeCommandHandler;
+    private AbstractCourseCommandHandler commandHandler;
 
-    public CourseCommandDomainPresentationService(AbstractCourseCreateCommandHandler courseMergeCommandHandler) {
-        this.courseMergeCommandHandler = courseMergeCommandHandler;
+    public CourseCommandDomainPresentationService(AbstractCourseCommandHandler commandHandler) {
+        this.commandHandler = commandHandler;
     }
 
-//    private final AbstractCourseUpdateCommandHandler userUpdateCommandHandler;
-//    private final AbstractJobSeekerCreateEventCoordinator jobSeekerCreateEventCoordinator;
-//    private final AbstractCompanyCreateEventCoordinator companyCreateEventCoordinator;
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        var courseCreatedEvent = courseMergeCommandHandler.create(command.getModel());
+        var courseCreatedEvent = commandHandler.create(command.getModel());
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        var courseUpdatedEvent = courseMergeCommandHandler.merge(command.getModel(),command.getTargetId());
+        var courseUpdatedEvent = commandHandler.merge(command.getModel(),command.getTargetId());
     }
 
     @Override
     public void delete(UUID courseId) {
-        var courseDeleteEvent = courseMergeCommandHandler.delete(courseId);
+        var courseDeleteEvent = commandHandler.delete(courseId);
     }
 
     @Override
     public void reorder(ReorderCommandModel command) {
-        var reorderEvent = courseMergeCommandHandler.reorder(command);
+        var reorderEvent = commandHandler.reorder(command);
     }
 
     @Override
     public void uploadCertificate(UUID courseId, MultipartFileWrapper file) {
-        var certificateEvent = courseMergeCommandHandler.uploadCertificate(courseId, file);
+        var certificateEvent = commandHandler.uploadCertificate(courseId, file);
 
     }
 }

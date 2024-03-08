@@ -16,5 +16,14 @@
     "tr": "Bu başlık zaten kullanılmış. Lütfen başlığı değiştirin.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000003",
+    "az": "Kurs tapılmadı.",
+    "en": "Course not found.",
+    "ru": "Курс не найден.",
+    "tr": "Kurs bulunamadı.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

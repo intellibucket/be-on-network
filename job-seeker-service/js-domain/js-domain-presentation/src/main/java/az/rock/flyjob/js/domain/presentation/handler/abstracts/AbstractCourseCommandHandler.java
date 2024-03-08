@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public interface AbstractCourseCreateCommandHandler {
+public interface AbstractCourseCommandHandler {
 
     CourseMergeEvent create(CourseCommandModel command);
 

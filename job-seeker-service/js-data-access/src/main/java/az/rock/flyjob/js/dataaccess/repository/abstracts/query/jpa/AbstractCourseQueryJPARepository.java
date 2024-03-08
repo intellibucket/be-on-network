@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Repository
 public interface AbstractCourseQueryJPARepository extends JpaRepository<CourseEntity, UUID> {
-    @Query("SELECT COUNT(c) > 0 FROM CourseEntity c WHERE c.courseTitle = :title AND c.resume.id = :resume")
+    @Query("SELECT COUNT(c) > 0 FROM CourseEntity c WHERE c.courseTitle = :title AND c.resume.id = :resume AND c.rowStatus = 'ACTIVE'")
     Boolean existsByTitleAndResume(@Param("title") String title, @Param("resume") UUID resume);
 
 
