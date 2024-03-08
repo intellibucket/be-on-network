@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/company-command-service/company-command-messaging/pom.xml" />
         <option value="$PROJECT_DIR$/company-query-service/pom.xml" />
         <option value="$PROJECT_DIR$/notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/library/authorization-rpc/pom.xml" />
       </list>
     </option>
   </component>

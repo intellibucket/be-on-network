@@ -8,16 +8,13 @@ spring:
       maxInterval: 10000
     import: configserver:http://62.72.45.66:8012
   application:
-    name: job-seeker-service
+    name: authorization-service
 server:
   servlet:
-    context-path: /js-context
+    context-path: /authorization-context
 logging:
   level:
     org.springframework.transaction.interceptor: TRACE
-
 grpc:
-  client:
-    hello:
-      address: localhost:9090
-      negotiation-type: plaintext
+  server:
+    port: 9091
