@@ -12,7 +12,11 @@ import java.util.UUID;
 @InputPort
 @Profile({"local", "devlop", "pre-develop"})
 public class TestCommandDomainPresentationService implements AbstractTestCommandDomainPresentationService {
-    private AuthorizationApi authorizationApi;
+    private final AuthorizationApi authorizationApi;
+
+    public TestCommandDomainPresentationService(AuthorizationApi authorizationApi) {
+        this.authorizationApi = authorizationApi;
+    }
 
     @Override
     public String testAuthorizationApiForRelation(UUID sourceUserId, UUID targetUserId) {
