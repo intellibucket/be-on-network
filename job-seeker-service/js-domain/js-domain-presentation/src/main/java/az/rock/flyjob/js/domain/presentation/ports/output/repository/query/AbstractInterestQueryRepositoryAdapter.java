@@ -6,7 +6,13 @@ import az.rock.lib.annotation.DomainOutputPort;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
 
+import java.util.List;
+import java.util.UUID;
+
 @DomainOutputPort
 public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<InterestRoot, InterestID, ResumeID> {
     Boolean existByResumeIDAndName(ResumeID resumeID,InterestRoot interestRoot);
+
+
+
 }

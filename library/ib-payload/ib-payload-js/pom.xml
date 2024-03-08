@@ -23,5 +23,11 @@
             <artifactId>ib-payload-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>az.rock.flyjob.js</groupId>
+            <artifactId>js-domain-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
