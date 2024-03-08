@@ -2,6 +2,7 @@ package az.rock.flyjob.js.domain.presentation.handler.abstracts;
 
 
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.intellibucket.lib.payload.event.create.CourseFileEvent;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-@Transactional(propagation = Propagation.REQUIRES_NEW)//TODO rollback ?
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public interface AbstractCourseCreateCommandHandler {
 
     CourseMergeEvent create(CourseCommandModel command);
@@ -21,4 +22,6 @@ public interface AbstractCourseCreateCommandHandler {
     CourseDeleteEvent delete(UUID id);
 
     CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file);
+
+    CourseMergeEvent reorder(ReorderCommandModel reorderCommandModel);
 }

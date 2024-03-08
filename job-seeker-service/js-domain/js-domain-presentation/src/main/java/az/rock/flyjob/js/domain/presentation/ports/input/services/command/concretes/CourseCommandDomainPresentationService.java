@@ -21,7 +21,7 @@ import java.util.UUID;
 @InputPort
 @Slf4j
 public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService{
-    //TODO ADD SAGA,XUSUSI ERROR
+    //TODO ADD SAGA
     private AbstractCourseCreateCommandHandler courseMergeCommandHandler;
 
     public CourseCommandDomainPresentationService(AbstractCourseCreateCommandHandler courseMergeCommandHandler) {
@@ -48,8 +48,8 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
     }
 
     @Override
-    public void reorder(ReorderCommandModel request) {
-        //TODO REORDER YAZILMALIDI
+    public void reorder(ReorderCommandModel command) {
+        var reorderEvent = courseMergeCommandHandler.reorder(command);
     }
 
     @Override

@@ -34,10 +34,4 @@ public class CourseCustomCommandJPARepository implements AbstractCourseCustomCom
         return this.entityManager.merge(entity);
     }
 
-    public void setCourseCertificatePath(UUID uuid, String newFilePath){
-        var namedQuery = entityManager.createNamedQuery("UPDATE CourseEntity c SET c.certificateFilePath = :newFilePath WHERE c.uuid = :uuid");
-        namedQuery.setParameter("newFilePath",newFilePath);
-        namedQuery.setParameter("uuid",uuid);
-        namedQuery.executeUpdate();
-    }
 }

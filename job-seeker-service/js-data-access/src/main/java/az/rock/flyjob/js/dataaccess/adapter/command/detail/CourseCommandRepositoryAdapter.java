@@ -36,22 +36,14 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
     @Override
     public void update(CourseRoot root) {
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
-        if(optional.isEmpty())return;
-        var courseEntity = optional.get();
-        customCommandJPARepository.merge(courseEntity);
+        optional.ifPresent(this.customCommandJPARepository::merge);
     }
 
     @Override
     public void inActive(CourseRoot root) {
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
-        if(optional.isEmpty())return;
-        optional.get().inActive();
-        this.customCommandJPARepository.merge(optional.get());
+        optional.ifPresent(this.customCommandJPARepository::delete);
     }
 
-    @Override
-    public void updateCertificatePath(UUID id,String newFilePath) {
-        this.customCommandJPARepository.setCourseCertificatePath(id,newFilePath);
-    }
 
 }
