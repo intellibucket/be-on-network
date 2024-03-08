@@ -3,7 +3,7 @@ package az.rock.flyjob.js.domain.presentation.handler.concretes;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.exception.CourseDomainException;
-import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
+import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.dfs.AbstractFileStorageAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class CourseCommandHandler implements AbstractCourseCreateCommandHandler {
+public class CourseCommandHandler implements AbstractCourseCommandHandler {
     private final AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter;
     private final AbstractCourseDomainMapper courseDomainMapper;
     private final AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter;
