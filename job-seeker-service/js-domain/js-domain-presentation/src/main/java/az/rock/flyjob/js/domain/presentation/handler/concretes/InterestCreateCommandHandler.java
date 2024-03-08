@@ -91,7 +91,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     public InterestReorderEvent reorder(ReorderCommandModel request) throws InterestNotFound {
         var resumeID = this.securityContextHolder.availableResumeID();
         var allInterests = this.interestQueryRepositoryAdapter.findAllByPID(resumeID);
-        var targetInterest = this.interestQueryRepositoryAdapter.findById(InterestID.of(request.getTargetId()));
+        var targetInterest = allInterests.stream().filter(item -> item.getRootID().equals(request.getTargetId())).findFirst();
         if (targetInterest.isPresent()) {
             var targetRoot = targetInterest.get();
             var targetRootOrderNumber = targetRoot.getOrderNumber();
@@ -105,7 +105,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
             this.interestCommandRepositoryAdapter.update(changedMainRoot);
             return InterestReorderEvent.of(changedMainRoot.getRootID().getAbsoluteID());
 
-        } else throw new InterestNotFound("Interest not found");
+        } else throw new InterestNotFound(" Target Interest not found");
     }
 
 }
