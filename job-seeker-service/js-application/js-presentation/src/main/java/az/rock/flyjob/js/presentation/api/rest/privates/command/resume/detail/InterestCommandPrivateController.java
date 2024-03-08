@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.presentation.api.rest.privates.command.resume.detail;
 
+import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
@@ -41,13 +42,15 @@ public class InterestCommandPrivateController implements InterestCommandPrivateS
 
     @Override
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<JSuccessResponse> delete(UUID interestId) {
-        return null;
+    public ResponseEntity<JSuccessResponse> delete(UUID interestId) throws InterestNotFound {
+        this.abstractInterestCommandDomainPresentationService.delete(interestId);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PatchMapping("/reorder")
-    public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
-        return null;
+    public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) throws InterestNotFound {
+        this.abstractInterestCommandDomainPresentationService.reorder(request);
+        return ResponseEntity.ok(new JSuccessResponse());
     }
 }

@@ -40,6 +40,10 @@ public class InterestRoot extends AggregateRoot<InterestID> {
         this.description=description;
         return this;
     }
+    public InterestRoot changeOrderNumber(Integer newNumber){
+        this.orderNumber=newNumber;
+        return this;
+    }
 
 
     public ResumeID getResume() {

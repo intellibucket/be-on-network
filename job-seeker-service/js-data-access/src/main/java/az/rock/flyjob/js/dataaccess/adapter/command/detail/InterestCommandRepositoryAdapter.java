@@ -16,13 +16,19 @@ import java.util.Optional;
 public class InterestCommandRepositoryAdapter implements AbstractInterestCommandRepositoryAdapter {
 
     private final AbstractInterestCustomCommandJPARepository interestCustomCommandJPARepository;
-    private final AbstractInterestDataAccessMapper<InterestEntity,InterestRoot> interestDataAccessMapper;
+    private final AbstractInterestDataAccessMapper<InterestEntity, InterestRoot> interestDataAccessMapper;
 
     public InterestCommandRepositoryAdapter(AbstractInterestCustomCommandJPARepository interestCustomCommandJPARepository, AbstractInterestDataAccessMapper<InterestEntity, InterestRoot> interestDataAccessMapper) {
         this.interestCustomCommandJPARepository = interestCustomCommandJPARepository;
         this.interestDataAccessMapper = interestDataAccessMapper;
     }
 
+    @Override
+    public void inActive(InterestRoot root) {
+        var entity = this.interestDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.interestCustomCommandJPARepository::delete);
+
+    }
 
     @Override
     public Optional<InterestRoot> create(InterestRoot root) {
@@ -35,17 +41,6 @@ public class InterestCommandRepositoryAdapter implements AbstractInterestCommand
         entity.ifPresent(this.interestCustomCommandJPARepository::merge);
     }
 
-    @Override
-    public void delete(InterestRoot root) {
-        AbstractInterestCommandRepositoryAdapter.super.delete(root);
-    }
-
-
-
-    @Override
-    public void deleteAll(List<InterestRoot> roots) {
-        AbstractInterestCommandRepositoryAdapter.super.deleteAll(roots);
-    }
 
     @Override
     public void rollback(Collection<InterestRoot> roots) {

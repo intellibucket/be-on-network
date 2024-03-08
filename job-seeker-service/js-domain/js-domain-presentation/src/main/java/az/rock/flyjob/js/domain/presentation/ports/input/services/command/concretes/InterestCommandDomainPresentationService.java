@@ -1,10 +1,13 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concretes;
 
+import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractInterestCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractInterestCommandDomainPresentationService;
+import com.intellibucket.lib.payload.event.update.InterestDeleteEvent;
+import com.intellibucket.lib.payload.event.update.InterestReorderEvent;
 import com.intellibucket.lib.payload.outbox.InterestRegistrationSteps;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Component;
@@ -37,12 +40,14 @@ public class InterestCommandDomainPresentationService implements AbstractInteres
     }
 
     @Override
-    public void delete(UUID interestId) {
-
+    public void delete(UUID interestId) throws InterestNotFound {
+        var delete = this.interestCreateCommandHandler.delete(interestId);
     }
 
     @Override
-    public void reorder(ReorderCommandModel request) {
+    public void reorder(ReorderCommandModel request) throws InterestNotFound {
+       var reorder = this.interestCreateCommandHandler.reorder(request);
+
 
     }
 

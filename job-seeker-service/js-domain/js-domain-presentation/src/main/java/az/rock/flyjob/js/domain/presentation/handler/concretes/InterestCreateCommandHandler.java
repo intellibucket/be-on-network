@@ -1,9 +1,11 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
+import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractInterestDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractInterestCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractInterestDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractInterestCommandDomainPresentationService;
@@ -14,9 +16,13 @@ import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
 import com.intellibucket.lib.payload.event.create.InterestCreateEvent;
 import com.intellibucket.lib.payload.event.update.InterestDeleteEvent;
+import com.intellibucket.lib.payload.event.update.InterestReorderEvent;
 import com.intellibucket.lib.payload.event.update.InterestUpdateEvent;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -24,21 +30,21 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
 
     private final AbstractSecurityContextHolder securityContextHolder;
     private final AbstractInterestDomainService domainService;
-    private final AbstractInterestCommandDomainPresentationService interestCommandDomainPresentationService;
+
     private final AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter;
     private final AbstractInterestCommandRepositoryAdapter interestCommandRepositoryAdapter;
     private final AbstractInterestDomainMapper interestDomainMapper;
 
 
     public InterestCreateCommandHandler(AbstractSecurityContextHolder securityContextHolder,
-                                        AbstractInterestDomainService service,
-                                        AbstractInterestCommandDomainPresentationService interestCommandDomainPresentationService,
+                                        @Qualifier("interestDomainService") AbstractInterestDomainService service,
+
                                         AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter,
                                         AbstractInterestCommandRepositoryAdapter interestCommandRepositoryAdapter,
                                         AbstractInterestDomainMapper interestDomainMapper) {
         this.securityContextHolder = securityContextHolder;
         this.domainService = service;
-        this.interestCommandDomainPresentationService = interestCommandDomainPresentationService;
+
         this.interestQueryRepositoryAdapter = interestQueryRepositoryAdapter;
         this.interestCommandRepositoryAdapter = interestCommandRepositoryAdapter;
         this.interestDomainMapper = interestDomainMapper;
@@ -63,16 +69,43 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
             var newInterestRoot = oldInterestRoot.changeName(interestCommandModelUpdateRequest.getModel().getName())
                     .changeHobby(interestCommandModelUpdateRequest.getModel().getHobby())
                     .changeDescription(interestCommandModelUpdateRequest.getModel().getDescription());
-            this.domainService.validateInterestName(allInterests, newInterestRoot);
-            this.interestCommandRepositoryAdapter.update(newInterestRoot);
-            return InterestUpdateEvent.of(newInterestRoot);
+            var interestRoot = this.domainService.validateInterestName(allInterests, newInterestRoot);
+            this.interestCommandRepositoryAdapter.update(interestRoot);
+            return InterestUpdateEvent.of(interestRoot);
         } else throw new InterestNotFound("Interest not Found");
     }
 
     @Override
-    public InterestDeleteEvent delete(UUID interestId) {
-        return null;
+    public InterestDeleteEvent delete(UUID interestId) throws InterestNotFound {
+        var resumeID = this.securityContextHolder.availableResumeID();
+        var ownByID = interestQueryRepositoryAdapter.findOwnByID(resumeID, InterestID.of(interestId));
+        if (ownByID.isPresent()) {
+            var interestRoot = ownByID.get();
+            this.interestCommandRepositoryAdapter.inActive(interestRoot);
+            return InterestDeleteEvent.of(interestRoot.getRootID().getRootID());
+        } else throw new InterestNotFound("Interest Not Found");
+
     }
 
+    @Override
+    public InterestReorderEvent reorder(ReorderCommandModel request) throws InterestNotFound {
+        var resumeID = this.securityContextHolder.availableResumeID();
+        var allInterests = this.interestQueryRepositoryAdapter.findAllByPID(resumeID);
+        var targetInterest = this.interestQueryRepositoryAdapter.findById(InterestID.of(request.getTargetId()));
+        if (targetInterest.isPresent()) {
+            var targetRoot = targetInterest.get();
+            var targetRootOrderNumber = targetRoot.getOrderNumber();
+            var mainRoot = allInterests.stream().filter(item -> item.getOrderNumber()
+                            .equals(request.getOrderNumber()))
+                    .findFirst()
+                    .orElseThrow(() -> new InterestNotFound("Interest not found"));
+            var changedTargetRoot = targetRoot.changeOrderNumber(mainRoot.getOrderNumber());
+            var changedMainRoot = mainRoot.changeOrderNumber(targetRootOrderNumber);
+            this.interestCommandRepositoryAdapter.update(changedTargetRoot);
+            this.interestCommandRepositoryAdapter.update(changedMainRoot);
+            return InterestReorderEvent.of(changedMainRoot.getRootID().getAbsoluteID());
+
+        } else throw new InterestNotFound("Interest not found");
+    }
 
 }

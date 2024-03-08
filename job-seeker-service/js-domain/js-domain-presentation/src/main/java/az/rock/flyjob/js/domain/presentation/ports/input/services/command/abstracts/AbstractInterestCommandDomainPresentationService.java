@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts;
 
+import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
@@ -11,12 +12,12 @@ import java.util.UUID;
 
 @InputPort
 @Transactional
-public interface AbstractInterestCommandDomainPresentationService {
+public interface AbstractInterestCommandDomainPresentationService  {
     void create(InterestCommandModel newInterestCommandModel);
 
     void update(UpdateRequest<InterestCommandModel> updateRequest) throws Exception;
 
-    void delete(UUID interestId);
+    void delete(UUID interestId) throws InterestNotFound;
 
-    void  reorder(ReorderCommandModel request);
+    void  reorder(ReorderCommandModel request) throws InterestNotFound;
 }
