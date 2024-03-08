@@ -18,6 +18,6 @@ logging:
 
 grpc:
   client:
-    hello:
-      address: localhost:9090
+    authorization-rpc:
+      address: 62.72.45.66:9091
       negotiation-type: plaintext
