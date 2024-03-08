@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.exception.CourseDomainException;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
@@ -41,7 +42,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
     public CourseMergeEvent create(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command,
 //                securityContextHolder.availableResumeID()
-                ResumeID.of(UUID.fromString("e66d06d5-d2f6-41d0-b7ed-3466f079bdbc"))
+                ResumeID.of(UUID.fromString("e66d06d5-d2f6-41d0-b7ed-3466f079bdbc"))//TODO deyis
         );
 
         if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume()))
@@ -60,11 +61,7 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
         if(oldCourse.isEmpty())throw new CourseDomainException("F0000000003");
         var course = courseDomainMapper.toRoot(command,oldCourse.get());
         courseCommandRepositoryAdapter.update(course);
-        return CourseMergeEvent.of(
-                CourseMergePayload.of(
-                       id
-                )
-        );
+        return CourseMergeEvent.of(CourseMergePayload.of(id));
     }
 
 
@@ -74,18 +71,29 @@ public class CourseCommandHandler implements AbstractCourseCreateCommandHandler 
         var optional = courseQueryRepositoryAdapter.findById(CourseID.of(id));
         if(optional.isEmpty())throw new CourseDomainException("F0000000003");
         this.courseCommandRepositoryAdapter.inActive(optional.get());
-        return CourseDeleteEvent.of(
-                CourseDeletedPayload.of(
-                        id
-                )
-        );
+        return CourseDeleteEvent.of(CourseDeletedPayload.of(id));
     }
 
     @Override
     public CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) {
+        var optional = courseQueryRepositoryAdapter.findById(CourseID.of(courseId));
+        if(optional.isEmpty())throw new CourseDomainException("F0000000003");
         var savedFile = fileStorageService.uploadFile(file);
-        courseCommandRepositoryAdapter.updateCertificatePath(courseId, savedFile.getObject());
+        var course = optional.get();
+        course.setCertificateFilePath(savedFile.getObject());
+        this.courseCommandRepositoryAdapter.update(course);
         return CourseFileEvent.of(CourseFilePayload.of(courseId));
     }
-}
 
+
+    @Override
+    public CourseMergeEvent reorder(ReorderCommandModel reorderCommandModel) {
+        var optional = courseQueryRepositoryAdapter.findById(CourseID.of(reorderCommandModel.getTargetId()));
+        if(optional.isEmpty())throw new CourseDomainException("F0000000003");
+        var course = optional.get();
+        course.setOrderNumber(reorderCommandModel.getOrderNumber());
+        courseCommandRepositoryAdapter.update(course);
+        return CourseMergeEvent.of(CourseMergePayload.of(reorderCommandModel.getTargetId()));
+    }
+
+}

@@ -6,5 +6,4 @@ import az.rock.flyjob.js.dataaccess.repository.abstracts.CustomCommandJPAReposit
 import java.util.UUID;
 
 public interface AbstractCourseCustomCommandJPARepository extends CustomCommandJPARepository<CourseEntity> {
-    void setCourseCertificatePath(UUID uuid, String newFilePath);
 }

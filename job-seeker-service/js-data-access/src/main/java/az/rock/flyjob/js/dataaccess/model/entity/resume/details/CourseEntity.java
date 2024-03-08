@@ -17,7 +17,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.UUID;
 
-//TODO DATABASE DE END DATE DATE DI BURDA TIMESTAMP java.lang.IllegalArgumentException: Can not set java.sql.Timestamp field az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity.endDate to java.sql.Date
 @Getter
 @Setter
 @NoArgsConstructor
