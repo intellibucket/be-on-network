@@ -1,6 +1,6 @@
 syntax = "proto3";
 option java_multiple_files = true;
-package com.intellibucket.lib.client.model.request;
+package com.intellibucket.lib.proto;
 
 message UserRelationLevelRequest {
   string sourceUserId = 1;

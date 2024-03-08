@@ -19,5 +19,5 @@ logging:
 grpc:
   client:
     authorization-rpc:
-      address: localhost:9091
+      address: static://localhost:9091
       negotiation-type: plaintext

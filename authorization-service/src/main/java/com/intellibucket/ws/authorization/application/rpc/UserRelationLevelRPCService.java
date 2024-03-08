@@ -1,8 +1,8 @@
 package com.intellibucket.ws.authorization.application.rpc;
 
-import com.intellibucket.lib.client.model.request.UserRelationLevelRequest;
-import com.intellibucket.lib.client.model.request.UserRelationLevelResponse;
-import com.intellibucket.lib.client.model.request.UserRelationLevelServiceGrpc;
+import com.intellibucket.lib.proto.UserRelationLevelRequest;
+import com.intellibucket.lib.proto.UserRelationLevelResponse;
+import com.intellibucket.lib.proto.UserRelationLevelServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
