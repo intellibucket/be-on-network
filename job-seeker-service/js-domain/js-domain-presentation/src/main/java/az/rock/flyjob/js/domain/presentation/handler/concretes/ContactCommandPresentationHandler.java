@@ -17,6 +17,7 @@ import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHol
 import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
 import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
+import com.intellibucket.lib.payload.event.create.number.PhoneNumberCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
@@ -55,10 +56,19 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
                 .build();
     }
 
-    @Override //todo Metin create qalib ve reorder
+    @Override
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest)
     {
-        return null;
+        var currentResumeId=this.contextHolder.availableResumeID();
+        var allSavedResume=this.commandQueryRepositoryAdapter.findAllByPID(currentResumeId);
+        var contactRoot=this.contactCommandDomainMapper.toRoot(createRequest.getModel(),currentResumeId);
+        var validateContact=this.domainService.validateContactDuplication(allSavedResume,contactRoot);
+        var isExistContact=this.commandQueryRepositoryAdapter.isExistContact(validateContact);
+        if(isExistContact) throw new ContactAlreadyExistException();
+        var optionalContactRoot=this.abstractContactCommandRepositoryAdapter.create(validateContact);
+        if(optionalContactRoot.isEmpty()) throw new UnknownSystemException();
+        var contactPayload=this.toPayload(optionalContactRoot.get());
+        return ContactCreatedEvent.of(contactPayload);
     }
 
     @Override
@@ -93,7 +103,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
 
     @Override
-    public ContactReorderEvent reoderContact(ReorderRequest<ContactCommandModel> commandModel) {
+    public ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel) {
         return null;
     }
 

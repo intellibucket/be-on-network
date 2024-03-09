@@ -16,12 +16,7 @@ import java.rmi.server.UID;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-@Repository
-public interface AbstractContactCommandJPARepository extends CustomCommandJPARepository<ContactEntity> {
-    @Transactional
-    @Modifying
-    @Query("UPDATE CourseEntity c SET c.rowStatus = :rowStatus WHERE c.uuid = :uuid")
-    ContactEntity setRowStatusById(UUID uuid, RowStatus rowStatus);
 
-    void deleteAllById(List<ContactID> entityList);
+public interface AbstractContactCommandJPARepository extends CustomCommandJPARepository<ContactEntity> {
+
 }

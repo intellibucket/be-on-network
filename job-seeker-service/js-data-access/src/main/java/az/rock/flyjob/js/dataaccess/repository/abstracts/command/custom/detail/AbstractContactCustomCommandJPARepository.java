@@ -7,7 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface AbstractContactCustomCommandJPARepository extends CustomCommandJPARepository<ContactEntity> {
-    Optional<ContactEntity> findById(UUID contactId);
 
-    void delete(ContactEntity contactEntity);
 }

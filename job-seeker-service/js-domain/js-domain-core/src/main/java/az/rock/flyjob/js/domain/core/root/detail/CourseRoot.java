@@ -25,8 +25,13 @@ public class CourseRoot extends AggregateRoot<CourseID> {
     private String description;
     private String certificateFilePath;
     private String verificationAddress;
+
+    public Boolean isVerified() {
+        return verificationAddress != null;
+    }
+
     private CourseRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;

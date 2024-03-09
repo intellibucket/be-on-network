@@ -42,7 +42,6 @@
         <module>library</module>
         <module>company-command-service</module>
         <module>company-query-service</module>
-        <module>vacancy-sync-service</module>
         <module>notification-service</module>
         <module>payment-service</module>
         <module>article-command-service</module>
@@ -55,6 +54,7 @@
         <module>email-service</module>
         <module>payment-service</module>
         <module>notification-service</module>
+        <module>messaging-service</module>
     </modules>
 
     <properties>
@@ -72,6 +72,7 @@
         </spring-cloud-starter-circuitbreaker-reactor-resilience4j.version>
         <spring-cloud-starter-zipkin.version>2.2.8.RELEASE</spring-cloud-starter-zipkin.version>
 
+        <grpc.version>1.30.0</grpc.version>
         <elastic.version>7.17.4</elastic.version>
 
         <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
@@ -148,11 +149,6 @@
                 <groupId>org.springframework.kafka</groupId>
                 <artifactId>spring-kafka</artifactId>
                 <version>3.0.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>3.0.1</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate.orm</groupId>
