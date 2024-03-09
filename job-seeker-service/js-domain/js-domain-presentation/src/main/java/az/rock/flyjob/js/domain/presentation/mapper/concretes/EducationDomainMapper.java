@@ -28,7 +28,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .resume(resumeID)
-                .orderNumber(1)
+                .orderNumber(0)
                 .degree(educationCommandModel.getDegree())
                 .state(educationCommandModel.getState())
                 .link(educationCommandModel.getLink())
@@ -58,7 +58,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
         return EducationRoot.Builder
                 .builder()
                 .resume(resumeID)
-                .orderNumber(1)
+                .orderNumber(0)
                 .degree(educationCommandModel.getDegree())
                 .state(educationCommandModel.getState())
                 .link(educationCommandModel.getLink())

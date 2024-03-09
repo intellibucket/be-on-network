@@ -9,7 +9,6 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractEducationD
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractEducationCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
@@ -51,16 +50,14 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
 
     @Override
     public AbstractDomainEvent<EducationPayload> update(UpdateRequest<EducationCommandModel> request) {
-        var educationRootFromDatabase = this.educationQueryRepositoryAdapter.findById
-                (EducationID.of(request.getTargetId()));
-        if (educationRootFromDatabase.isPresent()) {
-            var educationRoot = educationRootFromDatabase.get();
-            educationDomainMapper.toExistRoot(educationRoot, request.getModel());
-            this.educationCommandRepositoryAdapter.update(educationRoot);
-            var educationPayload = this.educationDomainMapper.toPayload(educationRoot);
-            return EducationUpdatedEvent.of(educationPayload);
-        } else
-            throw new RuntimeException("Cant update");
+        var resumeId = securityContextHolder.availableResumeID();
+        var educationRootFromDatabase = this.educationQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId());
+        if (educationRootFromDatabase.isEmpty()) throw new NoActiveRowException();
+        var educationRoot = educationRootFromDatabase.get();
+        educationDomainMapper.toExistRoot(educationRoot, request.getModel());
+        this.educationCommandRepositoryAdapter.update(educationRoot);
+        var educationPayload = this.educationDomainMapper.toPayload(educationRoot);
+        return EducationUpdatedEvent.of(educationPayload);
     }
 
     @Override
@@ -74,6 +71,13 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
 
     @Override
     public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) {
-        return null;
+        var resumeId = securityContextHolder.availableResumeID();
+        var educationFromDatabase = educationQueryRepositoryAdapter
+                .findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId())
+                .orElseThrow(NoActiveRowException::new);
+        educationFromDatabase.setOrderNumber(request.getOrderNumber());
+        this.educationCommandRepositoryAdapter.update(educationFromDatabase);
+        var educationPayload = this.educationDomainMapper.toPayload(educationFromDatabase);
+        return EducationUpdatedEvent.of(educationPayload);
     }
 }

@@ -39,6 +39,6 @@ public class EducationCommandDomainPresentationService implements AbstractEducat
 
     @Override
     public void reorder(ReorderCommandModel request) {
-
+        this.abstractEducationCommandHandler.reorder(request);
     }
 }

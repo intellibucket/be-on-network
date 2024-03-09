@@ -18,37 +18,37 @@ import java.util.UUID;
 @RequestMapping(value = "/js/1.0/private/command/education", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EducationCommandPrivateController implements EducationCommandPrivateSpec {
 
-    private final AbstractEducationCommandDomainPresentationService educationCommandDomainPresentationsService;
+    private final AbstractEducationCommandDomainPresentationService abstractEducationCommandDomainPresentationService;
 
-    public EducationCommandPrivateController(AbstractEducationCommandDomainPresentationService educationCommandDomainPresentationsService) {
-        this.educationCommandDomainPresentationsService = educationCommandDomainPresentationsService;
+    public EducationCommandPrivateController(AbstractEducationCommandDomainPresentationService abstractEducationCommandDomainPresentationService) {
+        this.abstractEducationCommandDomainPresentationService = abstractEducationCommandDomainPresentationService;
     }
 
     @Override
     @PostMapping("/create")
     public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<EducationCommandModel> request) {
-        this.educationCommandDomainPresentationsService.create(request);
+        this.abstractEducationCommandDomainPresentationService.create(request);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PutMapping("/update")
     public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<EducationCommandModel> request) {
-        this.educationCommandDomainPresentationsService.update(request);
+        this.abstractEducationCommandDomainPresentationService.update(request);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<JSuccessResponse> delete(@PathVariable UUID id) {
-        this.educationCommandDomainPresentationsService.delete(id);
+        this.abstractEducationCommandDomainPresentationService.delete(id);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
     @PatchMapping("/reorder")
     public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
-        this.educationCommandDomainPresentationsService.reorder(request);
+        this.abstractEducationCommandDomainPresentationService.reorder(request);
         return ResponseEntity.ok(JSuccessResponse.success());
     }
 }

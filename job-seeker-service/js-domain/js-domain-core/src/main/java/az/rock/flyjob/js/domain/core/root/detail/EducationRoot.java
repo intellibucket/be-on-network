@@ -63,14 +63,6 @@ public class EducationRoot extends AggregateRoot<EducationID> {
 
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public void setEstablishmentName(String establishmentName) {
-        this.establishmentName = establishmentName;
-    }
-
     public void setEducationDescription(String description) {
         this.description = description;
     }
@@ -84,7 +76,6 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         this.startDate = educationEndDate;
     }
 
-
     public ResumeID getResumeID() {
         return resumeID;
     }
@@ -95,6 +86,10 @@ public class EducationRoot extends AggregateRoot<EducationID> {
 
     public Integer getOrderNumber() {
         return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public EducationDegree getDegree() {
@@ -109,12 +104,20 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return link;
     }
 
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     public UUID getEstablishmentUUID() {
         return establishmentUUID;
     }
 
     public String getEstablishmentName() {
         return establishmentName;
+    }
+
+    public void setEstablishmentName(String establishmentName) {
+        this.establishmentName = establishmentName;
     }
 
     public UUID getCityId() {
