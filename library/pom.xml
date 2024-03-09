@@ -26,8 +26,8 @@
         <module>ib-data-access</module>
         <module>ib-payload</module>
         <module>ib-notification-api</module>
-        <module>authorization-client</module>
         <module>ib-security</module>
+        <module>ib-rpc</module>
     </modules>
 
     <properties>

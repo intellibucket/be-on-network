@@ -16,3 +16,8 @@ logging:
   level:
     org.springframework.transaction.interceptor: TRACE
 
+grpc:
+  client:
+    authorization-rpc:
+      address: static://localhost:9091
+      negotiation-type: plaintext
