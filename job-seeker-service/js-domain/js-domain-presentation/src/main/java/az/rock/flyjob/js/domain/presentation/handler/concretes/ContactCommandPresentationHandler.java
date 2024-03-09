@@ -56,7 +56,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
                 .build();
     }
 
-    @Override //todo Metin create qalib ve reorder
+    @Override
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest)
     {
         var currentResumeId=this.contextHolder.availableResumeID();
@@ -103,7 +103,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
 
     @Override
-    public ContactReorderEvent reoderContact(ReorderRequest<ContactCommandModel> commandModel) {
+    public ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel) {
         return null;
     }
 
