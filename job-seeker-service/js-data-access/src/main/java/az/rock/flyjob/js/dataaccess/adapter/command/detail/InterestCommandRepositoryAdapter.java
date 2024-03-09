@@ -6,6 +6,7 @@ import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.A
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.mapper.concretes.InterestDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractInterestCommandRepositoryAdapter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -24,7 +25,7 @@ public class InterestCommandRepositoryAdapter implements AbstractInterestCommand
     }
 
     @Override
-    public void inActive(InterestRoot root) {
+    public void delete(InterestRoot root) {
         var entity = this.interestDataAccessMapper.toEntity(root);
         entity.ifPresent(this.interestCustomCommandJPARepository::delete);
 

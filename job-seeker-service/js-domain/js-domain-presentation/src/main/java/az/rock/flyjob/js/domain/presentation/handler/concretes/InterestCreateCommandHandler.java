@@ -66,7 +66,8 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                 InterestID.of(interestCommandModelUpdateRequest.getTargetId()));
         if (ownByID.isPresent()) {
             var oldInterestRoot = ownByID.get();
-            var newInterestRoot = oldInterestRoot.changeName(interestCommandModelUpdateRequest.getModel().getName())
+            var newInterestRoot = oldInterestRoot
+                    .changeName(interestCommandModelUpdateRequest.getModel().getName())
                     .changeHobby(interestCommandModelUpdateRequest.getModel().getHobby())
                     .changeDescription(interestCommandModelUpdateRequest.getModel().getDescription());
             var interestRoot = this.domainService.validateInterestName(allInterests, newInterestRoot);
@@ -81,7 +82,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
         var ownByID = interestQueryRepositoryAdapter.findOwnByID(resumeID, InterestID.of(interestId));
         if (ownByID.isPresent()) {
             var interestRoot = ownByID.get();
-            this.interestCommandRepositoryAdapter.inActive(interestRoot);
+            this.interestCommandRepositoryAdapter.delete(interestRoot);
             return InterestDeleteEvent.of(interestRoot.getRootID().getRootID());
         } else throw new InterestNotFound("Interest Not Found");
 
@@ -91,7 +92,9 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     public InterestReorderEvent reorder(ReorderCommandModel request) throws InterestNotFound {
         var resumeID = this.securityContextHolder.availableResumeID();
         var allInterests = this.interestQueryRepositoryAdapter.findAllByPID(resumeID);
-        var targetInterest = allInterests.stream().filter(item -> item.getRootID().equals(request.getTargetId())).findFirst();
+        var targetInterest = allInterests.stream().filter(item -> item.getRootID().getAbsoluteID()
+                        .equals(request.getTargetId()))
+                .findFirst();
         if (targetInterest.isPresent()) {
             var targetRoot = targetInterest.get();
             var targetRootOrderNumber = targetRoot.getOrderNumber();
