@@ -25,8 +25,8 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public Boolean existsByTitleAndResume(String courseName, ResumeID resumeID) {
-        return courseQueryJPARepository.existsByTitleAndResume(courseName, resumeID.getRootID());
+    public Boolean existsByTitleAndResumeExceptCurrentCourse(String courseName, ResumeID resumeID,CourseID courseID) {
+        return courseQueryJPARepository.existsByTitleAndResumeExceptCurrentCourse(courseName, resumeID.getRootID(),courseID.getRootID());
     }
 
     @Override
