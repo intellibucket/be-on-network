@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Component
 @Slf4j
 public class ContactCommandRepositoryAdapter implements AbstractContactCommandRepositoryAdapter {
-    private final AbstractContactDataAccessMapper abstractContactDataAccessMapper;
+    private final AbstractContactDataAccessMapper<ContactEntity,ContactRoot> abstractContactDataAccessMapper;
     private final AbstractContactCommandJPARepository repository;
 
     public ContactCommandRepositoryAdapter(AbstractContactDataAccessMapper abstractContactDataAccessMapper, AbstractContactCommandJPARepository repository) {
@@ -64,14 +64,6 @@ public class ContactCommandRepositoryAdapter implements AbstractContactCommandRe
         entity.ifPresent(this.repository::delete);
     }
 
-    @Override
-    public void deleteAll(List<ContactRoot> roots) {
-        var entityList = roots
-                .stream()
-                .map(ContactRoot::getRootID)
-                .collect(Collectors.toList());
-        repository.deleteAllById(entityList);
-    }
 
 
     @Override

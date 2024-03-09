@@ -39,7 +39,7 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
 
     @Override
     public void reorder(ReorderRequest<ContactCommandModel> request) {
-        var contactDeleteEvent = abstractContactCommandHandler.reoderContact(request);
+        var contactDeleteEvent = abstractContactCommandHandler.reOrderContact(request);
 
     }
 

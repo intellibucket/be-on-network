@@ -1,6 +1,8 @@
 package az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail;
 
+import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractContactCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractContactCustomCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-public class ContactCustomCommandJPARepository implements AbstractContactCustomCommandJPARepository {
+public class ContactCustomCommandJPARepository implements AbstractContactCommandJPARepository {
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -21,25 +23,17 @@ public class ContactCustomCommandJPARepository implements AbstractContactCustomC
 
     @Override
     public <S extends ContactEntity> S persist(S entity) {
+        var userContactReference = this.entityManager.getReference(ContactEntity.class, entity.getResume().getUuid());
+        entity.setResume(userContactReference.getResume());
         this.entityManager.persist(entity);
         return entity;
     }
-
-
-
-
     @Override
     public <S extends ContactEntity> S merge(S entity) {
-        return this.entityManager.merge(entity);
+        var userContactReference = this.entityManager.getReference(ContactEntity.class, entity.getResume().getUuid());
+        entity.setResume(userContactReference.getResume());
+        this.entityManager.merge(entity);
+        return entity;
     }
 
-    @Override
-    public Optional<ContactEntity> findById(UUID contactId) {
-        return Optional.of(entityManager.find(ContactEntity.class, contactId));
-    }
-
-    @Override
-    public void delete(ContactEntity contactEntity) {
-        entityManager.remove(contactEntity);
-    }
 }

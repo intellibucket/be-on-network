@@ -23,6 +23,6 @@ public interface AbstractContactCommandHandler {
 
     ContactDeleteEvent deleteContact(UUID uid);
 
-    ContactReorderEvent reoderContact(ReorderRequest<ContactCommandModel> commandModel);
+    ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel);
 
 }
