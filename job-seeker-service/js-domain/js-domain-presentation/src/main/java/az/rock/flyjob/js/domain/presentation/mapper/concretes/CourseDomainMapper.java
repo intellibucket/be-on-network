@@ -38,7 +38,8 @@ public class CourseDomainMapper implements AbstractCourseDomainMapper {
 
     }
 
-    public CourseRoot toRoot(CourseCommandModel courseCommandModel, CourseRoot courseRoot){
+    public CourseRoot toRoot(CourseCommandModel courseCommandModel, CourseRoot courseRoot,ResumeID resumeID){
+        courseRoot.setResume(resumeID);
         courseRoot.setCourseTitle(courseCommandModel.getCourseTitle());
         courseRoot.setInstitution(courseCommandModel.getInstitution());
         courseRoot.setOnline(courseCommandModel.getIsOnline());

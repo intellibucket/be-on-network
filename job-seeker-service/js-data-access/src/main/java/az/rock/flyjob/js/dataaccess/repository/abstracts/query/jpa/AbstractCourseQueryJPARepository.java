@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,4 +17,7 @@ public interface AbstractCourseQueryJPARepository extends JpaRepository<CourseEn
 
     @Query("SELECT c FROM CourseEntity c WHERE c.uuid=:id AND c.rowStatus = 'ACTIVE'")
     Optional<CourseEntity> findById(@Param("id") UUID id);
+
+    @Query("SELECT c FROM CourseEntity c WHERE c.resume.uuid = :resume")
+    List<CourseEntity> findAllByResume(UUID resume);
 }

@@ -40,7 +40,7 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
     }
 
     @Override
-    public void inActive(CourseRoot root) {
+    public void delete(CourseRoot root) {
         var optional = this.abstractCourseDataAccessMapper.toEntity(root);
         optional.ifPresent(this.customCommandJPARepository::delete);
     }
