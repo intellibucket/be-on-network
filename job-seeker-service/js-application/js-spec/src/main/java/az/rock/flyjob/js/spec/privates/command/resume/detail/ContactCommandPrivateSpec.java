@@ -12,7 +12,14 @@ import java.util.UUID;
 
 public interface ContactCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<ContactCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<ContactCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID contactId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

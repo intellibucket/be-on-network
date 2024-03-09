@@ -2,7 +2,6 @@ package az.rock.spec.auth.privates.query;
 
 import az.rock.auth.domain.presentation.dto.response.user.*;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
-import az.rock.lib.valueObject.SimplePageable;
 import az.rock.lib.valueObject.common.PageableRequest;
 import org.springframework.http.ResponseEntity;
 
