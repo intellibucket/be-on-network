@@ -11,6 +11,17 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'RABBITMQ'
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - rabbitmq_go_net
 
   kafka:
     image: "docker.io/bitnami/kafka:3.3.2-debian-11-r12"
@@ -55,5 +66,7 @@ volumes:
     driver: local
 
 networks:
+  rabbitmq_go_net:
+    driver: bridge
   config-network:
     driver: bridge
