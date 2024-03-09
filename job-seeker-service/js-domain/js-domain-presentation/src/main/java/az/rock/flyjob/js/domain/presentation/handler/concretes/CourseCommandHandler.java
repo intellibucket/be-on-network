@@ -10,7 +10,6 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.Abs
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.CourseID;
-import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
 import com.intellibucket.lib.payload.event.create.CourseFileEvent;
@@ -41,7 +40,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     @Override
     public CourseMergeEvent create(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command, securityContextHolder.availableResumeID());
-        if(this.courseQueryRepositoryAdapter.existsByTitleAndResumeExceptCurrentCourse(newCourseRoot.getCourseTitle(),newCourseRoot.getResume(),newCourseRoot.getRootID()))
+        if(this.courseQueryRepositoryAdapter.existsByEquality(newCourseRoot.getCourseTitle(),newCourseRoot.getResume(),newCourseRoot.getRootID()))
             throw new CourseDomainException("F0000000004");
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
         return CourseMergeEvent.of(CourseMergePayload.of(optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()));
@@ -51,7 +50,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     public CourseMergeEvent merge(CourseCommandModel command,UUID id) {
         var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id));
         if(oldCourse.isEmpty())throw new CourseDomainException("F0000000003");
-        if(this.courseQueryRepositoryAdapter.existsByTitleAndResumeExceptCurrentCourse(command.getCourseTitle(),oldCourse.get().getResume(),oldCourse.get().getRootID()))
+        if(this.courseQueryRepositoryAdapter.existsByEquality(command.getCourseTitle(),oldCourse.get().getResume(),oldCourse.get().getRootID()))
             throw new CourseDomainException("F0000000004");
         var course = courseDomainMapper.toRoot(command,oldCourse.get());
         courseCommandRepositoryAdapter.update(course);

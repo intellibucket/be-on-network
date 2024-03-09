@@ -9,7 +9,6 @@ import az.rock.lib.domain.id.js.ResumeID;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 
 @Component
@@ -25,8 +24,8 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public Boolean existsByTitleAndResumeExceptCurrentCourse(String courseName, ResumeID resumeID,CourseID courseID) {
-        return courseQueryJPARepository.existsByTitleAndResumeExceptCurrentCourse(courseName, resumeID.getRootID(),courseID.getRootID());
+    public Boolean existsByEquality(String courseName, ResumeID resumeID, CourseID courseID) {
+        return courseQueryJPARepository.existsByEquality(courseName, resumeID.getRootID(),courseID.getRootID());
     }
 
     @Override
