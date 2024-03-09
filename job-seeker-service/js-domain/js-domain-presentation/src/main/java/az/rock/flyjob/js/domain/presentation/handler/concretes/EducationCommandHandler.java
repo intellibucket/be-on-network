@@ -9,30 +9,32 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractEducationD
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractEducationCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.EducationDeletedEvent;
 import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
 import com.intellibucket.lib.payload.payload.EducationPayload;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Component
-@Slf4j
 public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<?>> {
 
     private final AbstractSecurityContextHolder securityContextHolder;
-    private final AbstractEducationCommandRepositoryAdapter abstractEducationCommandRepositoryAdapter;
-    private final AbstractEducationDomainMapper abstractEducationDomainMapper;
+    private final AbstractEducationCommandRepositoryAdapter educationCommandRepositoryAdapter;
+    private final AbstractEducationDomainMapper educationDomainMapper;
     private final AbstractEducationQueryRepositoryAdapter educationQueryRepositoryAdapter;
 
-    public EducationCommandHandler(AbstractSecurityContextHolder securityContextHolder, AbstractEducationCommandRepositoryAdapter abstractEducationCommandRepositoryAdapter, AbstractEducationDomainMapper abstractEducationDomainMapper, AbstractEducationQueryRepositoryAdapter abstractEducationQueryRepositoryAdapter) {
+    public EducationCommandHandler(AbstractSecurityContextHolder securityContextHolder,
+                                   AbstractEducationCommandRepositoryAdapter educationCommandRepositoryAdapter,
+                                   AbstractEducationDomainMapper educationDomainMapper,
+                                   AbstractEducationQueryRepositoryAdapter abstractEducationQueryRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;
-        this.abstractEducationCommandRepositoryAdapter = abstractEducationCommandRepositoryAdapter;
-        this.abstractEducationDomainMapper = abstractEducationDomainMapper;
+        this.educationCommandRepositoryAdapter = educationCommandRepositoryAdapter;
+        this.educationDomainMapper = educationDomainMapper;
         this.educationQueryRepositoryAdapter = abstractEducationQueryRepositoryAdapter;
     }
 
@@ -40,30 +42,22 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
     @Override
     public AbstractDomainEvent<EducationPayload> create(CreateRequest<EducationCommandModel> request) {
         var resumeID = this.securityContextHolder.availableResumeID();
-        var educationRoot = this.abstractEducationDomainMapper.toNewRoot(resumeID, request.getModel());
-        var optionalEducationRoot = this.abstractEducationCommandRepositoryAdapter.create(educationRoot)
+        var educationRoot = this.educationDomainMapper.toNewRoot(resumeID, request.getModel());
+        var optionalEducationRoot = this.educationCommandRepositoryAdapter.create(educationRoot)
                 .orElseThrow(NoActiveRowException::new);
-        var educationPayload = this.abstractEducationDomainMapper.toPayload(optionalEducationRoot);
+        var educationPayload = this.educationDomainMapper.toPayload(optionalEducationRoot);
         return EducationCreatedEvent.of(educationPayload);
-
     }
 
     @Override
     public AbstractDomainEvent<EducationPayload> update(UpdateRequest<EducationCommandModel> request) {
-        var resumeID = this.securityContextHolder.availableResumeID();
-        var educationRootFromDatabase = this.educationQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeID, request.getTargetId());
+        var educationRootFromDatabase = this.educationQueryRepositoryAdapter.findById
+                (EducationID.of(request.getTargetId()));
         if (educationRootFromDatabase.isPresent()) {
             var educationRoot = educationRootFromDatabase.get();
-            educationRoot
-                    .changeEducationDegree(request.getModel().getDegree())
-                    .changeEducationDescription(request.getModel().getDescription())
-                    .changeEducationState(request.getModel().getState())
-                    .changeEstablishmentName(request.getModel().getEstablishmentName())
-                    .changeEducationStartDate(request.getModel().getStartDate())
-                    .changeEducationEndDate(request.getModel().getEndDate())
-                    .changeLink(request.getModel().getLink());
-            this.abstractEducationCommandRepositoryAdapter.update(educationRoot);
-            var educationPayload = this.abstractEducationDomainMapper.toPayload(educationRoot);
+            educationDomainMapper.toExistRoot(educationRoot, request.getModel());
+            this.educationCommandRepositoryAdapter.update(educationRoot);
+            var educationPayload = this.educationDomainMapper.toPayload(educationRoot);
             return EducationUpdatedEvent.of(educationPayload);
         } else
             throw new RuntimeException("Cant update");
@@ -73,7 +67,7 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
     public AbstractDomainEvent<UUID> delete(UUID educationId) {
         var resumeID = securityContextHolder.availableResumeID();
         var educationFromDatabase = educationQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeID, educationId);
-        abstractEducationCommandRepositoryAdapter.inActive(educationFromDatabase.orElseThrow(NoActiveRowException::new));
+        educationCommandRepositoryAdapter.inActive(educationFromDatabase.orElseThrow(NoActiveRowException::new));
         return EducationDeletedEvent.of(educationId);
     }
 

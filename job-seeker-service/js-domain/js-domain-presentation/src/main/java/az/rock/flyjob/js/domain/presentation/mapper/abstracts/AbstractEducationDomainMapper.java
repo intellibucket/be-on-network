@@ -12,6 +12,7 @@ public interface AbstractEducationDomainMapper {
 
     EducationRoot toRoot(ResumeID resumeID, EducationCommandModel educationCommandModel);
 
+    EducationRoot toExistRoot(EducationRoot educationRoot,EducationCommandModel educationCommandModel);
 
 
 }

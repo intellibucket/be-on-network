@@ -12,7 +12,6 @@ import java.util.Optional;
 
 
 @Component
-@Slf4j
 public class EducationCommandRepositoryAdapter implements AbstractEducationCommandRepositoryAdapter {
     private final AbstractEducationDataAccessMapper educationDataAccessMapper;
     private final AbstractCustomEducationCommandJpaRepository educationCustomCommandJpaRepository;

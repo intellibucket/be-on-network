@@ -22,10 +22,10 @@ public class ResumeCommandRepositoryAdapter implements AbstractResumeCommandRepo
     @Override
     public Optional<ResumeRoot> create(ResumeRoot root) {
         var optionalEntity = this.resumeDataAccessMapper.toEntity(root);
-        if (optionalEntity.isPresent()){
+        if (optionalEntity.isPresent()) {
             var savedEntity = this.resumeCustomCommandJPARepository.save(optionalEntity.get());
             return this.resumeDataAccessMapper.toRoot(savedEntity);
-        }else return Optional.empty();
+        } else return Optional.empty();
     }
 
 }
