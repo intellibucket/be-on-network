@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.mapper.concretes;
 
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.EducationCommandModel;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractEducationDomainMapper;
 import az.rock.lib.domain.id.js.EducationID;
@@ -40,6 +41,24 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .description(educationCommandModel.getDescription())
                 .build();
     }
+    @Override
+    public EducationRoot toRoot(ResumeID resumeID, EducationCommandModel educationCommandModel) {
+        return EducationRoot.Builder
+                .builder()
+                .resume(resumeID)
+                .orderNumber(1)
+                .degree(educationCommandModel.getDegree())
+                .state(educationCommandModel.getState())
+                .link(educationCommandModel.getLink())
+                .establishmentUUID(educationCommandModel.getEstablishmentUUID())
+                .establishmentName(educationCommandModel.getEstablishmentName())
+                .cityId(educationCommandModel.getCityId())
+                .startDate(educationCommandModel.getStartDate())
+                .endDate(educationCommandModel.getEndDate())
+                .description(educationCommandModel.getDescription())
+                .build();
+    }
+
 
     @Override
     public EducationPayload toPayload(EducationRoot educationRoot) {
@@ -51,4 +70,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .build();
 
     }
+
+
+
 }

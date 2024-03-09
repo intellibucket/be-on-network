@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -53,11 +54,11 @@ public class EducationEntity extends BaseEntity {
     @Column(name = "city_id")
     private UUID cityId;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp startDate;
+    @Column(name = "start_date", columnDefinition = "DATE")
+    private LocalDate startDate;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp endDate;
+    @Column(name = "end_date", columnDefinition = "DATE")
+    private LocalDate endDate;
 
     @Column(name = "description")
     private String description;
@@ -98,8 +99,8 @@ public class EducationEntity extends BaseEntity {
         private UUID establishmentUUID;
         private String establishmentName;
         private UUID cityId;
-        private Timestamp startDate;
-        private Timestamp endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
         private UUID uuid;
         private Long version;
@@ -156,16 +157,16 @@ public class EducationEntity extends BaseEntity {
             return this;
         }
 
-        public Builder startDate(Timestamp val) {
-            startDate = val;
-            return this;
-        }
 
-        public Builder endDate(Timestamp val) {
+
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }
-
+        public Builder startDate(LocalDate val) {
+            startDate = val;
+            return this;
+        }
         public Builder description(String val) {
             description = val;
             return this;

@@ -7,6 +7,11 @@ import com.intellibucket.lib.payload.payload.EducationPayload;
 
 public interface AbstractEducationDomainMapper {
     EducationRoot toNewRoot(ResumeID resumeID, EducationCommandModel educationCommandModel);
+
     EducationPayload toPayload(EducationRoot educationRoot);
+
+    EducationRoot toRoot(ResumeID resumeID, EducationCommandModel educationCommandModel);
+
+
 
 }

@@ -4,7 +4,6 @@ import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractEducationDataAccess
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractCustomEducationCommandJpaRepository;
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractEducationCommandRepositoryAdapter;
-import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +18,7 @@ public class EducationCommandRepositoryAdapter implements AbstractEducationComma
     private final AbstractCustomEducationCommandJpaRepository educationCustomCommandJpaRepository;
 
 
-    public EducationCommandRepositoryAdapter(AbstractEducationDataAccessMapper educationDataAccessMapper, AbstractCustomEducationCommandJpaRepository educationCustomCommandJpaRepository, AbstractEducationQueryRepositoryAdapter educationQueryRepositoryAdapter) {
+    public EducationCommandRepositoryAdapter(AbstractEducationDataAccessMapper educationDataAccessMapper, AbstractCustomEducationCommandJpaRepository educationCustomCommandJpaRepository) {
         this.educationDataAccessMapper = educationDataAccessMapper;
         this.educationCustomCommandJpaRepository = educationCustomCommandJpaRepository;
     }

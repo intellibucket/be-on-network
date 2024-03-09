@@ -4,7 +4,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.AbstractComma
 import az.rock.lib.valueObject.js.EducationDegree;
 import az.rock.lib.valueObject.js.EducationState;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class EducationCommandModel extends AbstractCommandModel {
@@ -14,11 +14,11 @@ public class EducationCommandModel extends AbstractCommandModel {
     private final UUID establishmentUUID;
     private final String establishmentName;
     private final UUID cityId;
-    private final ZonedDateTime startDate;
-    private final ZonedDateTime endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
     private final String description;
 
-    public EducationCommandModel(EducationDegree degree, EducationState state, String link, UUID establishmentUUID, String establishmentName, UUID cityId, ZonedDateTime startDate, ZonedDateTime endDate, String description) {
+    public EducationCommandModel(EducationDegree degree, EducationState state, String link, UUID establishmentUUID, String establishmentName, UUID cityId, LocalDate startDate, LocalDate endDate, String description) {
         this.degree = degree;
         this.state = state;
         this.link = link;
@@ -54,11 +54,11 @@ public class EducationCommandModel extends AbstractCommandModel {
         return cityId;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 

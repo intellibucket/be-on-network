@@ -1,7 +1,6 @@
 package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractEducationDataAccessMapper;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.EducationQueryJpaRepository;
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
@@ -26,7 +25,7 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
 
     @Override
     public Optional<EducationRoot> findByResumeAndUuidAndRowStatusTrue(ResumeID resumeID, UUID educationId) {
-        var entity = educationQueryJpaRepository.findByResumeAndUuidAndRowStatusTrue(ResumeEntity.referenceOf(resumeID.getAbsoluteID()), educationId).orElseThrow(NoActiveRowException::new);
+        var entity = educationQueryJpaRepository.findByIdAndResumeIdAndRowStatusActive(resumeID.getRootID(), educationId).orElseThrow(NoActiveRowException::new);
         return educationDataAccessMapper.toRoot(entity);
     }
 

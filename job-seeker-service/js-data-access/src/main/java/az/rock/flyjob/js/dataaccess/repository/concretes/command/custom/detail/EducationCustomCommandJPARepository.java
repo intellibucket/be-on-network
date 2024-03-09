@@ -20,7 +20,7 @@ public class EducationCustomCommandJPARepository implements AbstractCustomEducat
 
     @Override
     public <S extends EducationEntity> S persist(S entity) {
-        var resumeEntityReference = this.entityManager.getReference(ResumeEntity.class,entity.getResume().getUuid());
+        var resumeEntityReference = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
         entity.setResume(resumeEntityReference);
         this.entityManager.persist(entity);
         return entity;
@@ -28,8 +28,16 @@ public class EducationCustomCommandJPARepository implements AbstractCustomEducat
 
     @Override
     public <S extends EducationEntity> S merge(S entity) {
-        var resumeEntityReference = this.entityManager.getReference(ResumeEntity.class,entity.getResume().getUuid());
+        var resumeEntityReference = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
         entity.setResume(resumeEntityReference);
         return this.entityManager.merge(entity);
+    }
+
+    @Override
+    public <S extends EducationEntity> void inActive(S entity) {
+        var resumeEntityReference = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
+        entity.setResume(resumeEntityReference);
+        entity.inActive();
+        entityManager.merge(entity);
     }
 }

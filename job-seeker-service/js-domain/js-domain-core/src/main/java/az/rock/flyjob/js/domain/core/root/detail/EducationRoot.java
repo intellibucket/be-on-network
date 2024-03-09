@@ -10,6 +10,7 @@ import az.rock.lib.valueObject.Version;
 import az.rock.lib.valueObject.js.EducationDegree;
 import az.rock.lib.valueObject.js.EducationState;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +29,10 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private UUID establishmentUUID;
     private String establishmentName;
     private UUID cityId;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
+
 
     private EducationRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
@@ -51,6 +53,42 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     public static Map<EducationID, EducationRoot> groupByPhoneNumberID(List<EducationRoot> educationRoots) {
         return educationRoots.stream().collect(Collectors.toMap(EducationRoot::getRootID, Function.identity()));
     }
+
+    public EducationRoot changeEducationDegree(EducationDegree educationDegree) {
+        this.degree = educationDegree;
+        return this;
+    }
+
+    public EducationRoot changeEducationState(EducationState educationState) {
+        this.state = educationState;
+        return this;
+    }
+
+    public EducationRoot changeLink(String link) {
+        this.link = link;
+        return this;
+    }
+
+    public EducationRoot changeEstablishmentName(String establishmentName) {
+        this.establishmentName = establishmentName;
+        return this;
+    }
+
+    public EducationRoot changeEducationDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public EducationRoot changeEducationStartDate(LocalDate educationStartDate) {
+        this.startDate = educationStartDate;
+        return this;
+    }
+
+    public EducationRoot changeEducationEndDate(LocalDate educationEndDate) {
+        this.startDate = educationEndDate;
+        return this;
+    }
+
 
     public ResumeID getResumeID() {
         return resumeID;
@@ -88,11 +126,11 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return cityId;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -117,8 +155,8 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         private UUID establishmentUUID;
         private String establishmentName;
         private UUID cityId;
-        private ZonedDateTime startDate;
-        private ZonedDateTime endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
 
         private Builder() {
@@ -203,12 +241,12 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return this;
         }
 
-        public Builder startDate(ZonedDateTime val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(ZonedDateTime val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }
