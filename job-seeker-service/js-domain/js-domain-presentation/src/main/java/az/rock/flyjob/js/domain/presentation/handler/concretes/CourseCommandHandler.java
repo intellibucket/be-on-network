@@ -41,8 +41,8 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     @Override
     public CourseMergeEvent create(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command, securityContextHolder.availableResumeID());
-        if(this.courseQueryRepositoryAdapter.existsByTitleAndResume(newCourseRoot.getCourseTitle(),newCourseRoot.getResume()))
-            throw new CourseDomainException("F0000000002");
+        if(this.courseQueryRepositoryAdapter.existsByTitleAndResumeExceptCurrentCourse(newCourseRoot.getCourseTitle(),newCourseRoot.getResume(),newCourseRoot.getRootID()))
+            throw new CourseDomainException("F0000000004");
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
         return CourseMergeEvent.of(CourseMergePayload.of(optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()));
     }
@@ -51,6 +51,8 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     public CourseMergeEvent merge(CourseCommandModel command,UUID id) {
         var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id));
         if(oldCourse.isEmpty())throw new CourseDomainException("F0000000003");
+        if(this.courseQueryRepositoryAdapter.existsByTitleAndResumeExceptCurrentCourse(command.getCourseTitle(),oldCourse.get().getResume(),oldCourse.get().getRootID()))
+            throw new CourseDomainException("F0000000004");
         var course = courseDomainMapper.toRoot(command,oldCourse.get());
         courseCommandRepositoryAdapter.update(course);
         return CourseMergeEvent.of(CourseMergePayload.of(id));
