@@ -24,8 +24,8 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public Boolean existsByEquality(String courseName, ResumeID resumeID, CourseID courseID) {
-        return courseQueryJPARepository.existsByEquality(courseName, resumeID.getRootID(),courseID.getRootID());
+    public Boolean existsByEquality(CourseRoot root) {
+        return courseQueryJPARepository.existsByEquality(root.getCourseTitle(), root.getResume().getRootID(),root.getRootID().getRootID());
     }
 
     @Override

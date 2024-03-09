@@ -11,7 +11,7 @@ import java.util.Optional;
 @DomainOutputPort
 public interface AbstractCourseQueryRepositoryAdapter {
 
-    Boolean existsByEquality(String courseName, ResumeID resumeID, CourseID courseID);
+    Boolean existsByEquality(CourseRoot root);
 
     Optional<CourseRoot> findById(CourseID courseID);
 }
