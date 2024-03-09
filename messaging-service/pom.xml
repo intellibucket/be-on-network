@@ -79,6 +79,10 @@
             <artifactId>amqp-client</artifactId>
             <version>5.20.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>3.2.3</version>
+        </dependency>
     </dependencies>
 </project>
