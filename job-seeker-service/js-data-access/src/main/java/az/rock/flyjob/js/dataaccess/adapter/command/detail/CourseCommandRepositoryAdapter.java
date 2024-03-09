@@ -45,5 +45,16 @@ public class CourseCommandRepositoryAdapter implements AbstractCourseCommandRepo
         optional.ifPresent(this.customCommandJPARepository::delete);
     }
 
+    @Override
+    public void updateAll(List<CourseRoot> roots) {
+        var rootList = roots
+                .stream()
+                .map(this.abstractCourseDataAccessMapper::toEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+        this.customCommandJPARepository.updateAll(rootList);
+    }
+
 
 }
