@@ -8,8 +8,10 @@ import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -25,8 +27,8 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public Boolean existsByTitleAndResumeExceptCurrentCourse(String courseName, ResumeID resumeID,CourseID courseID) {
-        return courseQueryJPARepository.existsByTitleAndResumeExceptCurrentCourse(courseName, resumeID.getRootID(),courseID.getRootID());
+    public Boolean existsByEquality(CourseRoot root) {
+        return courseQueryJPARepository.existsByEquality(root.getCourseTitle(), root.getResume().getRootID(),root.getRootID().getRootID());
     }
 
     @Override
@@ -34,5 +36,15 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
         var courseEntity = courseQueryJPARepository.findById(courseID.getAbsoluteID());
         if(courseEntity.isEmpty())return Optional.empty();
         return courseDataAccessMapper.toRoot(courseEntity.get());
+    }
+
+    @Override
+    public List<CourseRoot> findAllByResume(ResumeID resumeID) {
+        var courses = courseQueryJPARepository.findAllByResume(resumeID.getRootID());
+        return courses.stream()
+                .map(courseDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }

@@ -16,6 +16,6 @@ public interface AbstractCourseDomainMapper {
     CourseRoot toRoot(CourseCommandModel courseCommandModel, ResumeID resumeID);
 
 
-    CourseRoot toRoot(CourseCommandModel courseCommandModel, CourseRoot courseRoot);
+    CourseRoot toRoot(CourseCommandModel courseCommandModel, CourseRoot courseRoot, ResumeID resumeID);
 
 }
