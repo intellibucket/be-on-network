@@ -3,7 +3,6 @@ package az.rock.flyjob.auth.api.rest.privates.query.user;
 import az.rock.auth.domain.presentation.dto.response.user.*;
 import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.user.AbstractUserQueryDomainPresentation;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
-import az.rock.lib.valueObject.SimplePageable;
 import az.rock.lib.valueObject.common.PageableRequest;
 import az.rock.spec.auth.privates.query.UserQueryPrivateSpec;
 import org.springframework.http.MediaType;

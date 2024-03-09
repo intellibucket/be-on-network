@@ -1,8 +1,6 @@
 package az.rock.flyjob.js.domain.core.root.detail;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.domain.id.js.AwardID;
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
@@ -12,7 +10,7 @@ import az.rock.lib.valueObject.Version;
 import az.rock.lib.valueObject.js.EducationDegree;
 import az.rock.lib.valueObject.js.EducationState;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -27,12 +25,12 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private UUID establishmentUUID;
     private String establishmentName;
     private UUID cityId;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
 
     private EducationRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
@@ -83,11 +81,11 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return cityId;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -112,8 +110,8 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         private UUID establishmentUUID;
         private String establishmentName;
         private UUID cityId;
-        private ZonedDateTime startDate;
-        private ZonedDateTime endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
 
         private Builder() {
@@ -198,12 +196,12 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return this;
         }
 
-        public Builder startDate(ZonedDateTime val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(ZonedDateTime val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }

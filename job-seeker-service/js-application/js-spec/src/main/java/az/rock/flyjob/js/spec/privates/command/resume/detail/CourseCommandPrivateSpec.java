@@ -12,8 +12,16 @@ import java.util.UUID;
 
 public interface CourseCommandPrivateSpec {
     ResponseEntity<JSuccessResponse> create(CreateRequest<CourseCommandModel> request);
+
     ResponseEntity<JSuccessResponse> update(UpdateRequest<CourseCommandModel> request);
+
     ResponseEntity<JSuccessResponse> delete(UUID courseId);
+
+    default ResponseEntity<JSuccessResponse> deleteAll() {
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
+
     ResponseEntity<JSuccessResponse> uploadCertificate(UUID courseId, MultipartFile file);
 }

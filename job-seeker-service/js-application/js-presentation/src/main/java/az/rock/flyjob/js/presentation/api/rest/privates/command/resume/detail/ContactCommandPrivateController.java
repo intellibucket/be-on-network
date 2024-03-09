@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.rmi.server.UID;
 import java.util.UUID;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/js/1.0/private/command/contact", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContactCommandPrivateController implements ContactCommandPrivateSpec {
@@ -45,6 +45,12 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
     public ResponseEntity<JSuccessResponse> delete(@PathVariable("id") UUID contactId) {
         this.abstractContactCommmandDomainPresentationService.delete(contactId);
         return ResponseEntity.ok(new JSuccessResponse());
+    }
+
+    @Override
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<JSuccessResponse> deleteAll() {
+        return null;
     }
 
     @Override
