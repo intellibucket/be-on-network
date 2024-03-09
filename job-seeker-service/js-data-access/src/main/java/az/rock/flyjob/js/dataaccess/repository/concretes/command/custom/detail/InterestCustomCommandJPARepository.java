@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail;
 
+import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.InterestEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractInterestCustomCommandJPARepository;
 import jakarta.persistence.EntityManager;
@@ -24,6 +25,14 @@ public class InterestCustomCommandJPARepository implements AbstractInterestCusto
 
     @Override
     public <S extends InterestEntity> S merge(S entity) {
+        var resumeEntity = this.entityManager.getReference(ResumeEntity.class, entity.getUuid());
+        entity.setResume(resumeEntity);
         return this.entityManager.merge(entity);
+    }
+
+
+    @Override
+    public void flush() {
+
     }
 }
