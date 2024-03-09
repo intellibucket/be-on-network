@@ -36,4 +36,8 @@ public class InterestCommandModel extends AbstractCommandModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+
+
 }
