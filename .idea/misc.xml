@@ -21,6 +21,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/library/ib-rpc/authorization-proto/pom.xml" />
+        <option value="$PROJECT_DIR$/vacancy-sync-service/pom.xml" />
       </set>
     </option>
   </component>

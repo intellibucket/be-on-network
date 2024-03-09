@@ -8,10 +8,10 @@ spring:
       maxInterval: 10000
     import: configserver:http://62.72.45.66:8012
   application:
-    name: authorization-service
+    name: messaging-service
 server:
   servlet:
-    context-path: /authorization-context
+    context-path: /messaging-context
 logging:
   level:
     org.springframework.transaction.interceptor: TRACE
