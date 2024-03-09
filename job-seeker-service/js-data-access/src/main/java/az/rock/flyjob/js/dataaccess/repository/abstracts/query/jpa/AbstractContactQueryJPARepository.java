@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface AbstractContactQueryJPARepository extends JpaRepository<ContactEntity, UUID> {
+
 }
