@@ -33,7 +33,11 @@ public class InterestCommandRepositoryAdapter implements AbstractInterestCommand
 
     @Override
     public Optional<InterestRoot> create(InterestRoot root) {
-        return Optional.empty();
+        var optionalEntity = this.interestDataAccessMapper.toEntity(root);
+        if (optionalEntity.isPresent()){
+            var savedEntity = this.interestCustomCommandJPARepository.persist(optionalEntity.get());
+            return this.interestDataAccessMapper.toRoot(savedEntity);
+        }else return Optional.empty();
     }
 
     @Override

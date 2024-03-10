@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.presentation.api.rest.privates.command.resume.detail;
 
+import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
@@ -28,7 +29,7 @@ public class InterestCommandPrivateController implements InterestCommandPrivateS
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<InterestCommandModel> request) {
+    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<InterestCommandModel> request) throws InterestNameIsExist {
         this.abstractInterestCommandDomainPresentationService.create(request.getModel());
         return ResponseEntity.ok(new JSuccessResponse());
     }

@@ -50,6 +50,20 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
         this.interestDomainMapper = interestDomainMapper;
     }
 
+
+    private InterestCreatePayload toPayload(InterestRoot interestRoot) {
+        return InterestCreatePayload.Builder
+                .builder()
+                .resumeId(interestRoot.getResume().getAbsoluteID())
+                .interestId(interestRoot.getRootID().getAbsoluteID())
+                .isHobby(interestRoot.getHobby())
+                .name(interestRoot.getName())
+                .description(interestRoot.getDescription())
+                .orderNumber(interestRoot.getOrderNumber())
+                .accessModifier(interestRoot.getAccessModifier())
+                .build();
+    }
+
     @Override
     public InterestCreateEvent add(InterestCommandModel interestCommandModel) {
         var currentResume = this.securityContextHolder.availableResumeID();
@@ -74,6 +88,14 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
             this.interestCommandRepositoryAdapter.update(interestRoot);
             return InterestUpdateEvent.of(interestRoot);
         } else throw new InterestNotFound("Interest not Found");
+    public InterestCreateEvent add(InterestCommandModel interestCommandModel) throws InterestNameIsExist {
+        var currentResume=this.securityContextHolder.availableResumeID();
+        var savedInterest=this.interestQueryRepositoryAdapter.findAllByPID(currentResume);
+        var interestRoot=this.interestDomainMapper.toNewRoot(currentResume,interestCommandModel);
+        var validatedInterest=this.domainService.validateInterestName(savedInterest,interestRoot);
+        var optionalInterest=this.interestCommandRepositoryAdapter.create(validatedInterest);
+        var interestPayload=this.toPayload(optionalInterest.get());
+        return InterestCreateEvent.of(interestPayload);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.intellibucket.lib.payload.event.update;
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractStartDomainEvent;
-import com.intellibucket.lib.payload.payload.InterestCreatedPayload;
 
 import java.util.UUID;
 
