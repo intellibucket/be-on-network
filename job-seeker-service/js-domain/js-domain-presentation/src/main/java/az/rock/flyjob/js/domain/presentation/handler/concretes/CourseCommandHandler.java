@@ -88,7 +88,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
         var course = courseList.stream().filter(t -> t.getResume().getRootID().equals(reorderCommandModel.getTargetId())).findFirst().orElseThrow(()->new CourseDomainException("F0000000003"));
         course.setOrderNumber(reorderCommandModel.getOrderNumber());
         courseList.stream()
-                .filter(t->t.getOrderNumber()>reorderCommandModel.getOrderNumber())
+                .filter(t->t.getOrderNumber()>=reorderCommandModel.getOrderNumber() && !t.equals(course))
                 .forEach(t->t.setOrderNumber(t.getOrderNumber()+1));
         courseCommandRepositoryAdapter.updateAll(courseList);
         return CourseMergeEvent.of(CourseMergePayload.of(reorderCommandModel.getTargetId()));
