@@ -133,8 +133,6 @@
     <file url="file://$PROJECT_DIR$/job-seeker-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/api-spec/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/library/authorization-client/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/library/authorization-client/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-data-access/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/kafka-config-data/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-kafka/kafka-consumer/src/main/java" charset="UTF-8" />
@@ -151,6 +149,11 @@
     <file url="file://$PROJECT_DIR$/library/ib-payload/ib-payload-vacancy/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-payload/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-rpc/authorization-proto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-rpc/authorization-proto/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-rpc/ib-auth-proto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-rpc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-rpc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-security/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/rock-domain/src/main/java" charset="UTF-8" />
@@ -177,6 +180,8 @@
     <file url="file://$PROJECT_DIR$/library/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/validator4j/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/validator4j/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/messaging-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/messaging-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notification-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notification-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/payment-service/src/main/java" charset="UTF-8" />

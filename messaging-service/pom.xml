@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>az.rock</groupId>
         <artifactId>flyjob</artifactId>
+        <groupId>az.rock</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.intellibucket.ws.authorization</groupId>
-    <artifactId>authorization-service</artifactId>
+    <groupId>com.intellibucket.onnetwork</groupId>
+    <artifactId>messaging-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -73,6 +73,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.20.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <version>3.2.3</version>
         </dependency>
     </dependencies>
 </project>
