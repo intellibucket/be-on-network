@@ -18,6 +18,6 @@ public interface AbstractCourseQueryJPARepository extends JpaRepository<CourseEn
     @Query("SELECT c FROM CourseEntity c WHERE c.uuid=:id AND c.rowStatus = 'ACTIVE'")
     Optional<CourseEntity> findById(@Param("id") UUID id);
 
-    @Query("SELECT c FROM CourseEntity c WHERE c.resume.uuid = :resume")
+    @Query("SELECT c FROM CourseEntity c WHERE c.resume.uuid = :resume AND c.rowStatus = 'ACTIVE'")
     List<CourseEntity> findAllByResume(UUID resume);
 }
