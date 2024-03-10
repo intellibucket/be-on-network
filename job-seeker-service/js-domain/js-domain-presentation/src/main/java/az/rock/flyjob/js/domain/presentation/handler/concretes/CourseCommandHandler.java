@@ -20,11 +20,9 @@ import com.intellibucket.lib.payload.payload.CourseMergePayload;
 import com.intellibucket.lib.payload.payload.CourseDeletedPayload;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Component
 public class CourseCommandHandler implements AbstractCourseCommandHandler {
@@ -90,6 +88,12 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
         courseList.stream()
                 .filter(t->t.getOrderNumber()>=reorderCommandModel.getOrderNumber() && !t.equals(course))
                 .forEach(t->t.setOrderNumber(t.getOrderNumber()+1));
+        int orderCounter = 1;
+        for (CourseRoot courseRoot : courseList.stream()
+                .sorted(Comparator.comparingInt(CourseRoot::getOrderNumber))
+                .toList()) {
+            courseRoot.setOrderNumber(orderCounter++);
+        }
         courseCommandRepositoryAdapter.updateAll(courseList);
         return CourseMergeEvent.of(CourseMergePayload.of(reorderCommandModel.getTargetId()));
     }
