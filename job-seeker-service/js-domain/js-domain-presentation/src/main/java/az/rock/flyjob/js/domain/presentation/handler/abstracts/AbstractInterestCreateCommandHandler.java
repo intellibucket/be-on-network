@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public interface AbstractInterestCreateCommandHandler {
-    InterestCreateEvent add(InterestCommandModel interestCommandModel);
+    InterestCreateEvent add(InterestCommandModel interestCommandModel) throws InterestNameIsExist;
 
     InterestUpdateEvent update(UpdateRequest<InterestCommandModel> interestCommandModelUpdateRequest) throws InterestNameIsExist, Exception;
 

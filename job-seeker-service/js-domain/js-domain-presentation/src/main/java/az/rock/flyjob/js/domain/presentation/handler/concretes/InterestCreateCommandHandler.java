@@ -1,6 +1,8 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
+import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
+import az.rock.flyjob.js.domain.core.service.abstracts.AbstractInterestDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractInterestCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractInterestDomainMapper;
@@ -16,18 +18,19 @@ import org.springframework.stereotype.Component;
 public class InterestCreateCommandHandler implements AbstractInterestCreateCommandHandler {
 
     private final AbstractSecurityContextHolder securityContextHolder;
-    private final AbstractInterestCommandDomainPresentationService interestCommandDomainPresentationService;
+    private final AbstractInterestDomainService domainService;
     private final AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter;
     private final AbstractInterestCommandRepositoryAdapter interestCommandRepositoryAdapter;
     private final AbstractInterestDomainMapper interestDomainMapper;
 
-    public InterestCreateCommandHandler(AbstractSecurityContextHolder securityContextHolder, AbstractInterestCommandDomainPresentationService interestCommandDomainPresentationService, AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter, AbstractInterestCommandRepositoryAdapter interestCommandRepositoryAdapter, AbstractInterestDomainMapper interestDomainMapper) {
+    public InterestCreateCommandHandler(AbstractSecurityContextHolder securityContextHolder, AbstractInterestDomainService domainService, AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter, AbstractInterestCommandRepositoryAdapter interestCommandRepositoryAdapter, AbstractInterestDomainMapper interestDomainMapper) {
         this.securityContextHolder = securityContextHolder;
-        this.interestCommandDomainPresentationService = interestCommandDomainPresentationService;
+        this.domainService = domainService;
         this.interestQueryRepositoryAdapter = interestQueryRepositoryAdapter;
         this.interestCommandRepositoryAdapter = interestCommandRepositoryAdapter;
         this.interestDomainMapper = interestDomainMapper;
     }
+
 
     private InterestCreatePayload toPayload(InterestRoot interestRoot) {
         return InterestCreatePayload.Builder
@@ -43,10 +46,13 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     }
 
     @Override
-    public InterestCreateEvent add(InterestCommandModel interestCommandModel) {
+    public InterestCreateEvent add(InterestCommandModel interestCommandModel) throws InterestNameIsExist {
         var currentResume=this.securityContextHolder.availableResumeID();
         var savedInterest=this.interestQueryRepositoryAdapter.findAllByPID(currentResume);
-
-        return null;
+        var interestRoot=this.interestDomainMapper.toNewRoot(currentResume,interestCommandModel);
+        var validatedInterest=this.domainService.validateInterestName(savedInterest,interestRoot);
+        var optionalInterest=this.interestCommandRepositoryAdapter.create(validatedInterest);
+        var interestPayload=this.toPayload(optionalInterest.get());
+        return InterestCreateEvent.of(interestPayload);
     }
 }

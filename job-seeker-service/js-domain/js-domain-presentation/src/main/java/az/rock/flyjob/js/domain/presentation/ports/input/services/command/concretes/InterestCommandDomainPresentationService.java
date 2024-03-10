@@ -1,13 +1,12 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concretes;
 
+import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractInterestCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractInterestCommandDomainPresentationService;
-import com.intellibucket.lib.payload.event.update.InterestDeleteEvent;
-import com.intellibucket.lib.payload.event.update.InterestReorderEvent;
 import com.intellibucket.lib.payload.outbox.InterestRegistrationSteps;
 import com.intellibucket.lib.payload.trx.AbstractSagaProcess;
 import org.springframework.stereotype.Component;
@@ -24,7 +23,7 @@ public class InterestCommandDomainPresentationService implements AbstractInteres
     }
 
     @Override
-    public void create(InterestCommandModel interestCommandModel) {
+    public void create(InterestCommandModel interestCommandModel) throws InterestNameIsExist {
         var interestCreatedEvent = this.interestCreateCommandHandler.add(interestCommandModel);
         var step = InterestRegistrationSteps.ON_STARTED_STEP;
         var saga = AbstractSagaProcess.onProceed(
