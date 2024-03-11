@@ -11,6 +11,8 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.Abs
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.CourseID;
+import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
 import com.intellibucket.lib.payload.event.create.CourseFileEvent;
@@ -33,6 +35,8 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     private final AbstractFileStorageAdapter fileStorageService;
     private final AbstractSecurityContextHolder securityContextHolder;
 
+    private List<AccessModifier> mockAccessModifiers = List.of(AccessModifier.PUBLIC,AccessModifier.AUTHENTICATED,AccessModifier.PRIVATE,AccessModifier.ONLY_FOLLOWERS,AccessModifier.UNKNOWN,AccessModifier.ONLY_FOLLOWERS_AND_NETWORK,AccessModifier.ONLY_NETWORK);
+
     public CourseCommandHandler(AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter, AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractFileStorageAdapter fileStorageService, AbstractSecurityContextHolder securityContextHolder) {
         this.courseQueryRepositoryAdapter = courseQueryRepositoryAdapter;
         this.courseDomainMapper = courseDomainMapper;
@@ -44,6 +48,8 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     @Override
     public CourseMergeEvent create(CourseCommandModel command) {
         var newCourseRoot = this.courseDomainMapper.toRoot(command, securityContextHolder.availableResumeID());
+        if(courseQueryRepositoryAdapter.isInLimit(10L,securityContextHolder.availableResumeID()))
+            throw new CourseDomainException("F0000000005");
         if(courseQueryRepositoryAdapter.existsByEquality(newCourseRoot))
             throw new CourseDomainException("F0000000004");
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
@@ -52,7 +58,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
 
     @Override
     public CourseMergeEvent merge(CourseCommandModel command,UUID id) {
-        var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id));
+        var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id),securityContextHolder.availableResumeID(),mockAccessModifiers);
         if(oldCourse.isEmpty())throw new CourseDomainException("F0000000003");
         var course = courseDomainMapper.toRoot(command,oldCourse.get(),securityContextHolder.availableResumeID());
         if(courseQueryRepositoryAdapter.existsByEquality(course))
@@ -63,7 +69,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
 
     @Override
     public CourseDeleteEvent delete(UUID id) {
-        var optional = courseQueryRepositoryAdapter.findById(CourseID.of(id));
+        var optional = courseQueryRepositoryAdapter.findById(CourseID.of(id),securityContextHolder.availableResumeID(),mockAccessModifiers);
         if(optional.isEmpty())throw new CourseDomainException("F0000000003");
         this.courseCommandRepositoryAdapter.delete(optional.get());
         return CourseDeleteEvent.of(CourseDeletedPayload.of(id));
@@ -71,7 +77,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
 
     @Override
     public CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) {
-        var optional = courseQueryRepositoryAdapter.findById(CourseID.of(courseId));
+        var optional = courseQueryRepositoryAdapter.findById(CourseID.of(courseId),securityContextHolder.availableResumeID(),mockAccessModifiers);
         if(optional.isEmpty())throw new CourseDomainException("F0000000003");
         var savedFile = fileStorageService.uploadFile(file);
         var course = optional.get();
@@ -82,7 +88,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
 
     @Override
     public CourseMergeEvent reorder(ReorderCommandModel reorderCommandModel) {
-        var courseList = courseQueryRepositoryAdapter.findAllByResume(securityContextHolder.availableResumeID());
+        var courseList = courseQueryRepositoryAdapter.findAllByResume(securityContextHolder.availableResumeID(),mockAccessModifiers);
         var course = courseList.stream().filter(t -> t.getRootID().getRootID().equals(reorderCommandModel.getTargetId())).findFirst().orElseThrow(()->new CourseDomainException("F0000000003"));
         course.setOrderNumber(reorderCommandModel.getOrderNumber());
         courseList.stream()
