@@ -29,7 +29,7 @@ jobs:
       - name: Build
         working-directory: ${{ matrix.image_name }}
         run: |
-          ./gradlew bootJar
+          mvn --batch-mode --update-snapshots verify
           mv build/libs/$(ls build/libs) app.jar
 
       - name: Login to GitHub Container Registry
