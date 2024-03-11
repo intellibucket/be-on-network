@@ -72,6 +72,7 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
     @Override
     public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) {
         var resumeId = securityContextHolder.availableResumeID();
+        educationQueryRepositoryAdapter.findAllByPID(resumeId);
         var educationFromDatabase = educationQueryRepositoryAdapter
                 .findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId())
                 .orElseThrow(NoActiveRowException::new);

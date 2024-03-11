@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,4 +17,7 @@ public interface EducationQueryJpaRepository extends JpaRepository<EducationEnti
 
     @Query("SELECT e FROM EducationEntity e WHERE e.uuid = :educationId AND e.rowStatus = 'ACTIVE'")
     Optional<EducationEntity> findById(@Param("educationId") UUID educationId);
+
+    @Query("SELECT e FROM EducationEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE'")
+    List<EducationEntity> findAll(@Param("resumeID") UUID resumeID);
 }
