@@ -13,9 +13,7 @@ import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 @CrossOrigin
@@ -29,38 +27,44 @@ public class ContactQueryPrivateController implements ContactQueryPrivateSpec {
     }
 
     @Override
+    @GetMapping(value = "/get-all/contacts")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyContactResponseModel>>> queryAllMyContacts(SimplePageableRequest pageableRequest) {
         var response=this.abstractContactQueryDomainPresentationService.queryAllMyContacts(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
+    @GetMapping(value = "/get-all-any/contacts")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyContactResponseModel>>> queryAllAnyContacts(SimplePageableRequest pageableRequest) {
         var response=this.abstractContactQueryDomainPresentationService.queryAllAnyContacts(pageableRequest);
         return  ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
+    @GetMapping(value = "/get-all-my-simple/contacts")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyContactResponseModel>>> queryAllMySimpleContacts(SimplePageableRequest pageableRequest) {
         var response=this.abstractContactQueryDomainPresentationService.queryAllMySimpleContacts(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
+    @GetMapping(value = "/get-all-any-simple/contacts")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyContactResponseModel>>> queryAllAnySimpleContacts(SimplePageableRequest pageableRequest) {
         var response=this.abstractContactQueryDomainPresentationService.queryAllAnySimpleContacts(pageableRequest);
         return  ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<MyContactResponseModel>> findMyContactById(UUID id) {
+    @GetMapping(value ="/get-my/{contactUUId}")
+    public ResponseEntity<JSuccessDataResponse<MyContactResponseModel>> findMyContactById(@PathVariable(value = "contactUUId") UUID id) {
 
         var response =this.abstractContactQueryDomainPresentationService.findMyContactById(id);
         return  ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<AnyContactResponseModel>> findAnyContactById(UUID id) {
+    @GetMapping(value = "/get-any/{contactUUId}")
+    public ResponseEntity<JSuccessDataResponse<AnyContactResponseModel>> findAnyContactById(@PathVariable(value = "contactUUId") UUID id) {
         var response=this.abstractContactQueryDomainPresentationService.findAnyContactById(id);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
