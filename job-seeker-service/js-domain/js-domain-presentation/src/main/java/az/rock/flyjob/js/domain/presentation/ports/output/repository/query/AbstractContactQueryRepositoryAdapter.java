@@ -7,5 +7,5 @@ import az.rock.lib.domain.id.js.ResumeID;
 
 @DomainOutputPort
 public interface AbstractContactQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<ContactRoot, ContactID, ResumeID> {
-//
+    Boolean isExistContact(ContactRoot contactRoot);
 }
