@@ -42,8 +42,6 @@
         <module>library</module>
         <module>company-command-service</module>
         <module>company-query-service</module>
-        <module>notification-service</module>
-        <module>payment-service</module>
         <module>article-command-service</module>
         <module>article-sync-service</module>
         <module>article-query-service</module>
