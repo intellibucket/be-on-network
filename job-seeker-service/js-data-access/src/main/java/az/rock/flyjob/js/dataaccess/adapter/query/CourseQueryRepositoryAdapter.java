@@ -1,7 +1,7 @@
 package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.query.AbstractCourseQueryJPARepository;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCourseQueryJPARepository;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import org.springframework.stereotype.Component;
 
