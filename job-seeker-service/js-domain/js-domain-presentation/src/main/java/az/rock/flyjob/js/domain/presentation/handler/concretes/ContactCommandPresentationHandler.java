@@ -28,7 +28,7 @@ import java.util.UUID;
 @Component
 public class ContactCommandPresentationHandler implements AbstractContactCommandHandler {
     private final AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter;
-    private final AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter;
+    private final AbstractContactQueryRepositoryAdapter abstractContactQueryRepositoryAdapter;
     private final AbstractContactCommandDomainMapper contactCommandDomainMapper;
     private final AbstractSecurityContextHolder contextHolder;
 
@@ -36,7 +36,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
 
     public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter, AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter, AbstractContactCommandDomainMapper contactCommandDomainMapper, AbstractSecurityContextHolder contextHolder, AbstractContactDomainService domainService) {
         this.abstractContactCommandRepositoryAdapter = abstractContactCommandRepositoryAdapter;
-        this.commandQueryRepositoryAdapter = commandQueryRepositoryAdapter;
+        this.abstractContactQueryRepositoryAdapter = commandQueryRepositoryAdapter;
         this.contactCommandDomainMapper = contactCommandDomainMapper;
         this.contextHolder = contextHolder;
         this.domainService = domainService;
@@ -54,10 +54,10 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest)
     {
         var currentResumeId=this.contextHolder.availableResumeID();
-        var allSavedResume=this.commandQueryRepositoryAdapter.findAllByPID(currentResumeId);
+        var allSavedResume=this.abstractContactQueryRepositoryAdapter.findAllByPID(currentResumeId);
         var contactRoot=this.contactCommandDomainMapper.toRoot(createRequest.getModel(),currentResumeId);
         var validateContact=this.domainService.validateContactDuplication(allSavedResume,contactRoot);
-        var isExistContact=this.commandQueryRepositoryAdapter.isExistContact(validateContact);
+        var isExistContact=this.abstractContactQueryRepositoryAdapter.isExistContact(validateContact);
         if(isExistContact) throw new ContactAlreadyExistException();
         var optionalContactRoot=this.abstractContactCommandRepositoryAdapter.create(validateContact);
         if(optionalContactRoot.isEmpty()) throw new UnknownSystemException();
@@ -68,7 +68,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     @Override
     public ContactUpdateEvent updateContact(UpdateRequest<ContactCommandModel> commandModel) {
         var resumeID = contextHolder.availableResumeID();
-        var allByPID = commandQueryRepositoryAdapter.findAllByPID(resumeID);
+        var allByPID = abstractContactQueryRepositoryAdapter.findAllByPID(resumeID);
         Optional<ContactRoot> findedcontact = allByPID.stream().filter(item -> item.getRootID()
                 .equals(commandModel.getTargetId())).findFirst();
         if (findedcontact.isPresent()) {
@@ -77,7 +77,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
                     .changeData(commandModel.getModel().getData())
                     .changeLiveType(commandModel.getModel().getLiveType());
             var validatedContact = this.domainService.validateContactDuplication(allByPID, newRoot);
-            var isExistContact = this.commandQueryRepositoryAdapter.isExistContact(validatedContact);
+            var isExistContact = this.abstractContactQueryRepositoryAdapter.isExistContact(validatedContact);
             if (isExistContact) throw new ContactAlreadyExistException();
             this.abstractContactCommandRepositoryAdapter.update(validatedContact);
             var payload =this.toPayload(validatedContact);
@@ -88,7 +88,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     @Override
     public ContactDeleteEvent deleteContact(UUID id) {
         var currentContact = this.contextHolder.availableResumeID();
-        var optionalContact = this.commandQueryRepositoryAdapter.findOwnByID(currentContact, ContactID.of(id));
+        var optionalContact = this.abstractContactQueryRepositoryAdapter.findOwnByID(currentContact, ContactID.of(id));
         if (optionalContact.isPresent()){
             var contactIDNumber = optionalContact.get();
             this.abstractContactCommandRepositoryAdapter.inActive(contactIDNumber);
