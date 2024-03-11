@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
+import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.EducationCommandModel;
@@ -17,7 +18,10 @@ import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
 import com.intellibucket.lib.payload.payload.EducationPayload;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 
 @Component
 public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<?>> {
@@ -71,13 +75,19 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
 
     @Override
     public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) {
+
+        //todo
         var resumeId = securityContextHolder.availableResumeID();
-        educationQueryRepositoryAdapter.findAllByPID(resumeId);
         var educationFromDatabase = educationQueryRepositoryAdapter
                 .findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId())
                 .orElseThrow(NoActiveRowException::new);
         educationFromDatabase.setOrderNumber(request.getOrderNumber());
         this.educationCommandRepositoryAdapter.update(educationFromDatabase);
+        List<EducationRoot> educationRoots = educationQueryRepositoryAdapter.findAllByPID(resumeId);
+
+        List<Integer> orderNumbers = educationRoots.stream().map(EducationRoot::getOrderNumber).toList();
+
+
         var educationPayload = this.educationDomainMapper.toPayload(educationFromDatabase);
         return EducationUpdatedEvent.of(educationPayload);
     }
