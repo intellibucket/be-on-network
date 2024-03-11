@@ -4,9 +4,8 @@ import az.rock.lib.adapter.repository.AbstractQueryRepositoryAdapter;
 import az.rock.lib.annotation.DomainOutputPort;
 import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
-import org.springframework.stereotype.Component;
 
 @DomainOutputPort
-public interface AbstractContactCommandQueryRepositoryAdapter  extends AbstractQueryRepositoryAdapter<ContactRoot, ContactID, ResumeID> {
-    Boolean isExistContact(ContactRoot contactRoot);
+public interface AbstractContactQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<ContactRoot, ContactID, ResumeID> {
+//
 }

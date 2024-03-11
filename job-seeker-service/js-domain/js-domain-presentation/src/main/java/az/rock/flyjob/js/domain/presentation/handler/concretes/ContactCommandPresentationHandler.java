@@ -12,35 +12,29 @@ import az.rock.flyjob.js.domain.presentation.exception.UnknownSystemException;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractContactCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractContactCommandDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractContactCommandRepositoryAdapter;
-import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactCommandQueryRepositoryAdapter;
+import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.ContactID;
-import az.rock.lib.domain.id.js.ResumeID;
 import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
-import com.intellibucket.lib.payload.event.create.number.PhoneNumberCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
-import com.intellibucket.lib.payload.payload.ContactDeletePayload;
-import com.intellibucket.lib.payload.payload.ContactMergePayload;
 import com.intellibucket.lib.payload.payload.ContactPayload;
 import org.springframework.stereotype.Component;
 
-import java.rmi.server.UID;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Component
 public class ContactCommandPresentationHandler implements AbstractContactCommandHandler {
     private final AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter;
-    private final AbstractContactCommandQueryRepositoryAdapter commandQueryRepositoryAdapter;
+    private final AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter;
     private final AbstractContactCommandDomainMapper contactCommandDomainMapper;
     private final AbstractSecurityContextHolder contextHolder;
 
     private final AbstractContactDomainService domainService;
 
-    public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter, AbstractContactCommandQueryRepositoryAdapter commandQueryRepositoryAdapter, AbstractContactCommandDomainMapper contactCommandDomainMapper, AbstractSecurityContextHolder contextHolder, AbstractContactDomainService domainService) {
+    public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter, AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter, AbstractContactCommandDomainMapper contactCommandDomainMapper, AbstractSecurityContextHolder contextHolder, AbstractContactDomainService domainService) {
         this.abstractContactCommandRepositoryAdapter = abstractContactCommandRepositoryAdapter;
         this.commandQueryRepositoryAdapter = commandQueryRepositoryAdapter;
         this.contactCommandDomainMapper = contactCommandDomainMapper;

@@ -22,7 +22,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/js/1.0/private/query/contact",produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContactQueryPrivateController implements ContactQueryPrivateSpec {
-private final AbstractContactQueryDomainPresentationService abstractContactQueryDomainPresentationService;
+    private final AbstractContactQueryDomainPresentationService abstractContactQueryDomainPresentationService;
 
     public ContactQueryPrivateController(AbstractContactQueryDomainPresentationService abstractContactQueryDomainPresentationService) {
         this.abstractContactQueryDomainPresentationService = abstractContactQueryDomainPresentationService;
