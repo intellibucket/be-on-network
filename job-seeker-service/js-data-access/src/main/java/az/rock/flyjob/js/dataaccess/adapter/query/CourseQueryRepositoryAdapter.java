@@ -6,6 +6,7 @@ import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.valueObject.AccessModifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -32,19 +33,24 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public Optional<CourseRoot> findById(CourseID courseID){
-        var courseEntity = courseQueryJPARepository.findById(courseID.getAbsoluteID());
+    public Optional<CourseRoot> findById(CourseID courseID,ResumeID resumeID,List<AccessModifier> accessModifiers){
+        var courseEntity = courseQueryJPARepository.findById(courseID.getRootID(),resumeID.getRootID(),accessModifiers);
         if(courseEntity.isEmpty())return Optional.empty();
         return courseDataAccessMapper.toRoot(courseEntity.get());
     }
 
     @Override
-    public List<CourseRoot> findAllByResume(ResumeID resumeID) {
-        var courses = courseQueryJPARepository.findAllByResume(resumeID.getRootID());
+    public List<CourseRoot> findAllByResume(ResumeID resumeID,List<AccessModifier> accessModifiers) {
+        var courses = courseQueryJPARepository.findAllByResume(resumeID.getRootID(),accessModifiers);
         return courses.stream()
                 .map(courseDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
+    }
+
+    @Override
+    public Boolean isInLimit(Long limit,ResumeID resumeId) {
+        return courseQueryJPARepository.isInLimit(limit,resumeId.getRootID());
     }
 }
