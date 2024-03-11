@@ -36,7 +36,7 @@ public class InterestRoot extends AggregateRoot<InterestID> {
         this.isHobby=isHobby;
         return this;
     }
-    public InterestRoot changeDescription(String name){
+    public InterestRoot changeDescription(String description){
         this.description=description;
         return this;
     }

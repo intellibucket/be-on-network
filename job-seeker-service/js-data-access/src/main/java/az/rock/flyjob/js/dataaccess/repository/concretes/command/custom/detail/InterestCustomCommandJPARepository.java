@@ -25,7 +25,7 @@ public class InterestCustomCommandJPARepository implements AbstractInterestCusto
 
     @Override
     public <S extends InterestEntity> S merge(S entity) {
-        var resumeEntity = this.entityManager.getReference(ResumeEntity.class, entity.getUuid());
+        var resumeEntity = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
         entity.setResume(resumeEntity);
         return this.entityManager.merge(entity);
     }

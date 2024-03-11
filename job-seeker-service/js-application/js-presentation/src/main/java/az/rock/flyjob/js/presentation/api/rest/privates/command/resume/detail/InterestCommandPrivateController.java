@@ -36,21 +36,21 @@ public class InterestCommandPrivateController implements InterestCommandPrivateS
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<JSuccessResponse> update(UpdateRequest<InterestCommandModel> request) throws Exception {
+    public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<InterestCommandModel> request) throws Exception {
         this.abstractInterestCommandDomainPresentationService.update(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<JSuccessResponse> delete(UUID interestId) throws InterestNotFound {
+    public ResponseEntity<JSuccessResponse> delete(@PathVariable("id") UUID interestId) throws InterestNotFound {
         this.abstractInterestCommandDomainPresentationService.delete(interestId);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PatchMapping("/reorder")
-    public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) throws InterestNotFound {
+    public ResponseEntity<JSuccessResponse> reorder(@RequestBody ReorderCommandModel request) throws InterestNotFound {
         this.abstractInterestCommandDomainPresentationService.reorder(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }
