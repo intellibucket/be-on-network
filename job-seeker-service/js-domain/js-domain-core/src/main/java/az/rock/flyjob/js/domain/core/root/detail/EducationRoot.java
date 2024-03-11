@@ -54,41 +54,27 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return educationRoots.stream().collect(Collectors.toMap(EducationRoot::getRootID, Function.identity()));
     }
 
-    public EducationRoot changeEducationDegree(EducationDegree educationDegree) {
+    public void setEducationDegree(EducationDegree educationDegree) {
         this.degree = educationDegree;
-        return this;
     }
 
-    public EducationRoot changeEducationState(EducationState educationState) {
+    public void setEducationState(EducationState educationState) {
         this.state = educationState;
-        return this;
+
     }
 
-    public EducationRoot changeLink(String link) {
-        this.link = link;
-        return this;
-    }
-
-    public EducationRoot changeEstablishmentName(String establishmentName) {
-        this.establishmentName = establishmentName;
-        return this;
-    }
-
-    public EducationRoot changeEducationDescription(String description) {
+    public void setEducationDescription(String description) {
         this.description = description;
-        return this;
     }
 
-    public EducationRoot changeEducationStartDate(LocalDate educationStartDate) {
+    public void setEducationStartDate(LocalDate educationStartDate) {
         this.startDate = educationStartDate;
-        return this;
+
     }
 
-    public EducationRoot changeEducationEndDate(LocalDate educationEndDate) {
+    public void setEducationEndDate(LocalDate educationEndDate) {
         this.startDate = educationEndDate;
-        return this;
     }
-
 
     public ResumeID getResumeID() {
         return resumeID;
@@ -100,6 +86,10 @@ public class EducationRoot extends AggregateRoot<EducationID> {
 
     public Integer getOrderNumber() {
         return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public EducationDegree getDegree() {
@@ -114,12 +104,20 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return link;
     }
 
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     public UUID getEstablishmentUUID() {
         return establishmentUUID;
     }
 
     public String getEstablishmentName() {
         return establishmentName;
+    }
+
+    public void setEstablishmentName(String establishmentName) {
+        this.establishmentName = establishmentName;
     }
 
     public UUID getCityId() {

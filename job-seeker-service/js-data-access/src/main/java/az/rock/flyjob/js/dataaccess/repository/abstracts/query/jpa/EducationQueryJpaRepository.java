@@ -13,4 +13,7 @@ import java.util.UUID;
 public interface EducationQueryJpaRepository extends JpaRepository<EducationEntity, UUID> {
     @Query("SELECT e FROM EducationEntity e WHERE e.resume.uuid = :resumeID AND e.uuid = :educationId AND e.rowStatus = 'ACTIVE'")
     Optional<EducationEntity> findByIdAndResumeIdAndRowStatusActive(@Param("resumeID") UUID resumeID, @Param("educationId") UUID educationId);
+
+    @Query("SELECT e FROM EducationEntity e WHERE e.uuid = :educationId AND e.rowStatus = 'ACTIVE'")
+    Optional<EducationEntity> findById(@Param("educationId") UUID educationId);
 }

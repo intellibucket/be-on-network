@@ -5,7 +5,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.item.EducationCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractEducationCommandHandler;
-import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractEducationCommandDomainPresentationsService;
+import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractEducationCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @InputPort
 @Service
-public class EducationCommandDomainPresentationService implements AbstractEducationCommandDomainPresentationsService {
+public class EducationCommandDomainPresentationService implements AbstractEducationCommandDomainPresentationService {
 
     private final AbstractEducationCommandHandler<AbstractDomainEvent<?>> abstractEducationCommandHandler;
 
@@ -24,21 +24,21 @@ public class EducationCommandDomainPresentationService implements AbstractEducat
 
     @Override
     public void create(CreateRequest<EducationCommandModel> request) {
-        abstractEducationCommandHandler.create(request);
+        this.abstractEducationCommandHandler.create(request);
     }
 
     @Override
     public void update(UpdateRequest<EducationCommandModel> request) {
-        abstractEducationCommandHandler.update(request);
+        this.abstractEducationCommandHandler.update(request);
     }
 
     @Override
     public void delete(UUID educationId) {
-        abstractEducationCommandHandler.delete(educationId);
+        this.abstractEducationCommandHandler.delete(educationId);
     }
 
     @Override
     public void reorder(ReorderCommandModel request) {
-
+        this.abstractEducationCommandHandler.reorder(request);
     }
 }

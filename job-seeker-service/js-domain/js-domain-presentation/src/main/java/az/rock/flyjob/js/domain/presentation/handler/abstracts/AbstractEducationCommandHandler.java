@@ -5,7 +5,6 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.item.EducationCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibucket.lib.payload.payload.EducationPayload;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
