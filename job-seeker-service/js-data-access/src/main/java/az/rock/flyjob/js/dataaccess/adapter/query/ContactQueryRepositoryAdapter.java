@@ -3,9 +3,8 @@ package az.rock.flyjob.js.dataaccess.adapter.query;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractContactDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractContactQueryJPARepository;
-import az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail.ContactCustomCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
-import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactCommandQueryRepositoryAdapter;
+import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class ContactQueryRepositoryAdapter implements AbstractContactCommandQueryRepositoryAdapter {
+public class ContactQueryRepositoryAdapter implements AbstractContactQueryRepositoryAdapter {
     private final AbstractContactQueryJPARepository contactQueryJPARepository;
     private final AbstractContactDataAccessMapper<ContactEntity, ContactRoot> contactMapper;
 
@@ -30,7 +29,7 @@ public class ContactQueryRepositoryAdapter implements AbstractContactCommandQuer
 
     @Override
     public Optional<ContactRoot> findOwnByID(ResumeID parentID, ContactID rootId) {
-        return AbstractContactCommandQueryRepositoryAdapter.super.findOwnByID(parentID, rootId);
+        return AbstractContactQueryRepositoryAdapter.super.findOwnByID(parentID, rootId);
     }
 
     @Override
@@ -40,11 +39,11 @@ public class ContactQueryRepositoryAdapter implements AbstractContactCommandQuer
 
     @Override
     public Optional<ContactRoot> findByPID(ResumeID parentID) {
-        return AbstractContactCommandQueryRepositoryAdapter.super.findByPID(parentID);
+        return AbstractContactQueryRepositoryAdapter.super.findByPID(parentID);
     }
 
     @Override
     public List<ContactRoot> findAllByPID(ResumeID parentID) {
-        return AbstractContactCommandQueryRepositoryAdapter.super.findAllByPID(parentID);
+        return AbstractContactQueryRepositoryAdapter.super.findAllByPID(parentID);
     }
 }
