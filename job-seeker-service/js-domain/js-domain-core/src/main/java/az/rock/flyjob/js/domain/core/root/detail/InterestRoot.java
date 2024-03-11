@@ -19,7 +19,7 @@ public class InterestRoot extends AggregateRoot<InterestID> {
     private String description;
 
     private InterestRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
@@ -28,20 +28,29 @@ public class InterestRoot extends AggregateRoot<InterestID> {
         this.description = builder.description;
     }
 
-    public InterestRoot changeName(String name){
-        this.name=name;
+    public InterestRoot changeName(String name) {
+        if (!name.isBlank()) {
+            this.name = name;
+        }
+        return this;
+
+    }
+
+    public InterestRoot changeHobby(Boolean isHobby) {
+
+        this.isHobby = isHobby;
+
         return this;
     }
-    public InterestRoot changeHobby(Boolean isHobby){
-        this.isHobby=isHobby;
+
+    public InterestRoot changeDescription(String description) {
+        this.description = description;
+
         return this;
     }
-    public InterestRoot changeDescription(String description){
-        this.description=description;
-        return this;
-    }
-    public InterestRoot changeOrderNumber(Integer newNumber){
-        this.orderNumber=newNumber;
+
+    public InterestRoot changeOrderNumber(Integer newNumber) {
+        this.orderNumber = newNumber;
         return this;
     }
 
@@ -134,8 +143,8 @@ public class InterestRoot extends AggregateRoot<InterestID> {
             return this;
         }
 
-        public Builder accessModifier(AccessModifier accessModifier){
-            this.accessModifier =accessModifier;
+        public Builder accessModifier(AccessModifier accessModifier) {
+            this.accessModifier = accessModifier;
             return this;
         }
 

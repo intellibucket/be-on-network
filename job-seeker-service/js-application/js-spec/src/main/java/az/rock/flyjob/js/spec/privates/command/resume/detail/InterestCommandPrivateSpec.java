@@ -2,6 +2,7 @@ package az.rock.flyjob.js.spec.privates.command.resume.detail;
 
 import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
@@ -12,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.UUID;
 
 public interface InterestCommandPrivateSpec {
-    ResponseEntity<JSuccessResponse> create(CreateRequest<InterestCommandModel> request) throws InterestNameIsExist;
+    ResponseEntity<JSuccessResponse> create(CreateRequest<InterestCommandModel> request) throws InterestNameIsExist, InterestOverLimit;
 
     ResponseEntity<JSuccessResponse> update(UpdateRequest<InterestCommandModel> request) throws Exception;
 

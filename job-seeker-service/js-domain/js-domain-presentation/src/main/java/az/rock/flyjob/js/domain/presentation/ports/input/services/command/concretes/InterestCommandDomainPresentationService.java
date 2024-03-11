@@ -2,6 +2,7 @@ package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concr
 
 import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
@@ -23,7 +24,7 @@ public class InterestCommandDomainPresentationService implements AbstractInteres
     }
 
     @Override
-    public void create(InterestCommandModel interestCommandModel) throws InterestNameIsExist {
+    public void create(InterestCommandModel interestCommandModel) throws InterestNameIsExist, InterestOverLimit {
         var interestCreatedEvent = this.interestCreateCommandHandler.add(interestCommandModel);
         var step = InterestRegistrationSteps.ON_STARTED_STEP;
         var saga = AbstractSagaProcess.onProceed(

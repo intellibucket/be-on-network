@@ -11,7 +11,7 @@ public class InterestDomainService implements AbstractInterestDomainService {
     public InterestRoot validateInterestName(List<InterestRoot> savedPhoneNumbers, InterestRoot changedInterest) throws InterestNameIsExist {
         if (savedPhoneNumbers.stream().anyMatch(item -> item
                 .getName()
-                .equals(changedInterest.getName()))) {
+                .equalsIgnoreCase(changedInterest.getName()))) {
             throw new InterestNameIsExist("Interest Name is exist");
         }
         return changedInterest;

@@ -2,6 +2,7 @@ package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.InterestOverLimit;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractInterestDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
@@ -12,9 +13,9 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractInterestDo
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractInterestCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.RootID;
 import az.rock.lib.domain.id.js.InterestID;
+import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.valueObject.AccessModifier;
 import com.intellibucket.lib.payload.event.create.InterestCreateEvent;
 import com.intellibucket.lib.payload.event.update.InterestDeleteEvent;
 import com.intellibucket.lib.payload.event.update.InterestReorderEvent;
@@ -24,8 +25,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 @Component
 public class InterestCreateCommandHandler implements AbstractInterestCreateCommandHandler {
@@ -36,6 +37,13 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     private final AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter;
     private final AbstractInterestCommandRepositoryAdapter interestCommandRepositoryAdapter;
     private final AbstractInterestDomainMapper interestDomainMapper;
+    private final List<AccessModifier> modifierList= List.of(AccessModifier.PUBLIC
+            ,AccessModifier.UNKNOWN
+            ,AccessModifier.AUTHENTICATED
+            ,AccessModifier.PRIVATE
+            ,AccessModifier.ONLY_FOLLOWERS_AND_NETWORK
+            ,AccessModifier.ONLY_FOLLOWERS
+            ,AccessModifier.ONLY_NETWORK);
 
 
     public InterestCreateCommandHandler(AbstractSecurityContextHolder securityContextHolder,
@@ -54,11 +62,12 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
 
 
     @Override
-    public InterestCreateEvent add(InterestCommandModel interestCommandModel) throws InterestNameIsExist {
+    public InterestCreateEvent add(InterestCommandModel interestCommandModel) throws InterestNameIsExist, InterestOverLimit {
         var currentResume = this.securityContextHolder.availableResumeID();
-        var savedInterest = this.interestQueryRepositoryAdapter.findAllByPID(currentResume);
+        var savedInterest = this.interestQueryRepositoryAdapter.findAllByPID(currentResume,modifierList);
         var interestRoot = this.interestDomainMapper.toNewRoot(currentResume, interestCommandModel);
         var validatedInterest = this.domainService.validateInterestName(savedInterest, interestRoot);
+        this.limitOver(currentResume);
         var optionalInterest = this.interestCommandRepositoryAdapter.create(validatedInterest);
         var interestPayload = this.toPayload(optionalInterest.get());
         return InterestCreateEvent.of(interestPayload);
@@ -68,11 +77,13 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     @Override
     public InterestUpdateEvent update(UpdateRequest<InterestCommandModel> interestCommandModelUpdateRequest) throws Exception {
         var resumeID = this.securityContextHolder.availableResumeID();
-        var allInterests = interestQueryRepositoryAdapter.findAllByPID(resumeID);
+        var allInterests = interestQueryRepositoryAdapter.findAllByPID(resumeID,modifierList);
         var ownByID = interestQueryRepositoryAdapter.findOwnByID(resumeID,
-                InterestID.of(interestCommandModelUpdateRequest.getTargetId()));
+                InterestID.of(interestCommandModelUpdateRequest.getTargetId()),modifierList);
         if (ownByID.isPresent()) {
             var oldInterestRoot = ownByID.get();
+            final InterestRoot newRoot = this.interestDomainMapper.toNewRoot(resumeID, interestCommandModelUpdateRequest.getModel());
+
             var newInterestRoot = oldInterestRoot
                     .changeName(interestCommandModelUpdateRequest.getModel().getName())
                     .changeHobby(interestCommandModelUpdateRequest.getModel().getHobby())
@@ -87,7 +98,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     @Override
     public InterestDeleteEvent delete(UUID interestId) throws InterestNotFound {
         var resumeID = this.securityContextHolder.availableResumeID();
-        var ownByID = interestQueryRepositoryAdapter.findOwnByID(resumeID, InterestID.of(interestId));
+        var ownByID = interestQueryRepositoryAdapter.findOwnByID(resumeID, InterestID.of(interestId),modifierList);
         if (ownByID.isPresent()) {
             var interestRoot = ownByID.get();
             this.interestCommandRepositoryAdapter.delete(interestRoot);
@@ -99,7 +110,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     @Override
     public InterestReorderEvent reorder(ReorderCommandModel request) throws InterestNotFound {
         var resumeID = this.securityContextHolder.availableResumeID();
-        var allInterests = this.interestQueryRepositoryAdapter.findAllByPID(resumeID);
+        var allInterests = this.interestQueryRepositoryAdapter.findAllByPID(resumeID,modifierList);
         var targetInterest = allInterests.stream()
                 .filter(item -> item.getRootID().getAbsoluteID()
                         .equals(request.getTargetId()))
@@ -143,6 +154,12 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                 .orderNumber(interestRoot.getOrderNumber())
                 .accessModifier(interestRoot.getAccessModifier())
                 .build();
+    }
+    private void limitOver(ResumeID  resumeID) throws InterestOverLimit {
+       var limit = interestQueryRepositoryAdapter.getLimit(resumeID);
+       if(limit.isPresent() && limit.get()<10){
+           return;
+       }else throw new InterestOverLimit("you cant add anymore interest");
     }
 
 }
