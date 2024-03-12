@@ -24,7 +24,7 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public Boolean isExistContact(ContactRoot contactRoot) {
-        return null;
+        return this.contactQueryJPARepository.existsByFormatTypeAndDataAndLiveType();
     }
 
     @Override
@@ -34,7 +34,9 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public Optional<ContactRoot> findById(ContactID rootId) {
-        return Optional.empty();
+        var entity = this.contactQueryJPARepository.findById(rootId.getAbsoluteID());
+        if (entity.isEmpty()) return Optional.empty();
+        return this.contactMapper.toRoot(entity.get());
     }
 
     @Override

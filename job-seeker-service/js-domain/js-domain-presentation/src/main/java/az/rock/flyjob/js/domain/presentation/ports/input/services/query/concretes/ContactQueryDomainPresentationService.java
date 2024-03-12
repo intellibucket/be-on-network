@@ -7,6 +7,8 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.contact.simple.
 import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractContactQueryDomainPresentationService;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.auth.EmailID;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Service;
