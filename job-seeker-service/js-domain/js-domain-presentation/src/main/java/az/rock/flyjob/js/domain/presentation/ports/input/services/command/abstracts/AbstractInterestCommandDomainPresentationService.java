@@ -14,12 +14,12 @@ import java.util.UUID;
 @InputPort
 @Transactional
 public interface AbstractInterestCommandDomainPresentationService  {
-    void create(InterestCommandModel newInterestCommandModel) throws InterestNameIsExist, InterestOverLimit;
+    void create(InterestCommandModel newInterestCommandModel) ;
 
 
-    void update(UpdateRequest<InterestCommandModel> updateRequest) throws Exception;
+    void update(UpdateRequest<InterestCommandModel> updateRequest) ;
 
-    void delete(UUID interestId) throws InterestNotFound;
+    void delete(UUID interestId);
 
-    void  reorder(ReorderCommandModel request) throws InterestNotFound;
+    void  reorder(ReorderCommandModel request) ;
 }
