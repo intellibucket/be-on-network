@@ -53,6 +53,7 @@ public class ContactQueryDomainPresentationService implements AbstractContactQue
 
     @Override
     public MyContactResponseModel findMyContactById(UUID uuid) {
+        var contactAvaible = abstractSecurityContextHolder.availableResumeID();
         var optionalContact = this.abstractContactQueryRepositoryAdapter
                 .findById(ContactID.of(uuid));
         return optionalContact.map(MyContactResponseModel::of)
@@ -61,6 +62,7 @@ public class ContactQueryDomainPresentationService implements AbstractContactQue
 
     @Override
     public AnyContactResponseModel findAnyContactById(UUID uuid) {
+        var contactAvaible = abstractSecurityContextHolder.availableResumeID();
         var contactId = abstractContactQueryRepositoryAdapter.findById(ContactID.of(uuid));
         if (contactId.isEmpty()) throw new ContactDomainPresentationException("F0000000011");
         var contactResume = contactId.get();
