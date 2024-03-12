@@ -19,10 +19,11 @@ import com.intellibucket.lib.payload.payload.EducationPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 import java.util.UUID;
+
+import static az.rock.lib.valueObject.OrderNumber.ORDER_NUMBER;
 
 
 @Component
@@ -80,7 +81,6 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
     public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) {
         var resumeId = securityContextHolder.availableResumeID();
         List<EducationRoot> educations = educationQueryRepositoryAdapter.findAllByPID(resumeId);
-        log.info("educations: {}", educations);
         List<Integer> orderNumber = educations.stream().map(EducationRoot::getOrderNumber).toList();
         int max = orderNumber.stream().mapToInt(v -> v).max().orElseThrow();
         int min = orderNumber.stream().mapToInt(v -> v).min().orElseThrow();
@@ -88,44 +88,34 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
             throw new RuntimeException("orderNumber must be between: " + min + " and " + max);
         Integer tempOrderNumber = educations.stream().filter(educationRoot -> educationRoot.getRootID().getAbsoluteID().equals(request.getTargetId())
         ).findAny().orElseThrow().getOrderNumber();
-
         educations.forEach(
                 educationRoot -> {
-                    if (educationRoot.getRootID().getAbsoluteID()
-                                .equals(request.getTargetId()) && !educationRoot.getOrderNumber().equals(request.getOrderNumber())) {
-                        educationRoot.setOrderNumber(request.getOrderNumber());
-                    } else {
-                        throw new RuntimeException("Education Already ordered");
+                    if (educationRoot.getRootID().getAbsoluteID().equals(request.getTargetId())) {
+                        if (!Objects.equals(educationRoot.getOrderNumber(), request.getOrderNumber())) {
+                            educationRoot.setOrderNumber(request.getOrderNumber());
+                        } else {
+                            throw new RuntimeException("Education Already Ordered");
+                        }
                     }
                 }
         );
-
-        log.info("educations:{}", educations);
         List<Integer> orderNumbersList = educations.stream().map(EducationRoot::getOrderNumber).toList();
-        log.info("orderNumbers:{}", orderNumbersList);
-        var lastOrderNumber = listDuplicateUsingFilterAndSetAdd(orderNumbersList);
-        log.info("lastOrderNumber:{}", lastOrderNumber);
-
+        var lastOrderNumber = ORDER_NUMBER.duplicateOrderNumber(orderNumbersList);
         educations.forEach(
                 educationRoot -> {
-                    if (!educationRoot.getRootID().getAbsoluteID().equals(request.getTargetId()) && educationRoot.getOrderNumber().equals(lastOrderNumber)) {
+                    if (!educationRoot.getRootID().getAbsoluteID()
+                            .equals(request.getTargetId())
+                        && educationRoot.getOrderNumber().equals(lastOrderNumber)) {
                         educationRoot.setOrderNumber(tempOrderNumber);
                     }
                 }
         );
-        log.info("educations:{}", educations);
         educationCommandRepositoryAdapter.updateAll(educations);
-
-        return EducationUpdatedEvent.of(null);
-    }
-
-
-    private Integer listDuplicateUsingFilterAndSetAdd(List<Integer> list) {
-        Set<Integer> elements = new HashSet<Integer>();
-        return list.stream()
-                .filter(n -> !elements.add(n))
-                .findAny()
-                .get();
+        return EducationUpdatedEvent.of(
+                EducationPayload
+                .builder()
+                .id(request.getTargetId())
+                .build());
     }
 
 

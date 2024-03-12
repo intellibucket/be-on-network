@@ -14,15 +14,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+import static az.rock.lib.valueObject.OrderNumber.ORDER_NUMBER;
+
 @Component
 public class EducationDomainMapper implements AbstractEducationDomainMapper {
-
-
-    private int orderNumber = 1;
-
-    private Integer orderNumber() {
-        return orderNumber++;
-    }
 
 
     @Override
@@ -35,7 +30,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .resume(resumeID)
-                .orderNumber(orderNumber())
+                .orderNumber(ORDER_NUMBER.orderNumber())
                 .degree(educationCommandModel.getDegree())
                 .state(educationCommandModel.getState())
                 .link(educationCommandModel.getLink())
@@ -65,7 +60,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
         return EducationRoot.Builder
                 .builder()
                 .resume(resumeID)
-                .orderNumber(orderNumber())
+                .orderNumber(ORDER_NUMBER.orderNumber())
                 .degree(educationCommandModel.getDegree())
                 .state(educationCommandModel.getState())
                 .link(educationCommandModel.getLink())
