@@ -18,6 +18,6 @@ public interface EducationQueryJpaRepository extends JpaRepository<EducationEnti
     @Query("SELECT e FROM EducationEntity e WHERE e.uuid = :educationId AND e.rowStatus = 'ACTIVE'")
     Optional<EducationEntity> findById(@Param("educationId") UUID educationId);
 
-    @Query("SELECT e FROM EducationEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE'")
+    @Query("SELECT e FROM EducationEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE' order by e.orderNumber")
     List<EducationEntity> findAll(@Param("resumeID") UUID resumeID);
 }

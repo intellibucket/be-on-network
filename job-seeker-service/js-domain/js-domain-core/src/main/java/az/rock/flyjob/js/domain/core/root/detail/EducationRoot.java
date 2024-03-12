@@ -24,6 +24,14 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private AccessModifier accessModifier;
     private Integer orderNumber;
     private EducationDegree degree;
+
+    @Override
+    public String toString() {
+        return "EducationRoot{" +
+               "orderNumber=" + orderNumber +
+               '}';
+    }
+
     private EducationState state;
     private String link;
     private UUID establishmentUUID;

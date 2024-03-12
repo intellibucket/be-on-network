@@ -18,7 +18,7 @@ import java.util.UUID;
 public class EducationDomainMapper implements AbstractEducationDomainMapper {
 
 
-    private int orderNumber = 0;
+    private int orderNumber = 1;
 
     private Integer orderNumber() {
         return orderNumber++;

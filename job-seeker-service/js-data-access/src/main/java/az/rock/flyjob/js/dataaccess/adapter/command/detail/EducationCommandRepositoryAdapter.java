@@ -4,7 +4,6 @@ import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractEducationDataAccess
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractCustomEducationCommandJpaRepository;
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractEducationCommandRepositoryAdapter;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -38,8 +37,12 @@ public class EducationCommandRepositoryAdapter implements AbstractEducationComma
 
 
     @Override
-    public void updateAll(List<EducationRoot> emailRoots) {
-        AbstractEducationCommandRepositoryAdapter.super.updateAll(emailRoots);
+    public void updateAll(List<EducationRoot> educationRoots) {
+        educationRoots.stream()
+                .map(this.educationDataAccessMapper::toEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .forEach(this.educationCustomCommandJpaRepository::update);
     }
 
     @Override

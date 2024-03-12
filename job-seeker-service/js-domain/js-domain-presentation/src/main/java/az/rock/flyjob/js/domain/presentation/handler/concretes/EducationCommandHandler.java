@@ -16,14 +16,17 @@ import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.EducationDeletedEvent;
 import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
 import com.intellibucket.lib.payload.payload.EducationPayload;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 
 @Component
+@Slf4j
 public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<?>> {
 
     private final AbstractSecurityContextHolder securityContextHolder;
@@ -75,20 +78,55 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
 
     @Override
     public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) {
-
-        //todo
         var resumeId = securityContextHolder.availableResumeID();
-        var educationFromDatabase = educationQueryRepositoryAdapter
-                .findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId())
-                .orElseThrow(NoActiveRowException::new);
-        educationFromDatabase.setOrderNumber(request.getOrderNumber());
-        this.educationCommandRepositoryAdapter.update(educationFromDatabase);
-        List<EducationRoot> educationRoots = educationQueryRepositoryAdapter.findAllByPID(resumeId);
+        List<EducationRoot> educations = educationQueryRepositoryAdapter.findAllByPID(resumeId);
+        log.info("educations: {}", educations);
+        List<Integer> orderNumber = educations.stream().map(EducationRoot::getOrderNumber).toList();
+        int max = orderNumber.stream().mapToInt(v -> v).max().orElseThrow();
+        int min = orderNumber.stream().mapToInt(v -> v).min().orElseThrow();
+        if (!orderNumber.contains(request.getOrderNumber()))
+            throw new RuntimeException("orderNumber must be between: " + min + " and " + max);
+        Integer tempOrderNumber = educations.stream().filter(educationRoot -> educationRoot.getRootID().getAbsoluteID().equals(request.getTargetId())
+        ).findAny().orElseThrow().getOrderNumber();
 
-        List<Integer> orderNumbers = educationRoots.stream().map(EducationRoot::getOrderNumber).toList();
+        educations.forEach(
+                educationRoot -> {
+                    if (educationRoot.getRootID().getAbsoluteID()
+                                .equals(request.getTargetId()) && !educationRoot.getOrderNumber().equals(request.getOrderNumber())) {
+                        educationRoot.setOrderNumber(request.getOrderNumber());
+                    } else {
+                        throw new RuntimeException("Education Already ordered");
+                    }
+                }
+        );
 
+        log.info("educations:{}", educations);
+        List<Integer> orderNumbersList = educations.stream().map(EducationRoot::getOrderNumber).toList();
+        log.info("orderNumbers:{}", orderNumbersList);
+        var lastOrderNumber = listDuplicateUsingFilterAndSetAdd(orderNumbersList);
+        log.info("lastOrderNumber:{}", lastOrderNumber);
 
-        var educationPayload = this.educationDomainMapper.toPayload(educationFromDatabase);
-        return EducationUpdatedEvent.of(educationPayload);
+        educations.forEach(
+                educationRoot -> {
+                    if (!educationRoot.getRootID().getAbsoluteID().equals(request.getTargetId()) && educationRoot.getOrderNumber().equals(lastOrderNumber)) {
+                        educationRoot.setOrderNumber(tempOrderNumber);
+                    }
+                }
+        );
+        log.info("educations:{}", educations);
+        educationCommandRepositoryAdapter.updateAll(educations);
+
+        return EducationUpdatedEvent.of(null);
     }
+
+
+    private Integer listDuplicateUsingFilterAndSetAdd(List<Integer> list) {
+        Set<Integer> elements = new HashSet<Integer>();
+        return list.stream()
+                .filter(n -> !elements.add(n))
+                .findAny()
+                .get();
+    }
+
+
 }

@@ -15,6 +15,8 @@ import java.util.UUID;
 
 @RestController
 public class EducationQueryPrivateController implements EducationQueryPrivateSpec {
+
+
     @Override
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyEducationResponseModel>>> queryAllMyEducations(SimplePageableRequest pageableRequest) {
         return null;

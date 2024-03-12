@@ -9,6 +9,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.jexception.NoActiveRowException;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,4 +35,16 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
         var entity = educationQueryJpaRepository.findById(rootId.getAbsoluteID()).orElse(null);
         return this.educationDataAccessMapper.toRoot(entity);
     }
+
+    @Override
+    public List<EducationRoot> findAllByPID(ResumeID parentID) {
+        var educationEntityList = educationQueryJpaRepository.findAll(parentID.getAbsoluteID());
+        return educationEntityList
+                .stream()
+                .map(this.educationDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
 }
