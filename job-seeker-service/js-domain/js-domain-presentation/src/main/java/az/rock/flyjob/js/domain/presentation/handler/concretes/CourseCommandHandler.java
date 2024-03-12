@@ -1,9 +1,12 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
+import az.rock.flyjob.js.domain.core.exception.course.CourseLimitExceededException;
+import az.rock.flyjob.js.domain.core.exception.course.CourseNotFoundException;
+import az.rock.flyjob.js.domain.core.exception.course.CourseTitleAlreadyExistException;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
-import az.rock.flyjob.js.domain.presentation.exception.CourseDomainException;
+import az.rock.flyjob.js.domain.core.exception.course.CourseDomainException;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.dfs.AbstractFileStorageAdapter;
@@ -11,7 +14,6 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.Abs
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.CourseID;
-import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
@@ -23,8 +25,6 @@ import com.intellibucket.lib.payload.payload.CourseDeletedPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Component
 public class CourseCommandHandler implements AbstractCourseCommandHandler {
@@ -46,39 +46,39 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     }
 
     @Override
-    public CourseMergeEvent create(CourseCommandModel command) {
+    public CourseMergeEvent create(CourseCommandModel command) throws CourseDomainException {
         var newCourseRoot = this.courseDomainMapper.toRoot(command, securityContextHolder.availableResumeID());
         if(courseQueryRepositoryAdapter.isInLimit(10L,securityContextHolder.availableResumeID()))
-            throw new CourseDomainException("F0000000005");
+            throw new CourseLimitExceededException();
         if(courseQueryRepositoryAdapter.existsByEquality(newCourseRoot))
-            throw new CourseDomainException("F0000000004");
+            throw new CourseTitleAlreadyExistException();
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
         return CourseMergeEvent.of(CourseMergePayload.of(optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()));
     }
 
     @Override
-    public CourseMergeEvent merge(CourseCommandModel command,UUID id) {
+    public CourseMergeEvent merge(CourseCommandModel command,UUID id) throws CourseDomainException {
         var oldCourse = courseQueryRepositoryAdapter.findById(CourseID.of(id),securityContextHolder.availableResumeID(),mockAccessModifiers);
-        if(oldCourse.isEmpty())throw new CourseDomainException("F0000000003");
+        if(oldCourse.isEmpty())throw new CourseNotFoundException();
         var course = courseDomainMapper.toRoot(command,oldCourse.get(),securityContextHolder.availableResumeID());
         if(courseQueryRepositoryAdapter.existsByEquality(course))
-            throw new CourseDomainException("F0000000004");
+            throw new CourseTitleAlreadyExistException();
         courseCommandRepositoryAdapter.update(course);
         return CourseMergeEvent.of(CourseMergePayload.of(id));
     }
 
     @Override
-    public CourseDeleteEvent delete(UUID id) {
+    public CourseDeleteEvent delete(UUID id) throws CourseDomainException{
         var optional = courseQueryRepositoryAdapter.findById(CourseID.of(id),securityContextHolder.availableResumeID(),mockAccessModifiers);
-        if(optional.isEmpty())throw new CourseDomainException("F0000000003");
+        if(optional.isEmpty())throw new CourseNotFoundException();
         this.courseCommandRepositoryAdapter.delete(optional.get());
         return CourseDeleteEvent.of(CourseDeletedPayload.of(id));
     }
 
     @Override
-    public CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) {
+    public CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) throws CourseDomainException {
         var optional = courseQueryRepositoryAdapter.findById(CourseID.of(courseId),securityContextHolder.availableResumeID(),mockAccessModifiers);
-        if(optional.isEmpty())throw new CourseDomainException("F0000000003");
+        if(optional.isEmpty())throw new CourseNotFoundException();
         var savedFile = fileStorageService.uploadFile(file);
         var course = optional.get();
         course.setCertificateFilePath(savedFile.getObject());
@@ -87,9 +87,9 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     }
 
     @Override
-    public CourseMergeEvent reorder(ReorderCommandModel reorderCommandModel) {
+    public CourseMergeEvent reorder(ReorderCommandModel reorderCommandModel) throws CourseDomainException {
         var courseList = courseQueryRepositoryAdapter.findAllByResume(securityContextHolder.availableResumeID(),mockAccessModifiers);
-        var course = courseList.stream().filter(t -> t.getRootID().getRootID().equals(reorderCommandModel.getTargetId())).findFirst().orElseThrow(()->new CourseDomainException("F0000000003"));
+        var course = courseList.stream().filter(t -> t.getRootID().getRootID().equals(reorderCommandModel.getTargetId())).findFirst().orElseThrow(CourseNotFoundException::new);
         course.setOrderNumber(reorderCommandModel.getOrderNumber());
         courseList.stream()
                 .filter(t->t.getOrderNumber()>=reorderCommandModel.getOrderNumber() && !t.equals(course))

@@ -8,6 +8,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandMode
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
+import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,27 +27,47 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        var courseCreatedEvent = commandHandler.create(command.getModel());
+        try {
+            var courseCreatedEvent = commandHandler.create(command.getModel());
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        var courseUpdatedEvent = commandHandler.merge(command.getModel(),command.getTargetId());
+        try{
+            var courseUpdatedEvent = commandHandler.merge(command.getModel(),command.getTargetId());
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void delete(UUID courseId) {
-        var courseDeleteEvent = commandHandler.delete(courseId);
+        try{
+            var courseDeleteEvent = commandHandler.delete(courseId);
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void reorder(ReorderCommandModel command) {
-        var reorderEvent = commandHandler.reorder(command);
+        try{
+            var reorderEvent = commandHandler.reorder(command);
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void uploadCertificate(UUID courseId, MultipartFileWrapper file) {
-        var certificateEvent = commandHandler.uploadCertificate(courseId, file);
+        try {
+            var certificateEvent = commandHandler.uploadCertificate(courseId, file);
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
 
     }
 }
