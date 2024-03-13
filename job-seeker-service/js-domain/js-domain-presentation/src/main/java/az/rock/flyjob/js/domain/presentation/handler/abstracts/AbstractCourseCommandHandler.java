@@ -5,7 +5,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.core.exception.course.CourseDomainException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
-import com.intellibucket.lib.payload.event.create.CourseFileEvent;
+import com.intellibucket.lib.payload.event.create.CourseCertificateUploadedEvent;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
 import com.intellibucket.lib.payload.event.delete.CourseDeleteEvent;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,7 +22,7 @@ public interface AbstractCourseCommandHandler {
 
     CourseDeleteEvent delete(UUID id) throws CourseDomainException;
 
-    CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) throws CourseDomainException;
+    CourseCertificateUploadedEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) throws CourseDomainException;
 
     CourseMergeEvent reorder(ReorderCommandModel reorderCommandModel) throws CourseDomainException;
 }

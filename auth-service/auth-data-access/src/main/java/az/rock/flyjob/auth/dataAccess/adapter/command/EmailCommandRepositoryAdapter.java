@@ -48,7 +48,6 @@ public class EmailCommandRepositoryAdapter implements AbstractEmailCommandReposi
 
     @Override
     public void updateAll(List<EmailRoot> emailRoots) {
-        // FIXME: 28.06.23 updateAll method is not working because throw EntityManager is closed exception
         emailRoots.stream()
                 .map(this.emailDataAccessMapper::toEntity)
                 .filter(Optional::isPresent)

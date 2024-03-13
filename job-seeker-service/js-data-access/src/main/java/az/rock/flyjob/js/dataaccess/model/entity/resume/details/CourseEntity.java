@@ -15,6 +15,7 @@ import lombok.Setter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -52,10 +53,10 @@ public class CourseEntity extends BaseEntity {
     private String country;
 
     @Temporal(value = TemporalType.DATE)
-    private Date startDate;
+    private LocalDate startDate;
 
     @Temporal(value = TemporalType.DATE)
-    private Date endDate;
+    private LocalDate endDate;
 
     @Column(name = "is_continue")
     private String description;
@@ -89,13 +90,6 @@ public class CourseEntity extends BaseEntity {
         setVerificationAddress(builder.verificationAddress);
     }
 
-    public Timestamp getStartDate() {
-        return new Timestamp(startDate.getTime());
-    }
-
-    public Timestamp getEndDate() {
-        return new Timestamp(endDate.getTime());
-    }
 
     public static final class Builder{
 
@@ -113,8 +107,8 @@ public class CourseEntity extends BaseEntity {
         private Boolean isOnline;
         private String city;
         private String country;
-        private Date startDate;
-        private Date endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
         private String certificateFilePath;
         private String verificationAddress;
@@ -196,13 +190,13 @@ public class CourseEntity extends BaseEntity {
             return this;
         }
 
-        public Builder setStartDate(Timestamp startDate) {
-            this.startDate = Date.valueOf(startDate.toLocalDateTime().toLocalDate());
+        public Builder setStartDate(LocalDate startDate) {
+            this.startDate = startDate;
             return this;
         }
 
-        public Builder setEndDate(Timestamp endDate) {
-            this.endDate = Date.valueOf(endDate.toLocalDateTime().toLocalDate());
+        public Builder setEndDate(LocalDate endDate) {
+            this.endDate = endDate;
             return this;
         }
 

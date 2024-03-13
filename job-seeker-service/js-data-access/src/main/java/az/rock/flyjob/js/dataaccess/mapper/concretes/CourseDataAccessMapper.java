@@ -10,6 +10,8 @@ import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +38,8 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
                             .isOnline(safetyResumeEntity.getIsOnline())
                             .city(safetyResumeEntity.getCity())
                             .country(safetyResumeEntity.getCountry())
-                            .startDate(GDateTime.toZonedDateTime(safetyResumeEntity.getStartDate()))
-                            .endDate(GDateTime.toZonedDateTime(safetyResumeEntity.getEndDate()))
+                            .startDate(safetyResumeEntity.getStartDate())
+                            .endDate(safetyResumeEntity.getEndDate())
                             .description(safetyResumeEntity.getDescription())
                             .certificateFilePath(safetyResumeEntity.getCertificateFilePath())
                             .verificationAddress(safetyResumeEntity.getVerificationAddress())
@@ -68,8 +70,8 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
                     .setIsOnline(safetyCourseRoot.getOnline())
                     .setCity(safetyCourseRoot.getCity())
                     .setCountry(safetyCourseRoot.getCountry())
-                    .setStartDate(GDateTime.toTimestamp(safetyCourseRoot.getStartDate()))
-                    .setEndDate(GDateTime.toTimestamp(safetyCourseRoot.getEndDate()))
+                    .setStartDate(safetyCourseRoot.getStartDate())
+                    .setEndDate(safetyCourseRoot.getEndDate())
                     .setDescription(safetyCourseRoot.getDescription())
                     .setCertificateFilePath(safetyCourseRoot.getCertificateFilePath())
                     .setVerificationAddress(safetyCourseRoot.getVerificationAddress())

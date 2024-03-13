@@ -31,7 +31,6 @@ public class AuthCommandPublicController implements AuthCommandPublicControllerS
     }
 
 
-    //TODO Gender not insert
     @Override
     @PostMapping(value = "/registry/user")
     public ResponseEntity<JSuccessResponse> userRegistry(@RequestBody @Valid CreateUserCommand credentials) {
