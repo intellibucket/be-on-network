@@ -14,11 +14,11 @@ import java.util.UUID;
 public interface ContactQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyContactResponseModel>>> queryAllMyContacts(SimplePageableRequest pageableRequest);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyContactResponseModel>>> queryAllAnyContacts(SimplePageableRequest pageableRequest);
+    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyContactResponseModel>>> queryAllAnyContacts(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyContactResponseModel>>> queryAllMySimpleContacts(SimplePageableRequest pageableRequest);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyContactResponseModel>>> queryAllAnySimpleContacts(SimplePageableRequest pageableRequest);
+    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyContactResponseModel>>> queryAllAnySimpleContacts(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<MyContactResponseModel>> findMyContactById(UUID id);
 
