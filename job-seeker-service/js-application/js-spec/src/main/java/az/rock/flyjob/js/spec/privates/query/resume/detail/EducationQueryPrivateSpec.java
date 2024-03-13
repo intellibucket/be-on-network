@@ -14,11 +14,11 @@ import java.util.UUID;
 public interface EducationQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyEducationResponseModel>>> queryAllMyEducations(SimplePageableRequest pageableRequest);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyEducationResponseModel>>> queryAllAnyEducations(SimplePageableRequest pageableRequest);
+    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyEducationResponseModel>>> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyEducationResponseModel>>> queryAllMySimpleEducations(SimplePageableRequest pageableRequest);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyEducationResponseModel>>> queryAllAnySimpleEducations(SimplePageableRequest pageableRequest);
+    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyEducationResponseModel>>> queryAllAnySimpleEducations(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<MyEducationResponseModel>> findMyEducationById(UUID id);
 

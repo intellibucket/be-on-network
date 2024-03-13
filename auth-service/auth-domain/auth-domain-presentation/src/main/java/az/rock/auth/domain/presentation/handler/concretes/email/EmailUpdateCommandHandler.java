@@ -62,7 +62,6 @@ public class EmailUpdateCommandHandler implements AbstractEmailUpdateCommandHand
 
     @Override
     public EmailUpdatedEvent handleEmailSetPrimary(EmailID emailID) {
-        // FIXME: 27.06.23 
         var currentUserId = this.securityContextHolder.availableUser();
         var emails = this.emailQueryRepositoryAdapter.findAllMyEmails(currentUserId);
         var changedEmail = emails.stream()

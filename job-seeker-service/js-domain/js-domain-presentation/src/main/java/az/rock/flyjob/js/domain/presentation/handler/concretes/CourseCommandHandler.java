@@ -2,7 +2,7 @@ package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.course.CourseLimitExceededException;
 import az.rock.flyjob.js.domain.core.exception.course.CourseNotFoundException;
-import az.rock.flyjob.js.domain.core.exception.course.CourseTitleAlreadyExistException;
+import az.rock.flyjob.js.domain.core.exception.course.CourseAlreadyExistException;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
@@ -17,7 +17,7 @@ import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
-import com.intellibucket.lib.payload.event.create.CourseFileEvent;
+import com.intellibucket.lib.payload.event.create.CourseCertificateUploadedEvent;
 import com.intellibucket.lib.payload.event.delete.CourseDeleteEvent;
 import com.intellibucket.lib.payload.payload.CourseFilePayload;
 import com.intellibucket.lib.payload.payload.CourseMergePayload;
@@ -51,7 +51,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
         if(courseQueryRepositoryAdapter.isInLimit(10L,securityContextHolder.availableResumeID()))
             throw new CourseLimitExceededException();
         if(courseQueryRepositoryAdapter.existsByEquality(newCourseRoot))
-            throw new CourseTitleAlreadyExistException();
+            throw new CourseAlreadyExistException();
         var optionalCourseRoot = this.courseCommandRepositoryAdapter.create(newCourseRoot);
         return CourseMergeEvent.of(CourseMergePayload.of(optionalCourseRoot.orElseThrow(CourseDomainException::new).getRootID().getRootID()));
     }
@@ -62,7 +62,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
         if(oldCourse.isEmpty())throw new CourseNotFoundException();
         var course = courseDomainMapper.toRoot(command,oldCourse.get(),securityContextHolder.availableResumeID());
         if(courseQueryRepositoryAdapter.existsByEquality(course))
-            throw new CourseTitleAlreadyExistException();
+            throw new CourseAlreadyExistException();
         courseCommandRepositoryAdapter.update(course);
         return CourseMergeEvent.of(CourseMergePayload.of(id));
     }
@@ -76,14 +76,14 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     }
 
     @Override
-    public CourseFileEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) throws CourseDomainException {
+    public CourseCertificateUploadedEvent uploadCertificate(UUID courseId, MultipartFileWrapper file) throws CourseDomainException {
         var optional = courseQueryRepositoryAdapter.findById(CourseID.of(courseId),securityContextHolder.availableResumeID(),mockAccessModifiers);
         if(optional.isEmpty())throw new CourseNotFoundException();
         var savedFile = fileStorageService.uploadFile(file);
         var course = optional.get();
-        course.setCertificateFilePath(savedFile.getObject());
+        course = course.changeCertificateFilePath(savedFile.getObject());
         this.courseCommandRepositoryAdapter.update(course);
-        return CourseFileEvent.of(CourseFilePayload.of(courseId));
+        return CourseCertificateUploadedEvent.of(CourseFilePayload.of(courseId));
     }
 
     @Override
@@ -94,15 +94,15 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
         var course = courseList.stream().filter(t -> t.getRootID().getRootID().equals(reorderCommandModel.getTargetId())).findFirst().orElseThrow(CourseNotFoundException::new);
         var reOrderNumber = reorderCommandModel.getOrderNumber();
         if(reorderCommandModel.getOrderNumber()>course.getOrderNumber())++reOrderNumber;
-        course.setOrderNumber(reOrderNumber);
+        course.changeOrderNumber(reOrderNumber);
         courseList.stream()
                 .filter(t->t.getOrderNumber()>=course.getOrderNumber() && !t.equals(course))
-                .forEach(t->t.setOrderNumber(t.getOrderNumber()+1));
+                .forEach(t->t.changeOrderNumber(t.getOrderNumber()+1));
         int orderCounter = 1;
         for (CourseRoot courseRoot : courseList.stream()
                 .sorted(Comparator.comparingInt(CourseRoot::getOrderNumber))
                 .toList()) {
-            courseRoot.setOrderNumber(orderCounter++);
+            courseRoot.changeOrderNumber(orderCounter++);
         }
         courseCommandRepositoryAdapter.updateAll(courseList);
         return CourseMergeEvent.of(CourseMergePayload.of(reorderCommandModel.getTargetId()));

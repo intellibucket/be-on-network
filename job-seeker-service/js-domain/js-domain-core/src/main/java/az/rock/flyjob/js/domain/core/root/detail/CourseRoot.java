@@ -8,6 +8,7 @@ import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 
@@ -20,8 +21,8 @@ public class CourseRoot extends AggregateRoot<CourseID> {
     private Boolean isOnline;
     private String city;
     private String country;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
     private String certificateFilePath;
     private String verificationAddress;
@@ -75,11 +76,11 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         return country;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -99,56 +100,14 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         return accessModifier;
     }
 
-    public void setResume(ResumeID resume) {
-        this.resume = resume;
+    public CourseRoot changeCertificateFilePath(String certificateFilePath){
+        this.certificateFilePath=certificateFilePath;
+        return this;
     }
 
-    public void setAccessModifier(AccessModifier accessModifier) {
-        this.accessModifier = accessModifier;
-    }
-
-    public void setOrderNumber(Integer orderNumber) {
+    public CourseRoot changeOrderNumber(Integer orderNumber){
         this.orderNumber = orderNumber;
-    }
-
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle;
-    }
-
-    public void setInstitution(String institution) {
-        this.institution = institution;
-    }
-
-    public void setOnline(Boolean online) {
-        isOnline = online;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setStartDate(ZonedDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(ZonedDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCertificateFilePath(String certificateFilePath) {
-        this.certificateFilePath = certificateFilePath;
-    }
-
-    public void setVerificationAddress(String verificationAddress) {
-        this.verificationAddress = verificationAddress;
+        return this;
     }
 
     public static final class Builder {
@@ -167,8 +126,8 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         private Boolean isOnline;
         private String city;
         private String country;
-        private ZonedDateTime startDate;
-        private ZonedDateTime endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
         private String certificateFilePath;
         private String verificationAddress;
@@ -251,12 +210,12 @@ public class CourseRoot extends AggregateRoot<CourseID> {
             return this;
         }
 
-        public Builder startDate(ZonedDateTime val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(ZonedDateTime val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }
@@ -280,4 +239,6 @@ public class CourseRoot extends AggregateRoot<CourseID> {
             return new CourseRoot(this);
         }
     }
+
+
 }

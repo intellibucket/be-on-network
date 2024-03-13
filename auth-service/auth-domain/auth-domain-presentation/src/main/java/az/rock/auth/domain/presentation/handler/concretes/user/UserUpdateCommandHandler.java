@@ -41,7 +41,6 @@ public class UserUpdateCommandHandler  implements AbstractUserUpdateCommandHandl
         return currentUserRoot.get();
     }
 
-    //TODO UserUpdatedEvent must be implemented and returned
 
     @Override
     public UserUpdatedEvent handleFirstnameUpdated(String firstname) {

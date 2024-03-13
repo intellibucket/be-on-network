@@ -64,7 +64,6 @@ public class FollowRelationCommandHandler implements AbstractFollowRelationComma
         var alreadyFollowed =  this.followQueryRepositoryAdapter.isFollowerPresentInMyFollowers(currentUserIdTypePair.getUserID(),targetUserId);
         if(alreadyFollowed) throw new AlreadyFollowedException();
         this.followDomainService.validateTrackingSelf(currentUserIdTypePair.getUserID(),targetUserId);
-        //TODO duzgun yerde yazilmayib
         var blockRelation =  this.blockRelationQueryRepositoryAdapter.blockRelationByUsers(currentUserIdTypePair.getUserID().getAbsoluteID(),targetUserId.getAbsoluteID());
         if(blockRelation) throw new BlockRelationWhenFollowException();
         var newFollowRelationRoot = this.followDomainMapper.toNewFollowRelationRoot(currentUserIdTypePair,followingUserType);

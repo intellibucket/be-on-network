@@ -1,7 +1,5 @@
 package com.intellibucket.lib.payload.payload;
 
-import com.intellibucket.lib.payload.event.create.CourseFileEvent;
-
 import java.util.UUID;
 
 public class CourseFilePayload extends Payload{
