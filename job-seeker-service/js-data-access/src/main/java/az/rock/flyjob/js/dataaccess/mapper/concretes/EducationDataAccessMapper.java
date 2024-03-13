@@ -66,56 +66,7 @@ public class EducationDataAccessMapper implements AbstractEducationDataAccessMap
                 .degree(root.getDegree())
                 .build());
     }
-    @Override
-    public Optional<EducationEntity> toNewEntity(EducationRoot root) {
-        var optionalRoot = Optional.ofNullable(root);
-        if (optionalRoot.isEmpty()) return Optional.empty();
-        return Optional.of(EducationEntity.builder()
-                .resume(ResumeEntity.referenceOf(root.getResumeID().getAbsoluteID()))
-                .version(root.getVersionValue())
-                .rowStatus(root.getRowStatus())
-                .processStatus(root.getProcessStatus())
-                .accessModifier(root.getAccessModifier())
-                .cityId(root.getCityId())
-                .establishmentUUID(root.getEstablishmentUUID())
-                .establishmentName(root.getEstablishmentName())
-                .orderNumber(root.getOrderNumber())
-                .startDate(root.getStartDate())
-                .endDate(root.getEndDate())
-                .description(root.getDescription())
-                .link(root.getLink())
-                .state(root.getState())
-                .degree(root.getDegree())
-                .build());
-    }
 
 
-    @Override
-    public Optional<EducationEntity> setRootToExistEntity(EducationEntity entity, EducationRoot educationRoot) {
-        var optionalEntity = Optional.ofNullable(entity);
-        var optionalRoot = Optional.ofNullable(educationRoot);
-        if (optionalRoot.isEmpty() || optionalEntity.isPresent()) return Optional.empty();
 
-        return optionalEntity.map(tempEntity -> {
-                    var root = optionalRoot.get();
-                    tempEntity.setUuid(root.getRootID().getAbsoluteID());
-                    tempEntity.setResume(ResumeEntity.referenceOf(root.getResumeID().getAbsoluteID()));
-                    tempEntity.setCityId(root.getCityId());
-                    tempEntity.setEstablishmentUUID(root.getEstablishmentUUID());
-                    tempEntity.setEstablishmentName(root.getEstablishmentName());
-                    tempEntity.setOrderNumber(root.getOrderNumber());
-                    tempEntity.setStartDate(root.getStartDate());
-                    tempEntity.setEndDate(root.getEndDate());
-                    tempEntity.setAccessModifier(root.getAccessModifier());
-                    tempEntity.setDescription(root.getDescription());
-                    tempEntity.setLink(root.getLink());
-                    tempEntity.setState(root.getState());
-                    tempEntity.setDegree(root.getDegree());
-                    tempEntity.setProcessStatus(root.getProcessStatus());
-                    tempEntity.setRowStatus(root.getRowStatus());
-                    return tempEntity;
-                }
-        );
-
-    }
 }

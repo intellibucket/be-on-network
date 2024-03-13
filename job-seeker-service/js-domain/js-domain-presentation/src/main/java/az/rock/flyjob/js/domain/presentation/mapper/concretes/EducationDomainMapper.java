@@ -56,25 +56,6 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
     }
 
     @Override
-    public EducationRoot toRoot(ResumeID resumeID, EducationCommandModel educationCommandModel) {
-        return EducationRoot.Builder
-                .builder()
-                .resume(resumeID)
-                .orderNumber(ORDER_NUMBER.orderNumber())
-                .degree(educationCommandModel.getDegree())
-                .state(educationCommandModel.getState())
-                .link(educationCommandModel.getLink())
-                .establishmentUUID(educationCommandModel.getEstablishmentUUID())
-                .establishmentName(educationCommandModel.getEstablishmentName())
-                .cityId(educationCommandModel.getCityId())
-                .startDate(educationCommandModel.getStartDate())
-                .endDate(educationCommandModel.getEndDate())
-                .description(educationCommandModel.getDescription())
-                .build();
-    }
-
-
-    @Override
     public EducationPayload toPayload(EducationRoot educationRoot) {
         return EducationPayload
                 .builder()

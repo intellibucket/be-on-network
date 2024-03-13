@@ -23,7 +23,7 @@ public class EducationQueryPrivateController implements EducationQueryPrivateSpe
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyEducationResponseModel>>> queryAllAnyEducations(SimplePageableRequest pageableRequest) {
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyEducationResponseModel>>> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         return null;
     }
 
@@ -33,7 +33,7 @@ public class EducationQueryPrivateController implements EducationQueryPrivateSpe
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyEducationResponseModel>>> queryAllAnySimpleEducations(SimplePageableRequest pageableRequest) {
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyEducationResponseModel>>> queryAllAnySimpleEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         return null;
     }
 

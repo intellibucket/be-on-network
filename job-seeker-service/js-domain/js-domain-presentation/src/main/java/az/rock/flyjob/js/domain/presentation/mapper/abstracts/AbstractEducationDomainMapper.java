@@ -10,9 +10,7 @@ public interface AbstractEducationDomainMapper {
 
     EducationPayload toPayload(EducationRoot educationRoot);
 
-    EducationRoot toRoot(ResumeID resumeID, EducationCommandModel educationCommandModel);
-
-    EducationRoot toExistRoot(EducationRoot educationRoot,EducationCommandModel educationCommandModel);
+    EducationRoot toExistRoot(EducationRoot educationRoot, EducationCommandModel educationCommandModel);
 
 
 }
