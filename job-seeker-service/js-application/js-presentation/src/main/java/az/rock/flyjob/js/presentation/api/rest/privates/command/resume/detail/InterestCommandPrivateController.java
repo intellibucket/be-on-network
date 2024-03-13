@@ -2,6 +2,7 @@ package az.rock.flyjob.js.presentation.api.rest.privates.command.resume.detail;
 
 import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
@@ -29,28 +30,28 @@ public class InterestCommandPrivateController implements InterestCommandPrivateS
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<InterestCommandModel> request) throws InterestNameIsExist {
+    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<InterestCommandModel> request) {
         this.abstractInterestCommandDomainPresentationService.create(request.getModel());
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<InterestCommandModel> request) throws Exception {
+    public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<InterestCommandModel> request) {
         this.abstractInterestCommandDomainPresentationService.update(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<JSuccessResponse> delete(@PathVariable("id") UUID interestId) throws InterestNotFound {
+    public ResponseEntity<JSuccessResponse> delete(@PathVariable("id") UUID interestId){
         this.abstractInterestCommandDomainPresentationService.delete(interestId);
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
     @Override
     @PatchMapping("/reorder")
-    public ResponseEntity<JSuccessResponse> reorder(@RequestBody ReorderCommandModel request) throws InterestNotFound {
+    public ResponseEntity<JSuccessResponse> reorder(@RequestBody ReorderCommandModel request) {
         this.abstractInterestCommandDomainPresentationService.reorder(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }

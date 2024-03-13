@@ -19,6 +19,8 @@ public class InterestCustomCommandJPARepository implements AbstractInterestCusto
 
     @Override
     public <S extends InterestEntity> S persist(S entity) {
+        var resumeEntity = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
+        entity.setResume(resumeEntity);
         this.entityManager.persist(entity);
         return entity;
     }

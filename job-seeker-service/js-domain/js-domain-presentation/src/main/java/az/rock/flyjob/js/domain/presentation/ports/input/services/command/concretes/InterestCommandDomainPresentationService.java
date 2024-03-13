@@ -2,6 +2,7 @@ package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concr
 
 import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
@@ -23,29 +24,48 @@ public class InterestCommandDomainPresentationService implements AbstractInteres
     }
 
     @Override
-    public void create(InterestCommandModel interestCommandModel) throws InterestNameIsExist {
-        var interestCreatedEvent = this.interestCreateCommandHandler.add(interestCommandModel);
-        var step = InterestRegistrationSteps.ON_STARTED_STEP;
-        var saga = AbstractSagaProcess.onProceed(
-                step.getProcessName(),
-                step,
-                interestCreatedEvent
-        );
+    public void create(InterestCommandModel interestCommandModel) {
+        try {
+            var interestCreatedEvent = this.interestCreateCommandHandler.add(interestCommandModel);
+
+            var step = InterestRegistrationSteps.ON_STARTED_STEP;
+            var saga = AbstractSagaProcess.onProceed(
+                    step.getProcessName(),
+                    step,
+                    interestCreatedEvent
+            );
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
-    public void update(UpdateRequest<InterestCommandModel> updateRequest) throws Exception {
-       var interestUpdateEvent= this.interestCreateCommandHandler.update(updateRequest);
+    public void update(UpdateRequest<InterestCommandModel> updateRequest){
+        try {
+            var interestUpdateEvent = this.interestCreateCommandHandler.update(updateRequest);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+
     }
 
     @Override
-    public void delete(UUID interestId) throws InterestNotFound {
-        var delete = this.interestCreateCommandHandler.delete(interestId);
+    public void delete(UUID interestId){
+        try {
+            var delete = this.interestCreateCommandHandler.delete(interestId);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+
     }
 
     @Override
-    public void reorder(ReorderCommandModel request) throws InterestNotFound {
-       var reorder = this.interestCreateCommandHandler.reorder(request);
+    public void reorder(ReorderCommandModel request) {
+        try {
+            var reorder = this.interestCreateCommandHandler.reorder(request);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
 
 
     }

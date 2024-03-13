@@ -7,6 +7,7 @@ import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.valueObject.AccessModifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public Optional<InterestRoot> findOwnByID(ResumeID parentID, InterestID rootId) {
-        var entity = repository.findByResumeAndInterestId(parentID.getAbsoluteID(), rootId.getAbsoluteID());
+    public Optional<InterestRoot> findOwnByID(ResumeID parentID, InterestID rootId, List<AccessModifier> accessModifiers) {
+        var entity = repository.findByResumeAndInterestId(parentID.getAbsoluteID(), rootId.getAbsoluteID(), accessModifiers);
         if (entity.isEmpty()) return Optional.empty();
         return this.interestDataAccessMapper.toRoot(entity.get());
     }
@@ -37,19 +38,28 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public Optional<InterestRoot> findByPID(ResumeID parentID) {
+    public Optional<InterestRoot> findByPID(ResumeID parentID, List<AccessModifier> accessModifiers) {
         return AbstractInterestQueryRepositoryAdapter.super.findByPID(parentID);
     }
 
 
     @Override
-    public List<InterestRoot> findAllByPID(ResumeID parentID) {
-        var allByResumeID = repository.findAllByResumeID(parentID.getAbsoluteID());
+    public List<InterestRoot> findAllByPID(ResumeID parentID, List<AccessModifier> modifierList) {
+        var allByResumeID = repository.findAllByResumeID(parentID.getAbsoluteID(), modifierList);
         return allByResumeID.stream()
                 .map(this.interestDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
+    }
+
+    @Override
+    public Optional<Integer> getLimit(ResumeID resumeID) {
+        final Optional<Integer> interestCount = repository.limitCount(resumeID.getAbsoluteID());
+        if (interestCount.isPresent()) {
+            return interestCount;
+        }
+        return Optional.empty();
     }
 
     @Override

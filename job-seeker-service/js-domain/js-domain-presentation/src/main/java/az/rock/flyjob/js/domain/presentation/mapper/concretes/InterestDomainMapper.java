@@ -27,6 +27,7 @@ public class InterestDomainMapper implements AbstractInterestDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .isHobby(Boolean.FALSE)
+                .orderNumber(0)
                 .createdDate(ZonedDateTime.now())
                 .resume(resumeID)
                 .name(interestCommandModel.getName())
