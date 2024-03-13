@@ -42,13 +42,13 @@ public class InterestQueryDomainPresentationService implements AbstractInterestQ
 
     //-------------------------------------------------------------------------
     @Override
-    public List<AnyInterestResponseModel> queryAllAnyInterests(SimplePageableRequest pageableRequest) {
+    public List<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
 
         return null;
     }
 
     @Override
-    public List<SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(SimplePageableRequest pageableRequest) {
+    public List<SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(UUID targetResumeId,SimplePageableRequest pageableRequest) {
         return null;
     }
 

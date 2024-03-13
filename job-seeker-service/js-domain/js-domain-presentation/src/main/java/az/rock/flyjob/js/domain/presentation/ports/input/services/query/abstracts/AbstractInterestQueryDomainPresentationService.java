@@ -18,8 +18,8 @@ public interface AbstractInterestQueryDomainPresentationService {
     List<MyInterestResponseModel> queryMyAll();
     List<MyInterestResponseModel> queryMySimpleAll();
 //-------------------------------------------------------
-    List<AnyInterestResponseModel> queryAllAnyInterests(SimplePageableRequest pageableRequest);
-   List< SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(SimplePageableRequest pageableRequest);
+    List<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId,SimplePageableRequest pageableRequest);
+   List< SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(UUID targetResumeId,SimplePageableRequest pageableRequest);
 
     AnyInterestResponseModel findAnyInterestById(UUID id);
 

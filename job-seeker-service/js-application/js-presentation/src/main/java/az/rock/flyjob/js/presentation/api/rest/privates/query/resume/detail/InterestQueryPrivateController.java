@@ -33,8 +33,8 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    @GetMapping(value = "/get-any/all")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(UUID targetResumeId,@RequestBody SimplePageableRequest pageableRequest) {
+    @GetMapping(value = "/get-any/all/{resumeId}")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(@PathVariable(name = "resumeId") UUID targetResumeId,@RequestBody SimplePageableRequest pageableRequest) {
         return null;
     }
 
@@ -45,8 +45,8 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    @GetMapping(value = "/get-simple/any")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(UUID targetResumeId,@RequestBody SimplePageableRequest pageableRequest) {
+    @GetMapping(value = "/get-simple/any/{resumeId}")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(@PathVariable(name = "resumeId") UUID targetResumeId,@RequestBody SimplePageableRequest pageableRequest) {
         return null;
     }
 
