@@ -67,6 +67,7 @@ public class ResumeDataAccessMapper implements AbstractResumeDataAccessMapper {
                     .createdDate(GDateTime.toTimestamp(safetyResumeRoot.getCreatedDate()))
                     .lastModifiedDate(GDateTime.toTimestamp(safetyResumeRoot.getModificationDate()))
                     .userId(safetyResumeRoot.getUserId())
+                    //TODO tekrar duzelis olunmalidir.
                     .information(informationEntity)
                     .build();
             informationEntity.setResume(resumeEntity);

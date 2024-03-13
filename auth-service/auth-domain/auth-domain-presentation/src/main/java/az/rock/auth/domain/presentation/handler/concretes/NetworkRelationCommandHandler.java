@@ -114,7 +114,7 @@ public class NetworkRelationCommandHandler implements AbstractNetworkRelationCom
         }
     }
 
-
+    //TODO NETWORK STATUS NE OLMALIDIR
     @Override
     public NetworkRelationEvent handleDeleteNetwork(UUID targetUserId) throws NoActiveRowException {
         var currentUserId = this.securityContextHolder.availableUser();

@@ -26,4 +26,5 @@ public class CompanyCreateEventCoordinator extends AbstractCompanyCreateEventCoo
         return this.companyCreatedTopicName;
     }
 
+    //TODO: If required it can Implement this method onSuccess and onFail
 }

@@ -36,6 +36,7 @@ public class InformationDataAccessMapper implements AbstractInformationDataAcces
                             .accessModifier(informationEntity.getAccessModifier())
                             .firstName(informationEntity.getName())
                             .lastName(informationEntity.getSurname())
+                            //TODO
                             .build()
             );
         }else return Optional.empty();
