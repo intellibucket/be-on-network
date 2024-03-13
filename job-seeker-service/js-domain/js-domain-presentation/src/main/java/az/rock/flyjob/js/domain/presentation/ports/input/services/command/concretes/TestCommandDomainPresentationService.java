@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @InputPort
-@Profile({"local", "devlop", "pre-develop"})
+@Profile({"local", "develop", "pre-develop"})
 @Slf4j
 public class TestCommandDomainPresentationService implements AbstractTestCommandDomainPresentationService {
 
