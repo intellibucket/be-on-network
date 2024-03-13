@@ -23,4 +23,5 @@ public interface CourseQueryPrivateSpec {
     ResponseEntity<JSuccessDataResponse<MyCourseResponseModel>> findMyCourseById(UUID id);
 
     ResponseEntity<JSuccessDataResponse<AnyCourseResponseModel>> findAnyCourseById(UUID id);
+
 }
