@@ -35,7 +35,7 @@ public class CourseCommandHandler implements AbstractCourseCommandHandler {
     private final AbstractFileStorageAdapter fileStorageService;
     private final AbstractSecurityContextHolder securityContextHolder;
 
-    private List<AccessModifier> mockAccessModifiers = List.of(AccessModifier.PUBLIC,AccessModifier.AUTHENTICATED,AccessModifier.PRIVATE,AccessModifier.ONLY_FOLLOWERS,AccessModifier.UNKNOWN,AccessModifier.ONLY_FOLLOWERS_AND_NETWORK,AccessModifier.ONLY_NETWORK);
+    private List<AccessModifier> mockAccessModifiers = List.of(AccessModifier.values());
 
     public CourseCommandHandler(AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter, AbstractCourseDomainMapper courseDomainMapper, AbstractCourseCommandRepositoryAdapter courseCommandRepositoryAdapter, AbstractFileStorageAdapter fileStorageService, AbstractSecurityContextHolder securityContextHolder) {
         this.courseQueryRepositoryAdapter = courseQueryRepositoryAdapter;
