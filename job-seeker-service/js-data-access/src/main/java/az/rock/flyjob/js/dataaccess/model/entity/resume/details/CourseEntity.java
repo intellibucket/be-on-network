@@ -52,10 +52,10 @@ public class CourseEntity extends BaseEntity {
     @Column(name = "country")
     private String country;
 
-    @Temporal(value = TemporalType.DATE)
+    @Column(name = "start_date", columnDefinition = "DATE")
     private LocalDate startDate;
 
-    @Temporal(value = TemporalType.DATE)
+    @Column(name = "end_date", columnDefinition = "DATE")
     private LocalDate endDate;
 
     @Column(name = "is_continue")
