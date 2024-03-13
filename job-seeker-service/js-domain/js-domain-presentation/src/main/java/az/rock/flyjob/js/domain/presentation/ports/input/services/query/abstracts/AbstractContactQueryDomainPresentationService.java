@@ -17,7 +17,7 @@ public interface AbstractContactQueryDomainPresentationService {
     SimplePageableResponse<AnyContactResponseModel> queryAllAnyContacts(SimplePageableRequest simplePageableRequest);
     SimplePageableResponse<MyContactResponseModel> queryAllMyContacts(SimplePageableRequest simplePageableRequest);
     SimplePageableResponse<SimpleMyContactResponseModel> queryAllMySimpleContacts(SimplePageableRequest simplePageableRequest);
-    SimplePageableResponse<SimpleAnyContactResponseModel> queryAllAnySimpleContacts(SimplePageableRequest simplePageableRequest);
+    SimplePageableResponse<SimpleAnyContactResponseModel> queryAllAnySimpleContacts(UUID targetResumeID , SimplePageableRequest simplePageableRequest);
     MyContactResponseModel findMyContactById(UUID uuid);
     AnyContactResponseModel findAnyContactById(UUID uuid);
 

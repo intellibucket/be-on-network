@@ -47,7 +47,7 @@ public class ContactQueryDomainPresentationService implements AbstractContactQue
     }
 
     @Override
-    public SimplePageableResponse<SimpleAnyContactResponseModel> queryAllAnySimpleContacts(SimplePageableRequest simplePageableRequest) {
+    public SimplePageableResponse<SimpleAnyContactResponseModel> queryAllAnySimpleContacts(UUID targetResumeID, SimplePageableRequest simplePageableRequest) {
         return null;
     }
 

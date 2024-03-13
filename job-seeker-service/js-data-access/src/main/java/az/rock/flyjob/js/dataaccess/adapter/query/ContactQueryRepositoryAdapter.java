@@ -24,7 +24,7 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public Boolean isExistContact(ContactRoot contactRoot) {
-        return this.contactQueryJPARepository.existsByFormatTypeAndDataAndLiveType();
+        return null;
     }
 
     @Override

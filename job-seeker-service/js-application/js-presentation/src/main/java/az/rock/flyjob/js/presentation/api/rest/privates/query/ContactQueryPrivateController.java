@@ -34,11 +34,12 @@ public class ContactQueryPrivateController implements ContactQueryPrivateSpec {
     }
 
     @Override
-    @GetMapping(value = "/get-all-any/contacts")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyContactResponseModel>>> queryAllAnyContacts(SimplePageableRequest pageableRequest) {
+    @GetMapping(value = "/get-all/any/contacts")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyContactResponseModel>>> queryAllAnyContacts(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         var response=this.abstractContactQueryDomainPresentationService.queryAllAnyContacts(pageableRequest);
         return  ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
+
 
     @Override
     @GetMapping(value = "/get-all-my-simple/contacts")
@@ -49,8 +50,8 @@ public class ContactQueryPrivateController implements ContactQueryPrivateSpec {
 
     @Override
     @GetMapping(value = "/get-all-any-simple/contacts")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyContactResponseModel>>> queryAllAnySimpleContacts(SimplePageableRequest pageableRequest) {
-        var response=this.abstractContactQueryDomainPresentationService.queryAllAnySimpleContacts(pageableRequest);
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyContactResponseModel>>> queryAllAnySimpleContacts(UUID targetResumeID ,SimplePageableRequest pageableRequest) {
+        var response=this.abstractContactQueryDomainPresentationService.queryAllAnySimpleContacts(targetResumeID,pageableRequest);
         return  ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
