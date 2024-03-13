@@ -9,6 +9,10 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,20 +25,24 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
             return Optional.of(
                     CourseRoot.Builder.builder()
                             .id(CourseID.of(safetyResumeEntity.getUuid()))
-                            .city(safetyResumeEntity.getCity())
-                            .accessModifier(safetyResumeEntity.getAccessModifier())
-                            .courseTitle(safetyResumeEntity.getCourseTitle())
-                            .createdDate(GDateTime.toZonedDateTime(safetyResumeEntity.getCreatedDate()))
-                            .description(safetyResumeEntity.getDescription())
-                            .country(safetyResumeEntity.getCountry())
-                            .endDate(GDateTime.toZonedDateTime(safetyResumeEntity.getEndDate()))
-                            .orderNumber(safetyResumeEntity.getOrderNumber())
-                            .processStatus(safetyResumeEntity.getProcessStatus())
-                            .certificateFilePath(safetyResumeEntity.getCertificateFilePath())
-                            .rowStatus(safetyResumeEntity.getRowStatus())
                             .version(Version.of(safetyResumeEntity.getVersion()))
+                            .processStatus(safetyResumeEntity.getProcessStatus())
+                            .rowStatus(safetyResumeEntity.getRowStatus())
+                            .createdDate(GDateTime.toZonedDateTime(safetyResumeEntity.getCreatedDate()))
+                            .lastModifiedDate(GDateTime.toZonedDateTime(safetyResumeEntity.getLastModifiedDate()))
                             .resume(ResumeID.of(safetyResumeEntity.getResume().getUuid()))
-                            .startDate(GDateTime.toZonedDateTime(safetyResumeEntity.getStartDate()))
+                            .accessModifier(safetyResumeEntity.getAccessModifier())
+                            .orderNumber(safetyResumeEntity.getOrderNumber())
+                            .courseTitle(safetyResumeEntity.getCourseTitle())
+                            .institution(safetyResumeEntity.getInstitution())
+                            .isOnline(safetyResumeEntity.getIsOnline())
+                            .city(safetyResumeEntity.getCity())
+                            .country(safetyResumeEntity.getCountry())
+                            .startDate(safetyResumeEntity.getStartDate())
+                            .endDate(safetyResumeEntity.getEndDate())
+                            .description(safetyResumeEntity.getDescription())
+                            .certificateFilePath(safetyResumeEntity.getCertificateFilePath())
+                            .verificationAddress(safetyResumeEntity.getVerificationAddress())
                             .build()
             );
         }else return Optional.empty();
@@ -46,29 +54,29 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
         var optionalCourseRoot = Optional.ofNullable(root);
         if(optionalCourseRoot.isPresent()) {
             var safetyCourseRoot = optionalCourseRoot.get();
-            return Optional.of(
-                    CourseEntity.Builder.builder()
-                            .setUuid(safetyCourseRoot.getRootID().getAbsoluteID())
-                            .setCity(safetyCourseRoot.getCity())
-                            .setCountry(safetyCourseRoot.getCountry())
-                            .setCourseTitle(safetyCourseRoot.getCourseTitle())
-                            .setAccessModifier(safetyCourseRoot.getAccessModifier())
-                            .setCertificateFilePath(safetyCourseRoot.getCertificateFilePath())
-                            .setDescription(safetyCourseRoot.getDescription())
-                            .setEndDate(GDateTime.toTimestamp(safetyCourseRoot.getEndDate()))
-                            .setInstitution(safetyCourseRoot.getInstitution())
-                            .setIsOnline(safetyCourseRoot.getOnline())
-                            .setOrderNumber(safetyCourseRoot.getOrderNumber())
-                            .setCreatedDate(GDateTime.toTimestamp(safetyCourseRoot.getCreatedDate()))
-                            .setLastModifiedDate(GDateTime.toTimestamp(safetyCourseRoot.getModificationDate()))
-                            .setProcessStatus(safetyCourseRoot.getProcessStatus())
-                            .setResume(ResumeEntity.referenceOf(safetyCourseRoot.getResume().getRootID()))
-                            .setStartDate(GDateTime.toTimestamp(safetyCourseRoot.getStartDate()))
-                            .setRowStatus(safetyCourseRoot.getRowStatus())
-                            .setVerificationAddress(safetyCourseRoot.getVerificationAddress())
-                            .setVersion(safetyCourseRoot.getVersionValue())
-                            .build()
-            );
+            var resume  = ResumeEntity.referenceOf(safetyCourseRoot.getResume().getRootID());
+            var courseEntity = CourseEntity.Builder.builder()
+                    .setUuid(safetyCourseRoot.getRootID().getAbsoluteID())
+                    .setVersion(safetyCourseRoot.getVersionValue())
+                    .setProcessStatus(safetyCourseRoot.getProcessStatus())
+                    .setRowStatus(safetyCourseRoot.getRowStatus())
+                    .setCreatedDate(GDateTime.toTimestamp(safetyCourseRoot.getCreatedDate()))
+                    .setLastModifiedDate(GDateTime.toTimestamp(safetyCourseRoot.getModificationDate()))
+                    .setResume(resume)
+                    .setAccessModifier(safetyCourseRoot.getAccessModifier())
+                    .setOrderNumber(safetyCourseRoot.getOrderNumber())
+                    .setCourseTitle(safetyCourseRoot.getCourseTitle())
+                    .setInstitution(safetyCourseRoot.getInstitution())
+                    .setIsOnline(safetyCourseRoot.getOnline())
+                    .setCity(safetyCourseRoot.getCity())
+                    .setCountry(safetyCourseRoot.getCountry())
+                    .setStartDate(safetyCourseRoot.getStartDate())
+                    .setEndDate(safetyCourseRoot.getEndDate())
+                    .setDescription(safetyCourseRoot.getDescription())
+                    .setCertificateFilePath(safetyCourseRoot.getCertificateFilePath())
+                    .setVerificationAddress(safetyCourseRoot.getVerificationAddress())
+                    .build();
+            return Optional.of(courseEntity);
         }
         else return Optional.empty();
 

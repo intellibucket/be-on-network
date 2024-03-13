@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 
 
 public interface AbstractCourseDomainMapper {
-
     CourseRoot toRoot(CourseCommandModel courseCommandModel, ResumeID resumeID);
-
-//    CourseRoot filePayload(CourseID courseID, FileMetaData courseFilePayload);
+    CourseRoot toRoot(CourseCommandModel courseCommandModel, CourseRoot courseRoot, ResumeID resumeID);
 }

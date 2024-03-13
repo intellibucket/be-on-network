@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-//TODO CREDENTIALLAR YAZILMALIDI CONFIGE
+
 @Component
 public class JsMinioService implements AbstractMinioService {
 

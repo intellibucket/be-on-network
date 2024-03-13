@@ -5,57 +5,69 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
-import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCreateCommandHandler;
+import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
+import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @InputPort
 @Slf4j
 public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService{
-    //TODO ADD SAGA,XUSUSI ERROR
-    private AbstractCourseCreateCommandHandler courseMergeCommandHandler;
+    private AbstractCourseCommandHandler commandHandler;
 
-    public CourseCommandDomainPresentationService(AbstractCourseCreateCommandHandler courseMergeCommandHandler) {
-        this.courseMergeCommandHandler = courseMergeCommandHandler;
+    public CourseCommandDomainPresentationService(AbstractCourseCommandHandler commandHandler) {
+        this.commandHandler = commandHandler;
     }
 
-//    private final AbstractCourseUpdateCommandHandler userUpdateCommandHandler;
-//    private final AbstractJobSeekerCreateEventCoordinator jobSeekerCreateEventCoordinator;
-//    private final AbstractCompanyCreateEventCoordinator companyCreateEventCoordinator;
 
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
-        var courseCreatedEvent = courseMergeCommandHandler.mergeCourse(courseCommandModel);
-
+        try {
+            var courseCreatedEvent = commandHandler.create(command.getModel());
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        var courseCommandModel = Optional.of(command.getModel()).orElseThrow(()->new RuntimeException(""));
-        var courseUpdatedEvent = courseMergeCommandHandler.mergeCourse(courseCommandModel);
+        try{
+            var courseUpdatedEvent = commandHandler.merge(command.getModel(),command.getTargetId());
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void delete(UUID courseId) {
-        var courseDeleteEvent = courseMergeCommandHandler.deleteCourse(courseId);
+        try{
+            var courseDeleteEvent = commandHandler.delete(courseId);
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
-    public void reorder(ReorderCommandModel request) {
-        //TODO REORDER YAZILMALIDI
+    public void reorder(ReorderCommandModel command) {
+        try{
+            var reorderEvent = commandHandler.reorder(command);
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void uploadCertificate(UUID courseId, MultipartFileWrapper file) {
-        var certificateEvent = courseMergeCommandHandler.uploadCertificate(courseId, file);
+        try {
+            var certificateEvent = commandHandler.uploadCertificate(courseId, file);
+        }catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
 
     }
 }

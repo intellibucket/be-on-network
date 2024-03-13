@@ -23,9 +23,9 @@ public class CourseDomainMapper implements AbstractCourseDomainMapper {
                 .id(courseId)
                 .country(courseCommandModel.getCountry())
                 .city(courseCommandModel.getCity())
-                .startDate(courseCommandModel.getStartDate())
-                .endDate(courseCommandModel.getEndDate())
-                .isOnline(true)
+                .startDate(courseCommandModel.getStartDate().toLocalDate())
+                .endDate(courseCommandModel.getEndDate().toLocalDate())
+                .isOnline(courseCommandModel.getIsOnline())
                 .rowStatus(RowStatus.ACTIVE)
                 .version(Version.ONE)
                 .verificationAddress(courseCommandModel.getVerificationAddress())
@@ -33,14 +33,32 @@ public class CourseDomainMapper implements AbstractCourseDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .resume(resumeId)
                 .institution(courseCommandModel.getInstitution())
-                .orderNumber(0)
+                .orderNumber(-1)
                 .build();
-
     }
 
-//    @Override
-//    public CourseRoot filePayload(CourseRoot course, FileMetaData courseFilePayload) {
-//        return CourseRoot.Builder.builder()
-//                .build();
-//    }
+    public CourseRoot toRoot(CourseCommandModel courseCommandModel, CourseRoot courseRoot,ResumeID resumeID){
+        return CourseRoot.Builder.builder()
+                .id(courseRoot.getRootID())
+                .version(courseRoot.getVersion())
+                .processStatus(courseRoot.getProcessStatus())
+                .rowStatus(courseRoot.getRowStatus())
+                .createdDate(courseRoot.getCreatedDate())
+                .lastModifiedDate(courseRoot.getModificationDate())
+                .resume(resumeID)
+                .accessModifier(courseRoot.getAccessModifier())
+                .orderNumber(courseRoot.getOrderNumber())
+                .courseTitle(courseCommandModel.getCourseTitle())
+                .institution(courseCommandModel.getInstitution())
+                .isOnline(courseCommandModel.getIsOnline())
+                .city(courseCommandModel.getCity())
+                .country(courseCommandModel.getCountry())
+                .startDate(courseCommandModel.getStartDate().toLocalDate())
+                .endDate(courseCommandModel.getEndDate().toLocalDate())
+                .description(courseCommandModel.getDescription())
+                .certificateFilePath(courseRoot.getCertificateFilePath())
+                .verificationAddress(courseCommandModel.getVerificationAddress())
+                .build();
+    }
+
 }
