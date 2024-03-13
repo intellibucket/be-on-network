@@ -36,13 +36,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     private final AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter;
     private final AbstractInterestCommandRepositoryAdapter interestCommandRepositoryAdapter;
     private final AbstractInterestDomainMapper interestDomainMapper;
-    private final List<AccessModifier> modifierList= List.of(AccessModifier.PUBLIC
-            ,AccessModifier.UNKNOWN
-            ,AccessModifier.AUTHENTICATED
-            ,AccessModifier.PRIVATE
-            ,AccessModifier.ONLY_FOLLOWERS_AND_NETWORK
-            ,AccessModifier.ONLY_FOLLOWERS
-            ,AccessModifier.ONLY_NETWORK);
+    private final List<AccessModifier> modifierList= List.of(AccessModifier.values());
 
 
     public InterestCreateCommandHandler(AbstractSecurityContextHolder securityContextHolder,

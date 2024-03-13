@@ -17,9 +17,9 @@ import java.util.Optional;
 public class InterestCommandRepositoryAdapter implements AbstractInterestCommandRepositoryAdapter {
 
     private final AbstractInterestCustomCommandJPARepository interestCustomCommandJPARepository;
-    private final AbstractInterestDataAccessMapper<InterestEntity, InterestRoot> interestDataAccessMapper;
+    private final AbstractInterestDataAccessMapper interestDataAccessMapper;
 
-    public InterestCommandRepositoryAdapter(AbstractInterestCustomCommandJPARepository interestCustomCommandJPARepository, AbstractInterestDataAccessMapper<InterestEntity, InterestRoot> interestDataAccessMapper) {
+    public InterestCommandRepositoryAdapter(AbstractInterestCustomCommandJPARepository interestCustomCommandJPARepository, AbstractInterestDataAccessMapper interestDataAccessMapper) {
         this.interestCustomCommandJPARepository = interestCustomCommandJPARepository;
         this.interestDataAccessMapper = interestDataAccessMapper;
     }
@@ -34,10 +34,10 @@ public class InterestCommandRepositoryAdapter implements AbstractInterestCommand
     @Override
     public Optional<InterestRoot> create(InterestRoot root) {
         var optionalEntity = this.interestDataAccessMapper.toEntity(root);
-        if (optionalEntity.isPresent()){
+        if (optionalEntity.isPresent()) {
             var savedEntity = this.interestCustomCommandJPARepository.persist(optionalEntity.get());
             return this.interestDataAccessMapper.toRoot(savedEntity);
-        }else return Optional.empty();
+        } else return Optional.empty();
     }
 
     @Override
@@ -46,11 +46,6 @@ public class InterestCommandRepositoryAdapter implements AbstractInterestCommand
         entity.ifPresent(this.interestCustomCommandJPARepository::merge);
     }
 
-
-    @Override
-    public void rollback(Collection<InterestRoot> roots) {
-        AbstractInterestCommandRepositoryAdapter.super.rollback(roots);
-    }
 
     @Override
     public void rollback(InterestRoot root) {

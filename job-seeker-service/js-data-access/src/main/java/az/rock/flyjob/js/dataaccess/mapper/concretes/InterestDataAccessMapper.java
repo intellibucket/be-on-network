@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class InterestDataAccessMapper implements AbstractInterestDataAccessMapper<InterestEntity, InterestRoot> {
+public class InterestDataAccessMapper implements AbstractInterestDataAccessMapper {
     @Override
     public Optional<InterestRoot> toRoot(InterestEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);

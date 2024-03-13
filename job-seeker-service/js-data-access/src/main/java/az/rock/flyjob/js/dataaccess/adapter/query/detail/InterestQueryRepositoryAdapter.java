@@ -8,6 +8,7 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.Abstr
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,10 +18,10 @@ import java.util.Optional;
 public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepositoryAdapter {
     private final AbstractInterestQueryJPARepository repository;
 
-    private final AbstractInterestDataAccessMapper<InterestEntity, InterestRoot> interestDataAccessMapper;
+    private final AbstractInterestDataAccessMapper interestDataAccessMapper;
 
     public InterestQueryRepositoryAdapter(AbstractInterestQueryJPARepository companyProfileQueryJPARepository,
-                                          AbstractInterestDataAccessMapper<InterestEntity, InterestRoot> companyProfileDataAccessMapper) {
+                                          @Qualifier("interestDataAccessMapper") AbstractInterestDataAccessMapper companyProfileDataAccessMapper) {
         this.repository = companyProfileQueryJPARepository;
         this.interestDataAccessMapper = companyProfileDataAccessMapper;
     }
@@ -37,10 +38,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
         return Optional.empty();
     }
 
-    @Override
-    public Optional<InterestRoot> findByPID(ResumeID parentID, List<AccessModifier> accessModifiers) {
-        return AbstractInterestQueryRepositoryAdapter.super.findByPID(parentID);
-    }
+
 
 
     @Override

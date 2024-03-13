@@ -13,16 +13,13 @@ import java.util.UUID;
 
 @DomainOutputPort
 public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<InterestRoot, InterestID, ResumeID> {
-    Boolean existByResumeIDAndName(ResumeID resumeID,InterestRoot interestRoot);
-     Optional<InterestRoot> findOwnByID(ResumeID parentID, InterestID rootId,List<AccessModifier> accessModifiers) ;
-     Optional<InterestRoot> findByPID(ResumeID parentID, List<AccessModifier> accessModifiers) ;
-     List<InterestRoot> findAllByPID(ResumeID parentID,List<AccessModifier> accessModifiers);
+    Boolean existByResumeIDAndName(ResumeID resumeID, InterestRoot interestRoot);
+
+    Optional<InterestRoot> findOwnByID(ResumeID parentID, InterestID rootId, List<AccessModifier> accessModifiers);
+
+    List<InterestRoot> findAllByPID(ResumeID parentID, List<AccessModifier> accessModifiers);
 
     Optional<Integer> getLimit(ResumeID resumeID);
-
-
-
-
 
 
 }
