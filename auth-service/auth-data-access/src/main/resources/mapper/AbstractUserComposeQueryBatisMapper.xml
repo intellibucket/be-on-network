@@ -3,7 +3,7 @@
 <mapper namespace="az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository">
 
     <sql id="user_profile_result_sql">
-        usr.uuid as uuid,
+       select usr.uuid as uuid,
        usr.version as version,
        usr.row_status as rowStatus,
        usr.process_status as trxProcessStatus,

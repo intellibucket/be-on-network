@@ -12,10 +12,7 @@ import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 @CrossOrigin
@@ -36,7 +33,8 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(SimplePageableRequest pageableRequest) {
+    @GetMapping(value = "/get-any/all")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(UUID targetResumeId,@RequestBody SimplePageableRequest pageableRequest) {
         return null;
     }
 
@@ -47,7 +45,8 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(SimplePageableRequest pageableRequest) {
+    @GetMapping(value = "/get-simple/any")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(UUID targetResumeId,@RequestBody SimplePageableRequest pageableRequest) {
         return null;
     }
 
@@ -58,7 +57,8 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<AnyInterestResponseModel>> findAnyInterestById(UUID id) {
+    @GetMapping(value = "/get-any/{interestId}")
+    public ResponseEntity<JSuccessDataResponse<AnyInterestResponseModel>> findAnyInterestById(@PathVariable(name = "interestId") UUID id) {
         return null;
     }
 }
