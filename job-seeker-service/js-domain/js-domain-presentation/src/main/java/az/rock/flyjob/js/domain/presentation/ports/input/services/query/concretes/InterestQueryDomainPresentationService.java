@@ -54,10 +54,9 @@ public class InterestQueryDomainPresentationService implements AbstractInterestQ
 
     @Override
     public AnyInterestResponseModel findAnyInterestById(UUID id) {
+       var anyInterest = this.interestQueryRepositoryAdapter.findAntById(id);
 
-        var resumeID = this.securityContextHolder.availableResumeID();
-        final ResumeID resumeID1 = this.securityContextHolder.availableResumeID();
-        final AnyInterestResponseModel anyInterestByResumeId = this.interestQueryRepositoryAdapter.findAnyInterestByResumeId(id);
+
         return null;
     }
 }

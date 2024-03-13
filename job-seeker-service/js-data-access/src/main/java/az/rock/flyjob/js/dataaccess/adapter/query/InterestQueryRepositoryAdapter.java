@@ -9,6 +9,7 @@ import az.rock.lib.valueObject.SimplePageableRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -21,7 +22,8 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public AnyInterestResponseModel findAnyInterestByResumeId(UUID id) {
+    public Optional<AnyInterestResponseModel> findAntById(UUID id) {
+        
         return null;
     }
 

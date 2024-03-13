@@ -11,13 +11,14 @@ import az.rock.lib.valueObject.SimplePageableRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @DomainOutputPort
 @Transactional(readOnly = true)
 public interface AbstractInterestQueryRepositoryAdapter {
 
-    AnyInterestResponseModel findAnyInterestByResumeId(UUID id);
+    Optional<AnyInterestResponseModel> findAntById(UUID id);
 
     List<AnyInterestResponseModel> findAllAnyInterests(SimplePageableRequest pageableRequest);
 
