@@ -17,8 +17,6 @@ import java.util.Optional;
 public class EducationDataAccessMapper implements AbstractEducationDataAccessMapper {
 
 
-
-
     @Override
     public Optional<EducationRoot> toRoot(EducationEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
