@@ -15,9 +15,10 @@ import java.util.Optional;
 @Component
 public class ContactQueryRepositoryAdapter implements AbstractContactQueryRepositoryAdapter {
     private final AbstractContactQueryJPARepository contactQueryJPARepository;
-    private final AbstractContactDataAccessMapper<ContactEntity, ContactRoot> contactMapper;
+    private final AbstractContactDataAccessMapper contactMapper;
 
-    public ContactQueryRepositoryAdapter(AbstractContactQueryJPARepository contactQueryJPARepository, AbstractContactDataAccessMapper<ContactEntity, ContactRoot> contactMapper) {
+    public ContactQueryRepositoryAdapter(AbstractContactQueryJPARepository contactQueryJPARepository,
+                                         AbstractContactDataAccessMapper contactMapper) {
         this.contactQueryJPARepository = contactQueryJPARepository;
         this.contactMapper = contactMapper;
     }
@@ -46,6 +47,12 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public List<ContactRoot> findAllByPID(ResumeID parentID) {
-        return AbstractContactQueryRepositoryAdapter.super.findAllByPID(parentID);
+        var contactEntityList=this.contactQueryJPARepository.findAllByUser(parentID.getAbsoluteID());
+
+        return contactEntityList.stream().
+                map(this.contactMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }

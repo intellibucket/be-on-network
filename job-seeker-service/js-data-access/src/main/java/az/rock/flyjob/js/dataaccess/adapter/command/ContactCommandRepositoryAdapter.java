@@ -18,10 +18,11 @@ import java.util.stream.Collectors;
 @Component
 @Slf4j
 public class ContactCommandRepositoryAdapter implements AbstractContactCommandRepositoryAdapter {
-    private final AbstractContactDataAccessMapper<ContactEntity,ContactRoot> abstractContactDataAccessMapper;
+    private final AbstractContactDataAccessMapper abstractContactDataAccessMapper;
     private final AbstractContactCommandJPARepository repository;
 
-    public ContactCommandRepositoryAdapter(AbstractContactDataAccessMapper abstractContactDataAccessMapper, AbstractContactCommandJPARepository repository) {
+    public ContactCommandRepositoryAdapter(AbstractContactDataAccessMapper abstractContactDataAccessMapper,
+                                           AbstractContactCommandJPARepository repository) {
         this.abstractContactDataAccessMapper = abstractContactDataAccessMapper;
         this.repository = repository;
     }
