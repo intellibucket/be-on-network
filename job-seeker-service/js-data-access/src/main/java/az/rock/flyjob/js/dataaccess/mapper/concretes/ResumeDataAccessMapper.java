@@ -41,6 +41,7 @@ public class ResumeDataAccessMapper implements AbstractResumeDataAccessMapper {
                             .version(Version.of(safetyResumeEntity.getVersion()))
                             .information(informationRoot.orElse(InformationRoot.EMPTY))
                             .userId(entity.getUserId())
+                            //TODO
                             .build()
             );
         } else return Optional.empty();
