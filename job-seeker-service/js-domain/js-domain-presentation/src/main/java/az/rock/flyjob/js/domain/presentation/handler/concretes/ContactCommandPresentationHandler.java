@@ -34,7 +34,11 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
 
     private final AbstractContactDomainService domainService;
 
-    public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter, AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter, AbstractContactCommandDomainMapper contactCommandDomainMapper, AbstractSecurityContextHolder contextHolder, AbstractContactDomainService domainService) {
+    public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter,
+                                             AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter,
+                                             AbstractContactCommandDomainMapper contactCommandDomainMapper,
+                                             AbstractSecurityContextHolder contextHolder,
+                                             AbstractContactDomainService domainService) {
         this.abstractContactCommandRepositoryAdapter = abstractContactCommandRepositoryAdapter;
         this.abstractContactQueryRepositoryAdapter = commandQueryRepositoryAdapter;
         this.contactCommandDomainMapper = contactCommandDomainMapper;
@@ -53,15 +57,14 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     @Override
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest)
     {
-        var currentResumeId=this.contextHolder.availableResumeID();
-        var allSavedResume=this.abstractContactQueryRepositoryAdapter.findAllByPID(currentResumeId);
-        var contactRoot=this.contactCommandDomainMapper.toRoot(createRequest.getModel(),currentResumeId);
-        var validateContact=this.domainService.validateContactDuplication(allSavedResume,contactRoot);
-        var isExistContact=this.abstractContactQueryRepositoryAdapter.isExistContact(validateContact);
-        if(isExistContact) throw new ContactAlreadyExistException();
-        var optionalContactRoot=this.abstractContactCommandRepositoryAdapter.create(validateContact);
-        if(optionalContactRoot.isEmpty()) throw new UnknownSystemException();
-        var contactPayload=this.toPayload(optionalContactRoot.get());
+        var currentResumeId = this.contextHolder.availableResumeID();
+        var allSavedContacts = this.abstractContactQueryRepositoryAdapter.findAllByPID(currentResumeId);
+        var contactRoot = this.contactCommandDomainMapper.toRoot(createRequest.getModel(),currentResumeId);
+        var validateContact = this.domainService.validateContactDuplication(allSavedContacts,contactRoot);
+        var optionalContactRoot = this.abstractContactCommandRepositoryAdapter.create(validateContact);
+        if(optionalContactRoot.isEmpty())
+            throw new UnknownSystemException();
+        var contactPayload = this.toPayload(optionalContactRoot.get());
         return ContactCreatedEvent.of(contactPayload);
     }
 

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 @Component
-public class ContactDataAccessMapper implements AbstractContactDataAccessMapper<ContactEntity,ContactRoot> {
+public class ContactDataAccessMapper implements AbstractContactDataAccessMapper {
 
     private final ResumeDataAccessMapper resumeDataAccessMapper;
 

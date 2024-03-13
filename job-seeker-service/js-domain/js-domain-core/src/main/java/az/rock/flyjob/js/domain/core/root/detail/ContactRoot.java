@@ -6,6 +6,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 
 public class ContactRoot extends AggregateRoot<ContactID> {
@@ -16,9 +17,19 @@ public class ContactRoot extends AggregateRoot<ContactID> {
     private ContactLiveType liveType;
     private String data;
 
+
     @Override
     public boolean equals(Object o) {
-        return super.equals(o);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ContactRoot that = (ContactRoot) o;
+        return Objects.equals(resume, that.resume) && formatType == that.formatType && liveType == that.liveType && Objects.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), resume, formatType, liveType, data);
     }
 
     private ContactRoot(Builder builder) {
@@ -49,11 +60,7 @@ public class ContactRoot extends AggregateRoot<ContactID> {
     }
 
     public Boolean isValid() {
-        var contactPattern = "^[+][0-9]{1,3}$";
-        var pattern = "^[0-9]{1,15}$";
-        return this.formatType.equals(contactPattern) &&
-                this.liveType.equals(pattern) &&
-                this.data != null;
+        return Objects.nonNull(this.formatType) && Objects.nonNull(this.data) && Objects.nonNull(this.liveType);
     }
 
     public Integer getOrderNumber() {
