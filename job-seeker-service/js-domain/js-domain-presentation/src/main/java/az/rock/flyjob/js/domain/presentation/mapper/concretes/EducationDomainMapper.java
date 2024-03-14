@@ -14,8 +14,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-import static az.rock.lib.valueObject.OrderNumber.ORDER_NUMBER;
-
 @Component
 public class EducationDomainMapper implements AbstractEducationDomainMapper {
 
@@ -30,7 +28,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .resume(resumeID)
-                .orderNumber(ORDER_NUMBER.orderNumber())
+                .orderNumber(-1)
                 .degree(educationCommandModel.getDegree())
                 .state(educationCommandModel.getState())
                 .link(educationCommandModel.getLink())
@@ -43,15 +41,16 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .build();
     }
 
-
+    @Override
     public EducationRoot toExistRoot(EducationRoot educationRoot, EducationCommandModel educationCommandModel) {
-        educationRoot.setEducationDegree(educationCommandModel.getDegree());
-        educationRoot.setEducationDescription(educationCommandModel.getDescription());
-        educationRoot.setEducationState(educationCommandModel.getState());
-        educationRoot.setEducationStartDate(educationCommandModel.getStartDate());
-        educationRoot.setEducationEndDate(educationCommandModel.getEndDate());
-        educationRoot.setLink(educationCommandModel.getLink());
-        educationRoot.setEstablishmentName(educationCommandModel.getEstablishmentName());
+        educationRoot
+                .changeEducationDegree(educationCommandModel.getDegree())
+                .changeEducationDescription(educationCommandModel.getDescription())
+                .changeEducationState(educationCommandModel.getState())
+                .changeEducationStartDate(educationCommandModel.getStartDate())
+                .changeEducationEndDate(educationCommandModel.getEndDate())
+                .changeLink(educationCommandModel.getLink())
+                .changeEstablishmentName(educationCommandModel.getEstablishmentName());
         return educationRoot;
     }
 

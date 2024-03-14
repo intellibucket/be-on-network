@@ -43,5 +43,14 @@
     "tr": "Kurs limiti aşıldı",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000006",
+    "az": "Təhsil tapılmadı.",
+    "en": "Education not found.",
+    "ru": "Образование не найдено.",
+    "tr": "Eğitim bulunamadı.",
+    "hasRegex": false,
+    "regex": ""
   }
 ]

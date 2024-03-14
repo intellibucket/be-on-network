@@ -12,11 +12,7 @@ import az.rock.lib.valueObject.js.EducationState;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 
 public class EducationRoot extends AggregateRoot<EducationID> {
@@ -24,14 +20,6 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private AccessModifier accessModifier;
     private Integer orderNumber;
     private EducationDegree degree;
-
-    @Override
-    public String toString() {
-        return "EducationRoot{" +
-               "orderNumber=" + orderNumber +
-               '}';
-    }
-
     private EducationState state;
     private String link;
     private UUID establishmentUUID;
@@ -40,7 +28,6 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
-
 
     private EducationRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
@@ -58,30 +45,49 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         this.description = builder.description;
     }
 
-    public static Map<EducationID, EducationRoot> groupByPhoneNumberID(List<EducationRoot> educationRoots) {
-        return educationRoots.stream().collect(Collectors.toMap(EducationRoot::getRootID, Function.identity()));
+    @Override
+    public String toString() {
+        return "EducationRoot{" +
+               "orderNumber=" + orderNumber +
+               '}';
     }
 
-    public void setEducationDegree(EducationDegree educationDegree) {
+    public EducationRoot changeEducationDegree(EducationDegree educationDegree) {
         this.degree = educationDegree;
+        return this;
     }
 
-    public void setEducationState(EducationState educationState) {
+    public EducationRoot changeEducationState(EducationState educationState) {
         this.state = educationState;
-
+        return this;
     }
 
-    public void setEducationDescription(String description) {
+    public EducationRoot changeEducationDescription(String description) {
         this.description = description;
+        return this;
     }
 
-    public void setEducationStartDate(LocalDate educationStartDate) {
+    public EducationRoot changeEducationStartDate(LocalDate educationStartDate) {
         this.startDate = educationStartDate;
+        return this;
 
     }
 
-    public void setEducationEndDate(LocalDate educationEndDate) {
+    public EducationRoot changeEducationEndDate(LocalDate educationEndDate) {
         this.startDate = educationEndDate;
+        return this;
+    }
+    public EducationRoot changeOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+        return this;
+    }
+    public EducationRoot changeLink(String link) {
+        this.link = link;
+        return this;
+    }
+    public EducationRoot changeEstablishmentName(String establishmentName) {
+        this.establishmentName = establishmentName;
+        return this;
     }
 
     public ResumeID getResumeID() {
@@ -96,9 +102,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return orderNumber;
     }
 
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
-    }
+
 
     public EducationDegree getDegree() {
         return degree;
@@ -112,10 +116,6 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return link;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
-
     public UUID getEstablishmentUUID() {
         return establishmentUUID;
     }
@@ -124,9 +124,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return establishmentName;
     }
 
-    public void setEstablishmentName(String establishmentName) {
-        this.establishmentName = establishmentName;
-    }
+
 
     public UUID getCityId() {
         return cityId;

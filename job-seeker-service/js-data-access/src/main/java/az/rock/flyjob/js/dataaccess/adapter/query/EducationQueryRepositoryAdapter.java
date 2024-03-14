@@ -6,7 +6,6 @@ import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.jexception.NoActiveRowException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,14 +25,16 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
 
     @Override
     public Optional<EducationRoot> findByResumeAndUuidAndRowStatusTrue(ResumeID resumeID, UUID educationId) {
-        var entity = educationQueryJpaRepository.findByIdAndResumeIdAndRowStatusActive(resumeID.getRootID(), educationId).orElseThrow(NoActiveRowException::new);
-        return educationDataAccessMapper.toRoot(entity);
+        var entity = educationQueryJpaRepository.findByIdAndResumeIdAndRowStatusActive(resumeID.getRootID(), educationId);
+        if (entity.isEmpty()) return Optional.empty();
+        return educationDataAccessMapper.toRoot(entity.get());
     }
 
     @Override
     public Optional<EducationRoot> findById(EducationID rootId) {
-        var entity = educationQueryJpaRepository.findById(rootId.getAbsoluteID()).orElse(null);
-        return this.educationDataAccessMapper.toRoot(entity);
+        var entity = educationQueryJpaRepository.findById(rootId.getAbsoluteID());
+        if (entity.isEmpty()) return Optional.empty();
+        return this.educationDataAccessMapper.toRoot(entity.get());
     }
 
     @Override

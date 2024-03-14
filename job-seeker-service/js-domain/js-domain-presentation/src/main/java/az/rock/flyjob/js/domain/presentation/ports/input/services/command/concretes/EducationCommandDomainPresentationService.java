@@ -7,6 +7,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandMode
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractEducationCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractEducationCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
+import az.rock.lib.jexception.JRuntimeException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
 import org.springframework.stereotype.Service;
 
@@ -24,21 +25,37 @@ public class EducationCommandDomainPresentationService implements AbstractEducat
 
     @Override
     public void create(CreateRequest<EducationCommandModel> request) {
-        this.abstractEducationCommandHandler.create(request);
+        try {
+            this.abstractEducationCommandHandler.create(request);
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void update(UpdateRequest<EducationCommandModel> request) {
-        this.abstractEducationCommandHandler.update(request);
+        try {
+            this.abstractEducationCommandHandler.update(request);
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void delete(UUID educationId) {
-        this.abstractEducationCommandHandler.delete(educationId);
+        try {
+            this.abstractEducationCommandHandler.delete(educationId);
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void reorder(ReorderCommandModel request) {
-        this.abstractEducationCommandHandler.reorder(request);
+        try {
+            this.abstractEducationCommandHandler.reorder(request);
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 }

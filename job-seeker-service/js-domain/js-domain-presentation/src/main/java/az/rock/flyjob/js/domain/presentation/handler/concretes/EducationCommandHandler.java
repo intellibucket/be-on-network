@@ -1,5 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
+import az.rock.flyjob.js.domain.core.exception.education.EducationDomainException;
+import az.rock.flyjob.js.domain.core.exception.education.EducationNotFoundException;
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
@@ -19,11 +21,9 @@ import com.intellibucket.lib.payload.payload.EducationPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
-
-import static az.rock.lib.valueObject.OrderNumber.ORDER_NUMBER;
 
 
 @Component
@@ -57,65 +57,51 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
     }
 
     @Override
-    public AbstractDomainEvent<EducationPayload> update(UpdateRequest<EducationCommandModel> request) {
+    public AbstractDomainEvent<EducationPayload> update(UpdateRequest<EducationCommandModel> request) throws EducationDomainException {
         var resumeId = securityContextHolder.availableResumeID();
-        var educationRootFromDatabase = this.educationQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId());
-        if (educationRootFromDatabase.isEmpty()) throw new NoActiveRowException();
-        var educationRoot = educationRootFromDatabase.get();
-        educationDomainMapper.toExistRoot(educationRoot, request.getModel());
-        this.educationCommandRepositoryAdapter.update(educationRoot);
-        var educationPayload = this.educationDomainMapper.toPayload(educationRoot);
+        var educationRootFromDatabase = this.educationQueryRepositoryAdapter
+                .findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId()).orElseThrow(EducationNotFoundException::new);
+        educationDomainMapper.toExistRoot(educationRootFromDatabase, request.getModel());
+        this.educationCommandRepositoryAdapter.update(educationRootFromDatabase);
+        var educationPayload = this.educationDomainMapper.toPayload(educationRootFromDatabase);
         return EducationUpdatedEvent.of(educationPayload);
     }
 
     @Override
-    public AbstractDomainEvent<UUID> delete(UUID educationId) {
+    public AbstractDomainEvent<UUID> delete(UUID educationId) throws EducationDomainException {
         var resumeID = securityContextHolder.availableResumeID();
-        var educationFromDatabase = educationQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeID, educationId);
-        educationCommandRepositoryAdapter.inActive(educationFromDatabase.orElseThrow(NoActiveRowException::new));
+        var educationFromDatabase = educationQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeID, educationId)
+                .orElseThrow(EducationNotFoundException::new);
+        educationCommandRepositoryAdapter.inActive(educationFromDatabase);
         return EducationDeletedEvent.of(educationId);
     }
 
 
     @Override
-    public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) {
+    public AbstractDomainEvent<EducationPayload> reorder(ReorderCommandModel request) throws EducationDomainException {
         var resumeId = securityContextHolder.availableResumeID();
         List<EducationRoot> educations = educationQueryRepositoryAdapter.findAllByPID(resumeId);
-        List<Integer> orderNumber = educations.stream().map(EducationRoot::getOrderNumber).toList();
-        int max = orderNumber.stream().mapToInt(v -> v).max().orElseThrow();
-        int min = orderNumber.stream().mapToInt(v -> v).min().orElseThrow();
-        if (!orderNumber.contains(request.getOrderNumber()))
-            throw new RuntimeException("orderNumber must be between: " + min + " and " + max);
-        Integer tempOrderNumber = educations.stream().filter(educationRoot -> educationRoot.getRootID().getAbsoluteID().equals(request.getTargetId())
-        ).findAny().orElseThrow().getOrderNumber();
-        educations.forEach(
-                educationRoot -> {
-                    if (educationRoot.getRootID().getAbsoluteID().equals(request.getTargetId())) {
-                        if (!Objects.equals(educationRoot.getOrderNumber(), request.getOrderNumber())) {
-                            educationRoot.setOrderNumber(request.getOrderNumber());
-                        } else {
-                            throw new RuntimeException("Education Already Ordered");
-                        }
-                    }
-                }
-        );
-        List<Integer> orderNumbersList = educations.stream().map(EducationRoot::getOrderNumber).toList();
-        var lastOrderNumber = ORDER_NUMBER.duplicateOrderNumber(orderNumbersList);
-        educations.forEach(
-                educationRoot -> {
-                    if (!educationRoot.getRootID().getAbsoluteID()
-                            .equals(request.getTargetId())
-                        && educationRoot.getOrderNumber().equals(lastOrderNumber)) {
-                        educationRoot.setOrderNumber(tempOrderNumber);
-                    }
-                }
-        );
+        var education = educations.stream().filter(
+                e -> e.getRootID().getAbsoluteID().equals(request.getTargetId())
+        ).findFirst().orElseThrow(EducationNotFoundException::new);
+        var reOrderNumber = request.getOrderNumber();
+        if (request.getOrderNumber() > education.getOrderNumber()) ++reOrderNumber;
+        education.changeOrderNumber(reOrderNumber);
+        educations.stream()
+                .filter(e -> e.getOrderNumber() >= education.getOrderNumber() && !e.equals(e))
+                .forEach(e -> e.changeOrderNumber(e.getOrderNumber() + 1));
+        int orderCounter = 1;
+        for (EducationRoot educationRoot : educations.stream()
+                .sorted(Comparator.comparingInt(EducationRoot::getOrderNumber))
+                .toList()) {
+            educationRoot.changeOrderNumber(orderCounter++);
+        }
         educationCommandRepositoryAdapter.updateAll(educations);
         return EducationUpdatedEvent.of(
                 EducationPayload
-                .builder()
-                .id(request.getTargetId())
-                .build());
+                        .builder()
+                        .id(request.getTargetId())
+                        .build());
     }
 
 
