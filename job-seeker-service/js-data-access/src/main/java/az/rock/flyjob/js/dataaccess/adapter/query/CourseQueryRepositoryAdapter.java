@@ -5,20 +5,16 @@ import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractCourseQueryBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCourseQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
-import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 
 @Component
