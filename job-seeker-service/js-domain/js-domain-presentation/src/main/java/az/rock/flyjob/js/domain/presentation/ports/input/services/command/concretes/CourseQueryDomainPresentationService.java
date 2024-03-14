@@ -34,7 +34,11 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
 
     @Override
     public SimplePageableResponse<SimpleMyCourseResponseModel> allMySimpleCourses(SimplePageableRequest simplePageableRequest) {
-        return null;
+        // TODO: 14.03.2024
+        var resumeId = securityContextHolder.availableResumeID();
+        var courses = courseQueryRepositoryAdapter.findAllMySimpleCourses(simplePageableRequest,resumeId);
+        var courseSimpleResponseModel = courses.stream().map(SimpleMyCourseResponseModel::of).toList();
+        return SimplePageableResponse.of(simplePageableRequest.getSize(), simplePageableRequest.getPage(), null,courseSimpleResponseModel);
     }
 
     @Override
