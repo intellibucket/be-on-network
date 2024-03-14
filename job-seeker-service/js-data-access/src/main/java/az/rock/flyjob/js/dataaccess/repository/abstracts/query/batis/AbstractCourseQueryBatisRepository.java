@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Mapper
 public interface AbstractCourseQueryBatisRepository {
+
     List<CourseEntity> findAllMyCourses(
             @Param("pageable") SimplePageableRequest pageableRequest,
             @Param("resume") UUID resumeID);
