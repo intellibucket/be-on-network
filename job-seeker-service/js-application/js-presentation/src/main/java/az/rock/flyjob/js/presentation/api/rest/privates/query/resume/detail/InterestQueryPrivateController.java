@@ -10,13 +10,14 @@ import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
-
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/js/1.0/private/query/interest", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,11 +36,10 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    @GetMapping(value = "/get-any/all/{resumeId}")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(@PathVariable(name = "resumeId") UUID targetResumeId, @RequestBody SimplePageableRequest pageableRequest) {
-        var antInterestsResponse = this.domainPresentationService.queryAllAnyInterests(targetResumeId, pageableRequest);
-        return ResponseEntity.ok(new JSuccessDataResponse(antInterestsResponse));
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+        return null;
     }
+
 
     @Override
     @GetMapping(value = "/get-my-simple/all")
@@ -48,12 +48,10 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    @GetMapping(value = "/get-simple/any/{resumeId}")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(@PathVariable(name = "resumeId") UUID targetResumeId, @RequestBody SimplePageableRequest pageableRequest) {
-        var simpleInterestResponse = this.domainPresentationService.queryAllAnySimpleInterests(targetResumeId, pageableRequest);
-        return ResponseEntity.ok(new JSuccessDataResponse(simpleInterestResponse));
-
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+        return null;
     }
+
 
     @Override
     @GetMapping(value = "/get-my/{interestUUID}")
@@ -62,9 +60,7 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    @GetMapping(value = "/get-any/{interestId}")
-    public ResponseEntity<JSuccessDataResponse<AnyInterestResponseModel>> findAnyInterestById(@PathVariable(name = "interestId") UUID id) {
-        var anyInterestById = this.domainPresentationService.findAnyInterestById(id);
-        return ResponseEntity.ok(new JSuccessDataResponse(anyInterestById));
+    public ResponseEntity<JSuccessDataResponse<AnyInterestResponseModel>> findAnyInterestById(UUID id) {
+        return null;
     }
 }
