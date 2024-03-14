@@ -3,13 +3,13 @@ package az.rock.flyjob.js.dataaccess.mapper.concretes;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractContactDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
-import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.AccessModifier;
-import az.rock.lib.valueObject.ContactFormatType;
-import az.rock.lib.valueObject.ContactLiveType;
+import az.rock.lib.domain.id.js.ContactID;
+import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
+
 @Component
 public class ContactDataAccessMapper implements AbstractContactDataAccessMapper {
 
@@ -22,36 +22,46 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
     @Override
     public Optional<ContactRoot> toRoot(ContactEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
-        if (optionalEntity.isPresent()) {
-            var safetyResumeEntity = optionalEntity.get();
-            return Optional.of(
-                    ContactRoot.Builder.builder()
-                            .resume(entity.getResume() == null ? null : ResumeID.of(entity.getResume().getUuid()))
-                            .accessModifier(AccessModifier.PUBLIC)
-                            .data(safetyResumeEntity.getData())
-                            .orderNumber(safetyResumeEntity.getOrderNumber())
-                            .formatType(ContactFormatType.EMAIL)
-                            .liveType(ContactLiveType.COMPANY)
-                            .build());
-
-        } else return Optional.empty();
+        if (optionalEntity.isPresent()) return Optional.empty();
+        return Optional.of(ContactRoot.Builder
+                .builder()
+                .id(ContactID.of(entity.getUuid()))
+                .accessModifier(entity.getAccessModifier())
+                .formatType(entity.getFormatType())
+                .data(entity.getData())
+                .version(entity.getVersion())
+                .processStatus(entity.getProcessStatus())
+                .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
+                .liveType(entity.getLiveType())
+                .orderNumber(entity.getOrderNumber())
+                .resume()
+                .lastModifiedDate(entity.getLastModifiedDate())
+                .orderNumber(entity.getOrderNumber())
+                .rowStatus(entity.getRowStatus())
+                .build();
     }
+
 
     @Override
     public Optional<ContactEntity> toEntity(ContactRoot root) {
-        var optionalContactRoot = Optional.ofNullable(root);
-        if(optionalContactRoot.isPresent()) {
-            var safetyContactRoot = optionalContactRoot.get();
-            ContactEntity contactEntity =  new ContactEntity();
-            contactEntity.setOrderNumber(root.getOrderNumber());
-            contactEntity.setData(root.getData());
-            contactEntity.setAccessModifier(root.getAccessModifier());
-            contactEntity.setCreatedDate(root.getCreatedDate());
-            //todo the rest
-            return Optional.of(contactEntity);
+        var optionalEntity = Optional.ofNullable(root);
+        if (optionalEntity.isEmpty()) return Optional.empty();
+        return Optional.of(ContactEntity.Builder
+                .builder()
+                .uuid(root.getRootID().getAbsoluteID())
+                .accessModifier(root.getAccessModifier())
+                .data(root.getData())
+                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                .processStatus(root.getProcessStatus())
+                .formatType(root.getFormatType())
+                .liveType(root.getLiveType())
+                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
+                .orderNumber(root.getOrderNumber())
+                .data(root.getData())
+                .rowStatus(root.getRowStatus())
+                .resume(root.getResume())
+                .build());
 
-        }
-        else return Optional.empty();
     }
-
 }
+

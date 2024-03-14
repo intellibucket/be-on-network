@@ -117,6 +117,10 @@ public class ContactRoot extends AggregateRoot<ContactID> {
             version = val;
             return this;
         }
+        public Builder version(Long val) {
+            version =  Version.of(val);
+            return this;
+        }
 
         public ContactID getId() {
             return id;
