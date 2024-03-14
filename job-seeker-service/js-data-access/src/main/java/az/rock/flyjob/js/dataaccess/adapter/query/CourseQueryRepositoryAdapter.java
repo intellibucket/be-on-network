@@ -25,7 +25,9 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     private final AbstractCourseQueryBatisRepository courseQueryBatisRepository;
     private final AbstractCourseDataAccessMapper courseDataAccessMapper;
 
-    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository, AbstractCourseQueryBatisRepository courseQueryBatisRepository, AbstractCourseDataAccessMapper courseDataAccessMapper) {
+    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository,
+                                        AbstractCourseQueryBatisRepository courseQueryBatisRepository,
+                                        AbstractCourseDataAccessMapper courseDataAccessMapper) {
         this.courseQueryJPARepository = courseQueryJPARepository;
         this.courseQueryBatisRepository = courseQueryBatisRepository;
         this.courseDataAccessMapper = courseDataAccessMapper;
@@ -33,19 +35,19 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
 
     @Override
     public Boolean existsByEquality(CourseRoot root) {
-        return courseQueryJPARepository.existsByEquality(root.getCourseTitle(), root.getResume().getRootID(),root.getRootID().getRootID());
+        return courseQueryJPARepository.existsByEquality(root.getCourseTitle(), root.getResume().getRootID(), root.getRootID().getRootID());
     }
 
     @Override
-    public Optional<CourseRoot> findById(CourseID courseID,ResumeID resumeID,List<AccessModifier> accessModifiers){
-        var courseEntity = courseQueryJPARepository.findById(courseID.getRootID(),resumeID.getRootID(),accessModifiers);
-        if(courseEntity.isEmpty())return Optional.empty();
+    public Optional<CourseRoot> findById(CourseID courseID, ResumeID resumeID, List<AccessModifier> accessModifiers) {
+        var courseEntity = courseQueryJPARepository.findById(courseID.getRootID(), resumeID.getRootID(), accessModifiers);
+        if (courseEntity.isEmpty()) return Optional.empty();
         return courseDataAccessMapper.toRoot(courseEntity.get());
     }
 
     @Override
-    public List<CourseRoot> findAllByResume(ResumeID resumeID,List<AccessModifier> accessModifiers) {
-        var courses = courseQueryJPARepository.findAllByResume(resumeID.getRootID(),accessModifiers);
+    public List<CourseRoot> findAllByResume(ResumeID resumeID, List<AccessModifier> accessModifiers) {
+        var courses = courseQueryJPARepository.findAllByResume(resumeID.getRootID(), accessModifiers);
         return courses.stream()
                 .map(courseDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
@@ -54,16 +56,19 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public Boolean isInLimit(Long limit,ResumeID resumeId) {
-        return courseQueryJPARepository.isInLimit(limit,resumeId.getRootID());
+    public Boolean isInLimit(Long limit, ResumeID resumeId) {
+        return courseQueryJPARepository.isInLimit(limit, resumeId.getRootID());
     }
 
     @Override
     public List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest, ResumeID resumeID) {
 
-        var courseList =  courseQueryBatisRepository.findAllMyCourses(pageableRequest,resumeID.getRootID())
+        var courseList = courseQueryBatisRepository.findAllMyCourses(pageableRequest, resumeID.getRootID())
                 .stream()
-                .map(t->{t.setResume(ResumeEntity.referenceOf(UUID.fromString("e67464bb-05d6-4b71-b02a-523645b3b0a4")));return t;})
+                .map(t -> {
+                    t.setResume(ResumeEntity.referenceOf(UUID.fromString("e67464bb-05d6-4b71-b02a-523645b3b0a4")));
+                    return t;
+                })
                 .map(courseDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
