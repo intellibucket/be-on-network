@@ -36,9 +36,10 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(SimplePageableRequest pageableRequest) {
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         return null;
     }
+
 
     @Override
     @GetMapping(value = "/get-my-simple/all")
@@ -47,9 +48,10 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(SimplePageableRequest pageableRequest) {
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         return null;
     }
+
 
     @Override
     @GetMapping(value = "/get-my/{interestUUID}")
