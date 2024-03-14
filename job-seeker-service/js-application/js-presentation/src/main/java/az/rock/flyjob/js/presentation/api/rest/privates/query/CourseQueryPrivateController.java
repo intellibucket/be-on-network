@@ -29,18 +29,25 @@ public class CourseQueryPrivateController implements CourseQueryPrivateSpec {
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyCourseResponseModel>>> queryAllMyCourses(SimplePageableRequest pageableRequest) {
-        return null;
+    @GetMapping("get-all-courses")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyCourseResponseModel>>> queryAllMyCourses(@RequestBody SimplePageableRequest pageableRequest) {
+        System.out.println("1");
+        var response = this.abstractCourseQueryDomainPresentationService.allMyCourses(pageableRequest);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyCourseResponseModel>>> queryAllAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return null;
+    @GetMapping("get-all-any-courses/{targetResumeId}")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyCourseResponseModel>>> queryAllAnyCourses(@PathVariable UUID targetResumeId, @RequestBody SimplePageableRequest pageableRequest) {
+        var response = this.abstractCourseQueryDomainPresentationService.allAnyCourses(targetResumeId, pageableRequest);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<MyCourseResponseModel>> findMyCourseById(UUID id) {
-        return null;
+    @GetMapping("/get-my-course/{id}")
+    public ResponseEntity<JSuccessDataResponse<MyCourseResponseModel>> findMyCourseById(@PathVariable UUID id) {
+        var response = this.abstractCourseQueryDomainPresentationService.myCourseById(id);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
