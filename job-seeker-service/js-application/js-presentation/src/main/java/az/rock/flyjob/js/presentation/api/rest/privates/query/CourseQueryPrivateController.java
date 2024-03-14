@@ -31,7 +31,6 @@ public class CourseQueryPrivateController implements CourseQueryPrivateSpec {
     @Override
     @GetMapping("get-all-courses")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyCourseResponseModel>>> queryAllMyCourses(@RequestBody SimplePageableRequest pageableRequest) {
-        System.out.println("1");
         var response = this.abstractCourseQueryDomainPresentationService.allMyCourses(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
