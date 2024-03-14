@@ -1,13 +1,11 @@
 package az.rock.flyjob.js.domain.presentation.ports.output.repository.query;
 
-import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
-import az.rock.lib.adapter.repository.AbstractQueryRepositoryAdapter;
 import az.rock.lib.annotation.DomainOutputPort;
-import az.rock.lib.domain.id.js.InterestID;
-import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.SimplePageableRequest;
+import az.rock.lib.valueObject.AccessModifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,11 +16,11 @@ import java.util.UUID;
 @Transactional(readOnly = true)
 public interface AbstractInterestQueryRepositoryAdapter {
 
-    Optional<AnyInterestResponseModel> findAntById(UUID id);
+    Optional<AnyInterestResponseModel> findAntById(UUID resumeId, UUID id,List<AccessModifier> modifier);
 
-    List<AnyInterestResponseModel> findAllAnyInterests(SimplePageableRequest pageableRequest);
+    Page<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, Pageable pageableRequest, List<AccessModifier> modifier);
 
-    List<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(SimplePageableRequest pageableRequest);
+    Page<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, Pageable pageableRequest,List<AccessModifier> modifier);
 
 
 }

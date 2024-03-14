@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractInterestQueryBatisRepository">
+
+
+    <resultMap id="simpleInterestResultMap"
+               type="az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel">
+        <result property="isHobby" column="is_hobby"/>
+        <result property="name" column="name"/>
+
+    </resultMap>
+
+    <resultMap id="anyInterestResultMap"
+               type="az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel">
+        <result property="isHobby" column="is_hobby"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+    </resultMap>
+
+
+    <select id="findAnyInterestById" resultMap="anyInterestResultMap"
+            resultType="az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel">
+        SELECT intr.is_hobby as isHobby,
+        intr.name as name,
+        intr.description as description
+
+        FROM resume.interests intr
+        WHERE row_status = 'ACTIVE'
+        AND resume_uuid = #{resumeId,typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler
+        AND access_modifier IN
+        <foreach collection="access" item="modifier" open="(" close=")" separator=",">
+            #{modifier}
+        </foreach>
+    </select>
+
+    <select id="findAllAnyInterests" resultMap="anyInterestResultMap"
+            resultType="az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel">
+        select i.*
+        from resume.interests i
+        where i.resume_uuid=#{resumeId,typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+        and i.row_status='ACTIVE'
+        AND i.access_modifier in
+        <foreach collection="access" item="item" open="(" separator="," close=")">
+            #{access}
+        </foreach>
+    </select>
+    <select id="findAllAnySimpleInterests" resultMap="simpleInterestResultMap"
+    resultType="az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel">
+        select i.*
+        from resume.interests i
+        where i.resume_uuid=#{resumeId,typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+        and i.row_status='ACTIVE'
+        AND i.access_modifier in
+        <foreach collection="access" item="item" open="(" separator="," close=")">
+            #{access}
+        </foreach>
+    </select>
+
+
+
+</mapper>

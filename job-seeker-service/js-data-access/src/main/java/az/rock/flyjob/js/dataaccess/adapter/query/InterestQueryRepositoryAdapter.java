@@ -5,7 +5,10 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInt
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,18 +25,30 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public Optional<AnyInterestResponseModel> findAntById(UUID id) {
-        
-        return null;
+    public Optional<AnyInterestResponseModel> findAntById(UUID resumeId, UUID id, List<AccessModifier> modifier) {
+        return Optional.ofNullable(
+                this.batisRepository.findAnyInterestById(resumeId,id,modifier).get()
+        );
+
     }
 
     @Override
-    public List<AnyInterestResponseModel> findAllAnyInterests(SimplePageableRequest pageableRequest) {
-        return null;
+    public Page<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId,
+                                                              Pageable pageable,
+                                                              List<AccessModifier> modifier) {
+        var allAnyInterests = this.batisRepository.findAllAnyInterests(targetResumeId, modifier, pageable);
+        if(!allAnyInterests.isEmpty()){
+            return allAnyInterests;
+        }else return Page.empty();
+
     }
 
     @Override
-    public List<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(SimplePageableRequest pageableRequest) {
-        return null;
+    public Page<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId,Pageable pageable,List<AccessModifier> modifier) {
+      var allAnySimpleInterests = this.batisRepository.findAllAnySimpleInterests(targetResumeId, modifier, pageable);
+        if(!allAnySimpleInterests.isEmpty()){
+            return allAnySimpleInterests;
+        }return Page.empty();
+
     }
 }

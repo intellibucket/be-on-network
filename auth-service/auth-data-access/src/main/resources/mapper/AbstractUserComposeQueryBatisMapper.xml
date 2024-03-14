@@ -22,9 +22,7 @@
 
     <resultMap id="my_profile_result_map"
                type="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
-        <id property="userId"
-            column="uuid"
-            typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
+        <id property="userId" column="uuid" typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
         <result property="version" column="version"/>
         <result property="rowStatus" column="rowStatus"/>
         <result property="trxProcessStatus" column="trxProcessStatus"/>
