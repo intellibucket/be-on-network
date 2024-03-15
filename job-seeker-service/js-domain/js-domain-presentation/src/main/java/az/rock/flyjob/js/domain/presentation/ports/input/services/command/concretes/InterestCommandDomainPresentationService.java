@@ -5,6 +5,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandMod
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractInterestCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractInterestCommandDomainPresentationService;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -19,43 +20,26 @@ public class InterestCommandDomainPresentationService implements AbstractInteres
     }
 
     @Override
+    @SneakyThrows
     public void create(InterestCommandModel interestCommandModel) {
-        try {
-            var interestCreatedEvent = this.interestCreateCommandHandler.add(interestCommandModel);
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+        var interestCreatedEvent = this.interestCreateCommandHandler.add(interestCommandModel);
     }
 
     @Override
+    @SneakyThrows
     public void update(UpdateRequest<InterestCommandModel> updateRequest) {
-        try {
-            var interestUpdateEvent = this.interestCreateCommandHandler.update(updateRequest);
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-
+        var interestUpdateEvent = this.interestCreateCommandHandler.update(updateRequest);
     }
 
     @Override
+    @SneakyThrows
     public void delete(UUID interestId) {
-        try {
-            var delete = this.interestCreateCommandHandler.delete(interestId);
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-
+        var delete = this.interestCreateCommandHandler.delete(interestId);
     }
 
     @Override
+    @SneakyThrows
     public void reorder(ReorderCommandModel request) {
-        try {
-            var reorder = this.interestCreateCommandHandler.reorder(request);
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-
-
+        var reorder = this.interestCreateCommandHandler.reorder(request);
     }
-
 }

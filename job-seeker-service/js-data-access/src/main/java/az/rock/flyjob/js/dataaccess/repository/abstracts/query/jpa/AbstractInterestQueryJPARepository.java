@@ -2,6 +2,7 @@ package az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa;
 
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.InterestEntity;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
+import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.valueObject.AccessModifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,6 @@ public interface AbstractInterestQueryJPARepository extends JpaRepository<Intere
     @Query("select count(i.name) from InterestEntity  i where i.resume.uuid=:resumeId AND i.rowStatus='ACTIVE'")
     Optional<Integer> limitCount(@Param(value = "resumeId") UUID resumeID);
 
+    @Query("select i from InterestEntity i where i.uuid =: rootId and i.rowStatus='ACTIVE'")
+    Optional<InterestEntity> findById(@Param(value = "rootId") InterestID rootId);
 }

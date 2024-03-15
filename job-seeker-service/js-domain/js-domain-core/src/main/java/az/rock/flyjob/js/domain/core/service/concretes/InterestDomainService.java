@@ -1,19 +1,18 @@
 package az.rock.flyjob.js.domain.core.service.concretes;
 
-import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
+import az.rock.flyjob.js.domain.core.exception.InterestAlreadyExistException;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractInterestDomainService;
 
 import java.util.List;
 
 public class InterestDomainService implements AbstractInterestDomainService {
+
+
     @Override
-    public InterestRoot validateInterestName(List<InterestRoot> savedPhoneNumbers, InterestRoot changedInterest) throws InterestNameIsExist {
-        if (savedPhoneNumbers.stream().anyMatch(item -> item
-                .getName()
-                .equalsIgnoreCase(changedInterest.getName()))) {
-            throw new InterestNameIsExist("Interest Name is exist");
-        }
+    public InterestRoot validateNewInterest(List<InterestRoot> savedInterests, InterestRoot changedInterest) throws InterestAlreadyExistException {
+        if (savedInterests.contains(changedInterest))
+            throw new InterestAlreadyExistException();
         return changedInterest;
     }
 }

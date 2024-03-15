@@ -35,10 +35,10 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
     @Override
     public Optional<InterestRoot> findById(InterestID rootId) {
-        return Optional.empty();
+        var entity = repository.findById(rootId);
+        if(entity.isEmpty()) return Optional.empty();
+        return this.interestDataAccessMapper.toRoot(entity.get());
     }
-
-
 
 
     @Override
@@ -60,10 +60,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
         return Optional.empty();
     }
 
-    @Override
-    public Boolean existByResumeIDAndName(ResumeID resumeID, InterestRoot interestRoot) {
-        return null;
-    }
+
 
 
 }

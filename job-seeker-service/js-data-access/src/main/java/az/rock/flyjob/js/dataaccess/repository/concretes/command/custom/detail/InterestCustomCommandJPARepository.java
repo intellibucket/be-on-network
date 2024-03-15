@@ -32,9 +32,4 @@ public class InterestCustomCommandJPARepository implements AbstractInterestCusto
         return this.entityManager.merge(entity);
     }
 
-
-    @Override
-    public void flush() {
-
-    }
 }

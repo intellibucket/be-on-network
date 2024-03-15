@@ -1,6 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
-import az.rock.flyjob.js.domain.core.exception.InterestNameIsExist;
+import az.rock.flyjob.js.domain.core.exception.InterestDomainException;
 import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
 import az.rock.flyjob.js.domain.core.exception.InterestOverLimit;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
@@ -23,6 +23,7 @@ import com.intellibucket.lib.payload.event.update.InterestUpdateEvent;
 import com.intellibucket.lib.payload.payload.InterestCreatePayload;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -55,12 +56,13 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
 
 
     @Override
-    public InterestCreateEvent add(InterestCommandModel interestCommandModel) throws InterestNameIsExist, InterestOverLimit {
+    @Transactional
+    public InterestCreateEvent add(InterestCommandModel interestCommandModel) throws InterestDomainException {
         var currentResume = this.securityContextHolder.availableResumeID();
+        this.limitOver(currentResume);
         var savedInterest = this.interestQueryRepositoryAdapter.findAllByPID(currentResume,modifierList);
         var interestRoot = this.interestDomainMapper.toNewRoot(currentResume, interestCommandModel);
-        var validatedInterest = this.domainService.validateInterestName(savedInterest, interestRoot);
-        this.limitOver(currentResume);
+        var validatedInterest = this.domainService.validateNewInterest (savedInterest, interestRoot);
         var optionalInterest = this.interestCommandRepositoryAdapter.create(validatedInterest);
         var interestPayload = this.toPayload(optionalInterest.get());
         return InterestCreateEvent.of(interestPayload);
@@ -68,7 +70,8 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
 
 
     @Override
-    public InterestUpdateEvent update(UpdateRequest<InterestCommandModel> interestCommandModelUpdateRequest) throws Exception {
+    @Transactional
+    public InterestUpdateEvent update(UpdateRequest<InterestCommandModel> interestCommandModelUpdateRequest) throws InterestDomainException {
         var resumeID = this.securityContextHolder.availableResumeID();
         var allInterests = interestQueryRepositoryAdapter.findAllByPID(resumeID,modifierList);
         var ownByID = interestQueryRepositoryAdapter.findOwnByID(resumeID,
@@ -81,7 +84,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                     .changeName(interestCommandModelUpdateRequest.getModel().getName())
                     .changeHobby(interestCommandModelUpdateRequest.getModel().getHobby())
                     .changeDescription(interestCommandModelUpdateRequest.getModel().getDescription());
-            var interestRoot = this.domainService.validateInterestName(allInterests, newInterestRoot);
+            var interestRoot = this.domainService.validateNewInterest (allInterests, newInterestRoot);
             this.interestCommandRepositoryAdapter.update(interestRoot);
             return InterestUpdateEvent.of(interestRoot);
         } else throw new InterestNotFound("Interest not Found");
@@ -101,6 +104,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
     }
 
     @Override
+    @Transactional
     public InterestReorderEvent reorder(ReorderCommandModel request) throws InterestNotFound {
         var resumeID = this.securityContextHolder.availableResumeID();
         var allInterests = this.interestQueryRepositoryAdapter.findAllByPID(resumeID,modifierList);
@@ -149,10 +153,29 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                 .build();
     }
     private void limitOver(ResumeID  resumeID) throws InterestOverLimit {
-       var limit = interestQueryRepositoryAdapter.getLimit(resumeID);
-       if(limit.isPresent() && limit.get()<10){
-           return;
-       }else throw new InterestOverLimit("you cant add anymore interest");
+       var optionallimit = interestQueryRepositoryAdapter.getLimit(resumeID);
+
+        optionallimit.ifPresentOrElse(
+                value -> {
+                    if (value < 10) {
+                        return;
+                    } else {
+                        try {
+                            throw new InterestOverLimit("You can't add anymore interest");
+                        } catch (InterestOverLimit e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                () -> {
+                    try {
+                        throw new InterestOverLimit("You can't add anymore interest");
+                    } catch (InterestOverLimit e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+
     }
 
 }
