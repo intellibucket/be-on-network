@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class EducationComposeExample {
     protected String orderByClause;
 

@@ -3,7 +3,7 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@SuppressWarnings("all")
 public class InterestComposeExample {
     protected String orderByClause;
 

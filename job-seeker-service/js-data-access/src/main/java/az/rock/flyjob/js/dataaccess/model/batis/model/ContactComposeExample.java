@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class ContactComposeExample {
     protected String orderByClause;
 
