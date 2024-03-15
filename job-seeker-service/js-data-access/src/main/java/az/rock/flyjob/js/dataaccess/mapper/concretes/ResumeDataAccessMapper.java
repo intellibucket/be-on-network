@@ -2,9 +2,9 @@ package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractInformationDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractResumeDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.main.InformationEntity;
 import az.rock.flyjob.js.domain.core.root.ResumeRoot;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.domain.core.root.main.InformationRoot;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;

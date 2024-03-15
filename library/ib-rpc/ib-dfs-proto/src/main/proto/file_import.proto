@@ -1,0 +1,55 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.intellibucket.lib.proto;
+
+enum FileType {
+  UNKNOWN_FILE_TYPE = 0;
+  IMAGE = 1;
+  VIDEO = 2;
+  AUDIO = 3;
+  DOCUMENT = 4;
+  OTHER_TYPE = 5;
+}
+
+enum FileFormatType {
+  UNKNOWN_FILE_FORMAT = 0;
+  JPEG = 1;
+  PNG = 2;
+  GIF = 3;
+  MP4 = 4;
+  MP3 = 5;
+  WAV = 6;
+  PDF = 7;
+  DOC = 8;
+  DOCX = 9;
+  XLS = 10;
+  XLSX = 11;
+  PPT = 12;
+  PPTX = 13;
+  TXT = 14;
+  OTHER_FORMAT = 15;
+}
+
+enum FileImportStatus {
+  DRAFT = 0;
+  IN_PROGRESS = 1;
+  COMPLETED = 2;
+  FAILED = 3;
+}
+
+message FileUploadRequest {
+  bytes source = 1;
+  FileImportStatus status = 2;
+  FileType fileType = 3;
+  FileFormatType fileFormatType = 4;
+}
+
+message FileUploadResponse {
+  string fileId = 1;
+  bool success = 2;
+}
+
+
+service UserRelationLevelService {
+  rpc uploadToFileSystem(FileUploadRequest) returns (FileUploadResponse);
+}
