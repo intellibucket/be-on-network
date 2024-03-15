@@ -58,7 +58,10 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         this.data=data;
         return this;
     }
-
+    public ContactRoot changeOrderNumber(Integer orderNumber){
+        orderNumber=this.orderNumber;
+        return this;
+    }
     public Boolean isValid() {
         return Objects.nonNull(this.formatType) && Objects.nonNull(this.data) && Objects.nonNull(this.liveType);
     }

@@ -16,4 +16,5 @@ public class ContactCommandModel extends AbstractCommandModel {
     private ContactFormatType formatType;
     private ContactLiveType liveType;
     private String data;
+    private Integer orderNumber;
 }

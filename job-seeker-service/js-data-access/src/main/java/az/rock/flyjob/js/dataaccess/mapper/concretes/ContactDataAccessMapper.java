@@ -1,9 +1,11 @@
 package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractContactDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.lib.domain.id.js.ContactID;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
@@ -34,17 +36,19 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
                 .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
                 .liveType(entity.getLiveType())
                 .orderNumber(entity.getOrderNumber())
-                .resume()
-                .lastModifiedDate(entity.getLastModifiedDate())
+                .resume(ResumeID.of(entity.getResume().getUuid()))
+                .lastModifiedDate(GDateTime.toZonedDateTime(entity.getLastModifiedDate()))
                 .orderNumber(entity.getOrderNumber())
                 .rowStatus(entity.getRowStatus())
-                .build();
+                .build()
+        );
     }
 
 
     @Override
     public Optional<ContactEntity> toEntity(ContactRoot root) {
         var optionalEntity = Optional.ofNullable(root);
+        var resume= ResumeEntity.referenceOf(root.getRootID().getAbsoluteID());
         if (optionalEntity.isEmpty()) return Optional.empty();
         return Optional.of(ContactEntity.Builder
                 .builder()
@@ -59,7 +63,7 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
                 .orderNumber(root.getOrderNumber())
                 .data(root.getData())
                 .rowStatus(root.getRowStatus())
-                .resume(root.getResume())
+                .resume(resume)
                 .build());
 
     }
