@@ -7,6 +7,7 @@ import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
     private final AbstractContactDataAccessMapper contactMapper;
 
     public ContactQueryRepositoryAdapter(AbstractContactQueryJPARepository contactQueryJPARepository,
-                                         AbstractContactDataAccessMapper contactMapper) {
+                                         @Qualifier(value = "abstractContactDataAccessMapper") AbstractContactDataAccessMapper contactMapper) {
         this.contactQueryJPARepository = contactQueryJPARepository;
         this.contactMapper = contactMapper;
     }

@@ -20,8 +20,10 @@ import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
 import com.intellibucket.lib.payload.payload.ContactPayload;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,17 +37,18 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     private final AbstractContactDomainService domainService;
 
     public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter,
-                                             AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter,
+                                             @Qualifier(value = "abstractContactQueryRepositoryAdapter") AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter,
                                              AbstractContactCommandDomainMapper contactCommandDomainMapper,
                                              AbstractSecurityContextHolder contextHolder,
-                                             AbstractContactDomainService domainService) {
+                                             @Qualifier(value = "abstractContactDomainService") AbstractContactDomainService domainService) {
         this.abstractContactCommandRepositoryAdapter = abstractContactCommandRepositoryAdapter;
         this.abstractContactQueryRepositoryAdapter = commandQueryRepositoryAdapter;
         this.contactCommandDomainMapper = contactCommandDomainMapper;
         this.contextHolder = contextHolder;
         this.domainService = domainService;
     }
-    private ContactPayload toPayload (ContactRoot contactRoot){
+
+    private ContactPayload toPayload(ContactRoot contactRoot) {
         return ContactPayload.Builder
                 .builder()
                 .id(contactRoot.getRootID().getAbsoluteID())
@@ -55,14 +58,13 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
 
     @Override
-    public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest)
-    {
+    public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest) {
         var currentResumeId = this.contextHolder.availableResumeID();
         var allSavedContacts = this.abstractContactQueryRepositoryAdapter.findAllByPID(currentResumeId);
-        var contactRoot = this.contactCommandDomainMapper.toRoot(createRequest.getModel(),currentResumeId);
-        var validateContact = this.domainService.validateContactDuplication(allSavedContacts,contactRoot);
+        var contactRoot = this.contactCommandDomainMapper.toRoot(createRequest.getModel(), currentResumeId);
+        var validateContact = this.domainService.validateContactDuplication(allSavedContacts, contactRoot);
         var optionalContactRoot = this.abstractContactCommandRepositoryAdapter.create(validateContact);
-        if(optionalContactRoot.isEmpty())
+        if (optionalContactRoot.isEmpty())
             throw new UnknownSystemException();
         var contactPayload = this.toPayload(optionalContactRoot.get());
         return ContactCreatedEvent.of(contactPayload);
@@ -83,16 +85,17 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
             var isExistContact = this.abstractContactQueryRepositoryAdapter.isExistContact(validatedContact);
             if (isExistContact) throw new ContactAlreadyExistException();
             this.abstractContactCommandRepositoryAdapter.update(validatedContact);
-            var payload =this.toPayload(validatedContact);
+            var payload = this.toPayload(validatedContact);
             return ContactUpdateEvent.of(payload);
 
         } else throw new UnknownSystemException();
     }
+
     @Override
     public ContactDeleteEvent deleteContact(UUID id) {
         var currentContact = this.contextHolder.availableResumeID();
         var optionalContact = this.abstractContactQueryRepositoryAdapter.findOwnByID(currentContact, ContactID.of(id));
-        if (optionalContact.isPresent()){
+        if (optionalContact.isPresent()) {
             var contactIDNumber = optionalContact.get();
             this.abstractContactCommandRepositoryAdapter.inActive(contactIDNumber);
             return ContactDeleteEvent.of(toPayload(contactIDNumber));
@@ -101,6 +104,27 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
 
     @Override
     public ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel) {
+
+        var contactList = this.abstractContactQueryRepositoryAdapter.findAllByPID(contextHolder.availableResumeID());
+        var contact = contactList.stream()
+                .filter(c -> c.getRootID().getRootID().toString()
+                        .equals(commandModel.getTargetId()))
+                .findFirst().orElseThrow(ContactNotFoundException::new);
+        var reOrderNumber = commandModel.getModel().getOrderNumber();
+        if (reOrderNumber > contact.getOrderNumber()) ++reOrderNumber;
+        contact.changeOrderNumber(reOrderNumber);
+        contactList.stream()
+                .filter(c -> c.getOrderNumber() >= contact.getOrderNumber() && !c.equals(contact))
+                .forEach(c -> c.changeOrderNumber(c.getOrderNumber() + 1));
+        int orderCounter = 1;
+        for (ContactRoot contactRoot : contactList.stream()
+                .sorted(Comparator.comparingInt(ContactRoot::getOrderNumber))
+                .toList()) {
+            contactRoot.changeOrderNumber(orderCounter++);
+
+        }
+        abstractContactCommandRepositoryAdapter.updateAll(contactList);
+
         return null;
     }
 
