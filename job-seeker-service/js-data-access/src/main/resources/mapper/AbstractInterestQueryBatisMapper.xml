@@ -26,7 +26,7 @@
 
         FROM resume.interests intr
         WHERE row_status = 'ACTIVE'
-        AND resume_uuid = #{resumeId,typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler
+        AND resume_uuid = #{resumeId,typeHandler=az.rock.flyjob.js.dataaccess.mapper.file.handler.UUIDTypHandler}
         AND access_modifier IN
         <foreach collection="access" item="modifier" open="(" close=")" separator=",">
             #{modifier}
@@ -37,7 +37,7 @@
             resultType="az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel">
         select i.*
         from resume.interests i
-        where i.resume_uuid=#{resumeId,typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+        where i.resume_uuid=#{resumeId,typeHandler=az.rock.flyjob.js.dataaccess.mapper.file.handler.UUIDTypHandler}
         and i.row_status='ACTIVE'
         AND i.access_modifier in
         <foreach collection="access" item="item" open="(" separator="," close=")">
@@ -48,7 +48,7 @@
     resultType="az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel">
         select i.*
         from resume.interests i
-        where i.resume_uuid=#{resumeId,typeHandler=az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler}
+        where i.resume_uuid=#{resumeId,typeHandler=az.rock.flyjob.js.dataaccess.mapper.file.handler.UUIDTypHandler}
         and i.row_status='ACTIVE'
         AND i.access_modifier in
         <foreach collection="access" item="item" open="(" separator="," close=")">
