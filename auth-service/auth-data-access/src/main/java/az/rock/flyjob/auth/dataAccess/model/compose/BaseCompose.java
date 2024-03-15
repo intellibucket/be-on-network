@@ -17,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BaseCompose {
+
     private UUID uuid;
 
     private Long version;
