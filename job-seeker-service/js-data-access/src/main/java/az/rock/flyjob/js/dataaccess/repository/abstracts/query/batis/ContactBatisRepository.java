@@ -1,4 +1,4 @@
-package az.rock.flyjob.js.dataaccess.repository.abstracts.batis;
+package az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis;
 
 import az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose;
 import az.rock.flyjob.js.dataaccess.model.batis.model.ContactComposeExample;
