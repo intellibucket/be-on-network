@@ -67,7 +67,7 @@ public class CourseQueryPrivateController implements CourseQueryPrivateSpec {
     @Override
     @GetMapping("/get-any-course/{id}")
     public ResponseEntity<JSuccessDataResponse<AnyCourseResponseModel>> findAnyCourseById(@PathVariable(name = "id") UUID id) {
-        var response = abstractCourseQueryDomainPresentationService.findAnyCourse(id);
+        var response = abstractCourseQueryDomainPresentationService.allAnyCourse(id);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 

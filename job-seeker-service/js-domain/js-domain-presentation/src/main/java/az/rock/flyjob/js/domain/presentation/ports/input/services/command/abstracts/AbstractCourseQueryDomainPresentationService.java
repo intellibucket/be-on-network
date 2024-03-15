@@ -17,7 +17,7 @@ public interface AbstractCourseQueryDomainPresentationService {
 
     SimplePageableResponse<SimpleMyCourseResponseModel>  allMySimpleCourses(SimplePageableRequest simplePageableRequest);
 
-    AnyCourseResponseModel findAnyCourse(UUID uuid);
+    AnyCourseResponseModel allAnyCourse(UUID uuid);
 
     SimplePageableResponse <MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest);
 
