@@ -14,7 +14,7 @@ import java.util.UUID;
 @Repository
 public interface AbstractContactQueryJPARepository extends GJpaRepository<ContactEntity, UUID> {
 
-    @Query("SELECT row. FROM ContactEntity row WHERE row.resume.uuid = :resumeID and (row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
-    List<ContactEntity> findAllByUser(@Param(value = "resumeID") UUID resumeId);
+//    @Query("SELECT row. FROM ContactEntity row WHERE row.resume.uuid = :resumeID and (row.rowStatus = 'ACTIVE') and (row.processStatus = 'COMPLETED')")
+//    List<ContactEntity> findAllByUser(@Param(value = "resumeID") UUID resumeId);
 //    Boolean existsByFormatTypeAndDataAndLiveType();
 }
