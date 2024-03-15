@@ -3,7 +3,7 @@
 <mapper namespace="az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository">
 
     <sql id="user_profile_result_sql">
-        usr.uuid as uuid,
+       select usr.uuid as uuid,
        usr.version as version,
        usr.row_status as rowStatus,
        usr.process_status as trxProcessStatus,
@@ -22,9 +22,7 @@
 
     <resultMap id="my_profile_result_map"
                type="az.rock.flyjob.auth.model.query.MyProfileQueryRecord">
-        <id property="userId"
-            column="uuid"
-            typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
+        <id property="userId" column="uuid" typeHandler="az.rock.flyjob.auth.dataAccess.mapper.type.handler.UUIDTypeHandler"/>
         <result property="version" column="version"/>
         <result property="rowStatus" column="rowStatus"/>
         <result property="trxProcessStatus" column="trxProcessStatus"/>

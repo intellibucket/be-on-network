@@ -6,10 +6,7 @@ import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -56,7 +53,6 @@ public class InterestEntity extends BaseEntity {
         setCreatedDate(builder.createdDate);
         setLastModifiedDate(builder.lastModifiedDate);
     }
-
 
     public static final class Builder {
         private ResumeEntity resume;

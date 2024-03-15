@@ -16,11 +16,12 @@ public interface CourseQueryPrivateSpec {
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyCourseResponseModel>>> queryAllAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
+    ResponseEntity<JSuccessDataResponse<MyCourseResponseModel>> findMyCourseById(UUID id);
+
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyCourseResponseModel>>> queryAllMySimpleCourses(SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyCourseResponseModel>>> queryAllAnySimpleCourses(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
-    ResponseEntity<JSuccessDataResponse<MyCourseResponseModel>> findMyCourseById(UUID id);
 
     ResponseEntity<JSuccessDataResponse<AnyCourseResponseModel>> findAnyCourseById(UUID id);
 }
