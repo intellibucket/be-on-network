@@ -12,13 +12,14 @@ import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import java.util.UUID;
 
 @Service
 @InputPort
 @Slf4j
-public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService{
-    private AbstractCourseCommandHandler commandHandler;
+public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService {
+    private  AbstractCourseCommandHandler commandHandler;
 
     public CourseCommandDomainPresentationService(AbstractCourseCommandHandler commandHandler) {
         this.commandHandler = commandHandler;
@@ -30,34 +31,34 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
         try {
             var courseCreatedEvent = commandHandler.create(command.getModel());
         } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(),e);
+            throw new JRuntimeException(e.getMessage(), e);
         }
     }
 
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        try{
-            var courseUpdatedEvent = commandHandler.merge(command.getModel(),command.getTargetId());
-        }catch (Exception e){
-            throw new JRuntimeException(e.getMessage(),e);
+        try {
+            var courseUpdatedEvent = commandHandler.merge(command.getModel(), command.getTargetId());
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(), e);
         }
     }
 
     @Override
     public void delete(UUID courseId) {
-        try{
+        try {
             var courseDeleteEvent = commandHandler.delete(courseId);
-        }catch (Exception e){
-            throw new JRuntimeException(e.getMessage(),e);
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(), e);
         }
     }
 
     @Override
     public void reorder(ReorderCommandModel command) {
-        try{
+        try {
             var reorderEvent = commandHandler.reorder(command);
-        }catch (Exception e){
-            throw new JRuntimeException(e.getMessage(),e);
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(), e);
         }
     }
 
@@ -65,8 +66,8 @@ public class CourseCommandDomainPresentationService implements AbstractCourseCom
     public void uploadCertificate(UUID courseId, MultipartFileWrapper file) {
         try {
             var certificateEvent = commandHandler.uploadCertificate(courseId, file);
-        }catch (Exception e){
-            throw new JRuntimeException(e.getMessage(),e);
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(), e);
         }
 
     }
