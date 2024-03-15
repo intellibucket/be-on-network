@@ -9,6 +9,15 @@
     "regex": ""
   },
   {
+    "code": "F0000000002",
+    "az": " Bu bacarıq artıq əlavə edilmişdir.",
+    "en": " This skill has already been added.",
+    "ru": " Этот навык уже добавлен.",
+    "tr": " Bu beceri zaten eklendi.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
     "code": "F0000000003",
     "az": "Kurs tapılmadı.",
     "en": "Course not found.",
@@ -44,6 +53,4 @@
     "hasRegex": false,
     "regex": ""
   }
-
-
 ]
