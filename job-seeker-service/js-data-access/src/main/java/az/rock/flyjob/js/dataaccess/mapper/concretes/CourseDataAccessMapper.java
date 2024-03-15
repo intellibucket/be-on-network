@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.compose.course.CourseCompose;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
@@ -79,9 +80,35 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
             return Optional.of(courseEntity);
         }
         else return Optional.empty();
+    }
 
-
-
-
+    @Override
+    public Optional<CourseRoot> toRoot(CourseCompose compose) {
+        var optionalCompose = Optional.ofNullable(compose);
+        if(optionalCompose.isEmpty())return Optional.empty();
+        var safetyCompose = optionalCompose.get();
+        return Optional.of(
+                CourseRoot.Builder.builder()
+                        .id(CourseID.of(safetyCompose.getUuid()))
+                        .version(Version.of(safetyCompose.getVersion()))
+                        .processStatus(safetyCompose.getProcessStatus())
+                        .rowStatus(safetyCompose.getRowStatus())
+                        .createdDate(GDateTime.toZonedDateTime(safetyCompose.getCreatedDate()))
+                        .lastModifiedDate(GDateTime.toZonedDateTime(safetyCompose.getLastModifiedDate()))
+                        .resume(ResumeID.of(safetyCompose.getUuid()))
+                        .accessModifier(safetyCompose.getAccessModifier())
+                        .orderNumber(safetyCompose.getOrderNumber())
+                        .courseTitle(safetyCompose.getCourseTitle())
+                        .institution(safetyCompose.getInstitution())
+                        .isOnline(safetyCompose.getIsOnline())
+                        .city(safetyCompose.getCity())
+                        .country(safetyCompose.getCountry())
+                        .startDate(safetyCompose.getStartDate())
+                        .endDate(safetyCompose.getEndDate())
+                        .description(safetyCompose.getDescription())
+                        .certificateFilePath(safetyCompose.getCertificateFilePath())
+                        .verificationAddress(safetyCompose.getVerificationAddress())
+                        .build()
+        );
     }
 }

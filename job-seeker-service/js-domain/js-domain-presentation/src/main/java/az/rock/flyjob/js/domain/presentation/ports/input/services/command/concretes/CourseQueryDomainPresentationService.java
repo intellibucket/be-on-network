@@ -7,10 +7,12 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.S
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseQueryDomainPresentationService;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -20,6 +22,8 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
     private final AbstractSecurityContextHolder securityContextHolder;
 
     private final AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter;
+
+    private List<AccessModifier> mockAccessModifiers = List.of(AccessModifier.values());
 
     public CourseQueryDomainPresentationService(AbstractSecurityContextHolder securityContextHolder,
                                                 AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter) {
@@ -45,13 +49,21 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
     @Override
     public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
-        var courses = courseQueryRepositoryAdapter.findAllMyCourses(pageableRequest,resumeId);
+        var courses = courseQueryRepositoryAdapter.findAllMyCourses(pageableRequest,resumeId)
+                .stream()
+                .map(MyCourseResponseModel::of)
+                .toList();
         return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
     }
 
     @Override
     public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return null;
+        var resumeId = securityContextHolder.availableResumeID();
+        var courses = courseQueryRepositoryAdapter.findAllMyCourses(pageableRequest,resumeId)
+                .stream()
+                .map(AnyCourseResponseModel::of)
+                .toList();
+        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
     }
 
     @Override

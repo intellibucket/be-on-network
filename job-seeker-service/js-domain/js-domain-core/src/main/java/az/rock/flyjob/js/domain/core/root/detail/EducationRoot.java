@@ -16,7 +16,7 @@ import java.util.UUID;
 
 
 public class EducationRoot extends AggregateRoot<EducationID> {
-    private ResumeID resume;
+    private final ResumeID resumeID;
     private AccessModifier accessModifier;
     private Integer orderNumber;
     private EducationDegree degree;
@@ -32,7 +32,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private EducationRoot(Builder builder) {
         super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
-        this.resume = builder.resume;
+        this.resumeID = builder.resume;
         this.orderNumber = builder.orderNumber;
         this.degree = builder.degree;
         this.state = builder.state;
@@ -45,8 +45,53 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         this.description = builder.description;
     }
 
-    public ResumeID getResume() {
-        return resume;
+    @Override
+    public String toString() {
+        return "EducationRoot{" +
+               "orderNumber=" + orderNumber +
+               '}';
+    }
+
+    public EducationRoot changeEducationDegree(EducationDegree educationDegree) {
+        this.degree = educationDegree;
+        return this;
+    }
+
+    public EducationRoot changeEducationState(EducationState educationState) {
+        this.state = educationState;
+        return this;
+    }
+
+    public EducationRoot changeEducationDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public EducationRoot changeEducationStartDate(LocalDate educationStartDate) {
+        this.startDate = educationStartDate;
+        return this;
+
+    }
+
+    public EducationRoot changeEducationEndDate(LocalDate educationEndDate) {
+        this.startDate = educationEndDate;
+        return this;
+    }
+    public EducationRoot changeOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+        return this;
+    }
+    public EducationRoot changeLink(String link) {
+        this.link = link;
+        return this;
+    }
+    public EducationRoot changeEstablishmentName(String establishmentName) {
+        this.establishmentName = establishmentName;
+        return this;
+    }
+
+    public ResumeID getResumeID() {
+        return resumeID;
     }
 
     public AccessModifier getAccessModifier() {
@@ -56,6 +101,8 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     public Integer getOrderNumber() {
         return orderNumber;
     }
+
+
 
     public EducationDegree getDegree() {
         return degree;
@@ -76,6 +123,8 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     public String getEstablishmentName() {
         return establishmentName;
     }
+
+
 
     public UUID getCityId() {
         return cityId;
@@ -121,7 +170,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return new Builder();
         }
 
-        public Builder id(EducationID val) {
+        public Builder uuid(EducationID val) {
             id = val;
             return this;
         }
@@ -156,7 +205,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return this;
         }
 
-        public Builder accessModifier(AccessModifier accessModifier){
+        public Builder accessModifier(AccessModifier accessModifier) {
             this.accessModifier = accessModifier;
             return this;
         }

@@ -24,6 +24,6 @@ public interface AbstractCourseQueryRepositoryAdapter{
 
     Boolean isInLimit(Long limit,ResumeID resumeId);
 
-    List<MyCourseResponseModel> findAllMyCourses(SimplePageableRequest pageableRequest,ResumeID resumeID);
+    List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest,ResumeID resumeID);
 
 }

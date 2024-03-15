@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractCourseQueryBatisRepository">
-    <resultMap id="courseResultMap" type="az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel">
-        <id property="id" column="uuid" typeHandler="az.rock.flyjob.js.dataaccess.mapper.type.handler.UUIDTypeHandler"/>
+    <resultMap id="courseResultMap" type="az.rock.flyjob.js.dataaccess.model.compose.course.CourseCompose">
+        <id property="uuid" column="uuid" typeHandler="az.rock.flyjob.js.dataaccess.mapper.type.handler.UUIDTypeHandler"/>
+        <result property="version" column="version" />
+        <result property="processStatus" column="process_status" />
+        <result property="rowStatus" column="row_status" />
+        <result property="createdDate" column="created_date" />
         <result property="lastModifiedDate" column="modification_date" />
+        <result property="resumeId" column="resume_uuid" typeHandler="az.rock.flyjob.js.dataaccess.mapper.type.handler.UUIDTypeHandler"/>
         <result property="accessModifier" column="access_modifier" />
         <result property="orderNumber" column="order_number" />
         <result property="courseTitle" column="course_title" />
@@ -13,15 +18,12 @@
         <result property="country" column="country" />
         <result property="startDate" column="start_date" />
         <result property="endDate" column="end_date" />
-        <result property="description" column="description" />
-        <result property="isVerified" column="verification_address" typeHandler="az.rock.flyjob.js.dataaccess.mapper.type.handler.StringToBooleanTypeHandler" />
-        <result property="certificateUrl" column="certificate_file_path" />
-
-
-
+        <result property="description" column="is_continue" />
+        <result property="certificateFilePath" column="certificate_file_path" />
+        <result property="verificationAddress" column="verification_address" />
     </resultMap>
 
-    <select id="findAllMyCourses" resultMap="courseResultMap" resultType="az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel">
+    <select id="findAllMyCourses" resultMap="courseResultMap" resultType="az.rock.flyjob.js.dataaccess.model.compose.course.CourseCompose">
         SELECT *
         FROM resume.courses row
         WHERE row.resume_uuid = #{resume, typeHandler=az.rock.flyjob.js.dataaccess.mapper.type.handler.UUIDTypeHandler} AND row.row_status = 'ACTIVE'
