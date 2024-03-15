@@ -1,8 +1,8 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
-import az.rock.flyjob.js.domain.core.exception.InterestDomainException;
-import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
-import az.rock.flyjob.js.domain.core.exception.InterestOverLimit;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestDomainException;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractInterestDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
@@ -87,7 +87,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
             var interestRoot = this.domainService.validateNewInterest (allInterests, newInterestRoot);
             this.interestCommandRepositoryAdapter.update(interestRoot);
             return InterestUpdateEvent.of(interestRoot);
-        } else throw new InterestNotFound("Interest not Found");
+        } else throw new InterestNotFound();
 
     }
 
@@ -99,7 +99,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
             var interestRoot = ownByID.get();
             this.interestCommandRepositoryAdapter.delete(interestRoot);
             return InterestDeleteEvent.of(interestRoot.getRootID().getRootID());
-        } else throw new InterestNotFound("Interest Not Found");
+        } else throw new InterestNotFound();
 
     }
 
@@ -135,7 +135,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                         }
                     });
             return InterestReorderEvent.of(targetRoot.getRootID().getAbsoluteID());
-        } else throw new InterestNotFound(" Target Interest not found");
+        } else throw new InterestNotFound();
 
     }
 
@@ -161,7 +161,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                         return;
                     } else {
                         try {
-                            throw new InterestOverLimit("You can't add anymore interest");
+                            throw new InterestOverLimit();
                         } catch (InterestOverLimit e) {
                             throw new RuntimeException(e);
                         }
@@ -169,7 +169,7 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                 },
                 () -> {
                     try {
-                        throw new InterestOverLimit("You can't add anymore interest");
+                        throw new InterestOverLimit();
                     } catch (InterestOverLimit e) {
                         throw new RuntimeException(e);
                     }

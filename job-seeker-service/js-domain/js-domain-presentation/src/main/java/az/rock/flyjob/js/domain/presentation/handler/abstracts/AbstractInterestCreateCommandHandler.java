@@ -1,7 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.abstracts;
 
-import az.rock.flyjob.js.domain.core.exception.InterestDomainException;
-import az.rock.flyjob.js.domain.core.exception.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestDomainException;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.InterestCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;

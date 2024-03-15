@@ -1,6 +1,6 @@
 package az.rock.flyjob.js.domain.core.service.concretes;
 
-import az.rock.flyjob.js.domain.core.exception.InterestAlreadyExistException;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestAlreadyExistException;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractInterestDomainService;
 

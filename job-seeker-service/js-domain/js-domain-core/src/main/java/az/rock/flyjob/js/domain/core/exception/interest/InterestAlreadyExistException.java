@@ -1,7 +1,7 @@
-package az.rock.flyjob.js.domain.core.exception;
+package az.rock.flyjob.js.domain.core.exception.interest;
 
 public class InterestAlreadyExistException extends InterestDomainException {
     public InterestAlreadyExistException() {
-        super("An interest with this name has already been registered.");
+        super("F0000000007");
     }
 }

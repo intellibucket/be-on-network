@@ -52,5 +52,33 @@
     "tr": "Eğitim bulunamadı.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000007",
+    "az": "Bu hobbi artıq qeyd olunub.",
+    "en": "An interest with this name has already been registered.",
+    "ru": "Интерес с таким именем уже зарегистрирован.",
+    "tr": "Bu isimle bir ilgi alanı zaten kayıtlı.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000008",
+    "az": "Hobbi tapılmadı.",
+    "en": "Interest not found.",
+    "ru": "Интерес не найден.",
+    "tr": "İlgi alanı bulunamadı.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000009",
+    "az": "Daha çox hobbi əlavə edə bilməzsiniz.",
+    "en": "You can't add anymore interest.",
+    "ru": "Вы не можете добавить больше интересов.",
+    "tr": "Daha fazla ilgi alanı ekleyemezsiniz.",
+    "hasRegex": false,
+    "regex": ""
   }
+
 ]
