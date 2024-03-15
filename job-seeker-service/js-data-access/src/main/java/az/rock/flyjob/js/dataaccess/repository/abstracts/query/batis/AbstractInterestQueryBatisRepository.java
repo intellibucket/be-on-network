@@ -22,15 +22,15 @@ public interface AbstractInterestQueryBatisRepository {
             @Param(value = "access") List<AccessModifier> access);
 
 
-    Page<AnyInterestResponseModel> findAllAnyInterests(
+    List<AnyInterestResponseModel> findAllAnyInterests(
             @Param(value = "resumeId") UUID targetResumeId,
             @Param(value = "access") List<AccessModifier> access,
-            @Param(value = "pageable") Pageable pageable);
+            @Param(value = "pageable") SimplePageableRequest pageable);
 
-    Page<SimpleAnyInterestResponseModel> findAllAnySimpleInterests(
+    List<SimpleAnyInterestResponseModel> findAllAnySimpleInterests(
             @Param(value = "resumeId") UUID targetResumeId,
             @Param(value = "access") List<AccessModifier> access,
-            @Param(value = "pageable") Pageable pageable);
+            @Param(value = "pageable") SimplePageableRequest pageable);
 
 
 }

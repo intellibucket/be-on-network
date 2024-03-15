@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/js/1.0/private/query/interest", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,6 +39,7 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
 
     @Override
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+        var anyInterestResponseModels = this.domainPresentationService.queryAllAnyInterests(targetResumeId, pageableRequest);
         return null;
     }
 
@@ -49,6 +52,7 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
 
     @Override
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+        this.domainPresentationService.queryAllAnySimpleInterests(targetResumeId, pageableRequest);
         return null;
     }
 
@@ -61,6 +65,7 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
 
     @Override
     public ResponseEntity<JSuccessDataResponse<AnyInterestResponseModel>> findAnyInterestById(UUID id) {
+        this.domainPresentationService.findAnyInterestById(id);
         return null;
     }
 }
