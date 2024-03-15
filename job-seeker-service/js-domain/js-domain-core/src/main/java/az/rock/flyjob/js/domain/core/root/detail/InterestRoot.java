@@ -9,6 +9,7 @@ import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 public class InterestRoot extends AggregateRoot<InterestID> {
     private ResumeID resume;
@@ -18,8 +19,20 @@ public class InterestRoot extends AggregateRoot<InterestID> {
     private String name;
     private String description;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof InterestRoot that)) return false;
+        return Objects.equals(isHobby, that.isHobby) && Objects.equals(name, that.name) && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), isHobby, name, description);
+    }
+
     private InterestRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
@@ -27,6 +40,33 @@ public class InterestRoot extends AggregateRoot<InterestID> {
         this.name = builder.name;
         this.description = builder.description;
     }
+
+    public InterestRoot changeName(String name) {
+        if (!name.isBlank()) {
+            this.name = name;
+        }
+        return this;
+
+    }
+
+    public InterestRoot changeHobby(Boolean isHobby) {
+
+        this.isHobby = isHobby;
+
+        return this;
+    }
+
+    public InterestRoot changeDescription(String description) {
+        this.description = description;
+
+        return this;
+    }
+
+    public InterestRoot changeOrderNumber(Integer newNumber) {
+        this.orderNumber = newNumber;
+        return this;
+    }
+
 
     public ResumeID getResume() {
         return resume;
@@ -121,8 +161,8 @@ public class InterestRoot extends AggregateRoot<InterestID> {
             return this;
         }
 
-        public Builder accessModifier(AccessModifier accessModifier){
-            this.accessModifier =accessModifier;
+        public Builder accessModifier(AccessModifier accessModifier) {
+            this.accessModifier = accessModifier;
             return this;
         }
 
