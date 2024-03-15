@@ -37,9 +37,17 @@
         <typeAlias type="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler" alias="UUIDTypeHandler"/>
 
         <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose" alias="ContactCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.ContactComposeExample"
+                   alias="ContactComposeExample"/>
         <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.CourseCompose" alias="CourseCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample"
+                   alias="CourseComposeExample"/>
         <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose" alias="EducationCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample"
+                   alias="EducationComposeExample"/>
         <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose" alias="InterestCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample"
+                   alias="InterestComposeExample"/>
     </typeAliases>
 
     <typeHandlers>
