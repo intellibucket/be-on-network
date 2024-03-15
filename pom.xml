@@ -53,6 +53,7 @@
         <module>payment-service</module>
         <module>notification-service</module>
         <module>messaging-service</module>
+        <module>file-system-service</module>
     </modules>
 
     <properties>
