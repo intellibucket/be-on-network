@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="az.rock.flyjob.js.dataaccess.model.batis.client.InterestsMapper">
-    <resultMap id="BaseResultMap" type="az.rock.flyjob.js.dataaccess.model.batis.model.Interests">
+<mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.batis.ContactBatisRepository">
+    <resultMap id="BaseResultMap" type="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose">
         <id column="uuid" jdbcType="OTHER" property="uuid"/>
         <result column="version" jdbcType="BIGINT" property="version"/>
         <result column="process_status" jdbcType="VARCHAR" property="processStatus"/>
@@ -11,9 +11,9 @@
         <result column="resume_uuid" jdbcType="OTHER" property="resumeUuid"/>
         <result column="access_modifier" jdbcType="VARCHAR" property="accessModifier"/>
         <result column="order_number" jdbcType="INTEGER" property="orderNumber"/>
-        <result column="is_hobby" jdbcType="BIT" property="isHobby"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="format_type" jdbcType="VARCHAR" property="formatType"/>
+        <result column="live_type" jdbcType="VARCHAR" property="liveType"/>
+        <result column="data" jdbcType="VARCHAR" property="data"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -78,16 +78,16 @@
     <sql id="Base_Column_List">
         uuid
         , version, process_status, row_status, created_date, modification_date, resume_uuid,
-    access_modifier, order_number, is_hobby, name, description
+    access_modifier, order_number, format_type, live_type, data
     </sql>
-    <select id="selectByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.InterestsExample"
+    <select id="selectByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactComposeExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from resume.interests
+        from resume.contacts
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -98,33 +98,33 @@
     <select id="selectByPrimaryKey" parameterType="java.lang.Object" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from resume.interests
+        from resume.contacts
         where uuid = #{uuid,jdbcType=OTHER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Object">
         delete
-        from resume.interests
+        from resume.contacts
         where uuid = #{uuid,jdbcType=OTHER}
     </delete>
-    <delete id="deleteByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.InterestsExample">
-        delete from resume.interests
+    <delete id="deleteByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactComposeExample">
+        delete from resume.contacts
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.Interests">
-        insert into resume.interests (uuid, version, process_status,
-                                      row_status, created_date, modification_date,
-                                      resume_uuid, access_modifier, order_number,
-                                      is_hobby, name, description)
+    <insert id="insert" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose">
+        insert into resume.contacts (uuid, version, process_status,
+                                     row_status, created_date, modification_date,
+                                     resume_uuid, access_modifier, order_number,
+                                     format_type, live_type, data)
         values (#{uuid,jdbcType=OTHER}, #{version,jdbcType=BIGINT}, #{processStatus,jdbcType=VARCHAR},
                 #{rowStatus,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP},
                 #{modificationDate,jdbcType=TIMESTAMP},
                 #{resumeUuid,jdbcType=OTHER}, #{accessModifier,jdbcType=VARCHAR}, #{orderNumber,jdbcType=INTEGER},
-                #{isHobby,jdbcType=BIT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+                #{formatType,jdbcType=VARCHAR}, #{liveType,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.Interests">
-        insert into resume.interests
+    <insert id="insertSelective" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose">
+        insert into resume.contacts
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="uuid != null">
                 uuid,
@@ -153,14 +153,14 @@
             <if test="orderNumber != null">
                 order_number,
             </if>
-            <if test="isHobby != null">
-                is_hobby,
+            <if test="formatType != null">
+                format_type,
             </if>
-            <if test="name != null">
-                name,
+            <if test="liveType != null">
+                live_type,
             </if>
-            <if test="description != null">
-                description,
+            <if test="data != null">
+                data,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -191,26 +191,26 @@
             <if test="orderNumber != null">
                 #{orderNumber,jdbcType=INTEGER},
             </if>
-            <if test="isHobby != null">
-                #{isHobby,jdbcType=BIT},
+            <if test="formatType != null">
+                #{formatType,jdbcType=VARCHAR},
             </if>
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
+            <if test="liveType != null">
+                #{liveType,jdbcType=VARCHAR},
             </if>
-            <if test="description != null">
-                #{description,jdbcType=VARCHAR},
+            <if test="data != null">
+                #{data,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.InterestsExample"
+    <select id="countByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactComposeExample"
             resultType="java.lang.Long">
-        select count(*) from resume.interests
+        select count(*) from resume.contacts
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update resume.interests
+        update resume.contacts
         <set>
             <if test="record.uuid != null">
                 uuid = #{record.uuid,jdbcType=OTHER},
@@ -239,14 +239,14 @@
             <if test="record.orderNumber != null">
                 order_number = #{record.orderNumber,jdbcType=INTEGER},
             </if>
-            <if test="record.isHobby != null">
-                is_hobby = #{record.isHobby,jdbcType=BIT},
+            <if test="record.formatType != null">
+                format_type = #{record.formatType,jdbcType=VARCHAR},
             </if>
-            <if test="record.name != null">
-                name = #{record.name,jdbcType=VARCHAR},
+            <if test="record.liveType != null">
+                live_type = #{record.liveType,jdbcType=VARCHAR},
             </if>
-            <if test="record.description != null">
-                description = #{record.description,jdbcType=VARCHAR},
+            <if test="record.data != null">
+                data = #{record.data,jdbcType=VARCHAR},
             </if>
         </set>
         <if test="_parameter != null">
@@ -254,7 +254,7 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update resume.interests
+        update resume.contacts
         set uuid = #{record.uuid,jdbcType=OTHER},
         version = #{record.version,jdbcType=BIGINT},
         process_status = #{record.processStatus,jdbcType=VARCHAR},
@@ -264,15 +264,16 @@
         resume_uuid = #{record.resumeUuid,jdbcType=OTHER},
         access_modifier = #{record.accessModifier,jdbcType=VARCHAR},
         order_number = #{record.orderNumber,jdbcType=INTEGER},
-        is_hobby = #{record.isHobby,jdbcType=BIT},
-        name = #{record.name,jdbcType=VARCHAR},
-        description = #{record.description,jdbcType=VARCHAR}
+        format_type = #{record.formatType,jdbcType=VARCHAR},
+        live_type = #{record.liveType,jdbcType=VARCHAR},
+        data = #{record.data,jdbcType=VARCHAR}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.Interests">
-        update resume.interests
+    <update id="updateByPrimaryKeySelective"
+            parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose">
+        update resume.contacts
         <set>
             <if test="version != null">
                 version = #{version,jdbcType=BIGINT},
@@ -298,20 +299,20 @@
             <if test="orderNumber != null">
                 order_number = #{orderNumber,jdbcType=INTEGER},
             </if>
-            <if test="isHobby != null">
-                is_hobby = #{isHobby,jdbcType=BIT},
+            <if test="formatType != null">
+                format_type = #{formatType,jdbcType=VARCHAR},
             </if>
-            <if test="name != null">
-                name = #{name,jdbcType=VARCHAR},
+            <if test="liveType != null">
+                live_type = #{liveType,jdbcType=VARCHAR},
             </if>
-            <if test="description != null">
-                description = #{description,jdbcType=VARCHAR},
+            <if test="data != null">
+                data = #{data,jdbcType=VARCHAR},
             </if>
         </set>
         where uuid = #{uuid,jdbcType=OTHER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.Interests">
-        update resume.interests
+    <update id="updateByPrimaryKey" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose">
+        update resume.contacts
         set version           = #{version,jdbcType=BIGINT},
             process_status    = #{processStatus,jdbcType=VARCHAR},
             row_status        = #{rowStatus,jdbcType=VARCHAR},
@@ -320,9 +321,9 @@
             resume_uuid       = #{resumeUuid,jdbcType=OTHER},
             access_modifier   = #{accessModifier,jdbcType=VARCHAR},
             order_number      = #{orderNumber,jdbcType=INTEGER},
-            is_hobby          = #{isHobby,jdbcType=BIT},
-            name              = #{name,jdbcType=VARCHAR},
-            description       = #{description,jdbcType=VARCHAR}
+            format_type       = #{formatType,jdbcType=VARCHAR},
+            live_type         = #{liveType,jdbcType=VARCHAR},
+            data              = #{data,jdbcType=VARCHAR}
         where uuid = #{uuid,jdbcType=OTHER}
     </update>
 </mapper>

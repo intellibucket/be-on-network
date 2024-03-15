@@ -2,7 +2,7 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 
 import java.util.Date;
 
-public class Interests {
+public class InterestCompose {
     private Object uuid;
 
     private Long version;
