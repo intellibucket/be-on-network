@@ -1,4 +1,4 @@
-package az.rock.flyjob.auth.dataAccess.model.compose;
+package az.rock.flyjob.js.dataaccess.model.compose;
 
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Compose
 public class BaseCompose {
-
     private UUID uuid;
 
     private Long version;
