@@ -25,8 +25,4 @@ public interface AbstractCourseQueryRepositoryAdapter{
     Boolean isInLimit(Long limit,ResumeID resumeId);
 
     List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest,ResumeID resumeID);
-
-    // TODO: 14.03.2024
-    List<CourseRoot> findAllMySimpleCourses(SimplePageableRequest pageableRequest,ResumeID resumeID);
-
 }

@@ -16,8 +16,5 @@ public interface AbstractCourseQueryBatisRepository {
             @Param("pageable") SimplePageableRequest pageableRequest,
             @Param("resume") UUID resumeID);
 
-    List<CourseEntity> findAllMySimpleCourses(
-            @Param("pageable") SimplePageableRequest pageableRequest,
-            @Param("resume") UUID resumeID);
 
 }
