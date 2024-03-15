@@ -46,8 +46,7 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
     public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
         var courses = courseQueryRepositoryAdapter.findAllMyCourses(pageableRequest,resumeId);
-        var courseResponseModel = courses.stream().map(MyCourseResponseModel::of).toList();
-        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courseResponseModel);
+        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
     }
 
     @Override

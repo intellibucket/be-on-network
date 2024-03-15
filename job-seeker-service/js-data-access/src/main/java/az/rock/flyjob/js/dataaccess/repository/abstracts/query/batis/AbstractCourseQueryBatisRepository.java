@@ -2,6 +2,7 @@ package az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis;
 
 
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
+import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,7 +15,7 @@ import java.util.UUID;
 public interface AbstractCourseQueryBatisRepository {
 
 
-    List<CourseEntity> findAllMyCourses(
+    List<MyCourseResponseModel> findAllMyCourses(
             @Param("pageable") SimplePageableRequest pageableRequest,
             @Param("resume") UUID resumeID);
 

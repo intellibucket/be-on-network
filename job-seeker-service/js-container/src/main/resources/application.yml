@@ -21,3 +21,6 @@ grpc:
     authorization-rpc:
       address: static://localhost:9091
       negotiation-type: plaintext
+
+mybatis:
+  mapper-locations: classpath*:/**/*Mapper.xml

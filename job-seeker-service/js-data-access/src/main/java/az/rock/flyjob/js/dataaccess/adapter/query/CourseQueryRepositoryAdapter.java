@@ -63,17 +63,11 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     }
 
     @Override
-    public List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest, ResumeID resumeID) {
+    public List<MyCourseResponseModel> findAllMyCourses(SimplePageableRequest pageableRequest, ResumeID resumeID) {
 
         var courseList =  courseQueryBatisRepository.findAllMyCourses(pageableRequest,resumeID.getRootID())
                 .stream()
-                .map(t->{t.setResume(ResumeEntity.referenceOf(UUID.fromString("e67464bb-05d6-4b71-b02a-523645b3b0a4")));return t;})
-                .map(courseDataAccessMapper::toRoot)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
                 .toList();
-
-        System.out.println(courseList);
         return courseList;
     }
 }
