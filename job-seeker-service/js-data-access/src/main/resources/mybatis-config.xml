@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <environments default="pre-develop">
+        <environment id="pre-develop">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${DB_DRIVER}"/>
+                <property name="url" value="${JS_DB_URL}"/>
+                <property name="username" value="${DS-USERNAME}"/>
+                <property name="password" value="${DS-PASS}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/ContactBatisRepository.xml"/>
+        <mapper resource="mapper/CourseBatisRepository.xml"/>
+        <mapper resource="mapper/InterestBatisRepository.xml"/>
+        <mapper resource="mapper/EducationBatisRepository.xml"/>
+    </mappers>
+
+</configuration>

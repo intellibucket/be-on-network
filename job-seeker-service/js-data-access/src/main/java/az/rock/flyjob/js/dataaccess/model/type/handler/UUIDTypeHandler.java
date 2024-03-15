@@ -3,6 +3,7 @@ package az.rock.flyjob.js.dataaccess.model.type.handler;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
+import org.springframework.stereotype.Component;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+@Component
 @MappedTypes(value = UUID.class)
 public class UUIDTypeHandler extends BaseTypeHandler<UUID> {
     @Override
