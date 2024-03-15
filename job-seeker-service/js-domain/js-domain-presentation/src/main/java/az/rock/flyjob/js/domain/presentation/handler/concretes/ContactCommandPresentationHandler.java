@@ -19,6 +19,7 @@ import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
+import com.intellibucket.lib.payload.payload.ContactMergePayload;
 import com.intellibucket.lib.payload.payload.ContactPayload;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -125,7 +126,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
         }
         abstractContactCommandRepositoryAdapter.updateAll(contactList);
 
-        return null;
+        return ContactReorderEvent.of(ContactPayload.Builder.builder().build());
     }
 
 }
