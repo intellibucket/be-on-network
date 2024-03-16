@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.batis.ContactBatisRepository">
-    <resultMap id="BaseResultMap" type="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose">
-        <id column="uuid" jdbcType="OTHER" property="uuid"/>
+<mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.ContactBatisRepository">
+    <resultMap id="BaseResultMap" type="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose"
+               autoMapping="true">
+        <id column="uuid" property="uuid"
+            typeHandler="UUIDTypeHandler"/>
         <result column="version" jdbcType="BIGINT" property="version"/>
         <result column="process_status" jdbcType="VARCHAR" property="processStatus"/>
         <result column="row_status" jdbcType="VARCHAR" property="rowStatus"/>
         <result column="created_date" jdbcType="TIMESTAMP" property="createdDate"/>
         <result column="modification_date" jdbcType="TIMESTAMP" property="modificationDate"/>
-        <result column="resume_uuid" jdbcType="OTHER" property="resumeUuid"/>
+        <result column="resume_uuid" property="resumeUuid"
+                typeHandler="UUIDTypeHandler"/>
         <result column="access_modifier" jdbcType="VARCHAR" property="accessModifier"/>
         <result column="order_number" jdbcType="INTEGER" property="orderNumber"/>
         <result column="format_type" jdbcType="VARCHAR" property="formatType"/>
@@ -99,14 +102,14 @@
         select
         <include refid="Base_Column_List"/>
         from resume.contacts
-        where uuid = #{uuid,jdbcType=OTHER}
+        where uuid = #{uuid,typeHandler=UUIDTypeHandler}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Object">
         delete
         from resume.contacts
-        where uuid = #{uuid,jdbcType=OTHER}
+        where uuid = #{uuid,typeHandler=UUIDTypeHandler
     </delete>
-    <delete id="deleteByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.ContactComposeExample">
+    <delete id="deleteByExample" parameterType="ContactComposeExample">
         delete from resume.contacts
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
