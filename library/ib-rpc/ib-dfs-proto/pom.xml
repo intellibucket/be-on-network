@@ -15,6 +15,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <grpc.version>1.30.0</grpc.version>
     </properties>
 
     <dependencies>
@@ -33,11 +34,6 @@
             <artifactId>grpc-netty-shaded</artifactId>
             <version>1.62.2</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.google.protobuf</groupId>-->
-        <!--            <artifactId>protobuf-java</artifactId>-->
-        <!--            <version>3.19.4</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
