@@ -34,11 +34,6 @@
             <artifactId>grpc-netty-shaded</artifactId>
             <version>1.62.2</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.google.protobuf</groupId>-->
-        <!--            <artifactId>protobuf-java</artifactId>-->
-        <!--            <version>3.19.4</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
