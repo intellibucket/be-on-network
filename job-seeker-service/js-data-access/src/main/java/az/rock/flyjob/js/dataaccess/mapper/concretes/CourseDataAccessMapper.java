@@ -1,20 +1,23 @@
 package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
-import az.rock.flyjob.js.dataaccess.model.compose.course.CourseCompose;
+import az.rock.flyjob.js.dataaccess.model.batis.model.CourseCompose;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.CourseEntity;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
@@ -89,23 +92,23 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
         var safetyCompose = optionalCompose.get();
         return Optional.of(
                 CourseRoot.Builder.builder()
-                        .id(CourseID.of(safetyCompose.getUuid()))
+                        .id(CourseID.of((UUID) safetyCompose.getUuid()))
                         .version(Version.of(safetyCompose.getVersion()))
-                        .processStatus(safetyCompose.getProcessStatus())
-                        .rowStatus(safetyCompose.getRowStatus())
-                        .createdDate(GDateTime.toZonedDateTime(safetyCompose.getCreatedDate()))
-                        .lastModifiedDate(GDateTime.toZonedDateTime(safetyCompose.getLastModifiedDate()))
-                        .resume(ResumeID.of(safetyCompose.getUuid()))
-                        .accessModifier(safetyCompose.getAccessModifier())
+                        .processStatus(ProcessStatus.of(safetyCompose.getProcessStatus()))
+                        .rowStatus(RowStatus.valueOf(safetyCompose.getRowStatus()))
+                        .createdDate(safetyCompose.getCreatedDate().toInstant().atZone(ZoneId.systemDefault()))
+                        .lastModifiedDate(safetyCompose.getModificationDate().toInstant().atZone(ZoneId.systemDefault()))
+                        .resume(ResumeID.of((UUID) safetyCompose.getResumeUuid()))
+                        .accessModifier(AccessModifier.valueOf(safetyCompose.getAccessModifier()))
                         .orderNumber(safetyCompose.getOrderNumber())
                         .courseTitle(safetyCompose.getCourseTitle())
                         .institution(safetyCompose.getInstitution())
                         .isOnline(safetyCompose.getIsOnline())
                         .city(safetyCompose.getCity())
                         .country(safetyCompose.getCountry())
-                        .startDate(safetyCompose.getStartDate())
-                        .endDate(safetyCompose.getEndDate())
-                        .description(safetyCompose.getDescription())
+                        .startDate(safetyCompose.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+                        .endDate(safetyCompose.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+                        .description(safetyCompose.getIsContinue())
                         .certificateFilePath(safetyCompose.getCertificateFilePath())
                         .verificationAddress(safetyCompose.getVerificationAddress())
                         .build()

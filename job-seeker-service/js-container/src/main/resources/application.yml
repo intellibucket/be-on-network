@@ -22,5 +22,5 @@ grpc:
       address: static://localhost:9091
       negotiation-type: plaintext
 
-mybatis:
-  mapper-locations: classpath*:/**/*Mapper.xml
+#mybatis:
+#  mapper-locations: classpath*:/**/*Repository.xml

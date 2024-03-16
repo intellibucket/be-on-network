@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractCourseQueryBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCourseQueryJPARepository;
@@ -10,6 +11,7 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.Abstr
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Component;
@@ -64,7 +66,15 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
 
     @Override
     public List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest, ResumeID resumeID) {
-        return courseQueryBatisRepository.findAllMyCourses(pageableRequest,resumeID.getRootID())
+
+        CourseComposeExample courseComposeExample = new CourseComposeExample();
+        courseComposeExample.createCriteria()
+                .andResumeUuidEqualTo(resumeID)
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        courseComposeExample.setOrderByClause("order_number");
+
+
+        return courseQueryBatisRepository.selectByExample(courseComposeExample)
                 .stream()
                 .map(courseDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
