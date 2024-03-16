@@ -26,12 +26,14 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public Boolean isExistContact(ContactRoot contactRoot) {
-        return null;
+        return this.contactQueryJPARepository.existByContact(contactRoot);
     }
 
     @Override
     public Optional<ContactRoot> findOwnByID(ResumeID parentID, ContactID rootId) {
-        return AbstractContactQueryRepositoryAdapter.super.findOwnByID(parentID, rootId);
+        var entity = contactQueryJPARepository.findResumeIDandContactID(parentID.getAbsoluteID(), rootId.getAbsoluteID());
+        if (entity.isEmpty()) return Optional.empty();
+        return this.contactMapper.toRoot(entity.get());
     }
 
     @Override
@@ -43,15 +45,16 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public Optional<ContactRoot> findByPID(ResumeID parentID) {
-        return AbstractContactQueryRepositoryAdapter.super.findByPID(parentID);
+        var entity = this.contactQueryJPARepository.findByPID(parentID.getAbsoluteID());
+        if (entity.isEmpty()) return Optional.empty();
+        return this.contactMapper.toRoot(entity.get());
     }
 
     @Override
     public List<ContactRoot> findAllByPID(ResumeID parentID) {
-        var contactEntityList=this.contactQueryJPARepository.findAllByUser(parentID.getAbsoluteID());
-
-        return contactEntityList.stream().
-                map(this.contactMapper::toRoot)
+        var contactEntityList = contactQueryJPARepository.findAll(parentID.getAbsoluteID());
+        return contactEntityList.stream()
+                .map(this.contactMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();

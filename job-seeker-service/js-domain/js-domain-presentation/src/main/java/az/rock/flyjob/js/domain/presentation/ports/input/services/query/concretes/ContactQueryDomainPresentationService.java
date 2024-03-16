@@ -33,6 +33,11 @@ public class ContactQueryDomainPresentationService implements AbstractContactQue
 
     @Override
     public SimplePageableResponse<AnyContactResponseModel> queryAllAnyContacts(SimplePageableRequest simplePageableRequest) {
+//        var pageRequest = simplePageableRequest.of(pageableRequest.getPage(), pageableRequest.getSize());
+//        var allAnyContacts = this.abstractContactQueryRepositoryAdapter.findAllByPID(contactId, pageRequest, modifierList);
+//        if (!allAnyInterests.isEmpty()) {
+//            return allAnyInterests;
+//        } else throw new RuntimeException();
         return null;
     }
 
