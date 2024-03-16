@@ -7,6 +7,8 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.S
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseQueryDomainPresentationService;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.js.CourseID;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
@@ -58,8 +60,7 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
 
     @Override
     public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        var resumeId = securityContextHolder.availableResumeID();
-        var courses = courseQueryRepositoryAdapter.findAllMyCourses(pageableRequest,resumeId)
+        var courses = courseQueryRepositoryAdapter.findAllAnyCourses(ResumeID.of(targetResumeId),pageableRequest,mockAccessModifiers)
                 .stream()
                 .map(AnyCourseResponseModel::of)
                 .toList();
@@ -68,6 +69,7 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
 
     @Override
     public MyCourseResponseModel myCourseById(UUID id) {
-        return null;
+        var course = courseQueryRepositoryAdapter.findMyCourseById(CourseID.of(id),securityContextHolder.availableResumeID());
+        return MyCourseResponseModel.of(course.orElseThrow());
     }
 }

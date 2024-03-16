@@ -12,6 +12,7 @@ import az.rock.lib.valueObject.SimplePageableResponse;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @DomainOutputPort
 public interface AbstractCourseQueryRepositoryAdapter{
@@ -25,5 +26,9 @@ public interface AbstractCourseQueryRepositoryAdapter{
     Boolean isInLimit(Long limit,ResumeID resumeId);
 
     List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest,ResumeID resumeID);
+
+    List<CourseRoot> findAllAnyCourses(ResumeID targetResumeId, SimplePageableRequest pageableRequest,List<AccessModifier> accessModifiers);
+
+    Optional<CourseRoot> findMyCourseById(CourseID id,ResumeID resumeID);
 
 }

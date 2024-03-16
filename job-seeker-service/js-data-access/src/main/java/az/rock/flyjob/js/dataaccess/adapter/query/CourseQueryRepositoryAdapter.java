@@ -2,8 +2,7 @@ package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractCourseQueryBatisRepository;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.CourseBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCourseQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
@@ -13,14 +12,11 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.SimplePageableRequest;
-import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 
 @Component
@@ -28,10 +24,10 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
 
     private final AbstractCourseQueryJPARepository courseQueryJPARepository;
 
-    private final AbstractCourseQueryBatisRepository courseQueryBatisRepository;
+    private final CourseBatisRepository courseQueryBatisRepository;
     private final AbstractCourseDataAccessMapper courseDataAccessMapper;
 
-    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository, AbstractCourseQueryBatisRepository courseQueryBatisRepository, AbstractCourseDataAccessMapper courseDataAccessMapper) {
+    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository, CourseBatisRepository courseQueryBatisRepository, AbstractCourseDataAccessMapper courseDataAccessMapper) {
         this.courseQueryJPARepository = courseQueryJPARepository;
         this.courseQueryBatisRepository = courseQueryBatisRepository;
         this.courseDataAccessMapper = courseDataAccessMapper;
@@ -66,13 +62,11 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
 
     @Override
     public List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest, ResumeID resumeID) {
-
-        CourseComposeExample courseComposeExample = new CourseComposeExample();
+        var courseComposeExample = new CourseComposeExample();
         courseComposeExample.createCriteria()
-                .andResumeUuidEqualTo(resumeID)
+                .andResumeUuidEqualTo(resumeID.getRootID())
                 .andRowStatusEqualTo(RowStatus.ACTIVE.name());
         courseComposeExample.setOrderByClause("order_number");
-
 
         return courseQueryBatisRepository.selectByExample(courseComposeExample)
                 .stream()
@@ -80,5 +74,36 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();
+    }
+
+    @Override
+    public List<CourseRoot> findAllAnyCourses(ResumeID targetResumeId, SimplePageableRequest pageableRequest,List<AccessModifier> accessModifiers) {
+        var courseComposeExample = new CourseComposeExample();
+        courseComposeExample.createCriteria()
+                .andResumeUuidEqualTo(targetResumeId.getRootID())
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name())
+                .andAccessModifierIn(accessModifiers.stream().map(AccessModifier::name).toList());
+        courseComposeExample.setOrderByClause("order_number");
+        return courseQueryBatisRepository.selectByExample(courseComposeExample)
+                .stream()
+                .map(courseDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
+    @Override
+    public Optional<CourseRoot> findMyCourseById(CourseID id,ResumeID resumeID) {
+        var courseComposeExample = new CourseComposeExample();
+        courseComposeExample.createCriteria()
+                .andUuidEqualTo(id.getRootID())
+                .andResumeUuidEqualTo(resumeID.getRootID())
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        return courseQueryBatisRepository.selectByExample(courseComposeExample)
+                .stream()
+                .findFirst()
+                .map(courseDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get);
     }
 }
