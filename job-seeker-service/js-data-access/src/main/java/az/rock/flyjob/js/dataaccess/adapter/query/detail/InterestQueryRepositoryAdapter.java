@@ -5,7 +5,9 @@ import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractInt
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractInterestQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
+import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
+import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleMyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
@@ -98,7 +100,20 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
     }
 
+    @Override
+    public Optional<MyInterestResponseModel> findMyInterestById(UUID id) {
+        return Optional.empty();
+    }
 
+    @Override
+    public List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
+        return null;
+    }
+
+    @Override
+    public List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
+        return null;
+    }
 
 
 }

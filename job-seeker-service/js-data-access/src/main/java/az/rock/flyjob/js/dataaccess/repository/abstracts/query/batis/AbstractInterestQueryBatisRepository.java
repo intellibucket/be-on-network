@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis;
 
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
+import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
@@ -31,6 +32,7 @@ public interface AbstractInterestQueryBatisRepository {
             @Param(value = "resumeId") UUID targetResumeId,
             @Param(value = "access") List<AccessModifier> access,
             @Param(value = "pageable") SimplePageableRequest pageable);
+
 
 
 }
