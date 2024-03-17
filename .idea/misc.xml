@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -19,7 +20,11 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/article-sync-service/pom.xml" />
+        <option value="$PROJECT_DIR$/job-seeker-analytic-service/pom.xml" />
         <option value="$PROJECT_DIR$/library/ib-rpc/authorization-proto/pom.xml" />
+        <option value="$PROJECT_DIR$/stream-service/pom.xml" />
+        <option value="$PROJECT_DIR$/system-analytic-service/pom.xml" />
         <option value="$PROJECT_DIR$/vacancy-sync-service/pom.xml" />
       </set>
     </option>
