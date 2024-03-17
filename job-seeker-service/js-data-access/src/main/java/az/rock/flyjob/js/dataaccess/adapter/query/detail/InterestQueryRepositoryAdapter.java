@@ -1,7 +1,9 @@
 package az.rock.flyjob.js.dataaccess.adapter.query.detail;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractInterestDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractInterestQueryBatisRepository;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.InterestBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractInterestQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
@@ -25,18 +27,46 @@ import java.util.UUID;
 @Component
 public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepositoryAdapter {
 
-    private final AbstractInterestQueryBatisRepository batisRepository;
+    private final InterestBatisRepository batisRepository;
     private final AbstractInterestQueryJPARepository repository;
-
     private final AbstractInterestDataAccessMapper interestDataAccessMapper;
 
-    public InterestQueryRepositoryAdapter(AbstractInterestQueryBatisRepository batisRepository, AbstractInterestQueryJPARepository companyProfileQueryJPARepository,
-                                          @Qualifier("interestDataAccessMapper") AbstractInterestDataAccessMapper companyProfileDataAccessMapper) {
+    public InterestQueryRepositoryAdapter(InterestBatisRepository batisRepository, AbstractInterestQueryJPARepository repository, AbstractInterestDataAccessMapper interestDataAccessMapper) {
         this.batisRepository = batisRepository;
-        this.repository = companyProfileQueryJPARepository;
-        this.interestDataAccessMapper = companyProfileDataAccessMapper;
+        this.repository = repository;
+        this.interestDataAccessMapper = interestDataAccessMapper;
     }
 
+
+    @Override
+    public Optional<AnyInterestResponseModel> findAntById(UUID resumeId, UUID id, List<AccessModifier> modifier) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest, List<AccessModifier> modifier) {
+        return null;
+    }
+
+    @Override
+    public List<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest, List<AccessModifier> modifier) {
+        return null;
+    }
+
+    @Override
+    public Optional<MyInterestResponseModel> findMyInterestById(UUID id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
+        return null;
+    }
+
+    @Override
+    public List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
+        return null;
+    }
 
     @Override
     public Optional<InterestRoot> findOwnByID(ResumeID parentID, InterestID rootId, List<AccessModifier> accessModifiers) {
@@ -70,49 +100,6 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
             return interestCount;
         }
         return Optional.empty();
-    }
-
-    @Override
-    public Optional<AnyInterestResponseModel> findAntById(UUID resumeId, UUID interestId, List<AccessModifier> modifier) {
-        return Optional.ofNullable(
-                this.batisRepository.findAnyInterestById(resumeId,interestId,modifier).get()
-        );
-
-    }
-
-    @Override
-    public List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId,
-                                                              SimplePageableRequest pageable,
-                                                              List<AccessModifier> modifier) {
-        var allAnyInterests = this.batisRepository.findAllAnyInterests(targetResumeId, modifier, pageable);
-        if(!allAnyInterests.isEmpty()){
-            return allAnyInterests;
-        }else return List.of();
-
-    }
-
-    @Override
-    public List<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId,SimplePageableRequest pageable,List<AccessModifier> modifier) {
-        var allAnySimpleInterests = this.batisRepository.findAllAnySimpleInterests(targetResumeId, modifier, pageable);
-        if(!allAnySimpleInterests.isEmpty()){
-            return allAnySimpleInterests;
-        }return List.of();
-
-    }
-
-    @Override
-    public Optional<MyInterestResponseModel> findMyInterestById(UUID id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
-        return null;
-    }
-
-    @Override
-    public List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
-        return null;
     }
 
 
