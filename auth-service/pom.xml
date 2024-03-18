@@ -37,7 +37,7 @@
     <repositories>
         <repository>
             <id>nexus</id>
-            <url>http://62.72.45.66:8081/repository/maven-group</url>
+            <url>http://62.72.45.66:8081/repository/maven-snapshots/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <checksumPolicy>fail</checksumPolicy>
