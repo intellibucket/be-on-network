@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Maven Mirror Config Settings
-      - uses: s4u/maven-settings-action@v3.0.0
+        uses: s4u/maven-settings-action@v3.0.0
         with:
           servers: '[{"id": "snapshots", "username": "admin", "password": "A123456v"}]'
           mirrors: '[{"id": "nexus", "name": "mirrorName", "mirrorOf": "mirrorOf", "url": "http://62.72.45.66:8081/repository/maven-snapshots/"}]'
