@@ -13,10 +13,13 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
+
+@Component
 public class CourseQueryHandler implements AbstractCourseQueryHandler {
 
 

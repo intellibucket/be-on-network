@@ -29,15 +29,15 @@ public class CourseQueryPrivateController implements CourseQueryPrivateSpec {
     }
 
     @Override
-    @PutMapping(value = "get-all-courses")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyCourseResponseModel>>> queryAllMyCourses(@RequestBody SimplePageableRequest pageableRequest) {
+    @GetMapping(value = "get-all-courses")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyCourseResponseModel>>> queryAllMyCourses(@ModelAttribute("pageableRequest") SimplePageableRequest pageableRequest) {
         var response = this.abstractCourseQueryDomainPresentationService.allMyCourses(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
     @PutMapping("get-all-any-courses/{targetResumeId}")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyCourseResponseModel>>> queryAllAnyCourses(@PathVariable UUID targetResumeId, @RequestBody SimplePageableRequest pageableRequest) {
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyCourseResponseModel>>> queryAllAnyCourses(@PathVariable UUID targetResumeId, @ModelAttribute("pageableRequest")  SimplePageableRequest pageableRequest) {
         var response = this.abstractCourseQueryDomainPresentationService.allAnyCourses(targetResumeId, pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
