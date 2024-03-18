@@ -5,7 +5,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractContactCommandHandler;
-import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractContactCommmandDomainPresentationService;
+import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractContactCommandDomainPresentationService;
 import org.springframework.stereotype.Component;
 
 import java.rmi.server.UID;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-public class ContactCommandDomainPresentationService implements AbstractContactCommmandDomainPresentationService {
+public class ContactCommandDomainPresentationService implements AbstractContactCommandDomainPresentationService {
 
 
     private final AbstractContactCommandHandler abstractContactCommandHandler;

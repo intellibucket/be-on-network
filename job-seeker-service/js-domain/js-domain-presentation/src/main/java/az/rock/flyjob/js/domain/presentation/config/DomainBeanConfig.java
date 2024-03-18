@@ -16,7 +16,7 @@ public class DomainBeanConfig {
 
 
     @Bean
-    AbstractInterestDomainService interestDomainService() {
+    public AbstractInterestDomainService interestDomainService() {
         return new InterestDomainService();
     }
 
