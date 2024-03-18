@@ -1,8 +1,8 @@
-package com.intellibucket.lib.payload.event.create;
+package com.intellibucket.lib.payload.event.command.create;
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.Event;
-import com.intellibucket.lib.payload.payload.CourseMergePayload;
+import com.intellibucket.lib.payload.payload.command.CourseMergePayload;
 
 
 @Event

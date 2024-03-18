@@ -1,12 +1,14 @@
-package com.intellibucket.lib.payload.payload;
+package com.intellibucket.lib.payload.payload.command;
 
+
+import com.intellibucket.lib.payload.payload.Payload;
 
 import java.util.UUID;
 
 public class ResumeCreatedPayload extends Payload {
     private UUID resumeId;
 
-    public ResumeCreatedPayload(UUID resumeId){
+    public ResumeCreatedPayload(UUID resumeId) {
         this.resumeId = resumeId;
     }
 

@@ -1,4 +1,4 @@
-package com.intellibucket.lib.payload.event.delete;
+package com.intellibucket.lib.payload.event.command.delete;
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractStartDomainEvent;
 
