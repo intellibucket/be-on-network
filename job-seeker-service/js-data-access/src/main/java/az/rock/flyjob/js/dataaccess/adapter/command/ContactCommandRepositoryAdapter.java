@@ -6,6 +6,7 @@ import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractContact
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractContactCommandRepositoryAdapter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.rmi.server.UID;
@@ -22,7 +23,7 @@ public class ContactCommandRepositoryAdapter implements AbstractContactCommandRe
     private final AbstractContactCommandJPARepository repository;
 
     public ContactCommandRepositoryAdapter(AbstractContactDataAccessMapper abstractContactDataAccessMapper,
-                                           AbstractContactCommandJPARepository repository) {
+                                           @Qualifier("contactCustomCommandJPARepository") AbstractContactCommandJPARepository repository) {
         this.abstractContactDataAccessMapper = abstractContactDataAccessMapper;
         this.repository = repository;
     }

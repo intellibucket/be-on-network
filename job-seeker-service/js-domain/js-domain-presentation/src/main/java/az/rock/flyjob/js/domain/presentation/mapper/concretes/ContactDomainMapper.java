@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class ContactCommandDomainMapper implements AbstractContactCommandDomainMapper {
+public class ContactDomainMapper implements AbstractContactCommandDomainMapper {
 
     @Override
     public ContactRoot toRoot(ContactCommandModel commandModel, ResumeID resumeID) {
@@ -29,6 +29,7 @@ public class ContactCommandDomainMapper implements AbstractContactCommandDomainM
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .version(Version.ONE)
+                .orderNumber(-1)
                 .build();
     }
 }

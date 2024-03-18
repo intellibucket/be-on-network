@@ -10,7 +10,6 @@ import az.rock.lib.util.GDateTime;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class ContactDataAccessMapper implements AbstractContactDataAccessMapper {
@@ -24,7 +23,7 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
     @Override
     public Optional<ContactRoot> toRoot(ContactEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
-        if (optionalEntity.isPresent()) return Optional.empty();
+        if (optionalEntity.isEmpty()) return Optional.empty();
         return Optional.of(ContactRoot.Builder
                 .builder()
                 .id(ContactID.of(entity.getUuid()))
@@ -47,22 +46,23 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
 
     @Override
     public Optional<ContactEntity> toEntity(ContactRoot root) {
-        var optionalEntity = Optional.ofNullable(root);
-        var resume= ResumeEntity.referenceOf(root.getRootID().getAbsoluteID());
-        if (optionalEntity.isEmpty()) return Optional.empty();
+        var optionalRoot = Optional.ofNullable(root);
+        if (optionalRoot.isEmpty()) return Optional.empty();
+        var resume = ResumeEntity.referenceOf(optionalRoot.get().getResume().getRootID());
         return Optional.of(ContactEntity.Builder
                 .builder()
                 .uuid(root.getRootID().getAbsoluteID())
-                .accessModifier(root.getAccessModifier())
-                .data(root.getData())
-                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
-                .processStatus(root.getProcessStatus())
-                .formatType(root.getFormatType())
-                .liveType(root.getLiveType())
-                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
-                .orderNumber(root.getOrderNumber())
-                .data(root.getData())
                 .rowStatus(root.getRowStatus())
+                .processStatus(root.getProcessStatus())
+                .accessModifier(root.getAccessModifier())
+                .createdDate(GDateTime.toTimestamp(root.getCreatedDate()))
+                .lastModifiedDate(GDateTime.toTimestamp(root.getModificationDate()))
+                .formatType(root.getFormatType())
+                .data(root.getData())
+                .liveType(root.getLiveType())
+                .orderNumber(root.getOrderNumber())
+                .version(root.getVersionValue())
+                .data(root.getData())
                 .resume(resume)
                 .build());
 
