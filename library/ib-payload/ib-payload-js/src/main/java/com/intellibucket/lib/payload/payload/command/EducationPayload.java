@@ -1,4 +1,4 @@
-package com.intellibucket.lib.payload.payload;
+package com.intellibucket.lib.payload.payload.command;
 
 
 

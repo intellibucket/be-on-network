@@ -1,15 +1,19 @@
-package com.intellibucket.lib.payload.payload;
+package com.intellibucket.lib.payload.payload.command;
+
+import com.intellibucket.lib.payload.payload.Payload;
 
 import java.util.UUID;
 
-public class CourseDeletedPayload extends Payload{
+public class CourseDeletedPayload extends Payload {
     private UUID courseId;
 
     public CourseDeletedPayload(UUID courseId) {
         this.courseId = courseId;
     }
 
-    public CourseDeletedPayload() {}
+    public CourseDeletedPayload() {
+    }
+
     public UUID getCourseId() {
         return courseId;
     }

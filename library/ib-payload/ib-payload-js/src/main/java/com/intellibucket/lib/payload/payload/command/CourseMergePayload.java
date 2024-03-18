@@ -1,16 +1,23 @@
-package com.intellibucket.lib.payload.payload;
+package com.intellibucket.lib.payload.payload.command;
+
+import com.intellibucket.lib.payload.payload.Payload;
 
 import java.util.UUID;
 
-public class CourseMergePayload extends Payload{
+public class CourseMergePayload extends Payload {
     private UUID courseId;
-    public CourseMergePayload(UUID courseId){
+
+    public CourseMergePayload(UUID courseId) {
         this.courseId = courseId;
     }
-    public CourseMergePayload(){}
+
+    public CourseMergePayload() {
+    }
+
     public UUID getCourseId() {
         return courseId;
     }
+
     public void setCourseId(UUID courseId) {
         this.courseId = courseId;
     }
