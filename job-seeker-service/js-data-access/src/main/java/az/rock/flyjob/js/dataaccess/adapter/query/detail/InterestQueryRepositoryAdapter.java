@@ -54,17 +54,17 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public Optional<MyInterestResponseModel> findMyInterestById(UUID id) {
+    public Optional<InterestRoot> findMyInterestById(UUID id) {
         return Optional.empty();
     }
 
     @Override
-    public List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
+    public List<InterestRoot> queryAllMyInterests(SimplePageableRequest pageableRequest) {
         return null;
     }
 
     @Override
-    public List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
+    public List<InterestRoot> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
         return null;
     }
 
