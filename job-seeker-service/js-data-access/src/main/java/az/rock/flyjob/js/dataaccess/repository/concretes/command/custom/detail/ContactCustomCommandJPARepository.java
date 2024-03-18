@@ -18,6 +18,7 @@ public class ContactCustomCommandJPARepository implements AbstractContactCommand
 
     @Override
     public EntityManager entityManager() {
+
         return this.entityManager;
     }
 

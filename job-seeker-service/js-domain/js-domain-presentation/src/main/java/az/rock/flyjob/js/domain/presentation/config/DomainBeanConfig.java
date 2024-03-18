@@ -19,4 +19,7 @@ public class DomainBeanConfig {
     public AbstractResumeDomainService resumeDomainService(){
         return new ResumeDomainService();
     }
+
+
+
 }
