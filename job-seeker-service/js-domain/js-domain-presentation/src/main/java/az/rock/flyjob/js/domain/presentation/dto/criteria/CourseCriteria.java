@@ -17,9 +17,33 @@ public class CourseCriteria {
     }
 
     private CourseCriteria(Builder builder) {
-        id = builder.id;
-        resumeID = builder.resumeID;
-        accessModifiers = builder.accessModifiers;
+        setId(builder.id);
+        setResumeID(builder.resumeID);
+        setAccessModifiers(builder.accessModifiers);
+    }
+
+    public CourseID getId() {
+        return id;
+    }
+
+    public void setId(CourseID id) {
+        this.id = id;
+    }
+
+    public ResumeID getResumeID() {
+        return resumeID;
+    }
+
+    public void setResumeID(ResumeID resumeID) {
+        this.resumeID = resumeID;
+    }
+
+    public List<AccessModifier> getAccessModifiers() {
+        return accessModifiers;
+    }
+
+    public void setAccessModifiers(List<AccessModifier> accessModifiers) {
+        this.accessModifiers = accessModifiers;
     }
 
 

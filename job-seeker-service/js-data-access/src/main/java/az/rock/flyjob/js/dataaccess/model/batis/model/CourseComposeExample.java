@@ -18,8 +18,8 @@ public class CourseComposeExample {
         var example = new CourseComposeExample();
         var newCriteria = example.createCriteria();
         newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name())
-                .andResumeUuidEqualTo(criteria.getResumeID());
-        if(Optional.ofNullable(criteria.getId()).isPresent())newCriteria.andUuidEqualTo(criteria.getId());
+                .andResumeUuidEqualTo(criteria.getResumeID().getRootID());
+        if(Optional.ofNullable(criteria.getId()).isPresent())newCriteria.andUuidEqualTo(criteria.getId().getRootID());
         if(Optional.ofNullable(criteria.getAccessModifiers()).isPresent())newCriteria.andAccessModifierIn(criteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
         return example;
     }
