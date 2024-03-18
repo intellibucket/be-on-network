@@ -1,6 +1,14 @@
 version: "3.7"
 
 services:
+  nexus:
+    image: sonatype/nexus3
+    restart: always
+    volumes:
+      - "nexus-data:/sonatype-work"
+    ports:
+      - "8081:8081"
+      - "8085:8085"
 
   redis-cache:
     image: redis:latest
@@ -145,6 +153,7 @@ networks:
     driver: bridge
 
 volumes:
+  nexus-data: { }
   cache:
     driver: local
   pgadmin:
