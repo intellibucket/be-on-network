@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.course.CourseNotFoundException;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
@@ -37,7 +38,8 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
     @Override
     public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
-        var courses = courseQueryRepositoryAdapter.findAllMyCourses(pageableRequest,resumeId)
+        var criteria = CourseCriteria.Builder.builder().resumeID(resumeId).build();
+        var courses = courseQueryRepositoryAdapter.findAllMyCourses(criteria,pageableRequest)
                 .stream()
                 .map(MyCourseResponseModel::of)
                 .toList();
@@ -46,7 +48,8 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
 
     @Override
     public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        var courses = courseQueryRepositoryAdapter.findAllAnyCourses(ResumeID.of(targetResumeId),pageableRequest,mockAccessModifiers)
+        var criteria = CourseCriteria.Builder.builder().resumeID(ResumeID.of(targetResumeId)).accessModifiers(mockAccessModifiers).build();
+        var courses = courseQueryRepositoryAdapter.findAllAnyCourses(criteria,pageableRequest)
                 .stream()
                 .map(AnyCourseResponseModel::of)
                 .toList();
@@ -55,7 +58,9 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
 
     @Override
     public MyCourseResponseModel myCourseById(UUID id){
-        var course = courseQueryRepositoryAdapter.findMyCourseById(CourseID.of(id),securityContextHolder.availableResumeID());
+        var resumeId = securityContextHolder.availableResumeID();
+        var criteria = CourseCriteria.Builder.builder().id(CourseID.of(id)).resumeID(resumeId).build();
+        var course = courseQueryRepositoryAdapter.findMyCourseById(criteria);
         return MyCourseResponseModel.of(course.orElseThrow());
     }
 

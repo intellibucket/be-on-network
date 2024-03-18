@@ -2,6 +2,7 @@ package az.rock.flyjob.js.domain.presentation.ports.output.repository.query;
 
 
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
 import az.rock.lib.annotation.DomainOutputPort;
@@ -26,11 +27,11 @@ public interface AbstractCourseQueryRepositoryAdapter{
 
     Boolean isInLimit(Long limit,ResumeID resumeId);
 
-    List<CourseRoot> findAllMyCourses(SimplePageableRequest pageableRequest,ResumeID resumeID);
+    List<CourseRoot> findAllMyCourses(CourseCriteria criteria,SimplePageableRequest pageableRequest);
 
-    List<CourseRoot> findAllAnyCourses(ResumeID targetResumeId, SimplePageableRequest pageableRequest,List<AccessModifier> accessModifiers);
+    List<CourseRoot> findAllAnyCourses(CourseCriteria criteria,SimplePageableRequest pageableRequest);
 
-    Optional<CourseRoot> findMyCourseById(CourseID id,ResumeID resumeID);
+    Optional<CourseRoot> findMyCourseById(CourseCriteria criteria);
 
 
 }

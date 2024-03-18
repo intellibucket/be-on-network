@@ -1,9 +1,11 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.RowStatus;
+
+import java.util.*;
+
 @SuppressWarnings("all")
 public class CourseComposeExample {
     protected String orderByClause;
@@ -11,6 +13,16 @@ public class CourseComposeExample {
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+
+    public static CourseComposeExample of(CourseCriteria criteria){
+        var example = new CourseComposeExample();
+        var newCriteria = example.createCriteria();
+        newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name())
+                .andResumeUuidEqualTo(criteria.getResumeID());
+        if(Optional.ofNullable(criteria.getId()).isPresent())newCriteria.andUuidEqualTo(criteria.getId());
+        if(Optional.ofNullable(criteria.getAccessModifiers()).isPresent())newCriteria.andAccessModifierIn(criteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
+        return example;
+    }
 
     public CourseComposeExample() {
         oredCriteria = new ArrayList<>();
