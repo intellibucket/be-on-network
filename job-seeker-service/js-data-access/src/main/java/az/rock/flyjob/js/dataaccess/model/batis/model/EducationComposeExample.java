@@ -1,5 +1,8 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
+import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
+import az.rock.lib.valueObject.RowStatus;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -17,20 +20,30 @@ public class EducationComposeExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
+
+    public static EducationComposeExample of(EducationCriteria educationCriteria) {
+        var educationCompose = new EducationComposeExample();
+        var criteria = educationCompose.createCriteria();
+        criteria.andUuidEqualTo(educationCriteria.getEducationId())
+                .andResumeUuidEqualTo(educationCriteria.getResumeID())
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        return educationCompose;
     }
 
     public String getOrderByClause() {
         return orderByClause;
     }
 
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
+    public void setOrderByClause(String orderByClause) {
+        this.orderByClause = orderByClause;
     }
 
     public boolean isDistinct() {
         return distinct;
+    }
+
+    public void setDistinct(boolean distinct) {
+        this.distinct = distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -1317,38 +1330,6 @@ public class EducationComposeExample {
 
         private String typeHandler;
 
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
-        }
-
         protected Criterion(String condition) {
             super();
             this.condition = condition;
@@ -1383,6 +1364,38 @@ public class EducationComposeExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
+        }
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
         }
     }
 }

@@ -1,0 +1,64 @@
+package az.rock.flyjob.js.domain.presentation.dto.criteria;
+
+import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.valueObject.AccessModifier;
+
+import java.util.List;
+import java.util.UUID;
+
+public class EducationCriteria {
+    private UUID educationId;
+    private ResumeID resumeID;
+    private List<AccessModifier> accessModifiers;
+
+    public UUID getEducationId() {
+        return educationId;
+    }
+
+    public ResumeID getResumeID() {
+        return resumeID;
+    }
+
+    public List<AccessModifier> getAccessModifiers() {
+        return accessModifiers;
+    }
+
+    private EducationCriteria(Builder builder) {
+        educationId = builder.educationId;
+        resumeID = builder.resumeID;
+        accessModifiers = builder.accessModifiers;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    public static final class Builder {
+        private UUID educationId;
+        private ResumeID resumeID;
+        private List<AccessModifier> accessModifiers;
+
+        private Builder() {
+        }
+
+        public Builder educationId(UUID val) {
+            educationId = val;
+            return this;
+        }
+
+        public Builder resumeID(ResumeID val) {
+            resumeID = val;
+            return this;
+        }
+
+        public Builder accessModifiers(List<AccessModifier> val) {
+            accessModifiers = val;
+            return this;
+        }
+
+        public EducationCriteria build() {
+            return new EducationCriteria(this);
+        }
+    }
+}

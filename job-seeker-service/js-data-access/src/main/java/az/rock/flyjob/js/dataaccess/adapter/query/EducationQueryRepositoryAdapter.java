@@ -5,10 +5,10 @@ import az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.EducationBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.EducationQueryJpaRepository;
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import org.springframework.stereotype.Component;
 
@@ -37,36 +37,21 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
     }
 
     @Override
-    public List<EducationRoot> findAllMyEducations(ResumeID resumeID, SimplePageableRequest simplePageableRequest) {
-        EducationComposeExample educationComposeExample = new EducationComposeExample();
-        var criteria = educationComposeExample.createCriteria();
-        criteria.andResumeUuidEqualTo(resumeID)
-                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
-        educationComposeExample.setOrderByClause("order_number");
-        var entity = educationBatisRepository.selectByExample(educationComposeExample);
-        educationDataAccessMapper.toRoot();
-        return ;
+    public List<EducationRoot> findAllMyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
+        var entity = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
+
+        return;
     }
 
     @Override
-    public List<EducationRoot> findAllMySimpleEducations(ResumeID resumeID, SimplePageableRequest simplePageableRequest) {
-        EducationComposeExample educationComposeExample = new EducationComposeExample();
-        var criteria = educationComposeExample.createCriteria();
-        criteria.andResumeUuidEqualTo(resumeID)
-                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
-        educationComposeExample.setOrderByClause("order_number");
-        var entity = educationBatisRepository.selectByExample(educationComposeExample);
+    public List<EducationRoot> findAllMySimpleEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
+        var entity = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
         return null;
     }
 
     @Override
-    public List<EducationRoot> findAllAnyEducations(UUID resumeID, SimplePageableRequest simplePageableRequest) {
-        EducationComposeExample educationComposeExample = new EducationComposeExample();
-        var criteria = educationComposeExample.createCriteria();
-        criteria.andResumeUuidEqualTo(resumeID)
-                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
-        var entity = educationBatisRepository.selectByExample(educationComposeExample);
-        educationComposeExample.setOrderByClause("order_number");
+    public List<EducationRoot> findAllAnyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
+        var entity = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
         return null;
     }
 

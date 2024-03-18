@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.mapper.concretes;
 
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.EducationCommandModel;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractEducationDomainMapper;
 import az.rock.lib.domain.id.js.EducationID;
@@ -40,9 +41,6 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
     }
 
 
-    public EducationCriteria educationCriteria() {
-
-    }
 
 
     @Override
