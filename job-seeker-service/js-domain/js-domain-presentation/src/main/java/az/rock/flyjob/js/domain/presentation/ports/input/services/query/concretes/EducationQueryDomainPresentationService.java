@@ -25,20 +25,20 @@ public class EducationQueryDomainPresentationService implements AbstractEducatio
     @Override
     public SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
-        var listOfMyEducations = educationQueryRepositoryAdapter.findAllMyEducations(resumeId,pageableRequest);
+        var listOfMyEducations = educationQueryRepositoryAdapter.findAllMyEducations(resumeId, pageableRequest);
         return null;
     }
 
     @Override
     public SimplePageableResponse<AnyEducationResponseModel> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        var listOfAnyEducations = educationQueryRepositoryAdapter.findAllAnyEducations(targetResumeId,pageableRequest);
+        var listOfAnyEducations = educationQueryRepositoryAdapter.findAllAnyEducations(targetResumeId, pageableRequest);
         return null;
     }
 
     @Override
     public SimplePageableResponse<SimpleMyEducationResponseModel> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
-        var allMySimpleEducations = educationQueryRepositoryAdapter.findAllMySimpleEducations(resumeId,pageableRequest);
+        var allMySimpleEducations = educationQueryRepositoryAdapter.findAllMySimpleEducations(resumeId, pageableRequest);
         return null;
     }
 }

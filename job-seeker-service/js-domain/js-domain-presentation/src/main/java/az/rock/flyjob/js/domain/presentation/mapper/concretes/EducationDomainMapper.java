@@ -16,8 +16,6 @@ import java.util.UUID;
 
 @Component
 public class EducationDomainMapper implements AbstractEducationDomainMapper {
-
-
     @Override
     public EducationRoot toNewRoot(ResumeID resumeID, EducationCommandModel educationCommandModel) {
         return EducationRoot.Builder
@@ -41,6 +39,7 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .build();
     }
 
+
     @Override
     public EducationRoot toExistRoot(EducationRoot educationRoot, EducationCommandModel educationCommandModel) {
         educationRoot
@@ -62,7 +61,6 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
                 .resumeId(educationRoot.getResumeID().getRootID())
                 .accessModifier(educationRoot.getAccessModifier())
                 .build();
-
     }
 
 

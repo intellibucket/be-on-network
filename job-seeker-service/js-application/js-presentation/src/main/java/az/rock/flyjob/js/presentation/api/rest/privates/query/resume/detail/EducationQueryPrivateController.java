@@ -9,36 +9,40 @@ import az.rock.flyjob.js.spec.privates.query.resume.detail.EducationQueryPrivate
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
 @RestController
+@CrossOrigin
+@RequestMapping(value = "/js/1.0/private/query/education", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EducationQueryPrivateController implements EducationQueryPrivateSpec {
-
-
     private final AbstractEducationQueryDomainPresentationService educationQueryDomainPresentationService;
-    public EducationQueryPrivateController(AbstractEducationQueryDomainPresentationService abstractEducationQueryDomainPresentationService) {
+
+    public EducationQueryPrivateController(AbstractEducationQueryDomainPresentationService educationQueryDomainPresentationService) {
         this.educationQueryDomainPresentationService = educationQueryDomainPresentationService;
     }
 
     @Override
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyEducationResponseModel>>> queryAllMyEducations(SimplePageableRequest pageableRequest) {
         var response = educationQueryDomainPresentationService.queryAllMyEducations(pageableRequest);
-        return ResponseEntity.ok(JSuccessDataResponse.of(response));
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyEducationResponseModel>>> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        var response = educationQueryDomainPresentationService.queryAllAnyEducations(targetResumeId,pageableRequest);
-        return ResponseEntity.ok(JSuccessDataResponse.of(response));
+        var response = educationQueryDomainPresentationService.queryAllAnyEducations(targetResumeId, pageableRequest);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyEducationResponseModel>>> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) {
         var response = educationQueryDomainPresentationService.queryAllMySimpleEducations(pageableRequest);
-        return ResponseEntity.ok(JSuccessDataResponse.of(response));
+        return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
