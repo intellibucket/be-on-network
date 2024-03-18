@@ -9,12 +9,11 @@ on:
 env:
   REGISTRY: ghcr.io
   REPO_OWNER: ${{ github.repository_owner }}
-
 jobs:
   build:
     strategy:
       matrix:
-        image_name: [ "auth-service" ]
+        image_name: [ "auth-service","library" ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

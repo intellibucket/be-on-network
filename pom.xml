@@ -38,12 +38,10 @@
         <module>config-service</module>
         <module>auth-service</module>
         <module>job-seeker-service</module>
-        <module>stream-service</module>
         <module>library</module>
         <module>company-command-service</module>
         <module>company-query-service</module>
         <module>article-command-service</module>
-        <module>article-sync-service</module>
         <module>article-query-service</module>
         <module>interview-service</module>
         <module>authorization-service</module>
@@ -54,6 +52,15 @@
         <module>notification-service</module>
         <module>messaging-service</module>
         <module>file-system-service</module>
+        <module>vacancy-analytic-service</module>
+        <module>resume-analytic-service</module>
+        <module>sound-processor-service</module>
+        <module>video-processor-service</module>
+        <module>document-processor-service</module>
+        <module>currency-service</module>
+        <module>sdp-service</module>
+        <module>report-service</module>
+        <module>video-streaming-service</module>
     </modules>
 
     <properties>
