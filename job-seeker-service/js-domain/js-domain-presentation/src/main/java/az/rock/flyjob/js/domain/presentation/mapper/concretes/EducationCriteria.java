@@ -47,7 +47,7 @@ public class EducationCriteria {
 
     public EducationCriteria andUuidEqualTo(Object value) {
         addCriterion("uuid =", value, "uuid");
-        return (EducationCriteria) this;
+        return this;
     }
 
 
@@ -135,7 +135,5 @@ public class EducationCriteria {
         public String getTypeHandler() {
             return typeHandler;
         }
-
-
     }
 }
