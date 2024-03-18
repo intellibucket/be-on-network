@@ -21,7 +21,6 @@
         <module>auth-container</module>
         <module>auth-dfs</module>
     </modules>
-
     <distributionManagement>
         <repository>
             <id>releases</id>
