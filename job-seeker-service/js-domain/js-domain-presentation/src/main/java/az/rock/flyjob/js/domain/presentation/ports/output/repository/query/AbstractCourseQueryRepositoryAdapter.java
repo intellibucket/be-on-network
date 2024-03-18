@@ -27,11 +27,9 @@ public interface AbstractCourseQueryRepositoryAdapter{
 
     Boolean isInLimit(Long limit,ResumeID resumeId);
 
-    List<CourseRoot> findAllMyCourses(CourseCriteria criteria,SimplePageableRequest pageableRequest);
+    List<CourseRoot> fetchAllCourses(CourseCriteria criteria,SimplePageableRequest pageableRequest);
 
-    List<CourseRoot> findAllAnyCourses(CourseCriteria criteria,SimplePageableRequest pageableRequest);
-
-    Optional<CourseRoot> findMyCourseById(CourseCriteria criteria);
+    Optional<CourseRoot> fetchCourseById(CourseCriteria criteria);
 
 
 }

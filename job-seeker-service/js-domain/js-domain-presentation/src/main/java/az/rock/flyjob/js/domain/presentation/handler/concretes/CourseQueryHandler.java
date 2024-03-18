@@ -39,7 +39,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
     public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
         var criteria = CourseCriteria.Builder.builder().resumeID(resumeId).build();
-        var courses = courseQueryRepositoryAdapter.findAllMyCourses(criteria,pageableRequest)
+        var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(MyCourseResponseModel::of)
                 .toList();
@@ -49,7 +49,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
     @Override
     public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         var criteria = CourseCriteria.Builder.builder().resumeID(ResumeID.of(targetResumeId)).accessModifiers(mockAccessModifiers).build();
-        var courses = courseQueryRepositoryAdapter.findAllAnyCourses(criteria,pageableRequest)
+        var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(AnyCourseResponseModel::of)
                 .toList();
@@ -60,7 +60,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
     public MyCourseResponseModel myCourseById(UUID id){
         var resumeId = securityContextHolder.availableResumeID();
         var criteria = CourseCriteria.Builder.builder().id(CourseID.of(id)).resumeID(resumeId).build();
-        var course = courseQueryRepositoryAdapter.findMyCourseById(criteria);
+        var course = courseQueryRepositoryAdapter.fetchCourseById(criteria);
         return MyCourseResponseModel.of(course.orElseThrow());
     }
 
