@@ -13,9 +13,14 @@ jobs:
   build:
     strategy:
       matrix:
-        image_name: [ "auth-service","library" ]
+        image_name: [ "auth-service" ]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: s4u/maven-settings-action@v2.8.0
+        with:
+          servers: ${{ secrets.MAVEN_SERVERS}}
+
       - name: Checkout
         uses: actions/checkout@v2
 
