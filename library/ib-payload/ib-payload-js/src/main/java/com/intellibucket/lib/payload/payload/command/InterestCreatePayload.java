@@ -1,9 +1,11 @@
-package com.intellibucket.lib.payload.payload;
+package com.intellibucket.lib.payload.payload.command;
+
+import az.rock.lib.valueObject.AccessModifier;
+import com.intellibucket.lib.payload.payload.Payload;
 
 import java.util.UUID;
-import az.rock.lib.valueObject.AccessModifier;
 
-public class InterestCreatePayload extends Payload{
+public class InterestCreatePayload extends Payload {
 
 
     private UUID interestId;

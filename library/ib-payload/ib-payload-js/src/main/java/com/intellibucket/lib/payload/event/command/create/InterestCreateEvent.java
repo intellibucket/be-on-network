@@ -1,9 +1,9 @@
-package com.intellibucket.lib.payload.event.create;
+package com.intellibucket.lib.payload.event.command.create;
 
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractStartDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.Event;
-import com.intellibucket.lib.payload.payload.InterestCreatePayload;
+import com.intellibucket.lib.payload.payload.command.InterestCreatePayload;
 
 @Event
 public class InterestCreateEvent extends AbstractStartDomainEvent<InterestCreatePayload> {

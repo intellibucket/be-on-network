@@ -1,8 +1,8 @@
-package com.intellibucket.lib.payload.event.delete;
+package com.intellibucket.lib.payload.event.command.delete;
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
 import com.intellibucket.lib.payload.event.abstracts.Event;
-import com.intellibucket.lib.payload.payload.CourseDeletedPayload;
+import com.intellibucket.lib.payload.payload.command.CourseDeletedPayload;
 
 @Event
 public class CourseDeleteEvent extends AbstractSuccessDomainEvent<CourseDeletedPayload> {
