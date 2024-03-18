@@ -40,6 +40,11 @@ public class EducationDomainMapper implements AbstractEducationDomainMapper {
     }
 
 
+    public EducationCriteria educationCriteria() {
+
+    }
+
+
     @Override
     public EducationRoot toExistRoot(EducationRoot educationRoot, EducationCommandModel educationCommandModel) {
         educationRoot

@@ -44,7 +44,8 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
                 .andRowStatusEqualTo(RowStatus.ACTIVE.name());
         educationComposeExample.setOrderByClause("order_number");
         var entity = educationBatisRepository.selectByExample(educationComposeExample);
-        return null;
+        educationDataAccessMapper.toRoot();
+        return ;
     }
 
     @Override

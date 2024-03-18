@@ -2,12 +2,15 @@ package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractEducationDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.compose.EducationCompose;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.EducationEntity;
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
@@ -68,7 +71,30 @@ public class EducationDataAccessMapper implements AbstractEducationDataAccessMap
     }
 
 
-
+    @Override
+    public Optional<EducationRoot> toRoot(EducationCompose educationCompose) {
+        var optionalEducationCompose = Optional.ofNullable(educationCompose);
+        return optionalEducationCompose.map(compose -> EducationRoot.Builder.builder()
+                .uuid(EducationID.of(compose.getUuid()))
+                .resume(ResumeID.of(compose.getResumeId()))
+                .version(Version.of(compose.getVersion()))
+                .rowStatus(RowStatus.valueOf(compose.getRowStatus()))
+                .processStatus(ProcessStatus.of(compose.getProcessStatus()))
+                .createdDate(GDateTime.of(educationCompose.getCreatedDate()))
+                .lastModifiedDate(GDateTime.of(compose.getModificationDate()))
+                .accessModifier(compose.getAccessModifier())
+                .cityId(compose.getCityId())
+                .establishmentUUID(compose.getEstablishmentUUID())
+                .establishmentName(compose.getEstablishmentName())
+                .orderNumber(compose.getOrderNumber())
+                .startDate(compose.getStartDate())
+                .endDate(compose.getEndDate())
+                .description(compose.getDescription())
+                .link(compose.getLink())
+                .state(compose.getState())
+                .degree(compose.getDegree())
+                .build());
+    }
 
 
 }
