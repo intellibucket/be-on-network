@@ -18,10 +18,10 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
     private final AbstractContactQueryJPARepository contactQueryJPARepository;
     private final AbstractContactDataAccessMapper contactMapper;
 
-    public ContactQueryRepositoryAdapter(AbstractContactQueryJPARepository contactQueryJPARepository,
-                                         @Qualifier(value = "abstractContactDataAccessMapper") AbstractContactDataAccessMapper contactMapper) {
-        this.contactQueryJPARepository = contactQueryJPARepository;
-        this.contactMapper = contactMapper;
+    public ContactQueryRepositoryAdapter(AbstractContactQueryJPARepository abstractContactQueryJPARepository,
+                                         @Qualifier(value = "contactDataAccessMapper") AbstractContactDataAccessMapper abstractContactDataAccessMapper) {
+        this.contactQueryJPARepository = abstractContactQueryJPARepository;
+        this.contactMapper = abstractContactDataAccessMapper;
     }
 
     @Override

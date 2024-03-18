@@ -1,11 +1,9 @@
 package az.rock.flyjob.js.presentation.api.rest.privates.query;
 
-import az.rock.flyjob.js.domain.core.service.abstracts.AbstractContactDomainService;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.contact.AnyContactResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.contact.MyContactResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.contact.simple.SimpleAnyContactResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.contact.simple.SimpleMyContactResponseModel;
-import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractContactCommmandDomainPresentationService;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractContactQueryDomainPresentationService;
 import az.rock.flyjob.js.spec.privates.query.resume.detail.ContactQueryPrivateSpec;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;

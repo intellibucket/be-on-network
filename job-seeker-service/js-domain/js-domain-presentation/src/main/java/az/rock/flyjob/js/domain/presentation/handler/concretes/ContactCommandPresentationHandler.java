@@ -38,12 +38,12 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     private final AbstractContactDomainService domainService;
 
     public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter,
-                                             @Qualifier(value = "abstractContactQueryRepositoryAdapter") AbstractContactQueryRepositoryAdapter commandQueryRepositoryAdapter,
+                                             @Qualifier(value = "contactQueryRepositoryAdapter") AbstractContactQueryRepositoryAdapter contactQueryRepositoryAdapter,
                                              AbstractContactCommandDomainMapper contactCommandDomainMapper,
                                              AbstractSecurityContextHolder contextHolder,
-                                             @Qualifier(value = "abstractContactDomainService") AbstractContactDomainService domainService) {
+                                             @Qualifier(value = "contactDomainService") AbstractContactDomainService domainService) {
         this.abstractContactCommandRepositoryAdapter = abstractContactCommandRepositoryAdapter;
-        this.abstractContactQueryRepositoryAdapter = commandQueryRepositoryAdapter;
+        this.abstractContactQueryRepositoryAdapter = contactQueryRepositoryAdapter;
         this.contactCommandDomainMapper = contactCommandDomainMapper;
         this.contextHolder = contextHolder;
         this.domainService = domainService;
