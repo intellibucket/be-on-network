@@ -5,6 +5,7 @@ import az.rock.lib.valueObject.AccessModifier;
 
 import java.util.UUID;
 
+
 public class InterestCriteria {
     private UUID id;
     private ResumeID resume;
