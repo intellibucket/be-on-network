@@ -1,7 +1,7 @@
-package com.intellibucket.lib.payload.event.update;
+package com.intellibucket.lib.payload.event.command.update;
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractStartDomainEvent;
-import com.intellibucket.lib.payload.payload.EducationPayload;
+import com.intellibucket.lib.payload.payload.command.EducationPayload;
 
 public class EducationUpdatedEvent extends AbstractStartDomainEvent<EducationPayload> {
 

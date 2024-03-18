@@ -1,4 +1,4 @@
-package com.intellibucket.lib.payload.event.update;
+package com.intellibucket.lib.payload.event.command.update;
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractStartDomainEvent;
 

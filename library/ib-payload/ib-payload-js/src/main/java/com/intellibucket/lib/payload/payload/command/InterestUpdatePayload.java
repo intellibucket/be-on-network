@@ -1,15 +1,18 @@
-package com.intellibucket.lib.payload.payload;
+package com.intellibucket.lib.payload.payload.command;
+
+import com.intellibucket.lib.payload.payload.Payload;
 
 import java.util.UUID;
 
-public class InterestUpdatePayload extends Payload{
+public class InterestUpdatePayload extends Payload {
     private UUID interestId;
 
-    public InterestUpdatePayload(UUID interestId){
+    public InterestUpdatePayload(UUID interestId) {
         this.interestId = interestId;
     }
 
-    public InterestUpdatePayload(){}
+    public InterestUpdatePayload() {
+    }
 
     public UUID getInterestId() {
         return interestId;

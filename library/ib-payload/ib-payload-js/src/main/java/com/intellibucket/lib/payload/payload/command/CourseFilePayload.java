@@ -1,8 +1,10 @@
-package com.intellibucket.lib.payload.payload;
+package com.intellibucket.lib.payload.payload.command;
+
+import com.intellibucket.lib.payload.payload.Payload;
 
 import java.util.UUID;
 
-public class CourseFilePayload extends Payload{
+public class CourseFilePayload extends Payload {
     UUID courseId;
 
     public CourseFilePayload(UUID courseId) {
