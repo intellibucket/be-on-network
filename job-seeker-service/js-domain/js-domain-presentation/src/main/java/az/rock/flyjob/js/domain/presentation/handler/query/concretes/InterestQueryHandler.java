@@ -1,7 +1,9 @@
 package az.rock.flyjob.js.domain.presentation.handler.query.concretes;
 
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
+import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
+import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleMyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractInterestQueryHandler;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
@@ -52,6 +54,30 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
         if (antById.isPresent()) {
             return antById.get();
         } else throw new RuntimeException("Interest Not found");
+    }
+
+    @Override
+    public MyInterestResponseModel findMyInterestById(UUID id) {
+        var myInterest = this.interestQueryRepositoryAdapter.findMyInterestById(id);
+        if(myInterest.isPresent()){
+            return myInterest.get();
+        }else throw new RuntimeException();
+    }
+
+    @Override
+    public List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
+        var allMyInterests = this.interestQueryRepositoryAdapter.queryAllMyInterests(pageableRequest);
+        if(!allMyInterests.isEmpty()){
+            return allMyInterests;
+        }else throw new RuntimeException();
+    }
+
+    @Override
+    public List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
+      var allMySimpleInterests = this.interestQueryRepositoryAdapter.queryAllMySimpleInterests(pageableRequest);
+      if(!allMySimpleInterests.isEmpty()) {
+          return allMySimpleInterests;
+      }else throw new RuntimeException();
     }
 
     //------------------------------------------------------------------------
