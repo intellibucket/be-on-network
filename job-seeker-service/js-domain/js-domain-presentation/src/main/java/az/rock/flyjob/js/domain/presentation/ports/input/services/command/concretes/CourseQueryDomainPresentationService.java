@@ -4,6 +4,7 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCours
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleMyCourseResponseModel;
+import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseQueryHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseQueryDomainPresentationService;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
@@ -12,6 +13,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
+import az.rock.lib.valueObject.common.PageableRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,16 +23,10 @@ import java.util.UUID;
 @Service
 public class CourseQueryDomainPresentationService implements AbstractCourseQueryDomainPresentationService {
 
-    private final AbstractSecurityContextHolder securityContextHolder;
+    private final AbstractCourseQueryHandler queryHandler;
 
-    private final AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter;
-
-    private List<AccessModifier> mockAccessModifiers = List.of(AccessModifier.values());
-
-    public CourseQueryDomainPresentationService(AbstractSecurityContextHolder securityContextHolder,
-                                                AbstractCourseQueryRepositoryAdapter courseQueryRepositoryAdapter) {
-        this.securityContextHolder = securityContextHolder;
-        this.courseQueryRepositoryAdapter = courseQueryRepositoryAdapter;
+    public CourseQueryDomainPresentationService(AbstractCourseQueryHandler queryHandler) {
+        this.queryHandler = queryHandler;
     }
 
     @Override
@@ -50,26 +46,16 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
 
     @Override
     public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
-        var resumeId = securityContextHolder.availableResumeID();
-        var courses = courseQueryRepositoryAdapter.findAllMyCourses(pageableRequest,resumeId)
-                .stream()
-                .map(MyCourseResponseModel::of)
-                .toList();
-        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        return queryHandler.allMyCourses(pageableRequest);
     }
 
     @Override
     public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        var courses = courseQueryRepositoryAdapter.findAllAnyCourses(ResumeID.of(targetResumeId),pageableRequest,mockAccessModifiers)
-                .stream()
-                .map(AnyCourseResponseModel::of)
-                .toList();
-        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        return queryHandler.allAnyCourses(targetResumeId, pageableRequest);
     }
 
     @Override
     public MyCourseResponseModel myCourseById(UUID id) {
-        var course = courseQueryRepositoryAdapter.findMyCourseById(CourseID.of(id),securityContextHolder.availableResumeID());
-        return MyCourseResponseModel.of(course.orElseThrow());
+        return queryHandler.myCourseById(id);
     }
 }

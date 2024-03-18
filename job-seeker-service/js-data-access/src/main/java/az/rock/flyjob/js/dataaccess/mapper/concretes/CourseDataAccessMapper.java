@@ -92,13 +92,13 @@ public class CourseDataAccessMapper implements AbstractCourseDataAccessMapper {
         var safetyCompose = optionalCompose.get();
         return Optional.of(
                 CourseRoot.Builder.builder()
-                        .id(CourseID.of((UUID) safetyCompose.getUuid()))
+                        .id(CourseID.of(safetyCompose.getUuid()))
                         .version(Version.of(safetyCompose.getVersion()))
                         .processStatus(ProcessStatus.of(safetyCompose.getProcessStatus()))
                         .rowStatus(RowStatus.valueOf(safetyCompose.getRowStatus()))
                         .createdDate(safetyCompose.getCreatedDate().toInstant().atZone(ZoneId.systemDefault()))
                         .lastModifiedDate(safetyCompose.getModificationDate().toInstant().atZone(ZoneId.systemDefault()))
-                        .resume(ResumeID.of((UUID) safetyCompose.getResumeUuid()))
+                        .resume(ResumeID.of(safetyCompose.getResumeUuid()))
                         .accessModifier(AccessModifier.valueOf(safetyCompose.getAccessModifier()))
                         .orderNumber(safetyCompose.getOrderNumber())
                         .courseTitle(safetyCompose.getCourseTitle())

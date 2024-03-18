@@ -106,4 +106,6 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
                 .filter(Optional::isPresent)
                 .map(Optional::get);
     }
+
+
 }

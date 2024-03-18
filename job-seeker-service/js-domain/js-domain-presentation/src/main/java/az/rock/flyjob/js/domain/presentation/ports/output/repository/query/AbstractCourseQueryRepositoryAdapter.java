@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.presentation.ports.output.repository.query;
 
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
+import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
 import az.rock.lib.annotation.DomainOutputPort;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
@@ -30,5 +31,6 @@ public interface AbstractCourseQueryRepositoryAdapter{
     List<CourseRoot> findAllAnyCourses(ResumeID targetResumeId, SimplePageableRequest pageableRequest,List<AccessModifier> accessModifiers);
 
     Optional<CourseRoot> findMyCourseById(CourseID id,ResumeID resumeID);
+
 
 }
