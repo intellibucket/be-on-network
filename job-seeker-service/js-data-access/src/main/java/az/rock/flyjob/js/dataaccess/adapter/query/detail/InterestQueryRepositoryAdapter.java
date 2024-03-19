@@ -1,11 +1,14 @@
 package az.rock.flyjob.js.dataaccess.adapter.query.detail;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractInterestDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose;
 import az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractInterestQueryBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.InterestBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractInterestQueryJPARepository;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
@@ -23,6 +26,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepositoryAdapter {
@@ -39,7 +43,13 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
 
     @Override
-    public Optional<AnyInterestResponseModel> findAntById(UUID resumeId, UUID id, List<AccessModifier> modifier) {
+    public Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria interestCriteria)  {
+        var interestComposeExample = InterestComposeExample.of(interestCriteria);
+        var interestCompose = batisRepository.selectByExample(interestComposeExample);
+        if (!interestCompose.isEmpty() && interestCompose.size() == 1) {
+            var root = interestDataAccessMapper.toRoot(interestCompose.get(0));
+            return Optional.ofNullable(AnyInterestResponseModel.of(root.get()));
+        }
         return Optional.empty();
     }
 
@@ -78,7 +88,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public Optional<InterestRoot> findById(InterestID rootId) {
         var entity = repository.findById(rootId);
-        if(entity.isEmpty()) return Optional.empty();
+        if (entity.isEmpty()) return Optional.empty();
         return this.interestDataAccessMapper.toRoot(entity.get());
     }
 

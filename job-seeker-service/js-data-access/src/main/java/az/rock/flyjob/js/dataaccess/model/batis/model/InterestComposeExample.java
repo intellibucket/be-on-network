@@ -1,5 +1,8 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
+import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
+import az.rock.lib.valueObject.RowStatus;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,6 +46,19 @@ public class InterestComposeExample {
         Criteria criteria = createCriteriaInternal();
         oredCriteria.add(criteria);
         return criteria;
+    }
+    public static InterestComposeExample of(InterestCriteria interestCriteria){
+        InterestComposeExample example=new InterestComposeExample();
+        final Criteria criteria = example.createCriteria()
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name())
+                .andResumeUuidEqualTo(interestCriteria.getResume().getAbsoluteID())
+                .andUuidEqualTo(interestCriteria.getId())
+                .andAccessModifierEqualTo(interestCriteria.getAccessModifier().stream()
+                        .findAny()
+                        .get()
+                        .name());
+        return example;
+
     }
 
     public Criteria createCriteria() {

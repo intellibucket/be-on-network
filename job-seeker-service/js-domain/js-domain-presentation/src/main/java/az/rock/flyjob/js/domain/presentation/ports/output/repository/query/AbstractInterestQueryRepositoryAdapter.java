@@ -1,6 +1,8 @@
 package az.rock.flyjob.js.domain.presentation.ports.output.repository.query;
 
+import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
@@ -21,7 +23,7 @@ import java.util.UUID;
 @Transactional(readOnly = true)
 public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<InterestRoot, InterestID, ResumeID> {
 
-    Optional<AnyInterestResponseModel> findAntById(UUID resumeId, UUID id,List<AccessModifier> modifier);
+    Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria criteria) ;
 
     List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest, List<AccessModifier> modifier);
 
