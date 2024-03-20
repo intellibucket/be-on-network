@@ -9,7 +9,6 @@ spring:
     import: configserver:http://62.72.45.66:8012
   application:
     name: exchange-service
-
   jpa:
     properties:
       javax:
