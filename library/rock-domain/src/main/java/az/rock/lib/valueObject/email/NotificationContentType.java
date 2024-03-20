@@ -1,0 +1,13 @@
+package az.rock.lib.valueObject.email;
+
+public enum NotificationContentType {
+    NEW_USER_REGISTRATION,
+    FRIEND_REQUEST,
+    FOLLOW_REQUEST,
+    JOB_APPLICATION,
+    JOB_INVITATION,
+    JOB_INVITATION_ACCEPTED,
+    JOB_INVITATION_REJECTED,
+    JOB_INVITATION_EXPIRED,
+    JOB_INVITATION_CANCELLED;
+}
