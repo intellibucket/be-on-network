@@ -7,6 +7,7 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.valueObject.SimplePageableRequest;
 
+import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface AbstractInterestQueryDomainPresentationService {
 
     List<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
-    List<SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
+    SimplePageableResponse<SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     AnyInterestResponseModel findAnyInterestById(UUID id);
 

@@ -11,6 +11,8 @@ public class InterestCriteria {
     private ResumeID resume;
     private List<AccessModifier> accessModifier;
 
+
+
     private InterestCriteria(Builder builder) {
         id = builder.id;
         resume = builder.resume;

@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepositoryAdapter {
@@ -43,14 +44,31 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
 
     @Override
-    public Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria interestCriteria)  {
+    public Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria interestCriteria) {
         var interestComposeExample = InterestComposeExample.of(interestCriteria);
-        var interestCompose = batisRepository.selectByExample(interestComposeExample);
+        var interestCompose = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestCompose.isEmpty() && interestCompose.size() == 1) {
-            var root = interestDataAccessMapper.toRoot(interestCompose.get(0));
+            var root = this.interestDataAccessMapper.toRoot(interestCompose.get(0));
             return Optional.ofNullable(AnyInterestResponseModel.of(root.get()));
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria, SimplePageableRequest request) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setPageable(interestComposeExample.new Pageable().of(request));
+
+        final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
+        if (!interestComposes.isEmpty()) {
+            return interestComposes.stream().map(interestDataAccessMapper::toRoot)
+                    .filter(item -> item.isPresent())
+                    .toList()
+                    .stream()
+                    .map(root -> SimpleAnyInterestResponseModel.of(root.get())).collect(Collectors.toList());
+        }
+        return List.of();
+
     }
 
     @Override
@@ -58,10 +76,6 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
         return null;
     }
 
-    @Override
-    public List<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest, List<AccessModifier> modifier) {
-        return null;
-    }
 
     @Override
     public Optional<InterestRoot> findMyInterestById(UUID id) {

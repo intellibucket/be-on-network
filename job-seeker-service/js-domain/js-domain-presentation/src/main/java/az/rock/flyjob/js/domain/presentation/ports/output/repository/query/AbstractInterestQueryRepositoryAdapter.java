@@ -27,7 +27,7 @@ public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRep
 
     List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest, List<AccessModifier> modifier);
 
-    List<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest,List<AccessModifier> modifier);
+    List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request);
 
     Optional<InterestRoot> findMyInterestById(UUID id);
 

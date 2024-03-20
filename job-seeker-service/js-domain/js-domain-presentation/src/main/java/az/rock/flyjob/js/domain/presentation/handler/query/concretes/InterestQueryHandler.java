@@ -12,6 +12,7 @@ import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHol
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
+import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
 
     @Override
     public List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+
         var allAnyInterests = this.interestQueryRepositoryAdapter.findAllAnyInterests(targetResumeId, pageableRequest, modifierList);
         if (!allAnyInterests.isEmpty()) {
             return allAnyInterests;
@@ -41,11 +43,12 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
 
 
     @Override
-    public List<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        var allAnySimpleInterest = this.interestQueryRepositoryAdapter.findAllAnySimpleInterest(targetResumeId, pageableRequest, modifierList);
+    public SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound {
+        final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
+        var allAnySimpleInterest = this.interestQueryRepositoryAdapter.fetchAllAnySimpleInterest(criteria,pageableRequest);
         if (!allAnySimpleInterest.isEmpty()) {
-            return allAnySimpleInterest;
-        } else throw new RuntimeException("Interest Not found");
+           return  SimplePageableResponse.ofNoMore(pageableRequest.getSize(),pageableRequest.getPage(),allAnySimpleInterest);
+        } else throw new InterestNotFound();
     }
 
     @Override
