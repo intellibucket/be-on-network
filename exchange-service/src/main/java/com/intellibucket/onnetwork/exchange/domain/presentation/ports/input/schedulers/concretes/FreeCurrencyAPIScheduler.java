@@ -1,6 +1,5 @@
 package com.intellibucket.onnetwork.exchange.domain.presentation.ports.input.schedulers.concretes;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.intellibucket.onnetwork.exchange.domain.presentation.dto.feign.response.CurrencyRates;
 import com.intellibucket.onnetwork.exchange.domain.presentation.ports.input.schedulers.abstracts.AbstractCurrencyScheduler;
 import com.intellibucket.onnetwork.exchange.domain.presentation.ports.output.currency.abstracts.FreeCurrencyAPIClient;
@@ -19,7 +18,6 @@ public class FreeCurrencyAPIScheduler implements AbstractCurrencyScheduler {
     @Value("${external-api.free-currency.key}")
     private String apiKey;
     private final FreeCurrencyAPIClient freeCurrencyAPIClient;
-    private final ObjectMapper objectMapper;
 
     @Override
     @Scheduled(fixedRate = 1000)
