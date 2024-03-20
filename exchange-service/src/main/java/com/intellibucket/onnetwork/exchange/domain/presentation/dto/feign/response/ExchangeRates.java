@@ -11,15 +11,15 @@ import java.util.Map;
 
 @Data
 @ToString
-public class CurrencyRates {
+public class ExchangeRates {
     private Map<CurrencyCode, BigDecimal> data;
 
-    public CurrencyRates() {
+    public ExchangeRates() {
         this.data = new HashMap<>();
     }
 
-    public static CurrencyRates of() {
-        return new CurrencyRates();
+    public static ExchangeRates of() {
+        return new ExchangeRates();
     }
 
     public void addCurrencyRate(CurrencyCode currencyCode, BigDecimal rate) {

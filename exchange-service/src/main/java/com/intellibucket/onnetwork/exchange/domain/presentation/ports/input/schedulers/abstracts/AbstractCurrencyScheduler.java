@@ -1,5 +1,8 @@
 package com.intellibucket.onnetwork.exchange.domain.presentation.ports.input.schedulers.abstracts;
 
 public interface AbstractCurrencyScheduler {
-    void schedule();
+    void latestRateScheduler();
+
+    void exchangeInfoScheduler();
+
 }
