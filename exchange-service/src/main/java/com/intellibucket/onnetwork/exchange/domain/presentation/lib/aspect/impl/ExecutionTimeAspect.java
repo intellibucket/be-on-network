@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class ExecutionTimeAspect {
 
-    @Around("annotation(com.intellibucket.onnetwork.exchange.domain.presentation.lib.aspect.annotations.JExecutionTime)")
+    @Around("@annotation(com.intellibucket.onnetwork.exchange.domain.presentation.lib.aspect.annotations.JExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint proceedingJoinPoint) {
         log.info("Execution time aspect is called for {}", proceedingJoinPoint.getSignature().getName());
         long start = System.currentTimeMillis();
