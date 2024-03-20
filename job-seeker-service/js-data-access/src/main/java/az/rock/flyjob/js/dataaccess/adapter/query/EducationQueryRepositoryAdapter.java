@@ -35,6 +35,7 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
         if (entity.isEmpty()) return Optional.empty();
         return educationDataAccessMapper.toRoot(entity.get());
     }
+
     @Override
     public List<EducationRoot> fetchAllMyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
         var composes = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
