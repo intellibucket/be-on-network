@@ -6,10 +6,21 @@ import az.rock.lib.valueObject.AccessModifier;
 import java.util.List;
 import java.util.UUID;
 
+@SuppressWarnings("all")
 public class EducationCriteria {
     private UUID educationId;
     private ResumeID resumeID;
     private List<AccessModifier> accessModifiers;
+
+    private EducationCriteria(Builder builder) {
+        educationId = builder.educationId;
+        resumeID = builder.resumeID;
+        accessModifiers = builder.accessModifiers;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public UUID getEducationId() {
         return educationId;
@@ -22,17 +33,6 @@ public class EducationCriteria {
     public List<AccessModifier> getAccessModifiers() {
         return accessModifiers;
     }
-
-    private EducationCriteria(Builder builder) {
-        educationId = builder.educationId;
-        resumeID = builder.resumeID;
-        accessModifiers = builder.accessModifiers;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
 
     public static final class Builder {
         private UUID educationId;

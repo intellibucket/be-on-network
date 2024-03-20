@@ -35,24 +35,37 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
         if (entity.isEmpty()) return Optional.empty();
         return educationDataAccessMapper.toRoot(entity.get());
     }
-
     @Override
-    public List<EducationRoot> findAllMyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var entity = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
-
-        return;
+    public List<EducationRoot> fetchAllMyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
+        var composes = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
+        return composes
+                .stream()
+                .map(educationDataAccessMapper::composeToRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 
     @Override
-    public List<EducationRoot> findAllMySimpleEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var entity = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
-        return null;
+    public List<EducationRoot> fetchAllMySimpleEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
+        var composes = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
+        return composes
+                .stream()
+                .map(educationDataAccessMapper::composeToRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 
     @Override
-    public List<EducationRoot> findAllAnyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var entity = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
-        return null;
+    public List<EducationRoot> fetchAllAnyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
+        var composes = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
+        return composes
+                .stream()
+                .map(educationDataAccessMapper::composeToRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 
     @Override

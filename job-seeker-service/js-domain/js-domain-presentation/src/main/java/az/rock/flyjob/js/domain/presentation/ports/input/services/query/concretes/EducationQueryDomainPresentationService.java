@@ -23,20 +23,16 @@ public class EducationQueryDomainPresentationService implements AbstractEducatio
 
     @Override
     public SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) {
-
-
-        return null;
+        return this.abstractEducationQueryHandler.queryAllMyEducations(pageableRequest);
     }
 
     @Override
     public SimplePageableResponse<AnyEducationResponseModel> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-
-        return null;
+        return this.abstractEducationQueryHandler.queryAllAnyEducations(targetResumeId, pageableRequest);
     }
 
     @Override
     public SimplePageableResponse<SimpleMyEducationResponseModel> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) {
-
-        return null;
+        return this.abstractEducationQueryHandler.queryAllMySimpleEducations(pageableRequest);
     }
 }
