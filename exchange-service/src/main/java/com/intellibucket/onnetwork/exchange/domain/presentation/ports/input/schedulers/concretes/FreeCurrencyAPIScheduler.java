@@ -24,7 +24,7 @@ public class FreeCurrencyAPIScheduler implements AbstractCurrencyScheduler {
 
 
     @Override
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRateString = "${ws.values.scheduler.latest-rate}")
     @JExecutionTime
     public void latestRateScheduler() {
         log.info("Latest rate scheduler started");
@@ -37,7 +37,7 @@ public class FreeCurrencyAPIScheduler implements AbstractCurrencyScheduler {
     }
 
     @Override
-    @Scheduled(cron = "0 0 0 1 * ?")
+    @Scheduled(cron = "${ws.values.scheduler.exchange-info-rate}")
     //This scheduler must be executed every 1 month
     public void exchangeInfoScheduler() {
         log.info("Historical rate scheduler");
