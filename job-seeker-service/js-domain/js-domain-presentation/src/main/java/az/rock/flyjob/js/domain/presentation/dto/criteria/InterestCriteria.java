@@ -3,12 +3,15 @@ package az.rock.flyjob.js.domain.presentation.dto.criteria;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 
+import java.util.List;
 import java.util.UUID;
 
 public class InterestCriteria {
     private UUID id;
     private ResumeID resume;
-    private AccessModifier accessModifier;
+    private List<AccessModifier> accessModifier;
+
+
 
     private InterestCriteria(Builder builder) {
         id = builder.id;
@@ -16,11 +19,22 @@ public class InterestCriteria {
         accessModifier = builder.accessModifier;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public ResumeID getResume() {
+        return resume;
+    }
+
+    public List<AccessModifier> getAccessModifier() {
+        return accessModifier;
+    }
 
     public static final class Builder {
         private UUID id;
         private ResumeID resume;
-        private AccessModifier accessModifier;
+        private List<AccessModifier> accessModifier;
 
         private Builder() {
         }
@@ -39,7 +53,7 @@ public class InterestCriteria {
             return this;
         }
 
-        public Builder accessModifier(AccessModifier val) {
+        public Builder accessModifier(List<AccessModifier> val) {
             accessModifier = val;
             return this;
         }
