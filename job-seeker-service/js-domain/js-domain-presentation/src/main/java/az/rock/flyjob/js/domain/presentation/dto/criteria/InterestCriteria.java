@@ -9,13 +9,15 @@ import java.util.UUID;
 public class InterestCriteria {
     private UUID id;
     private ResumeID resume;
-    private List<AccessModifier> accessModifier;
 
+    private boolean isHobby;
+    private List<AccessModifier> accessModifier;
 
 
     private InterestCriteria(Builder builder) {
         id = builder.id;
         resume = builder.resume;
+        isHobby = builder.isHobby;
         accessModifier = builder.accessModifier;
     }
 
@@ -31,15 +33,16 @@ public class InterestCriteria {
         return accessModifier;
     }
 
+
     public static final class Builder {
         private UUID id;
         private ResumeID resume;
+        private boolean isHobby;
         private List<AccessModifier> accessModifier;
 
-        private Builder() {
+        public Builder() {
         }
-
-        public static Builder builder() {
+        public static Builder builder(){
             return new Builder();
         }
 
@@ -50,6 +53,11 @@ public class InterestCriteria {
 
         public Builder resume(ResumeID val) {
             resume = val;
+            return this;
+        }
+
+        public Builder isHobby(boolean val) {
+            isHobby = val;
             return this;
         }
 

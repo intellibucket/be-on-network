@@ -89,7 +89,7 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     //------------------------------------------------------------------------
 
 
-    public InterestCriteria toCriteria(ResumeID resumeId, UUID id, List<AccessModifier> modifier) {
+    public InterestCriteria toCriteria(ResumeID resumeId, UUID id,List<AccessModifier> modifier) {
         return InterestCriteria.Builder.builder().
                 resume(resumeId)
                 .id(id)
