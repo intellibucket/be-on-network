@@ -1,6 +1,6 @@
-package az.rock.lib.valueObject.email;
+package az.rock.lib.valueObject.notification;
 
-public enum NotificationContentType {
+public enum NotificationContentSpecies {
     NEW_USER_REGISTRATION,
     FRIEND_REQUEST,
     FOLLOW_REQUEST,

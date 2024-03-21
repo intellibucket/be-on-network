@@ -1,4 +1,4 @@
-package az.rock.lib.valueObject.email;
+package az.rock.lib.valueObject.notification;
 
 public enum ContentType {
     NOTIFICATION,

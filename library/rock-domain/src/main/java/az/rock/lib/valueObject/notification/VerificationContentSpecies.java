@@ -1,6 +1,6 @@
-package az.rock.lib.valueObject.email;
+package az.rock.lib.valueObject.notification;
 
-public enum VerificationContentType {
+public enum VerificationContentSpecies {
     EMAIL_VERIFICATION,
     WEBSITE_VERIFICATION,
     PHONE_VERIFICATION,
