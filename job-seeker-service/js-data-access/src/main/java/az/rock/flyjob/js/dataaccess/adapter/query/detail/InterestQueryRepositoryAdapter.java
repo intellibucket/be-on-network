@@ -72,8 +72,19 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest, List<AccessModifier> modifier) {
-        return null;
+    public List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setPageable(interestComposeExample.new Pageable().of(request));
+
+        final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
+        if (!interestComposes.isEmpty()) {
+            return interestComposes.stream().map(interestDataAccessMapper::toRoot)
+                    .filter(item -> item.isPresent())
+                    .toList()
+                    .stream()
+                    .map(root -> AnyInterestResponseModel.of(root.get())).collect(Collectors.toList());
+        }
+        return List.of();
     }
 
 
