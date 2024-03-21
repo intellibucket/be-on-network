@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @Transactional(propagation =Propagation.REQUIRES_NEW)
 public interface AbstractInterestQueryHandler {
-    List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
+    SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound;
     SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound;
     AnyInterestResponseModel findAnyById(UUID id) throws InterestNotFound;
     MyInterestResponseModel findMyInterestById(UUID id);

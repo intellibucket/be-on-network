@@ -44,16 +44,10 @@ public class InterestQueryDomainPresentationService implements AbstractInterestQ
             return allMySimpleInterests;
         } else throw new RuntimeException();
     }
-
+    @SneakyThrows
     @Override
-    public List<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageable) {
-
-        var allAnyInterests = this.interestQueryHandler.findAllAnyInterests(targetResumeId, pageable);
-        if (!allAnyInterests.isEmpty()) {
-            return allAnyInterests;
-        } else throw new RuntimeException();
-
-
+    public SimplePageableResponse<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageable) {
+        return this.interestQueryHandler.findAllAnyInterests(targetResumeId, pageable);
     }
 
     @SneakyThrows

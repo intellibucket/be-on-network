@@ -33,12 +33,12 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     }
 
     @Override
-    public List<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-
-        var allAnyInterests = this.interestQueryRepositoryAdapter.findAllAnyInterests(targetResumeId, pageableRequest, modifierList);
+    public SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound {
+        final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
+        var allAnyInterests = this.interestQueryRepositoryAdapter.fetchAllAnyInterests(criteria ,pageableRequest);
         if (!allAnyInterests.isEmpty()) {
-            return allAnyInterests;
-        } else throw new RuntimeException("Interest Not found");
+            return  SimplePageableResponse.ofNoMore(pageableRequest.getSize(),pageableRequest.getPage(),allAnyInterests);
+        }  else throw new InterestNotFound();
     }
 
 
