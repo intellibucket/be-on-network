@@ -2,7 +2,7 @@ package az.rock.lib.valueObject;
 
 import java.util.stream.Stream;
 
-public enum ContentType {
+public enum FileContentType {
     IMAGE_JPEG("image/jpeg"),
     IMAGE_PJPEG("image/pjpeg"),
     IMAGE_JPG("image/jpg"),
@@ -17,12 +17,13 @@ public enum ContentType {
     IMAGE_X_PORTABLE_ANYMAP("image/x-portable-anymap");
 
     private final String value;
-    ContentType(String value) {
+
+    FileContentType(String value) {
         this.value = value;
     }
 
-    public static ContentType fromValue(String value) {
-        return Stream.of(ContentType.values()).filter(v -> v.value.equals(value)).findFirst().orElseThrow();
+    public static FileContentType fromValue(String value) {
+        return Stream.of(FileContentType.values()).filter(v -> v.value.equals(value)).findFirst().orElseThrow();
     }
 
     public String getValue() {
