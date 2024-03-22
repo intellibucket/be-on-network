@@ -1,6 +1,6 @@
 package az.rock.lib.valueObject.notification;
 
-public enum NotificationContentSpecies {
+public enum PushContentSpecies {
     NEW_USER_REGISTRATION,
     FRIEND_REQUEST,
     FOLLOW_REQUEST,

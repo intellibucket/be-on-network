@@ -1,7 +1,7 @@
 package az.rock.lib.valueObject.notification;
 
-public enum ContentType {
-    NOTIFICATION,
+public enum NotificationContentType {
+    PUSH,
     VERIFICATION,
     PASSWORD_RESET,
     WELCOME,
