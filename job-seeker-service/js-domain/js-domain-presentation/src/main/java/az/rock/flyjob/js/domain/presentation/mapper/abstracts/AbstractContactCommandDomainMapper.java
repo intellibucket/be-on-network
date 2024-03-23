@@ -8,7 +8,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel
 import az.rock.lib.domain.id.js.ResumeID;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public interface AbstractContactCommandDomainMapper  {
     ContactRoot toRoot(ContactCommandModel contactCommandModel, ResumeID resumeID);
 

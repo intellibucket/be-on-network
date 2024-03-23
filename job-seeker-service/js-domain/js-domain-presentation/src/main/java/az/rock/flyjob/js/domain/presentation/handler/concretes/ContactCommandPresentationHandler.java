@@ -19,7 +19,6 @@ import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
-import com.intellibucket.lib.payload.payload.ContactMergePayload;
 import com.intellibucket.lib.payload.payload.ContactPayload;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -31,17 +30,17 @@ import java.util.UUID;
 @Component
 public class ContactCommandPresentationHandler implements AbstractContactCommandHandler {
     private final AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter;
+
     private final AbstractContactQueryRepositoryAdapter abstractContactQueryRepositoryAdapter;
     private final AbstractContactCommandDomainMapper contactCommandDomainMapper;
     private final AbstractSecurityContextHolder contextHolder;
-
     private final AbstractContactDomainService domainService;
 
     public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter,
-                                             @Qualifier(value = "contactQueryRepositoryAdapter") AbstractContactQueryRepositoryAdapter contactQueryRepositoryAdapter,
+                                             AbstractContactQueryRepositoryAdapter contactQueryRepositoryAdapter,
                                              AbstractContactCommandDomainMapper contactCommandDomainMapper,
                                              AbstractSecurityContextHolder contextHolder,
-                                             @Qualifier(value = "contactDomainService") AbstractContactDomainService domainService) {
+                                             AbstractContactDomainService domainService) {
         this.abstractContactCommandRepositoryAdapter = abstractContactCommandRepositoryAdapter;
         this.abstractContactQueryRepositoryAdapter = contactQueryRepositoryAdapter;
         this.contactCommandDomainMapper = contactCommandDomainMapper;
@@ -57,7 +56,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
                 .orderNumber(contactRoot.getOrderNumber())
                 .build();
     }
-//5da3a5a2-19ce-4c8d-b7d2-ec7c0bbd2960
+
     @Override
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest) {
         var currentResumeId = this.contextHolder.availableResumeID();
@@ -72,24 +71,23 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
 
     @Override
-    public ContactUpdateEvent updateContact(UpdateRequest<ContactCommandModel> commandModel) {
+    public ContactUpdateEvent updateContact(UpdateRequest<ContactCommandModel> updateRequest) {
         var resumeID = contextHolder.availableResumeID();
-        var allByPID = abstractContactQueryRepositoryAdapter.findAllByPID(resumeID);
-        Optional<ContactRoot> findedcontact = allByPID.stream().filter(item -> item.getRootID()
-                .equals(commandModel.getTargetId())).findFirst();
-        if (findedcontact.isPresent()) {
-            var contactRoot = findedcontact.get();
-            var newRoot = contactRoot.changeFormatType(commandModel.getModel().getFormatType())
-                    .changeData(commandModel.getModel().getData())
-                    .changeLiveType(commandModel.getModel().getLiveType());
-            var validatedContact = this.domainService.validateContactDuplication(allByPID, newRoot);
+        var allSavedContacts = abstractContactQueryRepositoryAdapter.findAllByPID(resumeID);
+        var contactRoot = this.contactCommandDomainMapper.toRoot(updateRequest.getModel(), resumeID);
+        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findById(contactRoot.getRootID());
+        if (foundContact.isPresent()) {
+            var newRoot = contactRoot.changeFormatType(updateRequest.getModel().getFormatType())
+                    .changeData(updateRequest.getModel().getData())
+                    .changeLiveType(updateRequest.getModel().getLiveType());
+            var validatedContact = this.domainService.validateContactDuplication(allSavedContacts, newRoot);
             var isExistContact = this.abstractContactQueryRepositoryAdapter.isExistContact(validatedContact);
             if (isExistContact) throw new ContactAlreadyExistException();
             this.abstractContactCommandRepositoryAdapter.update(validatedContact);
             var payload = this.toPayload(validatedContact);
             return ContactUpdateEvent.of(payload);
 
-        } else throw new UnknownSystemException();
+        } else throw new ContactNotFoundException();
     }
 
     @Override
@@ -109,7 +107,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
         var contactList = this.abstractContactQueryRepositoryAdapter.findAllByPID(contextHolder.availableResumeID());
         var contact = contactList.stream()
                 .filter(c -> c.getRootID().getRootID().toString()
-                        .equals(commandModel.getTargetId()))
+                        .equals(commandModel.getTargetId().toString()))
                 .findFirst().orElseThrow(ContactNotFoundException::new);
         var reOrderNumber = commandModel.getModel().getOrderNumber();
         if (reOrderNumber > contact.getOrderNumber()) ++reOrderNumber;
@@ -125,7 +123,6 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
 
         }
         abstractContactCommandRepositoryAdapter.updateAll(contactList);
-
         return ContactReorderEvent.of(ContactPayload.Builder.builder().build());
     }
 

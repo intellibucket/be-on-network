@@ -30,8 +30,8 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
     }
 
     @Override
-    public Optional<ContactRoot> findOwnByID(ResumeID parentID, ContactID rootId) {
-        var entity = contactQueryJPARepository.findResumeIDandContactID(parentID.getAbsoluteID(), rootId.getAbsoluteID());
+    public Optional<ContactRoot> findOwnByID(ResumeID resumeID, ContactID contactID) {
+        var entity = contactQueryJPARepository.findResumeIDandContactID(resumeID.getRootID(), contactID.getRootID());
         if (entity.isEmpty()) return Optional.empty();
         return this.contactMapper.toRoot(entity.get());
     }

@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.presentation.api.rest.privates.command.resume.detail;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
@@ -35,7 +36,7 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<JSuccessResponse> update(UpdateRequest<ContactCommandModel> request) {
+    public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<ContactCommandModel> request) {
         this.abstractContactCommandDomainPresentationService.update(request);
         return ResponseEntity.ok(new JSuccessResponse());
     }
@@ -47,17 +48,17 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-    @Override
-    @DeleteMapping("/delete/all")
-    public ResponseEntity<JSuccessResponse> deleteAll() {
-        return null;
-    }
+//    @Override
+//    @DeleteMapping("/delete/all")
+//    public ResponseEntity<JSuccessResponse> deleteAll() {
+//        return null;
+//    }
 
     @Override
     @PatchMapping("/reorder")
-    public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
-//        this.abstractContactCommandDomainPresentationService.reorder(request);
-//        return ResponseEntity.ok(new JSuccessResponse());
-        return null;
+    public ResponseEntity<JSuccessResponse> reorder(@RequestBody ReorderRequest<ContactCommandModel> request) {
+        this.abstractContactCommandDomainPresentationService.reorder(request);
+        return ResponseEntity.ok(new JSuccessResponse());
+
     }
 }

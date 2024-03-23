@@ -21,7 +21,7 @@ public interface AbstractContactQueryJPARepository extends GJpaRepository<Contac
     @Query("SELECT count(row) > 0 FROM ContactEntity row " +
             "WHERE (:resume = row.resume) and (row.rowStatus = 'ACTIVE')")
     Boolean existByContact(ContactRoot resume);
-    @Query("select  e from ContactEntity  e where e.resume.uuid=:resumeId and e.uuid=:contactId and e.rowStatus='ACTIVE' ")
+    @Query("SELECT  e FROM ContactEntity  e WHERE e.resume.uuid=:resumeId AND e.uuid=:contactId AND e.rowStatus='ACTIVE'")
     Optional<ContactEntity> findResumeIDandContactID(@Param(value = "resumeId") UUID resumeID, @Param(value = "contactId") UUID contactId);
     @Query("SELECT e FROM ContactEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE' order by e.orderNumber")
     Optional<ContactEntity> findByPID(@Param("resumeID") UUID resumeID);
