@@ -7,6 +7,8 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple
 import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractInterestQueryHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractInterestQueryDomainPresentationService;
 import az.rock.lib.valueObject.SimplePageableRequest;
+import az.rock.lib.valueObject.SimplePageableResponse;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,48 +25,40 @@ public class InterestQueryDomainPresentationService implements AbstractInterestQ
 
     @Override
     public MyInterestResponseModel findMyInterestById(UUID id) {
-        var myInterest= this.interestQueryHandler.findMyInterestById(id);
+        var myInterest = this.interestQueryHandler.findMyInterestById(id);
         return myInterest;
     }
 
     @Override
     public List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
         var allMyInterests = this.interestQueryHandler.queryAllMyInterests(pageableRequest);
-        if(!allMyInterests.isEmpty()) {
+        if (!allMyInterests.isEmpty()) {
             return allMyInterests;
-        }else throw new RuntimeException();
+        } else throw new RuntimeException();
     }
 
     @Override
     public List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
         var allMySimpleInterests = this.interestQueryHandler.queryAllMySimpleInterests(pageableRequest);
-        if(!allMySimpleInterests.isEmpty()) {
+        if (!allMySimpleInterests.isEmpty()) {
             return allMySimpleInterests;
-        }else throw new RuntimeException();
-    }
-
-    @Override
-    public List<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageable) {
-
-        var allAnyInterests = this.interestQueryHandler.findAllAnyInterests(targetResumeId, pageable);
-        if (!allAnyInterests.isEmpty()) {
-            return allAnyInterests;
-        } else throw new RuntimeException();
-
-
-    }
-
-    @Override
-    public List<SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageable) {
-        var allAnySimpleInterest = this.interestQueryHandler.findAllAnySimpleInterest(targetResumeId, pageable);
-        if (!allAnySimpleInterest.isEmpty()) {
-            return allAnySimpleInterest;
         } else throw new RuntimeException();
     }
+    @SneakyThrows
+    @Override
+    public SimplePageableResponse<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageable) {
+        return this.interestQueryHandler.findAllAnyInterests(targetResumeId, pageable);
+    }
 
+    @SneakyThrows
+    @Override
+    public SimplePageableResponse<SimpleAnyInterestResponseModel> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageable) {
+        return this.interestQueryHandler.findAllAnySimpleInterest(targetResumeId, pageable);
+    }
+
+    @SneakyThrows
     @Override
     public AnyInterestResponseModel findAnyInterestById(UUID Id) {
-        var anyInterest = this.interestQueryHandler.findAntById(Id);
-        return anyInterest;
+        return this.interestQueryHandler.findAnyById(Id);
     }
 }
