@@ -46,16 +46,16 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
 
     @Override
     public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
-        return queryHandler.allMyCourses(pageableRequest);
+        return (SimplePageableResponse<MyCourseResponseModel>) queryHandler.allMyCourses(pageableRequest).getPayload().getPayload();
     }
 
     @Override
     public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return queryHandler.allAnyCourses(targetResumeId, pageableRequest);
+        return (SimplePageableResponse<AnyCourseResponseModel>) queryHandler.allAnyCourses(targetResumeId, pageableRequest).getPayload().getPayload();
     }
 
     @Override
     public MyCourseResponseModel myCourseById(UUID id) {
-        return queryHandler.myCourseById(id);
+        return (MyCourseResponseModel) queryHandler.myCourseById(id).getPayload().getPayload();
     }
 }

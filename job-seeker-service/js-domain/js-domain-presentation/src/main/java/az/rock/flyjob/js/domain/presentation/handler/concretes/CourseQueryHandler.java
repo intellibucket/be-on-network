@@ -14,6 +14,8 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
+import com.intellibucket.lib.payload.event.query.CourseFetchEvent;
+import com.intellibucket.lib.payload.payload.query.CourseFetchPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -36,32 +38,36 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
+    public CourseFetchEvent allMyCourses(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
         var criteria = CourseCriteria.Builder.builder().resumeID(resumeId).build();
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(MyCourseResponseModel::of)
                 .toList();
-        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        var payload = SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        return CourseFetchEvent.of(CourseFetchPayload.of(payload));
+
     }
 
     @Override
-    public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+    public CourseFetchEvent allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         var criteria = CourseCriteria.Builder.builder().resumeID(ResumeID.of(targetResumeId)).accessModifiers(mockAccessModifiers).build();
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(AnyCourseResponseModel::of)
                 .toList();
-        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        var payload =  SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        return CourseFetchEvent.of(CourseFetchPayload.of(payload));
     }
 
     @Override
-    public MyCourseResponseModel myCourseById(UUID id){
+    public CourseFetchEvent myCourseById(UUID id){
         var resumeId = securityContextHolder.availableResumeID();
         var criteria = CourseCriteria.Builder.builder().id(CourseID.of(id)).resumeID(resumeId).build();
         var course = courseQueryRepositoryAdapter.fetchCourseById(criteria);
-        return MyCourseResponseModel.of(course.orElseThrow());
+        var payload =  MyCourseResponseModel.of(course.orElseThrow());
+        return CourseFetchEvent.of(CourseFetchPayload.of(payload));
     }
 
 

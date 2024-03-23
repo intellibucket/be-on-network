@@ -2,6 +2,7 @@ package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample;
+import az.rock.flyjob.js.dataaccess.model.batis.model.Pageable;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.CourseBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCourseQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
@@ -13,8 +14,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.SimplePageableRequest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -67,6 +67,7 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     public List<CourseRoot> fetchAllCourses(CourseCriteria criteria, SimplePageableRequest pageableRequest) {
         var courseComposeExample = CourseComposeExample.of(criteria);
         courseComposeExample.setOrderByClause("order_number");
+        courseComposeExample.setPageable(Pageable.of(pageableRequest));
         return courseQueryBatisRepository.selectByExample(courseComposeExample)
                 .stream()
                 .map(courseDataAccessMapper::toRoot)

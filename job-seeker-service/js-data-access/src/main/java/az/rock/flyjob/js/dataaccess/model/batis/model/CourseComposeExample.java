@@ -3,6 +3,7 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.SimplePageableRequest;
 
 import java.util.*;
 
@@ -14,14 +15,24 @@ public class CourseComposeExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected Pageable pageable;
+
     public static CourseComposeExample of(CourseCriteria criteria){
         var example = new CourseComposeExample();
         var newCriteria = example.createCriteria();
-        newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name())
-                .andResumeUuidEqualTo(criteria.getResumeID().getRootID());
+        newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        if(Optional.ofNullable(criteria.getResumeID()).isPresent())newCriteria.andResumeUuidEqualTo(criteria.getResumeID().getRootID());
         if(Optional.ofNullable(criteria.getId()).isPresent())newCriteria.andUuidEqualTo(criteria.getId().getRootID());
         if(Optional.ofNullable(criteria.getAccessModifiers()).isPresent())newCriteria.andAccessModifierIn(criteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
         return example;
+    }
+
+    public Pageable getPageable() {
+        return pageable;
+    }
+
+    public void setPageable(Pageable pageable) {
+        this.pageable = pageable;
     }
 
     public CourseComposeExample() {
