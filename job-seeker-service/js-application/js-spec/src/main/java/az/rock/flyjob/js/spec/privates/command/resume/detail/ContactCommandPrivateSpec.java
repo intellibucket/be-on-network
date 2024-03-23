@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.spec.privates.command.resume.detail;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
@@ -21,5 +22,5 @@ public interface ContactCommandPrivateSpec {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
-    ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
+    ResponseEntity<JSuccessResponse> reorder(ReorderRequest<ContactCommandModel> request);
 }
