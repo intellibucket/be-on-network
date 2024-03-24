@@ -19,7 +19,7 @@ public interface AbstractInterestQueryHandler {
     SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound;
     SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound;
     AnyInterestResponseModel findAnyById(UUID id) throws InterestNotFound;
-    MyInterestResponseModel findMyInterestById(UUID id);
-    List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest);
-    List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest);
+    MyInterestResponseModel findMyInterestById(UUID id) throws InterestNotFound;
+    SimplePageableResponse<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) throws InterestNotFound;;
+    SimplePageableResponse<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) throws InterestNotFound;;
 }

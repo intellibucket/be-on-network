@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -85,18 +85,36 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
 
     @Override
-    public Optional<InterestRoot> findMyInterestById(UUID id) {
-        return Optional.empty();
+    public Optional<InterestRoot> findMyInterestById(InterestCriteria criteria) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setOrderByClause("order_number");
+        return batisRepository.selectByExample(interestComposeExample)
+                .stream()
+                .findFirst()
+                .map(interestDataAccessMapper::toRoot)
+                .flatMap(Function.identity());
     }
 
     @Override
-    public List<InterestRoot> queryAllMyInterests(SimplePageableRequest pageableRequest) {
-        return null;
+    public List<InterestRoot> queryAllMyInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setOrderByClause("order_number");
+        return batisRepository.selectByExample(interestComposeExample)
+                .stream()
+                .map(interestDataAccessMapper::toRoot)
+                .flatMap(Optional::stream)
+                .toList();
     }
 
     @Override
-    public List<InterestRoot> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
-        return null;
+    public List<InterestRoot> queryAllMySimpleInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setOrderByClause("order_number");
+        return batisRepository.selectByExample(interestComposeExample)
+                .stream()
+                .map(interestDataAccessMapper::toRoot)
+                .flatMap(Optional::stream)
+                .toList();
     }
 
     @Override
