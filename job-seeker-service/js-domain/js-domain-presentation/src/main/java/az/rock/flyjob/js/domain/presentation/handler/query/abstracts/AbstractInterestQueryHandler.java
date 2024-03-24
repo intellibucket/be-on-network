@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.query.abstracts;
 
 import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
@@ -16,8 +17,8 @@ import java.util.UUID;
 
 @Transactional(propagation =Propagation.REQUIRES_NEW)
 public interface AbstractInterestQueryHandler {
-    SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound;
-    SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound;
+    SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound, InterestOverLimit;
+    SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound, InterestOverLimit;
     AnyInterestResponseModel findAnyById(UUID id) throws InterestNotFound;
     MyInterestResponseModel findMyInterestById(UUID id) throws InterestNotFound;
     SimplePageableResponse<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) throws InterestNotFound;;

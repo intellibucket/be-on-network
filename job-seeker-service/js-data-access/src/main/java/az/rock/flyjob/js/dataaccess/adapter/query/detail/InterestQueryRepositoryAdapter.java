@@ -5,6 +5,7 @@ import az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose;
 import az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.InterestBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractInterestQueryJPARepository;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
@@ -40,7 +41,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     public Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria interestCriteria) {
         var interestComposeExample = InterestComposeExample.of(interestCriteria);
         var interestCompose = this.batisRepository.selectByExample(interestComposeExample);
-        if (!interestCompose.isEmpty() && interestCompose.size() == 1) {
+        if (interestCompose.size() == 1) {
             var root = this.interestDataAccessMapper.toRoot(interestCompose.get(0));
             return Optional.ofNullable(AnyInterestResponseModel.of(root.get()));
         }
@@ -48,7 +49,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria, SimplePageableRequest request) {
+    public List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria, SimplePageableRequest request) throws InterestOverLimit {
         var interestComposeExample = InterestComposeExample.of(criteria);
         var interestCount = this.batisRepository.countByExample(interestComposeExample);
 
@@ -57,7 +58,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
             return interestComposes.stream().map(interestDataAccessMapper::toRoot)
-                    .filter(item -> item.isPresent())
+                    .filter(Optional::isPresent)
                     .toList()
                     .stream()
                     .map(root -> SimpleAnyInterestResponseModel.of(root.get())).collect(Collectors.toList());
@@ -67,7 +68,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) {
+    public List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) throws InterestOverLimit {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
         var interestCount = this.batisRepository.countByExample(interestComposeExample);
         interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));
@@ -75,7 +76,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
             return interestComposes.stream().map(interestDataAccessMapper::toRoot)
-                    .filter(item -> item.isPresent())
+                    .filter(Optional::isPresent)
                     .toList()
                     .stream()
                     .map(root -> AnyInterestResponseModel.of(root.get())).collect(Collectors.toList());
