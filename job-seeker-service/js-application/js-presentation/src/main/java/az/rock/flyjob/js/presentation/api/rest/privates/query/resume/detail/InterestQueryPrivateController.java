@@ -31,7 +31,8 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     @Override
     @GetMapping(value = "/get-my/all")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyInterestResponseModel>>> queryAllMyInterests(SimplePageableRequest pageableRequest) {
-        return null;
+       var allMyInterests = this.domainPresentationService.queryAllMyInterests(pageableRequest);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(allMyInterests));
     }
 
     @Override
@@ -45,7 +46,8 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
     @Override
     @GetMapping(value = "/get-my-simple/all")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyInterestResponseModel>>> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
-        return null;
+      var allMySimpleInterests = this.domainPresentationService.queryAllMySimpleInterests(pageableRequest);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(allMySimpleInterests));
     }
 
     @Override
@@ -58,8 +60,9 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
 
     @Override
     @GetMapping(value = "/get-my/{interestUUID}")
-    public ResponseEntity<JSuccessDataResponse<MyInterestResponseModel>> findMyInterestById(UUID id) {
-        return null;
+    public ResponseEntity<JSuccessDataResponse<MyInterestResponseModel>> findMyInterestById(@PathVariable("interestUUID")UUID id) {
+        var myInterestById = this.domainPresentationService.findMyInterestById(id);
+        return ResponseEntity.ok(new JSuccessDataResponse<>(myInterestById));
     }
 
     @Override

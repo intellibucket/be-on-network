@@ -19,9 +19,9 @@ public interface AbstractInterestQueryDomainPresentationService {
 
     MyInterestResponseModel findMyInterestById(UUID id);
 
-    List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest);
+    SimplePageableResponse<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest);
 
-    List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest);
+    SimplePageableResponse<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest);
 
     SimplePageableResponse<AnyInterestResponseModel> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
