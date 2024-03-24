@@ -3,31 +3,24 @@ package az.rock.flyjob.js.dataaccess.adapter.query.detail;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractInterestDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose;
 import az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractInterestQueryBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.InterestBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractInterestQueryJPARepository;
-import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleMyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Component
 public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepositoryAdapter {
@@ -56,8 +49,10 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
     @Override
     public List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria, SimplePageableRequest request) {
-        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.setPageable(interestComposeExample.new Pageable().of(request));
+        var interestComposeExample = InterestComposeExample.of(criteria);
+        var interestCount = this.batisRepository.countByExample(interestComposeExample);
+
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
@@ -74,7 +69,8 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.setPageable(interestComposeExample.new Pageable().of(request));
+        var interestCount = this.batisRepository.countByExample(interestComposeExample);
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
