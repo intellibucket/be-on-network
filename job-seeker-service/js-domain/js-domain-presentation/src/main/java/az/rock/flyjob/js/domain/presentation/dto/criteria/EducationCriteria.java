@@ -9,7 +9,7 @@ import java.util.UUID;
 @SuppressWarnings("all")
 public class EducationCriteria {
     private UUID educationId;
-    private ResumeID resumeID;
+    private UUID resumeID;
     private List<AccessModifier> accessModifiers;
 
     private EducationCriteria(Builder builder) {
@@ -26,7 +26,7 @@ public class EducationCriteria {
         return educationId;
     }
 
-    public ResumeID getResumeID() {
+    public UUID getResumeID() {
         return resumeID;
     }
 
@@ -36,7 +36,7 @@ public class EducationCriteria {
 
     public static final class Builder {
         private UUID educationId;
-        private ResumeID resumeID;
+        private UUID resumeID;
         private List<AccessModifier> accessModifiers;
 
         private Builder() {
@@ -47,7 +47,7 @@ public class EducationCriteria {
             return this;
         }
 
-        public Builder resumeID(ResumeID val) {
+        public Builder resumeID(UUID val) {
             resumeID = val;
             return this;
         }

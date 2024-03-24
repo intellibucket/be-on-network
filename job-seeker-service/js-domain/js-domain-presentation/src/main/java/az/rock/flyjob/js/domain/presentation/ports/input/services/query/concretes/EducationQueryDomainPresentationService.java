@@ -7,6 +7,7 @@ import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractEdu
 import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractEducationQueryDomainPresentationService;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -22,16 +23,19 @@ public class EducationQueryDomainPresentationService implements AbstractEducatio
     }
 
     @Override
+    @SneakyThrows
     public SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) {
         return this.abstractEducationQueryHandler.queryAllMyEducations(pageableRequest);
     }
 
     @Override
+    @SneakyThrows
     public SimplePageableResponse<AnyEducationResponseModel> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         return this.abstractEducationQueryHandler.queryAllAnyEducations(targetResumeId, pageableRequest);
     }
 
     @Override
+    @SneakyThrows
     public SimplePageableResponse<SimpleMyEducationResponseModel> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) {
         return this.abstractEducationQueryHandler.queryAllMySimpleEducations(pageableRequest);
     }
