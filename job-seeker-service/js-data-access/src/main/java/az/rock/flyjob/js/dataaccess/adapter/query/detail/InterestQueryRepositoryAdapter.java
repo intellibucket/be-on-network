@@ -3,31 +3,23 @@ package az.rock.flyjob.js.dataaccess.adapter.query.detail;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractInterestDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose;
 import az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample;
-import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.AbstractInterestQueryBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.InterestBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractInterestQueryJPARepository;
-import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleMyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepositoryAdapter {
@@ -89,18 +81,36 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
 
     @Override
-    public Optional<InterestRoot> findMyInterestById(UUID id) {
-        return Optional.empty();
+    public Optional<InterestRoot> findMyInterestById(InterestCriteria criteria) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setOrderByClause("order_number");
+        return batisRepository.selectByExample(interestComposeExample)
+                .stream()
+                .findFirst()
+                .map(interestDataAccessMapper::toRoot)
+                .flatMap(Function.identity());
     }
 
     @Override
-    public List<InterestRoot> queryAllMyInterests(SimplePageableRequest pageableRequest) {
-        return null;
+    public List<InterestRoot> queryAllMyInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setOrderByClause("order_number");
+        return batisRepository.selectByExample(interestComposeExample)
+                .stream()
+                .map(interestDataAccessMapper::toRoot)
+                .flatMap(Optional::stream)
+                .toList();
     }
 
     @Override
-    public List<InterestRoot> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
-        return null;
+    public List<InterestRoot> queryAllMySimpleInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest) {
+        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
+        interestComposeExample.setOrderByClause("order_number");
+        return batisRepository.selectByExample(interestComposeExample)
+                .stream()
+                .map(interestDataAccessMapper::toRoot)
+                .flatMap(Optional::stream)
+                .toList();
     }
 
     @Override
