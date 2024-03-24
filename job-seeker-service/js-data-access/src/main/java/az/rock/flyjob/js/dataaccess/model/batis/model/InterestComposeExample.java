@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
+
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
@@ -23,7 +24,7 @@ public class InterestComposeExample {
     protected Pageable pageable;
 
 
-    public class Pageable {
+    public static class Pageable {
         private int offset;
         private int limit;
 
@@ -43,15 +44,19 @@ public class InterestComposeExample {
             this.limit = limit;
         }
 
-        public Pageable of(SimplePageableRequest req) {
-            if (pageable == null) {
-                pageable = new Pageable();
+        public static Pageable createPageable(SimplePageableRequest request, long count) {
+            var totalPage = (int) Math.ceil((double) count / request.getSize());
+
+            if (!(request.getSize() <= 0) && !(request.getPage() <= 0) && request.getPage() <= totalPage) {
+                Pageable pageable = new Pageable();
+                pageable.setLimit(request.getSize());
+                pageable.setOffset((request.getPage() - 1) * pageable.limit);
+
+                return pageable;
+
+            } else {
+                throw new RuntimeException("over limit exception");
             }
-            if (!(req.getSize() <= 0) || !(req.getPage() <= 0)) {
-                pageable.setLimit(req.getSize());
-                pageable.setOffset((req.getPage() - 1) * pageable.limit);
-            }
-            return pageable;
         }
     }
 
@@ -84,8 +89,9 @@ public class InterestComposeExample {
         return pageable;
     }
 
-    public void setPageable(Pageable pageable) {
+    public Pageable addPageable(Pageable pageable) {
         this.pageable = pageable;
+        return this.pageable;
     }
 
     public void or(Criteria criteria) {
@@ -100,6 +106,7 @@ public class InterestComposeExample {
 
     public static InterestComposeExample of(InterestCriteria interestCriteria) {
         InterestComposeExample example = new InterestComposeExample();
+
         var criteria = example.createCriteria();
         criteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
         if (Optional.ofNullable(interestCriteria.getResume()).isPresent()) {

@@ -99,9 +99,7 @@
         <if test="pageable != null">
             OFFSET ${pageable.offset} ROWS
             FETCH NEXT ${pageable.limit} ROWS ONLY;
-
         </if>
-
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Object" resultMap="BaseResultMap">
         select
@@ -216,11 +214,6 @@
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
-        <if test="pageable != null">
-            OFFSET ${pageable.offset} ROWS
-            FETCH NEXT ${pageable.limit} ROWS ONLY;
-        </if>
-
     </select>
     <update id="updateByExampleSelective" parameterType="map">
         update resume.interests

@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+
 @Component
 public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepositoryAdapter {
 
@@ -48,8 +49,10 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
     @Override
     public List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria, SimplePageableRequest request) {
-        InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.setPageable(interestComposeExample.new Pageable().of(request));
+        var interestComposeExample = InterestComposeExample.of(criteria);
+        var interestCount = this.batisRepository.countByExample(interestComposeExample);
+
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
@@ -66,7 +69,8 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.setPageable(interestComposeExample.new Pageable().of(request));
+        var interestCount = this.batisRepository.countByExample(interestComposeExample);
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
