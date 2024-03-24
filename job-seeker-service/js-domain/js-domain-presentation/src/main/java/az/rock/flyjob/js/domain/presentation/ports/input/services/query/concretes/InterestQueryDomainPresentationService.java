@@ -24,25 +24,21 @@ public class InterestQueryDomainPresentationService implements AbstractInterestQ
 
 
     @Override
+    @SneakyThrows
     public MyInterestResponseModel findMyInterestById(UUID id) {
-        var myInterest = this.interestQueryHandler.findMyInterestById(id);
-        return myInterest;
+        return this.interestQueryHandler.findMyInterestById(id);
     }
 
     @Override
-    public List<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
-        var allMyInterests = this.interestQueryHandler.queryAllMyInterests(pageableRequest);
-        if (!allMyInterests.isEmpty()) {
-            return allMyInterests;
-        } else throw new RuntimeException();
+    @SneakyThrows
+    public SimplePageableResponse<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
+        return this.interestQueryHandler.queryAllMyInterests(pageableRequest);
     }
 
     @Override
-    public List<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
-        var allMySimpleInterests = this.interestQueryHandler.queryAllMySimpleInterests(pageableRequest);
-        if (!allMySimpleInterests.isEmpty()) {
-            return allMySimpleInterests;
-        } else throw new RuntimeException();
+    @SneakyThrows
+    public SimplePageableResponse<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
+        return this.interestQueryHandler.queryAllMySimpleInterests(pageableRequest);
     }
     @SneakyThrows
     @Override

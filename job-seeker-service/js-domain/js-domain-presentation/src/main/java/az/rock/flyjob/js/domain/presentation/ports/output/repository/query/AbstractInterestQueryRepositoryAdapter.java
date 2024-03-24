@@ -29,11 +29,11 @@ public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRep
 
     List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request);
 
-    Optional<InterestRoot> findMyInterestById(UUID id);
+    Optional<InterestRoot> findMyInterestById(InterestCriteria criteria);
 
-    List<InterestRoot> queryAllMyInterests(SimplePageableRequest pageableRequest);
+    List<InterestRoot> queryAllMyInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest);
 
-    List<InterestRoot> queryAllMySimpleInterests(SimplePageableRequest pageableRequest);
+    List<InterestRoot> queryAllMySimpleInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest);
 //--------------------------------Hibernate queries-----------------------------------
     Optional<InterestRoot> findOwnByID(ResumeID parentID, InterestID rootId, List<AccessModifier> accessModifiers);
 
