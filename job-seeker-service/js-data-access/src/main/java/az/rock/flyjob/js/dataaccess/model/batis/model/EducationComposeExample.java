@@ -24,11 +24,12 @@ public class EducationComposeExample {
     public static EducationComposeExample of(EducationCriteria educationCriteria) {
         var educationCompose = new EducationComposeExample();
         var criteria = educationCompose.createCriteria();
-        criteria.andUuidEqualTo(educationCriteria.getEducationId())
+        criteria
                 .andResumeUuidEqualTo(educationCriteria.getResumeID())
                 .andRowStatusEqualTo(RowStatus.ACTIVE.name());
         return educationCompose;
     }
+
 
     public String getOrderByClause() {
         return orderByClause;

@@ -11,9 +11,7 @@ import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -28,19 +26,22 @@ public class EducationQueryPrivateController implements EducationQueryPrivateSpe
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyEducationResponseModel>>> queryAllMyEducations(SimplePageableRequest pageableRequest) {
+    @GetMapping("/get-my/educations")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyEducationResponseModel>>> queryAllMyEducations(@ModelAttribute("pageableRequest") SimplePageableRequest pageableRequest) {
         var response = educationQueryDomainPresentationService.queryAllMyEducations(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyEducationResponseModel>>> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+    @GetMapping("/get-any/educations/{targetResumeId}")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyEducationResponseModel>>> queryAllAnyEducations(@PathVariable UUID targetResumeId, @ModelAttribute("pageableRequest") SimplePageableRequest pageableRequest) {
         var response = educationQueryDomainPresentationService.queryAllAnyEducations(targetResumeId, pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyEducationResponseModel>>> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) {
+    @GetMapping("/get-my/simple-educations")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyEducationResponseModel>>> queryAllMySimpleEducations(@ModelAttribute("pageableRequest") SimplePageableRequest pageableRequest) {
         var response = educationQueryDomainPresentationService.queryAllMySimpleEducations(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
