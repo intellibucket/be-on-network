@@ -23,7 +23,7 @@ import java.util.UUID;
 
 
 @Component
-public class CourseQueryHandler implements AbstractCourseQueryHandler {
+public class CourseQueryHandler implements AbstractCourseQueryHandler{
 
 
     private final AbstractSecurityContextHolder securityContextHolder;
@@ -38,7 +38,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
     }
 
     @Override
-    public CourseFetchEvent allMyCourses(SimplePageableRequest pageableRequest) {
+    public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
         var resumeId = securityContextHolder.availableResumeID();
         var criteria = CourseCriteria.Builder.builder().resumeID(resumeId).build();
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
@@ -46,43 +46,60 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler {
                 .map(MyCourseResponseModel::of)
                 .toList();
         var payload = SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
-        return CourseFetchEvent.of(CourseFetchPayload.of(payload));
+        return payload;
 
     }
 
     @Override
-    public CourseFetchEvent allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+    public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         var criteria = CourseCriteria.Builder.builder().resumeID(ResumeID.of(targetResumeId)).accessModifiers(mockAccessModifiers).build();
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(AnyCourseResponseModel::of)
                 .toList();
         var payload =  SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
-        return CourseFetchEvent.of(CourseFetchPayload.of(payload));
+        return payload;
     }
 
     @Override
-    public CourseFetchEvent myCourseById(UUID id){
+    public MyCourseResponseModel myCourseById(UUID id) throws CourseNotFoundException {
         var resumeId = securityContextHolder.availableResumeID();
         var criteria = CourseCriteria.Builder.builder().id(CourseID.of(id)).resumeID(resumeId).build();
         var course = courseQueryRepositoryAdapter.fetchCourseById(criteria);
-        var payload =  MyCourseResponseModel.of(course.orElseThrow());
-        return CourseFetchEvent.of(CourseFetchPayload.of(payload));
+        var payload =  MyCourseResponseModel.of(course.orElseThrow(CourseNotFoundException::new));
+        return payload;
     }
 
 
     @Override
-    public AnyCourseResponseModel findAnyCourse(UUID uuid) {
-        return null;
+    public AnyCourseResponseModel anyCourseById(UUID uuid) throws CourseNotFoundException {
+        var resumeId = securityContextHolder.availableResumeID();
+        var criteria = CourseCriteria.Builder.builder().id(CourseID.of(uuid)).resumeID(resumeId).accessModifiers(mockAccessModifiers).build();
+        var course = courseQueryRepositoryAdapter.fetchCourseById(criteria);
+        var payload =  AnyCourseResponseModel.of(course.orElseThrow(CourseNotFoundException::new));
+        return payload;
     }
 
     @Override
     public SimplePageableResponse<SimpleMyCourseResponseModel> allMySimpleCourses(SimplePageableRequest simplePageableRequest) {
-        return null;
+        var resumeId = securityContextHolder.availableResumeID();
+        var criteria = CourseCriteria.Builder.builder().resumeID(resumeId).build();
+        var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,simplePageableRequest)
+                .stream()
+                .map(SimpleMyCourseResponseModel::of)
+                .toList();
+        var payload = SimplePageableResponse.of(simplePageableRequest.getSize(), simplePageableRequest.getPage(),null,courses);
+        return payload;
     }
 
     @Override
     public SimplePageableResponse<SimpleAnyCourseResponseModel> allAnySimpleCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return null;
+        var criteria = CourseCriteria.Builder.builder().resumeID(ResumeID.of(targetResumeId)).accessModifiers(mockAccessModifiers).build();
+        var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
+                .stream()
+                .map(SimpleAnyCourseResponseModel::of)
+                .toList();
+        var payload =  SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        return payload;
     }
 }

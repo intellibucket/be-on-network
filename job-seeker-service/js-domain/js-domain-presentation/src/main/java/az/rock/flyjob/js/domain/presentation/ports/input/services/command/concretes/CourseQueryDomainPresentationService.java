@@ -6,17 +6,10 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.S
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleMyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseQueryHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseQueryDomainPresentationService;
-import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
-import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.lib.domain.id.js.CourseID;
-import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
-import az.rock.lib.valueObject.common.PageableRequest;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.UUID;
 
 
@@ -31,31 +24,33 @@ public class CourseQueryDomainPresentationService implements AbstractCourseQuery
 
     @Override
     public SimplePageableResponse<SimpleAnyCourseResponseModel> allAnySimpleCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return null;
+        return queryHandler.allAnySimpleCourses(targetResumeId, pageableRequest);
     }
 
     @Override
     public SimplePageableResponse<SimpleMyCourseResponseModel> allMySimpleCourses(SimplePageableRequest simplePageableRequest) {
-        return null;
+        return queryHandler.allMySimpleCourses(simplePageableRequest);
     }
 
+    @SneakyThrows
     @Override
     public AnyCourseResponseModel findAnyCourse(UUID uuid) {
-        return null;
+        return queryHandler.anyCourseById(uuid);
     }
 
     @Override
     public SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest) {
-        return (SimplePageableResponse<MyCourseResponseModel>) queryHandler.allMyCourses(pageableRequest).getPayload().getPayload();
+        return queryHandler.allMyCourses(pageableRequest);
     }
 
     @Override
     public SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return (SimplePageableResponse<AnyCourseResponseModel>) queryHandler.allAnyCourses(targetResumeId, pageableRequest).getPayload().getPayload();
+        return queryHandler.allAnyCourses(targetResumeId, pageableRequest);
     }
 
+    @SneakyThrows
     @Override
     public MyCourseResponseModel myCourseById(UUID id) {
-        return (MyCourseResponseModel) queryHandler.myCourseById(id).getPayload().getPayload();
+        return queryHandler.myCourseById(id);
     }
 }

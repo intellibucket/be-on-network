@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.handler.abstracts;
 
+import az.rock.flyjob.js.domain.core.exception.course.CourseNotFoundException;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
@@ -14,13 +15,13 @@ import java.util.UUID;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public interface AbstractCourseQueryHandler {
-    CourseFetchEvent allMyCourses(SimplePageableRequest pageableRequest);
+    SimplePageableResponse<MyCourseResponseModel> allMyCourses(SimplePageableRequest pageableRequest);
 
-    CourseFetchEvent allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest);
+    SimplePageableResponse<AnyCourseResponseModel> allAnyCourses(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
-    CourseFetchEvent myCourseById(UUID id);
+    MyCourseResponseModel myCourseById(UUID id) throws CourseNotFoundException;
 
-    AnyCourseResponseModel findAnyCourse(UUID uuid);
+    AnyCourseResponseModel anyCourseById(UUID uuid) throws CourseNotFoundException;
 
     SimplePageableResponse<SimpleMyCourseResponseModel> allMySimpleCourses(SimplePageableRequest simplePageableRequest);
 
