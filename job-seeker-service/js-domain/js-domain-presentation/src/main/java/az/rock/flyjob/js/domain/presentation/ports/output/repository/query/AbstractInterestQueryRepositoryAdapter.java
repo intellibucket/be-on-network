@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.ports.output.repository.query;
 
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
@@ -21,9 +22,9 @@ public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRep
 
     Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria criteria) ;
 
-    List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest);
+    List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws InterestOverLimit;
 
-    List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request);
+    List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request) throws InterestOverLimit;
 
     Optional<InterestRoot> findMyInterestById(InterestCriteria criteria);
 

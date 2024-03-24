@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
 
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
@@ -44,7 +45,7 @@ public class InterestComposeExample {
             this.limit = limit;
         }
 
-        public static Pageable createPageable(SimplePageableRequest request, long count) {
+        public static Pageable createPageable(SimplePageableRequest request, long count) throws InterestOverLimit {
             var totalPage = (int) Math.ceil((double) count / request.getSize());
 
             if (!(request.getSize() <= 0) && !(request.getPage() <= 0) && request.getPage() <= totalPage) {
@@ -55,7 +56,7 @@ public class InterestComposeExample {
                 return pageable;
 
             } else {
-                throw new RuntimeException("over limit exception");
+                throw new InterestOverLimit();
             }
         }
     }

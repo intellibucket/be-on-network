@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.query.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.interest.InterestNotFound;
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.MyInterestResponseModel;
@@ -32,7 +33,7 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound {
+    public SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound, InterestOverLimit {
         final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
         var allAnyInterests = this.interestQueryRepositoryAdapter.fetchAllAnyInterests(criteria, pageableRequest);
         if (!allAnyInterests.isEmpty()) {
@@ -42,7 +43,7 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
 
 
     @Override
-    public SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound {
+    public SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound, InterestOverLimit {
         final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
         var allAnySimpleInterest = this.interestQueryRepositoryAdapter.fetchAllAnySimpleInterest(criteria, pageableRequest);
         if (!allAnySimpleInterest.isEmpty()) {
