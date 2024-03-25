@@ -33,7 +33,7 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound, InterestOverLimit {
+    public SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws Exception {
         final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
         var allAnyInterests = this.interestQueryRepositoryAdapter.fetchAllAnyInterests(criteria, pageableRequest);
         if (!allAnyInterests.isEmpty()) {
@@ -43,7 +43,7 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
 
 
     @Override
-    public SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws InterestNotFound, InterestOverLimit {
+    public SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws Exception {
         final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
         var allAnySimpleInterest = this.interestQueryRepositoryAdapter.fetchAllAnySimpleInterest(criteria, pageableRequest);
         if (!allAnySimpleInterest.isEmpty()) {

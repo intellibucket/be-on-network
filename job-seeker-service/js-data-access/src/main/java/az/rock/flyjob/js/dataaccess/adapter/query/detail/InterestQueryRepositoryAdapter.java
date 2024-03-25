@@ -68,7 +68,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     }
 
     @Override
-    public List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) throws InterestOverLimit {
+    public List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) throws Exception {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
         var interestCount = this.batisRepository.countByExample(interestComposeExample);
         interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));

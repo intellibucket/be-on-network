@@ -22,9 +22,9 @@ public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRep
 
     Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria criteria) ;
 
-    List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws InterestOverLimit;
+    List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws Exception;
 
-    List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request) throws InterestOverLimit;
+    List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request) throws Exception;
 
     Optional<InterestRoot> findMyInterestById(InterestCriteria criteria);
 
