@@ -28,9 +28,9 @@ public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRep
 
     Optional<InterestRoot> findMyInterestById(InterestCriteria criteria);
 
-    List<InterestRoot> queryAllMyInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest);
+    List<InterestRoot> queryAllMyInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest) throws InterestOverLimit;
 
-    List<InterestRoot> queryAllMySimpleInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest);
+    List<InterestRoot> queryAllMySimpleInterests(InterestCriteria criteria,SimplePageableRequest pageableRequest) throws InterestOverLimit;
 //--------------------------------Hibernate queries-----------------------------------
     Optional<InterestRoot> findOwnByID(ResumeID parentID, InterestID rootId, List<AccessModifier> accessModifiers);
 
