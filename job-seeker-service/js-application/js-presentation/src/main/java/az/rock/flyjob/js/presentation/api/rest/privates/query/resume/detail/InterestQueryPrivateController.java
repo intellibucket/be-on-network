@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin
@@ -30,7 +29,7 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
 
     @Override
     @GetMapping(value = "/get-my/all")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyInterestResponseModel>>> queryAllMyInterests(SimplePageableRequest pageableRequest) {
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyInterestResponseModel>>> queryAllMyInterests(@ModelAttribute SimplePageableRequest pageableRequest) {
        var allMyInterests = this.domainPresentationService.queryAllMyInterests(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(allMyInterests));
     }
@@ -45,7 +44,7 @@ public class InterestQueryPrivateController implements InterestQueryPrivateSpec 
 
     @Override
     @GetMapping(value = "/get-my-simple/all")
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyInterestResponseModel>>> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyInterestResponseModel>>> queryAllMySimpleInterests(@ModelAttribute SimplePageableRequest pageableRequest) {
       var allMySimpleInterests = this.domainPresentationService.queryAllMySimpleInterests(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(allMySimpleInterests));
     }
