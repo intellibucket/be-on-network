@@ -20,11 +20,11 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<InterestRoot, InterestID, ResumeID> {
 
-    Optional<AnyInterestResponseModel> fetchAnyById(InterestCriteria criteria) ;
+    Optional<InterestRoot> fetchAnyById(InterestCriteria criteria) ;
 
-    List<AnyInterestResponseModel> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws Exception;
+    List<InterestRoot> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws Exception;
 
-    List<SimpleAnyInterestResponseModel> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request) throws Exception;
+    List<InterestRoot> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request) throws Exception;
 
     Optional<InterestRoot> findMyInterestById(InterestCriteria criteria);
 
