@@ -58,11 +58,10 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
-            var interestRoots = interestComposes.stream()
+           return  interestComposes.stream()
                     .map(interestDataAccessMapper::toRoot)
                     .flatMap(Optional::stream)
                     .toList();
-            return interestRoots;
         }
         return List.of();
 
@@ -76,11 +75,11 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
-            var interestRoots = interestComposes.stream()
+            return  interestComposes.stream()
                     .map(interestDataAccessMapper::toRoot)
                     .flatMap(Optional::stream)
                     .toList();
-            return interestRoots;
+
         }
         return List.of();
     }
