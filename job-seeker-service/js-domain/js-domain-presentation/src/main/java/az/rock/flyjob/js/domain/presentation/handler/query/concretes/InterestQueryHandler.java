@@ -64,16 +64,16 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     @Override
     public MyInterestResponseModel findMyInterestById(UUID id) throws InterestNotFound {
         var resumeID = this.contextHolder.availableResumeID();
-        var interestCriteria = toCriteria(resumeID, id);
+        var interestCriteria = toCriteria(resumeID, id,null);
         var myInterest = this.interestQueryRepositoryAdapter.findMyInterestById(interestCriteria);
         return myInterest.map(MyInterestResponseModel::of)
                 .orElseThrow(InterestNotFound::new);
     }
 
     @Override
-    public SimplePageableResponse<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) {
+    public SimplePageableResponse<MyInterestResponseModel> queryAllMyInterests(SimplePageableRequest pageableRequest) throws InterestOverLimit {
         var resumeID = this.contextHolder.availableResumeID();
-        var interestCriteria = toCriteria(resumeID);
+        var interestCriteria = toCriteria(resumeID,null,null);
         var myInterest = this.interestQueryRepositoryAdapter.queryAllMyInterests(interestCriteria, pageableRequest).stream()
                 .map(MyInterestResponseModel::of)
                 .toList();
@@ -81,9 +81,9 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) {
+    public SimplePageableResponse<SimpleMyInterestResponseModel> queryAllMySimpleInterests(SimplePageableRequest pageableRequest) throws InterestOverLimit {
         var resumeID = this.contextHolder.availableResumeID();
-        var interestCriteria = toCriteria(resumeID);
+        var interestCriteria = toCriteria(resumeID,null,null);
         var myInterest = this.interestQueryRepositoryAdapter.queryAllMySimpleInterests(interestCriteria, pageableRequest).stream()
                 .map(SimpleMyInterestResponseModel::of)
                 .toList();
@@ -102,18 +102,5 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
                 .build();
 
 
-    }
-
-    public InterestCriteria toCriteria(ResumeID resumeID, UUID id) {
-        return InterestCriteria.Builder.builder()
-                .resume(resumeID)
-                .id(id)
-                .build();
-    }
-
-    public InterestCriteria toCriteria(ResumeID resumeID) {
-        return InterestCriteria.Builder.builder()
-                .resume(resumeID)
-                .build();
     }
 }
