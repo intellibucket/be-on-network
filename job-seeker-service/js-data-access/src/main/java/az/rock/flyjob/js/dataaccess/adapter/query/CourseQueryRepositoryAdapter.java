@@ -65,9 +65,7 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
 
     @Override
     public List<CourseRoot> fetchAllCourses(CourseCriteria criteria, SimplePageableRequest pageableRequest) {
-        var courseComposeExample = CourseComposeExample.of(criteria);
-        courseComposeExample.setOrderByClause("order_number");
-        courseComposeExample.setPageable(Pageable.of(pageableRequest));
+        var courseComposeExample = CourseComposeExample.of(criteria,"order_number",Pageable.of(pageableRequest));
         return courseQueryBatisRepository.selectByExample(courseComposeExample)
                 .stream()
                 .map(courseDataAccessMapper::toRoot)
@@ -79,7 +77,6 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     @Override
     public Optional<CourseRoot> fetchCourseById(CourseCriteria criteria) {
         var courseComposeExample = CourseComposeExample.of(criteria);
-        courseComposeExample.setOrderByClause("order_number");
         return courseQueryBatisRepository.selectByExample(courseComposeExample)
                 .stream()
                 .findFirst()

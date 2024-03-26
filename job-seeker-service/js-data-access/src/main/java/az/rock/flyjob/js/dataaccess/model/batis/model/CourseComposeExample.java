@@ -3,7 +3,6 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.SimplePageableRequest;
 
 import java.util.*;
 
@@ -17,8 +16,18 @@ public class CourseComposeExample {
 
     protected Pageable pageable;
 
+
     public static CourseComposeExample of(CourseCriteria criteria){
         var example = new CourseComposeExample();
+        return addCriteria(example,criteria);
+    }
+
+    public static CourseComposeExample of(CourseCriteria criteria,String orderByClause,Pageable pageable){
+        var example = new CourseComposeExample(orderByClause,pageable);
+        return addCriteria(example,criteria);
+    }
+
+    private static CourseComposeExample addCriteria(CourseComposeExample example,CourseCriteria criteria){
         var newCriteria = example.createCriteria();
         newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
         if(Optional.ofNullable(criteria.getResumeID()).isPresent())newCriteria.andResumeUuidEqualTo(criteria.getResumeID().getRootID());
@@ -36,6 +45,11 @@ public class CourseComposeExample {
     }
 
     public CourseComposeExample() {
+        oredCriteria = new ArrayList<>();
+    }
+    public CourseComposeExample(String orderByClause, Pageable pageable) {
+        this.orderByClause = orderByClause;
+        this.pageable = pageable;
         oredCriteria = new ArrayList<>();
     }
 
