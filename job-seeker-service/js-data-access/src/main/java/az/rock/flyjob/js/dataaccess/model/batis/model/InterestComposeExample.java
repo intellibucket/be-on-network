@@ -65,7 +65,7 @@ public class InterestComposeExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public void setOrderByClause(String orderByClause) {
+    public void addOrderConstraints(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
@@ -106,7 +106,7 @@ public class InterestComposeExample {
 
     public static InterestComposeExample of(InterestCriteria interestCriteria) {
         InterestComposeExample example = new InterestComposeExample();
-
+        example.addOrderConstraints("order_number");
         var criteria = example.createCriteria();
         criteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
         if (Optional.ofNullable(interestCriteria.getResume()).isPresent()) {

@@ -39,9 +39,8 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     public Optional<InterestRoot> fetchAnyById(InterestCriteria interestCriteria) {
         var interestComposeExample = InterestComposeExample.of(interestCriteria);
         var interestCompose = this.batisRepository.selectByExample(interestComposeExample);
-        if (interestCompose.size() == 1) {
-            var root = this.interestDataAccessMapper.toRoot(interestCompose.get(0));
-            return Optional.ofNullable(root.get());
+        if (!interestCompose.isEmpty()) {
+            return this.interestDataAccessMapper.toRoot(interestCompose.get(0));
         }
         return Optional.empty();
     }
@@ -53,10 +52,12 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
-           return  interestComposes.stream()
+            return interestComposes.stream()
                     .map(interestDataAccessMapper::toRoot)
-                    .flatMap(Optional::stream)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
                     .toList();
+
         }
         return List.of();
 
@@ -69,10 +70,12 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
-            return  interestComposes.stream()
+            return interestComposes.stream()
                     .map(interestDataAccessMapper::toRoot)
-                    .flatMap(Optional::stream)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
                     .toList();
+
 
         }
         return List.of();
@@ -82,7 +85,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public Optional<InterestRoot> findMyInterestById(InterestCriteria criteria) {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.setOrderByClause("order_number");
+
         return batisRepository.selectByExample(interestComposeExample)
                 .stream()
                 .findFirst()
@@ -93,26 +96,27 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public List<InterestRoot> queryAllMyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws InterestOverLimit {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.setOrderByClause("order_number");
         interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(pageableRequest));
 
         return batisRepository.selectByExample(interestComposeExample)
                 .stream()
                 .map(interestDataAccessMapper::toRoot)
-                .flatMap(Optional::stream)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
+
     }
 
     @Override
     public List<InterestRoot> queryAllMySimpleInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws InterestOverLimit {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.setOrderByClause("order_number");
         interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(pageableRequest));
 
         return batisRepository.selectByExample(interestComposeExample)
                 .stream()
                 .map(interestDataAccessMapper::toRoot)
-                .flatMap(Optional::stream)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .toList();
     }
 
