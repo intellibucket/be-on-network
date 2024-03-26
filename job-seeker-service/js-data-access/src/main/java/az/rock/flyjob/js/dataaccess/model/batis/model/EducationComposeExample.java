@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
 import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.RowStatus;
 
 import java.util.ArrayList;
@@ -24,9 +25,13 @@ public class EducationComposeExample {
     public static EducationComposeExample of(EducationCriteria educationCriteria) {
         var educationCompose = new EducationComposeExample();
         var criteria = educationCompose.createCriteria();
-        criteria
-                .andResumeUuidEqualTo(educationCriteria.getResumeID())
-                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        var educationId = educationCriteria.getEducationId();
+        var accessModifiers = educationCriteria.getAccessModifiers();
+        criteria.andResumeUuidEqualTo(educationCriteria.getResumeID()).andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        if (educationId != null)
+            criteria.andUuidEqualTo(educationCriteria.getEducationId());
+        if (!accessModifiers.isEmpty())
+            criteria.andAccessModifierIn(accessModifiers.stream().map(AccessModifier::name).toList());
         return educationCompose;
     }
 
