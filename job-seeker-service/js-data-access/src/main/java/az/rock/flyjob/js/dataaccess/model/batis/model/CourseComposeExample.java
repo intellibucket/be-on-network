@@ -1,18 +1,58 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.SimplePageableRequest;
+
+import java.util.*;
+
 @SuppressWarnings("all")
 public class CourseComposeExample {
+
+
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
+    protected Pageable pageable;
+
+
+    public static CourseComposeExample of(CourseCriteria criteria){
+        var example = new CourseComposeExample();
+        return addCriteria(example,criteria);
+    }
+
+    public static CourseComposeExample of(CourseCriteria criteria,String orderByClause,Pageable pageable){
+        var example = new CourseComposeExample(orderByClause,pageable);
+        return addCriteria(example,criteria);
+    }
+
+    private static CourseComposeExample addCriteria(CourseComposeExample example,CourseCriteria criteria){
+        var newCriteria = example.createCriteria();
+        newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        if(Optional.ofNullable(criteria.getResumeID()).isPresent())newCriteria.andResumeUuidEqualTo(criteria.getResumeID().getRootID());
+        if(Optional.ofNullable(criteria.getId()).isPresent())newCriteria.andUuidEqualTo(criteria.getId().getRootID());
+        if(Optional.ofNullable(criteria.getAccessModifiers()).isPresent())newCriteria.andAccessModifierIn(criteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
+        return example;
+    }
+
+    public Pageable getPageable() {
+        return pageable;
+    }
+
+    public void setPageable(Pageable pageable) {
+        this.pageable = pageable;
+    }
+
     public CourseComposeExample() {
+        oredCriteria = new ArrayList<>();
+    }
+    public CourseComposeExample(String orderByClause, Pageable pageable) {
+        this.orderByClause = orderByClause;
+        this.pageable = pageable;
         oredCriteria = new ArrayList<>();
     }
 
@@ -64,6 +104,65 @@ public class CourseComposeExample {
         orderByClause = null;
         distinct = false;
     }
+
+    public static class Pageable {
+        int offset;
+        int limit;
+
+        private Pageable(Builder builder) {
+            setOffset(builder.offset);
+            setLimit(builder.limit);
+        }
+
+        public static Pageable of(SimplePageableRequest request){
+            if(request.getPage()<=0 || request.getSize()<=0)return null;
+            int offset = (request.getPage()-1) * request.getSize();
+            return Builder.builder().offset(offset).limit(request.getSize()).build();
+        }
+
+        public int getOffset() {
+            return offset;
+        }
+
+        public void setOffset(int offset) {
+            this.offset = offset;
+        }
+
+        public int getLimit() {
+            return limit;
+        }
+
+        public void setLimit(int limit) {
+            this.limit = limit;
+        }
+
+        public static final class Builder {
+            private int offset;
+            private int limit;
+
+            private Builder() {
+            }
+
+            public static Builder builder() {
+                return new Builder();
+            }
+
+            public Builder offset(int val) {
+                offset = val;
+                return this;
+            }
+
+            public Builder limit(int val) {
+                limit = val;
+                return this;
+            }
+
+            public Pageable build() {
+                return new Pageable(this);
+            }
+        }
+    }
+
 
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
