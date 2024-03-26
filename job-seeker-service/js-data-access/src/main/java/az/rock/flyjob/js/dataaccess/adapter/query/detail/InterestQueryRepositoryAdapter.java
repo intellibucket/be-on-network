@@ -8,8 +8,7 @@ import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractInter
 import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.AnyInterestResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.interest.simple.SimpleAnyInterestResponseModel;
+
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractInterestQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
@@ -20,8 +19,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Component
@@ -52,9 +49,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public List<InterestRoot> fetchAllAnySimpleInterest(InterestCriteria criteria, SimplePageableRequest request) throws InterestOverLimit {
         var interestComposeExample = InterestComposeExample.of(criteria);
-        var interestCount = this.batisRepository.countByExample(interestComposeExample);
-
-        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
@@ -70,8 +65,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public List<InterestRoot> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) throws Exception {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        var interestCount = this.batisRepository.countByExample(interestComposeExample);
-        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request, interestCount));
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(request));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
@@ -100,9 +94,8 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     public List<InterestRoot> queryAllMyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws InterestOverLimit {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
         interestComposeExample.setOrderByClause("order_number");
-        long interestCount = this.batisRepository.countByExample(interestComposeExample);
-        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(pageableRequest,
-                interestCount));
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(pageableRequest));
+
         return batisRepository.selectByExample(interestComposeExample)
                 .stream()
                 .map(interestDataAccessMapper::toRoot)
@@ -114,9 +107,8 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     public List<InterestRoot> queryAllMySimpleInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws InterestOverLimit {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
         interestComposeExample.setOrderByClause("order_number");
-        long interestCount = this.batisRepository.countByExample(interestComposeExample);
-        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(pageableRequest,
-                interestCount));
+        interestComposeExample.addPageable(InterestComposeExample.Pageable.createPageable(pageableRequest));
+
         return batisRepository.selectByExample(interestComposeExample)
                 .stream()
                 .map(interestDataAccessMapper::toRoot)
