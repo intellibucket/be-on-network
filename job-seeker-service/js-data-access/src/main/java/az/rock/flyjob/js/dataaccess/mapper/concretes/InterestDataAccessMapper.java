@@ -104,8 +104,5 @@ public class InterestDataAccessMapper implements AbstractInterestDataAccessMappe
                 .isHobby(compose.getIsHobby())
                 .build()
         );
-
-
-
     }
 }
