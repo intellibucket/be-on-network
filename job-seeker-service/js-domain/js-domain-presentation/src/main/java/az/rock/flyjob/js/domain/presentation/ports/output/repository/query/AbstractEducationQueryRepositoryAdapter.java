@@ -16,11 +16,8 @@ import java.util.UUID;
 public interface AbstractEducationQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<EducationRoot, EducationID, ResumeID> {
     Optional<EducationRoot> findByResumeAndUuidAndRowStatusTrue(ResumeID resumeID, UUID educationId);
 
-    List<EducationRoot> fetchAllMyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest);
+    List<EducationRoot> fetchAllEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest);
 
-    List<EducationRoot> fetchAllMySimpleEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest);
-
-    List<EducationRoot> fetchAllAnyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest);
 
 
 }

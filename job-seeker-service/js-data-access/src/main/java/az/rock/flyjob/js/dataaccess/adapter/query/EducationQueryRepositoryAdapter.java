@@ -37,30 +37,9 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
     }
 
     @Override
-    public List<EducationRoot> fetchAllMyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var composes = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
-        return composes
-                .stream()
-                .map(educationDataAccessMapper::composeToRoot)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .toList();
-    }
-
-    @Override
-    public List<EducationRoot> fetchAllMySimpleEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var composes = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
-        return composes
-                .stream()
-                .map(educationDataAccessMapper::composeToRoot)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .toList();
-    }
-
-    @Override
-    public List<EducationRoot> fetchAllAnyEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var composes = educationBatisRepository.selectByExample(EducationComposeExample.of(educationCriteria));
+    public List<EducationRoot> fetchAllEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
+        var educationComposeExample = EducationComposeExample.of(educationCriteria, "order_number", EducationComposeExample.pageable(simplePageableRequest));
+        var composes = educationBatisRepository.selectByExample(educationComposeExample);
         return composes
                 .stream()
                 .map(educationDataAccessMapper::composeToRoot)

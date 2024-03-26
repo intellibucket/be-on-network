@@ -30,7 +30,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     public SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) throws EducationDomainException {
         var currentResumeId = securityContextHolder.availableResumeID();
         var educationCriteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).build();
-        var myEducationsRootList = educationQueryRepositoryAdapter.fetchAllMyEducations(educationCriteria, pageableRequest);
+        var myEducationsRootList = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         if (myEducationsRootList.isEmpty()) throw new EducationNotFoundException();
         var myEducationsResponseList = myEducationsRootList.stream().map(MyEducationResponseModel::of).toList();
         return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), myEducationsResponseList);
@@ -39,7 +39,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     @Override
     public SimplePageableResponse<AnyEducationResponseModel> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) throws EducationDomainException {
         var educationCriteria = EducationCriteria.builder().resumeID(targetResumeId).build();
-        var anyEducationRootList = educationQueryRepositoryAdapter.fetchAllAnyEducations(educationCriteria, pageableRequest);
+        var anyEducationRootList = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         if (anyEducationRootList.isEmpty()) throw new EducationNotFoundException();
         var anyEducationResponseList = anyEducationRootList.stream().map(AnyEducationResponseModel::of).toList();
         return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), anyEducationResponseList);
@@ -49,7 +49,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     public SimplePageableResponse<SimpleMyEducationResponseModel> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) throws EducationDomainException {
         var currentResumeId = securityContextHolder.availableResumeID();
         var educationCriteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).build();
-        var simpleEducationRoots = educationQueryRepositoryAdapter.fetchAllMyEducations(educationCriteria, pageableRequest);
+        var simpleEducationRoots = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         if (simpleEducationRoots.isEmpty()) throw new EducationNotFoundException();
         var simpleEducationResponseList = simpleEducationRoots.stream().map(SimpleMyEducationResponseModel::of).toList();
         return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), simpleEducationResponseList);
