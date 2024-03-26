@@ -11,7 +11,7 @@ import az.rock.lib.valueObject.SimplePageableResponse;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 import java.util.UUID;
 
 @Service

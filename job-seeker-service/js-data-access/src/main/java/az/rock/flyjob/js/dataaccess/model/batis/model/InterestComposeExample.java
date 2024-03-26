@@ -45,10 +45,9 @@ public class InterestComposeExample {
             this.limit = limit;
         }
 
-        public static Pageable createPageable(SimplePageableRequest request, long count) throws InterestOverLimit {
-            var totalPage = (int) Math.ceil((double) count / request.getSize());
+        public static Pageable createPageable(SimplePageableRequest request) throws InterestOverLimit {
 
-            if (!(request.getSize() <= 0) && !(request.getPage() <= 0) && request.getPage() <= totalPage) {
+            if (!(request.getSize() <= 0) && !(request.getPage() <= 0) ) {
                 Pageable pageable = new Pageable();
                 pageable.setLimit(request.getSize());
                 pageable.setOffset((request.getPage() - 1) * pageable.limit);
@@ -112,6 +111,7 @@ public class InterestComposeExample {
         criteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
         if (Optional.ofNullable(interestCriteria.getResume()).isPresent()) {
             criteria.andResumeUuidEqualTo(interestCriteria.getResume().getAbsoluteID());
+
         }
 
         if (Optional.ofNullable(interestCriteria.getId()).isPresent()) {
