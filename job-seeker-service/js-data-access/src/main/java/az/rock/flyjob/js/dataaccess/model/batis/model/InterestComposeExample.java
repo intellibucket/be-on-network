@@ -1,8 +1,19 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
+
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.SimplePageableRequest;
+
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
+
 @SuppressWarnings("all")
 public class InterestComposeExample {
     protected String orderByClause;
@@ -11,11 +22,50 @@ public class InterestComposeExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected Pageable pageable;
+
+
+    public static class Pageable {
+        private int offset;
+        private int limit;
+
+        private Pageable(int offset, int limit) {
+            this.offset = offset;
+            this.limit = limit;
+        }
+
+        public Pageable() {
+        }
+
+        private void setOffset(int offset) {
+            this.offset = offset;
+        }
+
+        private void setLimit(int limit) {
+            this.limit = limit;
+        }
+
+        public static Pageable createPageable(SimplePageableRequest request) throws InterestOverLimit {
+
+            if (!(request.getSize() <= 0) && !(request.getPage() <= 0) ) {
+                Pageable pageable = new Pageable();
+                pageable.setLimit(request.getSize());
+                pageable.setOffset((request.getPage() - 1) * pageable.limit);
+
+                return pageable;
+
+            } else {
+                throw new InterestOverLimit();
+            }
+        }
+    }
+
+
     public InterestComposeExample() {
         oredCriteria = new ArrayList<>();
     }
 
-    public void setOrderByClause(String orderByClause) {
+    public void addOrderConstraints(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
@@ -35,6 +85,15 @@ public class InterestComposeExample {
         return oredCriteria;
     }
 
+    public Pageable getPageable() {
+        return pageable;
+    }
+
+    public Pageable addPageable(Pageable pageable) {
+        this.pageable = pageable;
+        return this.pageable;
+    }
+
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
     }
@@ -43,6 +102,31 @@ public class InterestComposeExample {
         Criteria criteria = createCriteriaInternal();
         oredCriteria.add(criteria);
         return criteria;
+    }
+
+    public static InterestComposeExample of(InterestCriteria interestCriteria) {
+        InterestComposeExample example = new InterestComposeExample();
+        example.addOrderConstraints("order_number");
+        var criteria = example.createCriteria();
+        criteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        if (Optional.ofNullable(interestCriteria.getResume()).isPresent()) {
+            criteria.andResumeUuidEqualTo(interestCriteria.getResume().getAbsoluteID());
+
+        }
+
+        if (Optional.ofNullable(interestCriteria.getId()).isPresent()) {
+            criteria.andUuidEqualTo(interestCriteria.getId());
+
+        }
+        Optional<List<AccessModifier>> accessModifiersOptional = Optional.ofNullable(interestCriteria.getAccessModifier());
+        if (accessModifiersOptional.isPresent()) {
+            final AccessModifier accessModifier = accessModifiersOptional.get().stream()
+                    .findAny().get();
+            criteria.andAccessModifierEqualTo(accessModifier.name());
+
+        }
+        return example;
+
     }
 
     public Criteria createCriteria() {

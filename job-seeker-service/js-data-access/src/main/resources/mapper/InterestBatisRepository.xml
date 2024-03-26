@@ -96,6 +96,10 @@
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
+        <if test="pageable != null">
+            OFFSET ${pageable.offset} ROWS
+            FETCH NEXT ${pageable.limit} ROWS ONLY;
+        </if>
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Object" resultMap="BaseResultMap">
         select

@@ -10,6 +10,7 @@ import java.util.UUID;
 @Compose
 public class BaseCompose {
     private UUID uuid;
+    private UUID parentId;
 
     private Long version;
 
@@ -22,12 +23,14 @@ public class BaseCompose {
     private Timestamp lastModifiedDate;
 
     public BaseCompose(UUID uuid,
+                       UUID parentId,
                        Long version,
                        ProcessStatus processStatus,
                        RowStatus rowStatus,
                        Timestamp createdDate,
                        Timestamp lastModifiedDate) {
         this.uuid = uuid;
+        this.parentId=parentId;
         this.version = version;
         this.processStatus = processStatus;
         this.rowStatus = rowStatus;
@@ -36,6 +39,14 @@ public class BaseCompose {
     }
 
     public BaseCompose() {
+    }
+
+    public UUID getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(UUID parentId) {
+        this.parentId = parentId;
     }
 
     public UUID getUuid() {
