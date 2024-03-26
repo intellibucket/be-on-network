@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/js/1.0/private/query/course", produces = MediaType.APPLICATION_JSON_VALUE)

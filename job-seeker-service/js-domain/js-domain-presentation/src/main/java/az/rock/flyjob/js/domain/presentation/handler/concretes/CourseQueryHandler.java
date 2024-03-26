@@ -45,7 +45,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
                 .stream()
                 .map(MyCourseResponseModel::of)
                 .toList();
-        var payload = SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        var payload = SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(),courses);
         return payload;
 
     }
@@ -57,7 +57,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
                 .stream()
                 .map(AnyCourseResponseModel::of)
                 .toList();
-        var payload =  SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        var payload =  SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(),courses);
         return payload;
     }
 
@@ -88,7 +88,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
                 .stream()
                 .map(SimpleMyCourseResponseModel::of)
                 .toList();
-        var payload = SimplePageableResponse.of(simplePageableRequest.getSize(), simplePageableRequest.getPage(),null,courses);
+        var payload = SimplePageableResponse.ofNoMore(simplePageableRequest.getSize(), simplePageableRequest.getPage(),courses);
         return payload;
     }
 
@@ -99,7 +99,7 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
                 .stream()
                 .map(SimpleAnyCourseResponseModel::of)
                 .toList();
-        var payload =  SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),null,courses);
+        var payload =  SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(),courses);
         return payload;
     }
 }
