@@ -47,19 +47,22 @@ public class EducationQueryPrivateController implements EducationQueryPrivateSpe
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyEducationResponseModel>>> queryAllAnySimpleEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
+    @GetMapping("/get-any/simple-educations/{targetResumeId}")
+    public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyEducationResponseModel>>> queryAllAnySimpleEducations(@PathVariable UUID targetResumeId, @ModelAttribute("pageableRequest") SimplePageableRequest pageableRequest) {
         var response = educationQueryDomainPresentationService.queryAllAnySimpleEducations(targetResumeId, pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<MyEducationResponseModel>> findMyEducationById(UUID id) {
+    @GetMapping("/get-my/education/{id}")
+    public ResponseEntity<JSuccessDataResponse<MyEducationResponseModel>> findMyEducationById(@PathVariable UUID id) {
         var response = educationQueryDomainPresentationService.findMyEducationById(id);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }
 
     @Override
-    public ResponseEntity<JSuccessDataResponse<AnyEducationResponseModel>> findAnyEducationById(UUID id) {
+    @GetMapping("/get-any/education/{id}")
+    public ResponseEntity<JSuccessDataResponse<AnyEducationResponseModel>> findAnyEducationById(@PathVariable UUID id) {
         var response = educationQueryDomainPresentationService.findAnyEducationById(id);
         return ResponseEntity.ok(new JSuccessDataResponse<>(response));
     }

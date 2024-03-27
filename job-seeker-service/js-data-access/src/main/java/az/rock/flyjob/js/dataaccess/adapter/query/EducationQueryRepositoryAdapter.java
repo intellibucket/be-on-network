@@ -49,11 +49,15 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
     }
 
     @Override
-    public List<EducationRoot> fetchEducation(EducationCriteria educationCriteria) {
+    public Optional<EducationRoot> fetchEducation(EducationCriteria educationCriteria) {
         var educationComposeExample = EducationComposeExample.of(educationCriteria);
         var composes = educationBatisRepository.selectByExample(educationComposeExample);
         return composes
-                .stream().map();
+                .stream()
+                .findFirst()
+                .map(educationDataAccessMapper::composeToRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get);
     }
 
 

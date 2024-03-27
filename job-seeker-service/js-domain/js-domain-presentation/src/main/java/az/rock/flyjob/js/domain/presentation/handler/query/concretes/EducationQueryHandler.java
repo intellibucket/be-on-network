@@ -65,21 +65,22 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
         var educationCriteria = EducationCriteria.builder().resumeID(targetResumeId).build();
         var anySimpleEducationRoots = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         if (anySimpleEducationRoots.isEmpty()) throw new EducationNotFoundException();
-        var anySimpleEducationResponseList = anySimpleEducationRoots.stream().map(AnyEducationResponseModel::of).toList();
-        return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), anySimpleEducationResponseList);
+        var simpleAnyEducationResponseList = anySimpleEducationRoots.stream().map(SimpleAnyEducationResponseModel::of).toList();
+        return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), simpleAnyEducationResponseList);
     }
 
     @Override
     public MyEducationResponseModel findMyEducationById(UUID id) throws EducationDomainException {
         var currentResumeId = securityContextHolder.availableResumeID();
         var criteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).educationId(id).build();
-        var myEducationRoot = educationQueryRepositoryAdapter.fetchEducation(criteria);
-        if (myEducationRoot) throw new EducationNotFoundException();
-        return MyEducationResponseModel.of();
+        var myEducationRoot = educationQueryRepositoryAdapter.fetchEducation(criteria).orElseThrow(EducationNotFoundException::new);
+        return MyEducationResponseModel.of(myEducationRoot);
     }
 
     @Override
     public AnyEducationResponseModel findAnyEducationById(UUID id) throws EducationDomainException {
-        return null;
+        var criteria = EducationCriteria.builder().resumeID(id).accessModifiers(accessModifiers).build();
+        var anyEducation = educationQueryRepositoryAdapter.fetchEducation(criteria).orElseThrow(EducationNotFoundException::new);
+        return AnyEducationResponseModel.of(anyEducation);
     }
 }
