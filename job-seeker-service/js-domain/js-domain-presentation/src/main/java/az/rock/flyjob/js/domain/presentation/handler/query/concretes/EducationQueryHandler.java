@@ -10,16 +10,20 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.education.simpl
 import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractEducationQueryHandler;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractEducationQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
 public class EducationQueryHandler implements AbstractEducationQueryHandler {
     private final AbstractSecurityContextHolder securityContextHolder;
     private final AbstractEducationQueryRepositoryAdapter educationQueryRepositoryAdapter;
+
+    private final List<AccessModifier> accessModifiers = List.of(AccessModifier.values());
 
     public EducationQueryHandler(AbstractSecurityContextHolder securityContextHolder, AbstractEducationQueryRepositoryAdapter educationQueryRepositoryAdapter) {
         this.securityContextHolder = securityContextHolder;
@@ -68,7 +72,8 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     @Override
     public MyEducationResponseModel findMyEducationById(UUID id) throws EducationDomainException {
         var currentResumeId = securityContextHolder.availableResumeID();
-
+        var criteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).educationId(id).accessModifiers(accessModifiers).build();
+        var myEducation = educationQueryRepositoryAdapter.fetchEducation(criteria,)
         return null;
     }
 
