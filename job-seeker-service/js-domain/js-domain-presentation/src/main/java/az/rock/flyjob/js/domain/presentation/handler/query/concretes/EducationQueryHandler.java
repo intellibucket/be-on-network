@@ -72,9 +72,10 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     @Override
     public MyEducationResponseModel findMyEducationById(UUID id) throws EducationDomainException {
         var currentResumeId = securityContextHolder.availableResumeID();
-        var criteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).educationId(id).accessModifiers(accessModifiers).build();
-        var myEducation = educationQueryRepositoryAdapter.fetchEducation(criteria,)
-        return null;
+        var criteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).educationId(id).build();
+        var myEducationRoot = educationQueryRepositoryAdapter.fetchEducation(criteria);
+        if (myEducationRoot) throw new EducationNotFoundException();
+        return MyEducationResponseModel.of();
     }
 
     @Override

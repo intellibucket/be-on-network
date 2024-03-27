@@ -38,6 +38,20 @@ public class EducationComposeExample {
         return educationComposeExample;
     }
 
+    public static EducationComposeExample of(EducationCriteria educationCriteria) {
+        var educationComposeExample = new EducationComposeExample();
+        var criteria = educationComposeExample.createCriteria();
+        var educationId = educationCriteria.getEducationId();
+        var accessModifiers = educationCriteria.getAccessModifiers();
+        criteria.andResumeUuidEqualTo(educationCriteria.getResumeID())
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        if (Objects.nonNull(educationId))
+            criteria.andUuidEqualTo(educationCriteria.getEducationId());
+        if (Objects.nonNull(accessModifiers))
+            criteria.andAccessModifierIn(accessModifiers.stream().map(AccessModifier::name).toList());
+        return educationComposeExample;
+    }
+
     public static Pageable pageable(SimplePageableRequest simplePageableRequest) {
         return Pageable.of(simplePageableRequest);
     }
@@ -1347,7 +1361,7 @@ public class EducationComposeExample {
         public static Pageable of(SimplePageableRequest request) {
             if (request.getPage() <= 0 || request.getSize() <= 0) return null;
             int offset = (request.getPage() - 1) * request.getSize();
-            return  new Pageable(offset, request.getSize());
+            return new Pageable(offset, request.getSize());
         }
 
         public int getOffset() {

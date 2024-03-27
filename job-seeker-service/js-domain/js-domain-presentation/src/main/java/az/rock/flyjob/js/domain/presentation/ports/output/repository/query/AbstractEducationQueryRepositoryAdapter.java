@@ -17,6 +17,7 @@ public interface AbstractEducationQueryRepositoryAdapter extends AbstractQueryRe
     Optional<EducationRoot> findByResumeAndUuidAndRowStatusTrue(ResumeID resumeID, UUID educationId);
 
     List<EducationRoot> fetchAllEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest);
+    List<EducationRoot> fetchEducation(EducationCriteria educationCriteria);
 
 
 

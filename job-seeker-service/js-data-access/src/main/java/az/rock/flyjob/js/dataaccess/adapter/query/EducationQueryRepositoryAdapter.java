@@ -49,6 +49,15 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
     }
 
     @Override
+    public List<EducationRoot> fetchEducation(EducationCriteria educationCriteria) {
+        var educationComposeExample = EducationComposeExample.of(educationCriteria);
+        var composes = educationBatisRepository.selectByExample(educationComposeExample);
+        return composes
+                .stream().map();
+    }
+
+
+    @Override
     public Optional<EducationRoot> findById(EducationID rootId) {
         var entity = educationQueryJpaRepository.findById(rootId.getAbsoluteID());
         if (entity.isEmpty()) return Optional.empty();
