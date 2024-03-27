@@ -1,9 +1,11 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.SimplePageableRequest;
+
+import java.util.*;
 
 @SuppressWarnings("all")
 public class EducationComposeExample {
@@ -13,24 +15,70 @@ public class EducationComposeExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected Pageable pageable;
+
+
     public EducationComposeExample() {
         oredCriteria = new ArrayList<>();
     }
 
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
+    public static EducationComposeExample of(EducationCriteria educationCriteria, String orderByClause, Pageable pageable) {
+        var educationComposeExample = new EducationComposeExample();
+        educationComposeExample.setOrderByClause(orderByClause);
+        educationComposeExample.setPageable(pageable);
+        var criteria = educationComposeExample.createCriteria();
+        var educationId = educationCriteria.getEducationId();
+        var accessModifiers = educationCriteria.getAccessModifiers();
+        criteria.andResumeUuidEqualTo(educationCriteria.getResumeID())
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        if (Objects.nonNull(educationId))
+            criteria.andUuidEqualTo(educationCriteria.getEducationId());
+        if (Objects.nonNull(accessModifiers))
+            criteria.andAccessModifierIn(accessModifiers.stream().map(AccessModifier::name).toList());
+        return educationComposeExample;
+    }
+
+    public static EducationComposeExample of(EducationCriteria educationCriteria) {
+        var educationComposeExample = new EducationComposeExample();
+        var criteria = educationComposeExample.createCriteria();
+        var educationId = educationCriteria.getEducationId();
+        var accessModifiers = educationCriteria.getAccessModifiers();
+        criteria.andResumeUuidEqualTo(educationCriteria.getResumeID())
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        if (Objects.nonNull(educationId))
+            criteria.andUuidEqualTo(educationCriteria.getEducationId());
+        if (Objects.nonNull(accessModifiers))
+            criteria.andAccessModifierIn(accessModifiers.stream().map(AccessModifier::name).toList());
+        return educationComposeExample;
+    }
+
+    public static Pageable pageable(SimplePageableRequest simplePageableRequest) {
+        return Pageable.of(simplePageableRequest);
+    }
+
+    public Pageable setPageable(Pageable pageable) {
+        this.pageable = pageable;
+        return pageable;
+    }
+
+    public Pageable getPageable() {
+        return pageable;
     }
 
     public String getOrderByClause() {
         return orderByClause;
     }
 
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
+    public void setOrderByClause(String orderByClause) {
+        this.orderByClause = orderByClause;
     }
 
     public boolean isDistinct() {
         return distinct;
+    }
+
+    public void setDistinct(boolean distinct) {
+        this.distinct = distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -40,6 +88,7 @@ public class EducationComposeExample {
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
     }
+
 
     public Criteria or() {
         Criteria criteria = createCriteriaInternal();
@@ -1300,6 +1349,31 @@ public class EducationComposeExample {
         }
     }
 
+    public static class Pageable {
+        private int offset;
+        private int limit;
+
+        private Pageable(int offset, int limit) {
+            this.offset = offset;
+            this.limit = limit;
+        }
+
+        public static Pageable of(SimplePageableRequest request) {
+            if (request.getPage() <= 0 || request.getSize() <= 0) return null;
+            int offset = (request.getPage() - 1) * request.getSize();
+            return new Pageable(offset, request.getSize());
+        }
+
+        public int getOffset() {
+            return offset;
+        }
+
+        public int getLimit() {
+            return limit;
+        }
+    }
+
+
     public static class Criterion {
         private String condition;
 
@@ -1316,38 +1390,6 @@ public class EducationComposeExample {
         private boolean listValue;
 
         private String typeHandler;
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
-        }
 
         protected Criterion(String condition) {
             super();
@@ -1383,6 +1425,38 @@ public class EducationComposeExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
+        }
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
         }
     }
 }
